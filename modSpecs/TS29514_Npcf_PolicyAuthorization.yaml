@@ -925,9 +925,12 @@ components:
                 - HIGHEST_BW
             type: string
         PreemptionControlInformationRm:
-            anyOf:
-                - $ref: '#/components/schemas/PreemptionControlInformation'
-                - $ref: TS29571_CommonData.yaml#/components/schemas/NullValue
+            enum:
+                - MOST_RECENT
+                - LEAST_RECENT
+                - HIGHEST_BW
+            nullable: true
+            type: string
         PrioritySharingIndicator:
             enum:
                 - ENABLED

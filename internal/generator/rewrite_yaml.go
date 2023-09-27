@@ -44,7 +44,7 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 	for _, s := range pkgList[spec].cutRefs {
 		cutRefs[s] = struct{}{}
 	}
-	if err := scanRef(doc, refs, cutRefs); err != nil {
+	if err := scanRef(doc, spec, refs, cutRefs); err != nil {
 		return nil, nil, err
 	}
 
@@ -455,6 +455,26 @@ func fixCutSchemaRef(v *openapi3.SchemaRef) error {
 		}
 	}
 
+	return nil
+}
+
+func fixNullable(v *openapi3.Schema, specName string) error {
+	nullValueRef := ""
+	if specName == "TS29571_CommonData.yaml" {
+		nullValueRef = "#/components/schemas/NullValue"
+	} else {
+		nullValueRef = "TS29571_CommonData.yaml#/components/schemas/NullValue"
+	}
+
+	if len(v.AnyOf) == 2 {
+		if v.AnyOf[0].Ref == nullValueRef {
+			*v = *(deepcopy.Copy(v.AnyOf[1].Value).(*openapi3.Schema))
+			v.Nullable = true
+		} else if v.AnyOf[1].Ref == nullValueRef {
+			*v = *(deepcopy.Copy(v.AnyOf[0].Value).(*openapi3.Schema))
+			v.Nullable = true
+		}
+	}
 	return nil
 }
 

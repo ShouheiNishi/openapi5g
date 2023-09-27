@@ -822,7 +822,7 @@ type QosFlowNotifyItem struct {
 // QosFlowProfile defines model for QosFlowProfile.
 type QosFlowProfile struct {
 	N5qi                  externalRef1.N5Qi                   `json:"5qi"`
-	AdditionalQosFlowInfo *externalRef1.AdditionalQosFlowInfo `json:"additionalQosFlowInfo,omitempty"`
+	AdditionalQosFlowInfo *externalRef1.AdditionalQosFlowInfo `json:"additionalQosFlowInfo"`
 	Arp                   *externalRef1.Arp                   `json:"arp,omitempty"`
 	Dynamic5Qi            *externalRef1.Dynamic5Qi            `json:"dynamic5Qi,omitempty"`
 	GbrQosFlowInfo        *GbrQosFlowInformation              `json:"gbrQosFlowInfo,omitempty"`
@@ -8175,11 +8175,9 @@ func (a QosFlowProfile) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling '5qi': %w", err)
 	}
 
-	if a.AdditionalQosFlowInfo != nil {
-		object["additionalQosFlowInfo"], err = json.Marshal(a.AdditionalQosFlowInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'additionalQosFlowInfo': %w", err)
-		}
+	object["additionalQosFlowInfo"], err = json.Marshal(a.AdditionalQosFlowInfo)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'additionalQosFlowInfo': %w", err)
 	}
 
 	if a.Arp != nil {

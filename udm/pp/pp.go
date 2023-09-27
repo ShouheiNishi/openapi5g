@@ -70,7 +70,7 @@ type EcRestriction struct {
 // ExpectedUeBehaviour defines model for ExpectedUeBehaviour.
 type ExpectedUeBehaviour struct {
 	AfInstanceId              string                            `json:"afInstanceId"`
-	BatteryIndication         *externalRef0.BatteryIndicationRm `json:"batteryIndication,omitempty"`
+	BatteryIndication         *externalRef0.BatteryIndicationRm `json:"batteryIndication"`
 	CommunicationDurationTime *externalRef0.DurationSecRm       `json:"communicationDurationTime"`
 
 	// ExpectedUmts Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
@@ -78,12 +78,16 @@ type ExpectedUeBehaviour struct {
 	MtcProviderInformation     *externalRef0.MtcProviderInformation       `json:"mtcProviderInformation,omitempty"`
 	PeriodicTime               *externalRef0.DurationSecRm                `json:"periodicTime"`
 	ReferenceId                ReferenceId                                `json:"referenceId"`
-	ScheduledCommunicationTime *externalRef0.ScheduledCommunicationTimeRm `json:"scheduledCommunicationTime,omitempty"`
-	ScheduledCommunicationType *externalRef0.ScheduledCommunicationTypeRm `json:"scheduledCommunicationType,omitempty"`
-	StationaryIndication       *externalRef0.StationaryIndicationRm       `json:"stationaryIndication,omitempty"`
-	TrafficProfile             *externalRef0.TrafficProfileRm             `json:"trafficProfile,omitempty"`
-	ValidityTime               *externalRef0.DateTime                     `json:"validityTime,omitempty"`
-	AdditionalProperties       map[string]interface{}                     `json:"-"`
+	ScheduledCommunicationTime *externalRef0.ScheduledCommunicationTimeRm `json:"scheduledCommunicationTime"`
+	ScheduledCommunicationType *externalRef0.ScheduledCommunicationTypeRm `json:"scheduledCommunicationType"`
+
+	// StationaryIndication Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
+	StationaryIndication *externalRef0.StationaryIndicationRm `json:"stationaryIndication"`
+
+	// TrafficProfile Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
+	TrafficProfile       *externalRef0.TrafficProfileRm `json:"trafficProfile"`
+	ValidityTime         *externalRef0.DateTime         `json:"validityTime,omitempty"`
+	AdditionalProperties map[string]interface{}         `json:"-"`
 }
 
 // LcsPrivacy defines model for LcsPrivacy.
@@ -148,7 +152,7 @@ type PpActiveTime struct {
 
 // PpData defines model for PpData.
 type PpData struct {
-	AcsInfo                       *externalRef0.AcsInfoRm       `json:"acsInfo,omitempty"`
+	AcsInfo                       *externalRef0.AcsInfoRm       `json:"acsInfo"`
 	CommunicationCharacteristics  *CommunicationCharacteristics `json:"communicationCharacteristics,omitempty"`
 	EcRestriction                 *EcRestriction                `json:"ecRestriction,omitempty"`
 	ExpectedUeBehaviourParameters *ExpectedUeBehaviour          `json:"expectedUeBehaviourParameters,omitempty"`
@@ -903,11 +907,9 @@ func (a ExpectedUeBehaviour) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
 	}
 
-	if a.BatteryIndication != nil {
-		object["batteryIndication"], err = json.Marshal(a.BatteryIndication)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'batteryIndication': %w", err)
-		}
+	object["batteryIndication"], err = json.Marshal(a.BatteryIndication)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'batteryIndication': %w", err)
 	}
 
 	object["communicationDurationTime"], err = json.Marshal(a.CommunicationDurationTime)
@@ -937,32 +939,24 @@ func (a ExpectedUeBehaviour) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
 	}
 
-	if a.ScheduledCommunicationTime != nil {
-		object["scheduledCommunicationTime"], err = json.Marshal(a.ScheduledCommunicationTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scheduledCommunicationTime': %w", err)
-		}
+	object["scheduledCommunicationTime"], err = json.Marshal(a.ScheduledCommunicationTime)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'scheduledCommunicationTime': %w", err)
 	}
 
-	if a.ScheduledCommunicationType != nil {
-		object["scheduledCommunicationType"], err = json.Marshal(a.ScheduledCommunicationType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scheduledCommunicationType': %w", err)
-		}
+	object["scheduledCommunicationType"], err = json.Marshal(a.ScheduledCommunicationType)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'scheduledCommunicationType': %w", err)
 	}
 
-	if a.StationaryIndication != nil {
-		object["stationaryIndication"], err = json.Marshal(a.StationaryIndication)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'stationaryIndication': %w", err)
-		}
+	object["stationaryIndication"], err = json.Marshal(a.StationaryIndication)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'stationaryIndication': %w", err)
 	}
 
-	if a.TrafficProfile != nil {
-		object["trafficProfile"], err = json.Marshal(a.TrafficProfile)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'trafficProfile': %w", err)
-		}
+	object["trafficProfile"], err = json.Marshal(a.TrafficProfile)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'trafficProfile': %w", err)
 	}
 
 	if a.ValidityTime != nil {
@@ -1631,11 +1625,9 @@ func (a PpData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AcsInfo != nil {
-		object["acsInfo"], err = json.Marshal(a.AcsInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'acsInfo': %w", err)
-		}
+	object["acsInfo"], err = json.Marshal(a.AcsInfo)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'acsInfo': %w", err)
 	}
 
 	if a.CommunicationCharacteristics != nil {

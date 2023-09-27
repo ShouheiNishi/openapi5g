@@ -10,18 +10,20 @@ import (
 )
 
 type scanRefType struct {
-	visited map[interface{}]struct{}
-	doc     *openapi3.T
-	refs    map[string]struct{}
-	cutRefs map[string]struct{}
+	visited  map[interface{}]struct{}
+	doc      *openapi3.T
+	specName string
+	refs     map[string]struct{}
+	cutRefs  map[string]struct{}
 }
 
-func scanRef(d *openapi3.T, refs map[string]struct{}, cutRefs map[string]struct{}) error {
+func scanRef(d *openapi3.T, specName string, refs map[string]struct{}, cutRefs map[string]struct{}) error {
 	s := &scanRefType{
 		visited: make(map[interface{}]struct{}),
 		doc:     d,
 	}
 
+	s.specName = specName
 	s.refs = refs
 	s.cutRefs = cutRefs
 
@@ -727,6 +729,10 @@ func (s *scanRefType) walkSchema(v *openapi3.Schema) error {
 	}
 
 	if err := fixAnyOfString(v); err != nil {
+		return err
+	}
+
+	if err := fixNullable(v, s.specName); err != nil {
 		return err
 	}
 

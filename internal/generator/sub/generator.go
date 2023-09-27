@@ -83,11 +83,11 @@ func main() {
 		},
 
 		RootFuncName:  "scanRef",
-		ExtraRootArgs: ", refs map[string]struct{}, cutRefs map[string]struct{}",
-		ExtraInit:     "s.refs = refs\ns.cutRefs = cutRefs\n",
+		ExtraRootArgs: ", specName string, refs map[string]struct{}, cutRefs map[string]struct{}",
+		ExtraInit:     "s.specName = specName\ns.refs = refs\ns.cutRefs = cutRefs\n",
 
 		StateType:  "scanRefType",
-		ExtraState: "refs map[string]struct{}\ncutRefs map[string]struct{}\n",
+		ExtraState: "specName string\nrefs map[string]struct{}\ncutRefs map[string]struct{}\n",
 
 		WalkPreHook: func(t reflect.Type) string {
 			if t != reflect.TypeOf(openapi3.PathItem{}) {
@@ -119,6 +119,7 @@ func main() {
 					"\nif err := fixIntegerFormat(v) ; err != nil{return err}\n" +
 					"\nif err := fixAnyOfEnum(v) ; err != nil{return err}\n" +
 					"\nif err := fixAnyOfString(v) ; err != nil{return err}\n" +
+					"\nif err := fixNullable(v, s.specName) ; err != nil{return err}\n" +
 					"\nif err := fixImplicitArray(v) ; err != nil{return err}\n" +
 					"\nif err := fixEliminateCheckerUnion(v) ; err != nil{return err}\n" +
 					"\nif err := fixAdditionalProperties(v) ; err != nil{return err}\n"

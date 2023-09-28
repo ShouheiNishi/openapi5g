@@ -1914,28 +1914,28 @@ type TypeAllocationCode = string
 type UeAuth string
 
 // Uint16 defines model for Uint16.
-type Uint16 = int
+type Uint16 = uint16
 
 // Uint16Rm defines model for Uint16Rm.
-type Uint16Rm = int
+type Uint16Rm = uint16
 
 // Uint32 defines model for Uint32.
-type Uint32 = int
+type Uint32 = uint32
 
 // Uint32Rm defines model for Uint32Rm.
-type Uint32Rm = int32
+type Uint32Rm = uint32
 
 // Uint64 defines model for Uint64.
-type Uint64 = int
+type Uint64 = uint64
 
 // Uint64Rm defines model for Uint64Rm.
-type Uint64Rm = int
+type Uint64Rm = uint64
 
 // Uinteger defines model for Uinteger.
-type Uinteger = int
+type Uinteger = uint
 
 // UintegerRm defines model for UintegerRm.
-type UintegerRm = int
+type UintegerRm = uint
 
 // UpConfidentiality defines model for UpConfidentiality.
 type UpConfidentiality string

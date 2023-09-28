@@ -16,6 +16,7 @@ package generator
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"path/filepath"
 	"sort"
@@ -28,6 +29,9 @@ import (
 
 const nameForModels = "f5gcModels"
 const importForModels = "github.com/free5gc/openapi/models"
+
+const maxSafeInteger = (1<<53 - 1)
+const minSafeInteger = -maxSafeInteger
 
 func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []string, deps []string, err error) {
 	if err := fixLocalRefInRemoteRef(doc, spec); err != nil {
@@ -98,6 +102,13 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 			"name": nameForModels,
 			"path": importForModels,
 		}
+
+		for _, t := range []string{"Int32", "Int64", "Uint16", "Uint32", "Uint64"} {
+			doc.Components.Schemas[t].Value.Format = strings.ToLower(t)
+			doc.Components.Schemas[t+"Rm"].Value.Format = strings.ToLower(t)
+		}
+		doc.Components.Schemas["Uinteger"].Value.Format = "uint"
+		doc.Components.Schemas["UintegerRm"].Value.Format = "uint"
 	}
 
 	if err := os.MkdirAll(filepath.Join(rootDir, "modSpecs"), 0o755); err != nil {
@@ -232,6 +243,108 @@ func fixCutSchemaRef(v *openapi3.SchemaRef) error {
 	v.Ref = ""
 	v.Value = &openapi3.Schema{
 		Description: newDescription,
+	}
+
+	return nil
+}
+
+func getRangeForGeneratedType(v *openapi3.Schema) (minValue float64, maxValue float64) {
+	switch v.Format {
+	case "int64":
+		return math.MinInt64, math.MaxInt64
+	case "int32":
+		return math.MinInt32, math.MaxInt32
+	case "int16":
+		return math.MinInt16, math.MaxInt16
+	case "int8":
+		return math.MinInt8, math.MaxInt8
+	case "int":
+		// support for 32bit arch
+		return math.MinInt32, math.MaxInt32
+	case "uint64":
+		return 0, math.MaxUint64
+	case "uint32":
+		return 0, math.MaxUint32
+	case "uint16":
+		return 0, math.MaxUint16
+	case "uint8":
+		return 0, math.MaxUint8
+	case "uint":
+		// support for 32bit arch
+		return 0, math.MaxUint32
+	default:
+		// use int type
+		// support for 32bit arch
+		return math.MinInt32, math.MaxInt32
+	}
+}
+
+func isFitRange(v *openapi3.Schema) bool {
+	minValue, maxValue := getRangeForGeneratedType(v)
+	if v.Min != nil {
+		if *v.Min < minValue || *v.Min > maxValue {
+			return false
+		}
+	}
+	if v.Max != nil {
+		if *v.Max < minValue || *v.Max > maxValue {
+			return false
+		}
+	}
+	return true
+}
+
+func dumpAndPanicSchema(v *openapi3.Schema) {
+	vMin := "<nil>"
+	if v.Min != nil {
+		vMin = fmt.Sprint(*v.Min)
+	}
+	vMax := "<nil>"
+	if v.Max != nil {
+		vMax = fmt.Sprint(*v.Max)
+	}
+	panic(fmt.Sprintf("%+v %+v %+v", *v, vMin, vMax))
+}
+
+func fixIntegerFormat(v *openapi3.Schema) error {
+	if v.Type != openapi3.TypeInteger {
+		return nil
+	}
+
+	if (v.Min != nil && (*v.Min > maxSafeInteger || *v.Min < minSafeInteger)) ||
+		(v.Max != nil && (*v.Max > maxSafeInteger || *v.Max < minSafeInteger)) {
+		switch {
+		case v.Min != nil && *v.Min == 0 && v.Max != nil && *v.Max == 1.8446744073709552e+19:
+			// TS29571_CommonData.yaml#/components/schemas/Uint64
+			// TS29571_CommonData.yaml#/components/schemas/Uint64Rm
+			v.Min = nil
+			v.Max = nil
+			v.Format = "uint64"
+		default:
+			dumpAndPanicSchema(v)
+		}
+	}
+
+	// Check whether min/max value fit to generated type
+	if isFitRange(v) {
+		return nil
+	}
+
+	v.Format = "" // assume int type
+	if v.Min != nil {
+		if *v.Min < math.MinInt32 || *v.Min > math.MaxInt32 {
+			v.Format = "int64"
+		}
+	}
+	if v.Max != nil {
+		if *v.Max < math.MinInt32 || *v.Max > math.MaxInt32 {
+			v.Format = "int64"
+		}
+	}
+
+	// Double check
+	if !isFitRange(v) {
+		dumpAndPanicSchema(v)
 	}
 
 	return nil

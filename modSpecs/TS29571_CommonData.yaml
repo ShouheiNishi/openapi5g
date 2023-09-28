@@ -2394,37 +2394,40 @@ components:
                 - NOT_AUTHORIZED
             type: string
         Uint16:
+            format: uint16
             maximum: 65535
             minimum: 0
             type: integer
         Uint16Rm:
+            format: uint16
             maximum: 65535
             minimum: 0
             nullable: true
             type: integer
         Uint32:
+            format: uint32
             maximum: 4294967295
             minimum: 0
             type: integer
         Uint32Rm:
-            format: int32
+            format: uint32
             maximum: 4294967295
             minimum: 0
             nullable: true
             type: integer
         Uint64:
-            maximum: 1.8446744073709552e+19
-            minimum: 0
+            format: uint64
             type: integer
         Uint64Rm:
-            maximum: 1.8446744073709552e+19
-            minimum: 0
+            format: uint64
             nullable: true
             type: integer
         Uinteger:
+            format: uint
             minimum: 0
             type: integer
         UintegerRm:
+            format: uint
             minimum: 0
             nullable: true
             type: integer

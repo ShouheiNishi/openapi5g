@@ -434,7 +434,7 @@ components:
             properties:
                 lmfId:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 servingAccessTypes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/AccessType

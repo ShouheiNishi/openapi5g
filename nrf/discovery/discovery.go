@@ -349,7 +349,7 @@ type SearchNFInstancesParams struct {
 	ClientType *interface{} `form:"client-type,omitempty" json:"client-type,omitempty"`
 
 	// LmfId LMF identification to be discovered
-	LmfId *interface{} `form:"lmf-id,omitempty" json:"lmf-id,omitempty"`
+	LmfId *string `form:"lmf-id,omitempty" json:"lmf-id,omitempty"`
 
 	// AnNodeType Requested AN node type served by the NF
 	AnNodeType *externalRef2.AnNodeType `form:"an-node-type,omitempty" json:"an-node-type,omitempty"`
@@ -4610,7 +4610,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("lmf-id"); paramValue != "" {
 
-		var value interface{}
+		var value string
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'lmf-id' as JSON: %w", err), http.StatusBadRequest)

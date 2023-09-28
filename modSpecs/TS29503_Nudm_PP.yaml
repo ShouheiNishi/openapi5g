@@ -348,7 +348,7 @@ paths:
                     anyOf:
                         - $ref: TS29571_CommonData.yaml#/components/schemas/VarUeId
                         - description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                          x-go-type-skip-optional-pointer: true
+                          type: string
                 - description: Features required to be supported by the target NF
                   in: query
                   name: supported-features
@@ -394,7 +394,7 @@ paths:
                   required: true
                   schema:
                     description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 - description: MTC Provider Information that originated the service operation
                   in: query
                   name: mtc-provider-info
@@ -432,7 +432,7 @@ paths:
                   required: true
                   schema:
                     description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    x-go-type-skip-optional-pointer: true
+                    type: string
             responses:
                 "200":
                     content:
@@ -464,7 +464,7 @@ paths:
                   required: true
                   schema:
                     description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 - description: Features required to be supported by the target NF
                   in: query
                   name: supported-features
@@ -509,7 +509,7 @@ paths:
                   required: true
                   schema:
                     description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    x-go-type-skip-optional-pointer: true
+                    type: string
             requestBody:
                 content:
                     application/json:

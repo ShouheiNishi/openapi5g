@@ -342,6 +342,8 @@ func fixSkipOptionalPointer(v *openapi3.Schema) error {
 }
 
 func fixCutSchemaRef(v *openapi3.SchemaRef) error {
+	origSchema := v.Value
+
 	newDescription := v.Value.Description
 	if newDescription == "" {
 		newDescription = fmt.Sprintf("Original reference %s", v.Ref)
@@ -352,9 +354,20 @@ func fixCutSchemaRef(v *openapi3.SchemaRef) error {
 	v.Ref = ""
 	v.Value = &openapi3.Schema{
 		Description: newDescription,
-		Extensions: map[string]interface{}{
+	}
+
+	skipPointer := true
+
+	switch origSchema.Type {
+	case openapi3.TypeBoolean, openapi3.TypeString:
+		v.Value.Type = origSchema.Type
+		skipPointer = false
+	}
+
+	if skipPointer {
+		v.Value.Extensions = map[string]interface{}{
 			"x-go-type-skip-optional-pointer": true,
-		},
+		}
 	}
 
 	return nil

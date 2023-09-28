@@ -54,10 +54,10 @@ type CancelPosInfo struct {
 	HgmlcCallBackURI externalRef0.Uri `json:"hgmlcCallBackURI"`
 
 	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-	LdrReference interface{} `json:"ldrReference"`
+	LdrReference string `json:"ldrReference"`
 
 	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification interface{}                     `json:"servingLMFIdentification,omitempty"`
+	ServingLMFIdentification *string                         `json:"servingLMFIdentification,omitempty"`
 	Supi                     externalRef0.Supi               `json:"supi"`
 	SupportedFeatures        *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties     map[string]interface{}          `json:"-"`
@@ -91,7 +91,7 @@ type NotifiedPosInfo struct {
 	HgmlcCallBackURI        *externalRef0.Uri  `json:"hgmlcCallBackURI,omitempty"`
 
 	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-	LdrReference interface{} `json:"ldrReference,omitempty"`
+	LdrReference *string `json:"ldrReference,omitempty"`
 
 	// LocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
 	LocationEstimate    interface{}             `json:"locationEstimate,omitempty"`
@@ -102,7 +102,7 @@ type NotifiedPosInfo struct {
 	PositioningDataList *[]interface{}          `json:"positioningDataList,omitempty"`
 
 	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification interface{}                   `json:"servingLMFIdentification,omitempty"`
+	ServingLMFIdentification *string                       `json:"servingLMFIdentification,omitempty"`
 	ServingNode              *externalRef0.NfInstanceId    `json:"servingNode,omitempty"`
 	Supi                     externalRef0.Supi             `json:"supi,omitempty"`
 	TargetMmeName            externalRef0.DiameterIdentity `json:"targetMmeName,omitempty"`
@@ -161,7 +161,7 @@ type ProvidePosInfo struct {
 	PositioningDataList      *[]interface{}            `json:"positioningDataList,omitempty"`
 
 	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification interface{}                     `json:"servingLMFIdentification,omitempty"`
+	ServingLMFIdentification *string                         `json:"servingLMFIdentification,omitempty"`
 	SupportedFeatures        *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	TargetMmeName            externalRef0.DiameterIdentity   `json:"targetMmeName,omitempty"`
 	TargetMmeRealm           externalRef0.DiameterIdentity   `json:"targetMmeRealm,omitempty"`
@@ -192,10 +192,10 @@ type RequestPosInfo struct {
 	AreaEventInfo interface{} `json:"areaEventInfo,omitempty"`
 
 	// CodeWord Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
-	CodeWord interface{} `json:"codeWord,omitempty"`
+	CodeWord *string `json:"codeWord,omitempty"`
 
 	// ExternalClientIdentification Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
-	ExternalClientIdentification interface{}       `json:"externalClientIdentification,omitempty"`
+	ExternalClientIdentification *string           `json:"externalClientIdentification,omitempty"`
 	Gpsi                         externalRef0.Gpsi `json:"gpsi,omitempty"`
 	HgmlcCallBackURI             *externalRef0.Uri `json:"hgmlcCallBackURI,omitempty"`
 
@@ -213,7 +213,7 @@ type RequestPosInfo struct {
 	LcsSupportedGADShapes interface{} `json:"lcsSupportedGADShapes,omitempty"`
 
 	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-	LdrReference interface{} `json:"ldrReference,omitempty"`
+	LdrReference *string `json:"ldrReference,omitempty"`
 
 	// LdrType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
 	LdrType                 interface{}       `json:"ldrType,omitempty"`

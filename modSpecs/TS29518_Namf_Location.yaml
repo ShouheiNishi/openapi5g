@@ -7,10 +7,10 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 supi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                 supportedFeatures:
@@ -71,7 +71,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 locationEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
                     x-go-type-skip-optional-pointer: true
@@ -91,7 +91,7 @@ components:
                     type: array
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 servingNode:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 supi:
@@ -176,7 +176,7 @@ components:
                     type: array
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 targetMmeName:
@@ -226,10 +226,10 @@ components:
                     x-go-type-skip-optional-pointer: true
                 codeWord:
                     description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 externalClientIdentification:
                     description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 gpsi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                 hgmlcCallBackURI:
@@ -250,7 +250,7 @@ components:
                     x-go-type-skip-optional-pointer: true
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 ldrType:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
                     x-go-type-skip-optional-pointer: true

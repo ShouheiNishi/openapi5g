@@ -436,7 +436,7 @@ type Ipv6PrefixRange struct {
 // LmfInfo Information of an LMF NF Instance
 type LmfInfo struct {
 	// LmfId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	LmfId                interface{}               `json:"lmfId,omitempty"`
+	LmfId                *string                   `json:"lmfId,omitempty"`
 	ServingAccessTypes   []externalRef0.AccessType `json:"servingAccessTypes,omitempty"`
 	ServingAnNodeTypes   []AnNodeType              `json:"servingAnNodeTypes,omitempty"`
 	ServingClientTypes   []interface{}             `json:"servingClientTypes,omitempty"`

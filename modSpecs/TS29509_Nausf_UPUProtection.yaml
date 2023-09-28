@@ -17,7 +17,7 @@ components:
                     x-go-type-skip-optional-pointer: true
                 routingId:
                     description: Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 secPacket:
                     $ref: TS29509_Nausf_SoRProtection.yaml#/components/schemas/SecuredPacket
             type: object

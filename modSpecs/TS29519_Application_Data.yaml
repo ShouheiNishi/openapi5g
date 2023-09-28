@@ -188,10 +188,10 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                 paramOverPc5:
                     description: Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 paramOverUu:
                     description: Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 resUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 snssai:

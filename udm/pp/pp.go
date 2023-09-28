@@ -228,7 +228,7 @@ type UpdateParams struct {
 }
 
 // UpdateParamsUeId1 defines parameters for Update.
-type UpdateParamsUeId1 = interface{}
+type UpdateParamsUeId1 = string
 
 // Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody defines body for Modify5GVNGroup for application/merge-patch+json ContentType.
 type Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody = N5GVnGroupConfiguration
@@ -2246,20 +2246,20 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 // The interface specification for the client above.
 type ClientInterface interface {
 	// Delete5GVNGroup request
-	Delete5GVNGroup(ctx context.Context, extGroupId interface{}, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Delete5GVNGroup(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Get5GVNGroup request
-	Get5GVNGroup(ctx context.Context, extGroupId interface{}, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Get5GVNGroup(ctx context.Context, extGroupId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Modify5GVNGroupWithBody request with any body
-	Modify5GVNGroupWithBody(ctx context.Context, extGroupId interface{}, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Modify5GVNGroupWithBody(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx context.Context, extGroupId interface{}, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Create5GVNGroupWithBody request with any body
-	Create5GVNGroupWithBody(ctx context.Context, extGroupId interface{}, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Create5GVNGroupWithBody(ctx context.Context, extGroupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Create5GVNGroup(ctx context.Context, extGroupId interface{}, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Create5GVNGroup(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateWithBody request with any body
 	UpdateWithBody(ctx context.Context, ueId struct {
@@ -2271,7 +2271,7 @@ type ClientInterface interface {
 	}, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
-func (c *Client) Delete5GVNGroup(ctx context.Context, extGroupId interface{}, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Delete5GVNGroup(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDelete5GVNGroupRequest(c.Server, extGroupId, params)
 	if err != nil {
 		return nil, err
@@ -2283,7 +2283,7 @@ func (c *Client) Delete5GVNGroup(ctx context.Context, extGroupId interface{}, pa
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get5GVNGroup(ctx context.Context, extGroupId interface{}, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Get5GVNGroup(ctx context.Context, extGroupId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGet5GVNGroupRequest(c.Server, extGroupId)
 	if err != nil {
 		return nil, err
@@ -2295,7 +2295,7 @@ func (c *Client) Get5GVNGroup(ctx context.Context, extGroupId interface{}, reqEd
 	return c.Client.Do(req)
 }
 
-func (c *Client) Modify5GVNGroupWithBody(ctx context.Context, extGroupId interface{}, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Modify5GVNGroupWithBody(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModify5GVNGroupRequestWithBody(c.Server, extGroupId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -2307,7 +2307,7 @@ func (c *Client) Modify5GVNGroupWithBody(ctx context.Context, extGroupId interfa
 	return c.Client.Do(req)
 }
 
-func (c *Client) Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx context.Context, extGroupId interface{}, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody(c.Server, extGroupId, params, body)
 	if err != nil {
 		return nil, err
@@ -2319,7 +2319,7 @@ func (c *Client) Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx contex
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create5GVNGroupWithBody(ctx context.Context, extGroupId interface{}, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Create5GVNGroupWithBody(ctx context.Context, extGroupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreate5GVNGroupRequestWithBody(c.Server, extGroupId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -2331,7 +2331,7 @@ func (c *Client) Create5GVNGroupWithBody(ctx context.Context, extGroupId interfa
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create5GVNGroup(ctx context.Context, extGroupId interface{}, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Create5GVNGroup(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreate5GVNGroupRequest(c.Server, extGroupId, body)
 	if err != nil {
 		return nil, err
@@ -2372,7 +2372,7 @@ func (c *Client) UpdateWithApplicationMergePatchPlusJSONBody(ctx context.Context
 }
 
 // NewDelete5GVNGroupRequest generates requests for Delete5GVNGroup
-func NewDelete5GVNGroupRequest(server string, extGroupId interface{}, params *Delete5GVNGroupParams) (*http.Request, error) {
+func NewDelete5GVNGroupRequest(server string, extGroupId string, params *Delete5GVNGroupParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2444,7 +2444,7 @@ func NewDelete5GVNGroupRequest(server string, extGroupId interface{}, params *De
 }
 
 // NewGet5GVNGroupRequest generates requests for Get5GVNGroup
-func NewGet5GVNGroupRequest(server string, extGroupId interface{}) (*http.Request, error) {
+func NewGet5GVNGroupRequest(server string, extGroupId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2478,7 +2478,7 @@ func NewGet5GVNGroupRequest(server string, extGroupId interface{}) (*http.Reques
 }
 
 // NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody calls the generic Modify5GVNGroup builder with application/merge-patch+json body
-func NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody(server string, extGroupId interface{}, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody(server string, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -2489,7 +2489,7 @@ func NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody(server strin
 }
 
 // NewModify5GVNGroupRequestWithBody generates requests for Modify5GVNGroup with any type of body
-func NewModify5GVNGroupRequestWithBody(server string, extGroupId interface{}, params *Modify5GVNGroupParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModify5GVNGroupRequestWithBody(server string, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2547,7 +2547,7 @@ func NewModify5GVNGroupRequestWithBody(server string, extGroupId interface{}, pa
 }
 
 // NewCreate5GVNGroupRequest calls the generic Create5GVNGroup builder with application/json body
-func NewCreate5GVNGroupRequest(server string, extGroupId interface{}, body Create5GVNGroupJSONRequestBody) (*http.Request, error) {
+func NewCreate5GVNGroupRequest(server string, extGroupId string, body Create5GVNGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -2558,7 +2558,7 @@ func NewCreate5GVNGroupRequest(server string, extGroupId interface{}, body Creat
 }
 
 // NewCreate5GVNGroupRequestWithBody generates requests for Create5GVNGroup with any type of body
-func NewCreate5GVNGroupRequestWithBody(server string, extGroupId interface{}, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreate5GVNGroupRequestWithBody(server string, extGroupId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2710,20 +2710,20 @@ func WithBaseURL(baseURL string) ClientOption {
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
 	// Delete5GVNGroupWithResponse request
-	Delete5GVNGroupWithResponse(ctx context.Context, extGroupId interface{}, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*Delete5GVNGroupResponse, error)
+	Delete5GVNGroupWithResponse(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*Delete5GVNGroupResponse, error)
 
 	// Get5GVNGroupWithResponse request
-	Get5GVNGroupWithResponse(ctx context.Context, extGroupId interface{}, reqEditors ...RequestEditorFn) (*Get5GVNGroupResponse, error)
+	Get5GVNGroupWithResponse(ctx context.Context, extGroupId string, reqEditors ...RequestEditorFn) (*Get5GVNGroupResponse, error)
 
 	// Modify5GVNGroupWithBodyWithResponse request with any body
-	Modify5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId interface{}, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error)
+	Modify5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error)
 
-	Modify5GVNGroupWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, extGroupId interface{}, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error)
+	Modify5GVNGroupWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error)
 
 	// Create5GVNGroupWithBodyWithResponse request with any body
-	Create5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId interface{}, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
+	Create5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
 
-	Create5GVNGroupWithResponse(ctx context.Context, extGroupId interface{}, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
+	Create5GVNGroupWithResponse(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
 
 	// UpdateWithBodyWithResponse request with any body
 	UpdateWithBodyWithResponse(ctx context.Context, ueId struct {
@@ -2869,7 +2869,7 @@ func (r UpdateResponse) StatusCode() int {
 }
 
 // Delete5GVNGroupWithResponse request returning *Delete5GVNGroupResponse
-func (c *ClientWithResponses) Delete5GVNGroupWithResponse(ctx context.Context, extGroupId interface{}, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*Delete5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Delete5GVNGroupWithResponse(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*Delete5GVNGroupResponse, error) {
 	rsp, err := c.Delete5GVNGroup(ctx, extGroupId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2878,7 +2878,7 @@ func (c *ClientWithResponses) Delete5GVNGroupWithResponse(ctx context.Context, e
 }
 
 // Get5GVNGroupWithResponse request returning *Get5GVNGroupResponse
-func (c *ClientWithResponses) Get5GVNGroupWithResponse(ctx context.Context, extGroupId interface{}, reqEditors ...RequestEditorFn) (*Get5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Get5GVNGroupWithResponse(ctx context.Context, extGroupId string, reqEditors ...RequestEditorFn) (*Get5GVNGroupResponse, error) {
 	rsp, err := c.Get5GVNGroup(ctx, extGroupId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2887,7 +2887,7 @@ func (c *ClientWithResponses) Get5GVNGroupWithResponse(ctx context.Context, extG
 }
 
 // Modify5GVNGroupWithBodyWithResponse request with arbitrary body returning *Modify5GVNGroupResponse
-func (c *ClientWithResponses) Modify5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId interface{}, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Modify5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error) {
 	rsp, err := c.Modify5GVNGroupWithBody(ctx, extGroupId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2895,7 +2895,7 @@ func (c *ClientWithResponses) Modify5GVNGroupWithBodyWithResponse(ctx context.Co
 	return ParseModify5GVNGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Modify5GVNGroupWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, extGroupId interface{}, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Modify5GVNGroupWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error) {
 	rsp, err := c.Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx, extGroupId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2904,7 +2904,7 @@ func (c *ClientWithResponses) Modify5GVNGroupWithApplicationMergePatchPlusJSONBo
 }
 
 // Create5GVNGroupWithBodyWithResponse request with arbitrary body returning *Create5GVNGroupResponse
-func (c *ClientWithResponses) Create5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId interface{}, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Create5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error) {
 	rsp, err := c.Create5GVNGroupWithBody(ctx, extGroupId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2912,7 +2912,7 @@ func (c *ClientWithResponses) Create5GVNGroupWithBodyWithResponse(ctx context.Co
 	return ParseCreate5GVNGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Create5GVNGroupWithResponse(ctx context.Context, extGroupId interface{}, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Create5GVNGroupWithResponse(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error) {
 	rsp, err := c.Create5GVNGroup(ctx, extGroupId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -3236,16 +3236,16 @@ func ParseUpdateResponse(rsp *http.Response) (*UpdateResponse, error) {
 type ServerInterface interface {
 	// delete a 5G VN Group
 	// (DELETE /5g-vn-groups/{extGroupId})
-	Delete5GVNGroup(c *gin.Context, extGroupId interface{}, params Delete5GVNGroupParams)
+	Delete5GVNGroup(c *gin.Context, extGroupId string, params Delete5GVNGroupParams)
 	// get 5G VN Group
 	// (GET /5g-vn-groups/{extGroupId})
-	Get5GVNGroup(c *gin.Context, extGroupId interface{})
+	Get5GVNGroup(c *gin.Context, extGroupId string)
 	// modify a 5G VN Group
 	// (PATCH /5g-vn-groups/{extGroupId})
-	Modify5GVNGroup(c *gin.Context, extGroupId interface{}, params Modify5GVNGroupParams)
+	Modify5GVNGroup(c *gin.Context, extGroupId string, params Modify5GVNGroupParams)
 	// create a 5G VN Group
 	// (PUT /5g-vn-groups/{extGroupId})
-	Create5GVNGroup(c *gin.Context, extGroupId interface{})
+	Create5GVNGroup(c *gin.Context, extGroupId string)
 	// provision parameters
 	// (PATCH /{ueId}/pp-data)
 	Update(c *gin.Context, ueId struct {
@@ -3268,7 +3268,7 @@ func (siw *ServerInterfaceWrapper) Delete5GVNGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "extGroupId" -------------
-	var extGroupId interface{}
+	var extGroupId string
 
 	err = runtime.BindStyledParameter("simple", false, "extGroupId", c.Param("extGroupId"), &extGroupId)
 	if err != nil {
@@ -3313,7 +3313,7 @@ func (siw *ServerInterfaceWrapper) Get5GVNGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "extGroupId" -------------
-	var extGroupId interface{}
+	var extGroupId string
 
 	err = runtime.BindStyledParameter("simple", false, "extGroupId", c.Param("extGroupId"), &extGroupId)
 	if err != nil {
@@ -3339,7 +3339,7 @@ func (siw *ServerInterfaceWrapper) Modify5GVNGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "extGroupId" -------------
-	var extGroupId interface{}
+	var extGroupId string
 
 	err = runtime.BindStyledParameter("simple", false, "extGroupId", c.Param("extGroupId"), &extGroupId)
 	if err != nil {
@@ -3376,7 +3376,7 @@ func (siw *ServerInterfaceWrapper) Create5GVNGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "extGroupId" -------------
-	var extGroupId interface{}
+	var extGroupId string
 
 	err = runtime.BindStyledParameter("simple", false, "extGroupId", c.Param("extGroupId"), &extGroupId)
 	if err != nil {
@@ -3470,7 +3470,7 @@ func RegisterHandlersWithOptions(router gin.IRouter, si ServerInterface, options
 }
 
 type Delete5GVNGroupRequestObject struct {
-	ExtGroupId interface{} `json:"extGroupId"`
+	ExtGroupId string `json:"extGroupId"`
 	Params     Delete5GVNGroupParams
 }
 
@@ -3551,7 +3551,7 @@ func (response Delete5GVNGroupdefaultResponse) VisitDelete5GVNGroupResponse(w ht
 }
 
 type Get5GVNGroupRequestObject struct {
-	ExtGroupId interface{} `json:"extGroupId"`
+	ExtGroupId string `json:"extGroupId"`
 }
 
 type Get5GVNGroupResponseObject interface {
@@ -3632,7 +3632,7 @@ func (response Get5GVNGroupdefaultResponse) VisitGet5GVNGroupResponse(w http.Res
 }
 
 type Modify5GVNGroupRequestObject struct {
-	ExtGroupId interface{} `json:"extGroupId"`
+	ExtGroupId string `json:"extGroupId"`
 	Params     Modify5GVNGroupParams
 	Body       *Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody
 }
@@ -3723,7 +3723,7 @@ func (response Modify5GVNGroupdefaultResponse) VisitModify5GVNGroupResponse(w ht
 }
 
 type Create5GVNGroupRequestObject struct {
-	ExtGroupId interface{} `json:"extGroupId"`
+	ExtGroupId string `json:"extGroupId"`
 	Body       *Create5GVNGroupJSONRequestBody
 }
 
@@ -3928,7 +3928,7 @@ type strictHandler struct {
 }
 
 // Delete5GVNGroup operation middleware
-func (sh *strictHandler) Delete5GVNGroup(ctx *gin.Context, extGroupId interface{}, params Delete5GVNGroupParams) {
+func (sh *strictHandler) Delete5GVNGroup(ctx *gin.Context, extGroupId string, params Delete5GVNGroupParams) {
 	var request Delete5GVNGroupRequestObject
 
 	request.ExtGroupId = extGroupId
@@ -3956,7 +3956,7 @@ func (sh *strictHandler) Delete5GVNGroup(ctx *gin.Context, extGroupId interface{
 }
 
 // Get5GVNGroup operation middleware
-func (sh *strictHandler) Get5GVNGroup(ctx *gin.Context, extGroupId interface{}) {
+func (sh *strictHandler) Get5GVNGroup(ctx *gin.Context, extGroupId string) {
 	var request Get5GVNGroupRequestObject
 
 	request.ExtGroupId = extGroupId
@@ -3983,7 +3983,7 @@ func (sh *strictHandler) Get5GVNGroup(ctx *gin.Context, extGroupId interface{}) 
 }
 
 // Modify5GVNGroup operation middleware
-func (sh *strictHandler) Modify5GVNGroup(ctx *gin.Context, extGroupId interface{}, params Modify5GVNGroupParams) {
+func (sh *strictHandler) Modify5GVNGroup(ctx *gin.Context, extGroupId string, params Modify5GVNGroupParams) {
 	var request Modify5GVNGroupRequestObject
 
 	request.ExtGroupId = extGroupId
@@ -4019,7 +4019,7 @@ func (sh *strictHandler) Modify5GVNGroup(ctx *gin.Context, extGroupId interface{
 }
 
 // Create5GVNGroup operation middleware
-func (sh *strictHandler) Create5GVNGroup(ctx *gin.Context, extGroupId interface{}) {
+func (sh *strictHandler) Create5GVNGroup(ctx *gin.Context, extGroupId string) {
 	var request Create5GVNGroupRequestObject
 
 	request.ExtGroupId = extGroupId

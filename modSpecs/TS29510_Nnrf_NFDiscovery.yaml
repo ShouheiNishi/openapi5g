@@ -812,7 +812,7 @@ paths:
                     application/json:
                         schema:
                             description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                            x-go-type-skip-optional-pointer: true
+                            type: string
                   description: LMF identification to be discovered
                   in: query
                   name: lmf-id

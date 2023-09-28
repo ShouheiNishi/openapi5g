@@ -401,7 +401,7 @@ type EthFlowDescription struct {
 
 	// FDir Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
 	//  (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection)
-	FDir                 interface{}            `json:"fDir,omitempty"`
+	FDir                 *string                `json:"fDir,omitempty"`
 	SourceMacAddr        externalRef0.MacAddr48 `json:"sourceMacAddr,omitempty"`
 	SrcMacAddrEnd        externalRef0.MacAddr48 `json:"srcMacAddrEnd,omitempty"`
 	VlanTags             []string               `json:"vlanTags,omitempty"`
@@ -427,7 +427,7 @@ type EventsNotification struct {
 
 	// NoNetLocSupp Possible values are - ANR_NOT_SUPPORTED: Indicates that the access network does not support the report of access network information. - TZR_NOT_SUPPORTED: Indicates that the access network does not support the report of UE time zone. - LOC_NOT_SUPPORTED: Indicates that the access network does not support the report of UE Location (or PLMN Id).
 	//  (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/NetLocAccessSupport)
-	NoNetLocSupp     interface{}                  `json:"noNetLocSupp,omitempty"`
+	NoNetLocSupp     *string                      `json:"noNetLocSupp,omitempty"`
 	OutOfCredReports []OutOfCreditInformation     `json:"outOfCredReports,omitempty"`
 	PlmnId           *externalRef0.PlmnIdNid      `json:"plmnId,omitempty"`
 	QncReports       []QosNotificationControlInfo `json:"qncReports,omitempty"`
@@ -468,7 +468,7 @@ type EventsSubscReqData struct {
 	// QosMon Indicates the QoS Monitoring information to report, i.e. UL and/or DL and or round trip delay.
 	QosMon               *QosMonitoringInformation    `json:"qosMon,omitempty"`
 	ReqAnis              []RequiredAccessInfo         `json:"reqAnis,omitempty"`
-	ReqQosMonParams      []interface{}                `json:"reqQosMonParams,omitempty"`
+	ReqQosMonParams      []string                     `json:"reqQosMonParams,omitempty"`
 	UsgThres             *externalRef1.UsageThreshold `json:"usgThres,omitempty"`
 	AdditionalProperties map[string]interface{}       `json:"-"`
 }
@@ -482,7 +482,7 @@ type EventsSubscReqDataRm struct {
 	// QosMon this data type is defined in the same way as the QosMonitoringInformation data type, but with the OpenAPI nullable property set to true.
 	QosMon               *QosMonitoringInformationRm    `json:"qosMon"`
 	ReqAnis              []RequiredAccessInfo           `json:"reqAnis,omitempty"`
-	ReqQosMonParams      []interface{}                  `json:"reqQosMonParams,omitempty"`
+	ReqQosMonParams      []string                       `json:"reqQosMonParams,omitempty"`
 	UsgThres             *externalRef1.UsageThresholdRm `json:"usgThres"`
 	AdditionalProperties map[string]interface{}         `json:"-"`
 }
@@ -673,7 +673,7 @@ type MediaType string
 // OutOfCreditInformation Indicates the SDFs without available credit and the corresponding termination action.
 type OutOfCreditInformation struct {
 	// FinUnitAct Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
-	FinUnitAct           interface{}            `json:"finUnitAct"`
+	FinUnitAct           string                 `json:"finUnitAct"`
 	Flows                []Flows                `json:"flows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }

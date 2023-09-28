@@ -399,6 +399,13 @@ func fixCutSchemaRef(v *openapi3.SchemaRef) error {
 	skipPointer := true
 
 	switch origSchema.Type {
+	case "":
+		if len(origSchema.AnyOf) == 2 &&
+			origSchema.AnyOf[0].Value.Type == openapi3.TypeString &&
+			origSchema.AnyOf[1].Value.Type == openapi3.TypeString {
+			v.Value.Type = openapi3.TypeString
+			skipPointer = false
+		}
 	case openapi3.TypeBoolean, openapi3.TypeString:
 		v.Value.Type = origSchema.Type
 		skipPointer = false

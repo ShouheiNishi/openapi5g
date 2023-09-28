@@ -995,7 +995,7 @@ components:
                     $ref: '#/components/schemas/FailureCode'
                 finUnitAct:
                     description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 pccRuleIds:
                     description: Contains the identifier of the affected PCC rule(s).
                     items:

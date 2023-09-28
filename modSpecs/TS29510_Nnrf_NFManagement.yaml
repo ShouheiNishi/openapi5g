@@ -7,7 +7,7 @@ components:
                 afEvents:
                     items:
                         description: Original reference TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent
-                        x-go-type-skip-optional-pointer: true
+                        type: string
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -193,10 +193,10 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 n1MessageClass:
                     description: Original reference TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 n2InformationClass:
                     description: Original reference TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 notificationType:
                     $ref: '#/components/schemas/NotificationType'
                 versions:
@@ -275,7 +275,7 @@ components:
                 servingClientTypes:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-                        x-go-type-skip-optional-pointer: true
+                        type: string
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -450,7 +450,7 @@ components:
                 servingClientTypes:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-                        x-go-type-skip-optional-pointer: true
+                        type: string
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -964,7 +964,7 @@ components:
                 afEvents:
                     items:
                         description: Original reference TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent
-                        x-go-type-skip-optional-pointer: true
+                        type: string
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -1424,7 +1424,7 @@ components:
                         description: |-
                             Possible values are - LOAD_LEVEL_INFORMATION: Represent the analytics of load level information of corresponding network slice. - NETWORK_PERFORMANCE: Represent the analytics of network performance information. - NF_LOAD: Indicates that the event subscribed is NF Load. - SERVICE_EXPERIENCE: Represent the analytics of service experience information of the specific applications. - UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION: Represent the analytics of UE communication. - QOS_SUSTAINABILITY: Represent the analytics of QoS sustainability information in the certain area.  - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour information. - USER_DATA_CONGESTION: Represent the analytics of the user data congestion in the certain area. - NSI_LOAD_LEVEL: Represent the analytics of Network Slice and the optionally associated Network Slice Instance.
                              (Original reference TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId)
-                        x-go-type-skip-optional-pointer: true
+                        type: string
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -1433,7 +1433,7 @@ components:
                         description: |-
                             Possible values are - SLICE_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice - NETWORK_PERFORMANCE: Indicates that the event subscribed is network performance information. - NF_LOAD: Indicates that the event subscribed is load level and status of one or several Network Functions. - SERVICE_EXPERIENCE: Indicates that the event subscribed is service experience. - UE_MOBILITY: Indicates that the event subscribed is UE mobility information. - UE_COMMUNICATION: Indicates that the event subscribed is UE communication information. - QOS_SUSTAINABILITY: Indicates that the event subscribed is QoS sustainability. - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour. - USER_DATA_CONGESTION: Indicates that the event subscribed is user data congestion information. - NSI_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice and the optionally associated Network Slice Instance
                              (Original reference TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent)
-                        x-go-type-skip-optional-pointer: true
+                        type: string
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true

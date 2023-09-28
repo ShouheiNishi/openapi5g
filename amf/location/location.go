@@ -109,8 +109,8 @@ type NotifiedPosInfo struct {
 	TargetMmeRealm           externalRef0.DiameterIdentity `json:"targetMmeRealm,omitempty"`
 
 	// TerminationCause Original reference TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
-	TerminationCause interface{} `json:"terminationCause,omitempty"`
-	UtranSrvccInd    *bool       `json:"utranSrvccInd,omitempty"`
+	TerminationCause *string `json:"terminationCause,omitempty"`
+	UtranSrvccInd    *bool   `json:"utranSrvccInd,omitempty"`
 
 	// VelocityEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
 	VelocityEstimate     interface{}            `json:"velocityEstimate,omitempty"`
@@ -138,7 +138,7 @@ type ProvideLocInfo struct {
 // ProvidePosInfo defines model for ProvidePosInfo.
 type ProvidePosInfo struct {
 	// AccuracyFulfilmentIndicator Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
-	AccuracyFulfilmentIndicator interface{} `json:"accuracyFulfilmentIndicator,omitempty"`
+	AccuracyFulfilmentIndicator *string `json:"accuracyFulfilmentIndicator,omitempty"`
 
 	// AgeOfLocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
 	AgeOfLocationEstimate interface{} `json:"ageOfLocationEstimate,omitempty"`
@@ -185,7 +185,7 @@ type RequestLocInfo struct {
 
 // RequestPosInfo defines model for RequestPosInfo.
 type RequestPosInfo struct {
-	AdditionalLcsSuppGADShapes []interface{}              `json:"additionalLcsSuppGADShapes,omitempty"`
+	AdditionalLcsSuppGADShapes []string                   `json:"additionalLcsSuppGADShapes,omitempty"`
 	AfID                       *externalRef0.NfInstanceId `json:"afID,omitempty"`
 
 	// AreaEventInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
@@ -200,7 +200,7 @@ type RequestPosInfo struct {
 	HgmlcCallBackURI             *externalRef0.Uri `json:"hgmlcCallBackURI,omitempty"`
 
 	// LcsClientType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-	LcsClientType interface{}  `json:"lcsClientType"`
+	LcsClientType string       `json:"lcsClientType"`
 	LcsLocation   LocationType `json:"lcsLocation"`
 
 	// LcsQoS Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
@@ -210,13 +210,13 @@ type RequestPosInfo struct {
 	LcsServiceType interface{} `json:"lcsServiceType,omitempty"`
 
 	// LcsSupportedGADShapes Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-	LcsSupportedGADShapes interface{} `json:"lcsSupportedGADShapes,omitempty"`
+	LcsSupportedGADShapes *string `json:"lcsSupportedGADShapes,omitempty"`
 
 	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
 	LdrReference *string `json:"ldrReference,omitempty"`
 
 	// LdrType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
-	LdrType                 interface{}       `json:"ldrType,omitempty"`
+	LdrType                 *string           `json:"ldrType,omitempty"`
 	LocationNotificationUri *externalRef0.Uri `json:"locationNotificationUri,omitempty"`
 
 	// MotionEventInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
@@ -228,7 +228,7 @@ type RequestPosInfo struct {
 	PeriodicEventInfo interface{} `json:"periodicEventInfo,omitempty"`
 
 	// Priority Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
-	Priority          interface{}                     `json:"priority,omitempty"`
+	Priority          *string                         `json:"priority,omitempty"`
 	Supi              externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 
@@ -236,7 +236,7 @@ type RequestPosInfo struct {
 	UePrivacyRequirements interface{} `json:"uePrivacyRequirements,omitempty"`
 
 	// VelocityRequested Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
-	VelocityRequested    interface{}            `json:"velocityRequested,omitempty"`
+	VelocityRequested    *string                `json:"velocityRequested,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 

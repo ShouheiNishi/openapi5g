@@ -714,6 +714,10 @@ func (s *scanRefType) walkSchema(v *openapi3.Schema) error {
 		}
 	}
 
+	if err := fixIntegerFormat(v); err != nil {
+		return err
+	}
+
 	if err := fixAllOfEnum(v); err != nil {
 		return err
 	}

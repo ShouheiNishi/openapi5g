@@ -114,7 +114,8 @@ func main() {
 
 		WalkPostHook: func(t reflect.Type) string {
 			if t == reflect.TypeOf(openapi3.Schema{}) {
-				return "if err := fixAllOfEnum(v) ; err != nil{return err}\n" +
+				return "if err := fixIntegerFormat(v) ; err != nil{return err}\n" +
+					"\nif err := fixAllOfEnum(v) ; err != nil{return err}\n" +
 					"\nif err := fixImplicitArray(v) ; err != nil{return err}\n" +
 					"\nif err := fixEliminateCheckerUnion(v) ; err != nil{return err}\n" +
 					"\nif err := fixAdditionalProperties(v) ; err != nil{return err}\n"

@@ -13,6 +13,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sessionChScope:
                     description: When it is included and set to true, indicates the Access Network Charging Identifier applies to the whole PDU Session
                     type: boolean
@@ -69,6 +70,7 @@ components:
                     - NO_INFORMATION
                     - SIP
                   type: string
+                  x-go-type-skip-optional-pointer: true
                 - $ref: TS29571_CommonData.yaml#/components/schemas/NullValue
                 - description: |
                     This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
@@ -90,6 +92,7 @@ components:
                         $ref: '#/components/schemas/FlowInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - appId
             type: object
@@ -226,11 +229,13 @@ components:
                         $ref: '#/components/schemas/NotificationControlIndication'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 typesOfNotif:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         DownlinkDataNotificationControlRm:
             additionalProperties: true
@@ -266,18 +271,21 @@ components:
                         $ref: '#/components/schemas/PolicyDecisionFailureCode'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ruleReports:
                     description: Used to report the PCC rule failure.
                     items:
                         $ref: '#/components/schemas/RuleReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sessRuleReports:
                     description: Used to report the session rule failure.
                     items:
                         $ref: '#/components/schemas/SessionRuleReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         FailureCause:
             enum:
@@ -403,6 +411,7 @@ components:
                     - DURATION_VOLUME
                     - EVENT
                   type: string
+                  x-go-type-skip-optional-pointer: true
                 - $ref: TS29571_CommonData.yaml#/components/schemas/NullValue
                 - description: |
                     This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
@@ -461,18 +470,21 @@ components:
                         $ref: '#/components/schemas/PolicyDecisionFailureCode'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ruleReports:
                     description: Information about the PCC rules provisioned by the PCF not successfully installed/activated.
                     items:
                         $ref: '#/components/schemas/RuleReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sessRuleReports:
                     description: Information about the session rules provisioned by the PCF not successfully installed.
                     items:
                         $ref: '#/components/schemas/SessionRuleReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueCampingRep:
                     $ref: '#/components/schemas/UeCampingRep'
             required:
@@ -510,6 +522,7 @@ components:
                         $ref: '#/components/schemas/FlowInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pccRuleId:
                     description: Univocally identifies the PCC rule within a PDU session.
                     type: string
@@ -521,6 +534,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 refChgData:
                     description: A reference to the ChargingData policy decision type. It is the chgId described in subclause 5.6.2.11.
                     items:
@@ -548,6 +562,7 @@ components:
                     maxItems: 1
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 refQosMon:
                     description: A reference to the QosMonitoringData policy decision type. It is the qmId described in subclause 5.6.2.40.
                     items:
@@ -563,6 +578,7 @@ components:
                     maxItems: 1
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 refUmData:
                     description: A reference to UsageMonitoringData policy decision type. It is the umId described in subclause 5.6.2.12.
                     items:
@@ -758,6 +774,7 @@ components:
                         $ref: '#/components/schemas/ReportingFrequency'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 repPeriod:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DurationSecRm
                 repThreshDl:
@@ -778,6 +795,7 @@ components:
                         $ref: '#/components/schemas/RequestedQosMonitoringParameter'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 waitTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DurationSecRm
             required:
@@ -793,22 +811,26 @@ components:
                         type: integer
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 refPccRuleIds:
                     description: An array of PCC rule id references to the PCC rules associated with the QoS monitoring report.
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 rtDelays:
                     items:
                         type: integer
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ulDelays:
                     items:
                         type: integer
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - refPccRuleIds
             type: object
@@ -827,6 +849,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - refPccRuleIds
                 - notifType
@@ -876,6 +899,7 @@ components:
                     - RAT_GR_LEVEL
                     - SPON_CON_LEVEL
                   type: string
+                  x-go-type-skip-optional-pointer: true
                 - $ref: TS29571_CommonData.yaml#/components/schemas/NullValue
                 - description: |
                     This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
@@ -909,12 +933,14 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 reqData:
                     description: Array of requested rule data type elements indicating what type of rule data is requested for the corresponding referenced PCC rules.
                     items:
                         $ref: '#/components/schemas/RequestedRuleDataType'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - refPccRuleIds
                 - reqData
@@ -942,6 +968,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         RuleOperation:
             description: |
@@ -963,22 +990,26 @@ components:
                         $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 failureCode:
                     $ref: '#/components/schemas/FailureCode'
                 finUnitAct:
                     description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
+                    x-go-type-skip-optional-pointer: true
                 pccRuleIds:
                     description: Contains the identifier of the affected PCC rule(s).
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ranNasRelCauses:
                     description: indicates the RAN or NAS release cause code information.
                     items:
                         $ref: '#/components/schemas/RanNasRelCause'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ruleStatus:
                     $ref: '#/components/schemas/RuleStatus'
             required:
@@ -1050,12 +1081,14 @@ components:
                         $ref: '#/components/schemas/PolicyDecisionFailureCode'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ruleIds:
                     description: Contains the identifier of the affected session rule(s).
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ruleStatus:
                     $ref: '#/components/schemas/RuleStatus'
                 sessRuleFailureCode:
@@ -1103,6 +1136,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 invalidSupi:
                     description: When this attribute is included and set to true, it indicates that the supi attribute contains an invalid value.This attribute shall be present if the SUPI is not available in the SMF or the SUPI is unauthenticated. When present it shall be set to true for an invalid SUPI and false (default) for a valid SUPI.
                     type: boolean
@@ -1116,6 +1150,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4AddrMask
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6AddressPrefix:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                 ipv6FrameRouteList:
@@ -1123,6 +1158,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 maPduInd:
                     $ref: '#/components/schemas/MaPduIndication'
                 notificationUri:
@@ -1223,6 +1259,7 @@ components:
                         $ref: '#/components/schemas/RequestedRuleData'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 lastReqUsageData:
                     $ref: '#/components/schemas/RequestedUsageData'
                 offline:
@@ -1308,6 +1345,7 @@ components:
                         $ref: '#/components/schemas/PortManagementContainer'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 umDecs:
                     additionalProperties:
                         $ref: '#/components/schemas/UsageMonitoringData'
@@ -1325,6 +1363,7 @@ components:
                         $ref: '#/components/schemas/AccuUsageReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pduSessRelCause:
                     $ref: '#/components/schemas/PduSessionRelCause'
                 ranNasRelCauses:
@@ -1333,6 +1372,7 @@ components:
                         $ref: '#/components/schemas/RanNasRelCause'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servingNetwork:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                 ueTimeZone:
@@ -1362,6 +1402,7 @@ components:
                         $ref: '#/components/schemas/AccNetChId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 accessType:
                     $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                 accuUsageReports:
@@ -1370,6 +1411,7 @@ components:
                         $ref: '#/components/schemas/AccuUsageReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 addAccessInfo:
                     $ref: '#/components/schemas/AdditionalAccessInfo'
                 addIpv6AddrPrefixes:
@@ -1382,6 +1424,7 @@ components:
                         $ref: '#/components/schemas/AppDetectionInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 atsssCapab:
                     $ref: '#/components/schemas/AtsssCapability'
                 authProfIndex:
@@ -1394,6 +1437,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipDomain:
                     description: Indicates the IPv4 address domain
                     type: string
@@ -1408,6 +1452,7 @@ components:
                         $ref: '#/components/schemas/IpMulticastAddressInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 numOfPackFilter:
                     description: Contains the number of supported packet filter for signalled QoS rules.
                     type: integer
@@ -1420,12 +1465,14 @@ components:
                         $ref: '#/components/schemas/PolicyDecisionFailureCode'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 qncReports:
                     description: QoS Notification Control information.
                     items:
                         $ref: '#/components/schemas/QosNotificationControlInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 qosFlowUsage:
                     $ref: '#/components/schemas/QosFlowUsage'
                 qosMonReports:
@@ -1433,6 +1480,7 @@ components:
                         $ref: '#/components/schemas/QosMonitoringReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ratType:
                     $ref: TS29571_CommonData.yaml#/components/schemas/RatType
                 refQosIndication:
@@ -1452,6 +1500,7 @@ components:
                         $ref: '#/components/schemas/PolicyControlRequestTrigger'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 repPraInfos:
                     additionalProperties:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PresenceInfo
@@ -1464,6 +1513,7 @@ components:
                         $ref: '#/components/schemas/RuleReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servNfId:
                     $ref: '#/components/schemas/ServingNfIdentity'
                 servingNetwork:
@@ -1474,6 +1524,7 @@ components:
                         $ref: '#/components/schemas/SessionRuleReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subsDefQos:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SubscribedDefaultQos
                 subsSessAmbr:
@@ -1485,6 +1536,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 tsnBridgeInfo:
                     $ref: '#/components/schemas/TsnBridgeInfo'
                 tsnBridgeManCont:
@@ -1496,11 +1548,13 @@ components:
                         $ref: '#/components/schemas/PortManagementContainer'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 typesOfNotif:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueInitResReq:
                     $ref: '#/components/schemas/UeInitiatedResourceRequest'
                 ueMac:
@@ -1569,6 +1623,7 @@ components:
                         $ref: '#/components/schemas/RedirectInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 flowStatus:
                     $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus
                 mulAccCtrl:
@@ -1584,6 +1639,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 steerFun:
                     $ref: '#/components/schemas/SteeringFunctionality'
                 steerModeDl:
@@ -1648,6 +1704,7 @@ components:
                         $ref: '#/components/schemas/PacketFilterInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pccRuleId:
                     type: string
                 precedence:
@@ -1796,10 +1853,12 @@ paths:
                                                         $ref: '#/components/schemas/PartialSuccessReport'
                                                       minItems: 1
                                                       type: array
+                                                      x-go-type-skip-optional-pointer: true
                                                     - items:
                                                         $ref: '#/components/schemas/PolicyDecisionFailureCode'
                                                       minItems: 1
                                                       type: array
+                                                      x-go-type-skip-optional-pointer: true
                                     description: OK. The current applicable values corresponding to the policy control request trigger is reported
                                 "204":
                                     description: No Content, Notification was succesfull

@@ -6,6 +6,7 @@ components:
                 - AUTHENTICATION_FAILURE
                 - AUTHENTICATION_ONGOING
             type: string
+            x-go-type-skip-optional-pointer: true
         AuthType:
             enum:
                 - 5G_AKA
@@ -20,6 +21,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/CagId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 n5gcInd:
                     default: false
                     type: boolean
@@ -30,6 +32,7 @@ components:
                 routingIndicator:
                     pattern: ^[0-9]{1,4}$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 servingNetworkName:
                     $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
                 supiOrSuci:
@@ -118,9 +121,11 @@ components:
         HxresStar:
             pattern: '[A-Fa-f0-9]{32}'
             type: string
+            x-go-type-skip-optional-pointer: true
         Kseaf:
             pattern: '[A-Fa-f0-9]{64}'
             type: string
+            x-go-type-skip-optional-pointer: true
         ResStar:
             nullable: true
             pattern: '[A-Fa-f0-9]{32}'
@@ -155,6 +160,7 @@ components:
         Suci:
             pattern: ^(suci-(0-[0-9]{3}-[0-9]{2,3}|[1-7]-.+)-[0-9]{1,4}-(0-0-.+|[a-fA-F1-9]-([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])-[a-fA-F0-9]+)|.+)$
             type: string
+            x-go-type-skip-optional-pointer: true
         UEAuthenticationCtx:
             additionalProperties: true
             properties:

@@ -46,7 +46,7 @@ const (
 // AmPolicyData Contains the AM policy data for a given subscriber.
 type AmPolicyData struct {
 	PraInfos             *map[string]externalRef0.PresenceInfo `json:"praInfos,omitempty"`
-	SubscCats            *[]string                             `json:"subscCats,omitempty"`
+	SubscCats            []string                              `json:"subscCats,omitempty"`
 	AdditionalProperties map[string]interface{}                `json:"-"`
 }
 
@@ -68,7 +68,7 @@ type BdtData struct {
 	SuppFeat   *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
 
 	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-	TrafficDes *interface{} `json:"trafficDes,omitempty"`
+	TrafficDes interface{} `json:"trafficDes,omitempty"`
 
 	// TransPolicy Describes a transfer policy.
 	TransPolicy          externalRef2.TransferPolicy  `json:"transPolicy"`
@@ -92,11 +92,11 @@ type BdtPolicyStatus string
 // DnnRouteSelectionDescriptor Contains the route selector parameters (PDU session types, SSC modes and ATSSS information) per DNN
 type DnnRouteSelectionDescriptor struct {
 	// AtsssInfo Indicates whether MA PDU session establishment is allowed for this DNN. When set to value true MA PDU session establishment is allowed for this DNN.
-	AtsssInfo            *bool                          `json:"atsssInfo,omitempty"`
-	Dnn                  externalRef0.Dnn               `json:"dnn"`
-	PduSessTypes         *[]externalRef0.PduSessionType `json:"pduSessTypes,omitempty"`
-	SscModes             *[]externalRef0.SscMode        `json:"sscModes,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
+	AtsssInfo            *bool                         `json:"atsssInfo,omitempty"`
+	Dnn                  externalRef0.Dnn              `json:"dnn"`
+	PduSessTypes         []externalRef0.PduSessionType `json:"pduSessTypes,omitempty"`
+	SscModes             []externalRef0.SscMode        `json:"sscModes,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
 // IpIndex defines model for IpIndex.
@@ -108,7 +108,7 @@ type ItemPath = string
 // LimitIdToMonitoringKey Contains the limit identifier and the corresponding monitoring key for a given S-NSSAI and DNN.
 type LimitIdToMonitoringKey struct {
 	LimitId              string                 `json:"limitId"`
-	Monkey               *[]string              `json:"monkey,omitempty"`
+	Monkey               []string               `json:"monkey,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -127,9 +127,9 @@ type Periodicity string
 
 // PlmnRouteSelectionDescriptor Contains the route selection descriptors (combinations of SNSSAI, DNNs, PDU session types, SSC modes and ATSSS information) allowed by subscription to the UE for a serving PLMN
 type PlmnRouteSelectionDescriptor struct {
-	ServingPlmn          externalRef0.PlmnId               `json:"servingPlmn"`
-	SnssaiRouteSelDescs  *[]SnssaiRouteSelectionDescriptor `json:"snssaiRouteSelDescs,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"-"`
+	ServingPlmn          externalRef0.PlmnId              `json:"servingPlmn"`
+	SnssaiRouteSelDescs  []SnssaiRouteSelectionDescriptor `json:"snssaiRouteSelDescs,omitempty"`
+	AdditionalProperties map[string]interface{}           `json:"-"`
 }
 
 // PolicyDataChangeNotification Contains changed policy data for which notification was requested.
@@ -145,22 +145,22 @@ type PolicyDataChangeNotification struct {
 
 	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
 	BdtRefId     *externalRef1.BdtReferenceId `json:"bdtRefId,omitempty"`
-	DelResources *[]externalRef0.Uri          `json:"delResources,omitempty"`
+	DelResources []externalRef0.Uri           `json:"delResources,omitempty"`
 	NotifId      *string                      `json:"notifId,omitempty"`
 
 	// OpSpecData Original reference TS29505_Subscription_Data.yaml#/components/schemas/OperatorSpecificDataContainer
-	OpSpecData    *interface{}            `json:"opSpecData,omitempty"`
+	OpSpecData    interface{}             `json:"opSpecData,omitempty"`
 	OpSpecDataMap *map[string]interface{} `json:"opSpecDataMap,omitempty"`
 	PlmnId        *externalRef0.PlmnId    `json:"plmnId,omitempty"`
 
 	// PlmnUePolicySet Contains the UE policy data for a given subscriber.
-	PlmnUePolicySet   *UePolicySet        `json:"plmnUePolicySet,omitempty"`
-	ReportedFragments *[]NotificationItem `json:"reportedFragments,omitempty"`
+	PlmnUePolicySet   *UePolicySet       `json:"plmnUePolicySet,omitempty"`
+	ReportedFragments []NotificationItem `json:"reportedFragments,omitempty"`
 
 	// SmPolicyData Contains the SM policy data for a given subscriber.
-	SmPolicyData *SmPolicyData         `json:"smPolicyData,omitempty"`
-	SponsorId    *string               `json:"sponsorId,omitempty"`
-	UeId         *externalRef0.VarUeId `json:"ueId,omitempty"`
+	SmPolicyData *SmPolicyData        `json:"smPolicyData,omitempty"`
+	SponsorId    *string              `json:"sponsorId,omitempty"`
+	UeId         externalRef0.VarUeId `json:"ueId,omitempty"`
 
 	// UePolicySet Contains the UE policy data for a given subscriber.
 	UePolicySet *UePolicySet `json:"uePolicySet,omitempty"`
@@ -174,7 +174,7 @@ type PolicyDataChangeNotification struct {
 // PolicyDataSubscription Identifies a subscription to policy data change notification.
 type PolicyDataSubscription struct {
 	Expiry                *externalRef0.DateTime          `json:"expiry,omitempty"`
-	MonResItems           *[]ResourceItem                 `json:"monResItems,omitempty"`
+	MonResItems           []ResourceItem                  `json:"monResItems,omitempty"`
 	MonitoredResourceUris []externalRef0.Uri              `json:"monitoredResourceUris"`
 	NotifId               *string                         `json:"notifId,omitempty"`
 	NotificationUri       externalRef0.Uri                `json:"notificationUri"`
@@ -208,14 +208,14 @@ type SmPolicyDataPatch struct {
 // SmPolicyDnnData Contains the SM policy data for a given DNN (and S-NSSAI).
 type SmPolicyDnnData struct {
 	AdcSupport      *bool                                      `json:"adcSupport,omitempty"`
-	AllowedServices *[]string                                  `json:"allowedServices,omitempty"`
+	AllowedServices []string                                   `json:"allowedServices,omitempty"`
 	BdtRefIds       *map[string]*externalRef1.BdtReferenceIdRm `json:"bdtRefIds"`
 
 	// ChfInfo Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingInformation
-	ChfInfo              *interface{}                          `json:"chfInfo,omitempty"`
+	ChfInfo              interface{}                           `json:"chfInfo,omitempty"`
 	Dnn                  externalRef0.Dnn                      `json:"dnn"`
-	GbrDl                *externalRef0.BitRate                 `json:"gbrDl,omitempty"`
-	GbrUl                *externalRef0.BitRate                 `json:"gbrUl,omitempty"`
+	GbrDl                externalRef0.BitRate                  `json:"gbrDl,omitempty"`
+	GbrUl                externalRef0.BitRate                  `json:"gbrUl,omitempty"`
 	ImsSignallingPrio    *bool                                 `json:"imsSignallingPrio,omitempty"`
 	Ipv4Index            *IpIndex                              `json:"ipv4Index,omitempty"`
 	Ipv6Index            *IpIndex                              `json:"ipv6Index,omitempty"`
@@ -228,7 +228,7 @@ type SmPolicyDnnData struct {
 	Online               *bool                                 `json:"online,omitempty"`
 	PraInfos             *map[string]externalRef0.PresenceInfo `json:"praInfos,omitempty"`
 	RefUmDataLimitIds    *map[string]*LimitIdToMonitoringKey   `json:"refUmDataLimitIds,omitempty"`
-	SubscCats            *[]string                             `json:"subscCats,omitempty"`
+	SubscCats            []string                              `json:"subscCats,omitempty"`
 	SubscSpendingLimits  *bool                                 `json:"subscSpendingLimits,omitempty"`
 	AdditionalProperties map[string]interface{}                `json:"-"`
 }
@@ -256,9 +256,9 @@ type SmPolicySnssaiDataPatch struct {
 
 // SnssaiRouteSelectionDescriptor Contains the route selector parameters (DNNs, PDU session types, SSC modes and ATSSS information) per SNSSAI
 type SnssaiRouteSelectionDescriptor struct {
-	DnnRouteSelDescs     *[]DnnRouteSelectionDescriptor `json:"dnnRouteSelDescs,omitempty"`
-	Snssai               externalRef0.Snssai            `json:"snssai"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
+	DnnRouteSelDescs     []DnnRouteSelectionDescriptor `json:"dnnRouteSelDescs,omitempty"`
+	Snssai               externalRef0.Snssai           `json:"snssai"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
 // SponsorConnectivityData Contains the sponsored data connectivity related information for a sponsor identifier.
@@ -285,23 +285,23 @@ type UePolicySection struct {
 type UePolicySet struct {
 	AllowedRouteSelDescs *map[string]PlmnRouteSelectionDescriptor `json:"allowedRouteSelDescs,omitempty"`
 	AndspInd             *bool                                    `json:"andspInd,omitempty"`
-	OsIds                *[]OsId                                  `json:"osIds,omitempty"`
-	Pei                  *externalRef0.Pei                        `json:"pei,omitempty"`
+	OsIds                []OsId                                   `json:"osIds,omitempty"`
+	Pei                  externalRef0.Pei                         `json:"pei,omitempty"`
 	PraInfos             *map[string]externalRef0.PresenceInfo    `json:"praInfos,omitempty"`
-	SubscCats            *[]string                                `json:"subscCats,omitempty"`
+	SubscCats            []string                                 `json:"subscCats,omitempty"`
 	SuppFeat             *externalRef0.SupportedFeatures          `json:"suppFeat,omitempty"`
 	UePolicySections     *map[string]UePolicySection              `json:"uePolicySections,omitempty"`
-	Upsis                *[]string                                `json:"upsis,omitempty"`
+	Upsis                []string                                 `json:"upsis,omitempty"`
 	AdditionalProperties map[string]interface{}                   `json:"-"`
 }
 
 // UePolicySetPatch Contains the UE policy set for a given subscriber.
 type UePolicySetPatch struct {
 	AndspInd             *bool                       `json:"andspInd,omitempty"`
-	OsIds                *[]OsId                     `json:"osIds,omitempty"`
-	Pei                  *externalRef0.Pei           `json:"pei,omitempty"`
+	OsIds                []OsId                      `json:"osIds,omitempty"`
+	Pei                  externalRef0.Pei            `json:"pei,omitempty"`
 	UePolicySections     *map[string]UePolicySection `json:"uePolicySections,omitempty"`
-	Upsis                *[]string                   `json:"upsis,omitempty"`
+	Upsis                []string                    `json:"upsis,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
@@ -340,7 +340,7 @@ type UsageMonDataLimit struct {
 
 // UsageMonDataScope Contains a SNSSAI and DNN combinations to which the UsageMonData instance belongs to.
 type UsageMonDataScope struct {
-	Dnn                  *[]externalRef0.Dnn    `json:"dnn,omitempty"`
+	Dnn                  []externalRef0.Dnn     `json:"dnn,omitempty"`
 	Snssai               externalRef0.Snssai    `json:"snssai"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -499,7 +499,7 @@ func (a AmPolicyData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SubscCats != nil {
+	if len(a.SubscCats) != 0 {
 		object["subscCats"], err = json.Marshal(a.SubscCats)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscCats': %w", err)
@@ -900,14 +900,14 @@ func (a DnnRouteSelectionDescriptor) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
 	}
 
-	if a.PduSessTypes != nil {
+	if len(a.PduSessTypes) != 0 {
 		object["pduSessTypes"], err = json.Marshal(a.PduSessTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pduSessTypes': %w", err)
 		}
 	}
 
-	if a.SscModes != nil {
+	if len(a.SscModes) != 0 {
 		object["sscModes"], err = json.Marshal(a.SscModes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sscModes': %w", err)
@@ -988,7 +988,7 @@ func (a LimitIdToMonitoringKey) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'limitId': %w", err)
 	}
 
-	if a.Monkey != nil {
+	if len(a.Monkey) != 0 {
 		object["monkey"], err = json.Marshal(a.Monkey)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'monkey': %w", err)
@@ -1148,7 +1148,7 @@ func (a PlmnRouteSelectionDescriptor) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'servingPlmn': %w", err)
 	}
 
-	if a.SnssaiRouteSelDescs != nil {
+	if len(a.SnssaiRouteSelDescs) != 0 {
 		object["snssaiRouteSelDescs"], err = json.Marshal(a.SnssaiRouteSelDescs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'snssaiRouteSelDescs': %w", err)
@@ -1372,7 +1372,7 @@ func (a PolicyDataChangeNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.DelResources != nil {
+	if len(a.DelResources) != 0 {
 		object["delResources"], err = json.Marshal(a.DelResources)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'delResources': %w", err)
@@ -1414,7 +1414,7 @@ func (a PolicyDataChangeNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ReportedFragments != nil {
+	if len(a.ReportedFragments) != 0 {
 		object["reportedFragments"], err = json.Marshal(a.ReportedFragments)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reportedFragments': %w", err)
@@ -1435,7 +1435,7 @@ func (a PolicyDataChangeNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeId != nil {
+	if len(a.UeId) != 0 {
 		object["ueId"], err = json.Marshal(a.UeId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueId': %w", err)
@@ -1571,7 +1571,7 @@ func (a PolicyDataSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MonResItems != nil {
+	if len(a.MonResItems) != 0 {
 		object["monResItems"], err = json.Marshal(a.MonResItems)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'monResItems': %w", err)
@@ -2101,7 +2101,7 @@ func (a SmPolicyDnnData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AllowedServices != nil {
+	if len(a.AllowedServices) != 0 {
 		object["allowedServices"], err = json.Marshal(a.AllowedServices)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedServices': %w", err)
@@ -2125,14 +2125,14 @@ func (a SmPolicyDnnData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
 	}
 
-	if a.GbrDl != nil {
+	if len(a.GbrDl) != 0 {
 		object["gbrDl"], err = json.Marshal(a.GbrDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gbrDl': %w", err)
 		}
 	}
 
-	if a.GbrUl != nil {
+	if len(a.GbrUl) != 0 {
 		object["gbrUl"], err = json.Marshal(a.GbrUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gbrUl': %w", err)
@@ -2223,7 +2223,7 @@ func (a SmPolicyDnnData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SubscCats != nil {
+	if len(a.SubscCats) != 0 {
 		object["subscCats"], err = json.Marshal(a.SubscCats)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscCats': %w", err)
@@ -2547,7 +2547,7 @@ func (a SnssaiRouteSelectionDescriptor) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DnnRouteSelDescs != nil {
+	if len(a.DnnRouteSelDescs) != 0 {
 		object["dnnRouteSelDescs"], err = json.Marshal(a.DnnRouteSelDescs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dnnRouteSelDescs': %w", err)
@@ -2924,14 +2924,14 @@ func (a UePolicySet) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.OsIds != nil {
+	if len(a.OsIds) != 0 {
 		object["osIds"], err = json.Marshal(a.OsIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'osIds': %w", err)
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -2945,7 +2945,7 @@ func (a UePolicySet) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SubscCats != nil {
+	if len(a.SubscCats) != 0 {
 		object["subscCats"], err = json.Marshal(a.SubscCats)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscCats': %w", err)
@@ -2966,7 +2966,7 @@ func (a UePolicySet) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Upsis != nil {
+	if len(a.Upsis) != 0 {
 		object["upsis"], err = json.Marshal(a.Upsis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'upsis': %w", err)
@@ -3073,14 +3073,14 @@ func (a UePolicySetPatch) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.OsIds != nil {
+	if len(a.OsIds) != 0 {
 		object["osIds"], err = json.Marshal(a.OsIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'osIds': %w", err)
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -3094,7 +3094,7 @@ func (a UePolicySetPatch) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Upsis != nil {
+	if len(a.Upsis) != 0 {
 		object["upsis"], err = json.Marshal(a.Upsis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'upsis': %w", err)
@@ -3546,7 +3546,7 @@ func (a UsageMonDataScope) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Dnn != nil {
+	if len(a.Dnn) != 0 {
 		object["dnn"], err = json.Marshal(a.Dnn)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)

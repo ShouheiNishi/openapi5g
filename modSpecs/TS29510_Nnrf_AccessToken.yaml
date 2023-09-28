@@ -6,12 +6,14 @@ components:
                 enum:
                     - no-store
                 type: string
+                x-go-type-skip-optional-pointer: true
         pragma:
             required: true
             schema:
                 enum:
                     - no-cache
                 type: string
+                x-go-type-skip-optional-pointer: true
     schemas:
         AccessTokenClaims:
             additionalProperties: true
@@ -24,6 +26,7 @@ components:
                             $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                           minItems: 1
                           type: array
+                          x-go-type-skip-optional-pointer: true
                 consumerPlmnId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                 exp:
@@ -37,6 +40,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 producerPlmnId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                 producerSnssaiList:
@@ -44,9 +48,11 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scope:
                     pattern: ^([a-zA-Z0-9_:-]+)( [a-zA-Z0-9_:-]+)*$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 sub:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
             required:
@@ -69,6 +75,7 @@ components:
                         - unsupported_grant_type
                         - invalid_scope
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 error_description:
                     type: string
                 error_uri:
@@ -84,6 +91,7 @@ components:
                     enum:
                         - client_credentials
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 nfInstanceId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 nfType:
@@ -97,19 +105,23 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                     minItems: 2
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 requesterSnpnList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 requesterSnssaiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scope:
                     pattern: ^([a-zA-Z0-9_:-]+)( [a-zA-Z0-9_:-]+)*$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 targetNfInstanceId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 targetNfServiceSetId:
@@ -123,6 +135,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 targetPlmn:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                 targetSnssaiList:
@@ -130,6 +143,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - grant_type
                 - nfInstanceId
@@ -147,10 +161,12 @@ components:
                 scope:
                     pattern: ^([a-zA-Z0-9_:-]+)( [a-zA-Z0-9_:-]+)*$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 token_type:
                     enum:
                         - Bearer
                     type: string
+                    x-go-type-skip-optional-pointer: true
             required:
                 - access_token
                 - token_type

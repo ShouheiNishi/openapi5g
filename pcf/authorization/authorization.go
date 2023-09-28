@@ -168,15 +168,15 @@ const (
 // AcceptableServiceInfo Indicates the maximum bandwidth that shall be authorized by the PCF.
 type AcceptableServiceInfo struct {
 	AccBwMedComps        *map[string]MediaComponent `json:"accBwMedComps,omitempty"`
-	MarBwDl              *externalRef0.BitRate      `json:"marBwDl,omitempty"`
-	MarBwUl              *externalRef0.BitRate      `json:"marBwUl,omitempty"`
+	MarBwDl              externalRef0.BitRate       `json:"marBwDl,omitempty"`
+	MarBwUl              externalRef0.BitRate       `json:"marBwUl,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"-"`
 }
 
 // AccessNetChargingIdentifier Describes the access network charging identifier.
 type AccessNetChargingIdentifier struct {
 	AccNetChaIdValue     externalRef0.ChargingId `json:"accNetChaIdValue"`
-	Flows                *[]Flows                `json:"flows,omitempty"`
+	Flows                []Flows                 `json:"flows,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
@@ -189,7 +189,7 @@ type AfEvent string
 // AfEventNotification describes the event information delivered in the notification
 type AfEventNotification struct {
 	Event                AfEvent                `json:"event"`
-	Flows                *[]Flows               `json:"flows,omitempty"`
+	Flows                []Flows                `json:"flows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -210,16 +210,16 @@ type AfRequestedData string
 
 // AfRoutingRequirement describes the event information delivered in the subscription
 type AfRoutingRequirement struct {
-	AddrPreserInd *bool                           `json:"addrPreserInd,omitempty"`
-	AppReloc      *bool                           `json:"appReloc,omitempty"`
-	RouteToLocs   *[]externalRef0.RouteToLocation `json:"routeToLocs,omitempty"`
+	AddrPreserInd *bool                          `json:"addrPreserInd,omitempty"`
+	AppReloc      *bool                          `json:"appReloc,omitempty"`
+	RouteToLocs   []externalRef0.RouteToLocation `json:"routeToLocs,omitempty"`
 
 	// SpVal describes explicitly the route to an Application location
-	SpVal    *SpatialValidity    `json:"spVal,omitempty"`
-	TempVals *[]TemporalValidity `json:"tempVals,omitempty"`
+	SpVal    *SpatialValidity   `json:"spVal,omitempty"`
+	TempVals []TemporalValidity `json:"tempVals,omitempty"`
 
 	// UpPathChgSub Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent
-	UpPathChgSub         *interface{}           `json:"upPathChgSub,omitempty"`
+	UpPathChgSub         interface{}            `json:"upPathChgSub,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -234,13 +234,13 @@ type AfRoutingRequirementRm struct {
 	TempVals *[]TemporalValidity `json:"tempVals"`
 
 	// UpPathChgSub Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent
-	UpPathChgSub         *interface{}           `json:"upPathChgSub,omitempty"`
+	UpPathChgSub         interface{}            `json:"upPathChgSub,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AnGwAddress describes the address of the access network gateway control node
 type AnGwAddress struct {
-	AnGwIpv4Addr         *externalRef0.Ipv4Addr `json:"anGwIpv4Addr,omitempty"`
+	AnGwIpv4Addr         externalRef0.Ipv4Addr  `json:"anGwIpv4Addr,omitempty"`
 	AnGwIpv6Addr         *externalRef0.Ipv6Addr `json:"anGwIpv6Addr,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -277,7 +277,7 @@ type AppSessionContextReqData struct {
 
 	// EvSubsc Identifies the events the application subscribes to.
 	EvSubsc  *EventsSubscReqData `json:"evSubsc,omitempty"`
-	Gpsi     *externalRef0.Gpsi  `json:"gpsi,omitempty"`
+	Gpsi     externalRef0.Gpsi   `json:"gpsi,omitempty"`
 	IpDomain *string             `json:"ipDomain,omitempty"`
 
 	// McVideoId indication of MCVideo service request
@@ -304,26 +304,26 @@ type AppSessionContextReqData struct {
 	// SponId Contains an identity of a sponsor.
 	SponId     *SponId                        `json:"sponId,omitempty"`
 	SponStatus *SponsoringStatus              `json:"sponStatus,omitempty"`
-	Supi       *externalRef0.Supi             `json:"supi,omitempty"`
+	Supi       externalRef0.Supi              `json:"supi,omitempty"`
 	SuppFeat   externalRef0.SupportedFeatures `json:"suppFeat"`
 
 	// TsnBridgeManCont Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
-	TsnBridgeManCont *interface{} `json:"tsnBridgeManCont,omitempty"`
+	TsnBridgeManCont interface{} `json:"tsnBridgeManCont,omitempty"`
 
 	// TsnPortManContDstt Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
-	TsnPortManContDstt   *interface{}            `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts  *[]interface{}          `json:"tsnPortManContNwtts,omitempty"`
-	UeIpv4               *externalRef0.Ipv4Addr  `json:"ueIpv4,omitempty"`
-	UeIpv6               *externalRef0.Ipv6Addr  `json:"ueIpv6,omitempty"`
-	UeMac                *externalRef0.MacAddr48 `json:"ueMac,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"-"`
+	TsnPortManContDstt   interface{}            `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts  []interface{}          `json:"tsnPortManContNwtts,omitempty"`
+	UeIpv4               externalRef0.Ipv4Addr  `json:"ueIpv4,omitempty"`
+	UeIpv6               *externalRef0.Ipv6Addr `json:"ueIpv6,omitempty"`
+	UeMac                externalRef0.MacAddr48 `json:"ueMac,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AppSessionContextRespData Describes the authorization data of an Individual Application Session Context created by the PCF.
 type AppSessionContextRespData struct {
 	ServAuthInfo         *ServAuthInfo                   `json:"servAuthInfo,omitempty"`
 	SuppFeat             *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
-	UeIds                *[]UeIdentityInfo               `json:"ueIds,omitempty"`
+	UeIds                []UeIdentityInfo                `json:"ueIds,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
 
@@ -366,11 +366,11 @@ type AppSessionContextUpdateData struct {
 	SponStatus *SponsoringStatus `json:"sponStatus,omitempty"`
 
 	// TsnBridgeManCont Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
-	TsnBridgeManCont *interface{} `json:"tsnBridgeManCont,omitempty"`
+	TsnBridgeManCont interface{} `json:"tsnBridgeManCont,omitempty"`
 
 	// TsnPortManContDstt Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
-	TsnPortManContDstt   *interface{}           `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts  *[]interface{}         `json:"tsnPortManContNwtts,omitempty"`
+	TsnPortManContDstt   interface{}            `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts  []interface{}          `json:"tsnPortManContNwtts,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -392,61 +392,61 @@ type ContentVersion = int
 
 // EthFlowDescription Identifies an Ethernet flow
 type EthFlowDescription struct {
-	DestMacAddr    *externalRef0.MacAddr48 `json:"destMacAddr,omitempty"`
-	DestMacAddrEnd *externalRef0.MacAddr48 `json:"destMacAddrEnd,omitempty"`
-	EthType        string                  `json:"ethType"`
+	DestMacAddr    externalRef0.MacAddr48 `json:"destMacAddr,omitempty"`
+	DestMacAddrEnd externalRef0.MacAddr48 `json:"destMacAddrEnd,omitempty"`
+	EthType        string                 `json:"ethType"`
 
 	// FDesc Defines a packet filter of an IP flow.
 	FDesc *FlowDescription `json:"fDesc,omitempty"`
 
 	// FDir Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
 	//  (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection)
-	FDir                 *interface{}            `json:"fDir,omitempty"`
-	SourceMacAddr        *externalRef0.MacAddr48 `json:"sourceMacAddr,omitempty"`
-	SrcMacAddrEnd        *externalRef0.MacAddr48 `json:"srcMacAddrEnd,omitempty"`
-	VlanTags             *[]string               `json:"vlanTags,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"-"`
+	FDir                 interface{}            `json:"fDir,omitempty"`
+	SourceMacAddr        externalRef0.MacAddr48 `json:"sourceMacAddr,omitempty"`
+	SrcMacAddrEnd        externalRef0.MacAddr48 `json:"srcMacAddrEnd,omitempty"`
+	VlanTags             []string               `json:"vlanTags,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // EventsNotification describes the notification of a matched event
 type EventsNotification struct {
-	AccessType *externalRef0.AccessType `json:"accessType,omitempty"`
+	AccessType externalRef0.AccessType `json:"accessType,omitempty"`
 
 	// AddAccessInfo Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
-	AddAccessInfo *interface{} `json:"addAccessInfo,omitempty"`
+	AddAccessInfo interface{} `json:"addAccessInfo,omitempty"`
 
 	// AnChargAddr Describes the network entity within the access network performing charging (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AccNetChargingAddress)
-	AnChargAddr *interface{}                   `json:"anChargAddr,omitempty"`
-	AnChargIds  *[]AccessNetChargingIdentifier `json:"anChargIds,omitempty"`
+	AnChargAddr interface{}                   `json:"anChargAddr,omitempty"`
+	AnChargIds  []AccessNetChargingIdentifier `json:"anChargIds,omitempty"`
 
 	// AnGwAddr describes the address of the access network gateway control node
-	AnGwAddr                  *AnGwAddress               `json:"anGwAddr,omitempty"`
-	EvNotifs                  []AfEventNotification      `json:"evNotifs"`
-	EvSubsUri                 externalRef0.Uri           `json:"evSubsUri"`
-	FailedResourcAllocReports *[]ResourcesAllocationInfo `json:"failedResourcAllocReports,omitempty"`
+	AnGwAddr                  *AnGwAddress              `json:"anGwAddr,omitempty"`
+	EvNotifs                  []AfEventNotification     `json:"evNotifs"`
+	EvSubsUri                 externalRef0.Uri          `json:"evSubsUri"`
+	FailedResourcAllocReports []ResourcesAllocationInfo `json:"failedResourcAllocReports,omitempty"`
 
 	// NoNetLocSupp Possible values are - ANR_NOT_SUPPORTED: Indicates that the access network does not support the report of access network information. - TZR_NOT_SUPPORTED: Indicates that the access network does not support the report of UE time zone. - LOC_NOT_SUPPORTED: Indicates that the access network does not support the report of UE Location (or PLMN Id).
 	//  (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/NetLocAccessSupport)
-	NoNetLocSupp     *interface{}                  `json:"noNetLocSupp,omitempty"`
-	OutOfCredReports *[]OutOfCreditInformation     `json:"outOfCredReports,omitempty"`
-	PlmnId           *externalRef0.PlmnIdNid       `json:"plmnId,omitempty"`
-	QncReports       *[]QosNotificationControlInfo `json:"qncReports,omitempty"`
-	QosMonReports    *[]QosMonitoringReport        `json:"qosMonReports,omitempty"`
+	NoNetLocSupp     interface{}                  `json:"noNetLocSupp,omitempty"`
+	OutOfCredReports []OutOfCreditInformation     `json:"outOfCredReports,omitempty"`
+	PlmnId           *externalRef0.PlmnIdNid      `json:"plmnId,omitempty"`
+	QncReports       []QosNotificationControlInfo `json:"qncReports,omitempty"`
+	QosMonReports    []QosMonitoringReport        `json:"qosMonReports,omitempty"`
 
 	// RanNasRelCauses Contains the RAN and/or NAS release cause.
-	RanNasRelCauses *[]interface{}        `json:"ranNasRelCauses,omitempty"`
+	RanNasRelCauses []interface{}         `json:"ranNasRelCauses,omitempty"`
 	RatType         *externalRef0.RatType `json:"ratType,omitempty"`
 
 	// RelAccessInfo Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
-	RelAccessInfo           *interface{}               `json:"relAccessInfo,omitempty"`
-	SuccResourcAllocReports *[]ResourcesAllocationInfo `json:"succResourcAllocReports,omitempty"`
+	RelAccessInfo           interface{}               `json:"relAccessInfo,omitempty"`
+	SuccResourcAllocReports []ResourcesAllocationInfo `json:"succResourcAllocReports,omitempty"`
 
 	// TsnBridgeManCont Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
-	TsnBridgeManCont *interface{} `json:"tsnBridgeManCont,omitempty"`
+	TsnBridgeManCont interface{} `json:"tsnBridgeManCont,omitempty"`
 
 	// TsnPortManContDstt Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
-	TsnPortManContDstt   *interface{}                   `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts  *[]interface{}                 `json:"tsnPortManContNwtts,omitempty"`
+	TsnPortManContDstt   interface{}                    `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts  []interface{}                  `json:"tsnPortManContNwtts,omitempty"`
 	UeLoc                *externalRef0.UserLocation     `json:"ueLoc,omitempty"`
 	UeLocTime            *externalRef0.DateTime         `json:"ueLocTime,omitempty"`
 	UeTimeZone           *externalRef0.TimeZone         `json:"ueTimeZone,omitempty"`
@@ -467,8 +467,8 @@ type EventsSubscReqData struct {
 
 	// QosMon Indicates the QoS Monitoring information to report, i.e. UL and/or DL and or round trip delay.
 	QosMon               *QosMonitoringInformation    `json:"qosMon,omitempty"`
-	ReqAnis              *[]RequiredAccessInfo        `json:"reqAnis,omitempty"`
-	ReqQosMonParams      *[]interface{}               `json:"reqQosMonParams,omitempty"`
+	ReqAnis              []RequiredAccessInfo         `json:"reqAnis,omitempty"`
+	ReqQosMonParams      []interface{}                `json:"reqQosMonParams,omitempty"`
 	UsgThres             *externalRef1.UsageThreshold `json:"usgThres,omitempty"`
 	AdditionalProperties map[string]interface{}       `json:"-"`
 }
@@ -481,8 +481,8 @@ type EventsSubscReqDataRm struct {
 
 	// QosMon this data type is defined in the same way as the QosMonitoringInformation data type, but with the OpenAPI nullable property set to true.
 	QosMon               *QosMonitoringInformationRm    `json:"qosMon"`
-	ReqAnis              *[]RequiredAccessInfo          `json:"reqAnis,omitempty"`
-	ReqQosMonParams      *[]interface{}                 `json:"reqQosMonParams,omitempty"`
+	ReqAnis              []RequiredAccessInfo           `json:"reqAnis,omitempty"`
+	ReqQosMonParams      []interface{}                  `json:"reqQosMonParams,omitempty"`
 	UsgThres             *externalRef1.UsageThresholdRm `json:"usgThres"`
 	AdditionalProperties map[string]interface{}         `json:"-"`
 }
@@ -493,14 +493,14 @@ type ExtendedProblemDetails struct {
 	AcceptableServInfo *AcceptableServiceInfo `json:"acceptableServInfo,omitempty"`
 
 	// AccessTokenError Error returned in the access token response message (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
-	AccessTokenError *interface{} `json:"accessTokenError,omitempty"`
+	AccessTokenError interface{} `json:"accessTokenError,omitempty"`
 
 	// AccessTokenRequest Contains information related to the access token request (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
-	AccessTokenRequest   *interface{}                    `json:"accessTokenRequest,omitempty"`
+	AccessTokenRequest   interface{}                     `json:"accessTokenRequest,omitempty"`
 	Cause                *string                         `json:"cause,omitempty"`
 	Detail               *string                         `json:"detail,omitempty"`
 	Instance             *externalRef0.Uri               `json:"instance,omitempty"`
-	InvalidParams        *[]externalRef0.InvalidParam    `json:"invalidParams,omitempty"`
+	InvalidParams        []externalRef0.InvalidParam     `json:"invalidParams,omitempty"`
 	NrfId                *string                         `json:"nrfId,omitempty"`
 	Status               *int                            `json:"status,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
@@ -520,8 +520,8 @@ type FlowUsage string
 
 // Flows Identifies the flows
 type Flows struct {
-	ContVers             *[]ContentVersion      `json:"contVers,omitempty"`
-	FNums                *[]int                 `json:"fNums,omitempty"`
+	ContVers             []ContentVersion       `json:"contVers,omitempty"`
+	FNums                []int                  `json:"fNums,omitempty"`
 	MedCompN             int                    `json:"medCompN"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -533,8 +533,8 @@ type MediaComponent struct {
 
 	// AfRoutReq describes the event information delivered in the subscription
 	AfRoutReq  *AfRoutingRequirement `json:"afRoutReq,omitempty"`
-	AltSerReqs *[]string             `json:"altSerReqs,omitempty"`
-	Codecs     *[]CodecData          `json:"codecs,omitempty"`
+	AltSerReqs []string              `json:"altSerReqs,omitempty"`
+	Codecs     []CodecData           `json:"codecs,omitempty"`
 
 	// ContVer Represents the content version of some content.
 	ContVer             *ContentVersion                       `json:"contVer,omitempty"`
@@ -543,26 +543,26 @@ type MediaComponent struct {
 	DisUeNotif          *bool                                 `json:"disUeNotif,omitempty"`
 	FStatus             *FlowStatus                           `json:"fStatus,omitempty"`
 	FlusId              *string                               `json:"flusId,omitempty"`
-	MarBwDl             *externalRef0.BitRate                 `json:"marBwDl,omitempty"`
-	MarBwUl             *externalRef0.BitRate                 `json:"marBwUl,omitempty"`
+	MarBwDl             externalRef0.BitRate                  `json:"marBwDl,omitempty"`
+	MarBwUl             externalRef0.BitRate                  `json:"marBwUl,omitempty"`
 	MaxPacketLossRateDl *externalRef0.PacketLossRateRm        `json:"maxPacketLossRateDl"`
 	MaxPacketLossRateUl *externalRef0.PacketLossRateRm        `json:"maxPacketLossRateUl"`
-	MaxSuppBwDl         *externalRef0.BitRate                 `json:"maxSuppBwDl,omitempty"`
-	MaxSuppBwUl         *externalRef0.BitRate                 `json:"maxSuppBwUl,omitempty"`
+	MaxSuppBwDl         externalRef0.BitRate                  `json:"maxSuppBwDl,omitempty"`
+	MaxSuppBwUl         externalRef0.BitRate                  `json:"maxSuppBwUl,omitempty"`
 	MedCompN            int                                   `json:"medCompN"`
 	MedSubComps         *map[string]MediaSubComponent         `json:"medSubComps,omitempty"`
 	MedType             *MediaType                            `json:"medType,omitempty"`
-	MinDesBwDl          *externalRef0.BitRate                 `json:"minDesBwDl,omitempty"`
-	MinDesBwUl          *externalRef0.BitRate                 `json:"minDesBwUl,omitempty"`
-	MirBwDl             *externalRef0.BitRate                 `json:"mirBwDl,omitempty"`
-	MirBwUl             *externalRef0.BitRate                 `json:"mirBwUl,omitempty"`
+	MinDesBwDl          externalRef0.BitRate                  `json:"minDesBwDl,omitempty"`
+	MinDesBwUl          externalRef0.BitRate                  `json:"minDesBwUl,omitempty"`
+	MirBwDl             externalRef0.BitRate                  `json:"mirBwDl,omitempty"`
+	MirBwUl             externalRef0.BitRate                  `json:"mirBwUl,omitempty"`
 	PreemptCap          *externalRef0.PreemptionCapability    `json:"preemptCap,omitempty"`
 	PreemptVuln         *externalRef0.PreemptionVulnerability `json:"preemptVuln,omitempty"`
 	PrioSharingInd      *PrioritySharingIndicator             `json:"prioSharingInd,omitempty"`
 	QosReference        *string                               `json:"qosReference,omitempty"`
 	ResPrio             *ReservPriority                       `json:"resPrio,omitempty"`
-	RrBw                *externalRef0.BitRate                 `json:"rrBw,omitempty"`
-	RsBw                *externalRef0.BitRate                 `json:"rsBw,omitempty"`
+	RrBw                externalRef0.BitRate                  `json:"rrBw,omitempty"`
+	RsBw                externalRef0.BitRate                  `json:"rsBw,omitempty"`
 	SharingKeyDl        *externalRef0.Uint32                  `json:"sharingKeyDl,omitempty"`
 	SharingKeyUl        *externalRef0.Uint32                  `json:"sharingKeyUl,omitempty"`
 
@@ -588,7 +588,7 @@ type MediaComponentRm struct {
 	// AfRoutReq this data type is defined in the same way as the AfRoutingRequirement data type, but with the OpenAPI nullable property set to true and the spVal and tempVals attributes defined as removable.
 	AfRoutReq  *AfRoutingRequirementRm `json:"afRoutReq"`
 	AltSerReqs *[]string               `json:"altSerReqs"`
-	Codecs     *[]CodecData            `json:"codecs,omitempty"`
+	Codecs     []CodecData             `json:"codecs,omitempty"`
 
 	// ContVer Represents the content version of some content.
 	ContVer             *ContentVersion                         `json:"contVer,omitempty"`
@@ -635,14 +635,14 @@ type MediaComponentRm struct {
 type MediaSubComponent struct {
 	// AfSigProtocol Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
 	//  (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
-	AfSigProtocol *interface{}          `json:"afSigProtocol,omitempty"`
-	EthfDescs     *[]EthFlowDescription `json:"ethfDescs,omitempty"`
-	FDescs        *[]FlowDescription    `json:"fDescs,omitempty"`
-	FNum          int                   `json:"fNum"`
-	FStatus       *FlowStatus           `json:"fStatus,omitempty"`
-	FlowUsage     *FlowUsage            `json:"flowUsage,omitempty"`
-	MarBwDl       *externalRef0.BitRate `json:"marBwDl,omitempty"`
-	MarBwUl       *externalRef0.BitRate `json:"marBwUl,omitempty"`
+	AfSigProtocol interface{}          `json:"afSigProtocol,omitempty"`
+	EthfDescs     []EthFlowDescription `json:"ethfDescs,omitempty"`
+	FDescs        []FlowDescription    `json:"fDescs,omitempty"`
+	FNum          int                  `json:"fNum"`
+	FStatus       *FlowStatus          `json:"fStatus,omitempty"`
+	FlowUsage     *FlowUsage           `json:"flowUsage,omitempty"`
+	MarBwDl       externalRef0.BitRate `json:"marBwDl,omitempty"`
+	MarBwUl       externalRef0.BitRate `json:"marBwUl,omitempty"`
 
 	// TosTrCl 2-octet string, where each octet is encoded in hexadecimal representation. The first octet contains the IPv4 Type-of-Service or the IPv6 Traffic-Class field and the second octet contains the ToS/Traffic Class mask field.
 	TosTrCl              *TosTrafficClass       `json:"tosTrCl,omitempty"`
@@ -653,7 +653,7 @@ type MediaSubComponent struct {
 type MediaSubComponentRm struct {
 	// AfSigProtocol Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
 	//  (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
-	AfSigProtocol *interface{}            `json:"afSigProtocol,omitempty"`
+	AfSigProtocol interface{}             `json:"afSigProtocol,omitempty"`
 	EthfDescs     *[]EthFlowDescription   `json:"ethfDescs"`
 	FDescs        *[]FlowDescription      `json:"fDescs"`
 	FNum          int                     `json:"fNum"`
@@ -674,7 +674,7 @@ type MediaType string
 type OutOfCreditInformation struct {
 	// FinUnitAct Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
 	FinUnitAct           interface{}            `json:"finUnitAct"`
-	Flows                *[]Flows               `json:"flows,omitempty"`
+	Flows                []Flows                `json:"flows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -683,8 +683,8 @@ type PcscfRestorationRequestData struct {
 	Dnn                  *externalRef0.Dnn      `json:"dnn,omitempty"`
 	IpDomain             *string                `json:"ipDomain,omitempty"`
 	SliceInfo            *externalRef0.Snssai   `json:"sliceInfo,omitempty"`
-	Supi                 *externalRef0.Supi     `json:"supi,omitempty"`
-	UeIpv4               *externalRef0.Ipv4Addr `json:"ueIpv4,omitempty"`
+	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
+	UeIpv4               externalRef0.Ipv4Addr  `json:"ueIpv4,omitempty"`
 	UeIpv6               *externalRef0.Ipv6Addr `json:"ueIpv6,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -695,11 +695,11 @@ type PduSessionTsnBridge struct {
 	TsnBridgeInfo interface{} `json:"tsnBridgeInfo"`
 
 	// TsnBridgeManCont Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
-	TsnBridgeManCont *interface{} `json:"tsnBridgeManCont,omitempty"`
+	TsnBridgeManCont interface{} `json:"tsnBridgeManCont,omitempty"`
 
 	// TsnPortManContDstt Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
-	TsnPortManContDstt   *interface{}           `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts  *[]interface{}         `json:"tsnPortManContNwtts,omitempty"`
+	TsnPortManContDstt   interface{}            `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts  []interface{}          `json:"tsnPortManContNwtts,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -732,10 +732,10 @@ type QosMonitoringInformationRm struct {
 
 // QosMonitoringReport QoS Monitoring reporting information
 type QosMonitoringReport struct {
-	DlDelays             *[]int                 `json:"dlDelays,omitempty"`
-	Flows                *[]Flows               `json:"flows,omitempty"`
-	RtDelays             *[]int                 `json:"rtDelays,omitempty"`
-	UlDelays             *[]int                 `json:"ulDelays,omitempty"`
+	DlDelays             []int                  `json:"dlDelays,omitempty"`
+	Flows                []Flows                `json:"flows,omitempty"`
+	RtDelays             []int                  `json:"rtDelays,omitempty"`
+	UlDelays             []int                  `json:"ulDelays,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -745,7 +745,7 @@ type QosNotifType string
 // QosNotificationControlInfo Indicates whether the QoS targets for a GRB flow are not guaranteed or guaranteed again
 type QosNotificationControlInfo struct {
 	AltSerReq            *string                `json:"altSerReq,omitempty"`
-	Flows                *[]Flows               `json:"flows,omitempty"`
+	Flows                []Flows                `json:"flows,omitempty"`
 	NotifType            QosNotifType           `json:"notifType"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -759,7 +759,7 @@ type ReservPriority string
 // ResourcesAllocationInfo describes the status of the PCC rule(s) related to certain media components.
 type ResourcesAllocationInfo struct {
 	AltSerReq            *string                        `json:"altSerReq,omitempty"`
-	Flows                *[]Flows                       `json:"flows,omitempty"`
+	Flows                []Flows                        `json:"flows,omitempty"`
 	McResourcStatus      *MediaComponentResourcesStatus `json:"mcResourcStatus,omitempty"`
 	AdditionalProperties map[string]interface{}         `json:"-"`
 }
@@ -832,10 +832,10 @@ type TscaiInputContainer struct {
 
 // TsnQosContainer Indicates TSC Traffic QoS.
 type TsnQosContainer struct {
-	MaxTscBurstSize      *externalRef0.ExtMaxDataBurstVol `json:"maxTscBurstSize,omitempty"`
-	TscPackDelay         *externalRef0.PacketDelBudget    `json:"tscPackDelay,omitempty"`
-	TscPrioLevel         *TscPriorityLevel                `json:"tscPrioLevel,omitempty"`
-	AdditionalProperties map[string]interface{}           `json:"-"`
+	MaxTscBurstSize      externalRef0.ExtMaxDataBurstVol `json:"maxTscBurstSize,omitempty"`
+	TscPackDelay         externalRef0.PacketDelBudget    `json:"tscPackDelay,omitempty"`
+	TscPrioLevel         TscPriorityLevel                `json:"tscPrioLevel,omitempty"`
+	AdditionalProperties map[string]interface{}          `json:"-"`
 }
 
 // TsnQosContainerRm Indicates removable TSC Traffic QoS.
@@ -848,9 +848,9 @@ type TsnQosContainerRm struct {
 
 // UeIdentityInfo Represents 5GS-Level UE identities.
 type UeIdentityInfo struct {
-	Gpsi                 *externalRef0.Gpsi     `json:"gpsi,omitempty"`
-	Pei                  *externalRef0.Pei      `json:"pei,omitempty"`
-	Supi                 *externalRef0.Supi     `json:"supi,omitempty"`
+	Gpsi                 externalRef0.Gpsi      `json:"gpsi,omitempty"`
+	Pei                  externalRef0.Pei       `json:"pei,omitempty"`
+	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -944,14 +944,14 @@ func (a AcceptableServiceInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MarBwDl != nil {
+	if len(a.MarBwDl) != 0 {
 		object["marBwDl"], err = json.Marshal(a.MarBwDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'marBwDl': %w", err)
 		}
 	}
 
-	if a.MarBwUl != nil {
+	if len(a.MarBwUl) != 0 {
 		object["marBwUl"], err = json.Marshal(a.MarBwUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'marBwUl': %w", err)
@@ -1032,7 +1032,7 @@ func (a AccessNetChargingIdentifier) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'accNetChaIdValue': %w", err)
 	}
 
-	if a.Flows != nil {
+	if len(a.Flows) != 0 {
 		object["flows"], err = json.Marshal(a.Flows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flows': %w", err)
@@ -1113,7 +1113,7 @@ func (a AfEventNotification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'event': %w", err)
 	}
 
-	if a.Flows != nil {
+	if len(a.Flows) != 0 {
 		object["flows"], err = json.Marshal(a.Flows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flows': %w", err)
@@ -1346,7 +1346,7 @@ func (a AfRoutingRequirement) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RouteToLocs != nil {
+	if len(a.RouteToLocs) != 0 {
 		object["routeToLocs"], err = json.Marshal(a.RouteToLocs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'routeToLocs': %w", err)
@@ -1360,7 +1360,7 @@ func (a AfRoutingRequirement) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TempVals != nil {
+	if len(a.TempVals) != 0 {
 		object["tempVals"], err = json.Marshal(a.TempVals)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tempVals': %w", err)
@@ -1578,7 +1578,7 @@ func (a AnGwAddress) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AnGwIpv4Addr != nil {
+	if len(a.AnGwIpv4Addr) != 0 {
 		object["anGwIpv4Addr"], err = json.Marshal(a.AnGwIpv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'anGwIpv4Addr': %w", err)
@@ -2047,7 +2047,7 @@ func (a AppSessionContextReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -2150,7 +2150,7 @@ func (a AppSessionContextReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -2176,14 +2176,14 @@ func (a AppSessionContextReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TsnPortManContNwtts != nil {
+	if len(a.TsnPortManContNwtts) != 0 {
 		object["tsnPortManContNwtts"], err = json.Marshal(a.TsnPortManContNwtts)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tsnPortManContNwtts': %w", err)
 		}
 	}
 
-	if a.UeIpv4 != nil {
+	if len(a.UeIpv4) != 0 {
 		object["ueIpv4"], err = json.Marshal(a.UeIpv4)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIpv4': %w", err)
@@ -2197,7 +2197,7 @@ func (a AppSessionContextReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeMac != nil {
+	if len(a.UeMac) != 0 {
 		object["ueMac"], err = json.Marshal(a.UeMac)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueMac': %w", err)
@@ -2295,7 +2295,7 @@ func (a AppSessionContextRespData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeIds != nil {
+	if len(a.UeIds) != 0 {
 		object["ueIds"], err = json.Marshal(a.UeIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIds': %w", err)
@@ -2629,7 +2629,7 @@ func (a AppSessionContextUpdateData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TsnPortManContNwtts != nil {
+	if len(a.TsnPortManContNwtts) != 0 {
 		object["tsnPortManContNwtts"], err = json.Marshal(a.TsnPortManContNwtts)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tsnPortManContNwtts': %w", err)
@@ -2821,14 +2821,14 @@ func (a EthFlowDescription) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DestMacAddr != nil {
+	if len(a.DestMacAddr) != 0 {
 		object["destMacAddr"], err = json.Marshal(a.DestMacAddr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'destMacAddr': %w", err)
 		}
 	}
 
-	if a.DestMacAddrEnd != nil {
+	if len(a.DestMacAddrEnd) != 0 {
 		object["destMacAddrEnd"], err = json.Marshal(a.DestMacAddrEnd)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'destMacAddrEnd': %w", err)
@@ -2854,21 +2854,21 @@ func (a EthFlowDescription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SourceMacAddr != nil {
+	if len(a.SourceMacAddr) != 0 {
 		object["sourceMacAddr"], err = json.Marshal(a.SourceMacAddr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sourceMacAddr': %w", err)
 		}
 	}
 
-	if a.SrcMacAddrEnd != nil {
+	if len(a.SrcMacAddrEnd) != 0 {
 		object["srcMacAddrEnd"], err = json.Marshal(a.SrcMacAddrEnd)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'srcMacAddrEnd': %w", err)
 		}
 	}
 
-	if a.VlanTags != nil {
+	if len(a.VlanTags) != 0 {
 		object["vlanTags"], err = json.Marshal(a.VlanTags)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'vlanTags': %w", err)
@@ -3120,7 +3120,7 @@ func (a EventsNotification) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessType != nil {
+	if len(a.AccessType) != 0 {
 		object["accessType"], err = json.Marshal(a.AccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
@@ -3141,7 +3141,7 @@ func (a EventsNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AnChargIds != nil {
+	if len(a.AnChargIds) != 0 {
 		object["anChargIds"], err = json.Marshal(a.AnChargIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'anChargIds': %w", err)
@@ -3165,7 +3165,7 @@ func (a EventsNotification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'evSubsUri': %w", err)
 	}
 
-	if a.FailedResourcAllocReports != nil {
+	if len(a.FailedResourcAllocReports) != 0 {
 		object["failedResourcAllocReports"], err = json.Marshal(a.FailedResourcAllocReports)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'failedResourcAllocReports': %w", err)
@@ -3179,7 +3179,7 @@ func (a EventsNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.OutOfCredReports != nil {
+	if len(a.OutOfCredReports) != 0 {
 		object["outOfCredReports"], err = json.Marshal(a.OutOfCredReports)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'outOfCredReports': %w", err)
@@ -3193,21 +3193,21 @@ func (a EventsNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.QncReports != nil {
+	if len(a.QncReports) != 0 {
 		object["qncReports"], err = json.Marshal(a.QncReports)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'qncReports': %w", err)
 		}
 	}
 
-	if a.QosMonReports != nil {
+	if len(a.QosMonReports) != 0 {
 		object["qosMonReports"], err = json.Marshal(a.QosMonReports)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'qosMonReports': %w", err)
 		}
 	}
 
-	if a.RanNasRelCauses != nil {
+	if len(a.RanNasRelCauses) != 0 {
 		object["ranNasRelCauses"], err = json.Marshal(a.RanNasRelCauses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ranNasRelCauses': %w", err)
@@ -3228,7 +3228,7 @@ func (a EventsNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SuccResourcAllocReports != nil {
+	if len(a.SuccResourcAllocReports) != 0 {
 		object["succResourcAllocReports"], err = json.Marshal(a.SuccResourcAllocReports)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'succResourcAllocReports': %w", err)
@@ -3249,7 +3249,7 @@ func (a EventsNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TsnPortManContNwtts != nil {
+	if len(a.TsnPortManContNwtts) != 0 {
 		object["tsnPortManContNwtts"], err = json.Marshal(a.TsnPortManContNwtts)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tsnPortManContNwtts': %w", err)
@@ -3419,14 +3419,14 @@ func (a EventsSubscReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ReqAnis != nil {
+	if len(a.ReqAnis) != 0 {
 		object["reqAnis"], err = json.Marshal(a.ReqAnis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqAnis': %w", err)
 		}
 	}
 
-	if a.ReqQosMonParams != nil {
+	if len(a.ReqQosMonParams) != 0 {
 		object["reqQosMonParams"], err = json.Marshal(a.ReqQosMonParams)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqQosMonParams': %w", err)
@@ -3573,14 +3573,14 @@ func (a EventsSubscReqDataRm) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'qosMon': %w", err)
 	}
 
-	if a.ReqAnis != nil {
+	if len(a.ReqAnis) != 0 {
 		object["reqAnis"], err = json.Marshal(a.ReqAnis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqAnis': %w", err)
 		}
 	}
 
-	if a.ReqQosMonParams != nil {
+	if len(a.ReqQosMonParams) != 0 {
 		object["reqQosMonParams"], err = json.Marshal(a.ReqQosMonParams)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqQosMonParams': %w", err)
@@ -3783,7 +3783,7 @@ func (a ExtendedProblemDetails) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InvalidParams != nil {
+	if len(a.InvalidParams) != 0 {
 		object["invalidParams"], err = json.Marshal(a.InvalidParams)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)
@@ -3902,14 +3902,14 @@ func (a Flows) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ContVers != nil {
+	if len(a.ContVers) != 0 {
 		object["contVers"], err = json.Marshal(a.ContVers)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'contVers': %w", err)
 		}
 	}
 
-	if a.FNums != nil {
+	if len(a.FNums) != 0 {
 		object["fNums"], err = json.Marshal(a.FNums)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'fNums': %w", err)
@@ -4268,14 +4268,14 @@ func (a MediaComponent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AltSerReqs != nil {
+	if len(a.AltSerReqs) != 0 {
 		object["altSerReqs"], err = json.Marshal(a.AltSerReqs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altSerReqs': %w", err)
 		}
 	}
 
-	if a.Codecs != nil {
+	if len(a.Codecs) != 0 {
 		object["codecs"], err = json.Marshal(a.Codecs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'codecs': %w", err)
@@ -4324,14 +4324,14 @@ func (a MediaComponent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MarBwDl != nil {
+	if len(a.MarBwDl) != 0 {
 		object["marBwDl"], err = json.Marshal(a.MarBwDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'marBwDl': %w", err)
 		}
 	}
 
-	if a.MarBwUl != nil {
+	if len(a.MarBwUl) != 0 {
 		object["marBwUl"], err = json.Marshal(a.MarBwUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'marBwUl': %w", err)
@@ -4348,14 +4348,14 @@ func (a MediaComponent) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'maxPacketLossRateUl': %w", err)
 	}
 
-	if a.MaxSuppBwDl != nil {
+	if len(a.MaxSuppBwDl) != 0 {
 		object["maxSuppBwDl"], err = json.Marshal(a.MaxSuppBwDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'maxSuppBwDl': %w", err)
 		}
 	}
 
-	if a.MaxSuppBwUl != nil {
+	if len(a.MaxSuppBwUl) != 0 {
 		object["maxSuppBwUl"], err = json.Marshal(a.MaxSuppBwUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'maxSuppBwUl': %w", err)
@@ -4381,28 +4381,28 @@ func (a MediaComponent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MinDesBwDl != nil {
+	if len(a.MinDesBwDl) != 0 {
 		object["minDesBwDl"], err = json.Marshal(a.MinDesBwDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'minDesBwDl': %w", err)
 		}
 	}
 
-	if a.MinDesBwUl != nil {
+	if len(a.MinDesBwUl) != 0 {
 		object["minDesBwUl"], err = json.Marshal(a.MinDesBwUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'minDesBwUl': %w", err)
 		}
 	}
 
-	if a.MirBwDl != nil {
+	if len(a.MirBwDl) != 0 {
 		object["mirBwDl"], err = json.Marshal(a.MirBwDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mirBwDl': %w", err)
 		}
 	}
 
-	if a.MirBwUl != nil {
+	if len(a.MirBwUl) != 0 {
 		object["mirBwUl"], err = json.Marshal(a.MirBwUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mirBwUl': %w", err)
@@ -4444,14 +4444,14 @@ func (a MediaComponent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RrBw != nil {
+	if len(a.RrBw) != 0 {
 		object["rrBw"], err = json.Marshal(a.RrBw)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rrBw': %w", err)
 		}
 	}
 
-	if a.RsBw != nil {
+	if len(a.RsBw) != 0 {
 		object["rsBw"], err = json.Marshal(a.RsBw)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rsBw': %w", err)
@@ -4839,7 +4839,7 @@ func (a MediaComponentRm) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'altSerReqs': %w", err)
 	}
 
-	if a.Codecs != nil {
+	if len(a.Codecs) != 0 {
 		object["codecs"], err = json.Marshal(a.Codecs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'codecs': %w", err)
@@ -5151,14 +5151,14 @@ func (a MediaSubComponent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EthfDescs != nil {
+	if len(a.EthfDescs) != 0 {
 		object["ethfDescs"], err = json.Marshal(a.EthfDescs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ethfDescs': %w", err)
 		}
 	}
 
-	if a.FDescs != nil {
+	if len(a.FDescs) != 0 {
 		object["fDescs"], err = json.Marshal(a.FDescs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'fDescs': %w", err)
@@ -5184,14 +5184,14 @@ func (a MediaSubComponent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MarBwDl != nil {
+	if len(a.MarBwDl) != 0 {
 		object["marBwDl"], err = json.Marshal(a.MarBwDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'marBwDl': %w", err)
 		}
 	}
 
-	if a.MarBwUl != nil {
+	if len(a.MarBwUl) != 0 {
 		object["marBwUl"], err = json.Marshal(a.MarBwUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'marBwUl': %w", err)
@@ -5455,7 +5455,7 @@ func (a OutOfCreditInformation) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'finUnitAct': %w", err)
 	}
 
-	if a.Flows != nil {
+	if len(a.Flows) != 0 {
 		object["flows"], err = json.Marshal(a.Flows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flows': %w", err)
@@ -5584,14 +5584,14 @@ func (a PcscfRestorationRequestData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
 		}
 	}
 
-	if a.UeIpv4 != nil {
+	if len(a.UeIpv4) != 0 {
 		object["ueIpv4"], err = json.Marshal(a.UeIpv4)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIpv4': %w", err)
@@ -5709,7 +5709,7 @@ func (a PduSessionTsnBridge) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TsnPortManContNwtts != nil {
+	if len(a.TsnPortManContNwtts) != 0 {
 		object["tsnPortManContNwtts"], err = json.Marshal(a.TsnPortManContNwtts)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tsnPortManContNwtts': %w", err)
@@ -5997,28 +5997,28 @@ func (a QosMonitoringReport) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DlDelays != nil {
+	if len(a.DlDelays) != 0 {
 		object["dlDelays"], err = json.Marshal(a.DlDelays)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dlDelays': %w", err)
 		}
 	}
 
-	if a.Flows != nil {
+	if len(a.Flows) != 0 {
 		object["flows"], err = json.Marshal(a.Flows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flows': %w", err)
 		}
 	}
 
-	if a.RtDelays != nil {
+	if len(a.RtDelays) != 0 {
 		object["rtDelays"], err = json.Marshal(a.RtDelays)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rtDelays': %w", err)
 		}
 	}
 
-	if a.UlDelays != nil {
+	if len(a.UlDelays) != 0 {
 		object["ulDelays"], err = json.Marshal(a.UlDelays)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ulDelays': %w", err)
@@ -6109,7 +6109,7 @@ func (a QosNotificationControlInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Flows != nil {
+	if len(a.Flows) != 0 {
 		object["flows"], err = json.Marshal(a.Flows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flows': %w", err)
@@ -6205,7 +6205,7 @@ func (a ResourcesAllocationInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Flows != nil {
+	if len(a.Flows) != 0 {
 		object["flows"], err = json.Marshal(a.Flows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flows': %w", err)
@@ -6673,21 +6673,21 @@ func (a TsnQosContainer) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.MaxTscBurstSize != nil {
+	if a.MaxTscBurstSize != 0 {
 		object["maxTscBurstSize"], err = json.Marshal(a.MaxTscBurstSize)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'maxTscBurstSize': %w", err)
 		}
 	}
 
-	if a.TscPackDelay != nil {
+	if a.TscPackDelay != 0 {
 		object["tscPackDelay"], err = json.Marshal(a.TscPackDelay)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tscPackDelay': %w", err)
 		}
 	}
 
-	if a.TscPrioLevel != nil {
+	if a.TscPrioLevel != 0 {
 		object["tscPrioLevel"], err = json.Marshal(a.TscPrioLevel)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tscPrioLevel': %w", err)
@@ -6863,21 +6863,21 @@ func (a UeIdentityInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)

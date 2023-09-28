@@ -114,17 +114,17 @@ type N3GppChargingCharacteristics = string
 // AccessAndMobilitySubscriptionData defines model for AccessAndMobilitySubscriptionData.
 type AccessAndMobilitySubscriptionData struct {
 	ActiveTime                     *externalRef2.DurationSecRm                                 `json:"activeTime"`
-	CMsisdn                        *externalRef2.CMsisdn                                       `json:"cMsisdn,omitempty"`
+	CMsisdn                        externalRef2.CMsisdn                                        `json:"cMsisdn,omitempty"`
 	CagData                        *CagData                                                    `json:"cagData,omitempty"`
 	CoreNetworkTypeRestrictions    *[]externalRef2.CoreNetworkType                             `json:"coreNetworkTypeRestrictions,omitempty"`
 	EcRestrictionDataNb            *bool                                                       `json:"ecRestrictionDataNb,omitempty"`
 	EcRestrictionDataWb            *EcRestrictionDataWb                                        `json:"ecRestrictionDataWb,omitempty"`
-	EdrxParametersList             *[]EdrxParameters                                           `json:"edrxParametersList,omitempty"`
+	EdrxParametersList             []EdrxParameters                                            `json:"edrxParametersList,omitempty"`
 	ExpectedUeBehaviourList        *ExpectedUeBehaviourData                                    `json:"expectedUeBehaviourList,omitempty"`
 	ForbiddenAreas                 *[]externalRef2.Area                                        `json:"forbiddenAreas,omitempty"`
 	Gpsis                          *[]externalRef2.Gpsi                                        `json:"gpsis,omitempty"`
 	IabOperationAllowed            *bool                                                       `json:"iabOperationAllowed,omitempty"`
-	InternalGroupIds               *[]externalRef2.GroupId                                     `json:"internalGroupIds,omitempty"`
+	InternalGroupIds               []externalRef2.GroupId                                      `json:"internalGroupIds,omitempty"`
 	McsPriority                    *McsPriorityIndicator                                       `json:"mcsPriority,omitempty"`
 	MdtConfiguration               *externalRef2.MdtConfiguration                              `json:"mdtConfiguration,omitempty"`
 	MdtUserConsent                 *MdtUserConsent                                             `json:"mdtUserConsent,omitempty"`
@@ -135,18 +135,18 @@ type AccessAndMobilitySubscriptionData struct {
 	NssaiInclusionAllowed          *bool                                                       `json:"nssaiInclusionAllowed,omitempty"`
 	OdbPacketServices              *externalRef2.OdbPacketServices                             `json:"odbPacketServices,omitempty"`
 	PrimaryRatRestrictions         *[]externalRef2.RatType                                     `json:"primaryRatRestrictions,omitempty"`
-	PtwParametersList              *[]PtwParameters                                            `json:"ptwParametersList,omitempty"`
+	PtwParametersList              []PtwParameters                                             `json:"ptwParametersList,omitempty"`
 	RatRestrictions                *[]externalRef2.RatType                                     `json:"ratRestrictions,omitempty"`
 	RfspIndex                      *externalRef2.RfspIndexRm                                   `json:"rfspIndex"`
 	RgWirelineCharacteristics      *externalRef2.RgWirelineCharacteristics                     `json:"rgWirelineCharacteristics,omitempty"`
 	SecondaryRatRestrictions       *[]externalRef2.RatType                                     `json:"secondaryRatRestrictions,omitempty"`
 	ServiceAreaRestriction         *externalRef2.ServiceAreaRestriction                        `json:"serviceAreaRestriction,omitempty"`
 	ServiceGapTime                 *externalRef2.DurationSec                                   `json:"serviceGapTime,omitempty"`
-	SharedAmDataIds                *[]SharedDataId                                             `json:"sharedAmDataIds,omitempty"`
+	SharedAmDataIds                []SharedDataId                                              `json:"sharedAmDataIds,omitempty"`
 	SharedVnGroupDataIds           *map[string]SharedDataId                                    `json:"sharedVnGroupDataIds,omitempty"`
 	SorInfo                        *SorInfo                                                    `json:"sorInfo,omitempty"`
 	SorInfoExpectInd               *bool                                                       `json:"sorInfoExpectInd,omitempty"`
-	SorUpdateIndicatorList         *[]SorUpdateIndicator                                       `json:"sorUpdateIndicatorList,omitempty"`
+	SorUpdateIndicatorList         []SorUpdateIndicator                                        `json:"sorUpdateIndicatorList,omitempty"`
 	SorafRetrieval                 *bool                                                       `json:"sorafRetrieval,omitempty"`
 	StnSr                          *externalRef2.StnSr                                         `json:"stnSr,omitempty"`
 	SubsRegTimer                   *externalRef2.DurationSecRm                                 `json:"subsRegTimer"`
@@ -170,9 +170,9 @@ type AccessAndMobilitySubscriptionData_SubscribedDnnList_Item struct {
 type AcknowledgeInfo struct {
 	ProvisioningTime     externalRef2.DateTime  `json:"provisioningTime"`
 	SecuredPacket        *SecuredPacket         `json:"securedPacket,omitempty"`
-	SorMacIue            *externalRef0.SorMac   `json:"sorMacIue,omitempty"`
+	SorMacIue            externalRef0.SorMac    `json:"sorMacIue,omitempty"`
 	UeNotReachable       *bool                  `json:"ueNotReachable,omitempty"`
-	UpuMacIue            *externalRef1.UpuMac   `json:"upuMacIue,omitempty"`
+	UpuMacIue            externalRef1.UpuMac    `json:"upuMacIue,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -185,7 +185,7 @@ type AdditionalSnssaiData struct {
 // AfExternal defines model for AfExternal.
 type AfExternal struct {
 	AfId                      *AfId                      `json:"afId,omitempty"`
-	AllowedGeographicArea     *[]interface{}             `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
 	ValidTimePeriod           *ValidTimePeriod           `json:"validTimePeriod,omitempty"`
 	AdditionalProperties      map[string]interface{}     `json:"-"`
@@ -231,7 +231,7 @@ type CodeWordInd string
 
 // ContextInfo defines model for ContextInfo.
 type ContextInfo struct {
-	OrigHeaders          *[]string              `json:"origHeaders,omitempty"`
+	OrigHeaders          []string               `json:"origHeaders,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -243,9 +243,9 @@ type DatasetNames = []DataSetName
 
 // DefaultUnrelatedClass defines model for DefaultUnrelatedClass.
 type DefaultUnrelatedClass struct {
-	AllowedGeographicArea     *[]interface{}             `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
 	CodeWordInd               *CodeWordInd               `json:"codeWordInd,omitempty"`
-	CodeWordList              *[]CodeWord                `json:"codeWordList,omitempty"`
+	CodeWordList              []CodeWord                 `json:"codeWordList,omitempty"`
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
 	ValidTimePeriod           *ValidTimePeriod           `json:"validTimePeriod,omitempty"`
 	AdditionalProperties      map[string]interface{}     `json:"-"`
@@ -260,8 +260,8 @@ type DnnConfiguration struct {
 	DnAaaAddress                 *IpAddress                         `json:"dnAaaAddress,omitempty"`
 	DnAaaIpAddressAllocation     *bool                              `json:"dnAaaIpAddressAllocation,omitempty"`
 	IptvAccCtrlInfo              *string                            `json:"iptvAccCtrlInfo,omitempty"`
-	Ipv4FrameRouteList           *[]FrameRouteInfo                  `json:"ipv4FrameRouteList,omitempty"`
-	Ipv6FrameRouteList           *[]FrameRouteInfo                  `json:"ipv6FrameRouteList,omitempty"`
+	Ipv4FrameRouteList           []FrameRouteInfo                   `json:"ipv4FrameRouteList,omitempty"`
+	Ipv6FrameRouteList           []FrameRouteInfo                   `json:"ipv6FrameRouteList,omitempty"`
 	IwkEpsInd                    *IwkEpsInd                         `json:"iwkEpsInd,omitempty"`
 	NiddInfo                     *NiddInformation                   `json:"niddInfo,omitempty"`
 
@@ -273,7 +273,7 @@ type DnnConfiguration struct {
 	SecondaryAuth           *bool                    `json:"secondaryAuth,omitempty"`
 	SessionAmbr             *externalRef2.Ambr       `json:"sessionAmbr,omitempty"`
 	SscModes                SscModes                 `json:"sscModes"`
-	StaticIpAddress         *[]IpAddress             `json:"staticIpAddress,omitempty"`
+	StaticIpAddress         []IpAddress              `json:"staticIpAddress,omitempty"`
 	UpSecurity              *externalRef2.UpSecurity `json:"upSecurity,omitempty"`
 	AdditionalProperties    map[string]interface{}   `json:"-"`
 }
@@ -283,15 +283,15 @@ type DnnIndicator = bool
 
 // DnnInfo defines model for DnnInfo.
 type DnnInfo struct {
-	DefaultDnnIndicator  *DnnIndicator                `json:"defaultDnnIndicator,omitempty"`
-	Dnn                  DnnInfo_Dnn                  `json:"dnn"`
-	DnnBarred            *bool                        `json:"dnnBarred,omitempty"`
-	InvokeNefInd         *bool                        `json:"invokeNefInd,omitempty"`
-	IwkEpsInd            *IwkEpsInd                   `json:"iwkEpsInd,omitempty"`
-	LboRoamingAllowed    *LboRoamingAllowed           `json:"lboRoamingAllowed,omitempty"`
-	SameSmfInd           *bool                        `json:"sameSmfInd,omitempty"`
-	SmfList              *[]externalRef2.NfInstanceId `json:"smfList,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
+	DefaultDnnIndicator  *DnnIndicator               `json:"defaultDnnIndicator,omitempty"`
+	Dnn                  DnnInfo_Dnn                 `json:"dnn"`
+	DnnBarred            *bool                       `json:"dnnBarred,omitempty"`
+	InvokeNefInd         *bool                       `json:"invokeNefInd,omitempty"`
+	IwkEpsInd            *IwkEpsInd                  `json:"iwkEpsInd,omitempty"`
+	LboRoamingAllowed    *LboRoamingAllowed          `json:"lboRoamingAllowed,omitempty"`
+	SameSmfInd           *bool                       `json:"sameSmfInd,omitempty"`
+	SmfList              []externalRef2.NfInstanceId `json:"smfList,omitempty"`
+	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
 // DnnInfo_Dnn defines model for DnnInfo.Dnn.
@@ -324,8 +324,8 @@ type EmergencyInfo struct {
 
 // EnhancedCoverageRestrictionData defines model for EnhancedCoverageRestrictionData.
 type EnhancedCoverageRestrictionData struct {
-	PlmnEcInfoList       *[]externalRef4.PlmnEcInfo `json:"plmnEcInfoList,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	PlmnEcInfoList       []externalRef4.PlmnEcInfo `json:"plmnEcInfoList,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // ExpectedUeBehaviourData defines model for ExpectedUeBehaviourData.
@@ -334,7 +334,7 @@ type ExpectedUeBehaviourData struct {
 	CommunicationDurationTime *externalRef2.DurationSec       `json:"communicationDurationTime,omitempty"`
 
 	// ExpectedUmts Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
-	ExpectedUmts               *[]externalRef4.LocationArea             `json:"expectedUmts,omitempty"`
+	ExpectedUmts               []externalRef4.LocationArea              `json:"expectedUmts,omitempty"`
 	PeriodicTime               *externalRef2.DurationSec                `json:"periodicTime,omitempty"`
 	ScheduledCommunicationTime *externalRef2.ScheduledCommunicationTime `json:"scheduledCommunicationTime,omitempty"`
 	ScheduledCommunicationType *externalRef2.ScheduledCommunicationType `json:"scheduledCommunicationType,omitempty"`
@@ -353,30 +353,30 @@ type ExtGroupId = string
 
 // ExternalUnrelatedClass defines model for ExternalUnrelatedClass.
 type ExternalUnrelatedClass struct {
-	AfExternals             *[]AfExternal             `json:"afExternals,omitempty"`
-	LcsClientExternals      *[]LcsClientExternal      `json:"lcsClientExternals,omitempty"`
-	LcsClientGroupExternals *[]LcsClientGroupExternal `json:"lcsClientGroupExternals,omitempty"`
-	AdditionalProperties    map[string]interface{}    `json:"-"`
+	AfExternals             []AfExternal             `json:"afExternals,omitempty"`
+	LcsClientExternals      []LcsClientExternal      `json:"lcsClientExternals,omitempty"`
+	LcsClientGroupExternals []LcsClientGroupExternal `json:"lcsClientGroupExternals,omitempty"`
+	AdditionalProperties    map[string]interface{}   `json:"-"`
 }
 
 // FrameRouteInfo defines model for FrameRouteInfo.
 type FrameRouteInfo struct {
-	Ipv4Mask             *externalRef2.Ipv4AddrMask `json:"ipv4Mask,omitempty"`
-	Ipv6Prefix           *externalRef2.Ipv6Prefix   `json:"ipv6Prefix,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	Ipv4Mask             externalRef2.Ipv4AddrMask `json:"ipv4Mask,omitempty"`
+	Ipv6Prefix           *externalRef2.Ipv6Prefix  `json:"ipv6Prefix,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // GroupIdentifiers defines model for GroupIdentifiers.
 type GroupIdentifiers struct {
-	ExtGroupId           *ExtGroupId            `json:"extGroupId,omitempty"`
-	IntGroupId           *externalRef2.GroupId  `json:"intGroupId,omitempty"`
-	UeIdList             *[]UeId                `json:"ueIdList,omitempty"`
+	ExtGroupId           ExtGroupId             `json:"extGroupId,omitempty"`
+	IntGroupId           externalRef2.GroupId   `json:"intGroupId,omitempty"`
+	UeIdList             []UeId                 `json:"ueIdList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // IdTranslationResult defines model for IdTranslationResult.
 type IdTranslationResult struct {
-	Gpsi                 *externalRef2.Gpsi              `json:"gpsi,omitempty"`
+	Gpsi                 externalRef2.Gpsi               `json:"gpsi,omitempty"`
 	Supi                 externalRef2.Supi               `json:"supi"`
 	SupportedFeatures    *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
@@ -384,7 +384,7 @@ type IdTranslationResult struct {
 
 // IpAddress defines model for IpAddress.
 type IpAddress struct {
-	Ipv4Addr             *externalRef2.Ipv4Addr   `json:"ipv4Addr,omitempty"`
+	Ipv4Addr             externalRef2.Ipv4Addr    `json:"ipv4Addr,omitempty"`
 	Ipv6Addr             *externalRef2.Ipv6Addr   `json:"ipv6Addr,omitempty"`
 	Ipv6Prefix           *externalRef2.Ipv6Prefix `json:"ipv6Prefix,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
@@ -407,7 +407,7 @@ type LcsClientClass string
 
 // LcsClientExternal defines model for LcsClientExternal.
 type LcsClientExternal struct {
-	AllowedGeographicArea     *[]interface{}             `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
 	ValidTimePeriod           *ValidTimePeriod           `json:"validTimePeriod,omitempty"`
 	AdditionalProperties      map[string]interface{}     `json:"-"`
@@ -415,8 +415,8 @@ type LcsClientExternal struct {
 
 // LcsClientGroupExternal defines model for LcsClientGroupExternal.
 type LcsClientGroupExternal struct {
-	AllowedGeographicArea     *[]interface{}             `json:"allowedGeographicArea,omitempty"`
-	LcsClientGroupId          *ExtGroupId                `json:"lcsClientGroupId,omitempty"`
+	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
+	LcsClientGroupId          ExtGroupId                 `json:"lcsClientGroupId,omitempty"`
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
 	ValidTimePeriod           *ValidTimePeriod           `json:"validTimePeriod,omitempty"`
 	AdditionalProperties      map[string]interface{}     `json:"-"`
@@ -437,7 +437,7 @@ type LcsMoServiceClass string
 // LcsPrivacyData defines model for LcsPrivacyData.
 type LcsPrivacyData struct {
 	Lpi                  *Lpi                   `json:"lpi,omitempty"`
-	PlmnOperatorClasses  *[]PlmnOperatorClass   `json:"plmnOperatorClasses,omitempty"`
+	PlmnOperatorClasses  []PlmnOperatorClass    `json:"plmnOperatorClasses,omitempty"`
 	UnrelatedClass       *UnrelatedClass        `json:"unrelatedClass,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -475,10 +475,10 @@ type NbIoTUePriority = int
 
 // NiddInformation defines model for NiddInformation.
 type NiddInformation struct {
-	AfId                 string                        `json:"afId"`
-	ExtGroupId           *externalRef2.ExternalGroupId `json:"extGroupId,omitempty"`
-	Gpsi                 *externalRef2.Gpsi            `json:"gpsi,omitempty"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
+	AfId                 string                       `json:"afId"`
+	ExtGroupId           externalRef2.ExternalGroupId `json:"extGroupId,omitempty"`
+	Gpsi                 externalRef2.Gpsi            `json:"gpsi,omitempty"`
+	AdditionalProperties map[string]interface{}       `json:"-"`
 }
 
 // Nssai defines model for Nssai.
@@ -486,7 +486,7 @@ type Nssai struct {
 	AdditionalSnssaiData *map[string]AdditionalSnssaiData `json:"additionalSnssaiData,omitempty"`
 	DefaultSingleNssais  []externalRef2.Snssai            `json:"defaultSingleNssais"`
 	ProvisioningTime     *externalRef2.DateTime           `json:"provisioningTime,omitempty"`
-	SingleNssais         *[]externalRef2.Snssai           `json:"singleNssais,omitempty"`
+	SingleNssais         []externalRef2.Snssai            `json:"singleNssais,omitempty"`
 	SupportedFeatures    *externalRef2.SupportedFeatures  `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
@@ -508,9 +508,9 @@ type PduSessionContinuityInd string
 
 // PduSessionTypes defines model for PduSessionTypes.
 type PduSessionTypes struct {
-	AllowedSessionTypes  *[]externalRef2.PduSessionType `json:"allowedSessionTypes,omitempty"`
-	DefaultSessionType   externalRef2.PduSessionType    `json:"defaultSessionType"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
+	AllowedSessionTypes  []externalRef2.PduSessionType `json:"allowedSessionTypes,omitempty"`
+	DefaultSessionType   externalRef2.PduSessionType   `json:"defaultSessionType"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
 // PgwInfo defines model for PgwInfo.
@@ -542,7 +542,7 @@ type PtwParameters struct {
 // SdmSubsModification defines model for SdmSubsModification.
 type SdmSubsModification struct {
 	Expires               *externalRef2.DateTime `json:"expires,omitempty"`
-	MonitoredResourceUris *[]externalRef2.Uri    `json:"monitoredResourceUris,omitempty"`
+	MonitoredResourceUris []externalRef2.Uri     `json:"monitoredResourceUris,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
@@ -572,9 +572,9 @@ type SecuredPacket = []byte
 
 // ServiceTypeUnrelatedClass defines model for ServiceTypeUnrelatedClass.
 type ServiceTypeUnrelatedClass struct {
-	AllowedGeographicArea     *[]interface{}             `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
 	CodeWordInd               *CodeWordInd               `json:"codeWordInd,omitempty"`
-	CodeWordList              *[]CodeWord                `json:"codeWordList,omitempty"`
+	CodeWordList              []CodeWord                 `json:"codeWordList,omitempty"`
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
 
 	// ServiceType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
@@ -590,10 +590,10 @@ type SessionManagementSubscriptionData struct {
 	// DnnConfigurations A map (list of key-value pairs where Dnn, or optionally the Wildcard DNN, serves as key) of DnnConfigurations
 	DnnConfigurations         *map[string]DnnConfiguration        `json:"dnnConfigurations,omitempty"`
 	ExpectedUeBehavioursList  *map[string]ExpectedUeBehaviourData `json:"expectedUeBehavioursList,omitempty"`
-	InternalGroupIds          *[]externalRef2.GroupId             `json:"internalGroupIds,omitempty"`
+	InternalGroupIds          []externalRef2.GroupId              `json:"internalGroupIds,omitempty"`
 	OdbPacketServices         *externalRef2.OdbPacketServices     `json:"odbPacketServices,omitempty"`
-	SharedDnnConfigurationsId *SharedDataId                       `json:"sharedDnnConfigurationsId,omitempty"`
-	SharedTraceDataId         *SharedDataId                       `json:"sharedTraceDataId,omitempty"`
+	SharedDnnConfigurationsId SharedDataId                        `json:"sharedDnnConfigurationsId,omitempty"`
+	SharedTraceDataId         SharedDataId                        `json:"sharedTraceDataId,omitempty"`
 	SharedVnGroupDataIds      *map[string]SharedDataId            `json:"sharedVnGroupDataIds,omitempty"`
 	SingleNssai               externalRef2.Snssai                 `json:"singleNssai"`
 	SuggestedPacketNumDlList  *map[string]SuggestedPacketNumDl    `json:"suggestedPacketNumDlList,omitempty"`
@@ -622,7 +622,7 @@ type SharedDataIds = []SharedDataId
 
 // SmfSelectionSubscriptionData defines model for SmfSelectionSubscriptionData.
 type SmfSelectionSubscriptionData struct {
-	SharedSnssaiInfosId   *SharedDataId                   `json:"sharedSnssaiInfosId,omitempty"`
+	SharedSnssaiInfosId   SharedDataId                    `json:"sharedSnssaiInfosId,omitempty"`
 	SubscribedSnssaiInfos *map[string]SnssaiInfo          `json:"subscribedSnssaiInfos,omitempty"`
 	SupportedFeatures     *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties  map[string]interface{}          `json:"-"`
@@ -636,7 +636,7 @@ type SmsManagementSubscriptionData struct {
 	MtSmsBarringAll      *bool                           `json:"mtSmsBarringAll,omitempty"`
 	MtSmsBarringRoaming  *bool                           `json:"mtSmsBarringRoaming,omitempty"`
 	MtSmsSubscribed      *bool                           `json:"mtSmsSubscribed,omitempty"`
-	SharedSmsMngDataIds  *[]SharedDataId                 `json:"sharedSmsMngDataIds,omitempty"`
+	SharedSmsMngDataIds  []SharedDataId                  `json:"sharedSmsMngDataIds,omitempty"`
 	SupportedFeatures    *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	TraceData            *externalRef2.TraceData         `json:"traceData"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
@@ -647,7 +647,7 @@ type SmsSubscribed = bool
 
 // SmsSubscriptionData defines model for SmsSubscriptionData.
 type SmsSubscriptionData struct {
-	SharedSmsSubsDataId  *SharedDataId          `json:"sharedSmsSubsDataId,omitempty"`
+	SharedSmsSubsDataId  SharedDataId           `json:"sharedSmsSubsDataId,omitempty"`
 	SmsSubscribed        *SmsSubscribed         `json:"smsSubscribed,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -667,12 +667,12 @@ type SnssaiInfo struct {
 
 // SorInfo defines model for SorInfo.
 type SorInfo struct {
-	AckInd               externalRef0.AckInd      `json:"ackInd"`
-	Countersor           *externalRef0.CounterSor `json:"countersor,omitempty"`
-	ProvisioningTime     externalRef2.DateTime    `json:"provisioningTime"`
-	SorMacIausf          *externalRef0.SorMac     `json:"sorMacIausf,omitempty"`
-	SteeringContainer    *SteeringContainer       `json:"steeringContainer,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
+	AckInd               externalRef0.AckInd     `json:"ackInd"`
+	Countersor           externalRef0.CounterSor `json:"countersor,omitempty"`
+	ProvisioningTime     externalRef2.DateTime   `json:"provisioningTime"`
+	SorMacIausf          externalRef0.SorMac     `json:"sorMacIausf,omitempty"`
+	SteeringContainer    *SteeringContainer      `json:"steeringContainer,omitempty"`
+	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
 // SorUpdateIndicator defines model for SorUpdateIndicator.
@@ -686,9 +686,9 @@ type SorUpdateInfo struct {
 
 // SscModes defines model for SscModes.
 type SscModes struct {
-	AllowedSscModes      *[]externalRef2.SscMode `json:"allowedSscModes,omitempty"`
-	DefaultSscMode       externalRef2.SscMode    `json:"defaultSscMode"`
-	AdditionalProperties map[string]interface{}  `json:"-"`
+	AllowedSscModes      []externalRef2.SscMode `json:"allowedSscModes,omitempty"`
+	DefaultSscMode       externalRef2.SscMode   `json:"defaultSscMode"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // SteeringContainer defines model for SteeringContainer.
@@ -701,20 +701,20 @@ type SteeringContainer0 = []externalRef0.SteeringInfo
 
 // SubscriptionDataSets defines model for SubscriptionDataSets.
 type SubscriptionDataSets struct {
-	AmData                          *AccessAndMobilitySubscriptionData   `json:"amData,omitempty"`
-	LcsBroadcastAssistanceTypesData *LcsBroadcastAssistanceTypesData     `json:"lcsBroadcastAssistanceTypesData,omitempty"`
-	LcsMoData                       *LcsMoData                           `json:"lcsMoData,omitempty"`
-	LcsPrivacyData                  *LcsPrivacyData                      `json:"lcsPrivacyData,omitempty"`
-	SmData                          *[]SessionManagementSubscriptionData `json:"smData,omitempty"`
-	SmfSelData                      *SmfSelectionSubscriptionData        `json:"smfSelData,omitempty"`
-	SmsMngData                      *SmsManagementSubscriptionData       `json:"smsMngData,omitempty"`
-	SmsSubsData                     *SmsSubscriptionData                 `json:"smsSubsData,omitempty"`
-	TraceData                       *externalRef2.TraceData              `json:"traceData"`
-	UecAmfData                      *UeContextInAmfData                  `json:"uecAmfData,omitempty"`
-	UecSmfData                      *UeContextInSmfData                  `json:"uecSmfData,omitempty"`
-	UecSmsfData                     *UeContextInSmsfData                 `json:"uecSmsfData,omitempty"`
-	V2xData                         *V2xSubscriptionData                 `json:"v2xData,omitempty"`
-	AdditionalProperties            map[string]interface{}               `json:"-"`
+	AmData                          *AccessAndMobilitySubscriptionData  `json:"amData,omitempty"`
+	LcsBroadcastAssistanceTypesData *LcsBroadcastAssistanceTypesData    `json:"lcsBroadcastAssistanceTypesData,omitempty"`
+	LcsMoData                       *LcsMoData                          `json:"lcsMoData,omitempty"`
+	LcsPrivacyData                  *LcsPrivacyData                     `json:"lcsPrivacyData,omitempty"`
+	SmData                          []SessionManagementSubscriptionData `json:"smData,omitempty"`
+	SmfSelData                      *SmfSelectionSubscriptionData       `json:"smfSelData,omitempty"`
+	SmsMngData                      *SmsManagementSubscriptionData      `json:"smsMngData,omitempty"`
+	SmsSubsData                     *SmsSubscriptionData                `json:"smsSubsData,omitempty"`
+	TraceData                       *externalRef2.TraceData             `json:"traceData"`
+	UecAmfData                      *UeContextInAmfData                 `json:"uecAmfData,omitempty"`
+	UecSmfData                      *UeContextInSmfData                 `json:"uecSmfData,omitempty"`
+	UecSmsfData                     *UeContextInSmsfData                `json:"uecSmsfData,omitempty"`
+	V2xData                         *V2xSubscriptionData                `json:"v2xData,omitempty"`
+	AdditionalProperties            map[string]interface{}              `json:"-"`
 }
 
 // SuggestedPacketNumDl defines model for SuggestedPacketNumDl.
@@ -726,7 +726,7 @@ type SuggestedPacketNumDl struct {
 
 // TraceDataResponse defines model for TraceDataResponse.
 type TraceDataResponse struct {
-	SharedTraceDataId    *SharedDataId           `json:"sharedTraceDataId,omitempty"`
+	SharedTraceDataId    SharedDataId            `json:"sharedTraceDataId,omitempty"`
 	TraceData            *externalRef2.TraceData `json:"traceData"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
@@ -734,7 +734,7 @@ type TraceDataResponse struct {
 // UeContextInAmfData defines model for UeContextInAmfData.
 type UeContextInAmfData struct {
 	// EpsInterworkingInfo Original reference TS29503_Nudm_UECM.yaml#/components/schemas/EpsInterworkingInfo
-	EpsInterworkingInfo  *interface{}           `json:"epsInterworkingInfo,omitempty"`
+	EpsInterworkingInfo  interface{}            `json:"epsInterworkingInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -744,7 +744,7 @@ type UeContextInSmfData struct {
 
 	// PduSessions A map (list of key-value pairs where PduSessionId serves as key) of PduSessions
 	PduSessions          *map[string]PduSession `json:"pduSessions,omitempty"`
-	PgwInfo              *[]PgwInfo             `json:"pgwInfo,omitempty"`
+	PgwInfo              []PgwInfo              `json:"pgwInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -757,7 +757,7 @@ type UeContextInSmsfData struct {
 
 // UeId defines model for UeId.
 type UeId struct {
-	GpsiList             *[]externalRef2.Gpsi   `json:"gpsiList,omitempty"`
+	GpsiList             []externalRef2.Gpsi    `json:"gpsiList,omitempty"`
 	Supi                 externalRef2.Supi      `json:"supi"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -767,21 +767,21 @@ type UeUsageType = int
 
 // UnrelatedClass defines model for UnrelatedClass.
 type UnrelatedClass struct {
-	DefaultUnrelatedClass       DefaultUnrelatedClass        `json:"defaultUnrelatedClass"`
-	ExternalUnrelatedClass      *ExternalUnrelatedClass      `json:"externalUnrelatedClass,omitempty"`
-	ServiceTypeUnrelatedClasses *[]ServiceTypeUnrelatedClass `json:"serviceTypeUnrelatedClasses,omitempty"`
-	AdditionalProperties        map[string]interface{}       `json:"-"`
+	DefaultUnrelatedClass       DefaultUnrelatedClass       `json:"defaultUnrelatedClass"`
+	ExternalUnrelatedClass      *ExternalUnrelatedClass     `json:"externalUnrelatedClass,omitempty"`
+	ServiceTypeUnrelatedClasses []ServiceTypeUnrelatedClass `json:"serviceTypeUnrelatedClasses,omitempty"`
+	AdditionalProperties        map[string]interface{}      `json:"-"`
 }
 
 // UpuInfo defines model for UpuInfo.
 type UpuInfo struct {
-	CounterUpu           *externalRef1.CounterUpu `json:"counterUpu,omitempty"`
-	ProvisioningTime     externalRef2.DateTime    `json:"provisioningTime"`
-	UpuAckInd            externalRef1.UpuAckInd   `json:"upuAckInd"`
-	UpuDataList          []externalRef1.UpuData   `json:"upuDataList"`
-	UpuMacIausf          *externalRef1.UpuMac     `json:"upuMacIausf,omitempty"`
-	UpuRegInd            UpuRegInd                `json:"upuRegInd"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
+	CounterUpu           externalRef1.CounterUpu `json:"counterUpu,omitempty"`
+	ProvisioningTime     externalRef2.DateTime   `json:"provisioningTime"`
+	UpuAckInd            externalRef1.UpuAckInd  `json:"upuAckInd"`
+	UpuDataList          []externalRef1.UpuData  `json:"upuDataList"`
+	UpuMacIausf          externalRef1.UpuMac     `json:"upuMacIausf,omitempty"`
+	UpuRegInd            UpuRegInd               `json:"upuRegInd"`
+	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
 // UpuRegInd defines model for UpuRegInd.
@@ -789,9 +789,9 @@ type UpuRegInd = bool
 
 // V2xSubscriptionData defines model for V2xSubscriptionData.
 type V2xSubscriptionData struct {
-	LtePc5Ambr           *externalRef2.BitRate    `json:"ltePc5Ambr,omitempty"`
+	LtePc5Ambr           externalRef2.BitRate     `json:"ltePc5Ambr,omitempty"`
 	LteV2xServicesAuth   *externalRef2.LteV2xAuth `json:"lteV2xServicesAuth,omitempty"`
-	NrUePc5Ambr          *externalRef2.BitRate    `json:"nrUePc5Ambr,omitempty"`
+	NrUePc5Ambr          externalRef2.BitRate     `json:"nrUePc5Ambr,omitempty"`
 	NrV2xServicesAuth    *externalRef2.NrV2xAuth  `json:"nrV2xServicesAuth,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
@@ -805,7 +805,7 @@ type ValidTimePeriod struct {
 
 // VnGroupData defines model for VnGroupData.
 type VnGroupData struct {
-	AppDescriptors       *[]AppDescriptor       `json:"appDescriptors,omitempty"`
+	AppDescriptors       []AppDescriptor        `json:"appDescriptors,omitempty"`
 	Dnn                  *externalRef2.Dnn      `json:"dnn,omitempty"`
 	PduSessionTypes      *PduSessionTypes       `json:"pduSessionTypes,omitempty"`
 	SingleNssai          *externalRef2.Snssai   `json:"singleNssai,omitempty"`
@@ -1521,7 +1521,7 @@ func (a AccessAndMobilitySubscriptionData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'activeTime': %w", err)
 	}
 
-	if a.CMsisdn != nil {
+	if len(a.CMsisdn) != 0 {
 		object["cMsisdn"], err = json.Marshal(a.CMsisdn)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cMsisdn': %w", err)
@@ -1556,7 +1556,7 @@ func (a AccessAndMobilitySubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EdrxParametersList != nil {
+	if len(a.EdrxParametersList) != 0 {
 		object["edrxParametersList"], err = json.Marshal(a.EdrxParametersList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'edrxParametersList': %w", err)
@@ -1591,7 +1591,7 @@ func (a AccessAndMobilitySubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InternalGroupIds != nil {
+	if len(a.InternalGroupIds) != 0 {
 		object["internalGroupIds"], err = json.Marshal(a.InternalGroupIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'internalGroupIds': %w", err)
@@ -1666,7 +1666,7 @@ func (a AccessAndMobilitySubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PtwParametersList != nil {
+	if len(a.PtwParametersList) != 0 {
 		object["ptwParametersList"], err = json.Marshal(a.PtwParametersList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ptwParametersList': %w", err)
@@ -1713,7 +1713,7 @@ func (a AccessAndMobilitySubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SharedAmDataIds != nil {
+	if len(a.SharedAmDataIds) != 0 {
 		object["sharedAmDataIds"], err = json.Marshal(a.SharedAmDataIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sharedAmDataIds': %w", err)
@@ -1741,7 +1741,7 @@ func (a AccessAndMobilitySubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SorUpdateIndicatorList != nil {
+	if len(a.SorUpdateIndicatorList) != 0 {
 		object["sorUpdateIndicatorList"], err = json.Marshal(a.SorUpdateIndicatorList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sorUpdateIndicatorList': %w", err)
@@ -1926,7 +1926,7 @@ func (a AcknowledgeInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SorMacIue != nil {
+	if len(a.SorMacIue) != 0 {
 		object["sorMacIue"], err = json.Marshal(a.SorMacIue)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sorMacIue': %w", err)
@@ -1940,7 +1940,7 @@ func (a AcknowledgeInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UpuMacIue != nil {
+	if len(a.UpuMacIue) != 0 {
 		object["upuMacIue"], err = json.Marshal(a.UpuMacIue)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'upuMacIue': %w", err)
@@ -2107,7 +2107,7 @@ func (a AfExternal) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AllowedGeographicArea != nil {
+	if len(a.AllowedGeographicArea) != 0 {
 		object["allowedGeographicArea"], err = json.Marshal(a.AllowedGeographicArea)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedGeographicArea': %w", err)
@@ -2517,7 +2517,7 @@ func (a ContextInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.OrigHeaders != nil {
+	if len(a.OrigHeaders) != 0 {
 		object["origHeaders"], err = json.Marshal(a.OrigHeaders)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'origHeaders': %w", err)
@@ -2617,7 +2617,7 @@ func (a DefaultUnrelatedClass) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedGeographicArea != nil {
+	if len(a.AllowedGeographicArea) != 0 {
 		object["allowedGeographicArea"], err = json.Marshal(a.AllowedGeographicArea)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedGeographicArea': %w", err)
@@ -2631,7 +2631,7 @@ func (a DefaultUnrelatedClass) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.CodeWordList != nil {
+	if len(a.CodeWordList) != 0 {
 		object["codeWordList"], err = json.Marshal(a.CodeWordList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'codeWordList': %w", err)
@@ -2914,14 +2914,14 @@ func (a DnnConfiguration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4FrameRouteList != nil {
+	if len(a.Ipv4FrameRouteList) != 0 {
 		object["ipv4FrameRouteList"], err = json.Marshal(a.Ipv4FrameRouteList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4FrameRouteList': %w", err)
 		}
 	}
 
-	if a.Ipv6FrameRouteList != nil {
+	if len(a.Ipv6FrameRouteList) != 0 {
 		object["ipv6FrameRouteList"], err = json.Marshal(a.Ipv6FrameRouteList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6FrameRouteList': %w", err)
@@ -2987,7 +2987,7 @@ func (a DnnConfiguration) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'sscModes': %w", err)
 	}
 
-	if a.StaticIpAddress != nil {
+	if len(a.StaticIpAddress) != 0 {
 		object["staticIpAddress"], err = json.Marshal(a.StaticIpAddress)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'staticIpAddress': %w", err)
@@ -3165,7 +3165,7 @@ func (a DnnInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SmfList != nil {
+	if len(a.SmfList) != 0 {
 		object["smfList"], err = json.Marshal(a.SmfList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smfList': %w", err)
@@ -3508,7 +3508,7 @@ func (a EnhancedCoverageRestrictionData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.PlmnEcInfoList != nil {
+	if len(a.PlmnEcInfoList) != 0 {
 		object["plmnEcInfoList"], err = json.Marshal(a.PlmnEcInfoList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'plmnEcInfoList': %w", err)
@@ -3654,7 +3654,7 @@ func (a ExpectedUeBehaviourData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ExpectedUmts != nil {
+	if len(a.ExpectedUmts) != 0 {
 		object["expectedUmts"], err = json.Marshal(a.ExpectedUmts)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'expectedUmts': %w", err)
@@ -3780,21 +3780,21 @@ func (a ExternalUnrelatedClass) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AfExternals != nil {
+	if len(a.AfExternals) != 0 {
 		object["afExternals"], err = json.Marshal(a.AfExternals)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'afExternals': %w", err)
 		}
 	}
 
-	if a.LcsClientExternals != nil {
+	if len(a.LcsClientExternals) != 0 {
 		object["lcsClientExternals"], err = json.Marshal(a.LcsClientExternals)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'lcsClientExternals': %w", err)
 		}
 	}
 
-	if a.LcsClientGroupExternals != nil {
+	if len(a.LcsClientGroupExternals) != 0 {
 		object["lcsClientGroupExternals"], err = json.Marshal(a.LcsClientGroupExternals)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'lcsClientGroupExternals': %w", err)
@@ -3870,7 +3870,7 @@ func (a FrameRouteInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Ipv4Mask != nil {
+	if len(a.Ipv4Mask) != 0 {
 		object["ipv4Mask"], err = json.Marshal(a.Ipv4Mask)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Mask': %w", err)
@@ -3961,21 +3961,21 @@ func (a GroupIdentifiers) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ExtGroupId != nil {
+	if len(a.ExtGroupId) != 0 {
 		object["extGroupId"], err = json.Marshal(a.ExtGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'extGroupId': %w", err)
 		}
 	}
 
-	if a.IntGroupId != nil {
+	if len(a.IntGroupId) != 0 {
 		object["intGroupId"], err = json.Marshal(a.IntGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'intGroupId': %w", err)
 		}
 	}
 
-	if a.UeIdList != nil {
+	if len(a.UeIdList) != 0 {
 		object["ueIdList"], err = json.Marshal(a.UeIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIdList': %w", err)
@@ -4059,7 +4059,7 @@ func (a IdTranslationResult) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -4155,7 +4155,7 @@ func (a IpAddress) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Ipv4Addr != nil {
+	if len(a.Ipv4Addr) != 0 {
 		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
@@ -4319,7 +4319,7 @@ func (a LcsClientExternal) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedGeographicArea != nil {
+	if len(a.AllowedGeographicArea) != 0 {
 		object["allowedGeographicArea"], err = json.Marshal(a.AllowedGeographicArea)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedGeographicArea': %w", err)
@@ -4425,14 +4425,14 @@ func (a LcsClientGroupExternal) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedGeographicArea != nil {
+	if len(a.AllowedGeographicArea) != 0 {
 		object["allowedGeographicArea"], err = json.Marshal(a.AllowedGeographicArea)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedGeographicArea': %w", err)
 		}
 	}
 
-	if a.LcsClientGroupId != nil {
+	if len(a.LcsClientGroupId) != 0 {
 		object["lcsClientGroupId"], err = json.Marshal(a.LcsClientGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'lcsClientGroupId': %w", err)
@@ -4603,7 +4603,7 @@ func (a LcsPrivacyData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PlmnOperatorClasses != nil {
+	if len(a.PlmnOperatorClasses) != 0 {
 		object["plmnOperatorClasses"], err = json.Marshal(a.PlmnOperatorClasses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'plmnOperatorClasses': %w", err)
@@ -4846,14 +4846,14 @@ func (a NiddInformation) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'afId': %w", err)
 	}
 
-	if a.ExtGroupId != nil {
+	if len(a.ExtGroupId) != 0 {
 		object["extGroupId"], err = json.Marshal(a.ExtGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'extGroupId': %w", err)
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -4972,7 +4972,7 @@ func (a Nssai) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SingleNssais != nil {
+	if len(a.SingleNssais) != 0 {
 		object["singleNssais"], err = json.Marshal(a.SingleNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'singleNssais': %w", err)
@@ -5162,7 +5162,7 @@ func (a PduSessionTypes) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedSessionTypes != nil {
+	if len(a.AllowedSessionTypes) != 0 {
 		object["allowedSessionTypes"], err = json.Marshal(a.AllowedSessionTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedSessionTypes': %w", err)
@@ -5517,7 +5517,7 @@ func (a SdmSubsModification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MonitoredResourceUris != nil {
+	if len(a.MonitoredResourceUris) != 0 {
 		object["monitoredResourceUris"], err = json.Marshal(a.MonitoredResourceUris)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'monitoredResourceUris': %w", err)
@@ -5897,7 +5897,7 @@ func (a ServiceTypeUnrelatedClass) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedGeographicArea != nil {
+	if len(a.AllowedGeographicArea) != 0 {
 		object["allowedGeographicArea"], err = json.Marshal(a.AllowedGeographicArea)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedGeographicArea': %w", err)
@@ -5911,7 +5911,7 @@ func (a ServiceTypeUnrelatedClass) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.CodeWordList != nil {
+	if len(a.CodeWordList) != 0 {
 		object["codeWordList"], err = json.Marshal(a.CodeWordList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'codeWordList': %w", err)
@@ -6099,7 +6099,7 @@ func (a SessionManagementSubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InternalGroupIds != nil {
+	if len(a.InternalGroupIds) != 0 {
 		object["internalGroupIds"], err = json.Marshal(a.InternalGroupIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'internalGroupIds': %w", err)
@@ -6113,14 +6113,14 @@ func (a SessionManagementSubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SharedDnnConfigurationsId != nil {
+	if len(a.SharedDnnConfigurationsId) != 0 {
 		object["sharedDnnConfigurationsId"], err = json.Marshal(a.SharedDnnConfigurationsId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sharedDnnConfigurationsId': %w", err)
 		}
 	}
 
-	if a.SharedTraceDataId != nil {
+	if len(a.SharedTraceDataId) != 0 {
 		object["sharedTraceDataId"], err = json.Marshal(a.SharedTraceDataId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sharedTraceDataId': %w", err)
@@ -6397,7 +6397,7 @@ func (a SmfSelectionSubscriptionData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.SharedSnssaiInfosId != nil {
+	if len(a.SharedSnssaiInfosId) != 0 {
 		object["sharedSnssaiInfosId"], err = json.Marshal(a.SharedSnssaiInfosId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sharedSnssaiInfosId': %w", err)
@@ -6585,7 +6585,7 @@ func (a SmsManagementSubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SharedSmsMngDataIds != nil {
+	if len(a.SharedSmsMngDataIds) != 0 {
 		object["sharedSmsMngDataIds"], err = json.Marshal(a.SharedSmsMngDataIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sharedSmsMngDataIds': %w", err)
@@ -6673,7 +6673,7 @@ func (a SmsSubscriptionData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.SharedSmsSubsDataId != nil {
+	if len(a.SharedSmsSubsDataId) != 0 {
 		object["sharedSmsSubsDataId"], err = json.Marshal(a.SharedSmsSubsDataId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sharedSmsSubsDataId': %w", err)
@@ -6930,7 +6930,7 @@ func (a SorInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'ackInd': %w", err)
 	}
 
-	if a.Countersor != nil {
+	if len(a.Countersor) != 0 {
 		object["countersor"], err = json.Marshal(a.Countersor)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'countersor': %w", err)
@@ -6942,7 +6942,7 @@ func (a SorInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'provisioningTime': %w", err)
 	}
 
-	if a.SorMacIausf != nil {
+	if len(a.SorMacIausf) != 0 {
 		object["sorMacIausf"], err = json.Marshal(a.SorMacIausf)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sorMacIausf': %w", err)
@@ -7091,7 +7091,7 @@ func (a SscModes) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedSscModes != nil {
+	if len(a.AllowedSscModes) != 0 {
 		object["allowedSscModes"], err = json.Marshal(a.AllowedSscModes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedSscModes': %w", err)
@@ -7288,7 +7288,7 @@ func (a SubscriptionDataSets) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SmData != nil {
+	if len(a.SmData) != 0 {
 		object["smData"], err = json.Marshal(a.SmData)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smData': %w", err)
@@ -7499,7 +7499,7 @@ func (a TraceDataResponse) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.SharedTraceDataId != nil {
+	if len(a.SharedTraceDataId) != 0 {
 		object["sharedTraceDataId"], err = json.Marshal(a.SharedTraceDataId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sharedTraceDataId': %w", err)
@@ -7670,7 +7670,7 @@ func (a UeContextInSmfData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PgwInfo != nil {
+	if len(a.PgwInfo) != 0 {
 		object["pgwInfo"], err = json.Marshal(a.PgwInfo)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pgwInfo': %w", err)
@@ -7829,7 +7829,7 @@ func (a UeId) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.GpsiList != nil {
+	if len(a.GpsiList) != 0 {
 		object["gpsiList"], err = json.Marshal(a.GpsiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiList': %w", err)
@@ -7930,7 +7930,7 @@ func (a UnrelatedClass) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServiceTypeUnrelatedClasses != nil {
+	if len(a.ServiceTypeUnrelatedClasses) != 0 {
 		object["serviceTypeUnrelatedClasses"], err = json.Marshal(a.ServiceTypeUnrelatedClasses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'serviceTypeUnrelatedClasses': %w", err)
@@ -8038,7 +8038,7 @@ func (a UpuInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.CounterUpu != nil {
+	if len(a.CounterUpu) != 0 {
 		object["counterUpu"], err = json.Marshal(a.CounterUpu)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'counterUpu': %w", err)
@@ -8060,7 +8060,7 @@ func (a UpuInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'upuDataList': %w", err)
 	}
 
-	if a.UpuMacIausf != nil {
+	if len(a.UpuMacIausf) != 0 {
 		object["upuMacIausf"], err = json.Marshal(a.UpuMacIausf)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'upuMacIausf': %w", err)
@@ -8157,7 +8157,7 @@ func (a V2xSubscriptionData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.LtePc5Ambr != nil {
+	if len(a.LtePc5Ambr) != 0 {
 		object["ltePc5Ambr"], err = json.Marshal(a.LtePc5Ambr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ltePc5Ambr': %w", err)
@@ -8171,7 +8171,7 @@ func (a V2xSubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NrUePc5Ambr != nil {
+	if len(a.NrUePc5Ambr) != 0 {
 		object["nrUePc5Ambr"], err = json.Marshal(a.NrUePc5Ambr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nrUePc5Ambr': %w", err)
@@ -8353,7 +8353,7 @@ func (a VnGroupData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AppDescriptors != nil {
+	if len(a.AppDescriptors) != 0 {
 		object["appDescriptors"], err = json.Marshal(a.AppDescriptors)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'appDescriptors': %w", err)

@@ -93,7 +93,7 @@ type ChangeOfSupiPeiAssociationReport struct {
 // CmInfoReport defines model for CmInfoReport.
 type CmInfoReport struct {
 	NewCmInfoList        []externalRef0.CmInfo  `json:"newCmInfoList"`
-	OldCmInfoList        *[]externalRef0.CmInfo `json:"oldCmInfoList,omitempty"`
+	OldCmInfoList        []externalRef0.CmInfo  `json:"oldCmInfoList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -111,18 +111,18 @@ type CnTypeChangeReport struct {
 type CreatedEeSubscription struct {
 	EeSubscription       EeSubscription         `json:"eeSubscription"`
 	EpcStatusInd         *bool                  `json:"epcStatusInd,omitempty"`
-	EventReports         *[]MonitoringReport    `json:"eventReports,omitempty"`
+	EventReports         []MonitoringReport     `json:"eventReports,omitempty"`
 	NumberOfUes          *externalRef1.Uinteger `json:"numberOfUes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // DatalinkReportingConfiguration defines model for DatalinkReportingConfiguration.
 type DatalinkReportingConfiguration struct {
-	DddStatusList        *[]externalRef1.DlDataDeliveryStatus `json:"dddStatusList,omitempty"`
-	DddTrafficDes        *[]externalRef1.DddTrafficDescriptor `json:"dddTrafficDes,omitempty"`
-	Dnn                  *externalRef1.Dnn                    `json:"dnn,omitempty"`
-	Slice                *externalRef1.Snssai                 `json:"slice,omitempty"`
-	AdditionalProperties map[string]interface{}               `json:"-"`
+	DddStatusList        []externalRef1.DlDataDeliveryStatus `json:"dddStatusList,omitempty"`
+	DddTrafficDes        []externalRef1.DddTrafficDescriptor `json:"dddTrafficDes,omitempty"`
+	Dnn                  *externalRef1.Dnn                   `json:"dnn,omitempty"`
+	Slice                *externalRef1.Snssai                `json:"slice,omitempty"`
+	AdditionalProperties map[string]interface{}              `json:"-"`
 }
 
 // EeSubscription defines model for EeSubscription.
@@ -135,8 +135,8 @@ type EeSubscription struct {
 	MonitoringConfigurations map[string]MonitoringConfiguration `json:"monitoringConfigurations"`
 	NotifyCorrelationId      *string                            `json:"notifyCorrelationId,omitempty"`
 	ReportingOptions         *ReportingOptions                  `json:"reportingOptions,omitempty"`
-	ScefDiamHost             *externalRef1.DiameterIdentity     `json:"scefDiamHost,omitempty"`
-	ScefDiamRealm            *externalRef1.DiameterIdentity     `json:"scefDiamRealm,omitempty"`
+	ScefDiamHost             externalRef1.DiameterIdentity      `json:"scefDiamHost,omitempty"`
+	ScefDiamRealm            externalRef1.DiameterIdentity      `json:"scefDiamRealm,omitempty"`
 	SubscriptionId           *string                            `json:"subscriptionId,omitempty"`
 	SupportedFeatures        *externalRef1.SupportedFeatures    `json:"supportedFeatures,omitempty"`
 	AdditionalProperties     map[string]interface{}             `json:"-"`
@@ -196,14 +196,14 @@ type MonitoringConfiguration struct {
 	MtcProviderInformation         *externalRef1.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
 	PduSessionStatusCfg            *PduSessionStatusCfg                 `json:"pduSessionStatusCfg,omitempty"`
 	ReachabilityForSmsCfg          *ReachabilityForSmsConfiguration     `json:"reachabilityForSmsCfg,omitempty"`
-	SuggestedPacketNumDl           *int                                 `json:"suggestedPacketNumDl,omitempty"`
+	SuggestedPacketNumDl           int                                  `json:"suggestedPacketNumDl,omitempty"`
 	AdditionalProperties           map[string]interface{}               `json:"-"`
 }
 
 // MonitoringReport defines model for MonitoringReport.
 type MonitoringReport struct {
 	EventType                EventType                 `json:"eventType"`
-	Gpsi                     *externalRef1.Gpsi        `json:"gpsi,omitempty"`
+	Gpsi                     externalRef1.Gpsi         `json:"gpsi,omitempty"`
 	ReachabilityForSmsReport *ReachabilityForSmsReport `json:"reachabilityForSmsReport,omitempty"`
 	ReferenceId              ReferenceId               `json:"referenceId"`
 	Report                   *Report                   `json:"report,omitempty"`
@@ -214,9 +214,9 @@ type MonitoringReport struct {
 // PdnConnectivityStatReport defines model for PdnConnectivityStatReport.
 type PdnConnectivityStatReport struct {
 	Dnn                  *externalRef1.Dnn            `json:"dnn,omitempty"`
-	Ipv4Addr             *externalRef1.Ipv4Addr       `json:"ipv4Addr,omitempty"`
-	Ipv6Addrs            *[]externalRef1.Ipv6Addr     `json:"ipv6Addrs,omitempty"`
-	Ipv6Prefixes         *[]externalRef1.Ipv6Prefix   `json:"ipv6Prefixes,omitempty"`
+	Ipv4Addr             externalRef1.Ipv4Addr        `json:"ipv4Addr,omitempty"`
+	Ipv6Addrs            []externalRef1.Ipv6Addr      `json:"ipv6Addrs,omitempty"`
+	Ipv6Prefixes         []externalRef1.Ipv6Prefix    `json:"ipv6Prefixes,omitempty"`
 	PdnConnStat          PdnConnectivityStatus        `json:"pdnConnStat"`
 	PduSeId              *externalRef1.PduSessionId   `json:"pduSeId,omitempty"`
 	PduSessType          *externalRef1.PduSessionType `json:"pduSessType,omitempty"`
@@ -252,13 +252,13 @@ type Report struct {
 
 // ReportingOptions defines model for ReportingOptions.
 type ReportingOptions struct {
-	Expiry               *externalRef1.DateTime      `json:"expiry,omitempty"`
-	GuardTime            *externalRef1.DurationSec   `json:"guardTime,omitempty"`
-	MaxNumOfReports      *MaxNumOfReports            `json:"maxNumOfReports,omitempty"`
-	ReportMode           *EventReportMode            `json:"reportMode,omitempty"`
-	ReportPeriod         *externalRef1.DurationSec   `json:"reportPeriod,omitempty"`
-	SamplingRatio        *externalRef1.SamplingRatio `json:"samplingRatio,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
+	Expiry               *externalRef1.DateTime     `json:"expiry,omitempty"`
+	GuardTime            *externalRef1.DurationSec  `json:"guardTime,omitempty"`
+	MaxNumOfReports      *MaxNumOfReports           `json:"maxNumOfReports,omitempty"`
+	ReportMode           *EventReportMode           `json:"reportMode,omitempty"`
+	ReportPeriod         *externalRef1.DurationSec  `json:"reportPeriod,omitempty"`
+	SamplingRatio        externalRef1.SamplingRatio `json:"samplingRatio,omitempty"`
+	AdditionalProperties map[string]interface{}     `json:"-"`
 }
 
 // RoamingStatusReport defines model for RoamingStatusReport.
@@ -414,7 +414,7 @@ func (a CmInfoReport) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'newCmInfoList': %w", err)
 	}
 
-	if a.OldCmInfoList != nil {
+	if len(a.OldCmInfoList) != 0 {
 		object["oldCmInfoList"], err = json.Marshal(a.OldCmInfoList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'oldCmInfoList': %w", err)
@@ -599,7 +599,7 @@ func (a CreatedEeSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EventReports != nil {
+	if len(a.EventReports) != 0 {
 		object["eventReports"], err = json.Marshal(a.EventReports)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'eventReports': %w", err)
@@ -698,14 +698,14 @@ func (a DatalinkReportingConfiguration) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DddStatusList != nil {
+	if len(a.DddStatusList) != 0 {
 		object["dddStatusList"], err = json.Marshal(a.DddStatusList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dddStatusList': %w", err)
 		}
 	}
 
-	if a.DddTrafficDes != nil {
+	if len(a.DddTrafficDes) != 0 {
 		object["dddTrafficDes"], err = json.Marshal(a.DddTrafficDes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dddTrafficDes': %w", err)
@@ -897,14 +897,14 @@ func (a EeSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ScefDiamHost != nil {
+	if len(a.ScefDiamHost) != 0 {
 		object["scefDiamHost"], err = json.Marshal(a.ScefDiamHost)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'scefDiamHost': %w", err)
 		}
 	}
 
-	if a.ScefDiamRealm != nil {
+	if len(a.ScefDiamRealm) != 0 {
 		object["scefDiamRealm"], err = json.Marshal(a.ScefDiamRealm)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'scefDiamRealm': %w", err)
@@ -1490,7 +1490,7 @@ func (a MonitoringConfiguration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SuggestedPacketNumDl != nil {
+	if a.SuggestedPacketNumDl != 0 {
 		object["suggestedPacketNumDl"], err = json.Marshal(a.SuggestedPacketNumDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'suggestedPacketNumDl': %w", err)
@@ -1603,7 +1603,7 @@ func (a MonitoringReport) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'eventType': %w", err)
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -1750,21 +1750,21 @@ func (a PdnConnectivityStatReport) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4Addr != nil {
+	if len(a.Ipv4Addr) != 0 {
 		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
 		}
 	}
 
-	if a.Ipv6Addrs != nil {
+	if len(a.Ipv6Addrs) != 0 {
 		object["ipv6Addrs"], err = json.Marshal(a.Ipv6Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Addrs': %w", err)
 		}
 	}
 
-	if a.Ipv6Prefixes != nil {
+	if len(a.Ipv6Prefixes) != 0 {
 		object["ipv6Prefixes"], err = json.Marshal(a.Ipv6Prefixes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Prefixes': %w", err)
@@ -2075,7 +2075,7 @@ func (a ReportingOptions) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SamplingRatio != nil {
+	if a.SamplingRatio != 0 {
 		object["samplingRatio"], err = json.Marshal(a.SamplingRatio)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'samplingRatio': %w", err)

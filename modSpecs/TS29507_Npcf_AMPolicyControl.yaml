@@ -39,6 +39,7 @@ components:
                         $ref: '#/components/schemas/RequestTrigger'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueAmbr:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ambr
                 wlServAreaRes:
@@ -65,30 +66,35 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedSnssais:
                     description: array of allowed S-NSSAIs for the 3GPP access.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifFqdns:
                     description: Alternate or backup FQDN(s) where to send Notifications.
                     items:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv4Addrs:
                     description: Alternate or backup IPv4 Address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv6Addrs:
                     description: Alternate or backup IPv6 Address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                 groupIds:
@@ -96,6 +102,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 guami:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 mappingSnssais:
@@ -104,12 +111,14 @@ components:
                         $ref: TS29531_Nnssf_NSSelection.yaml#/components/schemas/MappingOfSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 n3gAllowedSnssais:
                     description: array of allowed S-NSSAIs for the Non-3GPP access.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notificationUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 pei:
@@ -121,6 +130,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RatType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 rfsp:
                     $ref: TS29571_CommonData.yaml#/components/schemas/RfspIndex
                 servAreaRes:
@@ -156,30 +166,35 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedSnssais:
                     description: array of allowed S-NSSAIs for the 3GPP access.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifFqdns:
                     description: Alternate or backup FQDN(s) where to send Notifications.
                     items:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv4Addrs:
                     description: Alternate or backup IPv4 Address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv6Addrs:
                     description: Alternate or backup IPv6 Address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 guami:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 mappingSnssais:
@@ -188,12 +203,14 @@ components:
                         $ref: TS29531_Nnssf_NSSelection.yaml#/components/schemas/MappingOfSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 n3gAllowedSnssais:
                     description: array of allowed S-NSSAIs for the Non-3GPP access.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notificationUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 praStatuses:
@@ -207,6 +224,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RatType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 rfsp:
                     $ref: TS29571_CommonData.yaml#/components/schemas/RfspIndex
                 servAreaRes:
@@ -221,6 +239,7 @@ components:
                         $ref: '#/components/schemas/RequestTrigger'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueAmbr:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ambr
                 userLoc:

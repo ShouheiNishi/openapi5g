@@ -83,14 +83,10 @@ func {{.GolangName}}({{if .HasInvalidParams}}invalidParams []commondata.InvalidP
 	pd := commondata.ProblemDetails{
 		Status: lo.ToPtr({{.StatusCode}}),
 		Cause:  lo.ToPtr(Cause{{.GolangName}}),
-		Title:  lo.ToPtr("{{.Title}}"),
+		Title:  lo.ToPtr("{{.Title}}"),{{if .HasInvalidParams}}
+		InvalidParams: invalidParams,{{end}}
 		Detail: &detail,
 	}
-{{- if .HasInvalidParams}}
-	if len(invalidParams)==0 {
-		pd.InvalidParams=&invalidParams
-	}
-{{- end}}
 	return pd
 }
 

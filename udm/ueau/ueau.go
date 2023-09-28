@@ -109,7 +109,7 @@ type AuthenticatedInd = bool
 // AuthenticationInfoRequest defines model for AuthenticationInfoRequest.
 type AuthenticationInfoRequest struct {
 	AusfInstanceId        externalRef0.NfInstanceId       `json:"ausfInstanceId"`
-	CellCagInfo           *[]externalRef0.CagId           `json:"cellCagInfo,omitempty"`
+	CellCagInfo           []externalRef0.CagId            `json:"cellCagInfo,omitempty"`
 	N5gcInd               *bool                           `json:"n5gcInd,omitempty"`
 	ResynchronizationInfo *ResynchronizationInfo          `json:"resynchronizationInfo,omitempty"`
 	ServingNetworkName    ServingNetworkName              `json:"servingNetworkName"`
@@ -121,7 +121,7 @@ type AuthenticationInfoRequest struct {
 type AuthenticationInfoResult struct {
 	AuthType             AuthType                        `json:"authType"`
 	AuthenticationVector *AuthenticationVector           `json:"authenticationVector,omitempty"`
-	Supi                 *externalRef0.Supi              `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -261,7 +261,7 @@ type ResynchronizationInfo struct {
 // RgAuthCtx defines model for RgAuthCtx.
 type RgAuthCtx struct {
 	AuthInd              bool                            `json:"authInd"`
-	Supi                 *externalRef0.Supi              `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -553,7 +553,7 @@ func (a AuthenticationInfoRequest) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'ausfInstanceId': %w", err)
 	}
 
-	if a.CellCagInfo != nil {
+	if len(a.CellCagInfo) != 0 {
 		object["cellCagInfo"], err = json.Marshal(a.CellCagInfo)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cellCagInfo': %w", err)
@@ -683,7 +683,7 @@ func (a AuthenticationInfoResult) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1591,7 +1591,7 @@ func (a RgAuthCtx) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'authInd': %w", err)
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)

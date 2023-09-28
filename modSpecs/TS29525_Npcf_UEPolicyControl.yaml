@@ -28,6 +28,7 @@ components:
                         $ref: '#/components/schemas/RequestTrigger'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 uePolicy:
                     $ref: '#/components/schemas/UePolicy'
             required:
@@ -52,18 +53,21 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv4Addrs:
                     description: Alternate or backup IPv4 Address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv6Addrs:
                     description: Alternate or backup IPv6 Address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                 groupIds:
@@ -71,6 +75,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 guami:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 hPcfId:
@@ -113,18 +118,21 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv4Addrs:
                     description: Alternate or backup IPv4 Address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv6Addrs:
                     description: Alternate or backup IPv6 Address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 connectState:
                     $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/CmState
                 groupIds:
@@ -132,6 +140,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 guami:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 notificationUri:
@@ -152,6 +161,7 @@ components:
                         $ref: '#/components/schemas/RequestTrigger'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 uePolDelResult:
                     $ref: '#/components/schemas/UePolicyDeliveryResult'
                 uePolReq:
@@ -225,6 +235,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - cause
                 - ptis

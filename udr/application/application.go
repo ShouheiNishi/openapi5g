@@ -44,7 +44,7 @@ type ApplicationDataChangeNotif struct {
 
 // ApplicationDataSubs Identifies a subscription to application data change notification.
 type ApplicationDataSubs struct {
-	DataFilters          *[]DataFilter                   `json:"dataFilters,omitempty"`
+	DataFilters          []DataFilter                    `json:"dataFilters,omitempty"`
 	Expiry               *externalRef0.DateTime          `json:"expiry,omitempty"`
 	NotificationUri      externalRef0.Uri                `json:"notificationUri"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
@@ -56,10 +56,10 @@ type BdtPolicyData struct {
 	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
 	BdtRefId             externalRef3.BdtReferenceId `json:"bdtRefId"`
 	Dnn                  *externalRef0.Dnn           `json:"dnn,omitempty"`
-	InterGroupId         *externalRef0.GroupId       `json:"interGroupId,omitempty"`
+	InterGroupId         externalRef0.GroupId        `json:"interGroupId,omitempty"`
 	ResUri               *externalRef0.Uri           `json:"resUri,omitempty"`
 	Snssai               *externalRef0.Snssai        `json:"snssai,omitempty"`
-	Supi                 *externalRef0.Supi          `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi           `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
@@ -72,18 +72,18 @@ type BdtPolicyDataPatch struct {
 
 // DataFilter Identifies a data filter.
 type DataFilter struct {
-	AppIds *[]externalRef0.ApplicationId `json:"appIds,omitempty"`
+	AppIds []externalRef0.ApplicationId `json:"appIds,omitempty"`
 
 	// DataInd Possible values are - PFD - IPTV - BDT - SVC_PARAM
-	DataInd              DataInd                   `json:"dataInd"`
-	Dnns                 *[]externalRef0.Dnn       `json:"dnns,omitempty"`
-	InternalGroupIds     *[]externalRef0.GroupId   `json:"internalGroupIds,omitempty"`
-	Snssais              *[]externalRef0.Snssai    `json:"snssais,omitempty"`
-	Supis                *[]externalRef0.Supi      `json:"supis,omitempty"`
-	UeIpv4s              *[]externalRef0.Ipv4Addr  `json:"ueIpv4s,omitempty"`
-	UeIpv6s              *[]externalRef0.Ipv6Addr  `json:"ueIpv6s,omitempty"`
-	UeMacs               *[]externalRef0.MacAddr48 `json:"ueMacs,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
+	DataInd              DataInd                  `json:"dataInd"`
+	Dnns                 []externalRef0.Dnn       `json:"dnns,omitempty"`
+	InternalGroupIds     []externalRef0.GroupId   `json:"internalGroupIds,omitempty"`
+	Snssais              []externalRef0.Snssai    `json:"snssais,omitempty"`
+	Supis                []externalRef0.Supi      `json:"supis,omitempty"`
+	UeIpv4s              []externalRef0.Ipv4Addr  `json:"ueIpv4s,omitempty"`
+	UeIpv6s              []externalRef0.Ipv6Addr  `json:"ueIpv6s,omitempty"`
+	UeMacs               []externalRef0.MacAddr48 `json:"ueMacs,omitempty"`
+	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
 // DataInd Possible values are - PFD - IPTV - BDT - SVC_PARAM
@@ -93,11 +93,11 @@ type DataInd string
 type IptvConfigData struct {
 	AfAppId              string                          `json:"afAppId"`
 	Dnn                  *externalRef0.Dnn               `json:"dnn,omitempty"`
-	InterGroupId         *externalRef0.GroupId           `json:"interGroupId,omitempty"`
+	InterGroupId         externalRef0.GroupId            `json:"interGroupId,omitempty"`
 	MultiAccCtrls        map[string]interface{}          `json:"multiAccCtrls"`
 	ResUri               *externalRef0.Uri               `json:"resUri,omitempty"`
 	Snssai               *externalRef0.Snssai            `json:"snssai,omitempty"`
-	Supi                 *externalRef0.Supi              `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
 	SuppFeat             *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -116,27 +116,27 @@ type ServiceParameterData struct {
 	AnyUeInd *bool `json:"anyUeInd,omitempty"`
 
 	// AppId Identifies an application.
-	AppId        *string               `json:"appId,omitempty"`
-	Dnn          *externalRef0.Dnn     `json:"dnn,omitempty"`
-	InterGroupId *externalRef0.GroupId `json:"interGroupId,omitempty"`
+	AppId        *string              `json:"appId,omitempty"`
+	Dnn          *externalRef0.Dnn    `json:"dnn,omitempty"`
+	InterGroupId externalRef0.GroupId `json:"interGroupId,omitempty"`
 
 	// ParamOverPc5 Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
-	ParamOverPc5 *interface{} `json:"paramOverPc5,omitempty"`
+	ParamOverPc5 interface{} `json:"paramOverPc5,omitempty"`
 
 	// ParamOverUu Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
-	ParamOverUu *interface{}                    `json:"paramOverUu,omitempty"`
+	ParamOverUu interface{}                     `json:"paramOverUu,omitempty"`
 	ResUri      *externalRef0.Uri               `json:"resUri,omitempty"`
 	Snssai      *externalRef0.Snssai            `json:"snssai,omitempty"`
-	Supi        *externalRef0.Supi              `json:"supi,omitempty"`
+	Supi        externalRef0.Supi               `json:"supi,omitempty"`
 	SuppFeat    *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
 
 	// UeIpv4 string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
 	UeIpv4 *externalRef3.Ipv4Addr `json:"ueIpv4,omitempty"`
 
 	// UeIpv6 string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used.
-	UeIpv6               *externalRef3.Ipv6Addr  `json:"ueIpv6,omitempty"`
-	UeMac                *externalRef0.MacAddr48 `json:"ueMac,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"-"`
+	UeIpv6               *externalRef3.Ipv6Addr `json:"ueIpv6,omitempty"`
+	UeMac                externalRef0.MacAddr48 `json:"ueMac,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // TrafficInfluData defines model for TrafficInfluData.
@@ -155,27 +155,27 @@ type TrafficInfluData struct {
 	Dnn         *externalRef0.Dnn            `json:"dnn,omitempty"`
 
 	// EthTrafficFilters Identifies Ethernet packet filters. Either "trafficFilters" or "ethTrafficFilters" shall be included if applicable.
-	EthTrafficFilters *[]externalRef5.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
-	Headers           *[]string                          `json:"headers,omitempty"`
-	InterGroupId      *externalRef0.GroupId              `json:"interGroupId,omitempty"`
+	EthTrafficFilters []externalRef5.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
+	Headers           []string                          `json:"headers,omitempty"`
+	InterGroupId      externalRef0.GroupId              `json:"interGroupId,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
 	NwAreaInfo        *externalRef4.NetworkAreaInfo   `json:"nwAreaInfo,omitempty"`
 	ResUri            *externalRef0.Uri               `json:"resUri,omitempty"`
 	Snssai            *externalRef0.Snssai            `json:"snssai,omitempty"`
-	SubscribedEvents  *[]externalRef1.SubscribedEvent `json:"subscribedEvents,omitempty"`
-	Supi              *externalRef0.Supi              `json:"supi,omitempty"`
+	SubscribedEvents  []externalRef1.SubscribedEvent  `json:"subscribedEvents,omitempty"`
+	Supi              externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 
 	// TempValidities Identifies the temporal validities for the N6 traffic routing requirement.
-	TempValidities *[]externalRef5.TemporalValidity `json:"tempValidities,omitempty"`
-	TraffCorreInd  *bool                            `json:"traffCorreInd,omitempty"`
+	TempValidities []externalRef5.TemporalValidity `json:"tempValidities,omitempty"`
+	TraffCorreInd  *bool                           `json:"traffCorreInd,omitempty"`
 
 	// TrafficFilters Identifies IP packet filters. Either "trafficFilters" or "ethTrafficFilters" shall be included if applicable.
-	TrafficFilters *[]externalRef3.FlowInfo `json:"trafficFilters,omitempty"`
+	TrafficFilters []externalRef3.FlowInfo `json:"trafficFilters,omitempty"`
 
 	// TrafficRoutes Identifies the N6 traffic routing requirement.
-	TrafficRoutes *[]externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
+	TrafficRoutes []externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
 
 	// UpPathChgNotifCorreId Contains the Notification Correlation Id allocated by the NEF for the UP path change notification.
 	UpPathChgNotifCorreId *string                `json:"upPathChgNotifCorreId,omitempty"`
@@ -202,24 +202,24 @@ type TrafficInfluDataPatch struct {
 	Dnn        *externalRef0.Dnn `json:"dnn,omitempty"`
 
 	// EthTrafficFilters Identifies Ethernet packet filters. Either "trafficFilters" or "ethTrafficFilters" shall be included if applicable.
-	EthTrafficFilters *[]externalRef5.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
-	Headers           *[]string                          `json:"headers,omitempty"`
-	InternalGroupId   *externalRef0.GroupId              `json:"internalGroupId,omitempty"`
+	EthTrafficFilters []externalRef5.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
+	Headers           []string                          `json:"headers,omitempty"`
+	InternalGroupId   externalRef0.GroupId              `json:"internalGroupId,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
 	NwAreaInfo *externalRef4.NetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	Snssai     *externalRef0.Snssai          `json:"snssai,omitempty"`
-	Supi       *externalRef0.Supi            `json:"supi,omitempty"`
+	Supi       externalRef0.Supi             `json:"supi,omitempty"`
 
 	// TempValidities Identifies the temporal validities for the N6 traffic routing requirement.
 	TempValidities *[]externalRef5.TemporalValidity `json:"tempValidities"`
 	TraffCorreInd  *bool                            `json:"traffCorreInd,omitempty"`
 
 	// TrafficFilters Identifies IP packet filters. Either "trafficFilters" or "ethTrafficFilters" shall be included if applicable.
-	TrafficFilters *[]externalRef3.FlowInfo `json:"trafficFilters,omitempty"`
+	TrafficFilters []externalRef3.FlowInfo `json:"trafficFilters,omitempty"`
 
 	// TrafficRoutes Identifies the N6 traffic routing requirement.
-	TrafficRoutes *[]externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
+	TrafficRoutes []externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
 
 	// UpPathChgNotifCorreId Contains the Notification Correlation Id allocated by the NEF for the UP path change notification.
 	UpPathChgNotifCorreId *string                `json:"upPathChgNotifCorreId,omitempty"`
@@ -232,18 +232,18 @@ type TrafficInfluDataPatch struct {
 // TrafficInfluSub defines model for TrafficInfluSub.
 type TrafficInfluSub struct {
 	// Dnns Each element identifies a DNN.
-	Dnns   *[]externalRef0.Dnn    `json:"dnns,omitempty"`
+	Dnns   []externalRef0.Dnn     `json:"dnns,omitempty"`
 	Expiry *externalRef0.DateTime `json:"expiry,omitempty"`
 
 	// InternalGroupIds Each element identifies a group of users.
-	InternalGroupIds *[]externalRef0.GroupId `json:"internalGroupIds,omitempty"`
-	NotificationUri  externalRef0.Uri        `json:"notificationUri"`
+	InternalGroupIds []externalRef0.GroupId `json:"internalGroupIds,omitempty"`
+	NotificationUri  externalRef0.Uri       `json:"notificationUri"`
 
 	// Snssais Each element identifies a slice.
-	Snssais *[]externalRef0.Snssai `json:"snssais,omitempty"`
+	Snssais []externalRef0.Snssai `json:"snssais,omitempty"`
 
 	// Supis Each element identifies the user.
-	Supis                *[]externalRef0.Supi            `json:"supis,omitempty"`
+	Supis                []externalRef0.Supi             `json:"supis,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -603,7 +603,7 @@ func (a ApplicationDataSubs) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DataFilters != nil {
+	if len(a.DataFilters) != 0 {
 		object["dataFilters"], err = json.Marshal(a.DataFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dataFilters': %w", err)
@@ -742,7 +742,7 @@ func (a BdtPolicyData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InterGroupId != nil {
+	if len(a.InterGroupId) != 0 {
 		object["interGroupId"], err = json.Marshal(a.InterGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
@@ -763,7 +763,7 @@ func (a BdtPolicyData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -961,7 +961,7 @@ func (a DataFilter) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AppIds != nil {
+	if len(a.AppIds) != 0 {
 		object["appIds"], err = json.Marshal(a.AppIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'appIds': %w", err)
@@ -973,49 +973,49 @@ func (a DataFilter) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'dataInd': %w", err)
 	}
 
-	if a.Dnns != nil {
+	if len(a.Dnns) != 0 {
 		object["dnns"], err = json.Marshal(a.Dnns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dnns': %w", err)
 		}
 	}
 
-	if a.InternalGroupIds != nil {
+	if len(a.InternalGroupIds) != 0 {
 		object["internalGroupIds"], err = json.Marshal(a.InternalGroupIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'internalGroupIds': %w", err)
 		}
 	}
 
-	if a.Snssais != nil {
+	if len(a.Snssais) != 0 {
 		object["snssais"], err = json.Marshal(a.Snssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'snssais': %w", err)
 		}
 	}
 
-	if a.Supis != nil {
+	if len(a.Supis) != 0 {
 		object["supis"], err = json.Marshal(a.Supis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supis': %w", err)
 		}
 	}
 
-	if a.UeIpv4s != nil {
+	if len(a.UeIpv4s) != 0 {
 		object["ueIpv4s"], err = json.Marshal(a.UeIpv4s)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIpv4s': %w", err)
 		}
 	}
 
-	if a.UeIpv6s != nil {
+	if len(a.UeIpv6s) != 0 {
 		object["ueIpv6s"], err = json.Marshal(a.UeIpv6s)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIpv6s': %w", err)
 		}
 	}
 
-	if a.UeMacs != nil {
+	if len(a.UeMacs) != 0 {
 		object["ueMacs"], err = json.Marshal(a.UeMacs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueMacs': %w", err)
@@ -1151,7 +1151,7 @@ func (a IptvConfigData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InterGroupId != nil {
+	if len(a.InterGroupId) != 0 {
 		object["interGroupId"], err = json.Marshal(a.InterGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
@@ -1177,7 +1177,7 @@ func (a IptvConfigData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1478,7 +1478,7 @@ func (a ServiceParameterData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InterGroupId != nil {
+	if len(a.InterGroupId) != 0 {
 		object["interGroupId"], err = json.Marshal(a.InterGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
@@ -1513,7 +1513,7 @@ func (a ServiceParameterData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1541,7 +1541,7 @@ func (a ServiceParameterData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeMac != nil {
+	if len(a.UeMac) != 0 {
 		object["ueMac"], err = json.Marshal(a.UeMac)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueMac': %w", err)
@@ -1827,21 +1827,21 @@ func (a TrafficInfluData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EthTrafficFilters != nil {
+	if len(a.EthTrafficFilters) != 0 {
 		object["ethTrafficFilters"], err = json.Marshal(a.EthTrafficFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ethTrafficFilters': %w", err)
 		}
 	}
 
-	if a.Headers != nil {
+	if len(a.Headers) != 0 {
 		object["headers"], err = json.Marshal(a.Headers)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'headers': %w", err)
 		}
 	}
 
-	if a.InterGroupId != nil {
+	if len(a.InterGroupId) != 0 {
 		object["interGroupId"], err = json.Marshal(a.InterGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
@@ -1869,14 +1869,14 @@ func (a TrafficInfluData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SubscribedEvents != nil {
+	if len(a.SubscribedEvents) != 0 {
 		object["subscribedEvents"], err = json.Marshal(a.SubscribedEvents)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscribedEvents': %w", err)
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1890,7 +1890,7 @@ func (a TrafficInfluData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TempValidities != nil {
+	if len(a.TempValidities) != 0 {
 		object["tempValidities"], err = json.Marshal(a.TempValidities)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tempValidities': %w", err)
@@ -1904,14 +1904,14 @@ func (a TrafficInfluData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TrafficFilters != nil {
+	if len(a.TrafficFilters) != 0 {
 		object["trafficFilters"], err = json.Marshal(a.TrafficFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficFilters': %w", err)
 		}
 	}
 
-	if a.TrafficRoutes != nil {
+	if len(a.TrafficRoutes) != 0 {
 		object["trafficRoutes"], err = json.Marshal(a.TrafficRoutes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficRoutes': %w", err)
@@ -2252,21 +2252,21 @@ func (a TrafficInfluDataPatch) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EthTrafficFilters != nil {
+	if len(a.EthTrafficFilters) != 0 {
 		object["ethTrafficFilters"], err = json.Marshal(a.EthTrafficFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ethTrafficFilters': %w", err)
 		}
 	}
 
-	if a.Headers != nil {
+	if len(a.Headers) != 0 {
 		object["headers"], err = json.Marshal(a.Headers)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'headers': %w", err)
 		}
 	}
 
-	if a.InternalGroupId != nil {
+	if len(a.InternalGroupId) != 0 {
 		object["internalGroupId"], err = json.Marshal(a.InternalGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'internalGroupId': %w", err)
@@ -2287,7 +2287,7 @@ func (a TrafficInfluDataPatch) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -2306,14 +2306,14 @@ func (a TrafficInfluDataPatch) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TrafficFilters != nil {
+	if len(a.TrafficFilters) != 0 {
 		object["trafficFilters"], err = json.Marshal(a.TrafficFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficFilters': %w", err)
 		}
 	}
 
-	if a.TrafficRoutes != nil {
+	if len(a.TrafficRoutes) != 0 {
 		object["trafficRoutes"], err = json.Marshal(a.TrafficRoutes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficRoutes': %w", err)
@@ -2457,7 +2457,7 @@ func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Dnns != nil {
+	if len(a.Dnns) != 0 {
 		object["dnns"], err = json.Marshal(a.Dnns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dnns': %w", err)
@@ -2471,7 +2471,7 @@ func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InternalGroupIds != nil {
+	if len(a.InternalGroupIds) != 0 {
 		object["internalGroupIds"], err = json.Marshal(a.InternalGroupIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'internalGroupIds': %w", err)
@@ -2483,14 +2483,14 @@ func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'notificationUri': %w", err)
 	}
 
-	if a.Snssais != nil {
+	if len(a.Snssais) != 0 {
 		object["snssais"], err = json.Marshal(a.Snssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'snssais': %w", err)
 		}
 	}
 
-	if a.Supis != nil {
+	if len(a.Supis) != 0 {
 		object["supis"], err = json.Marshal(a.Supis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supis': %w", err)

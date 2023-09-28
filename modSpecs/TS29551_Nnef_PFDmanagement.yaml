@@ -13,6 +13,7 @@ components:
                         $ref: '#/components/schemas/PfdContent'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 removalFlag:
                     default: false
                     type: boolean
@@ -27,6 +28,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pfdError:
                     $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             required:
@@ -44,12 +46,14 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 flowDescriptions:
                     description: Represents a 3-tuple with protocol, server ip and server port for UL/DL application traffic.
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pfdId:
                     description: Identifies a PDF of an application identifier.
                     type: string
@@ -59,6 +63,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         PfdDataForApp:
             additionalProperties: true
@@ -72,6 +77,7 @@ components:
                         $ref: '#/components/schemas/PfdContent'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
             required:
@@ -86,6 +92,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notifyUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 supportedFeatures:
@@ -127,6 +134,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: To filter irrelevant responses related to unsupported features
                   in: query
                   name: supported-features
@@ -224,6 +232,7 @@ paths:
                                                 $ref: '#/components/schemas/PfdChangeNotification'
                                             minItems: 1
                                             type: array
+                                            x-go-type-skip-optional-pointer: true
                                 required: true
                             responses:
                                 "200":
@@ -234,6 +243,7 @@ paths:
                                                     $ref: '#/components/schemas/PfdChangeReport'
                                                 minItems: 1
                                                 type: array
+                                                x-go-type-skip-optional-pointer: true
                                     description: The PFD operation in the notification is performed and the PfdChangeReport indicates failure reason.
                                 "204":
                                     description: The PFD operation in the notification is performed successfully.

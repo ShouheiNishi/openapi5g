@@ -25,6 +25,7 @@ components:
                         $ref: '#/components/schemas/EdrxParameters'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 expectedUeBehaviourList:
                     $ref: '#/components/schemas/ExpectedUeBehaviourData'
                 forbiddenAreas:
@@ -43,6 +44,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 mcsPriority:
                     $ref: '#/components/schemas/McsPriorityIndicator'
                 mdtConfiguration:
@@ -71,6 +73,7 @@ components:
                         $ref: '#/components/schemas/PtwParameters'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ratRestrictions:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RatType
@@ -92,6 +95,7 @@ components:
                         $ref: '#/components/schemas/SharedDataId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sharedVnGroupDataIds:
                     additionalProperties:
                         $ref: '#/components/schemas/SharedDataId'
@@ -106,6 +110,7 @@ components:
                         $ref: '#/components/schemas/SorUpdateIndicator'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sorafRetrieval:
                     default: false
                     type: boolean
@@ -167,8 +172,10 @@ components:
                 allowedGeographicArea:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 privacyCheckRelatedAction:
                     $ref: '#/components/schemas/PrivacyCheckRelatedAction'
                 validTimePeriod:
@@ -232,6 +239,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         DataSetName:
             enum:
@@ -254,14 +262,17 @@ components:
             minItems: 2
             type: array
             uniqueItems: true
+            x-go-type-skip-optional-pointer: true
         DefaultUnrelatedClass:
             additionalProperties: true
             properties:
                 allowedGeographicArea:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 codeWordInd:
                     $ref: '#/components/schemas/CodeWordInd'
                 codeWordList:
@@ -269,6 +280,7 @@ components:
                         $ref: '#/components/schemas/CodeWord'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 privacyCheckRelatedAction:
                     $ref: '#/components/schemas/PrivacyCheckRelatedAction'
                 validTimePeriod:
@@ -297,11 +309,13 @@ components:
                         $ref: '#/components/schemas/FrameRouteInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6FrameRouteList:
                     items:
                         $ref: '#/components/schemas/FrameRouteInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 iwkEpsInd:
                     $ref: '#/components/schemas/IwkEpsInd'
                 niddInfo:
@@ -326,6 +340,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 upSecurity:
                     $ref: TS29571_CommonData.yaml#/components/schemas/UpSecurity
             required:
@@ -358,6 +373,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - dnn
             type: object
@@ -375,6 +391,7 @@ components:
                 edrxValue:
                     pattern: ^([0-1]{4})$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 ratType:
                     $ref: TS29571_CommonData.yaml#/components/schemas/RatType
             required:
@@ -402,6 +419,7 @@ components:
                         $ref: TS29503_Nudm_PP.yaml#/components/schemas/PlmnEcInfo
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         ExpectedUeBehaviourData:
             additionalProperties: true
@@ -416,6 +434,7 @@ components:
                         $ref: TS29503_Nudm_PP.yaml#/components/schemas/LocationArea
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 periodicTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
                 scheduledCommunicationTime:
@@ -432,6 +451,7 @@ components:
         ExtGroupId:
             pattern: ^extgroupid-[^@]+@[^@]+$
             type: string
+            x-go-type-skip-optional-pointer: true
         ExternalUnrelatedClass:
             additionalProperties: true
             properties:
@@ -440,16 +460,19 @@ components:
                         $ref: '#/components/schemas/AfExternal'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 lcsClientExternals:
                     items:
                         $ref: '#/components/schemas/LcsClientExternal'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 lcsClientGroupExternals:
                     items:
                         $ref: '#/components/schemas/LcsClientGroupExternal'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
         FrameRouteInfo:
             additionalProperties: true
             properties:
@@ -470,6 +493,7 @@ components:
                         $ref: '#/components/schemas/UeId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         IdTranslationResult:
             additionalProperties: true
@@ -519,8 +543,10 @@ components:
                 allowedGeographicArea:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 privacyCheckRelatedAction:
                     $ref: '#/components/schemas/PrivacyCheckRelatedAction'
                 validTimePeriod:
@@ -532,8 +558,10 @@ components:
                 allowedGeographicArea:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 lcsClientGroupId:
                     $ref: '#/components/schemas/ExtGroupId'
                 privacyCheckRelatedAction:
@@ -551,6 +579,7 @@ components:
                         $ref: '#/components/schemas/LcsMoServiceClass'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - allowedServiceClasses
             type: object
@@ -570,6 +599,7 @@ components:
                         $ref: '#/components/schemas/PlmnOperatorClass'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 unrelatedClass:
                     $ref: '#/components/schemas/UnrelatedClass'
             type: object
@@ -605,6 +635,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NotifyItem
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - notifyItems
             type: object
@@ -640,6 +671,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 provisioningTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
                 singleNssais:
@@ -647,6 +679,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
             required:
@@ -689,6 +722,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 defaultSessionType:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
             required:
@@ -720,6 +754,7 @@ components:
                         $ref: '#/components/schemas/LcsClientId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - lcsClientClass
                 - lcsClientIds
@@ -740,6 +775,7 @@ components:
                 ptwValue:
                     pattern: ^([0-1]{4})$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             required:
                 - operationMode
                 - ptwValue
@@ -754,6 +790,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         SdmSubscription:
             additionalProperties: true
@@ -778,6 +815,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nfInstanceId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 plmnId:
@@ -806,8 +844,10 @@ components:
                 allowedGeographicArea:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 codeWordInd:
                     $ref: '#/components/schemas/CodeWordInd'
                 codeWordList:
@@ -815,10 +855,12 @@ components:
                         $ref: '#/components/schemas/CodeWord'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 privacyCheckRelatedAction:
                     $ref: '#/components/schemas/PrivacyCheckRelatedAction'
                 serviceType:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
+                    x-go-type-skip-optional-pointer: true
                 validTimePeriod:
                     $ref: '#/components/schemas/ValidTimePeriod'
             required:
@@ -844,6 +886,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 odbPacketServices:
                     $ref: TS29571_CommonData.yaml#/components/schemas/OdbPacketServices
                 sharedDnnConfigurationsId:
@@ -899,12 +942,14 @@ components:
         SharedDataId:
             pattern: ^[0-9]{5,6}-.+$
             type: string
+            x-go-type-skip-optional-pointer: true
         SharedDataIds:
             items:
                 $ref: '#/components/schemas/SharedDataId'
             minItems: 1
             type: array
             uniqueItems: true
+            x-go-type-skip-optional-pointer: true
         SmfSelectionSubscriptionData:
             additionalProperties: true
             properties:
@@ -937,6 +982,7 @@ components:
                         $ref: '#/components/schemas/SharedDataId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 traceData:
@@ -971,6 +1017,7 @@ components:
                         $ref: '#/components/schemas/DnnInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - dnnInfos
             type: object
@@ -1013,6 +1060,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 defaultSscMode:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SscMode
             required:
@@ -1024,6 +1072,7 @@ components:
                     $ref: TS29509_Nausf_SoRProtection.yaml#/components/schemas/SteeringInfo
                   minItems: 1
                   type: array
+                  x-go-type-skip-optional-pointer: true
                 - $ref: '#/components/schemas/SecuredPacket'
         SubscriptionDataSets:
             additionalProperties: true
@@ -1041,6 +1090,7 @@ components:
                         $ref: '#/components/schemas/SessionManagementSubscriptionData'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 smfSelData:
                     $ref: '#/components/schemas/SmfSelectionSubscriptionData'
                 smsMngData:
@@ -1064,6 +1114,7 @@ components:
                 suggestedPacketNumDl:
                     minimum: 1
                     type: integer
+                    x-go-type-skip-optional-pointer: true
                 validityTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
             required:
@@ -1082,6 +1133,7 @@ components:
             properties:
                 epsInterworkingInfo:
                     description: Original reference TS29503_Nudm_UECM.yaml#/components/schemas/EpsInterworkingInfo
+                    x-go-type-skip-optional-pointer: true
             type: object
         UeContextInSmfData:
             additionalProperties: true
@@ -1098,6 +1150,7 @@ components:
                         $ref: '#/components/schemas/PgwInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         UeContextInSmsfData:
             additionalProperties: true
@@ -1115,6 +1168,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
             required:
@@ -1134,6 +1188,7 @@ components:
                         $ref: '#/components/schemas/ServiceTypeUnrelatedClass'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - defaultUnrelatedClass
             type: object
@@ -1151,6 +1206,7 @@ components:
                         $ref: TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuData
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 upuMacIausf:
                     $ref: TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
                 upuRegInd:
@@ -1191,6 +1247,7 @@ components:
                         $ref: '#/components/schemas/AppDescriptor'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dnn:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                 pduSessionTypes:
@@ -1799,6 +1856,7 @@ paths:
                                     $ref: '#/components/schemas/SessionManagementSubscriptionData'
                                 minItems: 1
                                 type: array
+                                x-go-type-skip-optional-pointer: true
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -2634,6 +2692,7 @@ paths:
                                     $ref: '#/components/schemas/SharedData'
                                 minItems: 1
                                 type: array
+                                x-go-type-skip-optional-pointer: true
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:

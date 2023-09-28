@@ -57,7 +57,7 @@ type CancelPosInfo struct {
 	LdrReference interface{} `json:"ldrReference"`
 
 	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification *interface{}                    `json:"servingLMFIdentification,omitempty"`
+	ServingLMFIdentification interface{}                     `json:"servingLMFIdentification,omitempty"`
 	Supi                     externalRef0.Supi               `json:"supi"`
 	SupportedFeatures        *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties     map[string]interface{}          `json:"-"`
@@ -75,45 +75,45 @@ type LocationType string
 // NotifiedPosInfo defines model for NotifiedPosInfo.
 type NotifiedPosInfo struct {
 	// AgeOfLocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	AgeOfLocationEstimate *interface{} `json:"ageOfLocationEstimate,omitempty"`
+	AgeOfLocationEstimate interface{} `json:"ageOfLocationEstimate,omitempty"`
 
 	// Altitude Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
-	Altitude *interface{} `json:"altitude,omitempty"`
+	Altitude interface{} `json:"altitude,omitempty"`
 
 	// BarometricPressure Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
-	BarometricPressure *interface{} `json:"barometricPressure,omitempty"`
+	BarometricPressure interface{} `json:"barometricPressure,omitempty"`
 
 	// CivicAddress Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-	CivicAddress            *interface{}       `json:"civicAddress,omitempty"`
+	CivicAddress            interface{}        `json:"civicAddress,omitempty"`
 	Ecgi                    *externalRef0.Ecgi `json:"ecgi,omitempty"`
 	GnssPositioningDataList *[]interface{}     `json:"gnssPositioningDataList,omitempty"`
-	Gpsi                    *externalRef0.Gpsi `json:"gpsi,omitempty"`
+	Gpsi                    externalRef0.Gpsi  `json:"gpsi,omitempty"`
 	HgmlcCallBackURI        *externalRef0.Uri  `json:"hgmlcCallBackURI,omitempty"`
 
 	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-	LdrReference *interface{} `json:"ldrReference,omitempty"`
+	LdrReference interface{} `json:"ldrReference,omitempty"`
 
 	// LocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	LocationEstimate    *interface{}             `json:"locationEstimate,omitempty"`
-	LocationEvent       LocationEvent            `json:"locationEvent"`
-	MscServerId         *externalRef1.E164Number `json:"mscServerId,omitempty"`
-	Ncgi                *externalRef0.Ncgi       `json:"ncgi,omitempty"`
-	Pei                 *externalRef0.Pei        `json:"pei,omitempty"`
-	PositioningDataList *[]interface{}           `json:"positioningDataList,omitempty"`
+	LocationEstimate    interface{}             `json:"locationEstimate,omitempty"`
+	LocationEvent       LocationEvent           `json:"locationEvent"`
+	MscServerId         externalRef1.E164Number `json:"mscServerId,omitempty"`
+	Ncgi                *externalRef0.Ncgi      `json:"ncgi,omitempty"`
+	Pei                 externalRef0.Pei        `json:"pei,omitempty"`
+	PositioningDataList *[]interface{}          `json:"positioningDataList,omitempty"`
 
 	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification *interface{}                   `json:"servingLMFIdentification,omitempty"`
-	ServingNode              *externalRef0.NfInstanceId     `json:"servingNode,omitempty"`
-	Supi                     *externalRef0.Supi             `json:"supi,omitempty"`
-	TargetMmeName            *externalRef0.DiameterIdentity `json:"targetMmeName,omitempty"`
-	TargetMmeRealm           *externalRef0.DiameterIdentity `json:"targetMmeRealm,omitempty"`
+	ServingLMFIdentification interface{}                   `json:"servingLMFIdentification,omitempty"`
+	ServingNode              *externalRef0.NfInstanceId    `json:"servingNode,omitempty"`
+	Supi                     externalRef0.Supi             `json:"supi,omitempty"`
+	TargetMmeName            externalRef0.DiameterIdentity `json:"targetMmeName,omitempty"`
+	TargetMmeRealm           externalRef0.DiameterIdentity `json:"targetMmeRealm,omitempty"`
 
 	// TerminationCause Original reference TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
-	TerminationCause *interface{} `json:"terminationCause,omitempty"`
-	UtranSrvccInd    *bool        `json:"utranSrvccInd,omitempty"`
+	TerminationCause interface{} `json:"terminationCause,omitempty"`
+	UtranSrvccInd    *bool       `json:"utranSrvccInd,omitempty"`
 
 	// VelocityEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
-	VelocityEstimate     *interface{}           `json:"velocityEstimate,omitempty"`
+	VelocityEstimate     interface{}            `json:"velocityEstimate,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -123,11 +123,11 @@ type ProvideLocInfo struct {
 	CurrentLoc         *bool                      `json:"currentLoc,omitempty"`
 
 	// GeoInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	GeoInfo  *interface{}               `json:"geoInfo,omitempty"`
+	GeoInfo  interface{}                `json:"geoInfo,omitempty"`
 	Location *externalRef0.UserLocation `json:"location,omitempty"`
 
 	// LocationAge Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	LocationAge          *interface{}                    `json:"locationAge,omitempty"`
+	LocationAge          interface{}                     `json:"locationAge,omitempty"`
 	OldGuami             *externalRef0.Guami             `json:"oldGuami,omitempty"`
 	RatType              *externalRef0.RatType           `json:"ratType,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
@@ -138,38 +138,38 @@ type ProvideLocInfo struct {
 // ProvidePosInfo defines model for ProvidePosInfo.
 type ProvidePosInfo struct {
 	// AccuracyFulfilmentIndicator Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
-	AccuracyFulfilmentIndicator *interface{} `json:"accuracyFulfilmentIndicator,omitempty"`
+	AccuracyFulfilmentIndicator interface{} `json:"accuracyFulfilmentIndicator,omitempty"`
 
 	// AgeOfLocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	AgeOfLocationEstimate *interface{} `json:"ageOfLocationEstimate,omitempty"`
+	AgeOfLocationEstimate interface{} `json:"ageOfLocationEstimate,omitempty"`
 
 	// Altitude Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
-	Altitude *interface{} `json:"altitude,omitempty"`
+	Altitude interface{} `json:"altitude,omitempty"`
 
 	// BarometricPressure Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
-	BarometricPressure *interface{} `json:"barometricPressure,omitempty"`
+	BarometricPressure interface{} `json:"barometricPressure,omitempty"`
 
 	// CivicAddress Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-	CivicAddress            *interface{}       `json:"civicAddress,omitempty"`
+	CivicAddress            interface{}        `json:"civicAddress,omitempty"`
 	Ecgi                    *externalRef0.Ecgi `json:"ecgi,omitempty"`
 	GnssPositioningDataList *[]interface{}     `json:"gnssPositioningDataList,omitempty"`
 
 	// LocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	LocationEstimate         *interface{}              `json:"locationEstimate,omitempty"`
+	LocationEstimate         interface{}               `json:"locationEstimate,omitempty"`
 	LocationPrivacyVerResult *LocationPrivacyVerResult `json:"locationPrivacyVerResult,omitempty"`
 	Ncgi                     *externalRef0.Ncgi        `json:"ncgi,omitempty"`
 	PositioningDataList      *[]interface{}            `json:"positioningDataList,omitempty"`
 
 	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification *interface{}                    `json:"servingLMFIdentification,omitempty"`
+	ServingLMFIdentification interface{}                     `json:"servingLMFIdentification,omitempty"`
 	SupportedFeatures        *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TargetMmeName            *externalRef0.DiameterIdentity  `json:"targetMmeName,omitempty"`
-	TargetMmeRealm           *externalRef0.DiameterIdentity  `json:"targetMmeRealm,omitempty"`
+	TargetMmeName            externalRef0.DiameterIdentity   `json:"targetMmeName,omitempty"`
+	TargetMmeRealm           externalRef0.DiameterIdentity   `json:"targetMmeRealm,omitempty"`
 	TargetServingNode        *externalRef0.NfInstanceId      `json:"targetServingNode,omitempty"`
 	UtranSrvccInd            *bool                           `json:"utranSrvccInd,omitempty"`
 
 	// VelocityEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
-	VelocityEstimate     *interface{}           `json:"velocityEstimate,omitempty"`
+	VelocityEstimate     interface{}            `json:"velocityEstimate,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -185,58 +185,58 @@ type RequestLocInfo struct {
 
 // RequestPosInfo defines model for RequestPosInfo.
 type RequestPosInfo struct {
-	AdditionalLcsSuppGADShapes *[]interface{}             `json:"additionalLcsSuppGADShapes,omitempty"`
+	AdditionalLcsSuppGADShapes []interface{}              `json:"additionalLcsSuppGADShapes,omitempty"`
 	AfID                       *externalRef0.NfInstanceId `json:"afID,omitempty"`
 
 	// AreaEventInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
-	AreaEventInfo *interface{} `json:"areaEventInfo,omitempty"`
+	AreaEventInfo interface{} `json:"areaEventInfo,omitempty"`
 
 	// CodeWord Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
-	CodeWord *interface{} `json:"codeWord,omitempty"`
+	CodeWord interface{} `json:"codeWord,omitempty"`
 
 	// ExternalClientIdentification Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
-	ExternalClientIdentification *interface{}       `json:"externalClientIdentification,omitempty"`
-	Gpsi                         *externalRef0.Gpsi `json:"gpsi,omitempty"`
-	HgmlcCallBackURI             *externalRef0.Uri  `json:"hgmlcCallBackURI,omitempty"`
+	ExternalClientIdentification interface{}       `json:"externalClientIdentification,omitempty"`
+	Gpsi                         externalRef0.Gpsi `json:"gpsi,omitempty"`
+	HgmlcCallBackURI             *externalRef0.Uri `json:"hgmlcCallBackURI,omitempty"`
 
 	// LcsClientType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
 	LcsClientType interface{}  `json:"lcsClientType"`
 	LcsLocation   LocationType `json:"lcsLocation"`
 
 	// LcsQoS Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
-	LcsQoS *interface{} `json:"lcsQoS,omitempty"`
+	LcsQoS interface{} `json:"lcsQoS,omitempty"`
 
 	// LcsServiceType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
-	LcsServiceType *interface{} `json:"lcsServiceType,omitempty"`
+	LcsServiceType interface{} `json:"lcsServiceType,omitempty"`
 
 	// LcsSupportedGADShapes Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-	LcsSupportedGADShapes *interface{} `json:"lcsSupportedGADShapes,omitempty"`
+	LcsSupportedGADShapes interface{} `json:"lcsSupportedGADShapes,omitempty"`
 
 	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-	LdrReference *interface{} `json:"ldrReference,omitempty"`
+	LdrReference interface{} `json:"ldrReference,omitempty"`
 
 	// LdrType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
-	LdrType                 *interface{}      `json:"ldrType,omitempty"`
+	LdrType                 interface{}       `json:"ldrType,omitempty"`
 	LocationNotificationUri *externalRef0.Uri `json:"locationNotificationUri,omitempty"`
 
 	// MotionEventInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
-	MotionEventInfo *interface{}        `json:"motionEventInfo,omitempty"`
+	MotionEventInfo interface{}         `json:"motionEventInfo,omitempty"`
 	OldGuami        *externalRef0.Guami `json:"oldGuami,omitempty"`
-	Pei             *externalRef0.Pei   `json:"pei,omitempty"`
+	Pei             externalRef0.Pei    `json:"pei,omitempty"`
 
 	// PeriodicEventInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
-	PeriodicEventInfo *interface{} `json:"periodicEventInfo,omitempty"`
+	PeriodicEventInfo interface{} `json:"periodicEventInfo,omitempty"`
 
 	// Priority Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
-	Priority          *interface{}                    `json:"priority,omitempty"`
-	Supi              *externalRef0.Supi              `json:"supi,omitempty"`
+	Priority          interface{}                     `json:"priority,omitempty"`
+	Supi              externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 
 	// UePrivacyRequirements Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
-	UePrivacyRequirements *interface{} `json:"uePrivacyRequirements,omitempty"`
+	UePrivacyRequirements interface{} `json:"uePrivacyRequirements,omitempty"`
 
 	// VelocityRequested Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
-	VelocityRequested    *interface{}           `json:"velocityRequested,omitempty"`
+	VelocityRequested    interface{}            `json:"velocityRequested,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -641,7 +641,7 @@ func (a NotifiedPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -674,7 +674,7 @@ func (a NotifiedPosInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'locationEvent': %w", err)
 	}
 
-	if a.MscServerId != nil {
+	if len(a.MscServerId) != 0 {
 		object["mscServerId"], err = json.Marshal(a.MscServerId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mscServerId': %w", err)
@@ -688,7 +688,7 @@ func (a NotifiedPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -716,21 +716,21 @@ func (a NotifiedPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
 		}
 	}
 
-	if a.TargetMmeName != nil {
+	if len(a.TargetMmeName) != 0 {
 		object["targetMmeName"], err = json.Marshal(a.TargetMmeName)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetMmeName': %w", err)
 		}
 	}
 
-	if a.TargetMmeRealm != nil {
+	if len(a.TargetMmeRealm) != 0 {
 		object["targetMmeRealm"], err = json.Marshal(a.TargetMmeRealm)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetMmeRealm': %w", err)
@@ -1234,14 +1234,14 @@ func (a ProvidePosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TargetMmeName != nil {
+	if len(a.TargetMmeName) != 0 {
 		object["targetMmeName"], err = json.Marshal(a.TargetMmeName)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetMmeName': %w", err)
 		}
 	}
 
-	if a.TargetMmeRealm != nil {
+	if len(a.TargetMmeRealm) != 0 {
 		object["targetMmeRealm"], err = json.Marshal(a.TargetMmeRealm)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetMmeRealm': %w", err)
@@ -1642,7 +1642,7 @@ func (a RequestPosInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AdditionalLcsSuppGADShapes != nil {
+	if len(a.AdditionalLcsSuppGADShapes) != 0 {
 		object["additionalLcsSuppGADShapes"], err = json.Marshal(a.AdditionalLcsSuppGADShapes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'additionalLcsSuppGADShapes': %w", err)
@@ -1677,7 +1677,7 @@ func (a RequestPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -1757,7 +1757,7 @@ func (a RequestPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -1778,7 +1778,7 @@ func (a RequestPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)

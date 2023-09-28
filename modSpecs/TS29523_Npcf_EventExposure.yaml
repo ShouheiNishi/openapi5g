@@ -9,6 +9,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 flowNumber:
                     type: integer
             required:
@@ -25,6 +26,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - flowNumber
             type: object
@@ -41,6 +43,7 @@ components:
                         $ref: '#/components/schemas/PcEventNotification'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notifId:
                     type: string
             required:
@@ -55,6 +58,7 @@ components:
                         $ref: '#/components/schemas/PcEvent'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 eventsRepInfo:
                     $ref: '#/components/schemas/ReportingInformation'
                 filterDnns:
@@ -62,16 +66,19 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 filterServices:
                     items:
                         $ref: '#/components/schemas/ServiceIdentification'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 filterSnssais:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 groupId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                 notifId:
@@ -163,11 +170,13 @@ components:
                         $ref: '#/components/schemas/EthernetFlowInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servIpFlows:
                     items:
                         $ref: '#/components/schemas/IpFlowInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
     securitySchemes:
         oAuth2ClientCredentials:

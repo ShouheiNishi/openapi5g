@@ -19,6 +19,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 
@@ -158,12 +159,31 @@ func fixAllOfEnum(v *openapi3.Schema) error {
 			if newDescription == "" {
 				newDescription = v1.Description
 			}
+			merged := false
 			if v0.Enum == nil && len(v1.Enum) > 0 {
 				*v = *v1
 				v.Description = newDescription
+				merged = true
 			} else if v1.Enum == nil && len(v0.Enum) > 0 {
 				*v = *v0
 				v.Description = newDescription
+				merged = true
+			}
+			if merged {
+				newSkipOptionalPointer := false
+				if b, ok := v0.Extensions["x-go-type-skip-optional-pointer"].(bool); b && ok {
+					if b, ok := v1.Extensions["x-go-type-skip-optional-pointer"].(bool); b && ok {
+						newSkipOptionalPointer = true
+					}
+				}
+				if newSkipOptionalPointer {
+					if v.Extensions == nil {
+						v.Extensions = make(map[string]interface{})
+					}
+					v.Extensions["x-go-type-skip-optional-pointer"] = true
+				} else {
+					delete(v.Extensions, "x-go-type-skip-optional-pointer")
+				}
 			}
 		}
 	}
@@ -228,6 +248,87 @@ func fixAdditionalProperties(v *openapi3.Schema) error {
 		v.AdditionalProperties.Has == nil && v.AdditionalProperties.Schema == nil {
 		v.WithAnyAdditionalProperties()
 	}
+	return nil
+}
+
+func fixSkipOptionalPointer(v *openapi3.Schema) error {
+	skipOptionalPointer := false
+
+	if v.Nullable {
+		return nil
+	}
+
+	switch v.Type {
+	case openapi3.TypeString:
+		// TODO format check
+		// Check whether allow empty string
+		if v.MinLength > 0 {
+			skipOptionalPointer = true
+			break
+		}
+		if r, err := regexp.Compile(v.Pattern); r != nil && err == nil {
+			if !r.MatchString("") {
+				skipOptionalPointer = true
+				break
+			}
+		}
+		if len(v.Enum) != 0 {
+			existEmptyMember := false
+			for _, m := range v.Enum {
+				if s, ok := m.(string); ok {
+					if s == "" {
+						existEmptyMember = true
+						break
+					}
+				}
+			}
+			if !existEmptyMember {
+				skipOptionalPointer = true
+				break
+			}
+		}
+
+	case openapi3.TypeArray:
+		if v.MinItems > 0 {
+			skipOptionalPointer = true
+			break
+		}
+
+	case openapi3.TypeInteger, openapi3.TypeNumber:
+		if v.Min != nil {
+			if v.ExclusiveMin {
+				if *v.Min >= 0 {
+					skipOptionalPointer = true
+					break
+				}
+			} else {
+				if *v.Min > 0 {
+					skipOptionalPointer = true
+					break
+				}
+			}
+		}
+		if v.Max != nil {
+			if v.ExclusiveMax {
+				if *v.Max <= 0 {
+					skipOptionalPointer = true
+					break
+				}
+			} else {
+				if *v.Max < 0 {
+					skipOptionalPointer = true
+					break
+				}
+			}
+		}
+	}
+
+	if skipOptionalPointer {
+		if v.Extensions == nil {
+			v.Extensions = make(map[string]interface{})
+		}
+		v.Extensions["x-go-type-skip-optional-pointer"] = true
+	}
 
 	return nil
 }
@@ -243,6 +344,9 @@ func fixCutSchemaRef(v *openapi3.SchemaRef) error {
 	v.Ref = ""
 	v.Value = &openapi3.Schema{
 		Description: newDescription,
+		Extensions: map[string]interface{}{
+			"x-go-type-skip-optional-pointer": true,
+		},
 	}
 
 	return nil

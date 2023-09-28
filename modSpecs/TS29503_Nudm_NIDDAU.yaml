@@ -9,6 +9,7 @@ components:
                     minItems: 1
                     type: array
                     uniqueItems: true
+                    x-go-type-skip-optional-pointer: true
                 validityTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
             required:
@@ -61,6 +62,7 @@ components:
                         $ref: '#/components/schemas/NiddAuthUpdateInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - niddAuthUpdateInfoList
             type: object
@@ -122,6 +124,7 @@ paths:
                   schema:
                     pattern: ^(msisdn-[0-9]{5,15}|.+|extid-[^@]+@[^@]+|extgroupid-[^@]+@[^@]+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:

@@ -242,30 +242,30 @@ const (
 // AfEventExposureData AF Event Exposure data managed by a given NEF Instance
 type AfEventExposureData struct {
 	AfEvents             []interface{}          `json:"afEvents"`
-	AfIds                *[]string              `json:"afIds,omitempty"`
-	AppIds               *[]string              `json:"appIds,omitempty"`
+	AfIds                []string               `json:"afIds,omitempty"`
+	AppIds               []string               `json:"appIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AmfCond Subscription to a set of AMFs, based on AMF Set Id and/or AMF Region Id
 type AmfCond struct {
-	AmfRegionId          *externalRef0.AmfRegionId `json:"amfRegionId,omitempty"`
-	AmfSetId             *externalRef0.AmfSetId    `json:"amfSetId,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
+	AmfRegionId          externalRef0.AmfRegionId `json:"amfRegionId,omitempty"`
+	AmfSetId             externalRef0.AmfSetId    `json:"amfSetId,omitempty"`
+	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
 // AmfInfo Information of an AMF NF Instance
 type AmfInfo struct {
 	AmfRegionId          externalRef0.AmfRegionId `json:"amfRegionId"`
 	AmfSetId             externalRef0.AmfSetId    `json:"amfSetId"`
-	BackupInfoAmfFailure *[]externalRef0.Guami    `json:"backupInfoAmfFailure,omitempty"`
-	BackupInfoAmfRemoval *[]externalRef0.Guami    `json:"backupInfoAmfRemoval,omitempty"`
+	BackupInfoAmfFailure []externalRef0.Guami     `json:"backupInfoAmfFailure,omitempty"`
+	BackupInfoAmfRemoval []externalRef0.Guami     `json:"backupInfoAmfRemoval,omitempty"`
 	GuamiList            []externalRef0.Guami     `json:"guamiList"`
 
 	// N2InterfaceAmfInfo AMF N2 interface information
 	N2InterfaceAmfInfo   *N2InterfaceAmfInfo    `json:"n2InterfaceAmfInfo,omitempty"`
-	TaiList              *[]externalRef0.Tai    `json:"taiList,omitempty"`
-	TaiRangeList         *[]TaiRange            `json:"taiRangeList,omitempty"`
+	TaiList              []externalRef0.Tai     `json:"taiList,omitempty"`
+	TaiRangeList         []TaiRange             `json:"taiRangeList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -275,28 +275,28 @@ type AnNodeType string
 // AusfInfo Information of an AUSF NF Instance
 type AusfInfo struct {
 	GroupId              *externalRef0.NfGroupId `json:"groupId,omitempty"`
-	RoutingIndicators    *[]string               `json:"routingIndicators,omitempty"`
-	SupiRanges           *[]SupiRange            `json:"supiRanges,omitempty"`
+	RoutingIndicators    []string                `json:"routingIndicators,omitempty"`
+	SupiRanges           []SupiRange             `json:"supiRanges,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
 // BsfInfo Information of a BSF NF Instance
 type BsfInfo struct {
-	DnnList              *[]externalRef0.Dnn    `json:"dnnList,omitempty"`
-	IpDomainList         *[]string              `json:"ipDomainList,omitempty"`
-	Ipv4AddressRanges    *[]Ipv4AddressRange    `json:"ipv4AddressRanges,omitempty"`
-	Ipv6PrefixRanges     *[]Ipv6PrefixRange     `json:"ipv6PrefixRanges,omitempty"`
+	DnnList              []externalRef0.Dnn     `json:"dnnList,omitempty"`
+	IpDomainList         []string               `json:"ipDomainList,omitempty"`
+	Ipv4AddressRanges    []Ipv4AddressRange     `json:"ipv4AddressRanges,omitempty"`
+	Ipv6PrefixRanges     []Ipv6PrefixRange      `json:"ipv6PrefixRanges,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // ChfInfo Information of a CHF NF Instance
 type ChfInfo struct {
-	GpsiRangeList        *[]IdentityRange           `json:"gpsiRangeList,omitempty"`
+	GpsiRangeList        []IdentityRange            `json:"gpsiRangeList,omitempty"`
 	GroupId              *externalRef0.NfGroupId    `json:"groupId,omitempty"`
-	PlmnRangeList        *[]PlmnRange               `json:"plmnRangeList,omitempty"`
+	PlmnRangeList        []PlmnRange                `json:"plmnRangeList,omitempty"`
 	PrimaryChfInstance   *externalRef0.NfInstanceId `json:"primaryChfInstance,omitempty"`
 	SecondaryChfInstance *externalRef0.NfInstanceId `json:"secondaryChfInstance,omitempty"`
-	SupiRangeList        *[]SupiRange               `json:"supiRangeList,omitempty"`
+	SupiRangeList        []SupiRange                `json:"supiRangeList,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"-"`
 }
 
@@ -312,14 +312,14 @@ type DefaultNotificationSubscription struct {
 	CallbackUri externalRef0.Uri `json:"callbackUri"`
 
 	// N1MessageClass Original reference TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
-	N1MessageClass *interface{} `json:"n1MessageClass,omitempty"`
+	N1MessageClass interface{} `json:"n1MessageClass,omitempty"`
 
 	// N2InformationClass Original reference TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
-	N2InformationClass *interface{} `json:"n2InformationClass,omitempty"`
+	N2InformationClass interface{} `json:"n2InformationClass,omitempty"`
 
 	// NotificationType Types of notifications used in Default Notification URIs in the NF Profile of an NF Instance
 	NotificationType     NotificationType       `json:"notificationType"`
-	Versions             *[]string              `json:"versions,omitempty"`
+	Versions             []string               `json:"versions,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -331,15 +331,15 @@ type DnnSmfInfoItem struct {
 
 // DnnUpfInfoItem Set of parameters supported by UPF for a given DNN
 type DnnUpfInfoItem struct {
-	DnaiList *[]externalRef0.Dnai `json:"dnaiList,omitempty"`
+	DnaiList []externalRef0.Dnai `json:"dnaiList,omitempty"`
 
 	// DnaiNwInstanceList Map of network instance per DNAI for the DNN, where the key of the map is the DNAI. When present, the value of each entry of the map shall contain a N6 network instance that is configured for the DNAI indicated by the key.
-	DnaiNwInstanceList   *map[string]string             `json:"dnaiNwInstanceList,omitempty"`
-	Dnn                  externalRef0.Dnn               `json:"dnn"`
-	Ipv4AddressRanges    *[]Ipv4AddressRange            `json:"ipv4AddressRanges,omitempty"`
-	Ipv6PrefixRanges     *[]Ipv6PrefixRange             `json:"ipv6PrefixRanges,omitempty"`
-	PduSessionTypes      *[]externalRef0.PduSessionType `json:"pduSessionTypes,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
+	DnaiNwInstanceList   *map[string]string            `json:"dnaiNwInstanceList,omitempty"`
+	Dnn                  externalRef0.Dnn              `json:"dnn"`
+	Ipv4AddressRanges    []Ipv4AddressRange            `json:"ipv4AddressRanges,omitempty"`
+	Ipv6PrefixRanges     []Ipv6PrefixRange             `json:"ipv6PrefixRanges,omitempty"`
+	PduSessionTypes      []externalRef0.PduSessionType `json:"pduSessionTypes,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
 // Fqdn Fully Qualified Domain Name
@@ -347,8 +347,8 @@ type Fqdn = string
 
 // GmlcInfo Information of a GMLC NF Instance
 type GmlcInfo struct {
-	GmlcNumbers          *[]string              `json:"gmlcNumbers,omitempty"`
-	ServingClientTypes   *[]interface{}         `json:"servingClientTypes,omitempty"`
+	GmlcNumbers          []string               `json:"gmlcNumbers,omitempty"`
+	ServingClientTypes   []interface{}          `json:"servingClientTypes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -361,26 +361,26 @@ type GuamiListCond struct {
 // HssInfo Information of an HSS NF Instance
 type HssInfo struct {
 	GroupId                  *externalRef0.NfGroupId `json:"groupId,omitempty"`
-	ImsPrivateIdentityRanges *[]IdentityRange        `json:"imsPrivateIdentityRanges,omitempty"`
-	ImsPublicIdentityRanges  *[]IdentityRange        `json:"imsPublicIdentityRanges,omitempty"`
-	ImsiRanges               *[]ImsiRange            `json:"imsiRanges,omitempty"`
-	MsisdnRanges             *[]IdentityRange        `json:"msisdnRanges,omitempty"`
+	ImsPrivateIdentityRanges []IdentityRange         `json:"imsPrivateIdentityRanges,omitempty"`
+	ImsPublicIdentityRanges  []IdentityRange         `json:"imsPublicIdentityRanges,omitempty"`
+	ImsiRanges               []ImsiRange             `json:"imsiRanges,omitempty"`
+	MsisdnRanges             []IdentityRange         `json:"msisdnRanges,omitempty"`
 	AdditionalProperties     map[string]interface{}  `json:"-"`
 }
 
 // IdentityRange A range of GPSIs (subscriber identities), either based on a numeric range, or based on regular-expression matching
 type IdentityRange struct {
-	End                  *string                `json:"end,omitempty"`
+	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
-	Start                *string                `json:"start,omitempty"`
+	Start                string                 `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // ImsiRange A range of IMSIs (subscriber identities), either based on a numeric range, or based on regular-expression matching
 type ImsiRange struct {
-	End                  *string                `json:"end,omitempty"`
+	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
-	Start                *string                `json:"start,omitempty"`
+	Start                string                 `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -390,24 +390,24 @@ type InterfaceUpfInfoItem struct {
 	EndpointFqdn *Fqdn `json:"endpointFqdn,omitempty"`
 
 	// InterfaceType Types of User-Plane interfaces of the UPF
-	InterfaceType         UPInterfaceType          `json:"interfaceType"`
-	Ipv4EndpointAddresses *[]externalRef0.Ipv4Addr `json:"ipv4EndpointAddresses,omitempty"`
-	Ipv6EndpointAddresses *[]externalRef0.Ipv6Addr `json:"ipv6EndpointAddresses,omitempty"`
-	NetworkInstance       *string                  `json:"networkInstance,omitempty"`
-	AdditionalProperties  map[string]interface{}   `json:"-"`
+	InterfaceType         UPInterfaceType         `json:"interfaceType"`
+	Ipv4EndpointAddresses []externalRef0.Ipv4Addr `json:"ipv4EndpointAddresses,omitempty"`
+	Ipv6EndpointAddresses []externalRef0.Ipv6Addr `json:"ipv6EndpointAddresses,omitempty"`
+	NetworkInstance       *string                 `json:"networkInstance,omitempty"`
+	AdditionalProperties  map[string]interface{}  `json:"-"`
 }
 
 // InternalGroupIdRange A range of Group IDs (internal group identities), either based on a numeric range, or based on regular-expression matching
 type InternalGroupIdRange struct {
-	End                  *externalRef0.GroupId  `json:"end,omitempty"`
+	End                  externalRef0.GroupId   `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
-	Start                *externalRef0.GroupId  `json:"start,omitempty"`
+	Start                externalRef0.GroupId   `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // IpEndPoint IP addressing information of a given NFService; it consists on, e.g. IP address, TCP port, transport protocol...
 type IpEndPoint struct {
-	Ipv4Address *externalRef0.Ipv4Addr `json:"ipv4Address,omitempty"`
+	Ipv4Address externalRef0.Ipv4Addr  `json:"ipv4Address,omitempty"`
 	Ipv6Address *externalRef0.Ipv6Addr `json:"ipv6Address,omitempty"`
 	Port        *int                   `json:"port,omitempty"`
 
@@ -421,8 +421,8 @@ type IpReachability string
 
 // Ipv4AddressRange Range of IPv4 addresses
 type Ipv4AddressRange struct {
-	End                  *externalRef0.Ipv4Addr `json:"end,omitempty"`
-	Start                *externalRef0.Ipv4Addr `json:"start,omitempty"`
+	End                  externalRef0.Ipv4Addr  `json:"end,omitempty"`
+	Start                externalRef0.Ipv4Addr  `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -436,29 +436,29 @@ type Ipv6PrefixRange struct {
 // LmfInfo Information of an LMF NF Instance
 type LmfInfo struct {
 	// LmfId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	LmfId                *interface{}               `json:"lmfId,omitempty"`
-	ServingAccessTypes   *[]externalRef0.AccessType `json:"servingAccessTypes,omitempty"`
-	ServingAnNodeTypes   *[]AnNodeType              `json:"servingAnNodeTypes,omitempty"`
-	ServingClientTypes   *[]interface{}             `json:"servingClientTypes,omitempty"`
-	ServingRatTypes      *[]externalRef0.RatType    `json:"servingRatTypes,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	LmfId                interface{}               `json:"lmfId,omitempty"`
+	ServingAccessTypes   []externalRef0.AccessType `json:"servingAccessTypes,omitempty"`
+	ServingAnNodeTypes   []AnNodeType              `json:"servingAnNodeTypes,omitempty"`
+	ServingClientTypes   []interface{}             `json:"servingClientTypes,omitempty"`
+	ServingRatTypes      []externalRef0.RatType    `json:"servingRatTypes,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // N2InterfaceAmfInfo AMF N2 interface information
 type N2InterfaceAmfInfo struct {
-	AmfName              *externalRef0.AmfName    `json:"amfName,omitempty"`
-	Ipv4EndpointAddress  *[]externalRef0.Ipv4Addr `json:"ipv4EndpointAddress,omitempty"`
-	Ipv6EndpointAddress  *[]externalRef0.Ipv6Addr `json:"ipv6EndpointAddress,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
+	AmfName              *externalRef0.AmfName   `json:"amfName,omitempty"`
+	Ipv4EndpointAddress  []externalRef0.Ipv4Addr `json:"ipv4EndpointAddress,omitempty"`
+	Ipv6EndpointAddress  []externalRef0.Ipv6Addr `json:"ipv6EndpointAddress,omitempty"`
+	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
 // NFProfile Information of an NF Instance registered in the NRF
 type NFProfile struct {
-	AllowedNfDomains *[]string                 `json:"allowedNfDomains,omitempty"`
-	AllowedNfTypes   *[]NFType                 `json:"allowedNfTypes,omitempty"`
-	AllowedNssais    *[]externalRef0.ExtSnssai `json:"allowedNssais,omitempty"`
-	AllowedPlmns     *[]externalRef0.PlmnId    `json:"allowedPlmns,omitempty"`
-	AllowedSnpns     *[]externalRef0.PlmnIdNid `json:"allowedSnpns,omitempty"`
+	AllowedNfDomains []string                 `json:"allowedNfDomains,omitempty"`
+	AllowedNfTypes   []NFType                 `json:"allowedNfTypes,omitempty"`
+	AllowedNssais    []externalRef0.ExtSnssai `json:"allowedNssais,omitempty"`
+	AllowedPlmns     []externalRef0.PlmnId    `json:"allowedPlmns,omitempty"`
+	AllowedSnpns     []externalRef0.PlmnIdNid `json:"allowedSnpns,omitempty"`
 
 	// AmfInfo Information of an AMF NF Instance
 	AmfInfo     *AmfInfo            `json:"amfInfo,omitempty"`
@@ -488,10 +488,10 @@ type NFProfile struct {
 	HssInfoList    *map[string]HssInfo `json:"hssInfoList,omitempty"`
 
 	// InterPlmnFqdn Fully Qualified Domain Name
-	InterPlmnFqdn *Fqdn                    `json:"interPlmnFqdn,omitempty"`
-	Ipv4Addresses *[]externalRef0.Ipv4Addr `json:"ipv4Addresses,omitempty"`
-	Ipv6Addresses *[]externalRef0.Ipv6Addr `json:"ipv6Addresses,omitempty"`
-	LcHSupportInd *bool                    `json:"lcHSupportInd,omitempty"`
+	InterPlmnFqdn *Fqdn                   `json:"interPlmnFqdn,omitempty"`
+	Ipv4Addresses []externalRef0.Ipv4Addr `json:"ipv4Addresses,omitempty"`
+	Ipv6Addresses []externalRef0.Ipv6Addr `json:"ipv6Addresses,omitempty"`
+	LcHSupportInd *bool                   `json:"lcHSupportInd,omitempty"`
 
 	// LmfInfo Information of an LMF NF Instance
 	LmfInfo       *LmfInfo               `json:"lmfInfo,omitempty"`
@@ -508,8 +508,8 @@ type NFProfile struct {
 	NfServiceList              *map[string]NFService     `json:"nfServiceList,omitempty"`
 	NfServicePersistence       *bool                     `json:"nfServicePersistence,omitempty"`
 	// Deprecated:
-	NfServices            *[]NFService                      `json:"nfServices,omitempty"`
-	NfSetIdList           *[]externalRef0.NfSetId           `json:"nfSetIdList,omitempty"`
+	NfServices            []NFService                       `json:"nfServices,omitempty"`
+	NfSetIdList           []externalRef0.NfSetId            `json:"nfSetIdList,omitempty"`
 	NfSetRecoveryTimeList *map[string]externalRef0.DateTime `json:"nfSetRecoveryTimeList,omitempty"`
 
 	// NfStatus Status of a given NF Instance stored in NRF
@@ -519,33 +519,33 @@ type NFProfile struct {
 	NfType NFType `json:"nfType"`
 
 	// NrfInfo Information of an NRF NF Instance, used in hierarchical NRF deployments
-	NrfInfo *NrfInfo  `json:"nrfInfo,omitempty"`
-	NsiList *[]string `json:"nsiList,omitempty"`
+	NrfInfo *NrfInfo `json:"nrfInfo,omitempty"`
+	NsiList []string `json:"nsiList,omitempty"`
 
 	// NwdafInfo Information of a NWDAF NF Instance
 	NwdafInfo      *NwdafInfo `json:"nwdafInfo,omitempty"`
 	OlcHSupportInd *bool      `json:"olcHSupportInd,omitempty"`
 
 	// PcfInfo Information of a PCF NF Instance
-	PcfInfo           *PcfInfo                  `json:"pcfInfo,omitempty"`
-	PcfInfoList       *map[string]PcfInfo       `json:"pcfInfoList,omitempty"`
-	PcscfInfoList     *map[string]PcscfInfo     `json:"pcscfInfoList,omitempty"`
-	PerPlmnSnssaiList *[]PlmnSnssai             `json:"perPlmnSnssaiList,omitempty"`
-	PlmnList          *[]externalRef0.PlmnId    `json:"plmnList,omitempty"`
-	Priority          *int                      `json:"priority,omitempty"`
-	RecoveryTime      *externalRef0.DateTime    `json:"recoveryTime,omitempty"`
-	SNssais           *[]externalRef0.ExtSnssai `json:"sNssais,omitempty"`
-	ScpDomains        *[]string                 `json:"scpDomains,omitempty"`
+	PcfInfo           *PcfInfo                 `json:"pcfInfo,omitempty"`
+	PcfInfoList       *map[string]PcfInfo      `json:"pcfInfoList,omitempty"`
+	PcscfInfoList     *map[string]PcscfInfo    `json:"pcscfInfoList,omitempty"`
+	PerPlmnSnssaiList []PlmnSnssai             `json:"perPlmnSnssaiList,omitempty"`
+	PlmnList          []externalRef0.PlmnId    `json:"plmnList,omitempty"`
+	Priority          *int                     `json:"priority,omitempty"`
+	RecoveryTime      *externalRef0.DateTime   `json:"recoveryTime,omitempty"`
+	SNssais           []externalRef0.ExtSnssai `json:"sNssais,omitempty"`
+	ScpDomains        []string                 `json:"scpDomains,omitempty"`
 
 	// ScpInfo Information of an SCP Instance
 	ScpInfo                    *ScpInfo                          `json:"scpInfo,omitempty"`
 	ServiceSetRecoveryTimeList *map[string]externalRef0.DateTime `json:"serviceSetRecoveryTimeList,omitempty"`
-	ServingScope               *[]string                         `json:"servingScope,omitempty"`
+	ServingScope               []string                          `json:"servingScope,omitempty"`
 
 	// SmfInfo Information of an SMF NF Instance
-	SmfInfo     *SmfInfo                  `json:"smfInfo,omitempty"`
-	SmfInfoList *map[string]SmfInfo       `json:"smfInfoList,omitempty"`
-	SnpnList    *[]externalRef0.PlmnIdNid `json:"snpnList,omitempty"`
+	SmfInfo     *SmfInfo                 `json:"smfInfo,omitempty"`
+	SmfInfoList *map[string]SmfInfo      `json:"smfInfoList,omitempty"`
+	SnpnList    []externalRef0.PlmnIdNid `json:"snpnList,omitempty"`
 
 	// UdmInfo Information of an UDM NF Instance
 	UdmInfo     *UdmInfo            `json:"udmInfo,omitempty"`
@@ -567,36 +567,36 @@ type NFProfile struct {
 
 // NFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance
 type NFService struct {
-	AllowedNfDomains                 *[]string                          `json:"allowedNfDomains,omitempty"`
-	AllowedNfTypes                   *[]NFType                          `json:"allowedNfTypes,omitempty"`
-	AllowedNssais                    *[]externalRef0.ExtSnssai          `json:"allowedNssais,omitempty"`
-	AllowedOperationsPerNfInstance   *map[string][]string               `json:"allowedOperationsPerNfInstance,omitempty"`
-	AllowedOperationsPerNfType       *map[string][]string               `json:"allowedOperationsPerNfType,omitempty"`
-	AllowedPlmns                     *[]externalRef0.PlmnId             `json:"allowedPlmns,omitempty"`
-	AllowedSnpns                     *[]externalRef0.PlmnIdNid          `json:"allowedSnpns,omitempty"`
-	ApiPrefix                        *string                            `json:"apiPrefix,omitempty"`
-	Capacity                         *int                               `json:"capacity,omitempty"`
-	DefaultNotificationSubscriptions *[]DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
+	AllowedNfDomains                 []string                          `json:"allowedNfDomains,omitempty"`
+	AllowedNfTypes                   []NFType                          `json:"allowedNfTypes,omitempty"`
+	AllowedNssais                    []externalRef0.ExtSnssai          `json:"allowedNssais,omitempty"`
+	AllowedOperationsPerNfInstance   *map[string][]string              `json:"allowedOperationsPerNfInstance,omitempty"`
+	AllowedOperationsPerNfType       *map[string][]string              `json:"allowedOperationsPerNfType,omitempty"`
+	AllowedPlmns                     []externalRef0.PlmnId             `json:"allowedPlmns,omitempty"`
+	AllowedSnpns                     []externalRef0.PlmnIdNid          `json:"allowedSnpns,omitempty"`
+	ApiPrefix                        *string                           `json:"apiPrefix,omitempty"`
+	Capacity                         *int                              `json:"capacity,omitempty"`
+	DefaultNotificationSubscriptions []DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
 
 	// Fqdn Fully Qualified Domain Name
 	Fqdn *Fqdn `json:"fqdn,omitempty"`
 
 	// InterPlmnFqdn Fully Qualified Domain Name
-	InterPlmnFqdn      *Fqdn                          `json:"interPlmnFqdn,omitempty"`
-	IpEndPoints        *[]IpEndPoint                  `json:"ipEndPoints,omitempty"`
-	Load               *int                           `json:"load,omitempty"`
-	LoadTimeStamp      *externalRef0.DateTime         `json:"loadTimeStamp,omitempty"`
-	NfServiceSetIdList *[]externalRef0.NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
+	InterPlmnFqdn      *Fqdn                         `json:"interPlmnFqdn,omitempty"`
+	IpEndPoints        []IpEndPoint                  `json:"ipEndPoints,omitempty"`
+	Load               *int                          `json:"load,omitempty"`
+	LoadTimeStamp      *externalRef0.DateTime        `json:"loadTimeStamp,omitempty"`
+	NfServiceSetIdList []externalRef0.NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
 
 	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF
-	NfServiceStatus   NFServiceStatus           `json:"nfServiceStatus"`
-	Oauth2Required    *bool                     `json:"oauth2Required,omitempty"`
-	PerPlmnSnssaiList *[]PlmnSnssai             `json:"perPlmnSnssaiList,omitempty"`
-	Priority          *int                      `json:"priority,omitempty"`
-	RecoveryTime      *externalRef0.DateTime    `json:"recoveryTime,omitempty"`
-	SNssais           *[]externalRef0.ExtSnssai `json:"sNssais,omitempty"`
-	Scheme            externalRef0.UriScheme    `json:"scheme"`
-	ServiceInstanceId string                    `json:"serviceInstanceId"`
+	NfServiceStatus   NFServiceStatus          `json:"nfServiceStatus"`
+	Oauth2Required    *bool                    `json:"oauth2Required,omitempty"`
+	PerPlmnSnssaiList []PlmnSnssai             `json:"perPlmnSnssaiList,omitempty"`
+	Priority          *int                     `json:"priority,omitempty"`
+	RecoveryTime      *externalRef0.DateTime   `json:"recoveryTime,omitempty"`
+	SNssais           []externalRef0.ExtSnssai `json:"sNssais,omitempty"`
+	Scheme            externalRef0.UriScheme   `json:"scheme"`
+	ServiceInstanceId string                   `json:"serviceInstanceId"`
 
 	// ServiceName Service names known to NRF
 	ServiceName                     ServiceName                         `json:"serviceName"`
@@ -604,7 +604,7 @@ type NFService struct {
 	SupportedVendorSpecificFeatures *map[string][]VendorSpecificFeature `json:"supportedVendorSpecificFeatures,omitempty"`
 
 	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
-	VendorId             *VendorId              `json:"vendorId,omitempty"`
+	VendorId             VendorId               `json:"vendorId,omitempty"`
 	Versions             []NFServiceVersion     `json:"versions"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -628,15 +628,15 @@ type NFType string
 
 // NefCond Subscription to a set of NF Instances (NEFs), identified by Event ID(s) provided by AF, S-NSSAI(s), AF Instance ID, Application Identifier, External Identifier, External Group Identifier, or domain name.
 type NefCond struct {
-	AfEvents                       *[]interface{}       `json:"afEvents,omitempty"`
+	AfEvents                       []interface{}        `json:"afEvents,omitempty"`
 	ConditionType                  NefCondConditionType `json:"conditionType"`
-	ExternalGroupIdentifiersRanges *[]IdentityRange     `json:"externalGroupIdentifiersRanges,omitempty"`
-	GpsiRanges                     *[]IdentityRange     `json:"gpsiRanges,omitempty"`
+	ExternalGroupIdentifiersRanges []IdentityRange      `json:"externalGroupIdentifiersRanges,omitempty"`
+	GpsiRanges                     []IdentityRange      `json:"gpsiRanges,omitempty"`
 
 	// PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
 	PfdData              *PfdData               `json:"pfdData,omitempty"`
-	ServedFqdnList       *[]string              `json:"servedFqdnList,omitempty"`
-	SnssaiList           *[]externalRef0.Snssai `json:"snssaiList,omitempty"`
+	ServedFqdnList       []string               `json:"servedFqdnList,omitempty"`
+	SnssaiList           []externalRef0.Snssai  `json:"snssaiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -650,15 +650,15 @@ type NefId = string
 type NefInfo struct {
 	// AfEeData AF Event Exposure data managed by a given NEF Instance
 	AfEeData                       *AfEventExposureData `json:"afEeData,omitempty"`
-	ExternalGroupIdentifiersRanges *[]IdentityRange     `json:"externalGroupIdentifiersRanges,omitempty"`
-	GpsiRanges                     *[]IdentityRange     `json:"gpsiRanges,omitempty"`
+	ExternalGroupIdentifiersRanges []IdentityRange      `json:"externalGroupIdentifiersRanges,omitempty"`
+	GpsiRanges                     []IdentityRange      `json:"gpsiRanges,omitempty"`
 
 	// NefId Identity of the NEF
 	NefId *NefId `json:"nefId,omitempty"`
 
 	// PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
 	PfdData              *PfdData               `json:"pfdData,omitempty"`
-	ServedFqdnList       *[]string              `json:"servedFqdnList,omitempty"`
+	ServedFqdnList       []string               `json:"servedFqdnList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -719,8 +719,8 @@ type NfTypeCond struct {
 
 // NotifCondition Condition (list of attributes in the NF Profile) to determine whether a notification must be sent by NRF
 type NotifCondition struct {
-	MonitoredAttributes   *[]string              `json:"monitoredAttributes,omitempty"`
-	UnmonitoredAttributes *[]string              `json:"unmonitoredAttributes,omitempty"`
+	MonitoredAttributes   []string               `json:"monitoredAttributes,omitempty"`
+	UnmonitoredAttributes []string               `json:"unmonitoredAttributes,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
@@ -733,17 +733,17 @@ type NotificationData struct {
 	Event                NotificationEventType       `json:"event"`
 	NfInstanceUri        externalRef0.Uri            `json:"nfInstanceUri"`
 	NfProfile            *NotificationData_NfProfile `json:"nfProfile,omitempty"`
-	ProfileChanges       *[]externalRef0.ChangeItem  `json:"profileChanges,omitempty"`
+	ProfileChanges       []externalRef0.ChangeItem   `json:"profileChanges,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
 // NotificationData_NfProfile defines model for NotificationData.NfProfile.
 type NotificationData_NfProfile struct {
-	AllowedNfDomains *[]string                 `json:"allowedNfDomains,omitempty"`
-	AllowedNfTypes   *[]NFType                 `json:"allowedNfTypes,omitempty"`
-	AllowedNssais    *[]externalRef0.ExtSnssai `json:"allowedNssais,omitempty"`
-	AllowedPlmns     *[]externalRef0.PlmnId    `json:"allowedPlmns,omitempty"`
-	AllowedSnpns     *[]externalRef0.PlmnIdNid `json:"allowedSnpns,omitempty"`
+	AllowedNfDomains []string                 `json:"allowedNfDomains,omitempty"`
+	AllowedNfTypes   []NFType                 `json:"allowedNfTypes,omitempty"`
+	AllowedNssais    []externalRef0.ExtSnssai `json:"allowedNssais,omitempty"`
+	AllowedPlmns     []externalRef0.PlmnId    `json:"allowedPlmns,omitempty"`
+	AllowedSnpns     []externalRef0.PlmnIdNid `json:"allowedSnpns,omitempty"`
 
 	// AmfInfo Information of an AMF NF Instance
 	AmfInfo     *AmfInfo            `json:"amfInfo,omitempty"`
@@ -773,10 +773,10 @@ type NotificationData_NfProfile struct {
 	HssInfoList    *map[string]HssInfo `json:"hssInfoList,omitempty"`
 
 	// InterPlmnFqdn Fully Qualified Domain Name
-	InterPlmnFqdn *Fqdn                    `json:"interPlmnFqdn,omitempty"`
-	Ipv4Addresses *[]externalRef0.Ipv4Addr `json:"ipv4Addresses,omitempty"`
-	Ipv6Addresses *[]externalRef0.Ipv6Addr `json:"ipv6Addresses,omitempty"`
-	LcHSupportInd *bool                    `json:"lcHSupportInd,omitempty"`
+	InterPlmnFqdn *Fqdn                   `json:"interPlmnFqdn,omitempty"`
+	Ipv4Addresses []externalRef0.Ipv4Addr `json:"ipv4Addresses,omitempty"`
+	Ipv6Addresses []externalRef0.Ipv6Addr `json:"ipv6Addresses,omitempty"`
+	LcHSupportInd *bool                   `json:"lcHSupportInd,omitempty"`
 
 	// LmfInfo Information of an LMF NF Instance
 	LmfInfo       *LmfInfo               `json:"lmfInfo,omitempty"`
@@ -793,7 +793,7 @@ type NotificationData_NfProfile struct {
 	NfServiceList              *map[string]NFService             `json:"nfServiceList,omitempty"`
 	NfServicePersistence       *bool                             `json:"nfServicePersistence,omitempty"`
 	NfServices                 *[]NFService                      `json:"nfServices,omitempty"`
-	NfSetIdList                *[]externalRef0.NfSetId           `json:"nfSetIdList,omitempty"`
+	NfSetIdList                []externalRef0.NfSetId            `json:"nfSetIdList,omitempty"`
 	NfSetRecoveryTimeList      *map[string]externalRef0.DateTime `json:"nfSetRecoveryTimeList,omitempty"`
 
 	// NfStatus Status of a given NF Instance stored in NRF
@@ -803,33 +803,33 @@ type NotificationData_NfProfile struct {
 	NfType NFType `json:"nfType"`
 
 	// NrfInfo Information of an NRF NF Instance, used in hierarchical NRF deployments
-	NrfInfo *NrfInfo  `json:"nrfInfo,omitempty"`
-	NsiList *[]string `json:"nsiList,omitempty"`
+	NrfInfo *NrfInfo `json:"nrfInfo,omitempty"`
+	NsiList []string `json:"nsiList,omitempty"`
 
 	// NwdafInfo Information of a NWDAF NF Instance
 	NwdafInfo      *NwdafInfo `json:"nwdafInfo,omitempty"`
 	OlcHSupportInd *bool      `json:"olcHSupportInd,omitempty"`
 
 	// PcfInfo Information of a PCF NF Instance
-	PcfInfo           *PcfInfo                  `json:"pcfInfo,omitempty"`
-	PcfInfoList       *map[string]PcfInfo       `json:"pcfInfoList,omitempty"`
-	PcscfInfoList     *map[string]PcscfInfo     `json:"pcscfInfoList,omitempty"`
-	PerPlmnSnssaiList *[]PlmnSnssai             `json:"perPlmnSnssaiList,omitempty"`
-	PlmnList          *[]externalRef0.PlmnId    `json:"plmnList,omitempty"`
-	Priority          *int                      `json:"priority,omitempty"`
-	RecoveryTime      *externalRef0.DateTime    `json:"recoveryTime,omitempty"`
-	SNssais           *[]externalRef0.ExtSnssai `json:"sNssais,omitempty"`
-	ScpDomains        *[]string                 `json:"scpDomains,omitempty"`
+	PcfInfo           *PcfInfo                 `json:"pcfInfo,omitempty"`
+	PcfInfoList       *map[string]PcfInfo      `json:"pcfInfoList,omitempty"`
+	PcscfInfoList     *map[string]PcscfInfo    `json:"pcscfInfoList,omitempty"`
+	PerPlmnSnssaiList []PlmnSnssai             `json:"perPlmnSnssaiList,omitempty"`
+	PlmnList          []externalRef0.PlmnId    `json:"plmnList,omitempty"`
+	Priority          *int                     `json:"priority,omitempty"`
+	RecoveryTime      *externalRef0.DateTime   `json:"recoveryTime,omitempty"`
+	SNssais           []externalRef0.ExtSnssai `json:"sNssais,omitempty"`
+	ScpDomains        []string                 `json:"scpDomains,omitempty"`
 
 	// ScpInfo Information of an SCP Instance
 	ScpInfo                    *ScpInfo                          `json:"scpInfo,omitempty"`
 	ServiceSetRecoveryTimeList *map[string]externalRef0.DateTime `json:"serviceSetRecoveryTimeList,omitempty"`
-	ServingScope               *[]string                         `json:"servingScope,omitempty"`
+	ServingScope               []string                          `json:"servingScope,omitempty"`
 
 	// SmfInfo Information of an SMF NF Instance
-	SmfInfo     *SmfInfo                  `json:"smfInfo,omitempty"`
-	SmfInfoList *map[string]SmfInfo       `json:"smfInfoList,omitempty"`
-	SnpnList    *[]externalRef0.PlmnIdNid `json:"snpnList,omitempty"`
+	SmfInfo     *SmfInfo                 `json:"smfInfo,omitempty"`
+	SmfInfoList *map[string]SmfInfo      `json:"smfInfoList,omitempty"`
+	SnpnList    []externalRef0.PlmnIdNid `json:"snpnList,omitempty"`
 
 	// UdmInfo Information of an UDM NF Instance
 	UdmInfo     *UdmInfo            `json:"udmInfo,omitempty"`
@@ -890,11 +890,11 @@ type NrfInfo struct {
 
 // NwdafCond Subscription to a set of NF Instances (NWDAFs), identified by Analytics ID(s), S-NSSAI(s) or NWDAF Serving Area information, i.e. list of TAIs for which the NWDAF can provide analytics.
 type NwdafCond struct {
-	AnalyticsIds         *[]string              `json:"analyticsIds,omitempty"`
+	AnalyticsIds         []string               `json:"analyticsIds,omitempty"`
 	ConditionType        NwdafCondConditionType `json:"conditionType"`
-	SnssaiList           *[]externalRef0.Snssai `json:"snssaiList,omitempty"`
-	TaiList              *[]externalRef0.Tai    `json:"taiList,omitempty"`
-	TaiRangeList         *[]TaiRange            `json:"taiRangeList,omitempty"`
+	SnssaiList           []externalRef0.Snssai  `json:"snssaiList,omitempty"`
+	TaiList              []externalRef0.Tai     `json:"taiList,omitempty"`
+	TaiRangeList         []TaiRange             `json:"taiRangeList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -903,10 +903,10 @@ type NwdafCondConditionType string
 
 // NwdafInfo Information of a NWDAF NF Instance
 type NwdafInfo struct {
-	EventIds             *[]interface{}         `json:"eventIds,omitempty"`
-	NwdafEvents          *[]interface{}         `json:"nwdafEvents,omitempty"`
-	TaiList              *[]externalRef0.Tai    `json:"taiList,omitempty"`
-	TaiRangeList         *[]TaiRange            `json:"taiRangeList,omitempty"`
+	EventIds             []interface{}          `json:"eventIds,omitempty"`
+	NwdafEvents          []interface{}          `json:"nwdafEvents,omitempty"`
+	TaiList              []externalRef0.Tai     `json:"taiList,omitempty"`
+	TaiRangeList         []TaiRange             `json:"taiRangeList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -918,48 +918,48 @@ type OptionsResponse struct {
 
 // PcfInfo Information of a PCF NF Instance
 type PcfInfo struct {
-	DnnList              *[]externalRef0.Dnn            `json:"dnnList,omitempty"`
-	GpsiRanges           *[]IdentityRange               `json:"gpsiRanges,omitempty"`
-	GroupId              *externalRef0.NfGroupId        `json:"groupId,omitempty"`
-	RxDiamHost           *externalRef0.DiameterIdentity `json:"rxDiamHost,omitempty"`
-	RxDiamRealm          *externalRef0.DiameterIdentity `json:"rxDiamRealm,omitempty"`
-	SupiRanges           *[]SupiRange                   `json:"supiRanges,omitempty"`
-	V2xSupportInd        *bool                          `json:"v2xSupportInd,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
+	DnnList              []externalRef0.Dnn            `json:"dnnList,omitempty"`
+	GpsiRanges           []IdentityRange               `json:"gpsiRanges,omitempty"`
+	GroupId              *externalRef0.NfGroupId       `json:"groupId,omitempty"`
+	RxDiamHost           externalRef0.DiameterIdentity `json:"rxDiamHost,omitempty"`
+	RxDiamRealm          externalRef0.DiameterIdentity `json:"rxDiamRealm,omitempty"`
+	SupiRanges           []SupiRange                   `json:"supiRanges,omitempty"`
+	V2xSupportInd        *bool                         `json:"v2xSupportInd,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
 // PcscfInfo Information of a P-CSCF NF Instance
 type PcscfInfo struct {
-	AccessType *[]externalRef0.AccessType `json:"accessType,omitempty"`
-	DnnList    *[]externalRef0.Dnn        `json:"dnnList,omitempty"`
+	AccessType []externalRef0.AccessType `json:"accessType,omitempty"`
+	DnnList    []externalRef0.Dnn        `json:"dnnList,omitempty"`
 
 	// GmFqdn Fully Qualified Domain Name
-	GmFqdn                  *Fqdn                    `json:"gmFqdn,omitempty"`
-	GmIpv4Addresses         *[]externalRef0.Ipv4Addr `json:"gmIpv4Addresses,omitempty"`
-	GmIpv6Addresses         *[]externalRef0.Ipv6Addr `json:"gmIpv6Addresses,omitempty"`
-	ServedIpv4AddressRanges *[]Ipv4AddressRange      `json:"servedIpv4AddressRanges,omitempty"`
-	ServedIpv6PrefixRanges  *[]Ipv6PrefixRange       `json:"servedIpv6PrefixRanges,omitempty"`
-	AdditionalProperties    map[string]interface{}   `json:"-"`
+	GmFqdn                  *Fqdn                   `json:"gmFqdn,omitempty"`
+	GmIpv4Addresses         []externalRef0.Ipv4Addr `json:"gmIpv4Addresses,omitempty"`
+	GmIpv6Addresses         []externalRef0.Ipv6Addr `json:"gmIpv6Addresses,omitempty"`
+	ServedIpv4AddressRanges []Ipv4AddressRange      `json:"servedIpv4AddressRanges,omitempty"`
+	ServedIpv6PrefixRanges  []Ipv6PrefixRange       `json:"servedIpv6PrefixRanges,omitempty"`
+	AdditionalProperties    map[string]interface{}  `json:"-"`
 }
 
 // PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
 type PfdData struct {
-	AfIds                *[]string              `json:"afIds,omitempty"`
-	AppIds               *[]string              `json:"appIds,omitempty"`
+	AfIds                []string               `json:"afIds,omitempty"`
+	AppIds               []string               `json:"appIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // PlmnRange Range of PLMN IDs
 type PlmnRange struct {
-	End                  *string                `json:"end,omitempty"`
+	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
-	Start                *string                `json:"start,omitempty"`
+	Start                string                 `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // PlmnSnssai List of network slices (S-NSSAIs) for a given PLMN ID
 type PlmnSnssai struct {
-	Nid                  *externalRef0.Nid        `json:"nid,omitempty"`
+	Nid                  externalRef0.Nid         `json:"nid,omitempty"`
 	PlmnId               externalRef0.PlmnId      `json:"plmnId"`
 	SNssaiList           []externalRef0.ExtSnssai `json:"sNssaiList"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
@@ -975,7 +975,7 @@ type ScpDomainCond struct {
 type ScpDomainInfo struct {
 	// ScpFqdn Fully Qualified Domain Name
 	ScpFqdn              *Fqdn                  `json:"scpFqdn,omitempty"`
-	ScpIpEndPoints       *[]IpEndPoint          `json:"scpIpEndPoints,omitempty"`
+	ScpIpEndPoints       []IpEndPoint           `json:"scpIpEndPoints,omitempty"`
 	ScpPorts             *map[string]int        `json:"scpPorts,omitempty"`
 	ScpPrefix            *string                `json:"scpPrefix,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -983,20 +983,20 @@ type ScpDomainInfo struct {
 
 // ScpInfo Information of an SCP Instance
 type ScpInfo struct {
-	AddressDomains *[]string `json:"addressDomains,omitempty"`
+	AddressDomains []string `json:"addressDomains,omitempty"`
 
 	// IpReachability Indicates the type(s) of IP addresses reachable via an SCP
-	IpReachability       *IpReachability            `json:"ipReachability,omitempty"`
-	Ipv4AddrRanges       *[]Ipv4AddressRange        `json:"ipv4AddrRanges,omitempty"`
-	Ipv4Addresses        *[]externalRef0.Ipv4Addr   `json:"ipv4Addresses,omitempty"`
-	Ipv6PrefixRanges     *[]Ipv6PrefixRange         `json:"ipv6PrefixRanges,omitempty"`
-	Ipv6Prefixes         *[]externalRef0.Ipv6Prefix `json:"ipv6Prefixes,omitempty"`
-	RemotePlmnList       *[]externalRef0.PlmnId     `json:"remotePlmnList,omitempty"`
-	ScpDomainInfoList    *map[string]ScpDomainInfo  `json:"scpDomainInfoList,omitempty"`
-	ScpPorts             *map[string]int            `json:"scpPorts,omitempty"`
-	ScpPrefix            *string                    `json:"scpPrefix,omitempty"`
-	ServedNfSetIdList    *[]externalRef0.NfSetId    `json:"servedNfSetIdList,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	IpReachability       *IpReachability           `json:"ipReachability,omitempty"`
+	Ipv4AddrRanges       []Ipv4AddressRange        `json:"ipv4AddrRanges,omitempty"`
+	Ipv4Addresses        []externalRef0.Ipv4Addr   `json:"ipv4Addresses,omitempty"`
+	Ipv6PrefixRanges     []Ipv6PrefixRange         `json:"ipv6PrefixRanges,omitempty"`
+	Ipv6Prefixes         []externalRef0.Ipv6Prefix `json:"ipv6Prefixes,omitempty"`
+	RemotePlmnList       []externalRef0.PlmnId     `json:"remotePlmnList,omitempty"`
+	ScpDomainInfoList    *map[string]ScpDomainInfo `json:"scpDomainInfoList,omitempty"`
+	ScpPorts             *map[string]int           `json:"scpPorts,omitempty"`
+	ScpPrefix            *string                   `json:"scpPrefix,omitempty"`
+	ServedNfSetIdList    []externalRef0.NfSetId    `json:"servedNfSetIdList,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // ServiceName Service names known to NRF
@@ -1011,14 +1011,14 @@ type ServiceNameCond struct {
 
 // SmfInfo Information of an SMF NF Instance
 type SmfInfo struct {
-	AccessType *[]externalRef0.AccessType `json:"accessType,omitempty"`
+	AccessType []externalRef0.AccessType `json:"accessType,omitempty"`
 
 	// PgwFqdn Fully Qualified Domain Name
 	PgwFqdn              *Fqdn                  `json:"pgwFqdn,omitempty"`
 	Priority             *int                   `json:"priority,omitempty"`
 	SNssaiSmfInfoList    []SnssaiSmfInfoItem    `json:"sNssaiSmfInfoList"`
-	TaiList              *[]externalRef0.Tai    `json:"taiList,omitempty"`
-	TaiRangeList         *[]TaiRange            `json:"taiRangeList,omitempty"`
+	TaiList              []externalRef0.Tai     `json:"taiList,omitempty"`
+	TaiRangeList         []TaiRange             `json:"taiRangeList,omitempty"`
 	VsmfSupportInd       *bool                  `json:"vsmfSupportInd,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -1040,8 +1040,8 @@ type SnssaiUpfInfoItem struct {
 
 // SubscriptionData Information of a subscription to notifications to NRF events, included in subscription requests and responses
 type SubscriptionData struct {
-	NfStatusNotificationUri string            `json:"nfStatusNotificationUri"`
-	Nid                     *externalRef0.Nid `json:"nid,omitempty"`
+	NfStatusNotificationUri string           `json:"nfStatusNotificationUri"`
+	Nid                     externalRef0.Nid `json:"nid,omitempty"`
 
 	// NotifCondition Condition (list of attributes in the NF Profile) to determine whether a notification must be sent by NRF
 	NotifCondition       *NotifCondition                 `json:"notifCondition,omitempty"`
@@ -1054,15 +1054,15 @@ type SubscriptionData struct {
 
 	// ReqNfType NF types known to NRF
 	ReqNfType            *NFType                         `json:"reqNfType,omitempty"`
-	ReqNotifEvents       *[]NotificationEventType        `json:"reqNotifEvents,omitempty"`
-	ReqPerPlmnSnssais    *[]PlmnSnssai                   `json:"reqPerPlmnSnssais,omitempty"`
-	ReqPlmnList          *[]externalRef0.PlmnId          `json:"reqPlmnList,omitempty"`
-	ReqSnpnList          *[]externalRef0.PlmnIdNid       `json:"reqSnpnList,omitempty"`
-	ReqSnssais           *[]externalRef0.Snssai          `json:"reqSnssais,omitempty"`
+	ReqNotifEvents       []NotificationEventType         `json:"reqNotifEvents,omitempty"`
+	ReqPerPlmnSnssais    []PlmnSnssai                    `json:"reqPerPlmnSnssais,omitempty"`
+	ReqPlmnList          []externalRef0.PlmnId           `json:"reqPlmnList,omitempty"`
+	ReqSnpnList          []externalRef0.PlmnIdNid        `json:"reqSnpnList,omitempty"`
+	ReqSnssais           []externalRef0.Snssai           `json:"reqSnssais,omitempty"`
 	RequesterFeatures    *externalRef0.SupportedFeatures `json:"requesterFeatures,omitempty"`
-	ServingScope         *[]string                       `json:"servingScope,omitempty"`
+	ServingScope         []string                        `json:"servingScope,omitempty"`
 	SubscrCond           *SubscriptionData_SubscrCond    `json:"subscrCond,omitempty"`
-	SubscriptionId       *string                         `json:"subscriptionId,omitempty"`
+	SubscriptionId       string                          `json:"subscriptionId,omitempty"`
 	ValidityTime         *externalRef0.DateTime          `json:"validityTime,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -1074,23 +1074,23 @@ type SubscriptionData_SubscrCond struct {
 
 // SupiRange A range of SUPIs (subscriber identities), either based on a numeric range, or based on regular-expression matching
 type SupiRange struct {
-	End                  *string                `json:"end,omitempty"`
+	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
-	Start                *string                `json:"start,omitempty"`
+	Start                string                 `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // TacRange Range of TACs (Tracking Area Codes)
 type TacRange struct {
-	End                  *string                `json:"end,omitempty"`
+	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
-	Start                *string                `json:"start,omitempty"`
+	Start                string                 `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // TaiRange Range of TAIs (Tracking Area Identities)
 type TaiRange struct {
-	Nid                  *externalRef0.Nid      `json:"nid,omitempty"`
+	Nid                  externalRef0.Nid       `json:"nid,omitempty"`
 	PlmnId               externalRef0.PlmnId    `json:"plmnId"`
 	TacRangeList         []TacRange             `json:"tacRangeList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -1099,10 +1099,10 @@ type TaiRange struct {
 // TngfInfo Infomation of the TNGF endpoints
 type TngfInfo struct {
 	// EndpointFqdn Fully Qualified Domain Name
-	EndpointFqdn          *Fqdn                    `json:"endpointFqdn,omitempty"`
-	Ipv4EndpointAddresses *[]externalRef0.Ipv4Addr `json:"ipv4EndpointAddresses,omitempty"`
-	Ipv6EndpointAddresses *[]externalRef0.Ipv6Addr `json:"ipv6EndpointAddresses,omitempty"`
-	AdditionalProperties  map[string]interface{}   `json:"-"`
+	EndpointFqdn          *Fqdn                   `json:"endpointFqdn,omitempty"`
+	Ipv4EndpointAddresses []externalRef0.Ipv4Addr `json:"ipv4EndpointAddresses,omitempty"`
+	Ipv6EndpointAddresses []externalRef0.Ipv6Addr `json:"ipv6EndpointAddresses,omitempty"`
+	AdditionalProperties  map[string]interface{}  `json:"-"`
 }
 
 // TransportProtocol Types of transport protocol used in a given IP endpoint of an NF Service Instance
@@ -1111,10 +1111,10 @@ type TransportProtocol string
 // TwifInfo Addressing information (IP addresses, FQDN) of the TWIF
 type TwifInfo struct {
 	// EndpointFqdn Fully Qualified Domain Name
-	EndpointFqdn          *Fqdn                    `json:"endpointFqdn,omitempty"`
-	Ipv4EndpointAddresses *[]externalRef0.Ipv4Addr `json:"ipv4EndpointAddresses,omitempty"`
-	Ipv6EndpointAddresses *[]externalRef0.Ipv6Addr `json:"ipv6EndpointAddresses,omitempty"`
-	AdditionalProperties  map[string]interface{}   `json:"-"`
+	EndpointFqdn          *Fqdn                   `json:"endpointFqdn,omitempty"`
+	Ipv4EndpointAddresses []externalRef0.Ipv4Addr `json:"ipv4EndpointAddresses,omitempty"`
+	Ipv6EndpointAddresses []externalRef0.Ipv6Addr `json:"ipv6EndpointAddresses,omitempty"`
+	AdditionalProperties  map[string]interface{}  `json:"-"`
 }
 
 // UPInterfaceType Types of User-Plane interfaces of the UPF
@@ -1122,22 +1122,22 @@ type UPInterfaceType string
 
 // UdmInfo Information of an UDM NF Instance
 type UdmInfo struct {
-	ExternalGroupIdentifiersRanges *[]IdentityRange        `json:"externalGroupIdentifiersRanges,omitempty"`
-	GpsiRanges                     *[]IdentityRange        `json:"gpsiRanges,omitempty"`
+	ExternalGroupIdentifiersRanges []IdentityRange         `json:"externalGroupIdentifiersRanges,omitempty"`
+	GpsiRanges                     []IdentityRange         `json:"gpsiRanges,omitempty"`
 	GroupId                        *externalRef0.NfGroupId `json:"groupId,omitempty"`
-	InternalGroupIdentifiersRanges *[]InternalGroupIdRange `json:"internalGroupIdentifiersRanges,omitempty"`
-	RoutingIndicators              *[]string               `json:"routingIndicators,omitempty"`
-	SupiRanges                     *[]SupiRange            `json:"supiRanges,omitempty"`
+	InternalGroupIdentifiersRanges []InternalGroupIdRange  `json:"internalGroupIdentifiersRanges,omitempty"`
+	RoutingIndicators              []string                `json:"routingIndicators,omitempty"`
+	SupiRanges                     []SupiRange             `json:"supiRanges,omitempty"`
 	AdditionalProperties           map[string]interface{}  `json:"-"`
 }
 
 // UdrInfo Information of an UDR NF Instance
 type UdrInfo struct {
-	ExternalGroupIdentifiersRanges *[]IdentityRange        `json:"externalGroupIdentifiersRanges,omitempty"`
-	GpsiRanges                     *[]IdentityRange        `json:"gpsiRanges,omitempty"`
+	ExternalGroupIdentifiersRanges []IdentityRange         `json:"externalGroupIdentifiersRanges,omitempty"`
+	GpsiRanges                     []IdentityRange         `json:"gpsiRanges,omitempty"`
 	GroupId                        *externalRef0.NfGroupId `json:"groupId,omitempty"`
-	SupiRanges                     *[]SupiRange            `json:"supiRanges,omitempty"`
-	SupportedDataSets              *[]DataSetId            `json:"supportedDataSets,omitempty"`
+	SupiRanges                     []SupiRange             `json:"supiRanges,omitempty"`
+	SupportedDataSets              []DataSetId             `json:"supportedDataSets,omitempty"`
 	AdditionalProperties           map[string]interface{}  `json:"-"`
 }
 
@@ -1147,15 +1147,15 @@ type UdsfInfo struct {
 
 	// StorageIdRanges A map (list of key-value pairs) where realmId serves as key and each value in the map is an array of IdentityRanges. Each IdentityRange is a range of storageIds.
 	StorageIdRanges      *map[string][]IdentityRange `json:"storageIdRanges,omitempty"`
-	SupiRanges           *[]SupiRange                `json:"supiRanges,omitempty"`
+	SupiRanges           []SupiRange                 `json:"supiRanges,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
 // UpfCond Subscription to a set of NF Instances (UPFs), able to serve a certain service area (i.e. SMF serving area or TAI list)
 type UpfCond struct {
 	ConditionType        UpfCondConditionType   `json:"conditionType"`
-	SmfServingArea       *[]string              `json:"smfServingArea,omitempty"`
-	TaiList              *[]externalRef0.Tai    `json:"taiList,omitempty"`
+	SmfServingArea       []string               `json:"smfServingArea,omitempty"`
+	TaiList              []externalRef0.Tai     `json:"taiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -1164,17 +1164,17 @@ type UpfCondConditionType string
 
 // UpfInfo Information of an UPF NF Instance
 type UpfInfo struct {
-	AtsssCapability      *externalRef0.AtsssCapability  `json:"atsssCapability,omitempty"`
-	DataForwarding       *bool                          `json:"dataForwarding,omitempty"`
-	InterfaceUpfInfoList *[]InterfaceUpfInfoItem        `json:"interfaceUpfInfoList,omitempty"`
-	Ipups                *bool                          `json:"ipups,omitempty"`
-	IwkEpsInd            *bool                          `json:"iwkEpsInd,omitempty"`
-	PduSessionTypes      *[]externalRef0.PduSessionType `json:"pduSessionTypes,omitempty"`
-	Priority             *int                           `json:"priority,omitempty"`
-	RedundantGtpu        *bool                          `json:"redundantGtpu,omitempty"`
-	SNssaiUpfInfoList    []SnssaiUpfInfoItem            `json:"sNssaiUpfInfoList"`
-	SmfServingArea       *[]string                      `json:"smfServingArea,omitempty"`
-	TaiList              *[]externalRef0.Tai            `json:"taiList,omitempty"`
+	AtsssCapability      *externalRef0.AtsssCapability `json:"atsssCapability,omitempty"`
+	DataForwarding       *bool                         `json:"dataForwarding,omitempty"`
+	InterfaceUpfInfoList []InterfaceUpfInfoItem        `json:"interfaceUpfInfoList,omitempty"`
+	Ipups                *bool                         `json:"ipups,omitempty"`
+	IwkEpsInd            *bool                         `json:"iwkEpsInd,omitempty"`
+	PduSessionTypes      []externalRef0.PduSessionType `json:"pduSessionTypes,omitempty"`
+	Priority             *int                          `json:"priority,omitempty"`
+	RedundantGtpu        *bool                         `json:"redundantGtpu,omitempty"`
+	SNssaiUpfInfoList    []SnssaiUpfInfoItem           `json:"sNssaiUpfInfoList"`
+	SmfServingArea       []string                      `json:"smfServingArea,omitempty"`
+	TaiList              []externalRef0.Tai            `json:"taiList,omitempty"`
 
 	// TngfInfo Infomation of the TNGF endpoints
 	TngfInfo *TngfInfo `json:"tngfInfo,omitempty"`
@@ -1201,10 +1201,10 @@ type VendorSpecificFeature struct {
 // WAgfInfo Information of the W-AGF end-points
 type WAgfInfo struct {
 	// EndpointFqdn Fully Qualified Domain Name
-	EndpointFqdn          *Fqdn                    `json:"endpointFqdn,omitempty"`
-	Ipv4EndpointAddresses *[]externalRef0.Ipv4Addr `json:"ipv4EndpointAddresses,omitempty"`
-	Ipv6EndpointAddresses *[]externalRef0.Ipv6Addr `json:"ipv6EndpointAddresses,omitempty"`
-	AdditionalProperties  map[string]interface{}   `json:"-"`
+	EndpointFqdn          *Fqdn                   `json:"endpointFqdn,omitempty"`
+	Ipv4EndpointAddresses []externalRef0.Ipv4Addr `json:"ipv4EndpointAddresses,omitempty"`
+	Ipv6EndpointAddresses []externalRef0.Ipv6Addr `json:"ipv6EndpointAddresses,omitempty"`
+	AdditionalProperties  map[string]interface{}  `json:"-"`
 }
 
 // GetNFInstancesParams defines parameters for GetNFInstances.
@@ -1352,14 +1352,14 @@ func (a AfEventExposureData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'afEvents': %w", err)
 	}
 
-	if a.AfIds != nil {
+	if len(a.AfIds) != 0 {
 		object["afIds"], err = json.Marshal(a.AfIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'afIds': %w", err)
 		}
 	}
 
-	if a.AppIds != nil {
+	if len(a.AppIds) != 0 {
 		object["appIds"], err = json.Marshal(a.AppIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'appIds': %w", err)
@@ -1435,14 +1435,14 @@ func (a AmfCond) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AmfRegionId != nil {
+	if len(a.AmfRegionId) != 0 {
 		object["amfRegionId"], err = json.Marshal(a.AmfRegionId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'amfRegionId': %w", err)
 		}
 	}
 
-	if a.AmfSetId != nil {
+	if len(a.AmfSetId) != 0 {
 		object["amfSetId"], err = json.Marshal(a.AmfSetId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'amfSetId': %w", err)
@@ -1576,14 +1576,14 @@ func (a AmfInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'amfSetId': %w", err)
 	}
 
-	if a.BackupInfoAmfFailure != nil {
+	if len(a.BackupInfoAmfFailure) != 0 {
 		object["backupInfoAmfFailure"], err = json.Marshal(a.BackupInfoAmfFailure)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'backupInfoAmfFailure': %w", err)
 		}
 	}
 
-	if a.BackupInfoAmfRemoval != nil {
+	if len(a.BackupInfoAmfRemoval) != 0 {
 		object["backupInfoAmfRemoval"], err = json.Marshal(a.BackupInfoAmfRemoval)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'backupInfoAmfRemoval': %w", err)
@@ -1602,14 +1602,14 @@ func (a AmfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
 		}
 	}
 
-	if a.TaiRangeList != nil {
+	if len(a.TaiRangeList) != 0 {
 		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
@@ -1700,14 +1700,14 @@ func (a AusfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RoutingIndicators != nil {
+	if len(a.RoutingIndicators) != 0 {
 		object["routingIndicators"], err = json.Marshal(a.RoutingIndicators)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'routingIndicators': %w", err)
 		}
 	}
 
-	if a.SupiRanges != nil {
+	if len(a.SupiRanges) != 0 {
 		object["supiRanges"], err = json.Marshal(a.SupiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supiRanges': %w", err)
@@ -1799,28 +1799,28 @@ func (a BsfInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DnnList != nil {
+	if len(a.DnnList) != 0 {
 		object["dnnList"], err = json.Marshal(a.DnnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dnnList': %w", err)
 		}
 	}
 
-	if a.IpDomainList != nil {
+	if len(a.IpDomainList) != 0 {
 		object["ipDomainList"], err = json.Marshal(a.IpDomainList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipDomainList': %w", err)
 		}
 	}
 
-	if a.Ipv4AddressRanges != nil {
+	if len(a.Ipv4AddressRanges) != 0 {
 		object["ipv4AddressRanges"], err = json.Marshal(a.Ipv4AddressRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4AddressRanges': %w", err)
 		}
 	}
 
-	if a.Ipv6PrefixRanges != nil {
+	if len(a.Ipv6PrefixRanges) != 0 {
 		object["ipv6PrefixRanges"], err = json.Marshal(a.Ipv6PrefixRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6PrefixRanges': %w", err)
@@ -1928,7 +1928,7 @@ func (a ChfInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.GpsiRangeList != nil {
+	if len(a.GpsiRangeList) != 0 {
 		object["gpsiRangeList"], err = json.Marshal(a.GpsiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiRangeList': %w", err)
@@ -1942,7 +1942,7 @@ func (a ChfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PlmnRangeList != nil {
+	if len(a.PlmnRangeList) != 0 {
 		object["plmnRangeList"], err = json.Marshal(a.PlmnRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'plmnRangeList': %w", err)
@@ -1963,7 +1963,7 @@ func (a ChfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SupiRangeList != nil {
+	if len(a.SupiRangeList) != 0 {
 		object["supiRangeList"], err = json.Marshal(a.SupiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supiRangeList': %w", err)
@@ -2102,7 +2102,7 @@ func (a DefaultNotificationSubscription) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'notificationType': %w", err)
 	}
 
-	if a.Versions != nil {
+	if len(a.Versions) != 0 {
 		object["versions"], err = json.Marshal(a.Versions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'versions': %w", err)
@@ -2276,7 +2276,7 @@ func (a DnnUpfInfoItem) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DnaiList != nil {
+	if len(a.DnaiList) != 0 {
 		object["dnaiList"], err = json.Marshal(a.DnaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dnaiList': %w", err)
@@ -2295,21 +2295,21 @@ func (a DnnUpfInfoItem) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
 	}
 
-	if a.Ipv4AddressRanges != nil {
+	if len(a.Ipv4AddressRanges) != 0 {
 		object["ipv4AddressRanges"], err = json.Marshal(a.Ipv4AddressRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4AddressRanges': %w", err)
 		}
 	}
 
-	if a.Ipv6PrefixRanges != nil {
+	if len(a.Ipv6PrefixRanges) != 0 {
 		object["ipv6PrefixRanges"], err = json.Marshal(a.Ipv6PrefixRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6PrefixRanges': %w", err)
 		}
 	}
 
-	if a.PduSessionTypes != nil {
+	if len(a.PduSessionTypes) != 0 {
 		object["pduSessionTypes"], err = json.Marshal(a.PduSessionTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pduSessionTypes': %w", err)
@@ -2385,14 +2385,14 @@ func (a GmlcInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.GmlcNumbers != nil {
+	if len(a.GmlcNumbers) != 0 {
 		object["gmlcNumbers"], err = json.Marshal(a.GmlcNumbers)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gmlcNumbers': %w", err)
 		}
 	}
 
-	if a.ServingClientTypes != nil {
+	if len(a.ServingClientTypes) != 0 {
 		object["servingClientTypes"], err = json.Marshal(a.ServingClientTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingClientTypes': %w", err)
@@ -2565,28 +2565,28 @@ func (a HssInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ImsPrivateIdentityRanges != nil {
+	if len(a.ImsPrivateIdentityRanges) != 0 {
 		object["imsPrivateIdentityRanges"], err = json.Marshal(a.ImsPrivateIdentityRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'imsPrivateIdentityRanges': %w", err)
 		}
 	}
 
-	if a.ImsPublicIdentityRanges != nil {
+	if len(a.ImsPublicIdentityRanges) != 0 {
 		object["imsPublicIdentityRanges"], err = json.Marshal(a.ImsPublicIdentityRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'imsPublicIdentityRanges': %w", err)
 		}
 	}
 
-	if a.ImsiRanges != nil {
+	if len(a.ImsiRanges) != 0 {
 		object["imsiRanges"], err = json.Marshal(a.ImsiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'imsiRanges': %w", err)
 		}
 	}
 
-	if a.MsisdnRanges != nil {
+	if len(a.MsisdnRanges) != 0 {
 		object["msisdnRanges"], err = json.Marshal(a.MsisdnRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'msisdnRanges': %w", err)
@@ -2670,7 +2670,7 @@ func (a IdentityRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.End != nil {
+	if len(a.End) != 0 {
 		object["end"], err = json.Marshal(a.End)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'end': %w", err)
@@ -2684,7 +2684,7 @@ func (a IdentityRange) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Start != nil {
+	if len(a.Start) != 0 {
 		object["start"], err = json.Marshal(a.Start)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'start': %w", err)
@@ -2768,7 +2768,7 @@ func (a ImsiRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.End != nil {
+	if len(a.End) != 0 {
 		object["end"], err = json.Marshal(a.End)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'end': %w", err)
@@ -2782,7 +2782,7 @@ func (a ImsiRange) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Start != nil {
+	if len(a.Start) != 0 {
 		object["start"], err = json.Marshal(a.Start)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'start': %w", err)
@@ -2894,14 +2894,14 @@ func (a InterfaceUpfInfoItem) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'interfaceType': %w", err)
 	}
 
-	if a.Ipv4EndpointAddresses != nil {
+	if len(a.Ipv4EndpointAddresses) != 0 {
 		object["ipv4EndpointAddresses"], err = json.Marshal(a.Ipv4EndpointAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4EndpointAddresses': %w", err)
 		}
 	}
 
-	if a.Ipv6EndpointAddresses != nil {
+	if len(a.Ipv6EndpointAddresses) != 0 {
 		object["ipv6EndpointAddresses"], err = json.Marshal(a.Ipv6EndpointAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6EndpointAddresses': %w", err)
@@ -2992,7 +2992,7 @@ func (a InternalGroupIdRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.End != nil {
+	if len(a.End) != 0 {
 		object["end"], err = json.Marshal(a.End)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'end': %w", err)
@@ -3006,7 +3006,7 @@ func (a InternalGroupIdRange) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Start != nil {
+	if len(a.Start) != 0 {
 		object["start"], err = json.Marshal(a.Start)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'start': %w", err)
@@ -3098,7 +3098,7 @@ func (a IpEndPoint) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Ipv4Address != nil {
+	if len(a.Ipv4Address) != 0 {
 		object["ipv4Address"], err = json.Marshal(a.Ipv4Address)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Address': %w", err)
@@ -3195,14 +3195,14 @@ func (a Ipv4AddressRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.End != nil {
+	if len(a.End) != 0 {
 		object["end"], err = json.Marshal(a.End)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'end': %w", err)
 		}
 	}
 
-	if a.Start != nil {
+	if len(a.Start) != 0 {
 		object["start"], err = json.Marshal(a.Start)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'start': %w", err)
@@ -3392,28 +3392,28 @@ func (a LmfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServingAccessTypes != nil {
+	if len(a.ServingAccessTypes) != 0 {
 		object["servingAccessTypes"], err = json.Marshal(a.ServingAccessTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingAccessTypes': %w", err)
 		}
 	}
 
-	if a.ServingAnNodeTypes != nil {
+	if len(a.ServingAnNodeTypes) != 0 {
 		object["servingAnNodeTypes"], err = json.Marshal(a.ServingAnNodeTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingAnNodeTypes': %w", err)
 		}
 	}
 
-	if a.ServingClientTypes != nil {
+	if len(a.ServingClientTypes) != 0 {
 		object["servingClientTypes"], err = json.Marshal(a.ServingClientTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingClientTypes': %w", err)
 		}
 	}
 
-	if a.ServingRatTypes != nil {
+	if len(a.ServingRatTypes) != 0 {
 		object["servingRatTypes"], err = json.Marshal(a.ServingRatTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingRatTypes': %w", err)
@@ -3504,14 +3504,14 @@ func (a N2InterfaceAmfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4EndpointAddress != nil {
+	if len(a.Ipv4EndpointAddress) != 0 {
 		object["ipv4EndpointAddress"], err = json.Marshal(a.Ipv4EndpointAddress)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4EndpointAddress': %w", err)
 		}
 	}
 
-	if a.Ipv6EndpointAddress != nil {
+	if len(a.Ipv6EndpointAddress) != 0 {
 		object["ipv6EndpointAddress"], err = json.Marshal(a.Ipv6EndpointAddress)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6EndpointAddress': %w", err)
@@ -4107,35 +4107,35 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedNfDomains != nil {
+	if len(a.AllowedNfDomains) != 0 {
 		object["allowedNfDomains"], err = json.Marshal(a.AllowedNfDomains)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNfDomains': %w", err)
 		}
 	}
 
-	if a.AllowedNfTypes != nil {
+	if len(a.AllowedNfTypes) != 0 {
 		object["allowedNfTypes"], err = json.Marshal(a.AllowedNfTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNfTypes': %w", err)
 		}
 	}
 
-	if a.AllowedNssais != nil {
+	if len(a.AllowedNssais) != 0 {
 		object["allowedNssais"], err = json.Marshal(a.AllowedNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNssais': %w", err)
 		}
 	}
 
-	if a.AllowedPlmns != nil {
+	if len(a.AllowedPlmns) != 0 {
 		object["allowedPlmns"], err = json.Marshal(a.AllowedPlmns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedPlmns': %w", err)
 		}
 	}
 
-	if a.AllowedSnpns != nil {
+	if len(a.AllowedSnpns) != 0 {
 		object["allowedSnpns"], err = json.Marshal(a.AllowedSnpns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedSnpns': %w", err)
@@ -4254,14 +4254,14 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4Addresses != nil {
+	if len(a.Ipv4Addresses) != 0 {
 		object["ipv4Addresses"], err = json.Marshal(a.Ipv4Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addresses': %w", err)
 		}
 	}
 
-	if a.Ipv6Addresses != nil {
+	if len(a.Ipv6Addresses) != 0 {
 		object["ipv6Addresses"], err = json.Marshal(a.Ipv6Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Addresses': %w", err)
@@ -4350,14 +4350,14 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NfServices != nil {
+	if len(a.NfServices) != 0 {
 		object["nfServices"], err = json.Marshal(a.NfServices)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nfServices': %w", err)
 		}
 	}
 
-	if a.NfSetIdList != nil {
+	if len(a.NfSetIdList) != 0 {
 		object["nfSetIdList"], err = json.Marshal(a.NfSetIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nfSetIdList': %w", err)
@@ -4388,7 +4388,7 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NsiList != nil {
+	if len(a.NsiList) != 0 {
 		object["nsiList"], err = json.Marshal(a.NsiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nsiList': %w", err)
@@ -4430,14 +4430,14 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PerPlmnSnssaiList != nil {
+	if len(a.PerPlmnSnssaiList) != 0 {
 		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
 		}
 	}
 
-	if a.PlmnList != nil {
+	if len(a.PlmnList) != 0 {
 		object["plmnList"], err = json.Marshal(a.PlmnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'plmnList': %w", err)
@@ -4458,14 +4458,14 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SNssais != nil {
+	if len(a.SNssais) != 0 {
 		object["sNssais"], err = json.Marshal(a.SNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
 		}
 	}
 
-	if a.ScpDomains != nil {
+	if len(a.ScpDomains) != 0 {
 		object["scpDomains"], err = json.Marshal(a.ScpDomains)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'scpDomains': %w", err)
@@ -4486,7 +4486,7 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServingScope != nil {
+	if len(a.ServingScope) != 0 {
 		object["servingScope"], err = json.Marshal(a.ServingScope)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingScope': %w", err)
@@ -4507,7 +4507,7 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SnpnList != nil {
+	if len(a.SnpnList) != 0 {
 		object["snpnList"], err = json.Marshal(a.SnpnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'snpnList': %w", err)
@@ -4855,21 +4855,21 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedNfDomains != nil {
+	if len(a.AllowedNfDomains) != 0 {
 		object["allowedNfDomains"], err = json.Marshal(a.AllowedNfDomains)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNfDomains': %w", err)
 		}
 	}
 
-	if a.AllowedNfTypes != nil {
+	if len(a.AllowedNfTypes) != 0 {
 		object["allowedNfTypes"], err = json.Marshal(a.AllowedNfTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNfTypes': %w", err)
 		}
 	}
 
-	if a.AllowedNssais != nil {
+	if len(a.AllowedNssais) != 0 {
 		object["allowedNssais"], err = json.Marshal(a.AllowedNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNssais': %w", err)
@@ -4890,14 +4890,14 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AllowedPlmns != nil {
+	if len(a.AllowedPlmns) != 0 {
 		object["allowedPlmns"], err = json.Marshal(a.AllowedPlmns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedPlmns': %w", err)
 		}
 	}
 
-	if a.AllowedSnpns != nil {
+	if len(a.AllowedSnpns) != 0 {
 		object["allowedSnpns"], err = json.Marshal(a.AllowedSnpns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedSnpns': %w", err)
@@ -4918,7 +4918,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.DefaultNotificationSubscriptions != nil {
+	if len(a.DefaultNotificationSubscriptions) != 0 {
 		object["defaultNotificationSubscriptions"], err = json.Marshal(a.DefaultNotificationSubscriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'defaultNotificationSubscriptions': %w", err)
@@ -4939,7 +4939,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.IpEndPoints != nil {
+	if len(a.IpEndPoints) != 0 {
 		object["ipEndPoints"], err = json.Marshal(a.IpEndPoints)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipEndPoints': %w", err)
@@ -4960,7 +4960,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NfServiceSetIdList != nil {
+	if len(a.NfServiceSetIdList) != 0 {
 		object["nfServiceSetIdList"], err = json.Marshal(a.NfServiceSetIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nfServiceSetIdList': %w", err)
@@ -4979,7 +4979,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PerPlmnSnssaiList != nil {
+	if len(a.PerPlmnSnssaiList) != 0 {
 		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
@@ -5000,7 +5000,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SNssais != nil {
+	if len(a.SNssais) != 0 {
 		object["sNssais"], err = json.Marshal(a.SNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
@@ -5036,7 +5036,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.VendorId != nil {
+	if len(a.VendorId) != 0 {
 		object["vendorId"], err = json.Marshal(a.VendorId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'vendorId': %w", err)
@@ -5251,7 +5251,7 @@ func (a NefCond) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AfEvents != nil {
+	if len(a.AfEvents) != 0 {
 		object["afEvents"], err = json.Marshal(a.AfEvents)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'afEvents': %w", err)
@@ -5263,14 +5263,14 @@ func (a NefCond) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'conditionType': %w", err)
 	}
 
-	if a.ExternalGroupIdentifiersRanges != nil {
+	if len(a.ExternalGroupIdentifiersRanges) != 0 {
 		object["externalGroupIdentifiersRanges"], err = json.Marshal(a.ExternalGroupIdentifiersRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'externalGroupIdentifiersRanges': %w", err)
 		}
 	}
 
-	if a.GpsiRanges != nil {
+	if len(a.GpsiRanges) != 0 {
 		object["gpsiRanges"], err = json.Marshal(a.GpsiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiRanges': %w", err)
@@ -5284,14 +5284,14 @@ func (a NefCond) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServedFqdnList != nil {
+	if len(a.ServedFqdnList) != 0 {
 		object["servedFqdnList"], err = json.Marshal(a.ServedFqdnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servedFqdnList': %w", err)
 		}
 	}
 
-	if a.SnssaiList != nil {
+	if len(a.SnssaiList) != 0 {
 		object["snssaiList"], err = json.Marshal(a.SnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'snssaiList': %w", err)
@@ -5406,14 +5406,14 @@ func (a NefInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ExternalGroupIdentifiersRanges != nil {
+	if len(a.ExternalGroupIdentifiersRanges) != 0 {
 		object["externalGroupIdentifiersRanges"], err = json.Marshal(a.ExternalGroupIdentifiersRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'externalGroupIdentifiersRanges': %w", err)
 		}
 	}
 
-	if a.GpsiRanges != nil {
+	if len(a.GpsiRanges) != 0 {
 		object["gpsiRanges"], err = json.Marshal(a.GpsiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiRanges': %w", err)
@@ -5434,7 +5434,7 @@ func (a NefInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServedFqdnList != nil {
+	if len(a.ServedFqdnList) != 0 {
 		object["servedFqdnList"], err = json.Marshal(a.ServedFqdnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servedFqdnList': %w", err)
@@ -6068,14 +6068,14 @@ func (a NotifCondition) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.MonitoredAttributes != nil {
+	if len(a.MonitoredAttributes) != 0 {
 		object["monitoredAttributes"], err = json.Marshal(a.MonitoredAttributes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'monitoredAttributes': %w", err)
 		}
 	}
 
-	if a.UnmonitoredAttributes != nil {
+	if len(a.UnmonitoredAttributes) != 0 {
 		object["unmonitoredAttributes"], err = json.Marshal(a.UnmonitoredAttributes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'unmonitoredAttributes': %w", err)
@@ -6199,7 +6199,7 @@ func (a NotificationData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ProfileChanges != nil {
+	if len(a.ProfileChanges) != 0 {
 		object["profileChanges"], err = json.Marshal(a.ProfileChanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'profileChanges': %w", err)
@@ -6795,35 +6795,35 @@ func (a NotificationData_NfProfile) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedNfDomains != nil {
+	if len(a.AllowedNfDomains) != 0 {
 		object["allowedNfDomains"], err = json.Marshal(a.AllowedNfDomains)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNfDomains': %w", err)
 		}
 	}
 
-	if a.AllowedNfTypes != nil {
+	if len(a.AllowedNfTypes) != 0 {
 		object["allowedNfTypes"], err = json.Marshal(a.AllowedNfTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNfTypes': %w", err)
 		}
 	}
 
-	if a.AllowedNssais != nil {
+	if len(a.AllowedNssais) != 0 {
 		object["allowedNssais"], err = json.Marshal(a.AllowedNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNssais': %w", err)
 		}
 	}
 
-	if a.AllowedPlmns != nil {
+	if len(a.AllowedPlmns) != 0 {
 		object["allowedPlmns"], err = json.Marshal(a.AllowedPlmns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedPlmns': %w", err)
 		}
 	}
 
-	if a.AllowedSnpns != nil {
+	if len(a.AllowedSnpns) != 0 {
 		object["allowedSnpns"], err = json.Marshal(a.AllowedSnpns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedSnpns': %w", err)
@@ -6942,14 +6942,14 @@ func (a NotificationData_NfProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4Addresses != nil {
+	if len(a.Ipv4Addresses) != 0 {
 		object["ipv4Addresses"], err = json.Marshal(a.Ipv4Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addresses': %w", err)
 		}
 	}
 
-	if a.Ipv6Addresses != nil {
+	if len(a.Ipv6Addresses) != 0 {
 		object["ipv6Addresses"], err = json.Marshal(a.Ipv6Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Addresses': %w", err)
@@ -7045,7 +7045,7 @@ func (a NotificationData_NfProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NfSetIdList != nil {
+	if len(a.NfSetIdList) != 0 {
 		object["nfSetIdList"], err = json.Marshal(a.NfSetIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nfSetIdList': %w", err)
@@ -7076,7 +7076,7 @@ func (a NotificationData_NfProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NsiList != nil {
+	if len(a.NsiList) != 0 {
 		object["nsiList"], err = json.Marshal(a.NsiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nsiList': %w", err)
@@ -7118,14 +7118,14 @@ func (a NotificationData_NfProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PerPlmnSnssaiList != nil {
+	if len(a.PerPlmnSnssaiList) != 0 {
 		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
 		}
 	}
 
-	if a.PlmnList != nil {
+	if len(a.PlmnList) != 0 {
 		object["plmnList"], err = json.Marshal(a.PlmnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'plmnList': %w", err)
@@ -7146,14 +7146,14 @@ func (a NotificationData_NfProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SNssais != nil {
+	if len(a.SNssais) != 0 {
 		object["sNssais"], err = json.Marshal(a.SNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
 		}
 	}
 
-	if a.ScpDomains != nil {
+	if len(a.ScpDomains) != 0 {
 		object["scpDomains"], err = json.Marshal(a.ScpDomains)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'scpDomains': %w", err)
@@ -7174,7 +7174,7 @@ func (a NotificationData_NfProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServingScope != nil {
+	if len(a.ServingScope) != 0 {
 		object["servingScope"], err = json.Marshal(a.ServingScope)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingScope': %w", err)
@@ -7195,7 +7195,7 @@ func (a NotificationData_NfProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SnpnList != nil {
+	if len(a.SnpnList) != 0 {
 		object["snpnList"], err = json.Marshal(a.SnpnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'snpnList': %w", err)
@@ -7824,7 +7824,7 @@ func (a NwdafCond) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AnalyticsIds != nil {
+	if len(a.AnalyticsIds) != 0 {
 		object["analyticsIds"], err = json.Marshal(a.AnalyticsIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'analyticsIds': %w", err)
@@ -7836,21 +7836,21 @@ func (a NwdafCond) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'conditionType': %w", err)
 	}
 
-	if a.SnssaiList != nil {
+	if len(a.SnssaiList) != 0 {
 		object["snssaiList"], err = json.Marshal(a.SnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'snssaiList': %w", err)
 		}
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
 		}
 	}
 
-	if a.TaiRangeList != nil {
+	if len(a.TaiRangeList) != 0 {
 		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
@@ -7942,28 +7942,28 @@ func (a NwdafInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.EventIds != nil {
+	if len(a.EventIds) != 0 {
 		object["eventIds"], err = json.Marshal(a.EventIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'eventIds': %w", err)
 		}
 	}
 
-	if a.NwdafEvents != nil {
+	if len(a.NwdafEvents) != 0 {
 		object["nwdafEvents"], err = json.Marshal(a.NwdafEvents)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nwdafEvents': %w", err)
 		}
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
 		}
 	}
 
-	if a.TaiRangeList != nil {
+	if len(a.TaiRangeList) != 0 {
 		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
@@ -8147,14 +8147,14 @@ func (a PcfInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DnnList != nil {
+	if len(a.DnnList) != 0 {
 		object["dnnList"], err = json.Marshal(a.DnnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dnnList': %w", err)
 		}
 	}
 
-	if a.GpsiRanges != nil {
+	if len(a.GpsiRanges) != 0 {
 		object["gpsiRanges"], err = json.Marshal(a.GpsiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiRanges': %w", err)
@@ -8168,21 +8168,21 @@ func (a PcfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RxDiamHost != nil {
+	if len(a.RxDiamHost) != 0 {
 		object["rxDiamHost"], err = json.Marshal(a.RxDiamHost)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rxDiamHost': %w", err)
 		}
 	}
 
-	if a.RxDiamRealm != nil {
+	if len(a.RxDiamRealm) != 0 {
 		object["rxDiamRealm"], err = json.Marshal(a.RxDiamRealm)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rxDiamRealm': %w", err)
 		}
 	}
 
-	if a.SupiRanges != nil {
+	if len(a.SupiRanges) != 0 {
 		object["supiRanges"], err = json.Marshal(a.SupiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supiRanges': %w", err)
@@ -8305,14 +8305,14 @@ func (a PcscfInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessType != nil {
+	if len(a.AccessType) != 0 {
 		object["accessType"], err = json.Marshal(a.AccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
 		}
 	}
 
-	if a.DnnList != nil {
+	if len(a.DnnList) != 0 {
 		object["dnnList"], err = json.Marshal(a.DnnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dnnList': %w", err)
@@ -8326,28 +8326,28 @@ func (a PcscfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.GmIpv4Addresses != nil {
+	if len(a.GmIpv4Addresses) != 0 {
 		object["gmIpv4Addresses"], err = json.Marshal(a.GmIpv4Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gmIpv4Addresses': %w", err)
 		}
 	}
 
-	if a.GmIpv6Addresses != nil {
+	if len(a.GmIpv6Addresses) != 0 {
 		object["gmIpv6Addresses"], err = json.Marshal(a.GmIpv6Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gmIpv6Addresses': %w", err)
 		}
 	}
 
-	if a.ServedIpv4AddressRanges != nil {
+	if len(a.ServedIpv4AddressRanges) != 0 {
 		object["servedIpv4AddressRanges"], err = json.Marshal(a.ServedIpv4AddressRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servedIpv4AddressRanges': %w", err)
 		}
 	}
 
-	if a.ServedIpv6PrefixRanges != nil {
+	if len(a.ServedIpv6PrefixRanges) != 0 {
 		object["servedIpv6PrefixRanges"], err = json.Marshal(a.ServedIpv6PrefixRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servedIpv6PrefixRanges': %w", err)
@@ -8423,14 +8423,14 @@ func (a PfdData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AfIds != nil {
+	if len(a.AfIds) != 0 {
 		object["afIds"], err = json.Marshal(a.AfIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'afIds': %w", err)
 		}
 	}
 
-	if a.AppIds != nil {
+	if len(a.AppIds) != 0 {
 		object["appIds"], err = json.Marshal(a.AppIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'appIds': %w", err)
@@ -8514,7 +8514,7 @@ func (a PlmnRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.End != nil {
+	if len(a.End) != 0 {
 		object["end"], err = json.Marshal(a.End)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'end': %w", err)
@@ -8528,7 +8528,7 @@ func (a PlmnRange) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Start != nil {
+	if len(a.Start) != 0 {
 		object["start"], err = json.Marshal(a.Start)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'start': %w", err)
@@ -8612,7 +8612,7 @@ func (a PlmnSnssai) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Nid != nil {
+	if len(a.Nid) != 0 {
 		object["nid"], err = json.Marshal(a.Nid)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
@@ -8787,7 +8787,7 @@ func (a ScpDomainInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ScpIpEndPoints != nil {
+	if len(a.ScpIpEndPoints) != 0 {
 		object["scpIpEndPoints"], err = json.Marshal(a.ScpIpEndPoints)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'scpIpEndPoints': %w", err)
@@ -8949,7 +8949,7 @@ func (a ScpInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AddressDomains != nil {
+	if len(a.AddressDomains) != 0 {
 		object["addressDomains"], err = json.Marshal(a.AddressDomains)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'addressDomains': %w", err)
@@ -8963,35 +8963,35 @@ func (a ScpInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4AddrRanges != nil {
+	if len(a.Ipv4AddrRanges) != 0 {
 		object["ipv4AddrRanges"], err = json.Marshal(a.Ipv4AddrRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4AddrRanges': %w", err)
 		}
 	}
 
-	if a.Ipv4Addresses != nil {
+	if len(a.Ipv4Addresses) != 0 {
 		object["ipv4Addresses"], err = json.Marshal(a.Ipv4Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addresses': %w", err)
 		}
 	}
 
-	if a.Ipv6PrefixRanges != nil {
+	if len(a.Ipv6PrefixRanges) != 0 {
 		object["ipv6PrefixRanges"], err = json.Marshal(a.Ipv6PrefixRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6PrefixRanges': %w", err)
 		}
 	}
 
-	if a.Ipv6Prefixes != nil {
+	if len(a.Ipv6Prefixes) != 0 {
 		object["ipv6Prefixes"], err = json.Marshal(a.Ipv6Prefixes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Prefixes': %w", err)
 		}
 	}
 
-	if a.RemotePlmnList != nil {
+	if len(a.RemotePlmnList) != 0 {
 		object["remotePlmnList"], err = json.Marshal(a.RemotePlmnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'remotePlmnList': %w", err)
@@ -9019,7 +9019,7 @@ func (a ScpInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServedNfSetIdList != nil {
+	if len(a.ServedNfSetIdList) != 0 {
 		object["servedNfSetIdList"], err = json.Marshal(a.ServedNfSetIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servedNfSetIdList': %w", err)
@@ -9201,7 +9201,7 @@ func (a SmfInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessType != nil {
+	if len(a.AccessType) != 0 {
 		object["accessType"], err = json.Marshal(a.AccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
@@ -9227,14 +9227,14 @@ func (a SmfInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'sNssaiSmfInfoList': %w", err)
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
 		}
 	}
 
-	if a.TaiRangeList != nil {
+	if len(a.TaiRangeList) != 0 {
 		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
@@ -9623,7 +9623,7 @@ func (a SubscriptionData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'nfStatusNotificationUri': %w", err)
 	}
 
-	if a.Nid != nil {
+	if len(a.Nid) != 0 {
 		object["nid"], err = json.Marshal(a.Nid)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
@@ -9672,35 +9672,35 @@ func (a SubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ReqNotifEvents != nil {
+	if len(a.ReqNotifEvents) != 0 {
 		object["reqNotifEvents"], err = json.Marshal(a.ReqNotifEvents)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqNotifEvents': %w", err)
 		}
 	}
 
-	if a.ReqPerPlmnSnssais != nil {
+	if len(a.ReqPerPlmnSnssais) != 0 {
 		object["reqPerPlmnSnssais"], err = json.Marshal(a.ReqPerPlmnSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqPerPlmnSnssais': %w", err)
 		}
 	}
 
-	if a.ReqPlmnList != nil {
+	if len(a.ReqPlmnList) != 0 {
 		object["reqPlmnList"], err = json.Marshal(a.ReqPlmnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqPlmnList': %w", err)
 		}
 	}
 
-	if a.ReqSnpnList != nil {
+	if len(a.ReqSnpnList) != 0 {
 		object["reqSnpnList"], err = json.Marshal(a.ReqSnpnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqSnpnList': %w", err)
 		}
 	}
 
-	if a.ReqSnssais != nil {
+	if len(a.ReqSnssais) != 0 {
 		object["reqSnssais"], err = json.Marshal(a.ReqSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reqSnssais': %w", err)
@@ -9714,7 +9714,7 @@ func (a SubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServingScope != nil {
+	if len(a.ServingScope) != 0 {
 		object["servingScope"], err = json.Marshal(a.ServingScope)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingScope': %w", err)
@@ -9728,7 +9728,7 @@ func (a SubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SubscriptionId != nil {
+	if len(a.SubscriptionId) != 0 {
 		object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
@@ -9819,7 +9819,7 @@ func (a SupiRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.End != nil {
+	if len(a.End) != 0 {
 		object["end"], err = json.Marshal(a.End)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'end': %w", err)
@@ -9833,7 +9833,7 @@ func (a SupiRange) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Start != nil {
+	if len(a.Start) != 0 {
 		object["start"], err = json.Marshal(a.Start)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'start': %w", err)
@@ -9917,7 +9917,7 @@ func (a TacRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.End != nil {
+	if len(a.End) != 0 {
 		object["end"], err = json.Marshal(a.End)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'end': %w", err)
@@ -9931,7 +9931,7 @@ func (a TacRange) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Start != nil {
+	if len(a.Start) != 0 {
 		object["start"], err = json.Marshal(a.Start)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'start': %w", err)
@@ -10015,7 +10015,7 @@ func (a TaiRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Nid != nil {
+	if len(a.Nid) != 0 {
 		object["nid"], err = json.Marshal(a.Nid)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
@@ -10116,14 +10116,14 @@ func (a TngfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4EndpointAddresses != nil {
+	if len(a.Ipv4EndpointAddresses) != 0 {
 		object["ipv4EndpointAddresses"], err = json.Marshal(a.Ipv4EndpointAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4EndpointAddresses': %w", err)
 		}
 	}
 
-	if a.Ipv6EndpointAddresses != nil {
+	if len(a.Ipv6EndpointAddresses) != 0 {
 		object["ipv6EndpointAddresses"], err = json.Marshal(a.Ipv6EndpointAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6EndpointAddresses': %w", err)
@@ -10214,14 +10214,14 @@ func (a TwifInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4EndpointAddresses != nil {
+	if len(a.Ipv4EndpointAddresses) != 0 {
 		object["ipv4EndpointAddresses"], err = json.Marshal(a.Ipv4EndpointAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4EndpointAddresses': %w", err)
 		}
 	}
 
-	if a.Ipv6EndpointAddresses != nil {
+	if len(a.Ipv6EndpointAddresses) != 0 {
 		object["ipv6EndpointAddresses"], err = json.Marshal(a.Ipv6EndpointAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6EndpointAddresses': %w", err)
@@ -10329,14 +10329,14 @@ func (a UdmInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ExternalGroupIdentifiersRanges != nil {
+	if len(a.ExternalGroupIdentifiersRanges) != 0 {
 		object["externalGroupIdentifiersRanges"], err = json.Marshal(a.ExternalGroupIdentifiersRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'externalGroupIdentifiersRanges': %w", err)
 		}
 	}
 
-	if a.GpsiRanges != nil {
+	if len(a.GpsiRanges) != 0 {
 		object["gpsiRanges"], err = json.Marshal(a.GpsiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiRanges': %w", err)
@@ -10350,21 +10350,21 @@ func (a UdmInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InternalGroupIdentifiersRanges != nil {
+	if len(a.InternalGroupIdentifiersRanges) != 0 {
 		object["internalGroupIdentifiersRanges"], err = json.Marshal(a.InternalGroupIdentifiersRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'internalGroupIdentifiersRanges': %w", err)
 		}
 	}
 
-	if a.RoutingIndicators != nil {
+	if len(a.RoutingIndicators) != 0 {
 		object["routingIndicators"], err = json.Marshal(a.RoutingIndicators)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'routingIndicators': %w", err)
 		}
 	}
 
-	if a.SupiRanges != nil {
+	if len(a.SupiRanges) != 0 {
 		object["supiRanges"], err = json.Marshal(a.SupiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supiRanges': %w", err)
@@ -10464,14 +10464,14 @@ func (a UdrInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ExternalGroupIdentifiersRanges != nil {
+	if len(a.ExternalGroupIdentifiersRanges) != 0 {
 		object["externalGroupIdentifiersRanges"], err = json.Marshal(a.ExternalGroupIdentifiersRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'externalGroupIdentifiersRanges': %w", err)
 		}
 	}
 
-	if a.GpsiRanges != nil {
+	if len(a.GpsiRanges) != 0 {
 		object["gpsiRanges"], err = json.Marshal(a.GpsiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiRanges': %w", err)
@@ -10485,14 +10485,14 @@ func (a UdrInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SupiRanges != nil {
+	if len(a.SupiRanges) != 0 {
 		object["supiRanges"], err = json.Marshal(a.SupiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supiRanges': %w", err)
 		}
 	}
 
-	if a.SupportedDataSets != nil {
+	if len(a.SupportedDataSets) != 0 {
 		object["supportedDataSets"], err = json.Marshal(a.SupportedDataSets)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supportedDataSets': %w", err)
@@ -10590,7 +10590,7 @@ func (a UdsfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SupiRanges != nil {
+	if len(a.SupiRanges) != 0 {
 		object["supiRanges"], err = json.Marshal(a.SupiRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supiRanges': %w", err)
@@ -10679,14 +10679,14 @@ func (a UpfCond) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'conditionType': %w", err)
 	}
 
-	if a.SmfServingArea != nil {
+	if len(a.SmfServingArea) != 0 {
 		object["smfServingArea"], err = json.Marshal(a.SmfServingArea)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smfServingArea': %w", err)
 		}
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
@@ -10880,7 +10880,7 @@ func (a UpfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InterfaceUpfInfoList != nil {
+	if len(a.InterfaceUpfInfoList) != 0 {
 		object["interfaceUpfInfoList"], err = json.Marshal(a.InterfaceUpfInfoList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'interfaceUpfInfoList': %w", err)
@@ -10901,7 +10901,7 @@ func (a UpfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PduSessionTypes != nil {
+	if len(a.PduSessionTypes) != 0 {
 		object["pduSessionTypes"], err = json.Marshal(a.PduSessionTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pduSessionTypes': %w", err)
@@ -10927,14 +10927,14 @@ func (a UpfInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'sNssaiUpfInfoList': %w", err)
 	}
 
-	if a.SmfServingArea != nil {
+	if len(a.SmfServingArea) != 0 {
 		object["smfServingArea"], err = json.Marshal(a.SmfServingArea)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smfServingArea': %w", err)
 		}
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
@@ -11132,14 +11132,14 @@ func (a WAgfInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4EndpointAddresses != nil {
+	if len(a.Ipv4EndpointAddresses) != 0 {
 		object["ipv4EndpointAddresses"], err = json.Marshal(a.Ipv4EndpointAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4EndpointAddresses': %w", err)
 		}
 	}
 
-	if a.Ipv6EndpointAddresses != nil {
+	if len(a.Ipv6EndpointAddresses) != 0 {
 		object["ipv6EndpointAddresses"], err = json.Marshal(a.Ipv6EndpointAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6EndpointAddresses': %w", err)

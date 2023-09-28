@@ -10,6 +10,7 @@ components:
                         $ref: '#/components/schemas/AllowedSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - allowedSnssaiList
                 - accessType
@@ -26,6 +27,7 @@ components:
                         $ref: '#/components/schemas/NsiInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - allowedSnssai
             type: object
@@ -37,16 +39,19 @@ components:
                         $ref: '#/components/schemas/AllowedNssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 candidateAmfList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 configuredNssai:
                     items:
                         $ref: '#/components/schemas/ConfiguredSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nrfAmfSet:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 nrfAmfSetAccessTokenUri:
@@ -60,11 +65,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 rejectedNssaiInTa:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 targetAmfServiceSet:
@@ -72,6 +79,7 @@ components:
                 targetAmfSet:
                     pattern: ^[0-9]{3}-[0-9]{2-3}-[A-Fa-f0-9]{2}-[0-3][A-Fa-f0-9]{2}$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             type: object
         ConfiguredSnssai:
             additionalProperties: true
@@ -143,6 +151,7 @@ components:
                         $ref: '#/components/schemas/MappingOfSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 requestMapping:
                     type: boolean
                 requestedNssai:
@@ -150,16 +159,19 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sNssaiForMapping:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subscribedNssai:
                     items:
                         $ref: '#/components/schemas/SubscribedSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         SliceInfoForUEConfigurationUpdate:
             additionalProperties: true
@@ -175,16 +187,19 @@ components:
                         $ref: '#/components/schemas/MappingOfSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 requestedNssai:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subscribedNssai:
                     items:
                         $ref: '#/components/schemas/SubscribedSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         SubscribedSnssai:
             additionalProperties: true

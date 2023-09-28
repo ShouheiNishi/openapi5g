@@ -27,7 +27,7 @@ const (
 
 // N5GSrvccInfo defines model for 5GSrvccInfo.
 type N5GSrvccInfo struct {
-	CMsisdn              *externalRef2.CMsisdn  `json:"cMsisdn,omitempty"`
+	CMsisdn              externalRef2.CMsisdn   `json:"cMsisdn,omitempty"`
 	StnSr                *externalRef2.StnSr    `json:"stnSr,omitempty"`
 	Ue5GSrvccCapability  bool                   `json:"ue5GSrvccCapability"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -51,10 +51,10 @@ type LocationInfoResult struct {
 	Ecgi          *externalRef2.Ecgi         `json:"ecgi,omitempty"`
 
 	// GeoInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	GeoInfo *interface{} `json:"geoInfo,omitempty"`
+	GeoInfo interface{} `json:"geoInfo,omitempty"`
 
 	// LocationAge Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	LocationAge          *interface{}                    `json:"locationAge,omitempty"`
+	LocationAge          interface{}                     `json:"locationAge,omitempty"`
 	Ncgi                 *externalRef2.Ncgi              `json:"ncgi,omitempty"`
 	RatType              *externalRef2.RatType           `json:"ratType,omitempty"`
 	SmsfInstanceId       *externalRef2.NfInstanceId      `json:"smsfInstanceId,omitempty"`
@@ -153,7 +153,7 @@ func (a N5GSrvccInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.CMsisdn != nil {
+	if len(a.CMsisdn) != 0 {
 		object["cMsisdn"], err = json.Marshal(a.CMsisdn)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cMsisdn': %w", err)

@@ -32,10 +32,10 @@ type UpuAckInd = bool
 
 // UpuData defines model for UpuData.
 type UpuData struct {
-	DefaultConfNssai *[]externalRef1.Snssai `json:"defaultConfNssai,omitempty"`
+	DefaultConfNssai []externalRef1.Snssai `json:"defaultConfNssai,omitempty"`
 
 	// RoutingId Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-	RoutingId            *interface{}                `json:"routingId,omitempty"`
+	RoutingId            interface{}                 `json:"routingId,omitempty"`
 	SecPacket            *externalRef0.SecuredPacket `json:"secPacket,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }
@@ -48,7 +48,7 @@ type UpuInfo struct {
 	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	UpuAckInd            UpuAckInd                       `json:"upuAckInd"`
 	UpuDataList          []UpuData                       `json:"upuDataList"`
-	UpuHeader            *UpuHeader                      `json:"upuHeader,omitempty"`
+	UpuHeader            UpuHeader                       `json:"upuHeader,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
 
@@ -59,7 +59,7 @@ type UpuMac = string
 type UpuSecurityInfo struct {
 	CounterUpu           CounterUpu             `json:"counterUpu"`
 	UpuMacIausf          UpuMac                 `json:"upuMacIausf"`
-	UpuXmacIue           *UpuMac                `json:"upuXmacIue,omitempty"`
+	UpuXmacIue           UpuMac                 `json:"upuXmacIue,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -134,7 +134,7 @@ func (a UpuData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DefaultConfNssai != nil {
+	if len(a.DefaultConfNssai) != 0 {
 		object["defaultConfNssai"], err = json.Marshal(a.DefaultConfNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'defaultConfNssai': %w", err)
@@ -257,7 +257,7 @@ func (a UpuInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'upuDataList': %w", err)
 	}
 
-	if a.UpuHeader != nil {
+	if len(a.UpuHeader) != 0 {
 		object["upuHeader"], err = json.Marshal(a.UpuHeader)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'upuHeader': %w", err)
@@ -351,7 +351,7 @@ func (a UpuSecurityInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'upuMacIausf': %w", err)
 	}
 
-	if a.UpuXmacIue != nil {
+	if len(a.UpuXmacIue) != 0 {
 		object["upuXmacIue"], err = json.Marshal(a.UpuXmacIue)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'upuXmacIue': %w", err)

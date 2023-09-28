@@ -65,7 +65,7 @@ type SorMac = string
 type SorSecurityInfo struct {
 	CounterSor           CounterSor             `json:"counterSor"`
 	SorMacIausf          SorMac                 `json:"sorMacIausf"`
-	SorXmacIue           *SorMac                `json:"sorXmacIue,omitempty"`
+	SorXmacIue           SorMac                 `json:"sorXmacIue,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -79,7 +79,7 @@ type SteeringContainer0 = []SteeringInfo
 
 // SteeringInfo defines model for SteeringInfo.
 type SteeringInfo struct {
-	AccessTechList       *[]AccessTech          `json:"accessTechList,omitempty"`
+	AccessTechList       []AccessTech           `json:"accessTechList,omitempty"`
 	PlmnId               externalRef0.PlmnId    `json:"plmnId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -261,7 +261,7 @@ func (a SorSecurityInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'sorMacIausf': %w", err)
 	}
 
-	if a.SorXmacIue != nil {
+	if len(a.SorXmacIue) != 0 {
 		object["sorXmacIue"], err = json.Marshal(a.SorXmacIue)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sorXmacIue': %w", err)
@@ -337,7 +337,7 @@ func (a SteeringInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessTechList != nil {
+	if len(a.AccessTechList) != 0 {
 		object["accessTechList"], err = json.Marshal(a.AccessTechList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessTechList': %w", err)

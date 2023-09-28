@@ -38,6 +38,7 @@ components:
                         $ref: '#/components/schemas/AmfEventReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subscription:
                     $ref: '#/components/schemas/AmfEventSubscription'
                 subscriptionId:
@@ -56,6 +57,7 @@ components:
                         $ref: '#/components/schemas/AmfEventArea'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 idleStatusInd:
                     default: false
                     type: boolean
@@ -67,6 +69,7 @@ components:
                         $ref: '#/components/schemas/LocationFilter'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 maxReports:
                     type: integer
                 maxResponseTime:
@@ -77,6 +80,7 @@ components:
                     $ref: '#/components/schemas/ReachabilityFilter'
                 refId:
                     description: Original reference TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
+                    x-go-type-skip-optional-pointer: true
                 reportUeReachable:
                     default: false
                     type: boolean
@@ -85,6 +89,7 @@ components:
                         $ref: '#/components/schemas/TrafficDescriptor'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 type:
                     $ref: '#/components/schemas/AmfEventType'
             required:
@@ -130,6 +135,7 @@ components:
                         $ref: '#/components/schemas/AmfEventReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subsChangeNotifyCorrelationId:
                     type: string
             type: object
@@ -141,11 +147,13 @@ components:
                         $ref: '#/components/schemas/5GsUserStateInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 accessTypeList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 additionalLocation:
                     $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
                 anyUe:
@@ -155,11 +163,13 @@ components:
                         $ref: '#/components/schemas/AmfEventArea'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 cmInfoList:
                     items:
                         $ref: '#/components/schemas/CmInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 commFailure:
                     $ref: '#/components/schemas/CommunicationFailure'
                 gpsi:
@@ -180,6 +190,7 @@ components:
                     $ref: '#/components/schemas/UeReachability'
                 refId:
                     description: Original reference TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
+                    x-go-type-skip-optional-pointer: true
                 registrationNumber:
                     type: integer
                 rmInfoList:
@@ -187,6 +198,7 @@ components:
                         $ref: '#/components/schemas/RmInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 state:
                     $ref: '#/components/schemas/AmfEventState'
                 subscriptionId:
@@ -202,11 +214,13 @@ components:
                 typeCode:
                     pattern: ^imeitac-[0-9]{8}$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 ueIdExt:
                     items:
                         $ref: '#/components/schemas/UEIdExt'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - type
                 - state
@@ -232,6 +246,7 @@ components:
                         $ref: '#/components/schemas/AmfEventSubscriptionInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - subscriptionList
             type: object
@@ -245,6 +260,7 @@ components:
                         $ref: '#/components/schemas/AmfEvent'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 eventNotifyUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 gpsi:
@@ -283,8 +299,10 @@ components:
                 refIdList:
                     items:
                         description: Original reference TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
             required:
@@ -323,9 +341,11 @@ components:
                     enum:
                         - replace
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 path:
                     pattern: \/options\/expiry$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 value:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
             required:
@@ -342,9 +362,11 @@ components:
                         - remove
                         - replace
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 path:
                     pattern: \/eventList\/[0-]$|\/eventList\/[1-9][0-9]*$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 value:
                     $ref: '#/components/schemas/AmfEvent'
             required:
@@ -359,6 +381,7 @@ components:
                         $ref: '#/components/schemas/AmfEventReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subscription:
                     $ref: '#/components/schemas/AmfEventSubscription'
             required:
@@ -458,6 +481,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dnn:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                 sNssai:
@@ -673,11 +697,13 @@ paths:
                                     $ref: '#/components/schemas/AmfUpdateEventSubscriptionItem'
                                   minItems: 1
                                   type: array
+                                  x-go-type-skip-optional-pointer: true
                                 - items:
                                     $ref: '#/components/schemas/AmfUpdateEventOptionItem'
                                   maxItems: 1
                                   minItems: 1
                                   type: array
+                                  x-go-type-skip-optional-pointer: true
                 required: true
             responses:
                 "200":

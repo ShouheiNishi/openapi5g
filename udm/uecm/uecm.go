@@ -67,7 +67,7 @@ type Amf3GppAccessRegistration struct {
 
 	// AmfServiceNamePcscfRest Service names known to NRF
 	AmfServiceNamePcscfRest     *externalRef1.ServiceName       `json:"amfServiceNamePcscfRest,omitempty"`
-	BackupAmfInfo               *[]externalRef0.BackupAmfInfo   `json:"backupAmfInfo,omitempty"`
+	BackupAmfInfo               []externalRef0.BackupAmfInfo    `json:"backupAmfInfo,omitempty"`
 	ContextInfo                 *externalRef2.ContextInfo       `json:"contextInfo,omitempty"`
 	DeregCallbackUri            externalRef0.Uri                `json:"deregCallbackUri"`
 	DrFlag                      *DualRegistrationFlag           `json:"drFlag,omitempty"`
@@ -77,11 +77,11 @@ type Amf3GppAccessRegistration struct {
 	InitialRegistrationInd      *bool                           `json:"initialRegistrationInd,omitempty"`
 	NoEeSubscriptionInd         *bool                           `json:"noEeSubscriptionInd,omitempty"`
 	PcscfRestorationCallbackUri *externalRef0.Uri               `json:"pcscfRestorationCallbackUri,omitempty"`
-	Pei                         *externalRef0.Pei               `json:"pei,omitempty"`
+	Pei                         externalRef0.Pei                `json:"pei,omitempty"`
 	PurgeFlag                   *PurgeFlag                      `json:"purgeFlag,omitempty"`
 	RatType                     externalRef0.RatType            `json:"ratType"`
 	RegistrationTime            *externalRef0.DateTime          `json:"registrationTime,omitempty"`
-	Supi                        *externalRef0.Supi              `json:"supi,omitempty"`
+	Supi                        externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures           *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	UeSrvccCapability           *bool                           `json:"ueSrvccCapability,omitempty"`
 	UrrpIndicator               *bool                           `json:"urrpIndicator,omitempty"`
@@ -95,7 +95,7 @@ type Amf3GppAccessRegistrationModification struct {
 	EpsInterworkingInfo  *EpsInterworkingInfo          `json:"epsInterworkingInfo,omitempty"`
 	Guami                externalRef0.Guami            `json:"guami"`
 	ImsVoPs              *ImsVoPs                      `json:"imsVoPs,omitempty"`
-	Pei                  *externalRef0.Pei             `json:"pei,omitempty"`
+	Pei                  externalRef0.Pei              `json:"pei,omitempty"`
 	PurgeFlag            *PurgeFlag                    `json:"purgeFlag,omitempty"`
 	UeSrvccCapability    *bool                         `json:"ueSrvccCapability"`
 	AdditionalProperties map[string]interface{}        `json:"-"`
@@ -117,18 +117,18 @@ type AmfNon3GppAccessRegistration struct {
 
 	// AmfServiceNamePcscfRest Service names known to NRF
 	AmfServiceNamePcscfRest     *externalRef1.ServiceName       `json:"amfServiceNamePcscfRest,omitempty"`
-	BackupAmfInfo               *[]externalRef0.BackupAmfInfo   `json:"backupAmfInfo,omitempty"`
+	BackupAmfInfo               []externalRef0.BackupAmfInfo    `json:"backupAmfInfo,omitempty"`
 	ContextInfo                 *externalRef2.ContextInfo       `json:"contextInfo,omitempty"`
 	DeregCallbackUri            externalRef0.Uri                `json:"deregCallbackUri"`
 	Guami                       externalRef0.Guami              `json:"guami"`
 	ImsVoPs                     ImsVoPs                         `json:"imsVoPs"`
 	NoEeSubscriptionInd         *bool                           `json:"noEeSubscriptionInd,omitempty"`
 	PcscfRestorationCallbackUri *externalRef0.Uri               `json:"pcscfRestorationCallbackUri,omitempty"`
-	Pei                         *externalRef0.Pei               `json:"pei,omitempty"`
+	Pei                         externalRef0.Pei                `json:"pei,omitempty"`
 	PurgeFlag                   *PurgeFlag                      `json:"purgeFlag,omitempty"`
 	RatType                     externalRef0.RatType            `json:"ratType"`
 	RegistrationTime            *externalRef0.DateTime          `json:"registrationTime,omitempty"`
-	Supi                        *externalRef0.Supi              `json:"supi,omitempty"`
+	Supi                        externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures           *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	UrrpIndicator               *bool                           `json:"urrpIndicator,omitempty"`
 	VgmlcAddress                *VgmlcAddress                   `json:"vgmlcAddress,omitempty"`
@@ -140,14 +140,14 @@ type AmfNon3GppAccessRegistrationModification struct {
 	BackupAmfInfo        *[]externalRef0.BackupAmfInfo `json:"backupAmfInfo,omitempty"`
 	Guami                externalRef0.Guami            `json:"guami"`
 	ImsVoPs              *ImsVoPs                      `json:"imsVoPs,omitempty"`
-	Pei                  *externalRef0.Pei             `json:"pei,omitempty"`
+	Pei                  externalRef0.Pei              `json:"pei,omitempty"`
 	PurgeFlag            *PurgeFlag                    `json:"purgeFlag,omitempty"`
 	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
 // DeregistrationData defines model for DeregistrationData.
 type DeregistrationData struct {
-	AccessType           *externalRef0.AccessType   `json:"accessType,omitempty"`
+	AccessType           externalRef0.AccessType    `json:"accessType,omitempty"`
 	DeregReason          DeregistrationReason       `json:"deregReason"`
 	NewSmfInstanceId     *externalRef0.NfInstanceId `json:"newSmfInstanceId,omitempty"`
 	PduSessionId         *externalRef0.PduSessionId `json:"pduSessionId,omitempty"`
@@ -183,16 +183,16 @@ type ImsVoPs string
 // IpSmGwRegistration defines model for IpSmGwRegistration.
 type IpSmGwRegistration struct {
 	IpSmGwDiameterAddress *NetworkNodeDiameterAddress `json:"ipSmGwDiameterAddress,omitempty"`
-	IpSmGwMapAddress      *E164Number                 `json:"ipSmGwMapAddress,omitempty"`
+	IpSmGwMapAddress      E164Number                  `json:"ipSmGwMapAddress,omitempty"`
 	UnriIndicator         *bool                       `json:"unriIndicator,omitempty"`
 	AdditionalProperties  map[string]interface{}      `json:"-"`
 }
 
 // LocationInfo defines model for LocationInfo.
 type LocationInfo struct {
-	Gpsi                         *externalRef0.Gpsi              `json:"gpsi,omitempty"`
+	Gpsi                         externalRef0.Gpsi               `json:"gpsi,omitempty"`
 	RegistrationLocationInfoList []RegistrationLocationInfo      `json:"registrationLocationInfoList"`
-	Supi                         *externalRef0.Supi              `json:"supi,omitempty"`
+	Supi                         externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures            *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties         map[string]interface{}          `json:"-"`
 }
@@ -281,7 +281,7 @@ type SmsfRegistration struct {
 	RegistrationTime     *externalRef0.DateTime          `json:"registrationTime,omitempty"`
 	SmsfDiameterAddress  *NetworkNodeDiameterAddress     `json:"smsfDiameterAddress,omitempty"`
 	SmsfInstanceId       externalRef0.NfInstanceId       `json:"smsfInstanceId"`
-	SmsfMAPAddress       *E164Number                     `json:"smsfMAPAddress,omitempty"`
+	SmsfMAPAddress       E164Number                      `json:"smsfMAPAddress,omitempty"`
 	SmsfSetId            *externalRef0.NfSetId           `json:"smsfSetId,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
@@ -295,7 +295,7 @@ type TriggerRequest struct {
 
 // VgmlcAddress defines model for VgmlcAddress.
 type VgmlcAddress struct {
-	VgmlcAddressIpv4 *externalRef0.Ipv4Addr `json:"vgmlcAddressIpv4,omitempty"`
+	VgmlcAddressIpv4 externalRef0.Ipv4Addr  `json:"vgmlcAddressIpv4,omitempty"`
 	VgmlcAddressIpv6 *externalRef0.Ipv6Addr `json:"vgmlcAddressIpv6,omitempty"`
 
 	// VgmlcFqdn Fully Qualified Domain Name
@@ -660,7 +660,7 @@ func (a Amf3GppAccessRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.BackupAmfInfo != nil {
+	if len(a.BackupAmfInfo) != 0 {
 		object["backupAmfInfo"], err = json.Marshal(a.BackupAmfInfo)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'backupAmfInfo': %w", err)
@@ -726,7 +726,7 @@ func (a Amf3GppAccessRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -752,7 +752,7 @@ func (a Amf3GppAccessRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -922,7 +922,7 @@ func (a Amf3GppAccessRegistrationModification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -1238,7 +1238,7 @@ func (a AmfNon3GppAccessRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.BackupAmfInfo != nil {
+	if len(a.BackupAmfInfo) != 0 {
 		object["backupAmfInfo"], err = json.Marshal(a.BackupAmfInfo)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'backupAmfInfo': %w", err)
@@ -1281,7 +1281,7 @@ func (a AmfNon3GppAccessRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -1307,7 +1307,7 @@ func (a AmfNon3GppAccessRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1447,7 +1447,7 @@ func (a AmfNon3GppAccessRegistrationModification) MarshalJSON() ([]byte, error) 
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -1546,7 +1546,7 @@ func (a DeregistrationData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessType != nil {
+	if len(a.AccessType) != 0 {
 		object["accessType"], err = json.Marshal(a.AccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
@@ -1803,7 +1803,7 @@ func (a IpSmGwRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.IpSmGwMapAddress != nil {
+	if len(a.IpSmGwMapAddress) != 0 {
 		object["ipSmGwMapAddress"], err = json.Marshal(a.IpSmGwMapAddress)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipSmGwMapAddress': %w", err)
@@ -1902,7 +1902,7 @@ func (a LocationInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -1914,7 +1914,7 @@ func (a LocationInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'registrationLocationInfoList': %w", err)
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -2875,7 +2875,7 @@ func (a SmsfRegistration) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'smsfInstanceId': %w", err)
 	}
 
-	if a.SmsfMAPAddress != nil {
+	if len(a.SmsfMAPAddress) != 0 {
 		object["smsfMAPAddress"], err = json.Marshal(a.SmsfMAPAddress)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smsfMAPAddress': %w", err)
@@ -3039,7 +3039,7 @@ func (a VgmlcAddress) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.VgmlcAddressIpv4 != nil {
+	if len(a.VgmlcAddressIpv4) != 0 {
 		object["vgmlcAddressIpv4"], err = json.Marshal(a.VgmlcAddressIpv4)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'vgmlcAddressIpv4': %w", err)

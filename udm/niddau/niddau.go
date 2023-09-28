@@ -72,7 +72,7 @@ type NiddCause string
 
 // UserIdentifier defines model for UserIdentifier.
 type UserIdentifier struct {
-	Gpsi                 *externalRef0.Gpsi     `json:"gpsi,omitempty"`
+	Gpsi                 externalRef0.Gpsi      `json:"gpsi,omitempty"`
 	Supi                 externalRef0.Supi      `json:"supi"`
 	ValidityTime         *externalRef0.DateTime `json:"validityTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -572,7 +572,7 @@ func (a UserIdentifier) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)

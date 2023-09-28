@@ -50,6 +50,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/CagId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 n5gcInd:
                     default: false
                     type: boolean
@@ -89,9 +90,11 @@ components:
         Autn:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
+            x-go-type-skip-optional-pointer: true
         Auts:
             pattern: ^[A-Fa-f0-9]{28}$
             type: string
+            x-go-type-skip-optional-pointer: true
         Av5GHeAka:
             additionalProperties: true
             properties:
@@ -186,9 +189,11 @@ components:
         CkPrime:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
+            x-go-type-skip-optional-pointer: true
         ConfidentialityKey:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
+            x-go-type-skip-optional-pointer: true
         HssAuthType:
             enum:
                 - EPS_AKA
@@ -244,16 +249,19 @@ components:
                   maxItems: 5
                   minItems: 1
                   type: array
+                  x-go-type-skip-optional-pointer: true
                 - items:
                     $ref: '#/components/schemas/AvImsGbaEapAka'
                   maxItems: 5
                   minItems: 1
                   type: array
+                  x-go-type-skip-optional-pointer: true
                 - items:
                     $ref: '#/components/schemas/AvEapAkaPrime'
                   maxItems: 5
                   minItems: 1
                   type: array
+                  x-go-type-skip-optional-pointer: true
         HssAvType:
             enum:
                 - EPS_AKA
@@ -265,15 +273,19 @@ components:
         IkPrime:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
+            x-go-type-skip-optional-pointer: true
         IntegrityKey:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
+            x-go-type-skip-optional-pointer: true
         Kasme:
             pattern: ^[A-Fa-f0-9]{64}$
             type: string
+            x-go-type-skip-optional-pointer: true
         Kausf:
             pattern: ^[A-Fa-f0-9]{64}$
             type: string
+            x-go-type-skip-optional-pointer: true
         NodeType:
             enum:
                 - AUSF
@@ -289,9 +301,11 @@ components:
             maximum: 5
             minimum: 1
             type: integer
+            x-go-type-skip-optional-pointer: true
         Rand:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
+            x-go-type-skip-optional-pointer: true
         ResynchronizationInfo:
             additionalProperties: true
             properties:
@@ -319,14 +333,17 @@ components:
         ServingNetworkName:
             pattern: ^5G:mnc[0-9]{3}[.]mcc[0-9]{3}[.]3gppnetwork[.]org(:[A-F0-9]{11})?$
             type: string
+            x-go-type-skip-optional-pointer: true
         Success:
             type: boolean
         Xres:
             pattern: ^[A-Fa-f0-9]{8,32}$
             type: string
+            x-go-type-skip-optional-pointer: true
         XresStar:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
+            x-go-type-skip-optional-pointer: true
     securitySchemes:
         oAuth2ClientCredentials:
             flows:

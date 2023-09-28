@@ -61,7 +61,7 @@ type PolicyAssociation struct {
 	SuppFeat externalRef2.SupportedFeatures        `json:"suppFeat"`
 
 	// Triggers Request Triggers that the PCF subscribes. Only values "LOC_CH" and "PRA_CH" are permitted.
-	Triggers             *[]RequestTrigger      `json:"triggers,omitempty"`
+	Triggers             []RequestTrigger       `json:"triggers,omitempty"`
 	UePolicy             *UePolicy              `json:"uePolicy,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -71,25 +71,25 @@ type PolicyAssociationReleaseCause string
 
 // PolicyAssociationRequest defines model for PolicyAssociationRequest.
 type PolicyAssociationRequest struct {
-	AccessType *externalRef2.AccessType `json:"accessType,omitempty"`
+	AccessType externalRef2.AccessType `json:"accessType,omitempty"`
 
 	// AltNotifFqdns Alternate or backup FQDN(s) where to send Notifications.
-	AltNotifFqdns *[]externalRef3.Fqdn `json:"altNotifFqdns,omitempty"`
+	AltNotifFqdns []externalRef3.Fqdn `json:"altNotifFqdns,omitempty"`
 
 	// AltNotifIpv4Addrs Alternate or backup IPv4 Address(es) where to send Notifications.
-	AltNotifIpv4Addrs *[]externalRef2.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
+	AltNotifIpv4Addrs []externalRef2.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
 
 	// AltNotifIpv6Addrs Alternate or backup IPv6 Address(es) where to send Notifications.
-	AltNotifIpv6Addrs *[]externalRef2.Ipv6Addr   `json:"altNotifIpv6Addrs,omitempty"`
-	Gpsi              *externalRef2.Gpsi         `json:"gpsi,omitempty"`
-	GroupIds          *[]externalRef2.GroupId    `json:"groupIds,omitempty"`
+	AltNotifIpv6Addrs []externalRef2.Ipv6Addr    `json:"altNotifIpv6Addrs,omitempty"`
+	Gpsi              externalRef2.Gpsi          `json:"gpsi,omitempty"`
+	GroupIds          []externalRef2.GroupId     `json:"groupIds,omitempty"`
 	Guami             *externalRef2.Guami        `json:"guami,omitempty"`
 	HPcfId            *externalRef2.NfInstanceId `json:"hPcfId,omitempty"`
 	NotificationUri   externalRef2.Uri           `json:"notificationUri"`
 
 	// Pc5Capab Possible values are - LTE_PC5: This value is used to indicate that UE supports PC5 LTE RAT for V2X communication over PC5 reference point. - NR_PC5: This value is used to indicate that UE supports PC5 NR RAT for V2X communication over PC5 reference point. - LTE_NR_PC5: This value is used to indicate that UE supports both PC5 LTE and NR RAT for V2X communication over PC5 reference point..
 	Pc5Capab *Pc5Capability        `json:"pc5Capab,omitempty"`
-	Pei      *externalRef2.Pei     `json:"pei,omitempty"`
+	Pei      externalRef2.Pei      `json:"pei,omitempty"`
 	RatType  *externalRef2.RatType `json:"ratType,omitempty"`
 
 	// ServiceName Service names known to NRF
@@ -107,25 +107,25 @@ type PolicyAssociationRequest struct {
 // PolicyAssociationUpdateRequest defines model for PolicyAssociationUpdateRequest.
 type PolicyAssociationUpdateRequest struct {
 	// AltNotifFqdns Alternate or backup FQDN(s) where to send Notifications.
-	AltNotifFqdns *[]externalRef3.Fqdn `json:"altNotifFqdns,omitempty"`
+	AltNotifFqdns []externalRef3.Fqdn `json:"altNotifFqdns,omitempty"`
 
 	// AltNotifIpv4Addrs Alternate or backup IPv4 Address(es) where to send Notifications.
-	AltNotifIpv4Addrs *[]externalRef2.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
+	AltNotifIpv4Addrs []externalRef2.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
 
 	// AltNotifIpv6Addrs Alternate or backup IPv6 Address(es) where to send Notifications.
-	AltNotifIpv6Addrs *[]externalRef2.Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
-	ConnectState      *externalRef1.CmState    `json:"connectState,omitempty"`
-	GroupIds          *[]externalRef2.GroupId  `json:"groupIds,omitempty"`
-	Guami             *externalRef2.Guami      `json:"guami,omitempty"`
-	NotificationUri   *externalRef2.Uri        `json:"notificationUri,omitempty"`
-	PlmnId            *externalRef2.PlmnId     `json:"plmnId,omitempty"`
+	AltNotifIpv6Addrs []externalRef2.Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
+	ConnectState      *externalRef1.CmState   `json:"connectState,omitempty"`
+	GroupIds          []externalRef2.GroupId  `json:"groupIds,omitempty"`
+	Guami             *externalRef2.Guami     `json:"guami,omitempty"`
+	NotificationUri   *externalRef2.Uri       `json:"notificationUri,omitempty"`
+	PlmnId            *externalRef2.PlmnId    `json:"plmnId,omitempty"`
 
 	// PraStatuses Map of PRA status information.
 	PraStatuses *map[string]externalRef2.PresenceInfo `json:"praStatuses,omitempty"`
 	ServingNfId *externalRef2.NfInstanceId            `json:"servingNfId,omitempty"`
 
 	// Triggers Request Triggers that the NF service consumer observes.
-	Triggers             *[]RequestTrigger                    `json:"triggers,omitempty"`
+	Triggers             []RequestTrigger                     `json:"triggers,omitempty"`
 	UePolDelResult       *UePolicyDeliveryResult              `json:"uePolDelResult,omitempty"`
 	UePolReq             *UePolicyRequest                     `json:"uePolReq,omitempty"`
 	UePolTransFailNotif  *UePolicyTransferFailureNotification `json:"uePolTransFailNotif,omitempty"`
@@ -298,7 +298,7 @@ func (a PolicyAssociation) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'suppFeat': %w", err)
 	}
 
-	if a.Triggers != nil {
+	if len(a.Triggers) != 0 {
 		object["triggers"], err = json.Marshal(a.Triggers)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'triggers': %w", err)
@@ -525,42 +525,42 @@ func (a PolicyAssociationRequest) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessType != nil {
+	if len(a.AccessType) != 0 {
 		object["accessType"], err = json.Marshal(a.AccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
 		}
 	}
 
-	if a.AltNotifFqdns != nil {
+	if len(a.AltNotifFqdns) != 0 {
 		object["altNotifFqdns"], err = json.Marshal(a.AltNotifFqdns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifFqdns': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv4Addrs != nil {
+	if len(a.AltNotifIpv4Addrs) != 0 {
 		object["altNotifIpv4Addrs"], err = json.Marshal(a.AltNotifIpv4Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv4Addrs': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv6Addrs != nil {
+	if len(a.AltNotifIpv6Addrs) != 0 {
 		object["altNotifIpv6Addrs"], err = json.Marshal(a.AltNotifIpv6Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv6Addrs': %w", err)
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
 		}
 	}
 
-	if a.GroupIds != nil {
+	if len(a.GroupIds) != 0 {
 		object["groupIds"], err = json.Marshal(a.GroupIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'groupIds': %w", err)
@@ -593,7 +593,7 @@ func (a PolicyAssociationRequest) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -832,21 +832,21 @@ func (a PolicyAssociationUpdateRequest) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AltNotifFqdns != nil {
+	if len(a.AltNotifFqdns) != 0 {
 		object["altNotifFqdns"], err = json.Marshal(a.AltNotifFqdns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifFqdns': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv4Addrs != nil {
+	if len(a.AltNotifIpv4Addrs) != 0 {
 		object["altNotifIpv4Addrs"], err = json.Marshal(a.AltNotifIpv4Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv4Addrs': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv6Addrs != nil {
+	if len(a.AltNotifIpv6Addrs) != 0 {
 		object["altNotifIpv6Addrs"], err = json.Marshal(a.AltNotifIpv6Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv6Addrs': %w", err)
@@ -860,7 +860,7 @@ func (a PolicyAssociationUpdateRequest) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.GroupIds != nil {
+	if len(a.GroupIds) != 0 {
 		object["groupIds"], err = json.Marshal(a.GroupIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'groupIds': %w", err)
@@ -902,7 +902,7 @@ func (a PolicyAssociationUpdateRequest) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Triggers != nil {
+	if len(a.Triggers) != 0 {
 		object["triggers"], err = json.Marshal(a.Triggers)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'triggers': %w", err)

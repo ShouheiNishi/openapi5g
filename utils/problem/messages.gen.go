@@ -114,65 +114,55 @@ func InvalidMsgFormat(detail string) commondata.ProblemDetails {
 
 func InvalidQueryParam(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseInvalidQueryParam),
-		Title:  lo.ToPtr("Invalid query param"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        lo.ToPtr(http.StatusBadRequest),
+		Cause:         lo.ToPtr(CauseInvalidQueryParam),
+		Title:         lo.ToPtr("Invalid query param"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MandatoryIEIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseMandatoryIEIncorrect),
-		Title:  lo.ToPtr("Mandatory IE incorrect"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        lo.ToPtr(http.StatusBadRequest),
+		Cause:         lo.ToPtr(CauseMandatoryIEIncorrect),
+		Title:         lo.ToPtr("Mandatory IE incorrect"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MandatoryIEMissing(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseMandatoryIEMissing),
-		Title:  lo.ToPtr("Mandatory IE missing"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        lo.ToPtr(http.StatusBadRequest),
+		Cause:         lo.ToPtr(CauseMandatoryIEMissing),
+		Title:         lo.ToPtr("Mandatory IE missing"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MandatoryQueryParamIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseMandatoryQueryParamIncorrect),
-		Title:  lo.ToPtr("Mandatory query param incorrect"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        lo.ToPtr(http.StatusBadRequest),
+		Cause:         lo.ToPtr(CauseMandatoryQueryParamIncorrect),
+		Title:         lo.ToPtr("Mandatory query param incorrect"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MandatoryQueryParamMissing(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseMandatoryQueryParamMissing),
-		Title:  lo.ToPtr("Mandatory query param missing"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        lo.ToPtr(http.StatusBadRequest),
+		Cause:         lo.ToPtr(CauseMandatoryQueryParamMissing),
+		Title:         lo.ToPtr("Mandatory query param missing"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
@@ -249,26 +239,22 @@ func NFServiceFailover(detail string) commondata.ProblemDetails {
 
 func OptionalIEIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseOptionalIEIncorrect),
-		Title:  lo.ToPtr("Optional IE incorrect"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        lo.ToPtr(http.StatusBadRequest),
+		Cause:         lo.ToPtr(CauseOptionalIEIncorrect),
+		Title:         lo.ToPtr("Optional IE incorrect"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func OptionalQueryParamIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseOptionalQueryParamIncorrect),
-		Title:  lo.ToPtr("Optional query param incorrect"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        lo.ToPtr(http.StatusBadRequest),
+		Cause:         lo.ToPtr(CauseOptionalQueryParamIncorrect),
+		Title:         lo.ToPtr("Optional query param incorrect"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }

@@ -19,6 +19,7 @@ components:
         CounterSor:
             pattern: ^[A-Fa-f0-9]{4}$
             type: string
+            x-go-type-skip-optional-pointer: true
         SecuredPacket:
             format: base64
             type: string
@@ -37,6 +38,7 @@ components:
         SorMac:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
+            x-go-type-skip-optional-pointer: true
         SorSecurityInfo:
             additionalProperties: true
             properties:
@@ -56,6 +58,7 @@ components:
                     $ref: '#/components/schemas/SteeringInfo'
                   minItems: 1
                   type: array
+                  x-go-type-skip-optional-pointer: true
                 - $ref: '#/components/schemas/SecuredPacket'
         SteeringInfo:
             additionalProperties: true
@@ -65,6 +68,7 @@ components:
                         $ref: '#/components/schemas/AccessTech'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 plmnId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
             required:

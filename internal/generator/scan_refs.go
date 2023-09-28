@@ -714,6 +714,10 @@ func (s *scanRefType) walkSchema(v *openapi3.Schema) error {
 		}
 	}
 
+	if err := fixSkipOptionalPointer(v); err != nil {
+		return err
+	}
+
 	if err := fixIntegerFormat(v); err != nil {
 		return err
 	}

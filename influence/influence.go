@@ -42,7 +42,7 @@ const (
 type AfAckInfo struct {
 	AckResult            AfResultInfo           `json:"ackResult"`
 	AfTransId            *string                `json:"afTransId,omitempty"`
-	Gpsi                 *externalRef0.Gpsi     `json:"gpsi,omitempty"`
+	Gpsi                 externalRef0.Gpsi      `json:"gpsi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -67,7 +67,7 @@ type EventNotification struct {
 
 	// DnaiChgType Possible values are - EARLY: Early notification of UP path reconfiguration. - EARLY_LATE: Early and late notification of UP path reconfiguration. This value shall only be present in the subscription to the DNAI change event. - LATE: Late notification of UP path reconfiguration.
 	DnaiChgType        externalRef0.DnaiChangeType   `json:"dnaiChgType"`
-	Gpsi               *externalRef0.Gpsi            `json:"gpsi,omitempty"`
+	Gpsi               externalRef0.Gpsi             `json:"gpsi,omitempty"`
 	SourceDnai         *externalRef0.Dnai            `json:"sourceDnai,omitempty"`
 	SourceTrafficRoute *externalRef0.RouteToLocation `json:"sourceTrafficRoute"`
 
@@ -83,7 +83,7 @@ type EventNotification struct {
 	// TgtUeIpv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
 	TgtUeIpv4Addr        *externalRef1.Ipv4Addr   `json:"tgtUeIpv4Addr,omitempty"`
 	TgtUeIpv6Prefix      *externalRef0.Ipv6Prefix `json:"tgtUeIpv6Prefix,omitempty"`
-	UeMac                *externalRef0.MacAddr48  `json:"ueMac,omitempty"`
+	UeMac                externalRef0.MacAddr48   `json:"ueMac,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
@@ -115,19 +115,19 @@ type TrafficInfluSub struct {
 	Dnn         *externalRef0.Dnn            `json:"dnn,omitempty"`
 
 	// EthTrafficFilters Identifies Ethernet packet filters.
-	EthTrafficFilters *[]externalRef2.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
+	EthTrafficFilters []externalRef2.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
 
 	// ExternalGroupId string containing a local identifier followed by "@" and a domain identifier. Both the local identifier and the domain identifier shall be encoded as strings that do not contain any "@" characters. See Clauses 4.6.2 and 4.6.3 of 3GPP TS 23.682 for more information.
 	ExternalGroupId *externalRef1.ExternalGroupId `json:"externalGroupId,omitempty"`
-	Gpsi            *externalRef0.Gpsi            `json:"gpsi,omitempty"`
+	Gpsi            externalRef0.Gpsi             `json:"gpsi,omitempty"`
 	IpDomain        *string                       `json:"ipDomain,omitempty"`
 
 	// Ipv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
 	Ipv4Addr *externalRef1.Ipv4Addr `json:"ipv4Addr,omitempty"`
 
 	// Ipv6Addr string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used.
-	Ipv6Addr *externalRef1.Ipv6Addr  `json:"ipv6Addr,omitempty"`
-	MacAddr  *externalRef0.MacAddr48 `json:"macAddr,omitempty"`
+	Ipv6Addr *externalRef1.Ipv6Addr `json:"ipv6Addr,omitempty"`
+	MacAddr  externalRef0.MacAddr48 `json:"macAddr,omitempty"`
 
 	// NotificationDestination string formatted according to IETF RFC 3986 identifying a referenced resource.
 	NotificationDestination *externalRef1.Link `json:"notificationDestination,omitempty"`
@@ -140,19 +140,19 @@ type TrafficInfluSub struct {
 	Snssai *externalRef0.Snssai `json:"snssai,omitempty"`
 
 	// SubscribedEvents Identifies the requirement to be notified of the event(s).
-	SubscribedEvents *[]SubscribedEvent               `json:"subscribedEvents,omitempty"`
+	SubscribedEvents []SubscribedEvent                `json:"subscribedEvents,omitempty"`
 	SuppFeat         *externalRef0.SupportedFeatures  `json:"suppFeat,omitempty"`
 	TempValidities   *[]externalRef2.TemporalValidity `json:"tempValidities,omitempty"`
 	TfcCorrInd       *bool                            `json:"tfcCorrInd,omitempty"`
 
 	// TrafficFilters Identifies IP packet filters.
-	TrafficFilters *[]externalRef1.FlowInfo `json:"trafficFilters,omitempty"`
+	TrafficFilters []externalRef1.FlowInfo `json:"trafficFilters,omitempty"`
 
 	// TrafficRoutes Identifies the N6 traffic routing requirement.
-	TrafficRoutes *[]externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
+	TrafficRoutes []externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
 
 	// ValidGeoZoneIds Identifies a geographic zone that the AF request applies only to the traffic of UE(s) located in this specific zone.
-	ValidGeoZoneIds      *[]string                        `json:"validGeoZoneIds,omitempty"`
+	ValidGeoZoneIds      []string                         `json:"validGeoZoneIds,omitempty"`
 	WebsockNotifConfig   *externalRef1.WebsockNotifConfig `json:"websockNotifConfig,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
@@ -166,15 +166,15 @@ type TrafficInfluSubPatch struct {
 	AppReloInd *bool `json:"appReloInd"`
 
 	// EthTrafficFilters Identifies Ethernet packet filters.
-	EthTrafficFilters *[]externalRef2.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
-	TempValidities    *[]externalRef2.TemporalValidity   `json:"tempValidities"`
-	TfcCorrInd        *bool                              `json:"tfcCorrInd"`
+	EthTrafficFilters []externalRef2.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
+	TempValidities    *[]externalRef2.TemporalValidity  `json:"tempValidities"`
+	TfcCorrInd        *bool                             `json:"tfcCorrInd"`
 
 	// TrafficFilters Identifies IP packet filters.
-	TrafficFilters *[]externalRef1.FlowInfo `json:"trafficFilters,omitempty"`
+	TrafficFilters []externalRef1.FlowInfo `json:"trafficFilters,omitempty"`
 
 	// TrafficRoutes Identifies the N6 traffic routing requirement.
-	TrafficRoutes *[]externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
+	TrafficRoutes []externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
 
 	// ValidGeoZoneIds Identifies a geographic zone that the AF request applies only to the traffic of UE(s) located in this specific zone.
 	ValidGeoZoneIds      *[]string              `json:"validGeoZoneIds"`
@@ -270,7 +270,7 @@ func (a AfAckInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -540,7 +540,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'dnaiChgType': %w", err)
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -604,7 +604,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeMac != nil {
+	if len(a.UeMac) != 0 {
 		object["ueMac"], err = json.Marshal(a.UeMac)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueMac': %w", err)
@@ -951,7 +951,7 @@ func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EthTrafficFilters != nil {
+	if len(a.EthTrafficFilters) != 0 {
 		object["ethTrafficFilters"], err = json.Marshal(a.EthTrafficFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ethTrafficFilters': %w", err)
@@ -965,7 +965,7 @@ func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -993,7 +993,7 @@ func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MacAddr != nil {
+	if len(a.MacAddr) != 0 {
 		object["macAddr"], err = json.Marshal(a.MacAddr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'macAddr': %w", err)
@@ -1028,7 +1028,7 @@ func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SubscribedEvents != nil {
+	if len(a.SubscribedEvents) != 0 {
 		object["subscribedEvents"], err = json.Marshal(a.SubscribedEvents)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscribedEvents': %w", err)
@@ -1056,21 +1056,21 @@ func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TrafficFilters != nil {
+	if len(a.TrafficFilters) != 0 {
 		object["trafficFilters"], err = json.Marshal(a.TrafficFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficFilters': %w", err)
 		}
 	}
 
-	if a.TrafficRoutes != nil {
+	if len(a.TrafficRoutes) != 0 {
 		object["trafficRoutes"], err = json.Marshal(a.TrafficRoutes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficRoutes': %w", err)
 		}
 	}
 
-	if a.ValidGeoZoneIds != nil {
+	if len(a.ValidGeoZoneIds) != 0 {
 		object["validGeoZoneIds"], err = json.Marshal(a.ValidGeoZoneIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'validGeoZoneIds': %w", err)
@@ -1224,7 +1224,7 @@ func (a TrafficInfluSubPatch) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'appReloInd': %w", err)
 	}
 
-	if a.EthTrafficFilters != nil {
+	if len(a.EthTrafficFilters) != 0 {
 		object["ethTrafficFilters"], err = json.Marshal(a.EthTrafficFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ethTrafficFilters': %w", err)
@@ -1241,14 +1241,14 @@ func (a TrafficInfluSubPatch) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'tfcCorrInd': %w", err)
 	}
 
-	if a.TrafficFilters != nil {
+	if len(a.TrafficFilters) != 0 {
 		object["trafficFilters"], err = json.Marshal(a.TrafficFilters)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficFilters': %w", err)
 		}
 	}
 
-	if a.TrafficRoutes != nil {
+	if len(a.TrafficRoutes) != 0 {
 		object["trafficRoutes"], err = json.Marshal(a.TrafficRoutes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficRoutes': %w", err)

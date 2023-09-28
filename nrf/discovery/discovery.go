@@ -52,8 +52,8 @@ type NFProfile struct {
 	// GmlcInfo Information of a GMLC NF Instance
 	GmlcInfo      *externalRef2.GmlcInfo           `json:"gmlcInfo,omitempty"`
 	HssInfoList   *map[string]externalRef2.HssInfo `json:"hssInfoList,omitempty"`
-	Ipv4Addresses *[]externalRef1.Ipv4Addr         `json:"ipv4Addresses,omitempty"`
-	Ipv6Addresses *[]externalRef1.Ipv6Addr         `json:"ipv6Addresses,omitempty"`
+	Ipv4Addresses []externalRef1.Ipv4Addr          `json:"ipv4Addresses,omitempty"`
+	Ipv6Addresses []externalRef1.Ipv6Addr          `json:"ipv6Addresses,omitempty"`
 	LcHSupportInd *bool                            `json:"lcHSupportInd,omitempty"`
 
 	// LmfInfo Information of an LMF NF Instance
@@ -69,8 +69,8 @@ type NFProfile struct {
 	NfServiceList        *map[string]NFService     `json:"nfServiceList,omitempty"`
 	NfServicePersistence *bool                     `json:"nfServicePersistence,omitempty"`
 	// Deprecated:
-	NfServices            *[]NFService                      `json:"nfServices,omitempty"`
-	NfSetIdList           *[]externalRef1.NfSetId           `json:"nfSetIdList,omitempty"`
+	NfServices            []NFService                       `json:"nfServices,omitempty"`
+	NfSetIdList           []externalRef1.NfSetId            `json:"nfSetIdList,omitempty"`
 	NfSetRecoveryTimeList *map[string]externalRef1.DateTime `json:"nfSetRecoveryTimeList,omitempty"`
 
 	// NfStatus Status of a given NF Instance stored in NRF
@@ -78,7 +78,7 @@ type NFProfile struct {
 
 	// NfType NF types known to NRF
 	NfType  externalRef2.NFType `json:"nfType"`
-	NsiList *[]string           `json:"nsiList,omitempty"`
+	NsiList []string            `json:"nsiList,omitempty"`
 
 	// NwdafInfo Information of a NWDAF NF Instance
 	NwdafInfo      *externalRef2.NwdafInfo `json:"nwdafInfo,omitempty"`
@@ -88,22 +88,22 @@ type NFProfile struct {
 	PcfInfo           *externalRef2.PcfInfo              `json:"pcfInfo,omitempty"`
 	PcfInfoList       *map[string]externalRef2.PcfInfo   `json:"pcfInfoList,omitempty"`
 	PcscfInfoList     *map[string]externalRef2.PcscfInfo `json:"pcscfInfoList,omitempty"`
-	PerPlmnSnssaiList *[]externalRef2.PlmnSnssai         `json:"perPlmnSnssaiList,omitempty"`
-	PlmnList          *[]externalRef1.PlmnId             `json:"plmnList,omitempty"`
+	PerPlmnSnssaiList []externalRef2.PlmnSnssai          `json:"perPlmnSnssaiList,omitempty"`
+	PlmnList          []externalRef1.PlmnId              `json:"plmnList,omitempty"`
 	Priority          *int                               `json:"priority,omitempty"`
 	RecoveryTime      *externalRef1.DateTime             `json:"recoveryTime,omitempty"`
-	SNssais           *[]externalRef1.ExtSnssai          `json:"sNssais,omitempty"`
-	ScpDomains        *[]string                          `json:"scpDomains,omitempty"`
+	SNssais           []externalRef1.ExtSnssai           `json:"sNssais,omitempty"`
+	ScpDomains        []string                           `json:"scpDomains,omitempty"`
 
 	// ScpInfo Information of an SCP Instance
 	ScpInfo                    *externalRef2.ScpInfo             `json:"scpInfo,omitempty"`
 	ServiceSetRecoveryTimeList *map[string]externalRef1.DateTime `json:"serviceSetRecoveryTimeList,omitempty"`
-	ServingScope               *[]string                         `json:"servingScope,omitempty"`
+	ServingScope               []string                          `json:"servingScope,omitempty"`
 
 	// SmfInfo Information of an SMF NF Instance
 	SmfInfo     *externalRef2.SmfInfo            `json:"smfInfo,omitempty"`
 	SmfInfoList *map[string]externalRef2.SmfInfo `json:"smfInfoList,omitempty"`
-	SnpnList    *[]externalRef1.PlmnIdNid        `json:"snpnList,omitempty"`
+	SnpnList    []externalRef1.PlmnIdNid         `json:"snpnList,omitempty"`
 
 	// UdmInfo Information of an UDM NF Instance
 	UdmInfo     *externalRef2.UdmInfo            `json:"udmInfo,omitempty"`
@@ -125,26 +125,26 @@ type NFProfile struct {
 
 // NFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance discovered by the NRF
 type NFService struct {
-	AllowedOperationsPerNfInstance   *map[string][]string                            `json:"allowedOperationsPerNfInstance,omitempty"`
-	AllowedOperationsPerNfType       *map[string][]string                            `json:"allowedOperationsPerNfType,omitempty"`
-	ApiPrefix                        *string                                         `json:"apiPrefix,omitempty"`
-	Capacity                         *int                                            `json:"capacity,omitempty"`
-	DefaultNotificationSubscriptions *[]externalRef2.DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
+	AllowedOperationsPerNfInstance   *map[string][]string                           `json:"allowedOperationsPerNfInstance,omitempty"`
+	AllowedOperationsPerNfType       *map[string][]string                           `json:"allowedOperationsPerNfType,omitempty"`
+	ApiPrefix                        *string                                        `json:"apiPrefix,omitempty"`
+	Capacity                         *int                                           `json:"capacity,omitempty"`
+	DefaultNotificationSubscriptions []externalRef2.DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
 
 	// Fqdn Fully Qualified Domain Name
-	Fqdn               *externalRef2.Fqdn             `json:"fqdn,omitempty"`
-	IpEndPoints        *[]externalRef2.IpEndPoint     `json:"ipEndPoints,omitempty"`
-	Load               *int                           `json:"load,omitempty"`
-	LoadTimeStamp      *externalRef1.DateTime         `json:"loadTimeStamp,omitempty"`
-	NfServiceSetIdList *[]externalRef1.NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
+	Fqdn               *externalRef2.Fqdn            `json:"fqdn,omitempty"`
+	IpEndPoints        []externalRef2.IpEndPoint     `json:"ipEndPoints,omitempty"`
+	Load               *int                          `json:"load,omitempty"`
+	LoadTimeStamp      *externalRef1.DateTime        `json:"loadTimeStamp,omitempty"`
+	NfServiceSetIdList []externalRef1.NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
 
 	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF
 	NfServiceStatus   externalRef2.NFServiceStatus `json:"nfServiceStatus"`
 	Oauth2Required    *bool                        `json:"oauth2Required,omitempty"`
-	PerPlmnSnssaiList *[]externalRef2.PlmnSnssai   `json:"perPlmnSnssaiList,omitempty"`
+	PerPlmnSnssaiList []externalRef2.PlmnSnssai    `json:"perPlmnSnssaiList,omitempty"`
 	Priority          *int                         `json:"priority,omitempty"`
 	RecoveryTime      *externalRef1.DateTime       `json:"recoveryTime,omitempty"`
-	SNssais           *[]externalRef1.ExtSnssai    `json:"sNssais,omitempty"`
+	SNssais           []externalRef1.ExtSnssai     `json:"sNssais,omitempty"`
 	Scheme            externalRef1.UriScheme       `json:"scheme"`
 	ServiceInstanceId string                       `json:"serviceInstanceId"`
 
@@ -154,7 +154,7 @@ type NFService struct {
 	SupportedVendorSpecificFeatures *map[string][]externalRef2.VendorSpecificFeature `json:"supportedVendorSpecificFeatures,omitempty"`
 
 	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
-	VendorId             *externalRef2.VendorId          `json:"vendorId,omitempty"`
+	VendorId             externalRef2.VendorId           `json:"vendorId,omitempty"`
 	Versions             []externalRef2.NFServiceVersion `json:"versions"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -1085,14 +1085,14 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4Addresses != nil {
+	if len(a.Ipv4Addresses) != 0 {
 		object["ipv4Addresses"], err = json.Marshal(a.Ipv4Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addresses': %w", err)
 		}
 	}
 
-	if a.Ipv6Addresses != nil {
+	if len(a.Ipv6Addresses) != 0 {
 		object["ipv6Addresses"], err = json.Marshal(a.Ipv6Addresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Addresses': %w", err)
@@ -1167,14 +1167,14 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NfServices != nil {
+	if len(a.NfServices) != 0 {
 		object["nfServices"], err = json.Marshal(a.NfServices)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nfServices': %w", err)
 		}
 	}
 
-	if a.NfSetIdList != nil {
+	if len(a.NfSetIdList) != 0 {
 		object["nfSetIdList"], err = json.Marshal(a.NfSetIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nfSetIdList': %w", err)
@@ -1198,7 +1198,7 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'nfType': %w", err)
 	}
 
-	if a.NsiList != nil {
+	if len(a.NsiList) != 0 {
 		object["nsiList"], err = json.Marshal(a.NsiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nsiList': %w", err)
@@ -1240,14 +1240,14 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PerPlmnSnssaiList != nil {
+	if len(a.PerPlmnSnssaiList) != 0 {
 		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
 		}
 	}
 
-	if a.PlmnList != nil {
+	if len(a.PlmnList) != 0 {
 		object["plmnList"], err = json.Marshal(a.PlmnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'plmnList': %w", err)
@@ -1268,14 +1268,14 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SNssais != nil {
+	if len(a.SNssais) != 0 {
 		object["sNssais"], err = json.Marshal(a.SNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
 		}
 	}
 
-	if a.ScpDomains != nil {
+	if len(a.ScpDomains) != 0 {
 		object["scpDomains"], err = json.Marshal(a.ScpDomains)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'scpDomains': %w", err)
@@ -1296,7 +1296,7 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServingScope != nil {
+	if len(a.ServingScope) != 0 {
 		object["servingScope"], err = json.Marshal(a.ServingScope)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingScope': %w", err)
@@ -1317,7 +1317,7 @@ func (a NFProfile) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SnpnList != nil {
+	if len(a.SnpnList) != 0 {
 		object["snpnList"], err = json.Marshal(a.SnpnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'snpnList': %w", err)
@@ -1645,7 +1645,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.DefaultNotificationSubscriptions != nil {
+	if len(a.DefaultNotificationSubscriptions) != 0 {
 		object["defaultNotificationSubscriptions"], err = json.Marshal(a.DefaultNotificationSubscriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'defaultNotificationSubscriptions': %w", err)
@@ -1659,7 +1659,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.IpEndPoints != nil {
+	if len(a.IpEndPoints) != 0 {
 		object["ipEndPoints"], err = json.Marshal(a.IpEndPoints)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipEndPoints': %w", err)
@@ -1680,7 +1680,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NfServiceSetIdList != nil {
+	if len(a.NfServiceSetIdList) != 0 {
 		object["nfServiceSetIdList"], err = json.Marshal(a.NfServiceSetIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nfServiceSetIdList': %w", err)
@@ -1699,7 +1699,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PerPlmnSnssaiList != nil {
+	if len(a.PerPlmnSnssaiList) != 0 {
 		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
@@ -1720,7 +1720,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SNssais != nil {
+	if len(a.SNssais) != 0 {
 		object["sNssais"], err = json.Marshal(a.SNssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
@@ -1756,7 +1756,7 @@ func (a NFService) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.VendorId != nil {
+	if len(a.VendorId) != 0 {
 		object["vendorId"], err = json.Marshal(a.VendorId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'vendorId': %w", err)

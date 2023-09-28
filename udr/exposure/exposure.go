@@ -29,7 +29,7 @@ const (
 
 // AccessAndMobilityData defines model for AccessAndMobilityData.
 type AccessAndMobilityData struct {
-	AccessType           *externalRef2.AccessType     `json:"accessType,omitempty"`
+	AccessType           externalRef2.AccessType      `json:"accessType,omitempty"`
 	ConnStates           *[]externalRef1.CmInfo       `json:"connStates,omitempty"`
 	ConnStatesTs         *externalRef2.DateTime       `json:"connStatesTs,omitempty"`
 	CurrentPlmn          *externalRef2.PlmnId         `json:"currentPlmn,omitempty"`
@@ -56,11 +56,11 @@ type AccessAndMobilityData struct {
 
 // ExposureDataChangeNotification defines model for ExposureDataChangeNotification.
 type ExposureDataChangeNotification struct {
-	AccessAndMobilityData    *AccessAndMobilityData      `json:"accessAndMobilityData,omitempty"`
-	DelResources             *[]externalRef2.Uri         `json:"delResources,omitempty"`
-	PduSessionManagementData *[]PduSessionManagementData `json:"pduSessionManagementData,omitempty"`
-	UeId                     *externalRef2.VarUeId       `json:"ueId,omitempty"`
-	AdditionalProperties     map[string]interface{}      `json:"-"`
+	AccessAndMobilityData    *AccessAndMobilityData     `json:"accessAndMobilityData,omitempty"`
+	DelResources             []externalRef2.Uri         `json:"delResources,omitempty"`
+	PduSessionManagementData []PduSessionManagementData `json:"pduSessionManagementData,omitempty"`
+	UeId                     externalRef2.VarUeId       `json:"ueId,omitempty"`
+	AdditionalProperties     map[string]interface{}     `json:"-"`
 }
 
 // ExposureDataSubscription defines model for ExposureDataSubscription.
@@ -74,15 +74,15 @@ type ExposureDataSubscription struct {
 
 // PduSessionManagementData defines model for PduSessionManagementData.
 type PduSessionManagementData struct {
-	Dnai      *externalRef2.Dnai       `json:"dnai,omitempty"`
-	DnaiTs    *externalRef2.DateTime   `json:"dnaiTs,omitempty"`
-	Dnn       *externalRef2.Dnn        `json:"dnn,omitempty"`
-	IpAddrTs  *externalRef2.DateTime   `json:"ipAddrTs,omitempty"`
-	Ipv4Addr  *externalRef2.Ipv4Addr   `json:"ipv4Addr,omitempty"`
-	Ipv6Addrs *[]externalRef2.Ipv6Addr `json:"ipv6Addrs,omitempty"`
+	Dnai      *externalRef2.Dnai      `json:"dnai,omitempty"`
+	DnaiTs    *externalRef2.DateTime  `json:"dnaiTs,omitempty"`
+	Dnn       *externalRef2.Dnn       `json:"dnn,omitempty"`
+	IpAddrTs  *externalRef2.DateTime  `json:"ipAddrTs,omitempty"`
+	Ipv4Addr  externalRef2.Ipv4Addr   `json:"ipv4Addr,omitempty"`
+	Ipv6Addrs []externalRef2.Ipv6Addr `json:"ipv6Addrs,omitempty"`
 
 	// Ipv6Prefix UE IPv6 prefix.
-	Ipv6Prefix             *[]externalRef2.Ipv6Prefix      `json:"ipv6Prefix,omitempty"`
+	Ipv6Prefix             []externalRef2.Ipv6Prefix       `json:"ipv6Prefix,omitempty"`
 	N6TrafficRoutingInfo   *[]externalRef2.RouteToLocation `json:"n6TrafficRoutingInfo,omitempty"`
 	N6TrafficRoutingInfoTs *externalRef2.DateTime          `json:"n6TrafficRoutingInfoTs,omitempty"`
 	PduSessType            *externalRef2.PduSessionType    `json:"pduSessType,omitempty"`
@@ -341,7 +341,7 @@ func (a AccessAndMobilityData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessType != nil {
+	if len(a.AccessType) != 0 {
 		object["accessType"], err = json.Marshal(a.AccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
@@ -573,21 +573,21 @@ func (a ExposureDataChangeNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.DelResources != nil {
+	if len(a.DelResources) != 0 {
 		object["delResources"], err = json.Marshal(a.DelResources)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'delResources': %w", err)
 		}
 	}
 
-	if a.PduSessionManagementData != nil {
+	if len(a.PduSessionManagementData) != 0 {
 		object["pduSessionManagementData"], err = json.Marshal(a.PduSessionManagementData)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pduSessionManagementData': %w", err)
 		}
 	}
 
-	if a.UeId != nil {
+	if len(a.UeId) != 0 {
 		object["ueId"], err = json.Marshal(a.UeId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueId': %w", err)
@@ -896,21 +896,21 @@ func (a PduSessionManagementData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4Addr != nil {
+	if len(a.Ipv4Addr) != 0 {
 		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
 		}
 	}
 
-	if a.Ipv6Addrs != nil {
+	if len(a.Ipv6Addrs) != 0 {
 		object["ipv6Addrs"], err = json.Marshal(a.Ipv6Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Addrs': %w", err)
 		}
 	}
 
-	if a.Ipv6Prefix != nil {
+	if len(a.Ipv6Prefix) != 0 {
 		object["ipv6Prefix"], err = json.Marshal(a.Ipv6Prefix)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Prefix': %w", err)

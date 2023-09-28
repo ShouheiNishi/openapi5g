@@ -14,6 +14,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         BdtData:
             additionalProperties: true
@@ -37,6 +38,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 trafficDes:
                     description: Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
+                    x-go-type-skip-optional-pointer: true
                 transPolicy:
                     $ref: TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/TransferPolicy
                 volPerUe:
@@ -75,11 +77,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sscModes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/SscMode
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - dnn
             type: object
@@ -100,6 +104,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - limitId
             type: object
@@ -112,6 +117,7 @@ components:
                         $ref: '#/components/schemas/UpdatedItem'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 resourceId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
             required:
@@ -140,6 +146,7 @@ components:
                         $ref: '#/components/schemas/SnssaiRouteSelectionDescriptor'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - servingPlmn
             type: object
@@ -160,13 +167,16 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notifId:
                     type: string
                 opSpecData:
                     description: Original reference TS29505_Subscription_Data.yaml#/components/schemas/OperatorSpecificDataContainer
+                    x-go-type-skip-optional-pointer: true
                 opSpecDataMap:
                     additionalProperties:
                         description: Original reference TS29505_Subscription_Data.yaml#/components/schemas/OperatorSpecificDataContainer
+                        x-go-type-skip-optional-pointer: true
                     minProperties: 1
                     type: object
                 plmnId:
@@ -178,6 +188,7 @@ components:
                         $ref: '#/components/schemas/NotificationItem'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 smPolicyData:
                     $ref: '#/components/schemas/SmPolicyData'
                 sponsorId:
@@ -202,6 +213,7 @@ components:
                         $ref: '#/components/schemas/ResourceItem'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 monitoredResourceUris:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uri
@@ -225,6 +237,7 @@ components:
                         $ref: '#/components/schemas/ItemPath'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 monResourceUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
             required:
@@ -282,6 +295,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 bdtRefIds:
                     additionalProperties:
                         $ref: TS29122_CommonData.yaml#/components/schemas/BdtReferenceIdRm
@@ -290,6 +304,7 @@ components:
                     type: object
                 chfInfo:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingInformation
+                    x-go-type-skip-optional-pointer: true
                 dnn:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                 gbrDl:
@@ -331,6 +346,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subscSpendingLimits:
                     type: boolean
             required:
@@ -388,6 +404,7 @@ components:
                         $ref: '#/components/schemas/DnnRouteSelectionDescriptor'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 snssai:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
             required:
@@ -443,6 +460,7 @@ components:
                         $ref: '#/components/schemas/OsId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pei:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Pei
                 praInfos:
@@ -455,6 +473,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 suppFeat:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 uePolicySections:
@@ -467,6 +486,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         UePolicySetPatch:
             additionalProperties: true
@@ -479,6 +499,7 @@ components:
                         $ref: '#/components/schemas/OsId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pei:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Pei
                 uePolicySections:
@@ -491,6 +512,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         UpdatedItem:
             additionalProperties: true
@@ -558,6 +580,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 snssai:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
             required:
@@ -593,6 +616,7 @@ paths:
                         $ref: TS29122_CommonData.yaml#/components/schemas/BdtReferenceId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: Supported Features
                   in: query
@@ -825,6 +849,7 @@ paths:
               required: true
               schema:
                 description: Original reference TS29505_Subscription_Data.yaml#/components/schemas/VarPlmnId
+                x-go-type-skip-optional-pointer: true
     /policy-data/sponsor-connectivity-data/{sponsorId}:
         get:
             operationId: ReadSponsorConnectivityData
@@ -878,6 +903,7 @@ paths:
                                                 $ref: '#/components/schemas/PolicyDataChangeNotification'
                                             minItems: 1
                                             type: array
+                                            x-go-type-skip-optional-pointer: true
                                 required: true
                             responses:
                                 "204":
@@ -1077,6 +1103,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Supported Features
                   in: query
                   name: supp-feat
@@ -1089,6 +1116,7 @@ paths:
                             schema:
                                 additionalProperties:
                                     description: Original reference TS29505_Subscription_Data.yaml#/components/schemas/OperatorSpecificDataContainer
+                                    x-go-type-skip-optional-pointer: true
                                 type: object
                     description: Expected response to a valid request
                 "400":
@@ -1180,6 +1208,7 @@ paths:
                         schema:
                             additionalProperties:
                                 description: Original reference TS29505_Subscription_Data.yaml#/components/schemas/OperatorSpecificDataContainer
+                                x-go-type-skip-optional-pointer: true
                             type: object
                 required: true
             responses:
@@ -1189,6 +1218,7 @@ paths:
                             schema:
                                 additionalProperties:
                                     description: Original reference TS29505_Subscription_Data.yaml#/components/schemas/OperatorSpecificDataContainer
+                                    x-go-type-skip-optional-pointer: true
                                 type: object
                     description: OK
                 "204":
@@ -1245,6 +1275,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Supported Features
                   in: query
                   name: supp-feat

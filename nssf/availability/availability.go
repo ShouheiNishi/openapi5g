@@ -31,11 +31,11 @@ const (
 
 // AuthorizedNssaiAvailabilityData defines model for AuthorizedNssaiAvailabilityData.
 type AuthorizedNssaiAvailabilityData struct {
-	RestrictedSnssaiList *[]RestrictedSnssai      `json:"restrictedSnssaiList,omitempty"`
+	RestrictedSnssaiList []RestrictedSnssai       `json:"restrictedSnssaiList,omitempty"`
 	SupportedSnssaiList  []externalRef0.ExtSnssai `json:"supportedSnssaiList"`
 	Tai                  externalRef0.Tai         `json:"tai"`
-	TaiList              *[]externalRef0.Tai      `json:"taiList,omitempty"`
-	TaiRangeList         *[]externalRef1.TaiRange `json:"taiRangeList,omitempty"`
+	TaiList              []externalRef0.Tai       `json:"taiList,omitempty"`
+	TaiRangeList         []externalRef1.TaiRange  `json:"taiRangeList,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
@@ -48,7 +48,7 @@ type AuthorizedNssaiAvailabilityInfo struct {
 
 // NssaiAvailabilityInfo defines model for NssaiAvailabilityInfo.
 type NssaiAvailabilityInfo struct {
-	AmfSetId                       *string                          `json:"amfSetId,omitempty"`
+	AmfSetId                       string                           `json:"amfSetId,omitempty"`
 	SupportedFeatures              *externalRef0.SupportedFeatures  `json:"supportedFeatures,omitempty"`
 	SupportedNssaiAvailabilityData []SupportedNssaiAvailabilityData `json:"supportedNssaiAvailabilityData"`
 	AdditionalProperties           map[string]interface{}           `json:"-"`
@@ -63,23 +63,23 @@ type NssfEventNotification struct {
 
 // NssfEventSubscriptionCreateData defines model for NssfEventSubscriptionCreateData.
 type NssfEventSubscriptionCreateData struct {
-	AmfSetId               *string                         `json:"amfSetId,omitempty"`
+	AmfSetId               string                          `json:"amfSetId,omitempty"`
 	Event                  NssfEventType                   `json:"event"`
 	Expiry                 *externalRef0.DateTime          `json:"expiry,omitempty"`
 	NfNssaiAvailabilityUri externalRef0.Uri                `json:"nfNssaiAvailabilityUri"`
 	SupportedFeatures      *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	TaiList                []externalRef0.Tai              `json:"taiList"`
-	TaiRangeList           *[]externalRef1.TaiRange        `json:"taiRangeList,omitempty"`
+	TaiRangeList           []externalRef1.TaiRange         `json:"taiRangeList,omitempty"`
 	AdditionalProperties   map[string]interface{}          `json:"-"`
 }
 
 // NssfEventSubscriptionCreatedData defines model for NssfEventSubscriptionCreatedData.
 type NssfEventSubscriptionCreatedData struct {
-	AuthorizedNssaiAvailabilityData *[]AuthorizedNssaiAvailabilityData `json:"authorizedNssaiAvailabilityData,omitempty"`
-	Expiry                          *externalRef0.DateTime             `json:"expiry,omitempty"`
-	SubscriptionId                  string                             `json:"subscriptionId"`
-	SupportedFeatures               *externalRef0.SupportedFeatures    `json:"supportedFeatures,omitempty"`
-	AdditionalProperties            map[string]interface{}             `json:"-"`
+	AuthorizedNssaiAvailabilityData []AuthorizedNssaiAvailabilityData `json:"authorizedNssaiAvailabilityData,omitempty"`
+	Expiry                          *externalRef0.DateTime            `json:"expiry,omitempty"`
+	SubscriptionId                  string                            `json:"subscriptionId"`
+	SupportedFeatures               *externalRef0.SupportedFeatures   `json:"supportedFeatures,omitempty"`
+	AdditionalProperties            map[string]interface{}            `json:"-"`
 }
 
 // NssfEventType defines model for NssfEventType.
@@ -91,7 +91,7 @@ type PatchDocument = []externalRef0.PatchItem
 // RestrictedSnssai defines model for RestrictedSnssai.
 type RestrictedSnssai struct {
 	HomePlmnId           externalRef0.PlmnId      `json:"homePlmnId"`
-	HomePlmnIdList       *[]externalRef0.PlmnId   `json:"homePlmnIdList,omitempty"`
+	HomePlmnIdList       []externalRef0.PlmnId    `json:"homePlmnIdList,omitempty"`
 	RoamingRestriction   *bool                    `json:"roamingRestriction,omitempty"`
 	SNssaiList           []externalRef0.ExtSnssai `json:"sNssaiList"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
@@ -101,8 +101,8 @@ type RestrictedSnssai struct {
 type SupportedNssaiAvailabilityData struct {
 	SupportedSnssaiList  []externalRef0.ExtSnssai `json:"supportedSnssaiList"`
 	Tai                  externalRef0.Tai         `json:"tai"`
-	TaiList              *[]externalRef0.Tai      `json:"taiList,omitempty"`
-	TaiRangeList         *[]externalRef1.TaiRange `json:"taiRangeList,omitempty"`
+	TaiList              []externalRef0.Tai       `json:"taiList,omitempty"`
+	TaiRangeList         []externalRef1.TaiRange  `json:"taiRangeList,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
@@ -226,7 +226,7 @@ func (a AuthorizedNssaiAvailabilityData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.RestrictedSnssaiList != nil {
+	if len(a.RestrictedSnssaiList) != 0 {
 		object["restrictedSnssaiList"], err = json.Marshal(a.RestrictedSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'restrictedSnssaiList': %w", err)
@@ -243,14 +243,14 @@ func (a AuthorizedNssaiAvailabilityData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'tai': %w", err)
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
 		}
 	}
 
-	if a.TaiRangeList != nil {
+	if len(a.TaiRangeList) != 0 {
 		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
@@ -415,7 +415,7 @@ func (a NssaiAvailabilityInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AmfSetId != nil {
+	if len(a.AmfSetId) != 0 {
 		object["amfSetId"], err = json.Marshal(a.AmfSetId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'amfSetId': %w", err)
@@ -622,7 +622,7 @@ func (a NssfEventSubscriptionCreateData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AmfSetId != nil {
+	if len(a.AmfSetId) != 0 {
 		object["amfSetId"], err = json.Marshal(a.AmfSetId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'amfSetId': %w", err)
@@ -658,7 +658,7 @@ func (a NssfEventSubscriptionCreateData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
 	}
 
-	if a.TaiRangeList != nil {
+	if len(a.TaiRangeList) != 0 {
 		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
@@ -750,7 +750,7 @@ func (a NssfEventSubscriptionCreatedData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AuthorizedNssaiAvailabilityData != nil {
+	if len(a.AuthorizedNssaiAvailabilityData) != 0 {
 		object["authorizedNssaiAvailabilityData"], err = json.Marshal(a.AuthorizedNssaiAvailabilityData)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'authorizedNssaiAvailabilityData': %w", err)
@@ -866,7 +866,7 @@ func (a RestrictedSnssai) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'homePlmnId': %w", err)
 	}
 
-	if a.HomePlmnIdList != nil {
+	if len(a.HomePlmnIdList) != 0 {
 		object["homePlmnIdList"], err = json.Marshal(a.HomePlmnIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'homePlmnIdList': %w", err)
@@ -980,14 +980,14 @@ func (a SupportedNssaiAvailabilityData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'tai': %w", err)
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
 		}
 	}
 
-	if a.TaiRangeList != nil {
+	if len(a.TaiRangeList) != 0 {
 		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)

@@ -86,6 +86,7 @@ paths:
                   schema:
                     pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 - description: UE Context Information Class
                   in: query
                   name: info-class

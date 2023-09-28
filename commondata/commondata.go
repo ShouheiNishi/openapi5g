@@ -494,7 +494,7 @@ type AccessTypeRm struct {
 
 // AcsInfo defines model for AcsInfo.
 type AcsInfo struct {
-	AcsIpv4Addr          *Ipv4Addr              `json:"acsIpv4Addr,omitempty"`
+	AcsIpv4Addr          Ipv4Addr               `json:"acsIpv4Addr,omitempty"`
 	AcsIpv6Addr          *Ipv6Addr              `json:"acsIpv6Addr,omitempty"`
 	AcsUrl               *Uri                   `json:"acsUrl,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -559,7 +559,7 @@ type ApplicationIdRm = string
 // Area defines model for Area.
 type Area struct {
 	AreaCode             *AreaCode              `json:"areaCode,omitempty"`
-	Tacs                 *[]Tac                 `json:"tacs,omitempty"`
+	Tacs                 []Tac                  `json:"tacs,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -571,10 +571,10 @@ type AreaCodeRm = string
 
 // AreaScope defines model for AreaScope.
 type AreaScope struct {
-	EutraCellIdList      *[]EutraCellId         `json:"eutraCellIdList,omitempty"`
-	NrCellIdList         *[]NrCellId            `json:"nrCellIdList,omitempty"`
+	EutraCellIdList      []EutraCellId          `json:"eutraCellIdList,omitempty"`
+	NrCellIdList         []NrCellId             `json:"nrCellIdList,omitempty"`
 	TacInfoPerPlmn       *map[string]TacInfo    `json:"tacInfoPerPlmn,omitempty"`
-	TacList              *[]Tac                 `json:"tacList,omitempty"`
+	TacList              []Tac                  `json:"tacList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -630,7 +630,7 @@ type AverWindowRm = int
 // BackupAmfInfo defines model for BackupAmfInfo.
 type BackupAmfInfo struct {
 	BackupAmf            AmfName                `json:"backupAmf"`
-	GuamiList            *[]Guami               `json:"guamiList,omitempty"`
+	GuamiList            []Guami                `json:"guamiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -746,9 +746,9 @@ type DayOfWeek = int
 
 // DddTrafficDescriptor defines model for DddTrafficDescriptor.
 type DddTrafficDescriptor struct {
-	Ipv4Addr             *Ipv4Addr              `json:"ipv4Addr,omitempty"`
+	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
 	Ipv6Addr             *Ipv6Addr              `json:"ipv6Addr,omitempty"`
-	MacAddr              *MacAddr48             `json:"macAddr,omitempty"`
+	MacAddr              MacAddr48              `json:"macAddr,omitempty"`
 	PortNumber           *Uinteger              `json:"portNumber,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -813,12 +813,12 @@ type DurationSecRm = int
 
 // Dynamic5Qi defines model for Dynamic5Qi.
 type Dynamic5Qi struct {
-	AverWindow            *AverWindow            `json:"averWindow,omitempty"`
-	CnPacketDelayBudgetDl *ExtPacketDelBudget    `json:"cnPacketDelayBudgetDl,omitempty"`
-	CnPacketDelayBudgetUl *ExtPacketDelBudget    `json:"cnPacketDelayBudgetUl,omitempty"`
-	ExtMaxDataBurstVol    *ExtMaxDataBurstVol    `json:"extMaxDataBurstVol,omitempty"`
-	ExtPacketDelBudget    *ExtPacketDelBudget    `json:"extPacketDelBudget,omitempty"`
-	MaxDataBurstVol       *MaxDataBurstVol       `json:"maxDataBurstVol,omitempty"`
+	AverWindow            AverWindow             `json:"averWindow,omitempty"`
+	CnPacketDelayBudgetDl ExtPacketDelBudget     `json:"cnPacketDelayBudgetDl,omitempty"`
+	CnPacketDelayBudgetUl ExtPacketDelBudget     `json:"cnPacketDelayBudgetUl,omitempty"`
+	ExtMaxDataBurstVol    ExtMaxDataBurstVol     `json:"extMaxDataBurstVol,omitempty"`
+	ExtPacketDelBudget    ExtPacketDelBudget     `json:"extPacketDelBudget,omitempty"`
+	MaxDataBurstVol       MaxDataBurstVol        `json:"maxDataBurstVol,omitempty"`
 	PacketDelayBudget     PacketDelBudget        `json:"packetDelayBudget"`
 	PacketErrRate         PacketErrRate          `json:"packetErrRate"`
 	PriorityLevel         N5QiPriorityLevel      `json:"priorityLevel"`
@@ -832,7 +832,7 @@ type ENbId = string
 // Ecgi defines model for Ecgi.
 type Ecgi struct {
 	EutraCellId          EutraCellId            `json:"eutraCellId"`
-	Nid                  *Nid                   `json:"nid,omitempty"`
+	Nid                  Nid                    `json:"nid,omitempty"`
 	PlmnId               PlmnId                 `json:"plmnId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -852,8 +852,8 @@ type EutraCellIdRm = string
 type EutraLocation struct {
 	AgeOfLocationInformation *int                   `json:"ageOfLocationInformation,omitempty"`
 	Ecgi                     Ecgi                   `json:"ecgi"`
-	GeodeticInformation      *string                `json:"geodeticInformation,omitempty"`
-	GeographicalInformation  *string                `json:"geographicalInformation,omitempty"`
+	GeodeticInformation      string                 `json:"geodeticInformation,omitempty"`
+	GeographicalInformation  string                 `json:"geographicalInformation,omitempty"`
 	GlobalENbId              *GlobalRanNodeId       `json:"globalENbId,omitempty"`
 	GlobalNgenbId            *GlobalRanNodeId       `json:"globalNgenbId,omitempty"`
 	IgnoreEcgi               *bool                  `json:"ignoreEcgi,omitempty"`
@@ -885,11 +885,11 @@ type ExtPacketDelBudgetRm = int
 
 // ExtSnssai defines model for ExtSnssai.
 type ExtSnssai struct {
-	Sd *string `json:"sd,omitempty"`
+	Sd string `json:"sd,omitempty"`
 
 	// SdRanges When present, it shall contain the range(s) of Slice Differentiator values supported for the Slice/Service Type value indicated in the sst attribute of the Snssai data type
-	SdRanges *[]SdRange `json:"sdRanges,omitempty"`
-	Sst      int        `json:"sst"`
+	SdRanges []SdRange `json:"sdRanges,omitempty"`
+	Sst      int       `json:"sst"`
 
 	// WildcardSd When present, it shall be set to true, to indicate that all SD values are supported for the Slice/Service Type value indicated in the sst attribute of the Snssai data type
 	WildcardSd           *ExtSnssaiWildcardSd   `json:"wildcardSd,omitempty"`
@@ -925,8 +925,8 @@ type Gci = string
 type GeraLocation struct {
 	AgeOfLocationInformation *int                   `json:"ageOfLocationInformation,omitempty"`
 	Cgi                      *CellGlobalId          `json:"cgi,omitempty"`
-	GeodeticInformation      *string                `json:"geodeticInformation,omitempty"`
-	GeographicalInformation  *string                `json:"geographicalInformation,omitempty"`
+	GeodeticInformation      string                 `json:"geodeticInformation,omitempty"`
+	GeographicalInformation  string                 `json:"geographicalInformation,omitempty"`
 	Lai                      *LocationAreaId        `json:"lai,omitempty"`
 	LocationNumber           *string                `json:"locationNumber,omitempty"`
 	MscNumber                *string                `json:"mscNumber,omitempty"`
@@ -942,14 +942,14 @@ type Gli = Bytes
 
 // GlobalRanNodeId defines model for GlobalRanNodeId.
 type GlobalRanNodeId struct {
-	ENbId                *ENbId                 `json:"eNbId,omitempty"`
+	ENbId                ENbId                  `json:"eNbId,omitempty"`
 	GNbId                *GNbId                 `json:"gNbId,omitempty"`
-	N3IwfId              *N3IwfId               `json:"n3IwfId,omitempty"`
-	NgeNbId              *NgeNbId               `json:"ngeNbId,omitempty"`
-	Nid                  *Nid                   `json:"nid,omitempty"`
+	N3IwfId              N3IwfId                `json:"n3IwfId,omitempty"`
+	NgeNbId              NgeNbId                `json:"ngeNbId,omitempty"`
+	Nid                  Nid                    `json:"nid,omitempty"`
 	PlmnId               PlmnId                 `json:"plmnId"`
-	TngfId               *TngfId                `json:"tngfId,omitempty"`
-	WagfId               *WAgfId                `json:"wagfId,omitempty"`
+	TngfId               TngfId                 `json:"tngfId,omitempty"`
+	WagfId               WAgfId                 `json:"wagfId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -977,7 +977,7 @@ type GuamiRm struct {
 type HalTemplate struct {
 	ContentType          *string                `json:"contentType,omitempty"`
 	Method               HttpMethod             `json:"method"`
-	Properties           *[]Property            `json:"properties,omitempty"`
+	Properties           []Property             `json:"properties,omitempty"`
 	Title                *string                `json:"title,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -1016,7 +1016,7 @@ type Int64Rm = int64
 
 // InterFreqTargetInfo defines model for InterFreqTargetInfo.
 type InterFreqTargetInfo struct {
-	CellIdList           *[]PhysCellId          `json:"cellIdList,omitempty"`
+	CellIdList           []PhysCellId           `json:"cellIdList,omitempty"`
 	DlCarrierFreq        ArfcnValueNR           `json:"dlCarrierFreq"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -1142,33 +1142,33 @@ type MccRm = string
 
 // MdtConfiguration defines model for MdtConfiguration.
 type MdtConfiguration struct {
-	AddPositioningMethodList *[]PositioningMethodMdt    `json:"addPositioningMethodList,omitempty"`
+	AddPositioningMethodList []PositioningMethodMdt     `json:"addPositioningMethodList,omitempty"`
 	AreaScope                *AreaScope                 `json:"areaScope,omitempty"`
 	CollectionPeriodRmmLte   *CollectionPeriodRmmLteMdt `json:"collectionPeriodRmmLte,omitempty"`
 	CollectionPeriodRmmNr    *CollectionPeriodRmmNrMdt  `json:"collectionPeriodRmmNr,omitempty"`
-	EventList                *[]EventForMdt             `json:"eventList,omitempty"`
+	EventList                []EventForMdt              `json:"eventList,omitempty"`
 	EventThresholdRsrp       *int                       `json:"eventThresholdRsrp,omitempty"`
 	EventThresholdRsrpNr     *int                       `json:"eventThresholdRsrpNr,omitempty"`
 	EventThresholdRsrq       *int                       `json:"eventThresholdRsrq,omitempty"`
 	EventThresholdRsrqNr     *int                       `json:"eventThresholdRsrqNr,omitempty"`
-	InterFreqTargetList      *[]InterFreqTargetInfo     `json:"interFreqTargetList,omitempty"`
+	InterFreqTargetList      []InterFreqTargetInfo      `json:"interFreqTargetList,omitempty"`
 	JobType                  JobType                    `json:"jobType"`
 	LoggingDuration          *LoggingDurationMdt        `json:"loggingDuration,omitempty"`
 	LoggingDurationNr        *LoggingDurationNrMdt      `json:"loggingDurationNr,omitempty"`
 	LoggingInterval          *LoggingIntervalMdt        `json:"loggingInterval,omitempty"`
 	LoggingIntervalNr        *LoggingIntervalNrMdt      `json:"loggingIntervalNr,omitempty"`
-	MbsfnAreaList            *[]MbsfnArea               `json:"mbsfnAreaList,omitempty"`
-	MdtAllowedPlmnIdList     *[]PlmnId                  `json:"mdtAllowedPlmnIdList,omitempty"`
+	MbsfnAreaList            []MbsfnArea                `json:"mbsfnAreaList,omitempty"`
+	MdtAllowedPlmnIdList     []PlmnId                   `json:"mdtAllowedPlmnIdList,omitempty"`
 	MeasurementLteList       *[]MeasurementLteForMdt    `json:"measurementLteList,omitempty"`
-	MeasurementNrList        *[]MeasurementNrForMdt     `json:"measurementNrList,omitempty"`
+	MeasurementNrList        []MeasurementNrForMdt      `json:"measurementNrList,omitempty"`
 	MeasurementPeriodLte     *MeasurementPeriodLteMdt   `json:"measurementPeriodLte,omitempty"`
 	PositioningMethod        *PositioningMethodMdt      `json:"positioningMethod,omitempty"`
 	ReportAmount             *ReportAmountMdt           `json:"reportAmount,omitempty"`
 	ReportInterval           *ReportIntervalMdt         `json:"reportInterval,omitempty"`
 	ReportIntervalNr         *ReportIntervalNrMdt       `json:"reportIntervalNr,omitempty"`
 	ReportType               *ReportTypeMdt             `json:"reportType,omitempty"`
-	ReportingTriggerList     *[]ReportingTrigger        `json:"reportingTriggerList,omitempty"`
-	SensorMeasurementList    *[]SensorMeasurement       `json:"sensorMeasurementList,omitempty"`
+	ReportingTriggerList     []ReportingTrigger         `json:"reportingTriggerList,omitempty"`
+	SensorMeasurementList    []SensorMeasurement        `json:"sensorMeasurementList,omitempty"`
 	AdditionalProperties     map[string]interface{}     `json:"-"`
 }
 
@@ -1205,7 +1205,7 @@ type N3gaLocation struct {
 	Gci        *Gci       `json:"gci,omitempty"`
 	Gli        *Gli       `json:"gli,omitempty"`
 	HfcNodeId  *HfcNodeId `json:"hfcNodeId,omitempty"`
-	N3IwfId    *string    `json:"n3IwfId,omitempty"`
+	N3IwfId    string     `json:"n3IwfId,omitempty"`
 	N3gppTai   *Tai       `json:"n3gppTai,omitempty"`
 	PortNumber *Uinteger  `json:"portNumber,omitempty"`
 
@@ -1213,7 +1213,7 @@ type N3gaLocation struct {
 	Protocol   *TransportProtocol `json:"protocol,omitempty"`
 	TnapId     *TnapId            `json:"tnapId,omitempty"`
 	TwapId     *TwapId            `json:"twapId,omitempty"`
-	UeIpv4Addr *Ipv4Addr          `json:"ueIpv4Addr,omitempty"`
+	UeIpv4Addr Ipv4Addr           `json:"ueIpv4Addr,omitempty"`
 	UeIpv6Addr *Ipv6Addr          `json:"ueIpv6Addr,omitempty"`
 
 	// W5gbanLineType Possible values are - DSL: Identifies a DSL line - PON: Identifies a PON line
@@ -1223,7 +1223,7 @@ type N3gaLocation struct {
 
 // Ncgi defines model for Ncgi.
 type Ncgi struct {
-	Nid                  *Nid                   `json:"nid,omitempty"`
+	Nid                  Nid                    `json:"nid,omitempty"`
 	NrCellId             NrCellId               `json:"nrCellId"`
 	PlmnId               PlmnId                 `json:"plmnId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -1236,8 +1236,8 @@ type NcgiRm struct {
 
 // NetworkId defines model for NetworkId.
 type NetworkId struct {
-	Mcc                  *Mcc                   `json:"mcc,omitempty"`
-	Mnc                  *Mnc                   `json:"mnc,omitempty"`
+	Mcc                  Mcc                    `json:"mcc,omitempty"`
+	Mnc                  Mnc                    `json:"mnc,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -1271,12 +1271,12 @@ type NidRm = string
 
 // NonDynamic5Qi defines model for NonDynamic5Qi.
 type NonDynamic5Qi struct {
-	AverWindow            *AverWindow            `json:"averWindow,omitempty"`
-	CnPacketDelayBudgetDl *ExtPacketDelBudget    `json:"cnPacketDelayBudgetDl,omitempty"`
-	CnPacketDelayBudgetUl *ExtPacketDelBudget    `json:"cnPacketDelayBudgetUl,omitempty"`
-	ExtMaxDataBurstVol    *ExtMaxDataBurstVol    `json:"extMaxDataBurstVol,omitempty"`
-	MaxDataBurstVol       *MaxDataBurstVol       `json:"maxDataBurstVol,omitempty"`
-	PriorityLevel         *N5QiPriorityLevel     `json:"priorityLevel,omitempty"`
+	AverWindow            AverWindow             `json:"averWindow,omitempty"`
+	CnPacketDelayBudgetDl ExtPacketDelBudget     `json:"cnPacketDelayBudgetDl,omitempty"`
+	CnPacketDelayBudgetUl ExtPacketDelBudget     `json:"cnPacketDelayBudgetUl,omitempty"`
+	ExtMaxDataBurstVol    ExtMaxDataBurstVol     `json:"extMaxDataBurstVol,omitempty"`
+	MaxDataBurstVol       MaxDataBurstVol        `json:"maxDataBurstVol,omitempty"`
+	PriorityLevel         N5QiPriorityLevel      `json:"priorityLevel,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
@@ -1304,8 +1304,8 @@ type NrCellIdRm = string
 // NrLocation defines model for NrLocation.
 type NrLocation struct {
 	AgeOfLocationInformation *int                   `json:"ageOfLocationInformation,omitempty"`
-	GeodeticInformation      *string                `json:"geodeticInformation,omitempty"`
-	GeographicalInformation  *string                `json:"geographicalInformation,omitempty"`
+	GeodeticInformation      string                 `json:"geodeticInformation,omitempty"`
+	GeographicalInformation  string                 `json:"geographicalInformation,omitempty"`
 	GlobalGnbId              *GlobalRanNodeId       `json:"globalGnbId,omitempty"`
 	IgnoreNcgi               *bool                  `json:"ignoreNcgi,omitempty"`
 	Ncgi                     Ncgi                   `json:"ncgi"`
@@ -1395,14 +1395,14 @@ type PatchResult struct {
 
 // Pc5FlowBitRates defines model for Pc5FlowBitRates.
 type Pc5FlowBitRates struct {
-	GuaFbr               *BitRate               `json:"guaFbr,omitempty"`
-	MaxFbr               *BitRate               `json:"maxFbr,omitempty"`
+	GuaFbr               BitRate                `json:"guaFbr,omitempty"`
+	MaxFbr               BitRate                `json:"maxFbr,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // Pc5QoSPara defines model for Pc5QoSPara.
 type Pc5QoSPara struct {
-	Pc5LinkAmbr          *BitRate               `json:"pc5LinkAmbr,omitempty"`
+	Pc5LinkAmbr          BitRate                `json:"pc5LinkAmbr,omitempty"`
 	Pc5QosFlowList       []Pc5QosFlowItem       `json:"pc5QosFlowList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -1445,7 +1445,7 @@ type PlmnId = f5gcModels.PlmnId
 type PlmnIdNid struct {
 	Mcc                  Mcc                    `json:"mcc"`
 	Mnc                  Mnc                    `json:"mnc"`
-	Nid                  *Nid                   `json:"nid,omitempty"`
+	Nid                  Nid                    `json:"nid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -1476,13 +1476,13 @@ type PreemptionVulnerabilityRm struct {
 // PresenceInfo defines model for PresenceInfo.
 type PresenceInfo struct {
 	AdditionalPraId      *string                `json:"additionalPraId,omitempty"`
-	EcgiList             *[]Ecgi                `json:"ecgiList,omitempty"`
-	GlobalRanNodeIdList  *[]GlobalRanNodeId     `json:"globalRanNodeIdList,omitempty"`
-	GlobaleNbIdList      *[]GlobalRanNodeId     `json:"globaleNbIdList,omitempty"`
-	NcgiList             *[]Ncgi                `json:"ncgiList,omitempty"`
+	EcgiList             []Ecgi                 `json:"ecgiList,omitempty"`
+	GlobalRanNodeIdList  []GlobalRanNodeId      `json:"globalRanNodeIdList,omitempty"`
+	GlobaleNbIdList      []GlobalRanNodeId      `json:"globaleNbIdList,omitempty"`
+	NcgiList             []Ncgi                 `json:"ncgiList,omitempty"`
 	PraId                *string                `json:"praId,omitempty"`
 	PresenceState        *PresenceState         `json:"presenceState,omitempty"`
-	TrackingAreaList     *[]Tai                 `json:"trackingAreaList,omitempty"`
+	TrackingAreaList     []Tai                  `json:"trackingAreaList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -1491,7 +1491,7 @@ type PresenceInfoRm struct {
 	AdditionalPraId      *string                `json:"additionalPraId,omitempty"`
 	EcgiList             *[]Ecgi                `json:"ecgiList,omitempty"`
 	GlobalRanNodeIdList  *[]GlobalRanNodeId     `json:"globalRanNodeIdList,omitempty"`
-	GlobaleNbIdList      *[]GlobalRanNodeId     `json:"globaleNbIdList,omitempty"`
+	GlobaleNbIdList      []GlobalRanNodeId      `json:"globaleNbIdList,omitempty"`
 	NcgiList             *[]Ncgi                `json:"ncgiList,omitempty"`
 	PraId                *string                `json:"praId,omitempty"`
 	PresenceState        *PresenceState         `json:"presenceState,omitempty"`
@@ -1505,14 +1505,14 @@ type PresenceState string
 // ProblemDetails defines model for ProblemDetails.
 type ProblemDetails struct {
 	// AccessTokenError Error returned in the access token response message (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
-	AccessTokenError *interface{} `json:"accessTokenError,omitempty"`
+	AccessTokenError interface{} `json:"accessTokenError,omitempty"`
 
 	// AccessTokenRequest Contains information related to the access token request (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
-	AccessTokenRequest   *interface{}           `json:"accessTokenRequest,omitempty"`
+	AccessTokenRequest   interface{}            `json:"accessTokenRequest,omitempty"`
 	Cause                *string                `json:"cause,omitempty"`
 	Detail               *string                `json:"detail,omitempty"`
 	Instance             *Uri                   `json:"instance,omitempty"`
-	InvalidParams        *[]InvalidParam        `json:"invalidParams,omitempty"`
+	InvalidParams        []InvalidParam         `json:"invalidParams,omitempty"`
 	NrfId                *string                `json:"nrfId,omitempty"`
 	Status               *int                   `json:"status,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
@@ -1640,7 +1640,7 @@ type RoamingOdb string
 
 // RouteInformation defines model for RouteInformation.
 type RouteInformation struct {
-	Ipv4Addr             *Ipv4Addr              `json:"ipv4Addr,omitempty"`
+	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
 	Ipv6Addr             *Ipv6Addr              `json:"ipv6Addr,omitempty"`
 	PortNumber           Uinteger               `json:"portNumber"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -1671,7 +1671,7 @@ type SamplingRatioRm = int
 // ScheduledCommunicationTime defines model for ScheduledCommunicationTime.
 type ScheduledCommunicationTime struct {
 	// DaysOfWeek Identifies the day(s) of the week. If absent, it indicates every day of the week.
-	DaysOfWeek *[]DayOfWeek `json:"daysOfWeek,omitempty"`
+	DaysOfWeek []DayOfWeek `json:"daysOfWeek,omitempty"`
 
 	// TimeOfDayEnd String with format partial-time or full-time as defined in clause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind UTC).
 	TimeOfDayEnd *TimeOfDay `json:"timeOfDayEnd,omitempty"`
@@ -1696,15 +1696,15 @@ type ScheduledCommunicationTypeRm struct {
 
 // SdRange A range of SDs (Slice Differentiators)
 type SdRange struct {
-	End                  *string                `json:"end,omitempty"`
-	Start                *string                `json:"start,omitempty"`
+	End                  string                 `json:"end,omitempty"`
+	Start                string                 `json:"start,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // SecondaryRatUsageInfo defines model for SecondaryRatUsageInfo.
 type SecondaryRatUsageInfo struct {
-	PduSessionUsageData  *[]VolumeTimedReport   `json:"pduSessionUsageData,omitempty"`
-	QosFlowsUsageData    *[]QosFlowUsageReport  `json:"qosFlowsUsageData,omitempty"`
+	PduSessionUsageData  []VolumeTimedReport    `json:"pduSessionUsageData,omitempty"`
+	QosFlowsUsageData    []QosFlowUsageReport   `json:"qosFlowsUsageData,omitempty"`
 	SecondaryRatType     RatType                `json:"secondaryRatType"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -1761,7 +1761,7 @@ type Snssai = f5gcModels.Snssai
 // SnssaiExtension Extensions to the Snssai data type, sdRanges and wildcardSd shall not be present simultaneously
 type SnssaiExtension struct {
 	// SdRanges When present, it shall contain the range(s) of Slice Differentiator values supported for the Slice/Service Type value indicated in the sst attribute of the Snssai data type
-	SdRanges *[]SdRange `json:"sdRanges,omitempty"`
+	SdRanges []SdRange `json:"sdRanges,omitempty"`
 
 	// WildcardSd When present, it shall be set to true, to indicate that all SD values are supported for the Slice/Service Type value indicated in the sst attribute of the Snssai data type
 	WildcardSd           *SnssaiExtensionWildcardSd `json:"wildcardSd,omitempty"`
@@ -1797,7 +1797,7 @@ type StnSrRm = string
 type SubscribedDefaultQos struct {
 	N5qi                 N5Qi                   `json:"5qi"`
 	Arp                  Arp                    `json:"arp"`
-	PriorityLevel        *N5QiPriorityLevel     `json:"priorityLevel,omitempty"`
+	PriorityLevel        N5QiPriorityLevel      `json:"priorityLevel,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -1827,7 +1827,7 @@ type TacRm = string
 
 // Tai defines model for Tai.
 type Tai struct {
-	Nid                  *Nid                   `json:"nid,omitempty"`
+	Nid                  Nid                    `json:"nid,omitempty"`
 	PlmnId               PlmnId                 `json:"plmnId"`
 	Tac                  Tac                    `json:"tac"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -1865,10 +1865,10 @@ type TngfId = string
 
 // TraceData defines model for TraceData.
 type TraceData struct {
-	CollectionEntityIpv4Addr *Ipv4Addr              `json:"collectionEntityIpv4Addr,omitempty"`
+	CollectionEntityIpv4Addr Ipv4Addr               `json:"collectionEntityIpv4Addr,omitempty"`
 	CollectionEntityIpv6Addr *Ipv6Addr              `json:"collectionEntityIpv6Addr,omitempty"`
 	EventList                string                 `json:"eventList"`
-	InterfaceList            *string                `json:"interfaceList,omitempty"`
+	InterfaceList            string                 `json:"interfaceList,omitempty"`
 	NeTypeList               string                 `json:"neTypeList"`
 	TraceDepth               TraceDepth             `json:"traceDepth"`
 	TraceRef                 string                 `json:"traceRef"`
@@ -1988,8 +1988,8 @@ type UserLocation struct {
 type UtraLocation struct {
 	AgeOfLocationInformation *int                   `json:"ageOfLocationInformation,omitempty"`
 	Cgi                      *CellGlobalId          `json:"cgi,omitempty"`
-	GeodeticInformation      *string                `json:"geodeticInformation,omitempty"`
-	GeographicalInformation  *string                `json:"geographicalInformation,omitempty"`
+	GeodeticInformation      string                 `json:"geodeticInformation,omitempty"`
+	GeographicalInformation  string                 `json:"geographicalInformation,omitempty"`
 	Lai                      *LocationAreaId        `json:"lai,omitempty"`
 	Rai                      *RoutingAreaId         `json:"rai,omitempty"`
 	Sai                      *ServiceAreaId         `json:"sai,omitempty"`
@@ -2025,8 +2025,8 @@ type WildcardDnnRm = string
 type WirelineArea struct {
 	AreaCodeB            *AreaCode              `json:"areaCodeB,omitempty"`
 	AreaCodeC            *AreaCode              `json:"areaCodeC,omitempty"`
-	GlobalLineIds        *[]Gli                 `json:"globalLineIds,omitempty"`
-	HfcNIds              *[]HfcNId              `json:"hfcNIds,omitempty"`
+	GlobalLineIds        []Gli                  `json:"globalLineIds,omitempty"`
+	HfcNIds              []HfcNId               `json:"hfcNIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -2162,7 +2162,7 @@ func (a AcsInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AcsIpv4Addr != nil {
+	if len(a.AcsIpv4Addr) != 0 {
 		object["acsIpv4Addr"], err = json.Marshal(a.AcsIpv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'acsIpv4Addr': %w", err)
@@ -2466,7 +2466,7 @@ func (a Area) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Tacs != nil {
+	if len(a.Tacs) != 0 {
 		object["tacs"], err = json.Marshal(a.Tacs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tacs': %w", err)
@@ -2558,14 +2558,14 @@ func (a AreaScope) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.EutraCellIdList != nil {
+	if len(a.EutraCellIdList) != 0 {
 		object["eutraCellIdList"], err = json.Marshal(a.EutraCellIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'eutraCellIdList': %w", err)
 		}
 	}
 
-	if a.NrCellIdList != nil {
+	if len(a.NrCellIdList) != 0 {
 		object["nrCellIdList"], err = json.Marshal(a.NrCellIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nrCellIdList': %w", err)
@@ -2579,7 +2579,7 @@ func (a AreaScope) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TacList != nil {
+	if len(a.TacList) != 0 {
 		object["tacList"], err = json.Marshal(a.TacList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tacList': %w", err)
@@ -2944,7 +2944,7 @@ func (a BackupAmfInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'backupAmf': %w", err)
 	}
 
-	if a.GuamiList != nil {
+	if len(a.GuamiList) != 0 {
 		object["guamiList"], err = json.Marshal(a.GuamiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'guamiList': %w", err)
@@ -3482,7 +3482,7 @@ func (a DddTrafficDescriptor) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Ipv4Addr != nil {
+	if len(a.Ipv4Addr) != 0 {
 		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
@@ -3496,7 +3496,7 @@ func (a DddTrafficDescriptor) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MacAddr != nil {
+	if len(a.MacAddr) != 0 {
 		object["macAddr"], err = json.Marshal(a.MacAddr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'macAddr': %w", err)
@@ -3775,42 +3775,42 @@ func (a Dynamic5Qi) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AverWindow != nil {
+	if a.AverWindow != 0 {
 		object["averWindow"], err = json.Marshal(a.AverWindow)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'averWindow': %w", err)
 		}
 	}
 
-	if a.CnPacketDelayBudgetDl != nil {
+	if a.CnPacketDelayBudgetDl != 0 {
 		object["cnPacketDelayBudgetDl"], err = json.Marshal(a.CnPacketDelayBudgetDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cnPacketDelayBudgetDl': %w", err)
 		}
 	}
 
-	if a.CnPacketDelayBudgetUl != nil {
+	if a.CnPacketDelayBudgetUl != 0 {
 		object["cnPacketDelayBudgetUl"], err = json.Marshal(a.CnPacketDelayBudgetUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cnPacketDelayBudgetUl': %w", err)
 		}
 	}
 
-	if a.ExtMaxDataBurstVol != nil {
+	if a.ExtMaxDataBurstVol != 0 {
 		object["extMaxDataBurstVol"], err = json.Marshal(a.ExtMaxDataBurstVol)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'extMaxDataBurstVol': %w", err)
 		}
 	}
 
-	if a.ExtPacketDelBudget != nil {
+	if a.ExtPacketDelBudget != 0 {
 		object["extPacketDelBudget"], err = json.Marshal(a.ExtPacketDelBudget)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'extPacketDelBudget': %w", err)
 		}
 	}
 
-	if a.MaxDataBurstVol != nil {
+	if a.MaxDataBurstVol != 0 {
 		object["maxDataBurstVol"], err = json.Marshal(a.MaxDataBurstVol)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'maxDataBurstVol': %w", err)
@@ -3919,7 +3919,7 @@ func (a Ecgi) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'eutraCellId': %w", err)
 	}
 
-	if a.Nid != nil {
+	if len(a.Nid) != 0 {
 		object["nid"], err = json.Marshal(a.Nid)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
@@ -4076,14 +4076,14 @@ func (a EutraLocation) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'ecgi': %w", err)
 	}
 
-	if a.GeodeticInformation != nil {
+	if len(a.GeodeticInformation) != 0 {
 		object["geodeticInformation"], err = json.Marshal(a.GeodeticInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geodeticInformation': %w", err)
 		}
 	}
 
-	if a.GeographicalInformation != nil {
+	if len(a.GeographicalInformation) != 0 {
 		object["geographicalInformation"], err = json.Marshal(a.GeographicalInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geographicalInformation': %w", err)
@@ -4215,14 +4215,14 @@ func (a ExtSnssai) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Sd != nil {
+	if len(a.Sd) != 0 {
 		object["sd"], err = json.Marshal(a.Sd)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sd': %w", err)
 		}
 	}
 
-	if a.SdRanges != nil {
+	if len(a.SdRanges) != 0 {
 		object["sdRanges"], err = json.Marshal(a.SdRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sdRanges': %w", err)
@@ -4475,14 +4475,14 @@ func (a GeraLocation) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.GeodeticInformation != nil {
+	if len(a.GeodeticInformation) != 0 {
 		object["geodeticInformation"], err = json.Marshal(a.GeodeticInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geodeticInformation': %w", err)
 		}
 	}
 
-	if a.GeographicalInformation != nil {
+	if len(a.GeographicalInformation) != 0 {
 		object["geographicalInformation"], err = json.Marshal(a.GeographicalInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geographicalInformation': %w", err)
@@ -4655,7 +4655,7 @@ func (a GlobalRanNodeId) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ENbId != nil {
+	if len(a.ENbId) != 0 {
 		object["eNbId"], err = json.Marshal(a.ENbId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'eNbId': %w", err)
@@ -4669,21 +4669,21 @@ func (a GlobalRanNodeId) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.N3IwfId != nil {
+	if len(a.N3IwfId) != 0 {
 		object["n3IwfId"], err = json.Marshal(a.N3IwfId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'n3IwfId': %w", err)
 		}
 	}
 
-	if a.NgeNbId != nil {
+	if len(a.NgeNbId) != 0 {
 		object["ngeNbId"], err = json.Marshal(a.NgeNbId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ngeNbId': %w", err)
 		}
 	}
 
-	if a.Nid != nil {
+	if len(a.Nid) != 0 {
 		object["nid"], err = json.Marshal(a.Nid)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
@@ -4695,14 +4695,14 @@ func (a GlobalRanNodeId) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
 	}
 
-	if a.TngfId != nil {
+	if len(a.TngfId) != 0 {
 		object["tngfId"], err = json.Marshal(a.TngfId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tngfId': %w", err)
 		}
 	}
 
-	if a.WagfId != nil {
+	if len(a.WagfId) != 0 {
 		object["wagfId"], err = json.Marshal(a.WagfId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'wagfId': %w", err)
@@ -4806,7 +4806,7 @@ func (a HalTemplate) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'method': %w", err)
 	}
 
-	if a.Properties != nil {
+	if len(a.Properties) != 0 {
 		object["properties"], err = json.Marshal(a.Properties)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'properties': %w", err)
@@ -4955,7 +4955,7 @@ func (a InterFreqTargetInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.CellIdList != nil {
+	if len(a.CellIdList) != 0 {
 		object["cellIdList"], err = json.Marshal(a.CellIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cellIdList': %w", err)
@@ -5698,7 +5698,7 @@ func (a MdtConfiguration) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AddPositioningMethodList != nil {
+	if len(a.AddPositioningMethodList) != 0 {
 		object["addPositioningMethodList"], err = json.Marshal(a.AddPositioningMethodList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'addPositioningMethodList': %w", err)
@@ -5726,7 +5726,7 @@ func (a MdtConfiguration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EventList != nil {
+	if len(a.EventList) != 0 {
 		object["eventList"], err = json.Marshal(a.EventList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'eventList': %w", err)
@@ -5761,7 +5761,7 @@ func (a MdtConfiguration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InterFreqTargetList != nil {
+	if len(a.InterFreqTargetList) != 0 {
 		object["interFreqTargetList"], err = json.Marshal(a.InterFreqTargetList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'interFreqTargetList': %w", err)
@@ -5801,14 +5801,14 @@ func (a MdtConfiguration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MbsfnAreaList != nil {
+	if len(a.MbsfnAreaList) != 0 {
 		object["mbsfnAreaList"], err = json.Marshal(a.MbsfnAreaList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mbsfnAreaList': %w", err)
 		}
 	}
 
-	if a.MdtAllowedPlmnIdList != nil {
+	if len(a.MdtAllowedPlmnIdList) != 0 {
 		object["mdtAllowedPlmnIdList"], err = json.Marshal(a.MdtAllowedPlmnIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mdtAllowedPlmnIdList': %w", err)
@@ -5822,7 +5822,7 @@ func (a MdtConfiguration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MeasurementNrList != nil {
+	if len(a.MeasurementNrList) != 0 {
 		object["measurementNrList"], err = json.Marshal(a.MeasurementNrList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'measurementNrList': %w", err)
@@ -5871,14 +5871,14 @@ func (a MdtConfiguration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ReportingTriggerList != nil {
+	if len(a.ReportingTriggerList) != 0 {
 		object["reportingTriggerList"], err = json.Marshal(a.ReportingTriggerList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reportingTriggerList': %w", err)
 		}
 	}
 
-	if a.SensorMeasurementList != nil {
+	if len(a.SensorMeasurementList) != 0 {
 		object["sensorMeasurementList"], err = json.Marshal(a.SensorMeasurementList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sensorMeasurementList': %w", err)
@@ -6136,7 +6136,7 @@ func (a N3gaLocation) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.N3IwfId != nil {
+	if len(a.N3IwfId) != 0 {
 		object["n3IwfId"], err = json.Marshal(a.N3IwfId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'n3IwfId': %w", err)
@@ -6178,7 +6178,7 @@ func (a N3gaLocation) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeIpv4Addr != nil {
+	if len(a.UeIpv4Addr) != 0 {
 		object["ueIpv4Addr"], err = json.Marshal(a.UeIpv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIpv4Addr': %w", err)
@@ -6276,7 +6276,7 @@ func (a Ncgi) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Nid != nil {
+	if len(a.Nid) != 0 {
 		object["nid"], err = json.Marshal(a.Nid)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
@@ -6362,14 +6362,14 @@ func (a NetworkId) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Mcc != nil {
+	if len(a.Mcc) != 0 {
 		object["mcc"], err = json.Marshal(a.Mcc)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mcc': %w", err)
 		}
 	}
 
-	if a.Mnc != nil {
+	if len(a.Mnc) != 0 {
 		object["mnc"], err = json.Marshal(a.Mnc)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mnc': %w", err)
@@ -6556,42 +6556,42 @@ func (a NonDynamic5Qi) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AverWindow != nil {
+	if a.AverWindow != 0 {
 		object["averWindow"], err = json.Marshal(a.AverWindow)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'averWindow': %w", err)
 		}
 	}
 
-	if a.CnPacketDelayBudgetDl != nil {
+	if a.CnPacketDelayBudgetDl != 0 {
 		object["cnPacketDelayBudgetDl"], err = json.Marshal(a.CnPacketDelayBudgetDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cnPacketDelayBudgetDl': %w", err)
 		}
 	}
 
-	if a.CnPacketDelayBudgetUl != nil {
+	if a.CnPacketDelayBudgetUl != 0 {
 		object["cnPacketDelayBudgetUl"], err = json.Marshal(a.CnPacketDelayBudgetUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cnPacketDelayBudgetUl': %w", err)
 		}
 	}
 
-	if a.ExtMaxDataBurstVol != nil {
+	if a.ExtMaxDataBurstVol != 0 {
 		object["extMaxDataBurstVol"], err = json.Marshal(a.ExtMaxDataBurstVol)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'extMaxDataBurstVol': %w", err)
 		}
 	}
 
-	if a.MaxDataBurstVol != nil {
+	if a.MaxDataBurstVol != 0 {
 		object["maxDataBurstVol"], err = json.Marshal(a.MaxDataBurstVol)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'maxDataBurstVol': %w", err)
 		}
 	}
 
-	if a.PriorityLevel != nil {
+	if a.PriorityLevel != 0 {
 		object["priorityLevel"], err = json.Marshal(a.PriorityLevel)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'priorityLevel': %w", err)
@@ -6801,14 +6801,14 @@ func (a NrLocation) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.GeodeticInformation != nil {
+	if len(a.GeodeticInformation) != 0 {
 		object["geodeticInformation"], err = json.Marshal(a.GeodeticInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geodeticInformation': %w", err)
 		}
 	}
 
-	if a.GeographicalInformation != nil {
+	if len(a.GeographicalInformation) != 0 {
 		object["geographicalInformation"], err = json.Marshal(a.GeographicalInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geographicalInformation': %w", err)
@@ -7320,14 +7320,14 @@ func (a Pc5FlowBitRates) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.GuaFbr != nil {
+	if len(a.GuaFbr) != 0 {
 		object["guaFbr"], err = json.Marshal(a.GuaFbr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'guaFbr': %w", err)
 		}
 	}
 
-	if a.MaxFbr != nil {
+	if len(a.MaxFbr) != 0 {
 		object["maxFbr"], err = json.Marshal(a.MaxFbr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'maxFbr': %w", err)
@@ -7403,7 +7403,7 @@ func (a Pc5QoSPara) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Pc5LinkAmbr != nil {
+	if len(a.Pc5LinkAmbr) != 0 {
 		object["pc5LinkAmbr"], err = json.Marshal(a.Pc5LinkAmbr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pc5LinkAmbr': %w", err)
@@ -7598,7 +7598,7 @@ func (a PlmnIdNid) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'mnc': %w", err)
 	}
 
-	if a.Nid != nil {
+	if len(a.Nid) != 0 {
 		object["nid"], err = json.Marshal(a.Nid)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
@@ -7729,28 +7729,28 @@ func (a PresenceInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EcgiList != nil {
+	if len(a.EcgiList) != 0 {
 		object["ecgiList"], err = json.Marshal(a.EcgiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ecgiList': %w", err)
 		}
 	}
 
-	if a.GlobalRanNodeIdList != nil {
+	if len(a.GlobalRanNodeIdList) != 0 {
 		object["globalRanNodeIdList"], err = json.Marshal(a.GlobalRanNodeIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'globalRanNodeIdList': %w", err)
 		}
 	}
 
-	if a.GlobaleNbIdList != nil {
+	if len(a.GlobaleNbIdList) != 0 {
 		object["globaleNbIdList"], err = json.Marshal(a.GlobaleNbIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'globaleNbIdList': %w", err)
 		}
 	}
 
-	if a.NcgiList != nil {
+	if len(a.NcgiList) != 0 {
 		object["ncgiList"], err = json.Marshal(a.NcgiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ncgiList': %w", err)
@@ -7771,7 +7771,7 @@ func (a PresenceInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TrackingAreaList != nil {
+	if len(a.TrackingAreaList) != 0 {
 		object["trackingAreaList"], err = json.Marshal(a.TrackingAreaList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trackingAreaList': %w", err)
@@ -7916,7 +7916,7 @@ func (a PresenceInfoRm) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.GlobaleNbIdList != nil {
+	if len(a.GlobaleNbIdList) != 0 {
 		object["globaleNbIdList"], err = json.Marshal(a.GlobaleNbIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'globaleNbIdList': %w", err)
@@ -8127,7 +8127,7 @@ func (a ProblemDetails) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InvalidParams != nil {
+	if len(a.InvalidParams) != 0 {
 		object["invalidParams"], err = json.Marshal(a.InvalidParams)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)
@@ -8705,7 +8705,7 @@ func (a RouteInformation) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Ipv4Addr != nil {
+	if len(a.Ipv4Addr) != 0 {
 		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
@@ -8985,7 +8985,7 @@ func (a ScheduledCommunicationTime) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DaysOfWeek != nil {
+	if len(a.DaysOfWeek) != 0 {
 		object["daysOfWeek"], err = json.Marshal(a.DaysOfWeek)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'daysOfWeek': %w", err)
@@ -9075,14 +9075,14 @@ func (a SdRange) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.End != nil {
+	if len(a.End) != 0 {
 		object["end"], err = json.Marshal(a.End)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'end': %w", err)
 		}
 	}
 
-	if a.Start != nil {
+	if len(a.Start) != 0 {
 		object["start"], err = json.Marshal(a.Start)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'start': %w", err)
@@ -9166,14 +9166,14 @@ func (a SecondaryRatUsageInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.PduSessionUsageData != nil {
+	if len(a.PduSessionUsageData) != 0 {
 		object["pduSessionUsageData"], err = json.Marshal(a.PduSessionUsageData)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pduSessionUsageData': %w", err)
 		}
 	}
 
-	if a.QosFlowsUsageData != nil {
+	if len(a.QosFlowsUsageData) != 0 {
 		object["qosFlowsUsageData"], err = json.Marshal(a.QosFlowsUsageData)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'qosFlowsUsageData': %w", err)
@@ -9732,7 +9732,7 @@ func (a SnssaiExtension) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.SdRanges != nil {
+	if len(a.SdRanges) != 0 {
 		object["sdRanges"], err = json.Marshal(a.SdRanges)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sdRanges': %w", err)
@@ -9833,7 +9833,7 @@ func (a SubscribedDefaultQos) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'arp': %w", err)
 	}
 
-	if a.PriorityLevel != nil {
+	if a.PriorityLevel != 0 {
 		object["priorityLevel"], err = json.Marshal(a.PriorityLevel)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'priorityLevel': %w", err)
@@ -9983,7 +9983,7 @@ func (a Tai) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Nid != nil {
+	if len(a.Nid) != 0 {
 		object["nid"], err = json.Marshal(a.Nid)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
@@ -10207,7 +10207,7 @@ func (a TraceData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.CollectionEntityIpv4Addr != nil {
+	if len(a.CollectionEntityIpv4Addr) != 0 {
 		object["collectionEntityIpv4Addr"], err = json.Marshal(a.CollectionEntityIpv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'collectionEntityIpv4Addr': %w", err)
@@ -10226,7 +10226,7 @@ func (a TraceData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'eventList': %w", err)
 	}
 
-	if a.InterfaceList != nil {
+	if len(a.InterfaceList) != 0 {
 		object["interfaceList"], err = json.Marshal(a.InterfaceList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'interfaceList': %w", err)
@@ -10682,14 +10682,14 @@ func (a UtraLocation) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.GeodeticInformation != nil {
+	if len(a.GeodeticInformation) != 0 {
 		object["geodeticInformation"], err = json.Marshal(a.GeodeticInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geodeticInformation': %w", err)
 		}
 	}
 
-	if a.GeographicalInformation != nil {
+	if len(a.GeographicalInformation) != 0 {
 		object["geographicalInformation"], err = json.Marshal(a.GeographicalInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geographicalInformation': %w", err)
@@ -10928,14 +10928,14 @@ func (a WirelineArea) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.GlobalLineIds != nil {
+	if len(a.GlobalLineIds) != 0 {
 		object["globalLineIds"], err = json.Marshal(a.GlobalLineIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'globalLineIds': %w", err)
 		}
 	}
 
-	if a.HfcNIds != nil {
+	if len(a.HfcNIds) != 0 {
 		object["hfcNIds"], err = json.Marshal(a.HfcNIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'hfcNIds': %w", err)

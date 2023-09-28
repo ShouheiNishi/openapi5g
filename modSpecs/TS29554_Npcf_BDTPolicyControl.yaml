@@ -29,6 +29,7 @@ components:
                         $ref: '#/components/schemas/TransferPolicy'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - bdtRefId
                 - transfPolicies
@@ -68,6 +69,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 trafficDes:
                     description: Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
+                    x-go-type-skip-optional-pointer: true
                 volPerUe:
                     $ref: TS29122_CommonData.yaml#/components/schemas/UsageThreshold
                 warnNotifReq:
@@ -98,24 +100,28 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gRanNodeIds:
                     description: Contains a list of NG RAN nodes.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GlobalRanNodeId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ncgis:
                     description: Contains a list of NR cell identities.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 tais:
                     description: Contains a list of tracking area identities.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         Notification:
             additionalProperties: true
@@ -129,6 +135,7 @@ components:
                         $ref: '#/components/schemas/TransferPolicy'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nwAreaInfo:
                     $ref: '#/components/schemas/NetworkAreaInfo'
                 timeWindow:

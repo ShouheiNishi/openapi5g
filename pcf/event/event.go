@@ -34,16 +34,16 @@ const (
 
 // EthernetFlowInfo defines model for EthernetFlowInfo.
 type EthernetFlowInfo struct {
-	EthFlows             *[]externalRef2.EthFlowDescription `json:"ethFlows,omitempty"`
-	FlowNumber           int                                `json:"flowNumber"`
-	AdditionalProperties map[string]interface{}             `json:"-"`
+	EthFlows             []externalRef2.EthFlowDescription `json:"ethFlows,omitempty"`
+	FlowNumber           int                               `json:"flowNumber"`
+	AdditionalProperties map[string]interface{}            `json:"-"`
 }
 
 // IpFlowInfo defines model for IpFlowInfo.
 type IpFlowInfo struct {
-	FlowNumber           int                             `json:"flowNumber"`
-	IpFlows              *[]externalRef2.FlowDescription `json:"ipFlows,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
+	FlowNumber           int                            `json:"flowNumber"`
+	IpFlows              []externalRef2.FlowDescription `json:"ipFlows,omitempty"`
+	AdditionalProperties map[string]interface{}         `json:"-"`
 }
 
 // PcEvent defines model for PcEvent.
@@ -60,10 +60,10 @@ type PcEventExposureNotif struct {
 type PcEventExposureSubsc struct {
 	EventSubs            []PcEvent                       `json:"eventSubs"`
 	EventsRepInfo        *ReportingInformation           `json:"eventsRepInfo,omitempty"`
-	FilterDnns           *[]externalRef0.Dnn             `json:"filterDnns,omitempty"`
-	FilterServices       *[]ServiceIdentification        `json:"filterServices,omitempty"`
-	FilterSnssais        *[]externalRef0.Snssai          `json:"filterSnssais,omitempty"`
-	GroupId              *externalRef0.GroupId           `json:"groupId,omitempty"`
+	FilterDnns           []externalRef0.Dnn              `json:"filterDnns,omitempty"`
+	FilterServices       []ServiceIdentification         `json:"filterServices,omitempty"`
+	FilterSnssais        []externalRef0.Snssai           `json:"filterSnssais,omitempty"`
+	GroupId              externalRef0.GroupId            `json:"groupId,omitempty"`
 	NotifId              string                          `json:"notifId"`
 	NotifUri             externalRef0.Uri                `json:"notifUri"`
 	SuppFeat             *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
@@ -72,19 +72,19 @@ type PcEventExposureSubsc struct {
 
 // PcEventNotification defines model for PcEventNotification.
 type PcEventNotification struct {
-	AccType       *externalRef0.AccessType           `json:"accType,omitempty"`
+	AccType       externalRef0.AccessType            `json:"accType,omitempty"`
 	AddAccessInfo *externalRef1.AdditionalAccessInfo `json:"addAccessInfo,omitempty"`
 
 	// AnGwAddr describes the address of the access network gateway control node
 	AnGwAddr             *externalRef2.AnGwAddress          `json:"anGwAddr,omitempty"`
 	Event                PcEvent                            `json:"event"`
-	Gpsi                 *externalRef0.Gpsi                 `json:"gpsi,omitempty"`
+	Gpsi                 externalRef0.Gpsi                  `json:"gpsi,omitempty"`
 	PduSessionInfo       *PduSessionInformation             `json:"pduSessionInfo,omitempty"`
 	PlmnId               *externalRef0.PlmnIdNid            `json:"plmnId,omitempty"`
 	RatType              *externalRef0.RatType              `json:"ratType,omitempty"`
 	RelAccessInfo        *externalRef1.AdditionalAccessInfo `json:"relAccessInfo,omitempty"`
 	RepServices          *ServiceIdentification             `json:"repServices,omitempty"`
-	Supi                 *externalRef0.Supi                 `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi                  `json:"supi,omitempty"`
 	TimeStamp            externalRef0.DateTime              `json:"timeStamp"`
 	AdditionalProperties map[string]interface{}             `json:"-"`
 }
@@ -94,9 +94,9 @@ type PduSessionInformation struct {
 	Dnn                  externalRef0.Dnn         `json:"dnn"`
 	IpDomain             *string                  `json:"ipDomain,omitempty"`
 	Snssai               externalRef0.Snssai      `json:"snssai"`
-	UeIpv4               *externalRef0.Ipv4Addr   `json:"ueIpv4,omitempty"`
+	UeIpv4               externalRef0.Ipv4Addr    `json:"ueIpv4,omitempty"`
 	UeIpv6               *externalRef0.Ipv6Prefix `json:"ueIpv6,omitempty"`
-	UeMac                *externalRef0.MacAddr48  `json:"ueMac,omitempty"`
+	UeMac                externalRef0.MacAddr48   `json:"ueMac,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
@@ -110,7 +110,7 @@ type ReportingInformation struct {
 	// NotifMethod Possible values are - PERIODIC - ONE_TIME - ON_EVENT_DETECTION
 	NotifMethod          *externalRef3.NotificationMethod `json:"notifMethod,omitempty"`
 	RepPeriod            *externalRef0.DurationSec        `json:"repPeriod,omitempty"`
-	SampRatio            *externalRef0.SamplingRatio      `json:"sampRatio,omitempty"`
+	SampRatio            externalRef0.SamplingRatio       `json:"sampRatio,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
 
@@ -118,8 +118,8 @@ type ReportingInformation struct {
 type ServiceIdentification struct {
 	// AfAppId Contains an AF application identifier.
 	AfAppId              *externalRef2.AfAppId  `json:"afAppId,omitempty"`
-	ServEthFlows         *[]EthernetFlowInfo    `json:"servEthFlows,omitempty"`
-	ServIpFlows          *[]IpFlowInfo          `json:"servIpFlows,omitempty"`
+	ServEthFlows         []EthernetFlowInfo     `json:"servEthFlows,omitempty"`
+	ServIpFlows          []IpFlowInfo           `json:"servIpFlows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -189,7 +189,7 @@ func (a EthernetFlowInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.EthFlows != nil {
+	if len(a.EthFlows) != 0 {
 		object["ethFlows"], err = json.Marshal(a.EthFlows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ethFlows': %w", err)
@@ -275,7 +275,7 @@ func (a IpFlowInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'flowNumber': %w", err)
 	}
 
-	if a.IpFlows != nil {
+	if len(a.IpFlows) != 0 {
 		object["ipFlows"], err = json.Marshal(a.IpFlows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipFlows': %w", err)
@@ -498,28 +498,28 @@ func (a PcEventExposureSubsc) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.FilterDnns != nil {
+	if len(a.FilterDnns) != 0 {
 		object["filterDnns"], err = json.Marshal(a.FilterDnns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'filterDnns': %w", err)
 		}
 	}
 
-	if a.FilterServices != nil {
+	if len(a.FilterServices) != 0 {
 		object["filterServices"], err = json.Marshal(a.FilterServices)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'filterServices': %w", err)
 		}
 	}
 
-	if a.FilterSnssais != nil {
+	if len(a.FilterSnssais) != 0 {
 		object["filterSnssais"], err = json.Marshal(a.FilterSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'filterSnssais': %w", err)
 		}
 	}
 
-	if a.GroupId != nil {
+	if len(a.GroupId) != 0 {
 		object["groupId"], err = json.Marshal(a.GroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'groupId': %w", err)
@@ -692,7 +692,7 @@ func (a PcEventNotification) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccType != nil {
+	if len(a.AccType) != 0 {
 		object["accType"], err = json.Marshal(a.AccType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accType': %w", err)
@@ -718,7 +718,7 @@ func (a PcEventNotification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'event': %w", err)
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -760,7 +760,7 @@ func (a PcEventNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -890,7 +890,7 @@ func (a PduSessionInformation) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
 	}
 
-	if a.UeIpv4 != nil {
+	if len(a.UeIpv4) != 0 {
 		object["ueIpv4"], err = json.Marshal(a.UeIpv4)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIpv4': %w", err)
@@ -904,7 +904,7 @@ func (a PduSessionInformation) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeMac != nil {
+	if len(a.UeMac) != 0 {
 		object["ueMac"], err = json.Marshal(a.UeMac)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueMac': %w", err)
@@ -1062,7 +1062,7 @@ func (a ReportingInformation) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SampRatio != nil {
+	if a.SampRatio != 0 {
 		object["sampRatio"], err = json.Marshal(a.SampRatio)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sampRatio': %w", err)
@@ -1153,14 +1153,14 @@ func (a ServiceIdentification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ServEthFlows != nil {
+	if len(a.ServEthFlows) != 0 {
 		object["servEthFlows"], err = json.Marshal(a.ServEthFlows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servEthFlows': %w", err)
 		}
 	}
 
-	if a.ServIpFlows != nil {
+	if len(a.ServIpFlows) != 0 {
 		object["servIpFlows"], err = json.Marshal(a.ServIpFlows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servIpFlows': %w", err)

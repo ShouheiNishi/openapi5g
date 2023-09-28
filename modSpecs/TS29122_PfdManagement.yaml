@@ -31,12 +31,14 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 flowDescriptions:
                     description: Represents a 3-tuple with protocol, server ip and server port for UL/DL application traffic. The content of the string has the same encoding as the IPFilterRule AVP value as defined in IETF RFC 6733.
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pfdId:
                     description: Identifies a PDF of an application identifier.
                     type: string
@@ -46,6 +48,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - pfdId
             type: object
@@ -111,6 +114,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 failureCode:
                     $ref: '#/components/schemas/FailureCode'
                 locationArea:
@@ -204,6 +208,7 @@ paths:
                                                 $ref: '#/components/schemas/PfdReport'
                                             minItems: 1
                                             type: array
+                                            x-go-type-skip-optional-pointer: true
                                 required: true
                             responses:
                                 "204":
@@ -278,6 +283,7 @@ paths:
                                     $ref: '#/components/schemas/PfdReport'
                                 minItems: 1
                                 type: array
+                                x-go-type-skip-optional-pointer: true
                         application/problem+json:
                             schema:
                                 $ref: TS29122_CommonData.yaml#/components/schemas/ProblemDetails
@@ -397,6 +403,7 @@ paths:
                                     $ref: '#/components/schemas/PfdReport'
                                 minItems: 1
                                 type: array
+                                x-go-type-skip-optional-pointer: true
                         application/problem+json:
                             schema:
                                 $ref: TS29122_CommonData.yaml#/components/schemas/ProblemDetails

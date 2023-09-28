@@ -25,6 +25,7 @@ components:
                         $ref: '#/components/schemas/Flows'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - accNetChaIdValue
             type: object
@@ -59,6 +60,7 @@ components:
                         $ref: '#/components/schemas/Flows'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - event
             type: object
@@ -100,6 +102,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 spVal:
                     $ref: '#/components/schemas/SpatialValidity'
                 tempVals:
@@ -107,8 +110,10 @@ components:
                         $ref: '#/components/schemas/TemporalValidity'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 upPathChgSub:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent
+                    x-go-type-skip-optional-pointer: true
             type: object
         AfRoutingRequirementRm:
             additionalProperties: true
@@ -136,6 +141,7 @@ components:
                     type: array
                 upPathChgSub:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent
+                    x-go-type-skip-optional-pointer: true
             type: object
         AnGwAddress:
             additionalProperties: true
@@ -220,13 +226,17 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 tsnBridgeManCont:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+                    x-go-type-skip-optional-pointer: true
                 tsnPortManContDstt:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+                    x-go-type-skip-optional-pointer: true
                 tsnPortManContNwtts:
                     items:
                         description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueIpv4:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                 ueIpv6:
@@ -250,6 +260,7 @@ components:
                         $ref: '#/components/schemas/UeIdentityInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         AppSessionContextUpdateData:
             additionalProperties: true
@@ -296,13 +307,17 @@ components:
                     $ref: '#/components/schemas/SponsoringStatus'
                 tsnBridgeManCont:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+                    x-go-type-skip-optional-pointer: true
                 tsnPortManContDstt:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+                    x-go-type-skip-optional-pointer: true
                 tsnPortManContNwtts:
                     items:
                         description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         AppSessionContextUpdateDataPatch:
             additionalProperties: true
@@ -336,6 +351,7 @@ components:
                     description: |-
                         Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
                          (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection)
+                    x-go-type-skip-optional-pointer: true
                 sourceMacAddr:
                     $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
                 srcMacAddrEnd:
@@ -346,6 +362,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - ethType
             type: object
@@ -357,13 +374,16 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                 addAccessInfo:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
+                    x-go-type-skip-optional-pointer: true
                 anChargAddr:
                     description: Describes the network entity within the access network performing charging (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AccNetChargingAddress)
+                    x-go-type-skip-optional-pointer: true
                 anChargIds:
                     items:
                         $ref: '#/components/schemas/AccessNetChargingIdentifier'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 anGwAddr:
                     $ref: '#/components/schemas/AnGwAddress'
                 evNotifs:
@@ -371,6 +391,7 @@ components:
                         $ref: '#/components/schemas/AfEventNotification'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 evSubsUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 failedResourcAllocReports:
@@ -378,15 +399,18 @@ components:
                         $ref: '#/components/schemas/ResourcesAllocationInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 noNetLocSupp:
                     description: |-
                         Possible values are - ANR_NOT_SUPPORTED: Indicates that the access network does not support the report of access network information. - TZR_NOT_SUPPORTED: Indicates that the access network does not support the report of UE time zone. - LOC_NOT_SUPPORTED: Indicates that the access network does not support the report of UE Location (or PLMN Id).
                          (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/NetLocAccessSupport)
+                    x-go-type-skip-optional-pointer: true
                 outOfCredReports:
                     items:
                         $ref: '#/components/schemas/OutOfCreditInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 plmnId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                 qncReports:
@@ -394,35 +418,45 @@ components:
                         $ref: '#/components/schemas/QosNotificationControlInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 qosMonReports:
                     items:
                         $ref: '#/components/schemas/QosMonitoringReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ranNasRelCauses:
                     description: Contains the RAN and/or NAS release cause.
                     items:
                         description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RanNasRelCause
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ratType:
                     $ref: TS29571_CommonData.yaml#/components/schemas/RatType
                 relAccessInfo:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
+                    x-go-type-skip-optional-pointer: true
                 succResourcAllocReports:
                     items:
                         $ref: '#/components/schemas/ResourcesAllocationInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 tsnBridgeManCont:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+                    x-go-type-skip-optional-pointer: true
                 tsnPortManContDstt:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+                    x-go-type-skip-optional-pointer: true
                 tsnPortManContNwtts:
                     items:
                         description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueLoc:
                     $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
                 ueLocTime:
@@ -449,6 +483,7 @@ components:
                         $ref: '#/components/schemas/AfEventSubscription'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notifCorreId:
                     type: string
                 notifUri:
@@ -460,11 +495,14 @@ components:
                         $ref: '#/components/schemas/RequiredAccessInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 reqQosMonParams:
                     items:
                         description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedQosMonitoringParameter
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 usgThres:
                     $ref: TS29122_CommonData.yaml#/components/schemas/UsageThreshold
             required:
@@ -490,11 +528,14 @@ components:
                         $ref: '#/components/schemas/RequiredAccessInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 reqQosMonParams:
                     items:
                         description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedQosMonitoringParameter
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 usgThres:
                     $ref: TS29122_CommonData.yaml#/components/schemas/UsageThresholdRm
             required:
@@ -535,11 +576,13 @@ components:
                         $ref: '#/components/schemas/ContentVersion'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 fNums:
                     items:
                         type: integer
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 medCompN:
                     type: integer
             required:
@@ -558,12 +601,14 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 codecs:
                     items:
                         $ref: '#/components/schemas/CodecData'
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 contVer:
                     $ref: '#/components/schemas/ContentVersion'
                 desMaxLatency:
@@ -658,6 +703,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 contVer:
                     $ref: '#/components/schemas/ContentVersion'
                 desMaxLatency:
@@ -736,18 +782,21 @@ components:
                     description: |-
                         Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
                          (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
+                    x-go-type-skip-optional-pointer: true
                 ethfDescs:
                     items:
                         $ref: '#/components/schemas/EthFlowDescription'
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 fDescs:
                     items:
                         $ref: '#/components/schemas/FlowDescription'
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 fNum:
                     type: integer
                 fStatus:
@@ -772,6 +821,7 @@ components:
                     description: |-
                         Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
                          (Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
+                    x-go-type-skip-optional-pointer: true
                 ethfDescs:
                     items:
                         $ref: '#/components/schemas/EthFlowDescription'
@@ -818,11 +868,13 @@ components:
             properties:
                 finUnitAct:
                     description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
+                    x-go-type-skip-optional-pointer: true
                 flows:
                     items:
                         $ref: '#/components/schemas/Flows'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - finUnitAct
             type: object
@@ -849,15 +901,20 @@ components:
             properties:
                 tsnBridgeInfo:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/TsnBridgeInfo
+                    x-go-type-skip-optional-pointer: true
                 tsnBridgeManCont:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+                    x-go-type-skip-optional-pointer: true
                 tsnPortManContDstt:
                     description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+                    x-go-type-skip-optional-pointer: true
                 tsnPortManContNwtts:
                     items:
                         description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - tsnBridgeInfo
             type: object
@@ -908,21 +965,25 @@ components:
                         type: integer
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 flows:
                     items:
                         $ref: '#/components/schemas/Flows'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 rtDelays:
                     items:
                         type: integer
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ulDelays:
                     items:
                         type: integer
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         QosNotifType:
             enum:
@@ -940,6 +1001,7 @@ components:
                         $ref: '#/components/schemas/Flows'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notifType:
                     $ref: '#/components/schemas/QosNotifType'
             required:
@@ -980,6 +1042,7 @@ components:
                         $ref: '#/components/schemas/Flows'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 mcResourcStatus:
                     $ref: '#/components/schemas/MediaComponentResourcesStatus'
             type: object
@@ -1073,6 +1136,7 @@ components:
             maximum: 8
             minimum: 1
             type: integer
+            x-go-type-skip-optional-pointer: true
         TscPriorityLevelRm:
             maximum: 8
             minimum: 1

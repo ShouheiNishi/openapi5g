@@ -7,8 +7,10 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+                    x-go-type-skip-optional-pointer: true
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                    x-go-type-skip-optional-pointer: true
                 supi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                 supportedFeatures:
@@ -45,17 +47,22 @@ components:
             properties:
                 ageOfLocationEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+                    x-go-type-skip-optional-pointer: true
                 altitude:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+                    x-go-type-skip-optional-pointer: true
                 barometricPressure:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
+                    x-go-type-skip-optional-pointer: true
                 civicAddress:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+                    x-go-type-skip-optional-pointer: true
                 ecgi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
                 gnssPositioningDataList:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
+                        x-go-type-skip-optional-pointer: true
                     maxItems: 9
                     type: array
                 gpsi:
@@ -64,8 +71,10 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+                    x-go-type-skip-optional-pointer: true
                 locationEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                    x-go-type-skip-optional-pointer: true
                 locationEvent:
                     $ref: '#/components/schemas/LocationEvent'
                 mscServerId:
@@ -77,10 +86,12 @@ components:
                 positioningDataList:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
+                        x-go-type-skip-optional-pointer: true
                     maxItems: 9
                     type: array
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                    x-go-type-skip-optional-pointer: true
                 servingNode:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 supi:
@@ -91,10 +102,12 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
                 terminationCause:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
+                    x-go-type-skip-optional-pointer: true
                 utranSrvccInd:
                     type: boolean
                 velocityEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
+                    x-go-type-skip-optional-pointer: true
             required:
                 - locationEvent
             type: object
@@ -107,10 +120,12 @@ components:
                     type: boolean
                 geoInfo:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                    x-go-type-skip-optional-pointer: true
                 location:
                     $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
                 locationAge:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+                    x-go-type-skip-optional-pointer: true
                 oldGuami:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 ratType:
@@ -125,23 +140,30 @@ components:
             properties:
                 accuracyFulfilmentIndicator:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
+                    x-go-type-skip-optional-pointer: true
                 ageOfLocationEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+                    x-go-type-skip-optional-pointer: true
                 altitude:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+                    x-go-type-skip-optional-pointer: true
                 barometricPressure:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
+                    x-go-type-skip-optional-pointer: true
                 civicAddress:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+                    x-go-type-skip-optional-pointer: true
                 ecgi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
                 gnssPositioningDataList:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
+                        x-go-type-skip-optional-pointer: true
                     maxItems: 9
                     type: array
                 locationEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                    x-go-type-skip-optional-pointer: true
                 locationPrivacyVerResult:
                     $ref: '#/components/schemas/LocationPrivacyVerResult'
                 ncgi:
@@ -149,10 +171,12 @@ components:
                 positioningDataList:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
+                        x-go-type-skip-optional-pointer: true
                     maxItems: 9
                     type: array
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                    x-go-type-skip-optional-pointer: true
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 targetMmeName:
@@ -165,6 +189,7 @@ components:
                     type: boolean
                 velocityEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
+                    x-go-type-skip-optional-pointer: true
             type: object
         RequestLocInfo:
             additionalProperties: true
@@ -190,54 +215,70 @@ components:
                 additionalLcsSuppGADShapes:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 afID:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 areaEventInfo:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
+                    x-go-type-skip-optional-pointer: true
                 codeWord:
                     description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
+                    x-go-type-skip-optional-pointer: true
                 externalClientIdentification:
                     description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
+                    x-go-type-skip-optional-pointer: true
                 gpsi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                 hgmlcCallBackURI:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 lcsClientType:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
+                    x-go-type-skip-optional-pointer: true
                 lcsLocation:
                     $ref: '#/components/schemas/LocationType'
                 lcsQoS:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
+                    x-go-type-skip-optional-pointer: true
                 lcsServiceType:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
+                    x-go-type-skip-optional-pointer: true
                 lcsSupportedGADShapes:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+                    x-go-type-skip-optional-pointer: true
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+                    x-go-type-skip-optional-pointer: true
                 ldrType:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
+                    x-go-type-skip-optional-pointer: true
                 locationNotificationUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 motionEventInfo:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
+                    x-go-type-skip-optional-pointer: true
                 oldGuami:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 pei:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Pei
                 periodicEventInfo:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
+                    x-go-type-skip-optional-pointer: true
                 priority:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
+                    x-go-type-skip-optional-pointer: true
                 supi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 uePrivacyRequirements:
                     description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
+                    x-go-type-skip-optional-pointer: true
                 velocityRequested:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
+                    x-go-type-skip-optional-pointer: true
             required:
                 - lcsClientType
                 - lcsLocation
@@ -273,6 +314,7 @@ paths:
                   schema:
                     pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:
@@ -324,6 +366,7 @@ paths:
                   schema:
                     pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:
@@ -408,6 +451,7 @@ paths:
                   schema:
                     pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:

@@ -227,9 +227,6 @@ type UpdateParams struct {
 	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
-// UpdateParamsUeId1 defines parameters for Update.
-type UpdateParamsUeId1 = string
-
 // Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody defines body for Modify5GVNGroup for application/merge-patch+json ContentType.
 type Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody = N5GVnGroupConfiguration
 
@@ -2262,13 +2259,9 @@ type ClientInterface interface {
 	Create5GVNGroup(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateWithBody request with any body
-	UpdateWithBody(ctx context.Context, ueId struct {
-		union json.RawMessage
-	}, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateWithBody(ctx context.Context, ueId string, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateWithApplicationMergePatchPlusJSONBody(ctx context.Context, ueId struct {
-		union json.RawMessage
-	}, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateWithApplicationMergePatchPlusJSONBody(ctx context.Context, ueId string, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) Delete5GVNGroup(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -2343,9 +2336,7 @@ func (c *Client) Create5GVNGroup(ctx context.Context, extGroupId string, body Cr
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateWithBody(ctx context.Context, ueId struct {
-	union json.RawMessage
-}, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateWithBody(ctx context.Context, ueId string, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -2357,9 +2348,7 @@ func (c *Client) UpdateWithBody(ctx context.Context, ueId struct {
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateWithApplicationMergePatchPlusJSONBody(ctx context.Context, ueId struct {
-	union json.RawMessage
-}, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateWithApplicationMergePatchPlusJSONBody(ctx context.Context, ueId string, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateRequestWithApplicationMergePatchPlusJSONBody(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -2594,9 +2583,7 @@ func NewCreate5GVNGroupRequestWithBody(server string, extGroupId string, content
 }
 
 // NewUpdateRequestWithApplicationMergePatchPlusJSONBody calls the generic Update builder with application/merge-patch+json body
-func NewUpdateRequestWithApplicationMergePatchPlusJSONBody(server string, ueId struct {
-	union json.RawMessage
-}, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody) (*http.Request, error) {
+func NewUpdateRequestWithApplicationMergePatchPlusJSONBody(server string, ueId string, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -2607,9 +2594,7 @@ func NewUpdateRequestWithApplicationMergePatchPlusJSONBody(server string, ueId s
 }
 
 // NewUpdateRequestWithBody generates requests for Update with any type of body
-func NewUpdateRequestWithBody(server string, ueId struct {
-	union json.RawMessage
-}, params *UpdateParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateRequestWithBody(server string, ueId string, params *UpdateParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2726,13 +2711,9 @@ type ClientWithResponsesInterface interface {
 	Create5GVNGroupWithResponse(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
 
 	// UpdateWithBodyWithResponse request with any body
-	UpdateWithBodyWithResponse(ctx context.Context, ueId struct {
-		union json.RawMessage
-	}, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateResponse, error)
+	UpdateWithBodyWithResponse(ctx context.Context, ueId string, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateResponse, error)
 
-	UpdateWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, ueId struct {
-		union json.RawMessage
-	}, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateResponse, error)
+	UpdateWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, ueId string, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateResponse, error)
 }
 
 type Delete5GVNGroupResponse struct {
@@ -2921,9 +2902,7 @@ func (c *ClientWithResponses) Create5GVNGroupWithResponse(ctx context.Context, e
 }
 
 // UpdateWithBodyWithResponse request with arbitrary body returning *UpdateResponse
-func (c *ClientWithResponses) UpdateWithBodyWithResponse(ctx context.Context, ueId struct {
-	union json.RawMessage
-}, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateResponse, error) {
+func (c *ClientWithResponses) UpdateWithBodyWithResponse(ctx context.Context, ueId string, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateResponse, error) {
 	rsp, err := c.UpdateWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2931,9 +2910,7 @@ func (c *ClientWithResponses) UpdateWithBodyWithResponse(ctx context.Context, ue
 	return ParseUpdateResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, ueId struct {
-	union json.RawMessage
-}, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateResponse, error) {
+func (c *ClientWithResponses) UpdateWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, ueId string, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateResponse, error) {
 	rsp, err := c.UpdateWithApplicationMergePatchPlusJSONBody(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -3248,9 +3225,7 @@ type ServerInterface interface {
 	Create5GVNGroup(c *gin.Context, extGroupId string)
 	// provision parameters
 	// (PATCH /{ueId}/pp-data)
-	Update(c *gin.Context, ueId struct {
-		union json.RawMessage
-	}, params UpdateParams)
+	Update(c *gin.Context, ueId string, params UpdateParams)
 }
 
 // ServerInterfaceWrapper converts contexts to parameters.
@@ -3402,9 +3377,7 @@ func (siw *ServerInterfaceWrapper) Update(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId struct {
-		union json.RawMessage
-	}
+	var ueId string
 
 	err = runtime.BindStyledParameter("simple", false, "ueId", c.Param("ueId"), &ueId)
 	if err != nil {
@@ -3804,9 +3777,7 @@ func (response Create5GVNGroupdefaultResponse) VisitCreate5GVNGroupResponse(w ht
 }
 
 type UpdateRequestObject struct {
-	UeId struct {
-		union json.RawMessage
-	} `json:"ueId"`
+	UeId   string `json:"ueId"`
 	Params UpdateParams
 	Body   *UpdateApplicationMergePatchPlusJSONRequestBody
 }
@@ -4054,9 +4025,7 @@ func (sh *strictHandler) Create5GVNGroup(ctx *gin.Context, extGroupId string) {
 }
 
 // Update operation middleware
-func (sh *strictHandler) Update(ctx *gin.Context, ueId struct {
-	union json.RawMessage
-}, params UpdateParams) {
+func (sh *strictHandler) Update(ctx *gin.Context, ueId string, params UpdateParams) {
 	var request UpdateRequestObject
 
 	request.UeId = ueId

@@ -345,10 +345,11 @@ paths:
                   name: ueId
                   required: true
                   schema:
-                    anyOf:
-                        - $ref: TS29571_CommonData.yaml#/components/schemas/VarUeId
-                        - description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                          type: string
+                    description: |-
+                        Merged type of
+                          string in TS29571_CommonData.yaml#/components/schemas/VarUeId
+                          Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    type: string
                 - description: Features required to be supported by the target NF
                   in: query
                   name: supported-features

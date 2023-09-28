@@ -120,9 +120,11 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DurationSecRm
                 subscribedDnnList:
                     items:
-                        anyOf:
-                            - $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                            - $ref: TS29571_CommonData.yaml#/components/schemas/WildcardDnn
+                        description: |-
+                            Merged type of
+                              string in TS29571_CommonData.yaml#/components/schemas/Dnn
+                              string in TS29571_CommonData.yaml#/components/schemas/WildcardDnn
+                        type: string
                     type: array
                 subscribedUeAmbr:
                     $ref: TS29571_CommonData.yaml#/components/schemas/AmbrRm
@@ -355,9 +357,11 @@ components:
                 defaultDnnIndicator:
                     $ref: '#/components/schemas/DnnIndicator'
                 dnn:
-                    anyOf:
-                        - $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                        - $ref: TS29571_CommonData.yaml#/components/schemas/WildcardDnn
+                    description: |-
+                        Merged type of
+                          string in TS29571_CommonData.yaml#/components/schemas/Dnn
+                          string in TS29571_CommonData.yaml#/components/schemas/WildcardDnn
+                    type: string
                 dnnBarred:
                     type: boolean
                 invokeNefInd:

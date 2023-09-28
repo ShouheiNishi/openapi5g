@@ -153,7 +153,7 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 	return outLists, deps, nil
 }
 
-func fixAllOfEnum(v *openapi3.Schema) error {
+func fixAnyOfEnum(v *openapi3.Schema) error {
 	if len(v.AnyOf) == 2 && v.AnyOf[0].Ref == "" && v.AnyOf[1].Ref == "" {
 		v0 := v.AnyOf[0].Value
 		v1 := v.AnyOf[1].Value
@@ -192,6 +192,46 @@ func fixAllOfEnum(v *openapi3.Schema) error {
 				} else {
 					delete(v.Extensions, "x-go-type-skip-optional-pointer")
 				}
+			}
+		}
+	}
+	return nil
+}
+
+func fixAnyOfString(v *openapi3.Schema) error {
+	if len(v.AnyOf) > 0 {
+		for _, vRef := range v.AnyOf {
+			if vRef.Value.Type != openapi3.TypeString {
+				return nil
+			}
+		}
+		newDescription := []string{"Merged type of"}
+		newSkipOptionalPointer := true
+		for _, vRef := range v.AnyOf {
+			if vRef.Ref == "" {
+				if vRef.Value.Description == "" {
+					newDescription = append(newDescription, "  Anonymous string")
+				} else {
+					newDescription = append(newDescription, "  "+vRef.Value.Description)
+				}
+			} else {
+				if vRef.Value.Description == "" {
+					newDescription = append(newDescription, "  string in "+vRef.Ref)
+				} else {
+					newDescription = append(newDescription, "  "+vRef.Value.Description+" in "+vRef.Ref)
+				}
+			}
+			if b, ok := vRef.Value.Extensions["x-go-type-skip-optional-pointer"].(bool); !ok || !b {
+				newSkipOptionalPointer = false
+			}
+		}
+		*v = openapi3.Schema{
+			Type:        openapi3.TypeString,
+			Description: strings.Join(newDescription, "\n"),
+		}
+		if newSkipOptionalPointer {
+			v.Extensions = map[string]interface{}{
+				"x-go-type-skip-optional-pointer": true,
 			}
 		}
 	}

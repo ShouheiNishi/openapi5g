@@ -3280,7 +3280,7 @@ func (sh *strictHandler) CancelLocation(ctx *gin.Context, ueContextId string) {
 	request.UeContextId = ueContextId
 
 	var body CancelLocationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3315,7 +3315,7 @@ func (sh *strictHandler) ProvideLocationInfo(ctx *gin.Context, ueContextId strin
 	request.UeContextId = ueContextId
 
 	var body ProvideLocationInfoJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3350,7 +3350,7 @@ func (sh *strictHandler) ProvidePositioningInfo(ctx *gin.Context, ueContextId st
 	request.UeContextId = ueContextId
 
 	var body ProvidePositioningInfoJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

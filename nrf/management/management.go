@@ -16219,7 +16219,7 @@ func (sh *strictHandler) UpdateNFInstance(ctx *gin.Context, nfInstanceID externa
 	request.Params = params
 
 	var body UpdateNFInstanceApplicationJSONPatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -16255,7 +16255,7 @@ func (sh *strictHandler) RegisterNFInstance(ctx *gin.Context, nfInstanceID exter
 	request.Params = params
 
 	var body RegisterNFInstanceJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -16290,7 +16290,7 @@ func (sh *strictHandler) CreateSubscription(ctx *gin.Context, params CreateSubsc
 	request.Params = params
 
 	var body CreateSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -16353,7 +16353,7 @@ func (sh *strictHandler) UpdateSubscription(ctx *gin.Context, subscriptionID str
 	request.Params = params
 
 	var body UpdateSubscriptionApplicationJSONPatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

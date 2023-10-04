@@ -1491,7 +1491,7 @@ func (sh *strictHandler) ProvideLocationInfo(ctx *gin.Context, supi externalRef2
 	request.Supi = supi
 
 	var body ProvideLocationInfoJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

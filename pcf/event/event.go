@@ -2860,7 +2860,7 @@ func (sh *strictHandler) PostPcEventExposureSubsc(ctx *gin.Context) {
 	var request PostPcEventExposureSubscRequestObject
 
 	var body PostPcEventExposureSubscJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -2949,7 +2949,7 @@ func (sh *strictHandler) PutPcEventExposureSubsc(ctx *gin.Context, subscriptionI
 	request.SubscriptionId = subscriptionId
 
 	var body PutPcEventExposureSubscJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

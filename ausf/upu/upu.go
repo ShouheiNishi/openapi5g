@@ -810,7 +810,7 @@ func (sh *strictHandler) PostSupiUeUpu(ctx *gin.Context, supi externalRef1.Supi)
 	request.Supi = supi
 
 	var body PostSupiUeUpuJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

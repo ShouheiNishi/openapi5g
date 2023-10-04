@@ -2902,7 +2902,7 @@ func (sh *strictHandler) CreateIndividualUEPolicyAssociation(ctx *gin.Context) {
 	var request CreateIndividualUEPolicyAssociationRequestObject
 
 	var body CreateIndividualUEPolicyAssociationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -2991,7 +2991,7 @@ func (sh *strictHandler) ReportObservedEventTriggersForIndividualUEPolicyAssocia
 	request.PolAssoId = polAssoId
 
 	var body ReportObservedEventTriggersForIndividualUEPolicyAssociationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

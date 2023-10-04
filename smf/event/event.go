@@ -3229,7 +3229,7 @@ func (sh *strictHandler) CreateIndividualSubcription(ctx *gin.Context) {
 	var request CreateIndividualSubcriptionRequestObject
 
 	var body CreateIndividualSubcriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3318,7 +3318,7 @@ func (sh *strictHandler) ReplaceIndividualSubcription(ctx *gin.Context, subId st
 	request.SubId = subId
 
 	var body ReplaceIndividualSubcriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

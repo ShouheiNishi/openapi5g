@@ -4432,7 +4432,7 @@ func (sh *strictHandler) CreateSubscription(ctx *gin.Context) {
 	var request CreateSubscriptionRequestObject
 
 	var body CreateSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -4494,7 +4494,7 @@ func (sh *strictHandler) ModifySubscription(ctx *gin.Context, subscriptionId str
 	request.SubscriptionId = subscriptionId
 
 	var body ModifySubscriptionApplicationJSONPatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

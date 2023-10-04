@@ -20946,7 +20946,7 @@ func (sh *strictHandler) PostPduSessions(ctx *gin.Context) {
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "application/json") {
 
 		var body PostPduSessionsJSONRequestBody
-		if err := ctx.ShouldBind(&body); err != nil {
+		if err := ctx.ShouldBindJSON(&body); err != nil {
 			ctx.Status(http.StatusBadRequest)
 			ctx.Error(err)
 			return
@@ -20991,7 +20991,7 @@ func (sh *strictHandler) UpdatePduSession(ctx *gin.Context, pduSessionRef string
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "application/json") {
 
 		var body UpdatePduSessionJSONRequestBody
-		if err := ctx.ShouldBind(&body); err != nil {
+		if err := ctx.ShouldBindJSON(&body); err != nil {
 			ctx.Status(http.StatusBadRequest)
 			ctx.Error(err)
 			return
@@ -21036,7 +21036,7 @@ func (sh *strictHandler) ReleasePduSession(ctx *gin.Context, pduSessionRef strin
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "application/json") {
 
 		var body ReleasePduSessionJSONRequestBody
-		if err := ctx.ShouldBind(&body); err != nil {
+		if err := ctx.ShouldBindJSON(&body); err != nil {
 			ctx.Status(http.StatusBadRequest)
 			ctx.Error(err)
 			return
@@ -21080,7 +21080,7 @@ func (sh *strictHandler) RetrievePduSession(ctx *gin.Context, pduSessionRef stri
 	request.PduSessionRef = pduSessionRef
 
 	var body RetrievePduSessionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -21182,7 +21182,7 @@ func (sh *strictHandler) UpdateSmContext(ctx *gin.Context, smContextRef string) 
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "application/json") {
 
 		var body UpdateSmContextJSONRequestBody
-		if err := ctx.ShouldBind(&body); err != nil {
+		if err := ctx.ShouldBindJSON(&body); err != nil {
 			ctx.Status(http.StatusBadRequest)
 			ctx.Error(err)
 			return
@@ -21227,7 +21227,7 @@ func (sh *strictHandler) ReleaseSmContext(ctx *gin.Context, smContextRef string)
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "application/json") {
 
 		var body ReleaseSmContextJSONRequestBody
-		if err := ctx.ShouldBind(&body); err != nil {
+		if err := ctx.ShouldBindJSON(&body); err != nil {
 			ctx.Status(http.StatusBadRequest)
 			ctx.Error(err)
 			return
@@ -21271,7 +21271,7 @@ func (sh *strictHandler) RetrieveSmContext(ctx *gin.Context, smContextRef string
 	request.SmContextRef = smContextRef
 
 	var body RetrieveSmContextJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

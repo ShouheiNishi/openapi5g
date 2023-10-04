@@ -4572,7 +4572,7 @@ func (sh *strictHandler) PostScsAsIdTransactions(ctx *gin.Context, scsAsId strin
 	request.ScsAsId = scsAsId
 
 	var body PostScsAsIdTransactionsJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -4664,7 +4664,7 @@ func (sh *strictHandler) PutScsAsIdTransactionsTransactionId(ctx *gin.Context, s
 	request.TransactionId = transactionId
 
 	var body PutScsAsIdTransactionsTransactionIdJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -4759,7 +4759,7 @@ func (sh *strictHandler) PatchScsAsIdTransactionsTransactionIdApplicationsAppId(
 	request.AppId = appId
 
 	var body PatchScsAsIdTransactionsTransactionIdApplicationsAppIdApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -4796,7 +4796,7 @@ func (sh *strictHandler) PutScsAsIdTransactionsTransactionIdApplicationsAppId(ct
 	request.AppId = appId
 
 	var body PutScsAsIdTransactionsTransactionIdApplicationsAppIdJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

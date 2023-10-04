@@ -18105,7 +18105,7 @@ func (sh *strictHandler) NonUeN2InfoSubscribe(ctx *gin.Context) {
 	var request NonUeN2InfoSubscribeRequestObject
 
 	var body NonUeN2InfoSubscribeJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -18167,7 +18167,7 @@ func (sh *strictHandler) NonUeN2MessageTransfer(ctx *gin.Context) {
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "application/json") {
 
 		var body NonUeN2MessageTransferJSONRequestBody
-		if err := ctx.ShouldBind(&body); err != nil {
+		if err := ctx.ShouldBindJSON(&body); err != nil {
 			ctx.Status(http.StatusBadRequest)
 			ctx.Error(err)
 			return
@@ -18209,7 +18209,7 @@ func (sh *strictHandler) AMFStatusChangeSubscribe(ctx *gin.Context) {
 	var request AMFStatusChangeSubscribeRequestObject
 
 	var body AMFStatusChangeSubscribeJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -18271,7 +18271,7 @@ func (sh *strictHandler) AMFStatusChangeSubscribeModfy(ctx *gin.Context, subscri
 	request.SubscriptionId = subscriptionId
 
 	var body AMFStatusChangeSubscribeModfyJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -18340,7 +18340,7 @@ func (sh *strictHandler) EBIAssignment(ctx *gin.Context, ueContextId string) {
 	request.UeContextId = ueContextId
 
 	var body EBIAssignmentJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -18410,7 +18410,7 @@ func (sh *strictHandler) N1N2MessageTransfer(ctx *gin.Context, ueContextId strin
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "application/json") {
 
 		var body N1N2MessageTransferJSONRequestBody
-		if err := ctx.ShouldBind(&body); err != nil {
+		if err := ctx.ShouldBindJSON(&body); err != nil {
 			ctx.Status(http.StatusBadRequest)
 			ctx.Error(err)
 			return
@@ -18454,7 +18454,7 @@ func (sh *strictHandler) N1N2MessageSubscribe(ctx *gin.Context, ueContextId stri
 	request.UeContextId = ueContextId
 
 	var body N1N2MessageSubscribeJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -18517,7 +18517,7 @@ func (sh *strictHandler) ReleaseUEContext(ctx *gin.Context, ueContextId string) 
 	request.UeContextId = ueContextId
 
 	var body ReleaseUEContextJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -18587,7 +18587,7 @@ func (sh *strictHandler) UEContextTransfer(ctx *gin.Context, ueContextId string)
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "application/json") {
 
 		var body UEContextTransferJSONRequestBody
-		if err := ctx.ShouldBind(&body); err != nil {
+		if err := ctx.ShouldBindJSON(&body); err != nil {
 			ctx.Status(http.StatusBadRequest)
 			ctx.Error(err)
 			return
@@ -18631,7 +18631,7 @@ func (sh *strictHandler) RegistrationStatusUpdate(ctx *gin.Context, ueContextId 
 	request.UeContextId = ueContextId
 
 	var body RegistrationStatusUpdateJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

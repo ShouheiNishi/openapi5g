@@ -11348,7 +11348,7 @@ func (sh *strictHandler) CreateSMPolicy(ctx *gin.Context) {
 	var request CreateSMPolicyRequestObject
 
 	var body CreateSMPolicyJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11410,7 +11410,7 @@ func (sh *strictHandler) DeleteSMPolicy(ctx *gin.Context, smPolicyId string) {
 	request.SmPolicyId = smPolicyId
 
 	var body DeleteSMPolicyJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11445,7 +11445,7 @@ func (sh *strictHandler) UpdateSMPolicy(ctx *gin.Context, smPolicyId string) {
 	request.SmPolicyId = smPolicyId
 
 	var body UpdateSMPolicyJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

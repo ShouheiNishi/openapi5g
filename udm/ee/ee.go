@@ -3428,7 +3428,7 @@ func (sh *strictHandler) CreateEeSubscription(ctx *gin.Context, ueIdentity strin
 	request.UeIdentity = ueIdentity
 
 	var body CreateEeSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3493,7 +3493,7 @@ func (sh *strictHandler) UpdateEeSubscription(ctx *gin.Context, ueIdentity strin
 	request.Params = params
 
 	var body UpdateEeSubscriptionApplicationJSONPatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

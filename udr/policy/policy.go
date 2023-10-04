@@ -11954,7 +11954,7 @@ func (sh *strictHandler) UpdateIndividualBdtData(ctx *gin.Context, bdtReferenceI
 	request.BdtReferenceId = bdtReferenceId
 
 	var body UpdateIndividualBdtDataApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11989,7 +11989,7 @@ func (sh *strictHandler) CreateIndividualBdtData(ctx *gin.Context, bdtReferenceI
 	request.BdtReferenceId = bdtReferenceId
 
 	var body CreateIndividualBdtDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -12076,7 +12076,7 @@ func (sh *strictHandler) CreateIndividualPolicyDataSubscription(ctx *gin.Context
 	var request CreateIndividualPolicyDataSubscriptionRequestObject
 
 	var body CreateIndividualPolicyDataSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -12138,7 +12138,7 @@ func (sh *strictHandler) ReplaceIndividualPolicyDataSubscription(ctx *gin.Contex
 	request.SubsId = subsId
 
 	var body ReplaceIndividualPolicyDataSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -12228,7 +12228,7 @@ func (sh *strictHandler) UpdateOperatorSpecificData(ctx *gin.Context, ueId exter
 	request.UeId = ueId
 
 	var body UpdateOperatorSpecificDataApplicationJSONPatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -12263,7 +12263,7 @@ func (sh *strictHandler) ReplaceOperatorSpecificData(ctx *gin.Context, ueId exte
 	request.UeId = ueId
 
 	var body ReplaceOperatorSpecificDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -12326,7 +12326,7 @@ func (sh *strictHandler) UpdateSessionManagementPolicyData(ctx *gin.Context, ueI
 	request.UeId = ueId
 
 	var body UpdateSessionManagementPolicyDataApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -12419,7 +12419,7 @@ func (sh *strictHandler) CreateUsageMonitoringResource(ctx *gin.Context, ueId ex
 	request.UsageMonId = usageMonId
 
 	var body CreateUsageMonitoringResourceJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -12482,7 +12482,7 @@ func (sh *strictHandler) UpdateUEPolicySet(ctx *gin.Context, ueId externalRef0.V
 	request.UeId = ueId
 
 	var body UpdateUEPolicySetApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -12517,7 +12517,7 @@ func (sh *strictHandler) CreateOrReplaceUEPolicySet(ctx *gin.Context, ueId exter
 	request.UeId = ueId
 
 	var body CreateOrReplaceUEPolicySetJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

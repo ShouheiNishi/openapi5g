@@ -14065,7 +14065,7 @@ func (sh *strictHandler) UpdateIndividualAppliedBdtPolicyData(ctx *gin.Context, 
 	request.BdtPolicyId = bdtPolicyId
 
 	var body UpdateIndividualAppliedBdtPolicyDataApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14100,7 +14100,7 @@ func (sh *strictHandler) CreateIndividualAppliedBdtPolicyData(ctx *gin.Context, 
 	request.BdtPolicyId = bdtPolicyId
 
 	var body CreateIndividualAppliedBdtPolicyDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14187,7 +14187,7 @@ func (sh *strictHandler) CreateIndividualInfluenceDataSubscription(ctx *gin.Cont
 	var request CreateIndividualInfluenceDataSubscriptionRequestObject
 
 	var body CreateIndividualInfluenceDataSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14276,7 +14276,7 @@ func (sh *strictHandler) ReplaceIndividualInfluenceDataSubscription(ctx *gin.Con
 	request.SubscriptionId = subscriptionId
 
 	var body ReplaceIndividualInfluenceDataSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14338,7 +14338,7 @@ func (sh *strictHandler) UpdateIndividualInfluenceData(ctx *gin.Context, influen
 	request.InfluenceId = influenceId
 
 	var body UpdateIndividualInfluenceDataApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14373,7 +14373,7 @@ func (sh *strictHandler) CreateOrReplaceIndividualInfluenceData(ctx *gin.Context
 	request.InfluenceId = influenceId
 
 	var body CreateOrReplaceIndividualInfluenceDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14462,7 +14462,7 @@ func (sh *strictHandler) PartialReplaceIndividualIPTVConfigurationData(ctx *gin.
 	request.ConfigurationId = configurationId
 
 	var body PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14497,7 +14497,7 @@ func (sh *strictHandler) CreateOrReplaceIndividualIPTVConfigurationData(ctx *gin
 	request.ConfigurationId = configurationId
 
 	var body CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14613,7 +14613,7 @@ func (sh *strictHandler) CreateOrReplaceIndividualPFDData(ctx *gin.Context, appI
 	request.AppId = appId
 
 	var body CreateOrReplaceIndividualPFDDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14702,7 +14702,7 @@ func (sh *strictHandler) UpdateIndividualServiceParameterData(ctx *gin.Context, 
 	request.ServiceParamId = serviceParamId
 
 	var body UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14737,7 +14737,7 @@ func (sh *strictHandler) CreateOrReplaceServiceParameterData(ctx *gin.Context, s
 	request.ServiceParamId = serviceParamId
 
 	var body CreateOrReplaceServiceParameterDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14797,7 +14797,7 @@ func (sh *strictHandler) CreateIndividualApplicationDataSubscription(ctx *gin.Co
 	var request CreateIndividualApplicationDataSubscriptionRequestObject
 
 	var body CreateIndividualApplicationDataSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -14886,7 +14886,7 @@ func (sh *strictHandler) ReplaceIndividualApplicationDataSubscription(ctx *gin.C
 	request.SubsId = subsId
 
 	var body ReplaceIndividualApplicationDataSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

@@ -3121,7 +3121,7 @@ func (sh *strictHandler) CreatePCFBinding(ctx *gin.Context) {
 	var request CreatePCFBindingRequestObject
 
 	var body CreatePCFBindingJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3183,7 +3183,7 @@ func (sh *strictHandler) UpdateIndPCFBinding(ctx *gin.Context, bindingId string)
 	request.BindingId = bindingId
 
 	var body UpdateIndPCFBindingApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

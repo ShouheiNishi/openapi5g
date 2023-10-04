@@ -2499,7 +2499,7 @@ func (sh *strictHandler) CreateBDTPolicy(ctx *gin.Context) {
 	var request CreateBDTPolicyRequestObject
 
 	var body CreateBDTPolicyJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -2561,7 +2561,7 @@ func (sh *strictHandler) UpdateBDTPolicy(ctx *gin.Context, bdtPolicyId string) {
 	request.BdtPolicyId = bdtPolicyId
 
 	var body UpdateBDTPolicyApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

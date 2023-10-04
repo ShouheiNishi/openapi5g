@@ -4099,7 +4099,7 @@ func (sh *strictHandler) NSSAIAvailabilityPost(ctx *gin.Context, params NSSAIAva
 	request.Params = params
 
 	var body NSSAIAvailabilityPostJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -4249,7 +4249,7 @@ func (sh *strictHandler) NSSAIAvailabilityPut(ctx *gin.Context, nfId externalRef
 	request.Params = params
 
 	var body NSSAIAvailabilityPutJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

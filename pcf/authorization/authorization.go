@@ -10046,7 +10046,7 @@ func (sh *strictHandler) PostAppSessions(ctx *gin.Context) {
 	var request PostAppSessionsRequestObject
 
 	var body PostAppSessionsJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -10079,7 +10079,7 @@ func (sh *strictHandler) PcscfRestoration(ctx *gin.Context) {
 	var request PcscfRestorationRequestObject
 
 	var body PcscfRestorationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -10141,7 +10141,7 @@ func (sh *strictHandler) ModAppSession(ctx *gin.Context, appSessionId string) {
 	request.AppSessionId = appSessionId
 
 	var body ModAppSessionApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -10176,7 +10176,7 @@ func (sh *strictHandler) DeleteAppSession(ctx *gin.Context, appSessionId string)
 	request.AppSessionId = appSessionId
 
 	var body DeleteAppSessionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -10238,7 +10238,7 @@ func (sh *strictHandler) UpdateEventsSubsc(ctx *gin.Context, appSessionId string
 	request.AppSessionId = appSessionId
 
 	var body UpdateEventsSubscJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

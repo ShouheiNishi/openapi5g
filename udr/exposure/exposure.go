@@ -4915,7 +4915,7 @@ func (sh *strictHandler) CreateIndividualExposureDataSubscription(ctx *gin.Conte
 	var request CreateIndividualExposureDataSubscriptionRequestObject
 
 	var body CreateIndividualExposureDataSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -4977,7 +4977,7 @@ func (sh *strictHandler) ReplaceIndividualExposureDataSubscription(ctx *gin.Cont
 	request.SubId = subId
 
 	var body ReplaceIndividualExposureDataSubscriptionJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -5067,7 +5067,7 @@ func (sh *strictHandler) UpdateAccessAndMobilityData(ctx *gin.Context, ueId exte
 	request.UeId = ueId
 
 	var body UpdateAccessAndMobilityDataApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -5102,7 +5102,7 @@ func (sh *strictHandler) CreateOrReplaceAccessAndMobilityData(ctx *gin.Context, 
 	request.UeId = ueId
 
 	var body CreateOrReplaceAccessAndMobilityDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -5195,7 +5195,7 @@ func (sh *strictHandler) CreateOrReplaceSessionManagementData(ctx *gin.Context, 
 	request.PduSessionId = pduSessionId
 
 	var body CreateOrReplaceSessionManagementDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

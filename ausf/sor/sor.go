@@ -855,7 +855,7 @@ func (sh *strictHandler) PostSupiUeSor(ctx *gin.Context, supi externalRef0.Supi)
 	request.Supi = supi
 
 	var body PostSupiUeSorJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

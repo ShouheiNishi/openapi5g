@@ -1103,7 +1103,7 @@ func (sh *strictHandler) AuthorizeNiddData(ctx *gin.Context, ueIdentity string) 
 	request.UeIdentity = ueIdentity
 
 	var body AuthorizeNiddDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

@@ -2737,7 +2737,7 @@ func (sh *strictHandler) NnefPFDmanagementCreateSubscr(ctx *gin.Context) {
 	var request NnefPFDmanagementCreateSubscrRequestObject
 
 	var body NnefPFDmanagementCreateSubscrJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -2799,7 +2799,7 @@ func (sh *strictHandler) NnefPFDmanagementModifySubscr(ctx *gin.Context, subscri
 	request.SubscriptionId = subscriptionId
 
 	var body NnefPFDmanagementModifySubscrJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

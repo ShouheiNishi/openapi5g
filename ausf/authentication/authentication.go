@@ -3322,7 +3322,7 @@ func (sh *strictHandler) PostRgAuthentications(ctx *gin.Context) {
 	var request PostRgAuthenticationsRequestObject
 
 	var body PostRgAuthenticationsJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3355,7 +3355,7 @@ func (sh *strictHandler) PostUeAuthentications(ctx *gin.Context) {
 	var request PostUeAuthenticationsRequestObject
 
 	var body PostUeAuthenticationsJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3388,7 +3388,7 @@ func (sh *strictHandler) PostUeAuthenticationsDeregister(ctx *gin.Context) {
 	var request PostUeAuthenticationsDeregisterRequestObject
 
 	var body PostUeAuthenticationsDeregisterJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3450,7 +3450,7 @@ func (sh *strictHandler) PutUeAuthenticationsAuthCtxId5gAkaConfirmation(ctx *gin
 	request.AuthCtxId = authCtxId
 
 	var body PutUeAuthenticationsAuthCtxId5gAkaConfirmationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3512,7 +3512,7 @@ func (sh *strictHandler) EapAuthMethod(ctx *gin.Context, authCtxId string) {
 	request.AuthCtxId = authCtxId
 
 	var body EapAuthMethodJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

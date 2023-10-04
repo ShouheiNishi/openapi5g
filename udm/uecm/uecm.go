@@ -10748,7 +10748,7 @@ func (sh *strictHandler) TriggerPCSCFRestoration(ctx *gin.Context) {
 	var request TriggerPCSCFRestorationRequestObject
 
 	var body TriggerPCSCFRestorationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -10840,7 +10840,7 @@ func (sh *strictHandler) Update3GppRegistration(ctx *gin.Context, ueId externalR
 	request.Params = params
 
 	var body Update3GppRegistrationApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -10875,7 +10875,7 @@ func (sh *strictHandler) N3GppRegistration(ctx *gin.Context, ueId externalRef0.S
 	request.UeId = ueId
 
 	var body N3GppRegistrationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -10910,7 +10910,7 @@ func (sh *strictHandler) DeregAMF(ctx *gin.Context, ueId externalRef0.Supi) {
 	request.UeId = ueId
 
 	var body DeregAMFJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -10945,7 +10945,7 @@ func (sh *strictHandler) PeiUpdate(ctx *gin.Context, ueId externalRef0.Supi) {
 	request.UeId = ueId
 
 	var body PeiUpdateJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11009,7 +11009,7 @@ func (sh *strictHandler) UpdateNon3GppRegistration(ctx *gin.Context, ueId extern
 	request.Params = params
 
 	var body UpdateNon3GppRegistrationApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11044,7 +11044,7 @@ func (sh *strictHandler) Non3GppRegistration(ctx *gin.Context, ueId externalRef0
 	request.UeId = ueId
 
 	var body Non3GppRegistrationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11133,7 +11133,7 @@ func (sh *strictHandler) IpSmGwRegistration(ctx *gin.Context, ueId externalRef0.
 	request.UeId = ueId
 
 	var body IpSmGwRegistrationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11282,7 +11282,7 @@ func (sh *strictHandler) Registration(ctx *gin.Context, ueId externalRef0.Supi, 
 	request.PduSessionId = pduSessionId
 
 	var body RegistrationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11373,7 +11373,7 @@ func (sh *strictHandler) N3GppSmsfRegistration(ctx *gin.Context, ueId externalRe
 	request.UeId = ueId
 
 	var body N3GppSmsfRegistrationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -11464,7 +11464,7 @@ func (sh *strictHandler) Non3GppSmsfRegistration(ctx *gin.Context, ueId external
 	request.UeId = ueId
 
 	var body Non3GppSmsfRegistrationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

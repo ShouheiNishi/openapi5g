@@ -3755,7 +3755,7 @@ func (sh *strictHandler) PostAfIdSubscriptions(ctx *gin.Context, afId string) {
 	request.AfId = afId
 
 	var body PostAfIdSubscriptionsJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3847,7 +3847,7 @@ func (sh *strictHandler) PatchAfIdSubscriptionsSubscriptionId(ctx *gin.Context, 
 	request.SubscriptionId = subscriptionId
 
 	var body PatchAfIdSubscriptionsSubscriptionIdApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3883,7 +3883,7 @@ func (sh *strictHandler) PutAfIdSubscriptionsSubscriptionId(ctx *gin.Context, af
 	request.SubscriptionId = subscriptionId
 
 	var body PutAfIdSubscriptionsSubscriptionIdJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

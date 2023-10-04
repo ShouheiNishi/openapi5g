@@ -1799,7 +1799,7 @@ func (sh *strictHandler) EnableUeReachability(ctx *gin.Context, ueContextId stri
 	request.UeContextId = ueContextId
 
 	var body EnableUeReachabilityJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

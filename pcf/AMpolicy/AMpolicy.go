@@ -3278,7 +3278,7 @@ func (sh *strictHandler) CreateIndividualAMPolicyAssociation(ctx *gin.Context) {
 	var request CreateIndividualAMPolicyAssociationRequestObject
 
 	var body CreateIndividualAMPolicyAssociationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3367,7 +3367,7 @@ func (sh *strictHandler) ReportObservedEventTriggersForIndividualAMPolicyAssocia
 	request.PolAssoId = polAssoId
 
 	var body ReportObservedEventTriggersForIndividualAMPolicyAssociationJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

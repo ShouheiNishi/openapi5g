@@ -3961,7 +3961,7 @@ func (sh *strictHandler) Modify5GVNGroup(ctx *gin.Context, extGroupId string, pa
 	request.Params = params
 
 	var body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3996,7 +3996,7 @@ func (sh *strictHandler) Create5GVNGroup(ctx *gin.Context, extGroupId string) {
 	request.ExtGroupId = extGroupId
 
 	var body Create5GVNGroupJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -4032,7 +4032,7 @@ func (sh *strictHandler) Update(ctx *gin.Context, ueId string, params UpdatePara
 	request.Params = params
 
 	var body UpdateApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

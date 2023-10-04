@@ -18978,7 +18978,7 @@ func (sh *strictHandler) SubscribeToSharedData(ctx *gin.Context) {
 	var request SubscribeToSharedDataRequestObject
 
 	var body SubscribeToSharedDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -19041,7 +19041,7 @@ func (sh *strictHandler) ModifySharedDataSubs(ctx *gin.Context, subscriptionId s
 	request.Params = params
 
 	var body ModifySharedDataSubsApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -19160,7 +19160,7 @@ func (sh *strictHandler) CAGAck(ctx *gin.Context, supi externalRef2.Supi) {
 	request.Supi = supi
 
 	var body CAGAckJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -19223,7 +19223,7 @@ func (sh *strictHandler) SorAckInfo(ctx *gin.Context, supi externalRef2.Supi) {
 	request.Supi = supi
 
 	var body SorAckInfoJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -19258,7 +19258,7 @@ func (sh *strictHandler) SNSSAIsAck(ctx *gin.Context, supi externalRef2.Supi) {
 	request.Supi = supi
 
 	var body SNSSAIsAckJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -19293,7 +19293,7 @@ func (sh *strictHandler) UpdateSORInfo(ctx *gin.Context, supi externalRef2.Supi)
 	request.Supi = supi
 
 	var body UpdateSORInfoJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -19328,7 +19328,7 @@ func (sh *strictHandler) UpuAck(ctx *gin.Context, supi externalRef2.Supi) {
 	request.Supi = supi
 
 	var body UpuAckJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -19755,7 +19755,7 @@ func (sh *strictHandler) Subscribe(ctx *gin.Context, ueId externalRef2.VarUeId) 
 	request.UeId = ueId
 
 	var body SubscribeJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -19820,7 +19820,7 @@ func (sh *strictHandler) Modify(ctx *gin.Context, ueId externalRef2.VarUeId, sub
 	request.Params = params
 
 	var body ModifyApplicationMergePatchPlusJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

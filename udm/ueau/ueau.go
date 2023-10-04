@@ -3654,7 +3654,7 @@ func (sh *strictHandler) GenerateAuthData(ctx *gin.Context, supiOrSuci externalR
 	request.SupiOrSuci = supiOrSuci
 
 	var body GenerateAuthDataJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3689,7 +3689,7 @@ func (sh *strictHandler) ConfirmAuth(ctx *gin.Context, supi externalRef0.Supi) {
 	request.Supi = supi
 
 	var body ConfirmAuthJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3725,7 +3725,7 @@ func (sh *strictHandler) DeleteAuth(ctx *gin.Context, supi externalRef0.Supi, au
 	request.AuthEventId = authEventId
 
 	var body DeleteAuthJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return
@@ -3761,7 +3761,7 @@ func (sh *strictHandler) GenerateAv(ctx *gin.Context, supi externalRef0.Supi, hs
 	request.HssAuthType = hssAuthType
 
 	var body GenerateAvJSONRequestBody
-	if err := ctx.ShouldBind(&body); err != nil {
+	if err := ctx.ShouldBindJSON(&body); err != nil {
 		ctx.Status(http.StatusBadRequest)
 		ctx.Error(err)
 		return

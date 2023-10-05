@@ -48,6 +48,14 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 		return nil, nil, err
 	}
 
+	if spec == "TS29571_CommonData.yaml" {
+		schema := doc.Components.Schemas["ProblemDetails"].Value.Properties["status"].Value
+		if schema.Extensions == nil {
+			schema.Extensions = make(map[string]interface{})
+		}
+		schema.Extensions["x-go-type-skip-optional-pointer"] = true
+	}
+
 	if spec == "TS29503_Nudm_SDM.yaml" {
 		for _, parameterRef := range doc.Paths["/shared-data"].Get.Parameters {
 			parameter := parameterRef.Value

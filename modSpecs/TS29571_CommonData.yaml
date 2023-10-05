@@ -1836,6 +1836,7 @@ components:
                     type: string
                 status:
                     type: integer
+                    x-go-type-skip-optional-pointer: true
                 supportedFeatures:
                     $ref: '#/components/schemas/SupportedFeatures'
                 title:

@@ -61,7 +61,7 @@ type ExtProblemDetails struct {
 
 	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
 	PcfSmIpEndPoints     []externalRef1.IpEndPoint       `json:"pcfSmIpEndPoints,omitempty"`
-	Status               *int                            `json:"status,omitempty"`
+	Status               int                             `json:"status,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	Title                *string                         `json:"title,omitempty"`
 	Type                 *externalRef0.Uri               `json:"type,omitempty"`
@@ -471,7 +471,7 @@ func (a ExtProblemDetails) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Status != nil {
+	if a.Status != 0 {
 		object["status"], err = json.Marshal(a.Status)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'status': %w", err)

@@ -81,7 +81,7 @@ const (
 {{range .}}
 func {{.GolangName}}({{if .HasInvalidParams}}invalidParams []commondata.InvalidParam,{{end}} detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr({{.StatusCode}}),
+		Status: {{.StatusCode}},
 		Cause:  lo.ToPtr(Cause{{.GolangName}}),
 		Title:  lo.ToPtr("{{.Title}}"),{{if .HasInvalidParams}}
 		InvalidParams: invalidParams,{{end}}

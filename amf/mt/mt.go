@@ -64,7 +64,7 @@ type ProblemDetailsEnableUeReachability struct {
 	InvalidParams        []externalRef1.InvalidParam     `json:"invalidParams,omitempty"`
 	MaxWaitingTime       *externalRef1.DurationSec       `json:"maxWaitingTime,omitempty"`
 	NrfId                *string                         `json:"nrfId,omitempty"`
-	Status               *int                            `json:"status,omitempty"`
+	Status               int                             `json:"status,omitempty"`
 	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	Title                *string                         `json:"title,omitempty"`
 	Type                 *externalRef1.Uri               `json:"type,omitempty"`
@@ -556,7 +556,7 @@ func (a ProblemDetailsEnableUeReachability) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Status != nil {
+	if a.Status != 0 {
 		object["status"], err = json.Marshal(a.Status)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'status': %w", err)

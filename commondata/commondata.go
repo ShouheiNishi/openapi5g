@@ -1514,7 +1514,7 @@ type ProblemDetails struct {
 	Instance             *Uri                   `json:"instance,omitempty"`
 	InvalidParams        []InvalidParam         `json:"invalidParams,omitempty"`
 	NrfId                *string                `json:"nrfId,omitempty"`
-	Status               *int                   `json:"status,omitempty"`
+	Status               int                    `json:"status,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	Title                *string                `json:"title,omitempty"`
 	Type                 *Uri                   `json:"type,omitempty"`
@@ -8141,7 +8141,7 @@ func (a ProblemDetails) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Status != nil {
+	if a.Status != 0 {
 		object["status"], err = json.Marshal(a.Status)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'status': %w", err)

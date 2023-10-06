@@ -469,10 +469,14 @@ func fixNullable(v *openapi3.Schema, specName string) error {
 	if len(v.AnyOf) == 2 {
 		if v.AnyOf[0].Ref == nullValueRef {
 			*v = *(deepcopy.Copy(v.AnyOf[1].Value).(*openapi3.Schema))
-			v.Nullable = true
+			// kin-openapi don`t allow this
+			// v.Nullable = true
+			v.Nullable = false
 		} else if v.AnyOf[1].Ref == nullValueRef {
 			*v = *(deepcopy.Copy(v.AnyOf[0].Value).(*openapi3.Schema))
-			v.Nullable = true
+			// kin-openapi don`t allow this
+			// v.Nullable = true
+			v.Nullable = false
 		}
 	}
 	return nil

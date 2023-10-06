@@ -133,7 +133,7 @@ type AccessAndMobilitySubscriptionData struct {
 	NbIoTUePriority                *NbIoTUePriority                             `json:"nbIoTUePriority,omitempty"`
 	Nssai                          *Nssai                                       `json:"nssai"`
 	NssaiInclusionAllowed          *bool                                        `json:"nssaiInclusionAllowed,omitempty"`
-	OdbPacketServices              *externalRef2.OdbPacketServices              `json:"odbPacketServices"`
+	OdbPacketServices              *externalRef2.OdbPacketServices              `json:"odbPacketServices,omitempty"`
 	PrimaryRatRestrictions         *[]externalRef2.RatType                      `json:"primaryRatRestrictions,omitempty"`
 	PtwParametersList              []PtwParameters                              `json:"ptwParametersList,omitempty"`
 	RatRestrictions                *[]externalRef2.RatType                      `json:"ratRestrictions,omitempty"`
@@ -151,7 +151,7 @@ type AccessAndMobilitySubscriptionData struct {
 	StnSr                          *externalRef2.StnSr                          `json:"stnSr,omitempty"`
 	SubsRegTimer                   *externalRef2.DurationSecRm                  `json:"subsRegTimer"`
 	SubscribedDnnList              *[]string                                    `json:"subscribedDnnList,omitempty"`
-	SubscribedUeAmbr               *externalRef2.AmbrRm                         `json:"subscribedUeAmbr"`
+	SubscribedUeAmbr               *externalRef2.AmbrRm                         `json:"subscribedUeAmbr,omitempty"`
 	SupportedFeatures              *externalRef2.SupportedFeatures              `json:"supportedFeatures,omitempty"`
 	TraceData                      *externalRef2.TraceData                      `json:"traceData"`
 	UeUsageType                    *UeUsageType                                 `json:"ueUsageType,omitempty"`
@@ -585,7 +585,7 @@ type SessionManagementSubscriptionData struct {
 	DnnConfigurations         *map[string]DnnConfiguration        `json:"dnnConfigurations,omitempty"`
 	ExpectedUeBehavioursList  *map[string]ExpectedUeBehaviourData `json:"expectedUeBehavioursList,omitempty"`
 	InternalGroupIds          []externalRef2.GroupId              `json:"internalGroupIds,omitempty"`
-	OdbPacketServices         *externalRef2.OdbPacketServices     `json:"odbPacketServices"`
+	OdbPacketServices         *externalRef2.OdbPacketServices     `json:"odbPacketServices,omitempty"`
 	SharedDnnConfigurationsId SharedDataId                        `json:"sharedDnnConfigurationsId,omitempty"`
 	SharedTraceDataId         SharedDataId                        `json:"sharedTraceDataId,omitempty"`
 	SharedVnGroupDataIds      *map[string]SharedDataId            `json:"sharedVnGroupDataIds,omitempty"`
@@ -1646,9 +1646,11 @@ func (a AccessAndMobilitySubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	object["odbPacketServices"], err = json.Marshal(a.OdbPacketServices)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'odbPacketServices': %w", err)
+	if a.OdbPacketServices != nil {
+		object["odbPacketServices"], err = json.Marshal(a.OdbPacketServices)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'odbPacketServices': %w", err)
+		}
 	}
 
 	if a.PrimaryRatRestrictions != nil {
@@ -1766,9 +1768,11 @@ func (a AccessAndMobilitySubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	object["subscribedUeAmbr"], err = json.Marshal(a.SubscribedUeAmbr)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'subscribedUeAmbr': %w", err)
+	if a.SubscribedUeAmbr != nil {
+		object["subscribedUeAmbr"], err = json.Marshal(a.SubscribedUeAmbr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'subscribedUeAmbr': %w", err)
+		}
 	}
 
 	if a.SupportedFeatures != nil {
@@ -6096,9 +6100,11 @@ func (a SessionManagementSubscriptionData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	object["odbPacketServices"], err = json.Marshal(a.OdbPacketServices)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'odbPacketServices': %w", err)
+	if a.OdbPacketServices != nil {
+		object["odbPacketServices"], err = json.Marshal(a.OdbPacketServices)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'odbPacketServices': %w", err)
+		}
 	}
 
 	if len(a.SharedDnnConfigurationsId) != 0 {

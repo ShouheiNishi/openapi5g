@@ -176,7 +176,6 @@ components:
             enum:
                 - 3GPP_ACCESS
                 - NON_3GPP_ACCESS
-            nullable: true
             type: string
             x-go-type-skip-optional-pointer: true
         AcsInfo:
@@ -191,7 +190,6 @@ components:
             type: object
         AcsInfoRm:
             additionalProperties: true
-            nullable: true
             properties:
                 acsIpv4Addr:
                     $ref: '#/components/schemas/Ipv4Addr'
@@ -203,7 +201,6 @@ components:
         AdditionalQosFlowInfo:
             enum:
                 - MORE_LIKELY
-            nullable: true
             type: string
         Ambr:
             additionalProperties: true
@@ -218,7 +215,6 @@ components:
             type: object
         AmbrRm:
             additionalProperties: true
-            nullable: true
             properties:
                 downlink:
                     $ref: '#/components/schemas/BitRate'
@@ -341,7 +337,6 @@ components:
             type: integer
         ArpRm:
             additionalProperties: true
-            nullable: true
             properties:
                 preemptCap:
                     $ref: '#/components/schemas/PreemptionCapability'
@@ -425,7 +420,6 @@ components:
             type: object
         BatteryIndicationRm:
             additionalProperties: true
-            nullable: true
             properties:
                 batteryInd:
                     type: boolean
@@ -565,7 +559,6 @@ components:
             enum:
                 - 5GC
                 - EPC
-            nullable: true
             type: string
         Date:
             format: date
@@ -622,7 +615,6 @@ components:
                 - BUFFERED
                 - TRANSMITTED
                 - DISCARDED
-            nullable: true
             type: string
         Dnai:
             type: string
@@ -641,7 +633,6 @@ components:
                 - EARLY
                 - EARLY_LATE
                 - LATE
-            nullable: true
             type: string
         DnaiRm:
             nullable: true
@@ -735,7 +726,6 @@ components:
             type: object
         EcgiRm:
             additionalProperties: true
-            nullable: true
             properties:
                 eutraCellId:
                     $ref: '#/components/schemas/EutraCellId'
@@ -792,7 +782,6 @@ components:
             type: object
         EutraLocationRm:
             additionalProperties: true
-            nullable: true
             properties:
                 ageOfLocationInformation:
                     maximum: 32767
@@ -987,7 +976,6 @@ components:
                 path: github.com/free5gc/openapi/models
         GuamiRm:
             additionalProperties: true
-            nullable: true
             properties:
                 amfId:
                     $ref: '#/components/schemas/AmfId'
@@ -1032,7 +1020,6 @@ components:
             type: object
         HfcNodeIdRm:
             additionalProperties: true
-            nullable: true
             properties:
                 hfcNId:
                     $ref: '#/components/schemas/HfcNId'
@@ -1157,7 +1144,6 @@ components:
             enum:
                 - DSL
                 - PON
-            nullable: true
             type: string
         Link:
             additionalProperties: true
@@ -1500,7 +1486,6 @@ components:
             type: object
         NcgiRm:
             additionalProperties: true
-            nullable: true
             properties:
                 nid:
                     $ref: '#/components/schemas/Nid'
@@ -1577,7 +1562,6 @@ components:
             enum:
                 - REQUESTED
                 - NOT_REQUESTED
-            nullable: true
             type: string
         NotifyItem:
             additionalProperties: true
@@ -1634,7 +1618,6 @@ components:
             type: object
         NrLocationRm:
             additionalProperties: true
-            nullable: true
             properties:
                 ageOfLocationInformation:
                     maximum: 32767
@@ -1684,7 +1667,6 @@ components:
             type: object
         NssaaStatusRm:
             additionalProperties: true
-            nullable: true
             properties:
                 snssai:
                     $ref: '#/components/schemas/Snssai'
@@ -1708,7 +1690,6 @@ components:
                 - ALL_PACKET_SERVICES
                 - ROAMER_ACCESS_HPLMN_AP
                 - ROAMER_ACCESS_VPLMN_AP
-            nullable: true
             type: string
         PacketDelBudget:
             minimum: 1
@@ -1821,7 +1802,6 @@ components:
                 - IPV4V6
                 - UNSTRUCTURED
                 - ETHERNET
-            nullable: true
             type: string
         Pei:
             pattern: ^(imei-[0-9]{15}|imeisv-[0-9]{16}|mac((-[0-9a-fA-F]{2}){6})(-untrusted)?|eui((-[0-9a-fA-F]{2}){8})|.+)$
@@ -1867,7 +1847,6 @@ components:
             type: object
         PlmnIdRm:
             additionalProperties: true
-            nullable: true
             properties:
                 mcc:
                     $ref: '#/components/schemas/Mcc'
@@ -1891,7 +1870,6 @@ components:
             enum:
                 - NOT_PREEMPT
                 - MAY_PREEMPT
-            nullable: true
             type: string
         PreemptionVulnerability:
             enum:
@@ -1902,7 +1880,6 @@ components:
             enum:
                 - NOT_PREEMPTABLE
                 - PREEMPTABLE
-            nullable: true
             type: string
         PresenceInfo:
             additionalProperties: true
@@ -2071,7 +2048,6 @@ components:
                 - NON_GBR
                 - NON_CRITICAL_GBR
                 - CRITICAL_GBR
-            nullable: true
             type: string
         RatType:
             enum:
@@ -2108,7 +2084,6 @@ components:
                 - TRUSTED_WLAN
                 - UTRA
                 - GERA
-            nullable: true
             type: string
         RatingGroup:
             $ref: '#/components/schemas/Uint32'
@@ -2132,7 +2107,6 @@ components:
             type: object
         RefToBinaryDataRm:
             additionalProperties: true
-            nullable: true
             properties:
                 contentId:
                     type: string
@@ -2148,7 +2122,6 @@ components:
             enum:
                 - RQOS
                 - NO_RQOS
-            nullable: true
             type: string
         ReportAmountMdt:
             enum:
@@ -2224,7 +2197,6 @@ components:
             enum:
                 - ALLOWED_AREAS
                 - NOT_ALLOWED_AREAS
-            nullable: true
             type: string
         RfspIndex:
             maximum: 256
@@ -2240,7 +2212,6 @@ components:
             $ref: '#/components/schemas/Bytes'
         RgWirelineCharacteristicsRm:
             format: byte
-            nullable: true
             type: string
         RoamingOdb:
             enum:
@@ -2320,7 +2291,6 @@ components:
             type: object
         ScheduledCommunicationTimeRm:
             additionalProperties: true
-            nullable: true
             properties:
                 daysOfWeek:
                     description: Identifies the day(s) of the week. If absent, it indicates every day of the week.
@@ -2346,7 +2316,6 @@ components:
                 - DOWNLINK_ONLY
                 - UPLINK_ONLY
                 - BIDIRECTIONAL
-            nullable: true
             type: string
         SdRange:
             additionalProperties: true
@@ -2512,7 +2481,6 @@ components:
                 - SSC_MODE_1
                 - SSC_MODE_2
                 - SSC_MODE_3
-            nullable: true
             type: string
         StationaryIndication:
             description: |
@@ -2527,7 +2495,6 @@ components:
             enum:
                 - STATIONARY
                 - MOBILE
-            nullable: true
             type: string
         StnSr:
             type: string
@@ -2597,7 +2564,6 @@ components:
             type: object
         TaiRm:
             additionalProperties: true
-            nullable: true
             properties:
                 nid:
                     $ref: '#/components/schemas/Nid'
@@ -2629,7 +2595,6 @@ components:
             type: object
         TnapIdRm:
             additionalProperties: true
-            nullable: true
             properties:
                 bssId:
                     type: string
@@ -2691,7 +2656,6 @@ components:
                 - MINIMUM_WO_VENDOR_EXTENSION
                 - MEDIUM_WO_VENDOR_EXTENSION
                 - MAXIMUM_WO_VENDOR_EXTENSION
-            nullable: true
             type: string
         TrafficProfile:
             description: |
@@ -2712,7 +2676,6 @@ components:
                 - DUAL_TRANS_UL_FIRST
                 - DUAL_TRANS_DL_FIRST
                 - MULTI_TRANS
-            nullable: true
             type: string
         TransportProtocol:
             description: |
@@ -2735,7 +2698,6 @@ components:
             type: object
         TwapIdRm:
             additionalProperties: true
-            nullable: true
             properties:
                 bssId:
                     type: string
@@ -2804,7 +2766,6 @@ components:
                 - REQUIRED
                 - PREFERRED
                 - NOT_NEEDED
-            nullable: true
             type: string
         UpIntegrity:
             enum:
@@ -2817,7 +2778,6 @@ components:
                 - REQUIRED
                 - PREFERRED
                 - NOT_NEEDED
-            nullable: true
             type: string
         UpSecurity:
             additionalProperties: true
@@ -2832,7 +2792,6 @@ components:
             type: object
         UpSecurityRm:
             additionalProperties: true
-            nullable: true
             properties:
                 upConfid:
                     $ref: '#/components/schemas/UpConfidentiality'

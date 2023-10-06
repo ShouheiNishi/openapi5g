@@ -362,7 +362,6 @@ components:
                 - UPLINK
                 - BIDIRECTIONAL
                 - UNSPECIFIED
-            nullable: true
             type: string
         FlowInformation:
             additionalProperties: true

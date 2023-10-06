@@ -929,7 +929,6 @@ components:
                 - MOST_RECENT
                 - LEAST_RECENT
                 - HIGHEST_BW
-            nullable: true
             type: string
         PrioritySharingIndicator:
             enum:

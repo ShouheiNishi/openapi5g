@@ -363,7 +363,7 @@ type AppSessionContextUpdateData struct {
 
 	// MpsId indication of MPS service request
 	MpsId              *string                         `json:"mpsId,omitempty"`
-	PreemptControlInfo *PreemptionControlInformationRm `json:"preemptControlInfo"`
+	PreemptControlInfo *PreemptionControlInformationRm `json:"preemptControlInfo,omitempty"`
 	ResPrio            *ReservPriority                 `json:"resPrio,omitempty"`
 	ServInfStatus      *ServiceInfoStatus              `json:"servInfStatus,omitempty"`
 	SipForkInd         *SipForkingIndication           `json:"sipForkInd,omitempty"`
@@ -617,8 +617,8 @@ type MediaComponentRm struct {
 	MinDesBwUl          *externalRef0.BitRateRm                 `json:"minDesBwUl"`
 	MirBwDl             *externalRef0.BitRateRm                 `json:"mirBwDl"`
 	MirBwUl             *externalRef0.BitRateRm                 `json:"mirBwUl"`
-	PreemptCap          *externalRef0.PreemptionCapabilityRm    `json:"preemptCap"`
-	PreemptVuln         *externalRef0.PreemptionVulnerabilityRm `json:"preemptVuln"`
+	PreemptCap          *externalRef0.PreemptionCapabilityRm    `json:"preemptCap,omitempty"`
+	PreemptVuln         *externalRef0.PreemptionVulnerabilityRm `json:"preemptVuln,omitempty"`
 	PrioSharingInd      *PrioritySharingIndicator               `json:"prioSharingInd,omitempty"`
 	QosReference        *string                                 `json:"qosReference"`
 	ResPrio             *ReservPriority                         `json:"resPrio,omitempty"`
@@ -2578,9 +2578,11 @@ func (a AppSessionContextUpdateData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	object["preemptControlInfo"], err = json.Marshal(a.PreemptControlInfo)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'preemptControlInfo': %w", err)
+	if a.PreemptControlInfo != nil {
+		object["preemptControlInfo"], err = json.Marshal(a.PreemptControlInfo)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'preemptControlInfo': %w", err)
+		}
 	}
 
 	if a.ResPrio != nil {
@@ -4954,14 +4956,18 @@ func (a MediaComponentRm) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'mirBwUl': %w", err)
 	}
 
-	object["preemptCap"], err = json.Marshal(a.PreemptCap)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'preemptCap': %w", err)
+	if a.PreemptCap != nil {
+		object["preemptCap"], err = json.Marshal(a.PreemptCap)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'preemptCap': %w", err)
+		}
 	}
 
-	object["preemptVuln"], err = json.Marshal(a.PreemptVuln)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'preemptVuln': %w", err)
+	if a.PreemptVuln != nil {
+		object["preemptVuln"], err = json.Marshal(a.PreemptVuln)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'preemptVuln': %w", err)
+		}
 	}
 
 	if a.PrioSharingInd != nil {

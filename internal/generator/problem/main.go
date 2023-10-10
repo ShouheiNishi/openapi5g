@@ -85,7 +85,9 @@ func {{.GolangName}}({{if .HasInvalidParams}}invalidParams []commondata.InvalidP
 		Cause:  lo.ToPtr(Cause{{.GolangName}}),
 		Title:  lo.ToPtr("{{.Title}}"),{{if .HasInvalidParams}}
 		InvalidParams: invalidParams,{{end}}
-		Detail: &detail,
+	}
+	if detail != "" {
+		pd.Detail = &detail
 	}
 	return pd
 }

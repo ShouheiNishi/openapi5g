@@ -126,6 +126,11 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Service Unavailable
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
 security:
     - {}
     - oAuth2ClientCredentials:

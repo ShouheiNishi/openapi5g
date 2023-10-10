@@ -3755,22 +3755,23 @@ type ClientWithResponsesInterface interface {
 }
 
 type SearchNFInstancesResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SearchResult
-	JSON307                   *externalRef1.RedirectResponse
-	JSON308                   *externalRef1.RedirectResponse
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON501 *externalRef1.N501
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SearchResult
+	JSON307                       *externalRef1.RedirectResponse
+	JSON308                       *externalRef1.RedirectResponse
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON501     *externalRef1.N501
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -3790,11 +3791,12 @@ func (r SearchNFInstancesResponse) StatusCode() int {
 }
 
 type RetrieveStoredSearchResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *N200
-	JSON307      *externalRef1.RedirectResponse
-	JSON308      *externalRef1.RedirectResponse
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *N200
+	JSON307                       *externalRef1.RedirectResponse
+	JSON308                       *externalRef1.RedirectResponse
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -3814,11 +3816,12 @@ func (r RetrieveStoredSearchResponse) StatusCode() int {
 }
 
 type RetrieveCompleteSearchResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *N200
-	JSON307      *externalRef1.RedirectResponse
-	JSON308      *externalRef1.RedirectResponse
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *N200
+	JSON307                       *externalRef1.RedirectResponse
+	JSON308                       *externalRef1.RedirectResponse
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -3976,6 +3979,13 @@ func ParseSearchNFInstancesResponse(rsp *http.Response) (*SearchNFInstancesRespo
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -4016,6 +4026,13 @@ func ParseRetrieveStoredSearchResponse(rsp *http.Response) (*RetrieveStoredSearc
 		}
 		response.JSON308 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -4055,6 +4072,13 @@ func ParseRetrieveCompleteSearchResponse(rsp *http.Response) (*RetrieveCompleteS
 			return nil, err
 		}
 		response.JSON308 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -5394,13 +5418,16 @@ func (response SearchNFInstances503ApplicationProblemPlusJSONResponse) VisitSear
 	return json.NewEncoder(w).Encode(response)
 }
 
-type SearchNFInstancesdefaultResponse struct {
+type SearchNFInstancesdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response SearchNFInstancesdefaultResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
+func (response SearchNFInstancesdefaultApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type RetrieveStoredSearchRequestObject struct {
@@ -5458,6 +5485,18 @@ func (response RetrieveStoredSearch308JSONResponse) VisitRetrieveStoredSearchRes
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
+type RetrieveStoredSearchdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
+	StatusCode int
+}
+
+func (response RetrieveStoredSearchdefaultApplicationProblemPlusJSONResponse) VisitRetrieveStoredSearchResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
+}
+
 type RetrieveCompleteSearchRequestObject struct {
 	SearchId SearchId `json:"searchId"`
 	Params   RetrieveCompleteSearchParams
@@ -5509,6 +5548,18 @@ func (response RetrieveCompleteSearch308JSONResponse) VisitRetrieveCompleteSearc
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
+
+	return json.NewEncoder(w).Encode(response.Body)
+}
+
+type RetrieveCompleteSearchdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
+	StatusCode int
+}
+
+func (response RetrieveCompleteSearchdefaultApplicationProblemPlusJSONResponse) VisitRetrieveCompleteSearchResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
 
 	return json.NewEncoder(w).Encode(response.Body)
 }

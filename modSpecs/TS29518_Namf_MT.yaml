@@ -130,6 +130,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_MT Provide Domain Selection Info service Operation
             tags:
@@ -190,6 +194,10 @@ paths:
                                 $ref: '#/components/schemas/ProblemDetailsEnableUeReachability'
                     description: Gateway Timeout
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_MT EnableUEReachability service Operation
             tags:

@@ -139,6 +139,10 @@ components:
                         $ref: '#/components/schemas/ProblemDetails'
             description: Gateway Timeout
         default:
+            content:
+                application/problem+json:
+                    schema:
+                        $ref: '#/components/schemas/ProblemDetails'
             description: Generic Error
     schemas:
         5GMmCause:

@@ -4982,17 +4982,18 @@ type ClientWithResponsesInterface interface {
 }
 
 type ReadBdtPolicyDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]BdtPolicyData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]BdtPolicyData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5012,15 +5013,16 @@ func (r ReadBdtPolicyDataResponse) StatusCode() int {
 }
 
 type DeleteIndividualAppliedBdtPolicyDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5040,19 +5042,20 @@ func (r DeleteIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 }
 
 type UpdateIndividualAppliedBdtPolicyDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *BdtPolicyData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *BdtPolicyData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5072,20 +5075,21 @@ func (r UpdateIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 }
 
 type CreateIndividualAppliedBdtPolicyDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *BdtPolicyData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *BdtPolicyData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5105,17 +5109,18 @@ func (r CreateIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 }
 
 type ReadInfluenceDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]TrafficInfluData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]TrafficInfluData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5135,17 +5140,18 @@ func (r ReadInfluenceDataResponse) StatusCode() int {
 }
 
 type ReadInfluenceDataSubscriptionsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5165,19 +5171,20 @@ func (r ReadInfluenceDataSubscriptionsResponse) StatusCode() int {
 }
 
 type CreateIndividualInfluenceDataSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5197,15 +5204,16 @@ func (r CreateIndividualInfluenceDataSubscriptionResponse) StatusCode() int {
 }
 
 type DeleteIndividualInfluenceDataSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5225,17 +5233,18 @@ func (r DeleteIndividualInfluenceDataSubscriptionResponse) StatusCode() int {
 }
 
 type ReadIndividualInfluenceDataSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5255,19 +5264,20 @@ func (r ReadIndividualInfluenceDataSubscriptionResponse) StatusCode() int {
 }
 
 type ReplaceIndividualInfluenceDataSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5287,15 +5297,16 @@ func (r ReplaceIndividualInfluenceDataSubscriptionResponse) StatusCode() int {
 }
 
 type DeleteIndividualInfluenceDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5315,19 +5326,20 @@ func (r DeleteIndividualInfluenceDataResponse) StatusCode() int {
 }
 
 type UpdateIndividualInfluenceDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *TrafficInfluData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *TrafficInfluData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5347,21 +5359,22 @@ func (r UpdateIndividualInfluenceDataResponse) StatusCode() int {
 }
 
 type CreateOrReplaceIndividualInfluenceDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *TrafficInfluData
-	JSON201                   *TrafficInfluData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *TrafficInfluData
+	JSON201                       *TrafficInfluData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5381,17 +5394,18 @@ func (r CreateOrReplaceIndividualInfluenceDataResponse) StatusCode() int {
 }
 
 type ReadIPTVCongifurationDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]IptvConfigData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]IptvConfigData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5411,15 +5425,16 @@ func (r ReadIPTVCongifurationDataResponse) StatusCode() int {
 }
 
 type DeleteIndividualIPTVConfigurationDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5439,20 +5454,21 @@ func (r DeleteIndividualIPTVConfigurationDataResponse) StatusCode() int {
 }
 
 type PartialReplaceIndividualIPTVConfigurationDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *IptvConfigData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *IptvConfigData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5472,21 +5488,22 @@ func (r PartialReplaceIndividualIPTVConfigurationDataResponse) StatusCode() int 
 }
 
 type CreateOrReplaceIndividualIPTVConfigurationDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *IptvConfigData
-	JSON201                   *IptvConfigData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *IptvConfigData
+	JSON201                       *IptvConfigData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5506,17 +5523,18 @@ func (r CreateOrReplaceIndividualIPTVConfigurationDataResponse) StatusCode() int
 }
 
 type ReadPFDDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]PfdDataForAppExt
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]PfdDataForAppExt
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5536,15 +5554,16 @@ func (r ReadPFDDataResponse) StatusCode() int {
 }
 
 type DeleteIndividualPFDDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5564,16 +5583,17 @@ func (r DeleteIndividualPFDDataResponse) StatusCode() int {
 }
 
 type ReadIndividualPFDDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdDataForAppExt
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdDataForAppExt
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5593,21 +5613,22 @@ func (r ReadIndividualPFDDataResponse) StatusCode() int {
 }
 
 type CreateOrReplaceIndividualPFDDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdDataForAppExt
-	JSON201                   *PfdDataForAppExt
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdDataForAppExt
+	JSON201                       *PfdDataForAppExt
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5627,17 +5648,18 @@ func (r CreateOrReplaceIndividualPFDDataResponse) StatusCode() int {
 }
 
 type ReadServiceParameterDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]ServiceParameterData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]ServiceParameterData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5657,15 +5679,16 @@ func (r ReadServiceParameterDataResponse) StatusCode() int {
 }
 
 type DeleteIndividualServiceParameterDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5685,19 +5708,20 @@ func (r DeleteIndividualServiceParameterDataResponse) StatusCode() int {
 }
 
 type UpdateIndividualServiceParameterDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *ServiceParameterData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ServiceParameterData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5717,21 +5741,22 @@ func (r UpdateIndividualServiceParameterDataResponse) StatusCode() int {
 }
 
 type CreateOrReplaceServiceParameterDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *ServiceParameterData
-	JSON201                   *ServiceParameterData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ServiceParameterData
+	JSON201                       *ServiceParameterData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5751,17 +5776,18 @@ func (r CreateOrReplaceServiceParameterDataResponse) StatusCode() int {
 }
 
 type ReadApplicationDataChangeSubscriptionsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]ApplicationDataSubs
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]ApplicationDataSubs
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5781,19 +5807,20 @@ func (r ReadApplicationDataChangeSubscriptionsResponse) StatusCode() int {
 }
 
 type CreateIndividualApplicationDataSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *ApplicationDataSubs
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *ApplicationDataSubs
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5813,15 +5840,16 @@ func (r CreateIndividualApplicationDataSubscriptionResponse) StatusCode() int {
 }
 
 type DeleteIndividualApplicationDataSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5841,17 +5869,18 @@ func (r DeleteIndividualApplicationDataSubscriptionResponse) StatusCode() int {
 }
 
 type ReadIndividualApplicationDataSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *ApplicationDataSubs
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ApplicationDataSubs
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -5871,19 +5900,20 @@ func (r ReadIndividualApplicationDataSubscriptionResponse) StatusCode() int {
 }
 
 type ReplaceIndividualApplicationDataSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *ApplicationDataSubs
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ApplicationDataSubs
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -6353,6 +6383,13 @@ func ParseReadBdtPolicyDataResponse(rsp *http.Response) (*ReadBdtPolicyDataRespo
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6420,6 +6457,13 @@ func ParseDeleteIndividualAppliedBdtPolicyDataResponse(rsp *http.Response) (*Del
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6516,6 +6560,13 @@ func ParseUpdateIndividualAppliedBdtPolicyDataResponse(rsp *http.Response) (*Upd
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6620,6 +6671,13 @@ func ParseCreateIndividualAppliedBdtPolicyDataResponse(rsp *http.Response) (*Cre
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6702,6 +6760,13 @@ func ParseReadInfluenceDataResponse(rsp *http.Response) (*ReadInfluenceDataRespo
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6783,6 +6848,13 @@ func ParseReadInfluenceDataSubscriptionsResponse(rsp *http.Response) (*ReadInflu
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6880,6 +6952,13 @@ func ParseCreateIndividualInfluenceDataSubscriptionResponse(rsp *http.Response) 
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6947,6 +7026,13 @@ func ParseDeleteIndividualInfluenceDataSubscriptionResponse(rsp *http.Response) 
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7029,6 +7115,13 @@ func ParseReadIndividualInfluenceDataSubscriptionResponse(rsp *http.Response) (*
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7126,6 +7219,13 @@ func ParseReplaceIndividualInfluenceDataSubscriptionResponse(rsp *http.Response)
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -7193,6 +7293,13 @@ func ParseDeleteIndividualInfluenceDataResponse(rsp *http.Response) (*DeleteIndi
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7289,6 +7396,13 @@ func ParseUpdateIndividualInfluenceDataResponse(rsp *http.Response) (*UpdateIndi
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7400,6 +7514,13 @@ func ParseCreateOrReplaceIndividualInfluenceDataResponse(rsp *http.Response) (*C
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -7482,6 +7603,13 @@ func ParseReadIPTVCongifurationDataResponse(rsp *http.Response) (*ReadIPTVCongif
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -7549,6 +7677,13 @@ func ParseDeleteIndividualIPTVConfigurationDataResponse(rsp *http.Response) (*De
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7652,6 +7787,13 @@ func ParsePartialReplaceIndividualIPTVConfigurationDataResponse(rsp *http.Respon
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7763,6 +7905,13 @@ func ParseCreateOrReplaceIndividualIPTVConfigurationDataResponse(rsp *http.Respo
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -7845,6 +7994,13 @@ func ParseReadPFDDataResponse(rsp *http.Response) (*ReadPFDDataResponse, error) 
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -7912,6 +8068,13 @@ func ParseDeleteIndividualPFDDataResponse(rsp *http.Response) (*DeleteIndividual
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7987,6 +8150,13 @@ func ParseReadIndividualPFDDataResponse(rsp *http.Response) (*ReadIndividualPFDD
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -8098,6 +8268,13 @@ func ParseCreateOrReplaceIndividualPFDDataResponse(rsp *http.Response) (*CreateO
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -8180,6 +8357,13 @@ func ParseReadServiceParameterDataResponse(rsp *http.Response) (*ReadServicePara
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -8247,6 +8431,13 @@ func ParseDeleteIndividualServiceParameterDataResponse(rsp *http.Response) (*Del
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -8343,6 +8534,13 @@ func ParseUpdateIndividualServiceParameterDataResponse(rsp *http.Response) (*Upd
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -8454,6 +8652,13 @@ func ParseCreateOrReplaceServiceParameterDataResponse(rsp *http.Response) (*Crea
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -8535,6 +8740,13 @@ func ParseReadApplicationDataChangeSubscriptionsResponse(rsp *http.Response) (*R
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -8632,6 +8844,13 @@ func ParseCreateIndividualApplicationDataSubscriptionResponse(rsp *http.Response
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -8699,6 +8918,13 @@ func ParseDeleteIndividualApplicationDataSubscriptionResponse(rsp *http.Response
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -8781,6 +9007,13 @@ func ParseReadIndividualApplicationDataSubscriptionResponse(rsp *http.Response) 
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -8877,6 +9110,13 @@ func ParseReplaceIndividualApplicationDataSubscriptionResponse(rsp *http.Respons
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -10080,13 +10320,16 @@ func (response ReadBdtPolicyData503ApplicationProblemPlusJSONResponse) VisitRead
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadBdtPolicyDatadefaultResponse struct {
+type ReadBdtPolicyDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadBdtPolicyDatadefaultResponse) VisitReadBdtPolicyDataResponse(w http.ResponseWriter) error {
+func (response ReadBdtPolicyDatadefaultApplicationProblemPlusJSONResponse) VisitReadBdtPolicyDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualAppliedBdtPolicyDataRequestObject struct {
@@ -10182,13 +10425,16 @@ func (response DeleteIndividualAppliedBdtPolicyData503ApplicationProblemPlusJSON
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualAppliedBdtPolicyDatadefaultResponse struct {
+type DeleteIndividualAppliedBdtPolicyDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualAppliedBdtPolicyDatadefaultResponse) VisitDeleteIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualAppliedBdtPolicyDatadefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateIndividualAppliedBdtPolicyDataRequestObject struct {
@@ -10327,13 +10573,16 @@ func (response UpdateIndividualAppliedBdtPolicyData503ApplicationProblemPlusJSON
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateIndividualAppliedBdtPolicyDatadefaultResponse struct {
+type UpdateIndividualAppliedBdtPolicyDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateIndividualAppliedBdtPolicyDatadefaultResponse) VisitUpdateIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error {
+func (response UpdateIndividualAppliedBdtPolicyDatadefaultApplicationProblemPlusJSONResponse) VisitUpdateIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateIndividualAppliedBdtPolicyDataRequestObject struct {
@@ -10483,13 +10732,16 @@ func (response CreateIndividualAppliedBdtPolicyData503ApplicationProblemPlusJSON
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateIndividualAppliedBdtPolicyDatadefaultResponse struct {
+type CreateIndividualAppliedBdtPolicyDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateIndividualAppliedBdtPolicyDatadefaultResponse) VisitCreateIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error {
+func (response CreateIndividualAppliedBdtPolicyDatadefaultApplicationProblemPlusJSONResponse) VisitCreateIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadInfluenceDataRequestObject struct {
@@ -10604,13 +10856,16 @@ func (response ReadInfluenceData503ApplicationProblemPlusJSONResponse) VisitRead
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadInfluenceDatadefaultResponse struct {
+type ReadInfluenceDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadInfluenceDatadefaultResponse) VisitReadInfluenceDataResponse(w http.ResponseWriter) error {
+func (response ReadInfluenceDatadefaultApplicationProblemPlusJSONResponse) VisitReadInfluenceDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadInfluenceDataSubscriptionsRequestObject struct {
@@ -10725,13 +10980,16 @@ func (response ReadInfluenceDataSubscriptions503ApplicationProblemPlusJSONRespon
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadInfluenceDataSubscriptionsdefaultResponse struct {
+type ReadInfluenceDataSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadInfluenceDataSubscriptionsdefaultResponse) VisitReadInfluenceDataSubscriptionsResponse(w http.ResponseWriter) error {
+func (response ReadInfluenceDataSubscriptionsdefaultApplicationProblemPlusJSONResponse) VisitReadInfluenceDataSubscriptionsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateIndividualInfluenceDataSubscriptionRequestObject struct {
@@ -10869,13 +11127,16 @@ func (response CreateIndividualInfluenceDataSubscription503ApplicationProblemPlu
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateIndividualInfluenceDataSubscriptiondefaultResponse struct {
+type CreateIndividualInfluenceDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateIndividualInfluenceDataSubscriptiondefaultResponse) VisitCreateIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
+func (response CreateIndividualInfluenceDataSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitCreateIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualInfluenceDataSubscriptionRequestObject struct {
@@ -10971,13 +11232,16 @@ func (response DeleteIndividualInfluenceDataSubscription503ApplicationProblemPlu
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualInfluenceDataSubscriptiondefaultResponse struct {
+type DeleteIndividualInfluenceDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualInfluenceDataSubscriptiondefaultResponse) VisitDeleteIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualInfluenceDataSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadIndividualInfluenceDataSubscriptionRequestObject struct {
@@ -11092,13 +11356,16 @@ func (response ReadIndividualInfluenceDataSubscription503ApplicationProblemPlusJ
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadIndividualInfluenceDataSubscriptiondefaultResponse struct {
+type ReadIndividualInfluenceDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadIndividualInfluenceDataSubscriptiondefaultResponse) VisitReadIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
+func (response ReadIndividualInfluenceDataSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitReadIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReplaceIndividualInfluenceDataSubscriptionRequestObject struct {
@@ -11237,13 +11504,16 @@ func (response ReplaceIndividualInfluenceDataSubscription503ApplicationProblemPl
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReplaceIndividualInfluenceDataSubscriptiondefaultResponse struct {
+type ReplaceIndividualInfluenceDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReplaceIndividualInfluenceDataSubscriptiondefaultResponse) VisitReplaceIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
+func (response ReplaceIndividualInfluenceDataSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitReplaceIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualInfluenceDataRequestObject struct {
@@ -11339,13 +11609,16 @@ func (response DeleteIndividualInfluenceData503ApplicationProblemPlusJSONRespons
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualInfluenceDatadefaultResponse struct {
+type DeleteIndividualInfluenceDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualInfluenceDatadefaultResponse) VisitDeleteIndividualInfluenceDataResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualInfluenceDatadefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualInfluenceDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateIndividualInfluenceDataRequestObject struct {
@@ -11484,13 +11757,16 @@ func (response UpdateIndividualInfluenceData503ApplicationProblemPlusJSONRespons
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateIndividualInfluenceDatadefaultResponse struct {
+type UpdateIndividualInfluenceDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateIndividualInfluenceDatadefaultResponse) VisitUpdateIndividualInfluenceDataResponse(w http.ResponseWriter) error {
+func (response UpdateIndividualInfluenceDatadefaultApplicationProblemPlusJSONResponse) VisitUpdateIndividualInfluenceDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateOrReplaceIndividualInfluenceDataRequestObject struct {
@@ -11657,13 +11933,16 @@ func (response CreateOrReplaceIndividualInfluenceData503ApplicationProblemPlusJS
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateOrReplaceIndividualInfluenceDatadefaultResponse struct {
+type CreateOrReplaceIndividualInfluenceDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateOrReplaceIndividualInfluenceDatadefaultResponse) VisitCreateOrReplaceIndividualInfluenceDataResponse(w http.ResponseWriter) error {
+func (response CreateOrReplaceIndividualInfluenceDatadefaultApplicationProblemPlusJSONResponse) VisitCreateOrReplaceIndividualInfluenceDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadIPTVCongifurationDataRequestObject struct {
@@ -11778,13 +12057,16 @@ func (response ReadIPTVCongifurationData503ApplicationProblemPlusJSONResponse) V
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadIPTVCongifurationDatadefaultResponse struct {
+type ReadIPTVCongifurationDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadIPTVCongifurationDatadefaultResponse) VisitReadIPTVCongifurationDataResponse(w http.ResponseWriter) error {
+func (response ReadIPTVCongifurationDatadefaultApplicationProblemPlusJSONResponse) VisitReadIPTVCongifurationDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualIPTVConfigurationDataRequestObject struct {
@@ -11880,13 +12162,16 @@ func (response DeleteIndividualIPTVConfigurationData503ApplicationProblemPlusJSO
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualIPTVConfigurationDatadefaultResponse struct {
+type DeleteIndividualIPTVConfigurationDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualIPTVConfigurationDatadefaultResponse) VisitDeleteIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualIPTVConfigurationDatadefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PartialReplaceIndividualIPTVConfigurationDataRequestObject struct {
@@ -12036,13 +12321,16 @@ func (response PartialReplaceIndividualIPTVConfigurationData503ApplicationProble
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PartialReplaceIndividualIPTVConfigurationDatadefaultResponse struct {
+type PartialReplaceIndividualIPTVConfigurationDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PartialReplaceIndividualIPTVConfigurationDatadefaultResponse) VisitPartialReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
+func (response PartialReplaceIndividualIPTVConfigurationDatadefaultApplicationProblemPlusJSONResponse) VisitPartialReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateOrReplaceIndividualIPTVConfigurationDataRequestObject struct {
@@ -12209,13 +12497,16 @@ func (response CreateOrReplaceIndividualIPTVConfigurationData503ApplicationProbl
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateOrReplaceIndividualIPTVConfigurationDatadefaultResponse struct {
+type CreateOrReplaceIndividualIPTVConfigurationDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateOrReplaceIndividualIPTVConfigurationDatadefaultResponse) VisitCreateOrReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
+func (response CreateOrReplaceIndividualIPTVConfigurationDatadefaultApplicationProblemPlusJSONResponse) VisitCreateOrReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadPFDDataRequestObject struct {
@@ -12330,13 +12621,16 @@ func (response ReadPFDData503ApplicationProblemPlusJSONResponse) VisitReadPFDDat
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadPFDDatadefaultResponse struct {
+type ReadPFDDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadPFDDatadefaultResponse) VisitReadPFDDataResponse(w http.ResponseWriter) error {
+func (response ReadPFDDatadefaultApplicationProblemPlusJSONResponse) VisitReadPFDDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualPFDDataRequestObject struct {
@@ -12432,13 +12726,16 @@ func (response DeleteIndividualPFDData503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualPFDDatadefaultResponse struct {
+type DeleteIndividualPFDDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualPFDDatadefaultResponse) VisitDeleteIndividualPFDDataResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualPFDDatadefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualPFDDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadIndividualPFDDataRequestObject struct {
@@ -12542,13 +12839,16 @@ func (response ReadIndividualPFDData503ApplicationProblemPlusJSONResponse) Visit
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadIndividualPFDDatadefaultResponse struct {
+type ReadIndividualPFDDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadIndividualPFDDatadefaultResponse) VisitReadIndividualPFDDataResponse(w http.ResponseWriter) error {
+func (response ReadIndividualPFDDatadefaultApplicationProblemPlusJSONResponse) VisitReadIndividualPFDDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateOrReplaceIndividualPFDDataRequestObject struct {
@@ -12715,13 +13015,16 @@ func (response CreateOrReplaceIndividualPFDData503ApplicationProblemPlusJSONResp
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateOrReplaceIndividualPFDDatadefaultResponse struct {
+type CreateOrReplaceIndividualPFDDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateOrReplaceIndividualPFDDatadefaultResponse) VisitCreateOrReplaceIndividualPFDDataResponse(w http.ResponseWriter) error {
+func (response CreateOrReplaceIndividualPFDDatadefaultApplicationProblemPlusJSONResponse) VisitCreateOrReplaceIndividualPFDDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadServiceParameterDataRequestObject struct {
@@ -12836,13 +13139,16 @@ func (response ReadServiceParameterData503ApplicationProblemPlusJSONResponse) Vi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadServiceParameterDatadefaultResponse struct {
+type ReadServiceParameterDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadServiceParameterDatadefaultResponse) VisitReadServiceParameterDataResponse(w http.ResponseWriter) error {
+func (response ReadServiceParameterDatadefaultApplicationProblemPlusJSONResponse) VisitReadServiceParameterDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualServiceParameterDataRequestObject struct {
@@ -12938,13 +13244,16 @@ func (response DeleteIndividualServiceParameterData503ApplicationProblemPlusJSON
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualServiceParameterDatadefaultResponse struct {
+type DeleteIndividualServiceParameterDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualServiceParameterDatadefaultResponse) VisitDeleteIndividualServiceParameterDataResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualServiceParameterDatadefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualServiceParameterDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateIndividualServiceParameterDataRequestObject struct {
@@ -13083,13 +13392,16 @@ func (response UpdateIndividualServiceParameterData503ApplicationProblemPlusJSON
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateIndividualServiceParameterDatadefaultResponse struct {
+type UpdateIndividualServiceParameterDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateIndividualServiceParameterDatadefaultResponse) VisitUpdateIndividualServiceParameterDataResponse(w http.ResponseWriter) error {
+func (response UpdateIndividualServiceParameterDatadefaultApplicationProblemPlusJSONResponse) VisitUpdateIndividualServiceParameterDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateOrReplaceServiceParameterDataRequestObject struct {
@@ -13256,13 +13568,16 @@ func (response CreateOrReplaceServiceParameterData503ApplicationProblemPlusJSONR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateOrReplaceServiceParameterDatadefaultResponse struct {
+type CreateOrReplaceServiceParameterDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateOrReplaceServiceParameterDatadefaultResponse) VisitCreateOrReplaceServiceParameterDataResponse(w http.ResponseWriter) error {
+func (response CreateOrReplaceServiceParameterDatadefaultApplicationProblemPlusJSONResponse) VisitCreateOrReplaceServiceParameterDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadApplicationDataChangeSubscriptionsRequestObject struct {
@@ -13377,13 +13692,16 @@ func (response ReadApplicationDataChangeSubscriptions503ApplicationProblemPlusJS
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadApplicationDataChangeSubscriptionsdefaultResponse struct {
+type ReadApplicationDataChangeSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadApplicationDataChangeSubscriptionsdefaultResponse) VisitReadApplicationDataChangeSubscriptionsResponse(w http.ResponseWriter) error {
+func (response ReadApplicationDataChangeSubscriptionsdefaultApplicationProblemPlusJSONResponse) VisitReadApplicationDataChangeSubscriptionsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateIndividualApplicationDataSubscriptionRequestObject struct {
@@ -13521,13 +13839,16 @@ func (response CreateIndividualApplicationDataSubscription503ApplicationProblemP
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateIndividualApplicationDataSubscriptiondefaultResponse struct {
+type CreateIndividualApplicationDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateIndividualApplicationDataSubscriptiondefaultResponse) VisitCreateIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
+func (response CreateIndividualApplicationDataSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitCreateIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualApplicationDataSubscriptionRequestObject struct {
@@ -13623,13 +13944,16 @@ func (response DeleteIndividualApplicationDataSubscription503ApplicationProblemP
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualApplicationDataSubscriptiondefaultResponse struct {
+type DeleteIndividualApplicationDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualApplicationDataSubscriptiondefaultResponse) VisitDeleteIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualApplicationDataSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadIndividualApplicationDataSubscriptionRequestObject struct {
@@ -13744,13 +14068,16 @@ func (response ReadIndividualApplicationDataSubscription503ApplicationProblemPlu
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadIndividualApplicationDataSubscriptiondefaultResponse struct {
+type ReadIndividualApplicationDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadIndividualApplicationDataSubscriptiondefaultResponse) VisitReadIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
+func (response ReadIndividualApplicationDataSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitReadIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReplaceIndividualApplicationDataSubscriptionRequestObject struct {
@@ -13889,13 +14216,16 @@ func (response ReplaceIndividualApplicationDataSubscription503ApplicationProblem
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReplaceIndividualApplicationDataSubscriptiondefaultResponse struct {
+type ReplaceIndividualApplicationDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReplaceIndividualApplicationDataSubscriptiondefaultResponse) VisitReplaceIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
+func (response ReplaceIndividualApplicationDataSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitReplaceIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

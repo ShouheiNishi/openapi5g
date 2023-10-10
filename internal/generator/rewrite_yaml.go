@@ -56,6 +56,44 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 		schema.Extensions["x-go-type-skip-optional-pointer"] = true
 	}
 
+	if spec == "TS29571_CommonData.yaml" {
+		for statusCode, res := range doc.Components.Responses {
+			if statusCode == "default" {
+				res.Value.Content = openapi3.NewContent()
+				res.Value.Content["application/problem+json"] = openapi3.NewMediaType().WithSchemaRef(
+					openapi3.NewSchemaRef("#/components/schemas/ProblemDetails", nil),
+				)
+			}
+		}
+	} else {
+		for _, pathItem := range doc.Paths {
+			if pathItem.Ref != "" {
+				continue
+			}
+			for _, op := range pathItem.Operations() {
+				if op.Responses == nil {
+					op.Responses = make(openapi3.Responses)
+				}
+				if op.Responses["default"] == nil {
+					op.Responses["default"] = &openapi3.ResponseRef{Value: openapi3.NewResponse()}
+				}
+				if op.Responses["default"].Ref != "TS29571_CommonData.yaml#/components/responses/default" {
+					if op.Responses["default"].Value.Content == nil {
+						op.Responses["default"].Value.Content = openapi3.NewContent()
+					}
+					if op.Responses["default"].Value.Content["application/problem+json"] == nil {
+						resNew := deepcopy.Copy(op.Responses["default"]).(*openapi3.ResponseRef)
+						resNew.Ref = ""
+						resNew.Value.Content["application/problem+json"] = openapi3.NewMediaType().WithSchemaRef(
+							openapi3.NewSchemaRef("TS29571_CommonData.yaml#/components/schemas/ProblemDetails", nil),
+						)
+						op.Responses["default"] = resNew
+					}
+				}
+			}
+		}
+	}
+
 	if spec == "TS29503_Nudm_SDM.yaml" {
 		for _, parameterRef := range doc.Paths["/shared-data"].Get.Parameters {
 			parameter := parameterRef.Value

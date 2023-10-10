@@ -12393,19 +12393,20 @@ type GetNFInstancesResponse struct {
 		Links                *map[string]externalRef0.LinksValueSchema `json:"_links,omitempty"`
 		AdditionalProperties map[string]interface{}                    `json:"-"`
 	}
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12425,19 +12426,20 @@ func (r GetNFInstancesResponse) StatusCode() int {
 }
 
 type OptionsNFInstancesResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *OptionsResponse
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *OptionsResponse
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12457,19 +12459,20 @@ func (r OptionsNFInstancesResponse) StatusCode() int {
 }
 
 type DeregisterNFInstanceResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12489,22 +12492,23 @@ func (r DeregisterNFInstanceResponse) StatusCode() int {
 }
 
 type GetNFInstanceResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *NFProfile
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *NFProfile
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12524,23 +12528,24 @@ func (r GetNFInstanceResponse) StatusCode() int {
 }
 
 type UpdateNFInstanceResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *NFProfile
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON409 *externalRef0.N409
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON412 *externalRef0.N412
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *NFProfile
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON409     *externalRef0.N409
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON412     *externalRef0.N412
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12560,23 +12565,24 @@ func (r UpdateNFInstanceResponse) StatusCode() int {
 }
 
 type RegisterNFInstanceResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *NFProfile
-	JSON201                   *NFProfile
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *NFProfile
+	JSON201                       *NFProfile
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12596,22 +12602,23 @@ func (r RegisterNFInstanceResponse) StatusCode() int {
 }
 
 type CreateSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *SubscriptionData
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *SubscriptionData
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12631,21 +12638,22 @@ func (r CreateSubscriptionResponse) StatusCode() int {
 }
 
 type RemoveSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12665,21 +12673,22 @@ func (r RemoveSubscriptionResponse) StatusCode() int {
 }
 
 type UpdateSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SubscriptionData
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SubscriptionData
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -12927,6 +12936,13 @@ func ParseGetNFInstancesResponse(rsp *http.Response) (*GetNFInstancesResponse, e
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13023,6 +13039,13 @@ func ParseOptionsNFInstancesResponse(rsp *http.Response) (*OptionsNFInstancesRes
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13118,6 +13141,13 @@ func ParseDeregisterNFInstanceResponse(rsp *http.Response) (*DeregisterNFInstanc
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13235,6 +13265,13 @@ func ParseGetNFInstanceResponse(rsp *http.Response) (*GetNFInstanceResponse, err
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13360,6 +13397,13 @@ func ParseUpdateNFInstanceResponse(rsp *http.Response) (*UpdateNFInstanceRespons
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13484,6 +13528,13 @@ func ParseRegisterNFInstanceResponse(rsp *http.Response) (*RegisterNFInstanceRes
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13601,6 +13652,13 @@ func ParseCreateSubscriptionResponse(rsp *http.Response) (*CreateSubscriptionRes
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13711,6 +13769,13 @@ func ParseRemoveSubscriptionResponse(rsp *http.Response) (*RemoveSubscriptionRes
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13820,6 +13885,13 @@ func ParseUpdateSubscriptionResponse(rsp *http.Response) (*UpdateSubscriptionRes
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -14513,13 +14585,16 @@ func (response GetNFInstances503ApplicationProblemPlusJSONResponse) VisitGetNFIn
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetNFInstancesdefaultResponse struct {
+type GetNFInstancesdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetNFInstancesdefaultResponse) VisitGetNFInstancesResponse(w http.ResponseWriter) error {
+func (response GetNFInstancesdefaultApplicationProblemPlusJSONResponse) VisitGetNFInstancesResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type OptionsNFInstancesRequestObject struct {
@@ -14689,13 +14764,16 @@ func (response OptionsNFInstances503ApplicationProblemPlusJSONResponse) VisitOpt
 	return json.NewEncoder(w).Encode(response)
 }
 
-type OptionsNFInstancesdefaultResponse struct {
+type OptionsNFInstancesdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response OptionsNFInstancesdefaultResponse) VisitOptionsNFInstancesResponse(w http.ResponseWriter) error {
+func (response OptionsNFInstancesdefaultApplicationProblemPlusJSONResponse) VisitOptionsNFInstancesResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeregisterNFInstanceRequestObject struct {
@@ -14847,13 +14925,16 @@ func (response DeregisterNFInstance503ApplicationProblemPlusJSONResponse) VisitD
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeregisterNFInstancedefaultResponse struct {
+type DeregisterNFInstancedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeregisterNFInstancedefaultResponse) VisitDeregisterNFInstanceResponse(w http.ResponseWriter) error {
+func (response DeregisterNFInstancedefaultApplicationProblemPlusJSONResponse) VisitDeregisterNFInstanceResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetNFInstanceRequestObject struct {
@@ -15044,13 +15125,16 @@ func (response GetNFInstance503ApplicationProblemPlusJSONResponse) VisitGetNFIns
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetNFInstancedefaultResponse struct {
+type GetNFInstancedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetNFInstancedefaultResponse) VisitGetNFInstanceResponse(w http.ResponseWriter) error {
+func (response GetNFInstancedefaultApplicationProblemPlusJSONResponse) VisitGetNFInstanceResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateNFInstanceRequestObject struct {
@@ -15264,13 +15348,16 @@ func (response UpdateNFInstance503ApplicationProblemPlusJSONResponse) VisitUpdat
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateNFInstancedefaultResponse struct {
+type UpdateNFInstancedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateNFInstancedefaultResponse) VisitUpdateNFInstanceResponse(w http.ResponseWriter) error {
+func (response UpdateNFInstancedefaultApplicationProblemPlusJSONResponse) VisitUpdateNFInstanceResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type RegisterNFInstanceRequestObject struct {
@@ -15482,13 +15569,16 @@ func (response RegisterNFInstance503ApplicationProblemPlusJSONResponse) VisitReg
 	return json.NewEncoder(w).Encode(response)
 }
 
-type RegisterNFInstancedefaultResponse struct {
+type RegisterNFInstancedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response RegisterNFInstancedefaultResponse) VisitRegisterNFInstanceResponse(w http.ResponseWriter) error {
+func (response RegisterNFInstancedefaultApplicationProblemPlusJSONResponse) VisitRegisterNFInstanceResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateSubscriptionRequestObject struct {
@@ -15676,13 +15766,16 @@ func (response CreateSubscription503ApplicationProblemPlusJSONResponse) VisitCre
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateSubscriptiondefaultResponse struct {
+type CreateSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateSubscriptiondefaultResponse) VisitCreateSubscriptionResponse(w http.ResponseWriter) error {
+func (response CreateSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitCreateSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type RemoveSubscriptionRequestObject struct {
@@ -15856,13 +15949,16 @@ func (response RemoveSubscription503ApplicationProblemPlusJSONResponse) VisitRem
 	return json.NewEncoder(w).Encode(response)
 }
 
-type RemoveSubscriptiondefaultResponse struct {
+type RemoveSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response RemoveSubscriptiondefaultResponse) VisitRemoveSubscriptionResponse(w http.ResponseWriter) error {
+func (response RemoveSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitRemoveSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateSubscriptionRequestObject struct {
@@ -16052,13 +16148,16 @@ func (response UpdateSubscription503ApplicationProblemPlusJSONResponse) VisitUpd
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateSubscriptiondefaultResponse struct {
+type UpdateSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateSubscriptiondefaultResponse) VisitUpdateSubscriptionResponse(w http.ResponseWriter) error {
+func (response UpdateSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitUpdateSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

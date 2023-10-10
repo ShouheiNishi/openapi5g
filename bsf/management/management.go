@@ -1736,17 +1736,18 @@ type ClientWithResponsesInterface interface {
 }
 
 type GetPCFBindingsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PcfBinding
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PcfBinding
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1766,19 +1767,20 @@ func (r GetPCFBindingsResponse) StatusCode() int {
 }
 
 type CreatePCFBindingResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *PcfBinding
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *ExtProblemDetails
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *PcfBinding
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *ExtProblemDetails
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1798,17 +1800,18 @@ func (r CreatePCFBindingResponse) StatusCode() int {
 }
 
 type DeleteIndPCFBindingResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1828,21 +1831,22 @@ func (r DeleteIndPCFBindingResponse) StatusCode() int {
 }
 
 type UpdateIndPCFBindingResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PcfBinding
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PcfBinding
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1990,6 +1994,13 @@ func ParseGetPCFBindingsResponse(rsp *http.Response) (*GetPCFBindingsResponse, e
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2086,6 +2097,13 @@ func ParseCreatePCFBindingResponse(rsp *http.Response) (*CreatePCFBindingRespons
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2167,6 +2185,13 @@ func ParseDeleteIndPCFBindingResponse(rsp *http.Response) (*DeleteIndPCFBindingR
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2277,6 +2302,13 @@ func ParseUpdateIndPCFBindingResponse(rsp *http.Response) (*UpdateIndPCFBindingR
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2627,13 +2659,16 @@ func (response GetPCFBindings503ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetPCFBindingsdefaultResponse struct {
+type GetPCFBindingsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetPCFBindingsdefaultResponse) VisitGetPCFBindingsResponse(w http.ResponseWriter) error {
+func (response GetPCFBindingsdefaultApplicationProblemPlusJSONResponse) VisitGetPCFBindingsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreatePCFBindingRequestObject struct {
@@ -2769,13 +2804,16 @@ func (response CreatePCFBinding503ApplicationProblemPlusJSONResponse) VisitCreat
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreatePCFBindingdefaultResponse struct {
+type CreatePCFBindingdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreatePCFBindingdefaultResponse) VisitCreatePCFBindingResponse(w http.ResponseWriter) error {
+func (response CreatePCFBindingdefaultApplicationProblemPlusJSONResponse) VisitCreatePCFBindingResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndPCFBindingRequestObject struct {
@@ -2893,13 +2931,16 @@ func (response DeleteIndPCFBinding503ApplicationProblemPlusJSONResponse) VisitDe
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndPCFBindingdefaultResponse struct {
+type DeleteIndPCFBindingdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndPCFBindingdefaultResponse) VisitDeleteIndPCFBindingResponse(w http.ResponseWriter) error {
+func (response DeleteIndPCFBindingdefaultApplicationProblemPlusJSONResponse) VisitDeleteIndPCFBindingResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateIndPCFBindingRequestObject struct {
@@ -3052,13 +3093,16 @@ func (response UpdateIndPCFBinding503ApplicationProblemPlusJSONResponse) VisitUp
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateIndPCFBindingdefaultResponse struct {
+type UpdateIndPCFBindingdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateIndPCFBindingdefaultResponse) VisitUpdateIndPCFBindingResponse(w http.ResponseWriter) error {
+func (response UpdateIndPCFBindingdefaultApplicationProblemPlusJSONResponse) VisitUpdateIndPCFBindingResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

@@ -1616,18 +1616,19 @@ type ClientWithResponsesInterface interface {
 }
 
 type NSSAIAvailabilityOptionsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1647,21 +1648,22 @@ func (r NSSAIAvailabilityOptionsResponse) StatusCode() int {
 }
 
 type NSSAIAvailabilityPostResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *NssfEventSubscriptionCreatedData
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *NssfEventSubscriptionCreatedData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1681,16 +1683,17 @@ func (r NSSAIAvailabilityPostResponse) StatusCode() int {
 }
 
 type NSSAIAvailabilityUnsubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1710,21 +1713,22 @@ func (r NSSAIAvailabilityUnsubscribeResponse) StatusCode() int {
 }
 
 type NSSAIAvailabilitySubModifyPatchResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *NssfEventSubscriptionCreatedData
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *NssfEventSubscriptionCreatedData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1744,16 +1748,17 @@ func (r NSSAIAvailabilitySubModifyPatchResponse) StatusCode() int {
 }
 
 type NSSAIAvailabilityDeleteResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1773,21 +1778,22 @@ func (r NSSAIAvailabilityDeleteResponse) StatusCode() int {
 }
 
 type NSSAIAvailabilityPatchResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AuthorizedNssaiAvailabilityInfo
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AuthorizedNssaiAvailabilityInfo
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1807,21 +1813,22 @@ func (r NSSAIAvailabilityPatchResponse) StatusCode() int {
 }
 
 type NSSAIAvailabilityPutResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AuthorizedNssaiAvailabilityInfo
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AuthorizedNssaiAvailabilityInfo
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2003,6 +2010,13 @@ func ParseNSSAIAvailabilityOptionsResponse(rsp *http.Response) (*NSSAIAvailabili
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2113,6 +2127,13 @@ func ParseNSSAIAvailabilityPostResponse(rsp *http.Response) (*NSSAIAvailabilityP
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2187,6 +2208,13 @@ func ParseNSSAIAvailabilityUnsubscribeResponse(rsp *http.Response) (*NSSAIAvaila
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2298,6 +2326,13 @@ func ParseNSSAIAvailabilitySubModifyPatchResponse(rsp *http.Response) (*NSSAIAva
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2372,6 +2407,13 @@ func ParseNSSAIAvailabilityDeleteResponse(rsp *http.Response) (*NSSAIAvailabilit
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2483,6 +2525,13 @@ func ParseNSSAIAvailabilityPatchResponse(rsp *http.Response) (*NSSAIAvailability
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2592,6 +2641,13 @@ func ParseNSSAIAvailabilityPutResponse(rsp *http.Response) (*NSSAIAvailabilityPu
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -3102,13 +3158,16 @@ func (response NSSAIAvailabilityOptions503ApplicationProblemPlusJSONResponse) Vi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NSSAIAvailabilityOptionsdefaultResponse struct {
+type NSSAIAvailabilityOptionsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NSSAIAvailabilityOptionsdefaultResponse) VisitNSSAIAvailabilityOptionsResponse(w http.ResponseWriter) error {
+func (response NSSAIAvailabilityOptionsdefaultApplicationProblemPlusJSONResponse) VisitNSSAIAvailabilityOptionsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NSSAIAvailabilityPostRequestObject struct {
@@ -3271,13 +3330,16 @@ func (response NSSAIAvailabilityPost503ApplicationProblemPlusJSONResponse) Visit
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NSSAIAvailabilityPostdefaultResponse struct {
+type NSSAIAvailabilityPostdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NSSAIAvailabilityPostdefaultResponse) VisitNSSAIAvailabilityPostResponse(w http.ResponseWriter) error {
+func (response NSSAIAvailabilityPostdefaultApplicationProblemPlusJSONResponse) VisitNSSAIAvailabilityPostResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NSSAIAvailabilityUnsubscribeRequestObject struct {
@@ -3384,13 +3446,16 @@ func (response NSSAIAvailabilityUnsubscribe503ApplicationProblemPlusJSONResponse
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NSSAIAvailabilityUnsubscribedefaultResponse struct {
+type NSSAIAvailabilityUnsubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NSSAIAvailabilityUnsubscribedefaultResponse) VisitNSSAIAvailabilityUnsubscribeResponse(w http.ResponseWriter) error {
+func (response NSSAIAvailabilityUnsubscribedefaultApplicationProblemPlusJSONResponse) VisitNSSAIAvailabilityUnsubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NSSAIAvailabilitySubModifyPatchRequestObject struct {
@@ -3552,13 +3617,16 @@ func (response NSSAIAvailabilitySubModifyPatch503ApplicationProblemPlusJSONRespo
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NSSAIAvailabilitySubModifyPatchdefaultResponse struct {
+type NSSAIAvailabilitySubModifyPatchdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NSSAIAvailabilitySubModifyPatchdefaultResponse) VisitNSSAIAvailabilitySubModifyPatchResponse(w http.ResponseWriter) error {
+func (response NSSAIAvailabilitySubModifyPatchdefaultApplicationProblemPlusJSONResponse) VisitNSSAIAvailabilitySubModifyPatchResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NSSAIAvailabilityDeleteRequestObject struct {
@@ -3665,13 +3733,16 @@ func (response NSSAIAvailabilityDelete503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NSSAIAvailabilityDeletedefaultResponse struct {
+type NSSAIAvailabilityDeletedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NSSAIAvailabilityDeletedefaultResponse) VisitNSSAIAvailabilityDeleteResponse(w http.ResponseWriter) error {
+func (response NSSAIAvailabilityDeletedefaultApplicationProblemPlusJSONResponse) VisitNSSAIAvailabilityDeleteResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NSSAIAvailabilityPatchRequestObject struct {
@@ -3843,13 +3914,16 @@ func (response NSSAIAvailabilityPatch503ApplicationProblemPlusJSONResponse) Visi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NSSAIAvailabilityPatchdefaultResponse struct {
+type NSSAIAvailabilityPatchdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NSSAIAvailabilityPatchdefaultResponse) VisitNSSAIAvailabilityPatchResponse(w http.ResponseWriter) error {
+func (response NSSAIAvailabilityPatchdefaultApplicationProblemPlusJSONResponse) VisitNSSAIAvailabilityPatchResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NSSAIAvailabilityPutRequestObject struct {
@@ -4021,13 +4095,16 @@ func (response NSSAIAvailabilityPut503ApplicationProblemPlusJSONResponse) VisitN
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NSSAIAvailabilityPutdefaultResponse struct {
+type NSSAIAvailabilityPutdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NSSAIAvailabilityPutdefaultResponse) VisitNSSAIAvailabilityPutResponse(w http.ResponseWriter) error {
+func (response NSSAIAvailabilityPutdefaultApplicationProblemPlusJSONResponse) VisitNSSAIAvailabilityPutResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

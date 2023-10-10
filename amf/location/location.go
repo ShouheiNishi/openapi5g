@@ -2177,21 +2177,22 @@ type ClientWithResponsesInterface interface {
 }
 
 type CancelLocationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
-	ApplicationproblemJSON504 *externalRef0.N504
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSON504     *externalRef0.N504
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -2211,20 +2212,21 @@ func (r CancelLocationResponse) StatusCode() int {
 }
 
 type ProvideLocationInfoResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *ProvideLocInfo
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ProvideLocInfo
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2244,20 +2246,21 @@ func (r ProvideLocationInfoResponse) StatusCode() int {
 }
 
 type ProvidePositioningInfoResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *ProvidePosInfo
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
-	ApplicationproblemJSON504 *externalRef0.N504
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ProvidePosInfo
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSON504     *externalRef0.N504
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2432,6 +2435,13 @@ func ParseCancelLocationResponse(rsp *http.Response) (*CancelLocationResponse, e
 		}
 		response.ApplicationproblemJSON504 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2535,6 +2545,13 @@ func ParseProvideLocationInfoResponse(rsp *http.Response) (*ProvideLocationInfoR
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2637,6 +2654,13 @@ func ParseProvidePositioningInfoResponse(rsp *http.Response) (*ProvidePositionin
 			return nil, err
 		}
 		response.ApplicationproblemJSON504 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2935,13 +2959,16 @@ func (response CancelLocation504ApplicationProblemPlusJSONResponse) VisitCancelL
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CancelLocationdefaultResponse struct {
+type CancelLocationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CancelLocationdefaultResponse) VisitCancelLocationResponse(w http.ResponseWriter) error {
+func (response CancelLocationdefaultApplicationProblemPlusJSONResponse) VisitCancelLocationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ProvideLocationInfoRequestObject struct {
@@ -3083,13 +3110,16 @@ func (response ProvideLocationInfo503ApplicationProblemPlusJSONResponse) VisitPr
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ProvideLocationInfodefaultResponse struct {
+type ProvideLocationInfodefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ProvideLocationInfodefaultResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
+func (response ProvideLocationInfodefaultApplicationProblemPlusJSONResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ProvidePositioningInfoRequestObject struct {
@@ -3239,13 +3269,16 @@ func (response ProvidePositioningInfo504ApplicationProblemPlusJSONResponse) Visi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ProvidePositioningInfodefaultResponse struct {
+type ProvidePositioningInfodefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ProvidePositioningInfodefaultResponse) VisitProvidePositioningInfoResponse(w http.ResponseWriter) error {
+func (response ProvidePositioningInfodefaultApplicationProblemPlusJSONResponse) VisitProvidePositioningInfoResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

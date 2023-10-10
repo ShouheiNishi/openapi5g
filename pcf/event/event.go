@@ -1554,19 +1554,20 @@ type ClientWithResponsesInterface interface {
 }
 
 type PostPcEventExposureSubscResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *PcEventExposureSubsc
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *PcEventExposureSubsc
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1586,17 +1587,18 @@ func (r PostPcEventExposureSubscResponse) StatusCode() int {
 }
 
 type DeletePcEventExposureSubscResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1616,18 +1618,19 @@ func (r DeletePcEventExposureSubscResponse) StatusCode() int {
 }
 
 type GetPcEventExposureSubscResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PcEventExposureSubsc
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PcEventExposureSubsc
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1647,21 +1650,22 @@ func (r GetPcEventExposureSubscResponse) StatusCode() int {
 }
 
 type PutPcEventExposureSubscResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PcEventExposureSubsc
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PcEventExposureSubsc
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1823,6 +1827,13 @@ func ParsePostPcEventExposureSubscResponse(rsp *http.Response) (*PostPcEventExpo
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -1904,6 +1915,13 @@ func ParseDeletePcEventExposureSubscResponse(rsp *http.Response) (*DeletePcEvent
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -1993,6 +2011,13 @@ func ParseGetPcEventExposureSubscResponse(rsp *http.Response) (*GetPcEventExposu
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2103,6 +2128,13 @@ func ParsePutPcEventExposureSubscResponse(rsp *http.Response) (*PutPcEventExposu
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2395,13 +2427,16 @@ func (response PostPcEventExposureSubsc503ApplicationProblemPlusJSONResponse) Vi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PostPcEventExposureSubscdefaultResponse struct {
+type PostPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PostPcEventExposureSubscdefaultResponse) VisitPostPcEventExposureSubscResponse(w http.ResponseWriter) error {
+func (response PostPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse) VisitPostPcEventExposureSubscResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeletePcEventExposureSubscRequestObject struct {
@@ -2519,13 +2554,16 @@ func (response DeletePcEventExposureSubsc503ApplicationProblemPlusJSONResponse) 
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeletePcEventExposureSubscdefaultResponse struct {
+type DeletePcEventExposureSubscdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeletePcEventExposureSubscdefaultResponse) VisitDeletePcEventExposureSubscResponse(w http.ResponseWriter) error {
+func (response DeletePcEventExposureSubscdefaultApplicationProblemPlusJSONResponse) VisitDeletePcEventExposureSubscResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetPcEventExposureSubscRequestObject struct {
@@ -2651,13 +2689,16 @@ func (response GetPcEventExposureSubsc503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetPcEventExposureSubscdefaultResponse struct {
+type GetPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetPcEventExposureSubscdefaultResponse) VisitGetPcEventExposureSubscResponse(w http.ResponseWriter) error {
+func (response GetPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse) VisitGetPcEventExposureSubscResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PutPcEventExposureSubscRequestObject struct {
@@ -2818,13 +2859,16 @@ func (response PutPcEventExposureSubsc503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PutPcEventExposureSubscdefaultResponse struct {
+type PutPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PutPcEventExposureSubscdefaultResponse) VisitPutPcEventExposureSubscResponse(w http.ResponseWriter) error {
+func (response PutPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse) VisitPutPcEventExposureSubscResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

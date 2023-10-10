@@ -1816,14 +1816,15 @@ type ClientWithResponsesInterface interface {
 }
 
 type PostRgAuthenticationsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *RgAuthCtx
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.ProblemDetails
-	ApplicationproblemJSON403 *externalRef0.ProblemDetails
-	ApplicationproblemJSON404 *externalRef0.ProblemDetails
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *RgAuthCtx
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.ProblemDetails
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSON404     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1843,16 +1844,17 @@ func (r PostRgAuthenticationsResponse) StatusCode() int {
 }
 
 type PostUeAuthenticationsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	Application3gppHalJSON201 *UEAuthenticationCtx
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.ProblemDetails
-	ApplicationproblemJSON403 *externalRef0.ProblemDetails
-	ApplicationproblemJSON404 *externalRef0.ProblemDetails
-	ApplicationproblemJSON500 *externalRef0.ProblemDetails
-	ApplicationproblemJSON501 *externalRef0.ProblemDetails
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	Application3gppHalJSON201     *UEAuthenticationCtx
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.ProblemDetails
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSON404     *externalRef0.ProblemDetails
+	ApplicationproblemJSON500     *externalRef0.ProblemDetails
+	ApplicationproblemJSON501     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1872,11 +1874,12 @@ func (r PostUeAuthenticationsResponse) StatusCode() int {
 }
 
 type PostUeAuthenticationsDeregisterResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON404 *externalRef0.N404
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1896,14 +1899,15 @@ func (r PostUeAuthenticationsDeregisterResponse) StatusCode() int {
 }
 
 type Delete5gAkaAuthenticationResultResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1923,13 +1927,14 @@ func (r Delete5gAkaAuthenticationResultResponse) StatusCode() int {
 }
 
 type PutUeAuthenticationsAuthCtxId5gAkaConfirmationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *ConfirmationDataResponse
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.ProblemDetails
-	ApplicationproblemJSON500 *externalRef0.ProblemDetails
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ConfirmationDataResponse
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.ProblemDetails
+	ApplicationproblemJSON500     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1949,14 +1954,15 @@ func (r PutUeAuthenticationsAuthCtxId5gAkaConfirmationResponse) StatusCode() int
 }
 
 type DeleteEapAuthenticationResultResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1986,11 +1992,12 @@ type EapAuthMethodResponse struct {
 		EapPayload           *EapPayload            `json:"eapPayload"`
 		AdditionalProperties map[string]interface{} `json:"-"`
 	}
-	JSON200                   *EapSession
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.ProblemDetails
-	ApplicationproblemJSON500 *externalRef0.ProblemDetails
+	JSON200                       *EapSession
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.ProblemDetails
+	ApplicationproblemJSON500     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2168,6 +2175,13 @@ func ParsePostRgAuthenticationsResponse(rsp *http.Response) (*PostRgAuthenticati
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2243,6 +2257,13 @@ func ParsePostUeAuthenticationsResponse(rsp *http.Response) (*PostUeAuthenticati
 		}
 		response.ApplicationproblemJSON501 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2282,6 +2303,13 @@ func ParsePostUeAuthenticationsDeregisterResponse(rsp *http.Response) (*PostUeAu
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2344,6 +2372,13 @@ func ParseDelete5gAkaAuthenticationResultResponse(rsp *http.Response) (*Delete5g
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2397,6 +2432,13 @@ func ParsePutUeAuthenticationsAuthCtxId5gAkaConfirmationResponse(rsp *http.Respo
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2458,6 +2500,13 @@ func ParseDeleteEapAuthenticationResultResponse(rsp *http.Response) (*DeleteEapA
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2526,6 +2575,13 @@ func ParseEapAuthMethodResponse(rsp *http.Response) (*EapAuthMethodResponse, err
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2825,6 +2881,18 @@ func (response PostRgAuthentications404ApplicationProblemPlusJSONResponse) Visit
 	return json.NewEncoder(w).Encode(response)
 }
 
+type PostRgAuthenticationsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response PostRgAuthenticationsdefaultApplicationProblemPlusJSONResponse) VisitPostRgAuthenticationsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
+}
+
 type PostUeAuthenticationsRequestObject struct {
 	Body *PostUeAuthenticationsJSONRequestBody
 }
@@ -2917,6 +2985,18 @@ func (response PostUeAuthentications501ApplicationProblemPlusJSONResponse) Visit
 	return json.NewEncoder(w).Encode(response)
 }
 
+type PostUeAuthenticationsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response PostUeAuthenticationsdefaultApplicationProblemPlusJSONResponse) VisitPostUeAuthenticationsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
+}
+
 type PostUeAuthenticationsDeregisterRequestObject struct {
 	Body *PostUeAuthenticationsDeregisterJSONRequestBody
 }
@@ -2964,6 +3044,18 @@ func (response PostUeAuthenticationsDeregister404ApplicationProblemPlusJSONRespo
 	w.WriteHeader(404)
 
 	return json.NewEncoder(w).Encode(response)
+}
+
+type PostUeAuthenticationsDeregisterdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response PostUeAuthenticationsDeregisterdefaultApplicationProblemPlusJSONResponse) VisitPostUeAuthenticationsDeregisterResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Delete5gAkaAuthenticationResultRequestObject struct {
@@ -3048,13 +3140,16 @@ func (response Delete5gAkaAuthenticationResult503ApplicationProblemPlusJSONRespo
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Delete5gAkaAuthenticationResultdefaultResponse struct {
+type Delete5gAkaAuthenticationResultdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Delete5gAkaAuthenticationResultdefaultResponse) VisitDelete5gAkaAuthenticationResultResponse(w http.ResponseWriter) error {
+func (response Delete5gAkaAuthenticationResultdefaultApplicationProblemPlusJSONResponse) VisitDelete5gAkaAuthenticationResultResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PutUeAuthenticationsAuthCtxId5gAkaConfirmationRequestObject struct {
@@ -3113,6 +3208,18 @@ func (response PutUeAuthenticationsAuthCtxId5gAkaConfirmation500ApplicationProbl
 	w.WriteHeader(500)
 
 	return json.NewEncoder(w).Encode(response)
+}
+
+type PutUeAuthenticationsAuthCtxId5gAkaConfirmationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response PutUeAuthenticationsAuthCtxId5gAkaConfirmationdefaultApplicationProblemPlusJSONResponse) VisitPutUeAuthenticationsAuthCtxId5gAkaConfirmationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteEapAuthenticationResultRequestObject struct {
@@ -3197,13 +3304,16 @@ func (response DeleteEapAuthenticationResult503ApplicationProblemPlusJSONRespons
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteEapAuthenticationResultdefaultResponse struct {
+type DeleteEapAuthenticationResultdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteEapAuthenticationResultdefaultResponse) VisitDeleteEapAuthenticationResultResponse(w http.ResponseWriter) error {
+func (response DeleteEapAuthenticationResultdefaultApplicationProblemPlusJSONResponse) VisitDeleteEapAuthenticationResultResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type EapAuthMethodRequestObject struct {
@@ -3278,6 +3388,18 @@ func (response EapAuthMethod500ApplicationProblemPlusJSONResponse) VisitEapAuthM
 	w.WriteHeader(500)
 
 	return json.NewEncoder(w).Encode(response)
+}
+
+type EapAuthMethoddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response EapAuthMethoddefaultApplicationProblemPlusJSONResponse) VisitEapAuthMethodResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

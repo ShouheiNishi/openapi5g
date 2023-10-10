@@ -275,6 +275,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Deletes an already existing S-NSSAIs per TA provided by the NF service consumer (e.g AMF)
             tags:
@@ -348,6 +352,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Updates an already existing S-NSSAIs per TA provided by the NF service consumer (e.g AMF)
             tags:
@@ -421,6 +429,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Updates/replaces the NSSF with the S-NSSAIs the NF service consumer (e.g AMF)supports per TA
             tags:
@@ -527,6 +539,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Creates subscriptions for notification about updates to NSSAI availability information
             tags:
@@ -561,6 +577,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Deletes an already existing NSSAI availability notification subscription
             tags:
@@ -623,6 +643,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: updates an already existing NSSAI availability notification subscription
             tags:

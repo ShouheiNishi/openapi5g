@@ -1980,19 +1980,20 @@ type ClientWithResponsesInterface interface {
 }
 
 type CreateIndividualAMPolicyAssociationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *PolicyAssociation
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *PolicyAssociation
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -2012,17 +2013,18 @@ func (r CreateIndividualAMPolicyAssociationResponse) StatusCode() int {
 }
 
 type DeleteIndividualAMPolicyAssociationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -2042,18 +2044,19 @@ func (r DeleteIndividualAMPolicyAssociationResponse) StatusCode() int {
 }
 
 type ReadIndividualAMPolicyAssociationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PolicyAssociation
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PolicyAssociation
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -2073,21 +2076,22 @@ func (r ReadIndividualAMPolicyAssociationResponse) StatusCode() int {
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PolicyUpdate
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PolicyUpdate
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -2249,6 +2253,13 @@ func ParseCreateIndividualAMPolicyAssociationResponse(rsp *http.Response) (*Crea
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2330,6 +2341,13 @@ func ParseDeleteIndividualAMPolicyAssociationResponse(rsp *http.Response) (*Dele
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2419,6 +2437,13 @@ func ParseReadIndividualAMPolicyAssociationResponse(rsp *http.Response) (*ReadIn
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2529,6 +2554,13 @@ func ParseReportObservedEventTriggersForIndividualAMPolicyAssociationResponse(rs
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2821,13 +2853,16 @@ func (response CreateIndividualAMPolicyAssociation503ApplicationProblemPlusJSONR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateIndividualAMPolicyAssociationdefaultResponse struct {
+type CreateIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateIndividualAMPolicyAssociationdefaultResponse) VisitCreateIndividualAMPolicyAssociationResponse(w http.ResponseWriter) error {
+func (response CreateIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse) VisitCreateIndividualAMPolicyAssociationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualAMPolicyAssociationRequestObject struct {
@@ -2945,13 +2980,16 @@ func (response DeleteIndividualAMPolicyAssociation503ApplicationProblemPlusJSONR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualAMPolicyAssociationdefaultResponse struct {
+type DeleteIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualAMPolicyAssociationdefaultResponse) VisitDeleteIndividualAMPolicyAssociationResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualAMPolicyAssociationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadIndividualAMPolicyAssociationRequestObject struct {
@@ -3077,13 +3115,16 @@ func (response ReadIndividualAMPolicyAssociation503ApplicationProblemPlusJSONRes
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadIndividualAMPolicyAssociationdefaultResponse struct {
+type ReadIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadIndividualAMPolicyAssociationdefaultResponse) VisitReadIndividualAMPolicyAssociationResponse(w http.ResponseWriter) error {
+func (response ReadIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse) VisitReadIndividualAMPolicyAssociationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociationRequestObject struct {
@@ -3236,13 +3277,16 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation503App
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReportObservedEventTriggersForIndividualAMPolicyAssociationdefaultResponse struct {
+type ReportObservedEventTriggersForIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ReportObservedEventTriggersForIndividualAMPolicyAssociationdefaultResponse) VisitReportObservedEventTriggersForIndividualAMPolicyAssociationResponse(w http.ResponseWriter) error {
+func (response ReportObservedEventTriggersForIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse) VisitReportObservedEventTriggersForIndividualAMPolicyAssociationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

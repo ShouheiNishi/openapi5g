@@ -1345,6 +1345,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve multiple data sets
             tags:
@@ -1410,6 +1414,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's Access and Mobility Subscription Data
             tags:
@@ -1439,6 +1447,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Nudm_Sdm Info operation for CAG acknowledgement
             tags:
@@ -1497,6 +1509,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's subscribed Enhanced Coverage Restriction Data
             tags:
@@ -1526,6 +1542,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Nudm_Sdm Info service operation
             tags:
@@ -1555,6 +1575,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Nudm_Sdm Info operation for S-NSSAIs acknowledgement
             tags:
@@ -1590,6 +1614,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Nudm_Sdm custom operation to trigger SOR info update
             tags:
@@ -1619,6 +1647,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Nudm_Sdm Info for UPU service operation
             tags:
@@ -1683,6 +1715,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's LCS Broadcast Assistance Data Types Subscription Data
             tags:
@@ -1741,6 +1777,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's LCS Mobile Originated Subscription Data
             tags:
@@ -1806,6 +1846,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's subscribed NSSAI
             tags:
@@ -1884,6 +1928,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's Session Management Subscription Data
             tags:
@@ -1949,6 +1997,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's SMF Selection Subscription Data
             tags:
@@ -2013,6 +2065,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's SMS Subscription Data
             tags:
@@ -2077,6 +2133,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's SMS Management Subscription Data
             tags:
@@ -2142,6 +2202,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's Trace Configuration Data
             tags:
@@ -2177,6 +2241,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's UE Context In AMF Data
             tags:
@@ -2212,6 +2280,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's UE Context In SMF Data
             tags:
@@ -2247,6 +2319,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's UE Context In SMSF Data
             tags:
@@ -2305,6 +2381,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's V2X Subscription Data
             tags:
@@ -2370,6 +2450,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's SUPI or GPSI
             tags:
@@ -2428,6 +2512,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve a UE's LCS Privacy Subscription Data
             tags:
@@ -2499,6 +2587,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: subscribe to notifications
             tags:
@@ -2531,6 +2623,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: unsubscribe from notifications
             tags:
@@ -2581,6 +2677,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: modify the subscription
             tags:
@@ -2649,6 +2749,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Mapping of Group Identifiers
             tags:
@@ -2720,6 +2824,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve shared data
             tags:
@@ -2778,6 +2886,10 @@ paths:
                 "404":
                     $ref: TS29571_CommonData.yaml#/components/responses/404
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: subscribe to notifications for shared data
             tags:
@@ -2804,6 +2916,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: unsubscribe from notifications for shared data
             tags:
@@ -2848,6 +2964,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: modify the subscription
             tags:
@@ -2901,6 +3021,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve the individual shared data
             tags:

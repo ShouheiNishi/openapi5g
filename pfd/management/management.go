@@ -1533,17 +1533,18 @@ type ClientWithResponsesInterface interface {
 }
 
 type GetScsAsIdTransactionsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]PfdManagement
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON406 *externalRef1.N406
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]PfdManagement
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON406     *externalRef1.N406
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1563,20 +1564,21 @@ func (r GetScsAsIdTransactionsResponse) StatusCode() int {
 }
 
 type PostScsAsIdTransactionsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *PfdManagement
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	JSON500                   *[]PfdReport
-	ApplicationproblemJSON500 *externalRef1.ProblemDetails
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *PfdManagement
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	JSON500                       *[]PfdReport
+	ApplicationproblemJSON500     *externalRef1.ProblemDetails
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1596,15 +1598,16 @@ func (r PostScsAsIdTransactionsResponse) StatusCode() int {
 }
 
 type DeleteScsAsIdTransactionsTransactionIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1624,17 +1627,18 @@ func (r DeleteScsAsIdTransactionsTransactionIdResponse) StatusCode() int {
 }
 
 type GetScsAsIdTransactionsTransactionIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdManagement
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON406 *externalRef1.N406
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdManagement
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON406     *externalRef1.N406
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1654,20 +1658,21 @@ func (r GetScsAsIdTransactionsTransactionIdResponse) StatusCode() int {
 }
 
 type PutScsAsIdTransactionsTransactionIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdManagement
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	JSON500                   *[]PfdReport
-	ApplicationproblemJSON500 *externalRef1.ProblemDetails
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdManagement
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	JSON500                       *[]PfdReport
+	ApplicationproblemJSON500     *externalRef1.ProblemDetails
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1687,15 +1692,16 @@ func (r PutScsAsIdTransactionsTransactionIdResponse) StatusCode() int {
 }
 
 type DeleteScsAsIdTransactionsTransactionIdApplicationsAppIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1715,17 +1721,18 @@ func (r DeleteScsAsIdTransactionsTransactionIdApplicationsAppIdResponse) StatusC
 }
 
 type GetScsAsIdTransactionsTransactionIdApplicationsAppIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdData
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON406 *externalRef1.N406
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdData
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON406     *externalRef1.N406
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1745,23 +1752,24 @@ func (r GetScsAsIdTransactionsTransactionIdApplicationsAppIdResponse) StatusCode
 }
 
 type PatchScsAsIdTransactionsTransactionIdApplicationsAppIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdData
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	JSON403                   *PfdReport
-	ApplicationproblemJSON403 *externalRef1.ProblemDetails
-	ApplicationproblemJSON404 *externalRef1.N404
-	JSON409                   *PfdReport
-	ApplicationproblemJSON409 *externalRef1.ProblemDetails
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	JSON500                   *PfdReport
-	ApplicationproblemJSON500 *externalRef1.ProblemDetails
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdData
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	JSON403                       *PfdReport
+	ApplicationproblemJSON403     *externalRef1.ProblemDetails
+	ApplicationproblemJSON404     *externalRef1.N404
+	JSON409                       *PfdReport
+	ApplicationproblemJSON409     *externalRef1.ProblemDetails
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	JSON500                       *PfdReport
+	ApplicationproblemJSON500     *externalRef1.ProblemDetails
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1781,23 +1789,24 @@ func (r PatchScsAsIdTransactionsTransactionIdApplicationsAppIdResponse) StatusCo
 }
 
 type PutScsAsIdTransactionsTransactionIdApplicationsAppIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdData
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	JSON403                   *PfdReport
-	ApplicationproblemJSON403 *externalRef1.ProblemDetails
-	ApplicationproblemJSON404 *externalRef1.N404
-	JSON409                   *PfdReport
-	ApplicationproblemJSON409 *externalRef1.ProblemDetails
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	JSON500                   *PfdReport
-	ApplicationproblemJSON500 *externalRef1.ProblemDetails
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdData
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	JSON403                       *PfdReport
+	ApplicationproblemJSON403     *externalRef1.ProblemDetails
+	ApplicationproblemJSON404     *externalRef1.N404
+	JSON409                       *PfdReport
+	ApplicationproblemJSON409     *externalRef1.ProblemDetails
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	JSON500                       *PfdReport
+	ApplicationproblemJSON500     *externalRef1.ProblemDetails
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2006,6 +2015,13 @@ func ParseGetScsAsIdTransactionsResponse(rsp *http.Response) (*GetScsAsIdTransac
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2109,6 +2125,13 @@ func ParsePostScsAsIdTransactionsResponse(rsp *http.Response) (*PostScsAsIdTrans
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2176,6 +2199,13 @@ func ParseDeleteScsAsIdTransactionsTransactionIdResponse(rsp *http.Response) (*D
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2258,6 +2288,13 @@ func ParseGetScsAsIdTransactionsTransactionIdResponse(rsp *http.Response) (*GetS
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2362,6 +2399,13 @@ func ParsePutScsAsIdTransactionsTransactionIdResponse(rsp *http.Response) (*PutS
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2429,6 +2473,13 @@ func ParseDeleteScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(rsp *h
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2511,6 +2562,13 @@ func ParseGetScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(rsp *http
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2636,6 +2694,13 @@ func ParsePatchScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(rsp *ht
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2759,6 +2824,13 @@ func ParsePutScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(rsp *http
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -3297,13 +3369,16 @@ func (response GetScsAsIdTransactions503ApplicationProblemPlusJSONResponse) Visi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetScsAsIdTransactionsdefaultResponse struct {
+type GetScsAsIdTransactionsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetScsAsIdTransactionsdefaultResponse) VisitGetScsAsIdTransactionsResponse(w http.ResponseWriter) error {
+func (response GetScsAsIdTransactionsdefaultApplicationProblemPlusJSONResponse) VisitGetScsAsIdTransactionsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PostScsAsIdTransactionsRequestObject struct {
@@ -3449,13 +3524,16 @@ func (response PostScsAsIdTransactions503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PostScsAsIdTransactionsdefaultResponse struct {
+type PostScsAsIdTransactionsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PostScsAsIdTransactionsdefaultResponse) VisitPostScsAsIdTransactionsResponse(w http.ResponseWriter) error {
+func (response PostScsAsIdTransactionsdefaultApplicationProblemPlusJSONResponse) VisitPostScsAsIdTransactionsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteScsAsIdTransactionsTransactionIdRequestObject struct {
@@ -3568,13 +3646,16 @@ func (response DeleteScsAsIdTransactionsTransactionId503ApplicationProblemPlusJS
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteScsAsIdTransactionsTransactionIddefaultResponse struct {
+type DeleteScsAsIdTransactionsTransactionIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteScsAsIdTransactionsTransactionIddefaultResponse) VisitDeleteScsAsIdTransactionsTransactionIdResponse(w http.ResponseWriter) error {
+func (response DeleteScsAsIdTransactionsTransactionIddefaultApplicationProblemPlusJSONResponse) VisitDeleteScsAsIdTransactionsTransactionIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetScsAsIdTransactionsTransactionIdRequestObject struct {
@@ -3699,13 +3780,16 @@ func (response GetScsAsIdTransactionsTransactionId503ApplicationProblemPlusJSONR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetScsAsIdTransactionsTransactionIddefaultResponse struct {
+type GetScsAsIdTransactionsTransactionIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetScsAsIdTransactionsTransactionIddefaultResponse) VisitGetScsAsIdTransactionsTransactionIdResponse(w http.ResponseWriter) error {
+func (response GetScsAsIdTransactionsTransactionIddefaultApplicationProblemPlusJSONResponse) VisitGetScsAsIdTransactionsTransactionIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PutScsAsIdTransactionsTransactionIdRequestObject struct {
@@ -3860,13 +3944,16 @@ func (response PutScsAsIdTransactionsTransactionId503ApplicationProblemPlusJSONR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PutScsAsIdTransactionsTransactionIddefaultResponse struct {
+type PutScsAsIdTransactionsTransactionIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PutScsAsIdTransactionsTransactionIddefaultResponse) VisitPutScsAsIdTransactionsTransactionIdResponse(w http.ResponseWriter) error {
+func (response PutScsAsIdTransactionsTransactionIddefaultApplicationProblemPlusJSONResponse) VisitPutScsAsIdTransactionsTransactionIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteScsAsIdTransactionsTransactionIdApplicationsAppIdRequestObject struct {
@@ -3980,13 +4067,16 @@ func (response DeleteScsAsIdTransactionsTransactionIdApplicationsAppId503Applica
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteScsAsIdTransactionsTransactionIdApplicationsAppIddefaultResponse struct {
+type DeleteScsAsIdTransactionsTransactionIdApplicationsAppIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteScsAsIdTransactionsTransactionIdApplicationsAppIddefaultResponse) VisitDeleteScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(w http.ResponseWriter) error {
+func (response DeleteScsAsIdTransactionsTransactionIdApplicationsAppIddefaultApplicationProblemPlusJSONResponse) VisitDeleteScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetScsAsIdTransactionsTransactionIdApplicationsAppIdRequestObject struct {
@@ -4112,13 +4202,16 @@ func (response GetScsAsIdTransactionsTransactionIdApplicationsAppId503Applicatio
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetScsAsIdTransactionsTransactionIdApplicationsAppIddefaultResponse struct {
+type GetScsAsIdTransactionsTransactionIdApplicationsAppIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetScsAsIdTransactionsTransactionIdApplicationsAppIddefaultResponse) VisitGetScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(w http.ResponseWriter) error {
+func (response GetScsAsIdTransactionsTransactionIdApplicationsAppIddefaultApplicationProblemPlusJSONResponse) VisitGetScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PatchScsAsIdTransactionsTransactionIdApplicationsAppIdRequestObject struct {
@@ -4299,13 +4392,16 @@ func (response PatchScsAsIdTransactionsTransactionIdApplicationsAppId503Applicat
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PatchScsAsIdTransactionsTransactionIdApplicationsAppIddefaultResponse struct {
+type PatchScsAsIdTransactionsTransactionIdApplicationsAppIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PatchScsAsIdTransactionsTransactionIdApplicationsAppIddefaultResponse) VisitPatchScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(w http.ResponseWriter) error {
+func (response PatchScsAsIdTransactionsTransactionIdApplicationsAppIddefaultApplicationProblemPlusJSONResponse) VisitPatchScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PutScsAsIdTransactionsTransactionIdApplicationsAppIdRequestObject struct {
@@ -4486,13 +4582,16 @@ func (response PutScsAsIdTransactionsTransactionIdApplicationsAppId503Applicatio
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PutScsAsIdTransactionsTransactionIdApplicationsAppIddefaultResponse struct {
+type PutScsAsIdTransactionsTransactionIdApplicationsAppIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PutScsAsIdTransactionsTransactionIdApplicationsAppIddefaultResponse) VisitPutScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(w http.ResponseWriter) error {
+func (response PutScsAsIdTransactionsTransactionIdApplicationsAppIddefaultApplicationProblemPlusJSONResponse) VisitPutScsAsIdTransactionsTransactionIdApplicationsAppIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

@@ -281,13 +281,14 @@ type ClientWithResponsesInterface interface {
 }
 
 type BootstrappingInfoRequestResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	Application3gppHalJSON200 *BootstrappingInfo
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON500 *externalRef0.N500
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	Application3gppHalJSON200     *BootstrappingInfo
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -363,6 +364,13 @@ func ParseBootstrappingInfoRequestResponse(rsp *http.Response) (*BootstrappingIn
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -500,13 +508,16 @@ func (response BootstrappingInfoRequest500ApplicationProblemPlusJSONResponse) Vi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type BootstrappingInfoRequestdefaultResponse struct {
+type BootstrappingInfoRequestdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response BootstrappingInfoRequestdefaultResponse) VisitBootstrappingInfoRequestResponse(w http.ResponseWriter) error {
+func (response BootstrappingInfoRequestdefaultApplicationProblemPlusJSONResponse) VisitBootstrappingInfoRequestResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

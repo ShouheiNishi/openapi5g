@@ -2370,14 +2370,15 @@ type ClientWithResponsesInterface interface {
 }
 
 type GetRgAuthDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *RgAuthCtx
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *RgAuthCtx
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2397,15 +2398,16 @@ func (r GetRgAuthDataResponse) StatusCode() int {
 }
 
 type GenerateAuthDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AuthenticationInfoResult
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AuthenticationInfoResult
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2425,13 +2427,14 @@ func (r GenerateAuthDataResponse) StatusCode() int {
 }
 
 type ConfirmAuthResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *AuthEvent
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *AuthEvent
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2451,12 +2454,13 @@ func (r ConfirmAuthResponse) StatusCode() int {
 }
 
 type DeleteAuthResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -2476,15 +2480,16 @@ func (r DeleteAuthResponse) StatusCode() int {
 }
 
 type GenerateAvResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *HssAuthenticationInfoResult
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *HssAuthenticationInfoResult
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2636,6 +2641,13 @@ func ParseGetRgAuthDataResponse(rsp *http.Response) (*GetRgAuthDataResponse, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2704,6 +2716,13 @@ func ParseGenerateAuthDataResponse(rsp *http.Response) (*GenerateAuthDataRespons
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2758,6 +2777,13 @@ func ParseConfirmAuthResponse(rsp *http.Response) (*ConfirmAuthResponse, error) 
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2804,6 +2830,13 @@ func ParseDeleteAuthResponse(rsp *http.Response) (*DeleteAuthResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2872,6 +2905,13 @@ func ParseGenerateAvResponse(rsp *http.Response) (*GenerateAvResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -3242,13 +3282,16 @@ func (response GetRgAuthData503ApplicationProblemPlusJSONResponse) VisitGetRgAut
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetRgAuthDatadefaultResponse struct {
+type GetRgAuthDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetRgAuthDatadefaultResponse) VisitGetRgAuthDataResponse(w http.ResponseWriter) error {
+func (response GetRgAuthDatadefaultApplicationProblemPlusJSONResponse) VisitGetRgAuthDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GenerateAuthDataRequestObject struct {
@@ -3335,13 +3378,16 @@ func (response GenerateAuthData503ApplicationProblemPlusJSONResponse) VisitGener
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GenerateAuthDatadefaultResponse struct {
+type GenerateAuthDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GenerateAuthDatadefaultResponse) VisitGenerateAuthDataResponse(w http.ResponseWriter) error {
+func (response GenerateAuthDatadefaultApplicationProblemPlusJSONResponse) VisitGenerateAuthDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ConfirmAuthRequestObject struct {
@@ -3414,13 +3460,16 @@ func (response ConfirmAuth503ApplicationProblemPlusJSONResponse) VisitConfirmAut
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ConfirmAuthdefaultResponse struct {
+type ConfirmAuthdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response ConfirmAuthdefaultResponse) VisitConfirmAuthResponse(w http.ResponseWriter) error {
+func (response ConfirmAuthdefaultApplicationProblemPlusJSONResponse) VisitConfirmAuthResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteAuthRequestObject struct {
@@ -3485,13 +3534,16 @@ func (response DeleteAuth503ApplicationProblemPlusJSONResponse) VisitDeleteAuthR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteAuthdefaultResponse struct {
+type DeleteAuthdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteAuthdefaultResponse) VisitDeleteAuthResponse(w http.ResponseWriter) error {
+func (response DeleteAuthdefaultApplicationProblemPlusJSONResponse) VisitDeleteAuthResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GenerateAvRequestObject struct {
@@ -3579,13 +3631,16 @@ func (response GenerateAv503ApplicationProblemPlusJSONResponse) VisitGenerateAvR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GenerateAvdefaultResponse struct {
+type GenerateAvdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GenerateAvdefaultResponse) VisitGenerateAvResponse(w http.ResponseWriter) error {
+func (response GenerateAvdefaultApplicationProblemPlusJSONResponse) VisitGenerateAvResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

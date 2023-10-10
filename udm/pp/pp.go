@@ -2717,13 +2717,14 @@ type ClientWithResponsesInterface interface {
 }
 
 type Delete5GVNGroupResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2743,14 +2744,15 @@ func (r Delete5GVNGroupResponse) StatusCode() int {
 }
 
 type Get5GVNGroupResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *N5GVnGroupConfiguration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *N5GVnGroupConfiguration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2770,14 +2772,15 @@ func (r Get5GVNGroupResponse) StatusCode() int {
 }
 
 type Modify5GVNGroupResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *externalRef0.PatchResult
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2797,13 +2800,14 @@ func (r Modify5GVNGroupResponse) StatusCode() int {
 }
 
 type Create5GVNGroupResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2823,14 +2827,15 @@ func (r Create5GVNGroupResponse) StatusCode() int {
 }
 
 type UpdateResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *externalRef0.PatchResult
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2967,6 +2972,13 @@ func ParseDelete5GVNGroupResponse(rsp *http.Response) (*Delete5GVNGroupResponse,
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -3027,6 +3039,13 @@ func ParseGet5GVNGroupResponse(rsp *http.Response) (*Get5GVNGroupResponse, error
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -3089,6 +3108,13 @@ func ParseModify5GVNGroupResponse(rsp *http.Response) (*Modify5GVNGroupResponse,
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -3142,6 +3168,13 @@ func ParseCreate5GVNGroupResponse(rsp *http.Response) (*Create5GVNGroupResponse,
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -3203,6 +3236,13 @@ func ParseUpdateResponse(rsp *http.Response) (*UpdateResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -3514,13 +3554,16 @@ func (response Delete5GVNGroup503ApplicationProblemPlusJSONResponse) VisitDelete
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Delete5GVNGroupdefaultResponse struct {
+type Delete5GVNGroupdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Delete5GVNGroupdefaultResponse) VisitDelete5GVNGroupResponse(w http.ResponseWriter) error {
+func (response Delete5GVNGroupdefaultApplicationProblemPlusJSONResponse) VisitDelete5GVNGroupResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Get5GVNGroupRequestObject struct {
@@ -3595,13 +3638,16 @@ func (response Get5GVNGroup503ApplicationProblemPlusJSONResponse) VisitGet5GVNGr
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Get5GVNGroupdefaultResponse struct {
+type Get5GVNGroupdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Get5GVNGroupdefaultResponse) VisitGet5GVNGroupResponse(w http.ResponseWriter) error {
+func (response Get5GVNGroupdefaultApplicationProblemPlusJSONResponse) VisitGet5GVNGroupResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Modify5GVNGroupRequestObject struct {
@@ -3686,13 +3732,16 @@ func (response Modify5GVNGroup503ApplicationProblemPlusJSONResponse) VisitModify
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Modify5GVNGroupdefaultResponse struct {
+type Modify5GVNGroupdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Modify5GVNGroupdefaultResponse) VisitModify5GVNGroupResponse(w http.ResponseWriter) error {
+func (response Modify5GVNGroupdefaultApplicationProblemPlusJSONResponse) VisitModify5GVNGroupResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Create5GVNGroupRequestObject struct {
@@ -3767,13 +3816,16 @@ func (response Create5GVNGroup503ApplicationProblemPlusJSONResponse) VisitCreate
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Create5GVNGroupdefaultResponse struct {
+type Create5GVNGroupdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Create5GVNGroupdefaultResponse) VisitCreate5GVNGroupResponse(w http.ResponseWriter) error {
+func (response Create5GVNGroupdefaultApplicationProblemPlusJSONResponse) VisitCreate5GVNGroupResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateRequestObject struct {
@@ -3858,13 +3910,16 @@ func (response Update503ApplicationProblemPlusJSONResponse) VisitUpdateResponse(
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdatedefaultResponse struct {
+type UpdatedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdatedefaultResponse) VisitUpdateResponse(w http.ResponseWriter) error {
+func (response UpdatedefaultApplicationProblemPlusJSONResponse) VisitUpdateResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

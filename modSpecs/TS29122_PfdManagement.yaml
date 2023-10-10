@@ -187,7 +187,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
         parameters:
             - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
               in: path
@@ -291,7 +295,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
     /{scsAsId}/transactions/{transactionId}:
         delete:
             responses:
@@ -316,7 +324,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
         get:
             responses:
                 "200":
@@ -346,7 +358,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
         parameters:
             - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
               in: path
@@ -411,7 +427,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
     /{scsAsId}/transactions/{transactionId}/applications/{appId}:
         delete:
             responses:
@@ -436,7 +456,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
         get:
             responses:
                 "200":
@@ -466,7 +490,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
         parameters:
             - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
               in: path
@@ -549,7 +577,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
         put:
             requestBody:
                 content:
@@ -613,7 +645,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
 security:
     - {}
     - oAuth2ClientCredentials: []

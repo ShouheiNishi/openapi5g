@@ -1815,17 +1815,18 @@ type ClientWithResponsesInterface interface {
 }
 
 type GetAfIdSubscriptionsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON406 *externalRef1.N406
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON406     *externalRef1.N406
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1845,19 +1846,20 @@ func (r GetAfIdSubscriptionsResponse) StatusCode() int {
 }
 
 type PostAfIdSubscriptionsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1877,15 +1879,16 @@ func (r PostAfIdSubscriptionsResponse) StatusCode() int {
 }
 
 type DeleteAfIdSubscriptionsSubscriptionIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1905,17 +1908,18 @@ func (r DeleteAfIdSubscriptionsSubscriptionIdResponse) StatusCode() int {
 }
 
 type GetAfIdSubscriptionsSubscriptionIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON406 *externalRef1.N406
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON406     *externalRef1.N406
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1935,19 +1939,20 @@ func (r GetAfIdSubscriptionsSubscriptionIdResponse) StatusCode() int {
 }
 
 type PatchAfIdSubscriptionsSubscriptionIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1967,19 +1972,20 @@ func (r PatchAfIdSubscriptionsSubscriptionIdResponse) StatusCode() int {
 }
 
 type PutAfIdSubscriptionsSubscriptionIdResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *TrafficInfluSub
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *TrafficInfluSub
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2153,6 +2159,13 @@ func ParseGetAfIdSubscriptionsResponse(rsp *http.Response) (*GetAfIdSubscription
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2249,6 +2262,13 @@ func ParsePostAfIdSubscriptionsResponse(rsp *http.Response) (*PostAfIdSubscripti
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2316,6 +2336,13 @@ func ParseDeleteAfIdSubscriptionsSubscriptionIdResponse(rsp *http.Response) (*De
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2398,6 +2425,13 @@ func ParseGetAfIdSubscriptionsSubscriptionIdResponse(rsp *http.Response) (*GetAf
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2495,6 +2529,13 @@ func ParsePatchAfIdSubscriptionsSubscriptionIdResponse(rsp *http.Response) (*Pat
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2590,6 +2631,13 @@ func ParsePutAfIdSubscriptionsSubscriptionIdResponse(rsp *http.Response) (*PutAf
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2975,13 +3023,16 @@ func (response GetAfIdSubscriptions503ApplicationProblemPlusJSONResponse) VisitG
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetAfIdSubscriptionsdefaultResponse struct {
+type GetAfIdSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetAfIdSubscriptionsdefaultResponse) VisitGetAfIdSubscriptionsResponse(w http.ResponseWriter) error {
+func (response GetAfIdSubscriptionsdefaultApplicationProblemPlusJSONResponse) VisitGetAfIdSubscriptionsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PostAfIdSubscriptionsRequestObject struct {
@@ -3120,13 +3171,16 @@ func (response PostAfIdSubscriptions503ApplicationProblemPlusJSONResponse) Visit
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PostAfIdSubscriptionsdefaultResponse struct {
+type PostAfIdSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PostAfIdSubscriptionsdefaultResponse) VisitPostAfIdSubscriptionsResponse(w http.ResponseWriter) error {
+func (response PostAfIdSubscriptionsdefaultApplicationProblemPlusJSONResponse) VisitPostAfIdSubscriptionsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteAfIdSubscriptionsSubscriptionIdRequestObject struct {
@@ -3239,13 +3293,16 @@ func (response DeleteAfIdSubscriptionsSubscriptionId503ApplicationProblemPlusJSO
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteAfIdSubscriptionsSubscriptionIddefaultResponse struct {
+type DeleteAfIdSubscriptionsSubscriptionIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteAfIdSubscriptionsSubscriptionIddefaultResponse) VisitDeleteAfIdSubscriptionsSubscriptionIdResponse(w http.ResponseWriter) error {
+func (response DeleteAfIdSubscriptionsSubscriptionIddefaultApplicationProblemPlusJSONResponse) VisitDeleteAfIdSubscriptionsSubscriptionIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetAfIdSubscriptionsSubscriptionIdRequestObject struct {
@@ -3370,13 +3427,16 @@ func (response GetAfIdSubscriptionsSubscriptionId503ApplicationProblemPlusJSONRe
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetAfIdSubscriptionsSubscriptionIddefaultResponse struct {
+type GetAfIdSubscriptionsSubscriptionIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetAfIdSubscriptionsSubscriptionIddefaultResponse) VisitGetAfIdSubscriptionsSubscriptionIdResponse(w http.ResponseWriter) error {
+func (response GetAfIdSubscriptionsSubscriptionIddefaultApplicationProblemPlusJSONResponse) VisitGetAfIdSubscriptionsSubscriptionIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PatchAfIdSubscriptionsSubscriptionIdRequestObject struct {
@@ -3524,13 +3584,16 @@ func (response PatchAfIdSubscriptionsSubscriptionId503ApplicationProblemPlusJSON
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PatchAfIdSubscriptionsSubscriptionIddefaultResponse struct {
+type PatchAfIdSubscriptionsSubscriptionIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PatchAfIdSubscriptionsSubscriptionIddefaultResponse) VisitPatchAfIdSubscriptionsSubscriptionIdResponse(w http.ResponseWriter) error {
+func (response PatchAfIdSubscriptionsSubscriptionIddefaultApplicationProblemPlusJSONResponse) VisitPatchAfIdSubscriptionsSubscriptionIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PutAfIdSubscriptionsSubscriptionIdRequestObject struct {
@@ -3678,13 +3741,16 @@ func (response PutAfIdSubscriptionsSubscriptionId503ApplicationProblemPlusJSONRe
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PutAfIdSubscriptionsSubscriptionIddefaultResponse struct {
+type PutAfIdSubscriptionsSubscriptionIddefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PutAfIdSubscriptionsSubscriptionIddefaultResponse) VisitPutAfIdSubscriptionsSubscriptionIdResponse(w http.ResponseWriter) error {
+func (response PutAfIdSubscriptionsSubscriptionIddefaultApplicationProblemPlusJSONResponse) VisitPutAfIdSubscriptionsSubscriptionIdResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

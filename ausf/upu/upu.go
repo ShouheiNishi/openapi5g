@@ -567,12 +567,13 @@ type ClientWithResponsesInterface interface {
 }
 
 type PostSupiUeUpuResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *UpuSecurityInfo
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N307
-	ApplicationproblemJSON503 *externalRef1.ProblemDetails
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *UpuSecurityInfo
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N307
+	ApplicationproblemJSON503     *externalRef1.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -649,6 +650,13 @@ func ParsePostSupiUeUpuResponse(rsp *http.Response) (*PostSupiUeUpuResponse, err
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -782,6 +790,18 @@ func (response PostSupiUeUpu503ApplicationProblemPlusJSONResponse) VisitPostSupi
 	w.WriteHeader(503)
 
 	return json.NewEncoder(w).Encode(response)
+}
+
+type PostSupiUeUpudefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
+	StatusCode int
+}
+
+func (response PostSupiUeUpudefaultApplicationProblemPlusJSONResponse) VisitPostSupiUeUpuResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

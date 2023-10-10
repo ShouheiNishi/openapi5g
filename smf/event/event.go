@@ -1923,19 +1923,20 @@ type ClientWithResponsesInterface interface {
 }
 
 type CreateIndividualSubcriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *NsmfEventExposure
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *NsmfEventExposure
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1955,17 +1956,18 @@ func (r CreateIndividualSubcriptionResponse) StatusCode() int {
 }
 
 type DeleteIndividualSubcriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1985,18 +1987,19 @@ func (r DeleteIndividualSubcriptionResponse) StatusCode() int {
 }
 
 type GetIndividualSubcriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *NsmfEventExposure
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *NsmfEventExposure
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -2016,21 +2019,22 @@ func (r GetIndividualSubcriptionResponse) StatusCode() int {
 }
 
 type ReplaceIndividualSubcriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *NsmfEventExposure
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON401 *externalRef1.N401
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *NsmfEventExposure
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON401     *externalRef1.N401
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -2192,6 +2196,13 @@ func ParseCreateIndividualSubcriptionResponse(rsp *http.Response) (*CreateIndivi
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2273,6 +2284,13 @@ func ParseDeleteIndividualSubcriptionResponse(rsp *http.Response) (*DeleteIndivi
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2362,6 +2380,13 @@ func ParseGetIndividualSubcriptionResponse(rsp *http.Response) (*GetIndividualSu
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2472,6 +2497,13 @@ func ParseReplaceIndividualSubcriptionResponse(rsp *http.Response) (*ReplaceIndi
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2764,13 +2796,16 @@ func (response CreateIndividualSubcription503ApplicationProblemPlusJSONResponse)
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateIndividualSubcriptiondefaultResponse struct {
+type CreateIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateIndividualSubcriptiondefaultResponse) VisitCreateIndividualSubcriptionResponse(w http.ResponseWriter) error {
+func (response CreateIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse) VisitCreateIndividualSubcriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualSubcriptionRequestObject struct {
@@ -2888,13 +2923,16 @@ func (response DeleteIndividualSubcription503ApplicationProblemPlusJSONResponse)
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualSubcriptiondefaultResponse struct {
+type DeleteIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualSubcriptiondefaultResponse) VisitDeleteIndividualSubcriptionResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualSubcriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetIndividualSubcriptionRequestObject struct {
@@ -3020,13 +3058,16 @@ func (response GetIndividualSubcription503ApplicationProblemPlusJSONResponse) Vi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetIndividualSubcriptiondefaultResponse struct {
+type GetIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response GetIndividualSubcriptiondefaultResponse) VisitGetIndividualSubcriptionResponse(w http.ResponseWriter) error {
+func (response GetIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse) VisitGetIndividualSubcriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReplaceIndividualSubcriptionRequestObject struct {
@@ -3187,13 +3228,16 @@ func (response ReplaceIndividualSubcription503ApplicationProblemPlusJSONResponse
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReplaceIndividualSubcriptiondefaultResponse struct {
+type ReplaceIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response ReplaceIndividualSubcriptiondefaultResponse) VisitReplaceIndividualSubcriptionResponse(w http.ResponseWriter) error {
+func (response ReplaceIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse) VisitReplaceIndividualSubcriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

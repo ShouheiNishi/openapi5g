@@ -1604,19 +1604,20 @@ type ClientWithResponsesInterface interface {
 }
 
 type CreateIndividualUEPolicyAssociationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *PolicyAssociation
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON401 *externalRef2.N401
-	ApplicationproblemJSON403 *externalRef2.N403
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON411 *externalRef2.N411
-	ApplicationproblemJSON413 *externalRef2.N413
-	ApplicationproblemJSON415 *externalRef2.N415
-	ApplicationproblemJSON429 *externalRef2.N429
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *PolicyAssociation
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON401     *externalRef2.N401
+	ApplicationproblemJSON403     *externalRef2.N403
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON411     *externalRef2.N411
+	ApplicationproblemJSON413     *externalRef2.N413
+	ApplicationproblemJSON415     *externalRef2.N415
+	ApplicationproblemJSON429     *externalRef2.N429
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1636,17 +1637,18 @@ func (r CreateIndividualUEPolicyAssociationResponse) StatusCode() int {
 }
 
 type DeleteIndividualUEPolicyAssociationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef2.N307
-	JSON308                   *externalRef2.N308
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON401 *externalRef2.N401
-	ApplicationproblemJSON403 *externalRef2.N403
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON429 *externalRef2.N429
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef2.N307
+	JSON308                       *externalRef2.N308
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON401     *externalRef2.N401
+	ApplicationproblemJSON403     *externalRef2.N403
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON429     *externalRef2.N429
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1666,18 +1668,19 @@ func (r DeleteIndividualUEPolicyAssociationResponse) StatusCode() int {
 }
 
 type ReadIndividualUEPolicyAssociationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PolicyAssociation
-	JSON307                   *externalRef2.N307
-	JSON308                   *externalRef2.N308
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON401 *externalRef2.N401
-	ApplicationproblemJSON403 *externalRef2.N403
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON429 *externalRef2.N429
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PolicyAssociation
+	JSON307                       *externalRef2.N307
+	JSON308                       *externalRef2.N308
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON401     *externalRef2.N401
+	ApplicationproblemJSON403     *externalRef2.N403
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON429     *externalRef2.N429
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1697,21 +1700,22 @@ func (r ReadIndividualUEPolicyAssociationResponse) StatusCode() int {
 }
 
 type ReportObservedEventTriggersForIndividualUEPolicyAssociationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PolicyUpdate
-	JSON307                   *externalRef2.N307
-	JSON308                   *externalRef2.N308
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON401 *externalRef2.N401
-	ApplicationproblemJSON403 *externalRef2.N403
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON411 *externalRef2.N411
-	ApplicationproblemJSON413 *externalRef2.N413
-	ApplicationproblemJSON415 *externalRef2.N415
-	ApplicationproblemJSON429 *externalRef2.N429
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PolicyUpdate
+	JSON307                       *externalRef2.N307
+	JSON308                       *externalRef2.N308
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON401     *externalRef2.N401
+	ApplicationproblemJSON403     *externalRef2.N403
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON411     *externalRef2.N411
+	ApplicationproblemJSON413     *externalRef2.N413
+	ApplicationproblemJSON415     *externalRef2.N415
+	ApplicationproblemJSON429     *externalRef2.N429
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1873,6 +1877,13 @@ func ParseCreateIndividualUEPolicyAssociationResponse(rsp *http.Response) (*Crea
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -1954,6 +1965,13 @@ func ParseDeleteIndividualUEPolicyAssociationResponse(rsp *http.Response) (*Dele
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2043,6 +2061,13 @@ func ParseReadIndividualUEPolicyAssociationResponse(rsp *http.Response) (*ReadIn
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2153,6 +2178,13 @@ func ParseReportObservedEventTriggersForIndividualUEPolicyAssociationResponse(rs
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2445,13 +2477,16 @@ func (response CreateIndividualUEPolicyAssociation503ApplicationProblemPlusJSONR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateIndividualUEPolicyAssociationdefaultResponse struct {
+type CreateIndividualUEPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateIndividualUEPolicyAssociationdefaultResponse) VisitCreateIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
+func (response CreateIndividualUEPolicyAssociationdefaultApplicationProblemPlusJSONResponse) VisitCreateIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteIndividualUEPolicyAssociationRequestObject struct {
@@ -2569,13 +2604,16 @@ func (response DeleteIndividualUEPolicyAssociation503ApplicationProblemPlusJSONR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteIndividualUEPolicyAssociationdefaultResponse struct {
+type DeleteIndividualUEPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteIndividualUEPolicyAssociationdefaultResponse) VisitDeleteIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
+func (response DeleteIndividualUEPolicyAssociationdefaultApplicationProblemPlusJSONResponse) VisitDeleteIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReadIndividualUEPolicyAssociationRequestObject struct {
@@ -2701,13 +2739,16 @@ func (response ReadIndividualUEPolicyAssociation503ApplicationProblemPlusJSONRes
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReadIndividualUEPolicyAssociationdefaultResponse struct {
+type ReadIndividualUEPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response ReadIndividualUEPolicyAssociationdefaultResponse) VisitReadIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
+func (response ReadIndividualUEPolicyAssociationdefaultApplicationProblemPlusJSONResponse) VisitReadIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReportObservedEventTriggersForIndividualUEPolicyAssociationRequestObject struct {
@@ -2860,13 +2901,16 @@ func (response ReportObservedEventTriggersForIndividualUEPolicyAssociation503App
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReportObservedEventTriggersForIndividualUEPolicyAssociationdefaultResponse struct {
+type ReportObservedEventTriggersForIndividualUEPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response ReportObservedEventTriggersForIndividualUEPolicyAssociationdefaultResponse) VisitReportObservedEventTriggersForIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
+func (response ReportObservedEventTriggersForIndividualUEPolicyAssociationdefaultApplicationProblemPlusJSONResponse) VisitReportObservedEventTriggersForIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

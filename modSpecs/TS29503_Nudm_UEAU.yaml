@@ -399,6 +399,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Create a new confirmation event
             tags:
@@ -483,6 +487,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Generate authentication data for the UE in EPS or IMS domain
             tags:
@@ -543,6 +551,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Get authentication data for the FN-RG
             tags:
@@ -583,6 +595,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Generate authentication data for the UE
             tags:

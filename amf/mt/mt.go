@@ -1036,18 +1036,19 @@ type ClientWithResponsesInterface interface {
 }
 
 type ProvideDomainSelectionInfoResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *UeContextInfo
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON414 *externalRef1.N414
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *UeContextInfo
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON414     *externalRef1.N414
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1067,21 +1068,22 @@ func (r ProvideDomainSelectionInfoResponse) StatusCode() int {
 }
 
 type EnableUeReachabilityResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *EnableUeReachabilityRspData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *ProblemDetailsEnableUeReachability
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
-	ApplicationproblemJSON504 *ProblemDetailsEnableUeReachability
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *EnableUeReachabilityRspData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *ProblemDetailsEnableUeReachability
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSON504     *ProblemDetailsEnableUeReachability
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1210,6 +1212,13 @@ func ParseProvideDomainSelectionInfoResponse(rsp *http.Response) (*ProvideDomain
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -1319,6 +1328,13 @@ func ParseEnableUeReachabilityResponse(rsp *http.Response) (*EnableUeReachabilit
 			return nil, err
 		}
 		response.ApplicationproblemJSON504 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -1578,13 +1594,16 @@ func (response ProvideDomainSelectionInfo503ApplicationProblemPlusJSONResponse) 
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ProvideDomainSelectionInfodefaultResponse struct {
+type ProvideDomainSelectionInfodefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response ProvideDomainSelectionInfodefaultResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
+func (response ProvideDomainSelectionInfodefaultApplicationProblemPlusJSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type EnableUeReachabilityRequestObject struct {
@@ -1733,13 +1752,16 @@ func (response EnableUeReachability504ApplicationProblemPlusJSONResponse) VisitE
 	return json.NewEncoder(w).Encode(response)
 }
 
-type EnableUeReachabilitydefaultResponse struct {
+type EnableUeReachabilitydefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response EnableUeReachabilitydefaultResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
+func (response EnableUeReachabilitydefaultApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

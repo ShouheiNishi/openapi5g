@@ -941,14 +941,15 @@ type ClientWithResponsesInterface interface {
 }
 
 type QueryUeInfoResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *UeInfo
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON501 *externalRef2.N501
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *UeInfo
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON501     *externalRef2.N501
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -968,14 +969,15 @@ func (r QueryUeInfoResponse) StatusCode() int {
 }
 
 type ProvideLocationInfoResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *LocationInfoResult
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON501 *externalRef2.N501
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *LocationInfoResult
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON501     *externalRef2.N501
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1076,6 +1078,13 @@ func ParseQueryUeInfoResponse(rsp *http.Response) (*QueryUeInfoResponse, error) 
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -1136,6 +1145,13 @@ func ParseProvideLocationInfoResponse(rsp *http.Response) (*ProvideLocationInfoR
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -1343,13 +1359,16 @@ func (response QueryUeInfo503ApplicationProblemPlusJSONResponse) VisitQueryUeInf
 	return json.NewEncoder(w).Encode(response)
 }
 
-type QueryUeInfodefaultResponse struct {
+type QueryUeInfodefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response QueryUeInfodefaultResponse) VisitQueryUeInfoResponse(w http.ResponseWriter) error {
+func (response QueryUeInfodefaultApplicationProblemPlusJSONResponse) VisitQueryUeInfoResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ProvideLocationInfoRequestObject struct {
@@ -1425,13 +1444,16 @@ func (response ProvideLocationInfo503ApplicationProblemPlusJSONResponse) VisitPr
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ProvideLocationInfodefaultResponse struct {
+type ProvideLocationInfodefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response ProvideLocationInfodefaultResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
+func (response ProvideLocationInfodefaultApplicationProblemPlusJSONResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

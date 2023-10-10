@@ -2094,6 +2094,9 @@ type N503 = ProblemDetails
 // N504 defines model for 504.
 type N504 = ProblemDetails
 
+// Default defines model for default.
+type Default = ProblemDetails
+
 // Getter for additional properties for AcsInfo. Returns the specified
 // element and whether it was found
 func (a AcsInfo) Get(fieldName string) (value interface{}, found bool) {
@@ -13760,5 +13763,4 @@ type N503ApplicationProblemPlusJSONResponse ProblemDetails
 
 type N504ApplicationProblemPlusJSONResponse ProblemDetails
 
-type DefaultResponse struct {
-}
+type DefaultApplicationProblemPlusJSONResponse ProblemDetails

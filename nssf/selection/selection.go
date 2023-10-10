@@ -1587,19 +1587,20 @@ type ClientWithResponsesInterface interface {
 }
 
 type NSSelectionGetResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AuthorizedNetworkSliceInfo
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AuthorizedNetworkSliceInfo
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1717,6 +1718,13 @@ func ParseNSSelectionGetResponse(rsp *http.Response) (*NSSelectionGetResponse, e
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2036,13 +2044,16 @@ func (response NSSelectionGet503ApplicationProblemPlusJSONResponse) VisitNSSelec
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NSSelectionGetdefaultResponse struct {
+type NSSelectionGetdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NSSelectionGetdefaultResponse) VisitNSSelectionGetResponse(w http.ResponseWriter) error {
+func (response NSSelectionGetdefaultApplicationProblemPlusJSONResponse) VisitNSSelectionGetResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

@@ -490,6 +490,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve UE registration data sets
             tags:
@@ -526,6 +530,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve the AMF registration for 3GPP access information
             tags:
@@ -576,6 +584,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Update a parameter in the AMF registration for 3GPP access
             tags:
@@ -682,6 +694,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: register as AMF for 3GPP access
             tags:
@@ -716,6 +732,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: trigger AMF for 3GPP access deregistration
             tags:
@@ -750,6 +770,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Updates the PEI in the 3GPP access registration context
             tags:
@@ -786,6 +810,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve the AMF registration for non-3GPP access information
             tags:
@@ -836,6 +864,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: update a parameter in the AMF registration for non-3GPP access
             tags:
@@ -940,6 +972,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: register as AMF for non-3GPP access
             tags:
@@ -966,6 +1002,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Delete the IP-SM-GW registration
             tags:
@@ -997,6 +1037,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Retrieve the IP-SM-GW registration information
             tags:
@@ -1048,6 +1092,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Register an IP-SM-GW
             tags:
@@ -1084,6 +1132,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve the target UE's location information
             tags:
@@ -1130,6 +1182,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve the SMF registration information
             tags:
@@ -1176,6 +1232,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: delete an SMF registration
             tags:
@@ -1213,6 +1273,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: get an SMF registration
             tags:
@@ -1323,6 +1387,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: register as SMF
             tags:
@@ -1359,6 +1427,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: delete the SMSF registration for 3GPP access
             tags:
@@ -1394,6 +1466,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve the SMSF registration for 3GPP access information
             tags:
@@ -1445,6 +1521,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: register as SMSF for 3GPP access
             tags:
@@ -1481,6 +1561,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: delete SMSF registration for non 3GPP access
             tags:
@@ -1516,6 +1600,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: retrieve the SMSF registration for non-3GPP access information
             tags:
@@ -1567,6 +1655,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: register as SMSF for non-3GPP access
             tags:
@@ -1596,6 +1688,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Trigger the Restoration of the P-CSCF
             tags:

@@ -244,6 +244,11 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: User does not exist in the HPLMN
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
     /ue-authentications:
         post:
             requestBody:
@@ -299,6 +304,11 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Received protection scheme is not supported by HPLMN
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
     /ue-authentications/{authCtxId}/5g-aka-confirmation:
         delete:
             operationId: Delete5gAkaAuthenticationResult
@@ -363,6 +373,11 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Internal Server Error
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
     /ue-authentications/{authCtxId}/eap-session:
         delete:
             operationId: DeleteEapAuthenticationResult
@@ -444,6 +459,11 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Internal Server Error
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
     /ue-authentications/deregister:
         post:
             requestBody:
@@ -461,6 +481,11 @@ paths:
                     $ref: TS29571_CommonData.yaml#/components/responses/308
                 "404":
                     $ref: TS29571_CommonData.yaml#/components/responses/404
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
 security:
     - {}
     - oAuth2ClientCredentials:

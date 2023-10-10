@@ -11549,13 +11549,14 @@ type ClientWithResponsesInterface interface {
 }
 
 type GetGroupIdentifiersResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *GroupIdentifiers
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *GroupIdentifiers
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11575,13 +11576,14 @@ func (r GetGroupIdentifiersResponse) StatusCode() int {
 }
 
 type GetSharedDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]SharedData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]SharedData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11601,11 +11603,12 @@ func (r GetSharedDataResponse) StatusCode() int {
 }
 
 type SubscribeToSharedDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *SdmSubscription
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *SdmSubscription
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11625,12 +11628,13 @@ func (r SubscribeToSharedDataResponse) StatusCode() int {
 }
 
 type UnsubscribeForSharedDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11655,11 +11659,12 @@ type ModifySharedDataSubsResponse struct {
 	JSON200      *struct {
 		union json.RawMessage
 	}
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON403 *externalRef2.N403
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON403     *externalRef2.N403
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11679,13 +11684,14 @@ func (r ModifySharedDataSubsResponse) StatusCode() int {
 }
 
 type GetIndividualSharedDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SharedData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SharedData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11705,13 +11711,14 @@ func (r GetIndividualSharedDataResponse) StatusCode() int {
 }
 
 type GetDataSetsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SubscriptionDataSets
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SubscriptionDataSets
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11731,13 +11738,14 @@ func (r GetDataSetsResponse) StatusCode() int {
 }
 
 type GetAmDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AccessAndMobilitySubscriptionData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AccessAndMobilitySubscriptionData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11757,11 +11765,12 @@ func (r GetAmDataResponse) StatusCode() int {
 }
 
 type CAGAckResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11781,13 +11790,14 @@ func (r CAGAckResponse) StatusCode() int {
 }
 
 type GetEcrDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *EnhancedCoverageRestrictionData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *EnhancedCoverageRestrictionData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11807,11 +11817,12 @@ func (r GetEcrDataResponse) StatusCode() int {
 }
 
 type SorAckInfoResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11831,11 +11842,12 @@ func (r SorAckInfoResponse) StatusCode() int {
 }
 
 type SNSSAIsAckResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11855,13 +11867,14 @@ func (r SNSSAIsAckResponse) StatusCode() int {
 }
 
 type UpdateSORInfoResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SorInfo
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SorInfo
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11881,11 +11894,12 @@ func (r UpdateSORInfoResponse) StatusCode() int {
 }
 
 type UpuAckResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11905,13 +11919,14 @@ func (r UpuAckResponse) StatusCode() int {
 }
 
 type GetLcsBcaDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *LcsBroadcastAssistanceTypesData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *LcsBroadcastAssistanceTypesData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11931,13 +11946,14 @@ func (r GetLcsBcaDataResponse) StatusCode() int {
 }
 
 type GetLcsMoDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *LcsMoData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *LcsMoData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11957,13 +11973,14 @@ func (r GetLcsMoDataResponse) StatusCode() int {
 }
 
 type GetNSSAIResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *Nssai
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *Nssai
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -11983,13 +12000,14 @@ func (r GetNSSAIResponse) StatusCode() int {
 }
 
 type GetSmDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]SessionManagementSubscriptionData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]SessionManagementSubscriptionData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12009,13 +12027,14 @@ func (r GetSmDataResponse) StatusCode() int {
 }
 
 type GetSmfSelDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmfSelectionSubscriptionData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmfSelectionSubscriptionData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12035,13 +12054,14 @@ func (r GetSmfSelDataResponse) StatusCode() int {
 }
 
 type GetSmsDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmsSubscriptionData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmsSubscriptionData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12061,13 +12081,14 @@ func (r GetSmsDataResponse) StatusCode() int {
 }
 
 type GetSmsMngtDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmsManagementSubscriptionData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmsManagementSubscriptionData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12087,13 +12108,14 @@ func (r GetSmsMngtDataResponse) StatusCode() int {
 }
 
 type GetTraceConfigDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *TraceDataResponse
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *TraceDataResponse
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12113,13 +12135,14 @@ func (r GetTraceConfigDataResponse) StatusCode() int {
 }
 
 type GetUeCtxInAmfDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *UeContextInAmfData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *UeContextInAmfData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12139,13 +12162,14 @@ func (r GetUeCtxInAmfDataResponse) StatusCode() int {
 }
 
 type GetUeCtxInSmfDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *UeContextInSmfData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *UeContextInSmfData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12165,13 +12189,14 @@ func (r GetUeCtxInSmfDataResponse) StatusCode() int {
 }
 
 type GetUeCtxInSmsfDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *UeContextInSmsfData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *UeContextInSmsfData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12191,13 +12216,14 @@ func (r GetUeCtxInSmsfDataResponse) StatusCode() int {
 }
 
 type GetV2xDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *V2xSubscriptionData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *V2xSubscriptionData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12217,13 +12243,14 @@ func (r GetV2xDataResponse) StatusCode() int {
 }
 
 type GetSupiOrGpsiResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *IdTranslationResult
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *IdTranslationResult
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12243,13 +12270,14 @@ func (r GetSupiOrGpsiResponse) StatusCode() int {
 }
 
 type GetLcsPrivacyDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *LcsPrivacyData
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *LcsPrivacyData
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12269,14 +12297,15 @@ func (r GetLcsPrivacyDataResponse) StatusCode() int {
 }
 
 type SubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *SdmSubscription
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON501 *externalRef2.N501
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *SdmSubscription
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON501     *externalRef2.N501
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12296,12 +12325,13 @@ func (r SubscribeResponse) StatusCode() int {
 }
 
 type UnsubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12326,11 +12356,12 @@ type ModifyResponse struct {
 	JSON200      *struct {
 		union json.RawMessage
 	}
-	ApplicationproblemJSON400 *externalRef2.N400
-	ApplicationproblemJSON403 *externalRef2.N403
-	ApplicationproblemJSON404 *externalRef2.N404
-	ApplicationproblemJSON500 *externalRef2.N500
-	ApplicationproblemJSON503 *externalRef2.N503
+	ApplicationproblemJSON400     *externalRef2.N400
+	ApplicationproblemJSON403     *externalRef2.N403
+	ApplicationproblemJSON404     *externalRef2.N404
+	ApplicationproblemJSON500     *externalRef2.N500
+	ApplicationproblemJSON503     *externalRef2.N503
+	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12749,6 +12780,13 @@ func ParseGetGroupIdentifiersResponse(rsp *http.Response) (*GetGroupIdentifiersR
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -12803,6 +12841,13 @@ func ParseGetSharedDataResponse(rsp *http.Response) (*GetSharedDataResponse, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -12842,6 +12887,13 @@ func ParseSubscribeToSharedDataResponse(rsp *http.Response) (*SubscribeToSharedD
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -12889,6 +12941,13 @@ func ParseUnsubscribeForSharedDataResponse(rsp *http.Response) (*UnsubscribeForS
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -12953,6 +13012,13 @@ func ParseModifySharedDataSubsResponse(rsp *http.Response) (*ModifySharedDataSub
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13006,6 +13072,13 @@ func ParseGetIndividualSharedDataResponse(rsp *http.Response) (*GetIndividualSha
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13061,6 +13134,13 @@ func ParseGetDataSetsResponse(rsp *http.Response) (*GetDataSetsResponse, error) 
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13115,6 +13195,13 @@ func ParseGetAmDataResponse(rsp *http.Response) (*GetAmDataResponse, error) {
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13154,6 +13241,13 @@ func ParseCAGAckResponse(rsp *http.Response) (*CAGAckResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13209,6 +13303,13 @@ func ParseGetEcrDataResponse(rsp *http.Response) (*GetEcrDataResponse, error) {
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13249,6 +13350,13 @@ func ParseSorAckInfoResponse(rsp *http.Response) (*SorAckInfoResponse, error) {
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13288,6 +13396,13 @@ func ParseSNSSAIsAckResponse(rsp *http.Response) (*SNSSAIsAckResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13343,6 +13458,13 @@ func ParseUpdateSORInfoResponse(rsp *http.Response) (*UpdateSORInfoResponse, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13382,6 +13504,13 @@ func ParseUpuAckResponse(rsp *http.Response) (*UpuAckResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13437,6 +13566,13 @@ func ParseGetLcsBcaDataResponse(rsp *http.Response) (*GetLcsBcaDataResponse, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13490,6 +13626,13 @@ func ParseGetLcsMoDataResponse(rsp *http.Response) (*GetLcsMoDataResponse, error
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13545,6 +13688,13 @@ func ParseGetNSSAIResponse(rsp *http.Response) (*GetNSSAIResponse, error) {
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13598,6 +13748,13 @@ func ParseGetSmDataResponse(rsp *http.Response) (*GetSmDataResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13653,6 +13810,13 @@ func ParseGetSmfSelDataResponse(rsp *http.Response) (*GetSmfSelDataResponse, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13706,6 +13870,13 @@ func ParseGetSmsDataResponse(rsp *http.Response) (*GetSmsDataResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13761,6 +13932,13 @@ func ParseGetSmsMngtDataResponse(rsp *http.Response) (*GetSmsMngtDataResponse, e
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13814,6 +13992,13 @@ func ParseGetTraceConfigDataResponse(rsp *http.Response) (*GetTraceConfigDataRes
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13869,6 +14054,13 @@ func ParseGetUeCtxInAmfDataResponse(rsp *http.Response) (*GetUeCtxInAmfDataRespo
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13922,6 +14114,13 @@ func ParseGetUeCtxInSmfDataResponse(rsp *http.Response) (*GetUeCtxInSmfDataRespo
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13977,6 +14176,13 @@ func ParseGetUeCtxInSmsfDataResponse(rsp *http.Response) (*GetUeCtxInSmsfDataRes
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -14030,6 +14236,13 @@ func ParseGetV2xDataResponse(rsp *http.Response) (*GetV2xDataResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -14085,6 +14298,13 @@ func ParseGetSupiOrGpsiResponse(rsp *http.Response) (*GetSupiOrGpsiResponse, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -14138,6 +14358,13 @@ func ParseGetLcsPrivacyDataResponse(rsp *http.Response) (*GetLcsPrivacyDataRespo
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -14200,6 +14427,13 @@ func ParseSubscribeResponse(rsp *http.Response) (*SubscribeResponse, error) {
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -14246,6 +14480,13 @@ func ParseUnsubscribeResponse(rsp *http.Response) (*UnsubscribeResponse, error) 
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -14309,6 +14550,13 @@ func ParseModifyResponse(rsp *http.Response) (*ModifyResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef2.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -16498,13 +16746,16 @@ func (response GetGroupIdentifiers503ApplicationProblemPlusJSONResponse) VisitGe
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetGroupIdentifiersdefaultResponse struct {
+type GetGroupIdentifiersdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetGroupIdentifiersdefaultResponse) VisitGetGroupIdentifiersResponse(w http.ResponseWriter) error {
+func (response GetGroupIdentifiersdefaultApplicationProblemPlusJSONResponse) VisitGetGroupIdentifiersResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetSharedDataRequestObject struct {
@@ -16580,13 +16831,16 @@ func (response GetSharedData503ApplicationProblemPlusJSONResponse) VisitGetShare
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetSharedDatadefaultResponse struct {
+type GetSharedDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetSharedDatadefaultResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
+func (response GetSharedDatadefaultApplicationProblemPlusJSONResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type SubscribeToSharedDataRequestObject struct {
@@ -16636,13 +16890,16 @@ func (response SubscribeToSharedData404ApplicationProblemPlusJSONResponse) Visit
 	return json.NewEncoder(w).Encode(response)
 }
 
-type SubscribeToSharedDatadefaultResponse struct {
+type SubscribeToSharedDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response SubscribeToSharedDatadefaultResponse) VisitSubscribeToSharedDataResponse(w http.ResponseWriter) error {
+func (response SubscribeToSharedDatadefaultApplicationProblemPlusJSONResponse) VisitSubscribeToSharedDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UnsubscribeForSharedDataRequestObject struct {
@@ -16705,13 +16962,16 @@ func (response UnsubscribeForSharedData503ApplicationProblemPlusJSONResponse) Vi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UnsubscribeForSharedDatadefaultResponse struct {
+type UnsubscribeForSharedDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response UnsubscribeForSharedDatadefaultResponse) VisitUnsubscribeForSharedDataResponse(w http.ResponseWriter) error {
+func (response UnsubscribeForSharedDatadefaultApplicationProblemPlusJSONResponse) VisitUnsubscribeForSharedDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ModifySharedDataSubsRequestObject struct {
@@ -16790,13 +17050,16 @@ func (response ModifySharedDataSubs503ApplicationProblemPlusJSONResponse) VisitM
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ModifySharedDataSubsdefaultResponse struct {
+type ModifySharedDataSubsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response ModifySharedDataSubsdefaultResponse) VisitModifySharedDataSubsResponse(w http.ResponseWriter) error {
+func (response ModifySharedDataSubsdefaultApplicationProblemPlusJSONResponse) VisitModifySharedDataSubsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetIndividualSharedDataRequestObject struct {
@@ -16873,13 +17136,16 @@ func (response GetIndividualSharedData503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetIndividualSharedDatadefaultResponse struct {
+type GetIndividualSharedDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetIndividualSharedDatadefaultResponse) VisitGetIndividualSharedDataResponse(w http.ResponseWriter) error {
+func (response GetIndividualSharedDatadefaultApplicationProblemPlusJSONResponse) VisitGetIndividualSharedDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetDataSetsRequestObject struct {
@@ -16956,13 +17222,16 @@ func (response GetDataSets503ApplicationProblemPlusJSONResponse) VisitGetDataSet
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetDataSetsdefaultResponse struct {
+type GetDataSetsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetDataSetsdefaultResponse) VisitGetDataSetsResponse(w http.ResponseWriter) error {
+func (response GetDataSetsdefaultApplicationProblemPlusJSONResponse) VisitGetDataSetsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetAmDataRequestObject struct {
@@ -17039,13 +17308,16 @@ func (response GetAmData503ApplicationProblemPlusJSONResponse) VisitGetAmDataRes
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetAmDatadefaultResponse struct {
+type GetAmDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetAmDatadefaultResponse) VisitGetAmDataResponse(w http.ResponseWriter) error {
+func (response GetAmDatadefaultApplicationProblemPlusJSONResponse) VisitGetAmDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CAGAckRequestObject struct {
@@ -17098,13 +17370,16 @@ func (response CAGAck503ApplicationProblemPlusJSONResponse) VisitCAGAckResponse(
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CAGAckdefaultResponse struct {
+type CAGAckdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response CAGAckdefaultResponse) VisitCAGAckResponse(w http.ResponseWriter) error {
+func (response CAGAckdefaultApplicationProblemPlusJSONResponse) VisitCAGAckResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetEcrDataRequestObject struct {
@@ -17181,13 +17456,16 @@ func (response GetEcrData503ApplicationProblemPlusJSONResponse) VisitGetEcrDataR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetEcrDatadefaultResponse struct {
+type GetEcrDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetEcrDatadefaultResponse) VisitGetEcrDataResponse(w http.ResponseWriter) error {
+func (response GetEcrDatadefaultApplicationProblemPlusJSONResponse) VisitGetEcrDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type SorAckInfoRequestObject struct {
@@ -17240,13 +17518,16 @@ func (response SorAckInfo503ApplicationProblemPlusJSONResponse) VisitSorAckInfoR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type SorAckInfodefaultResponse struct {
+type SorAckInfodefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response SorAckInfodefaultResponse) VisitSorAckInfoResponse(w http.ResponseWriter) error {
+func (response SorAckInfodefaultApplicationProblemPlusJSONResponse) VisitSorAckInfoResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type SNSSAIsAckRequestObject struct {
@@ -17299,13 +17580,16 @@ func (response SNSSAIsAck503ApplicationProblemPlusJSONResponse) VisitSNSSAIsAckR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type SNSSAIsAckdefaultResponse struct {
+type SNSSAIsAckdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response SNSSAIsAckdefaultResponse) VisitSNSSAIsAckResponse(w http.ResponseWriter) error {
+func (response SNSSAIsAckdefaultApplicationProblemPlusJSONResponse) VisitSNSSAIsAckResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateSORInfoRequestObject struct {
@@ -17370,13 +17654,16 @@ func (response UpdateSORInfo503ApplicationProblemPlusJSONResponse) VisitUpdateSO
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateSORInfodefaultResponse struct {
+type UpdateSORInfodefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateSORInfodefaultResponse) VisitUpdateSORInfoResponse(w http.ResponseWriter) error {
+func (response UpdateSORInfodefaultApplicationProblemPlusJSONResponse) VisitUpdateSORInfoResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpuAckRequestObject struct {
@@ -17429,13 +17716,16 @@ func (response UpuAck503ApplicationProblemPlusJSONResponse) VisitUpuAckResponse(
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpuAckdefaultResponse struct {
+type UpuAckdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response UpuAckdefaultResponse) VisitUpuAckResponse(w http.ResponseWriter) error {
+func (response UpuAckdefaultApplicationProblemPlusJSONResponse) VisitUpuAckResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetLcsBcaDataRequestObject struct {
@@ -17512,13 +17802,16 @@ func (response GetLcsBcaData503ApplicationProblemPlusJSONResponse) VisitGetLcsBc
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetLcsBcaDatadefaultResponse struct {
+type GetLcsBcaDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetLcsBcaDatadefaultResponse) VisitGetLcsBcaDataResponse(w http.ResponseWriter) error {
+func (response GetLcsBcaDatadefaultApplicationProblemPlusJSONResponse) VisitGetLcsBcaDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetLcsMoDataRequestObject struct {
@@ -17595,13 +17888,16 @@ func (response GetLcsMoData503ApplicationProblemPlusJSONResponse) VisitGetLcsMoD
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetLcsMoDatadefaultResponse struct {
+type GetLcsMoDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetLcsMoDatadefaultResponse) VisitGetLcsMoDataResponse(w http.ResponseWriter) error {
+func (response GetLcsMoDatadefaultApplicationProblemPlusJSONResponse) VisitGetLcsMoDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetNSSAIRequestObject struct {
@@ -17678,13 +17974,16 @@ func (response GetNSSAI503ApplicationProblemPlusJSONResponse) VisitGetNSSAIRespo
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetNSSAIdefaultResponse struct {
+type GetNSSAIdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetNSSAIdefaultResponse) VisitGetNSSAIResponse(w http.ResponseWriter) error {
+func (response GetNSSAIdefaultApplicationProblemPlusJSONResponse) VisitGetNSSAIResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetSmDataRequestObject struct {
@@ -17761,13 +18060,16 @@ func (response GetSmData503ApplicationProblemPlusJSONResponse) VisitGetSmDataRes
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetSmDatadefaultResponse struct {
+type GetSmDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetSmDatadefaultResponse) VisitGetSmDataResponse(w http.ResponseWriter) error {
+func (response GetSmDatadefaultApplicationProblemPlusJSONResponse) VisitGetSmDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetSmfSelDataRequestObject struct {
@@ -17844,13 +18146,16 @@ func (response GetSmfSelData503ApplicationProblemPlusJSONResponse) VisitGetSmfSe
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetSmfSelDatadefaultResponse struct {
+type GetSmfSelDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetSmfSelDatadefaultResponse) VisitGetSmfSelDataResponse(w http.ResponseWriter) error {
+func (response GetSmfSelDatadefaultApplicationProblemPlusJSONResponse) VisitGetSmfSelDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetSmsDataRequestObject struct {
@@ -17927,13 +18232,16 @@ func (response GetSmsData503ApplicationProblemPlusJSONResponse) VisitGetSmsDataR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetSmsDatadefaultResponse struct {
+type GetSmsDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetSmsDatadefaultResponse) VisitGetSmsDataResponse(w http.ResponseWriter) error {
+func (response GetSmsDatadefaultApplicationProblemPlusJSONResponse) VisitGetSmsDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetSmsMngtDataRequestObject struct {
@@ -18010,13 +18318,16 @@ func (response GetSmsMngtData503ApplicationProblemPlusJSONResponse) VisitGetSmsM
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetSmsMngtDatadefaultResponse struct {
+type GetSmsMngtDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetSmsMngtDatadefaultResponse) VisitGetSmsMngtDataResponse(w http.ResponseWriter) error {
+func (response GetSmsMngtDatadefaultApplicationProblemPlusJSONResponse) VisitGetSmsMngtDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetTraceConfigDataRequestObject struct {
@@ -18093,13 +18404,16 @@ func (response GetTraceConfigData503ApplicationProblemPlusJSONResponse) VisitGet
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetTraceConfigDatadefaultResponse struct {
+type GetTraceConfigDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetTraceConfigDatadefaultResponse) VisitGetTraceConfigDataResponse(w http.ResponseWriter) error {
+func (response GetTraceConfigDatadefaultApplicationProblemPlusJSONResponse) VisitGetTraceConfigDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetUeCtxInAmfDataRequestObject struct {
@@ -18164,13 +18478,16 @@ func (response GetUeCtxInAmfData503ApplicationProblemPlusJSONResponse) VisitGetU
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetUeCtxInAmfDatadefaultResponse struct {
+type GetUeCtxInAmfDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetUeCtxInAmfDatadefaultResponse) VisitGetUeCtxInAmfDataResponse(w http.ResponseWriter) error {
+func (response GetUeCtxInAmfDatadefaultApplicationProblemPlusJSONResponse) VisitGetUeCtxInAmfDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetUeCtxInSmfDataRequestObject struct {
@@ -18235,13 +18552,16 @@ func (response GetUeCtxInSmfData503ApplicationProblemPlusJSONResponse) VisitGetU
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetUeCtxInSmfDatadefaultResponse struct {
+type GetUeCtxInSmfDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetUeCtxInSmfDatadefaultResponse) VisitGetUeCtxInSmfDataResponse(w http.ResponseWriter) error {
+func (response GetUeCtxInSmfDatadefaultApplicationProblemPlusJSONResponse) VisitGetUeCtxInSmfDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetUeCtxInSmsfDataRequestObject struct {
@@ -18306,13 +18626,16 @@ func (response GetUeCtxInSmsfData503ApplicationProblemPlusJSONResponse) VisitGet
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetUeCtxInSmsfDatadefaultResponse struct {
+type GetUeCtxInSmsfDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetUeCtxInSmsfDatadefaultResponse) VisitGetUeCtxInSmsfDataResponse(w http.ResponseWriter) error {
+func (response GetUeCtxInSmsfDatadefaultApplicationProblemPlusJSONResponse) VisitGetUeCtxInSmsfDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetV2xDataRequestObject struct {
@@ -18389,13 +18712,16 @@ func (response GetV2xData503ApplicationProblemPlusJSONResponse) VisitGetV2xDataR
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetV2xDatadefaultResponse struct {
+type GetV2xDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetV2xDatadefaultResponse) VisitGetV2xDataResponse(w http.ResponseWriter) error {
+func (response GetV2xDatadefaultApplicationProblemPlusJSONResponse) VisitGetV2xDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetSupiOrGpsiRequestObject struct {
@@ -18472,13 +18798,16 @@ func (response GetSupiOrGpsi503ApplicationProblemPlusJSONResponse) VisitGetSupiO
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetSupiOrGpsidefaultResponse struct {
+type GetSupiOrGpsidefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetSupiOrGpsidefaultResponse) VisitGetSupiOrGpsiResponse(w http.ResponseWriter) error {
+func (response GetSupiOrGpsidefaultApplicationProblemPlusJSONResponse) VisitGetSupiOrGpsiResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetLcsPrivacyDataRequestObject struct {
@@ -18555,13 +18884,16 @@ func (response GetLcsPrivacyData503ApplicationProblemPlusJSONResponse) VisitGetL
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetLcsPrivacyDatadefaultResponse struct {
+type GetLcsPrivacyDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response GetLcsPrivacyDatadefaultResponse) VisitGetLcsPrivacyDataResponse(w http.ResponseWriter) error {
+func (response GetLcsPrivacyDatadefaultApplicationProblemPlusJSONResponse) VisitGetLcsPrivacyDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type SubscribeRequestObject struct {
@@ -18645,13 +18977,16 @@ func (response Subscribe503ApplicationProblemPlusJSONResponse) VisitSubscribeRes
 	return json.NewEncoder(w).Encode(response)
 }
 
-type SubscribedefaultResponse struct {
+type SubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response SubscribedefaultResponse) VisitSubscribeResponse(w http.ResponseWriter) error {
+func (response SubscribedefaultApplicationProblemPlusJSONResponse) VisitSubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UnsubscribeRequestObject struct {
@@ -18715,13 +19050,16 @@ func (response Unsubscribe503ApplicationProblemPlusJSONResponse) VisitUnsubscrib
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UnsubscribedefaultResponse struct {
+type UnsubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response UnsubscribedefaultResponse) VisitUnsubscribeResponse(w http.ResponseWriter) error {
+func (response UnsubscribedefaultApplicationProblemPlusJSONResponse) VisitUnsubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ModifyRequestObject struct {
@@ -18801,13 +19139,16 @@ func (response Modify503ApplicationProblemPlusJSONResponse) VisitModifyResponse(
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ModifydefaultResponse struct {
+type ModifydefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef2.ProblemDetails
 	StatusCode int
 }
 
-func (response ModifydefaultResponse) VisitModifyResponse(w http.ResponseWriter) error {
+func (response ModifydefaultApplicationProblemPlusJSONResponse) VisitModifyResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

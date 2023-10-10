@@ -2375,6 +2375,10 @@ paths:
                 "204":
                     description: Upon success, an empty response body shall be returned
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Create the Message Waiting Data of the UE
             tags:

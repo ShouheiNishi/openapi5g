@@ -403,6 +403,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Location ProvideLocationInfo service Operation
             tags:
@@ -490,6 +494,10 @@ paths:
                 "504":
                     $ref: TS29571_CommonData.yaml#/components/responses/504
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Location ProvidePositioningInfo service Operation
             tags:

@@ -1094,23 +1094,24 @@ type ClientWithResponsesInterface interface {
 }
 
 type AccessTokenRequestResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AccessTokenRsp
-	JSON307                   *externalRef0.RedirectResponse
-	JSON308                   *externalRef0.RedirectResponse
-	JSON400                   *AccessTokenErr
-	ApplicationproblemJSON400 *externalRef0.ProblemDetails
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AccessTokenRsp
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	JSON400                       *AccessTokenErr
+	ApplicationproblemJSON400     *externalRef0.ProblemDetails
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1264,6 +1265,13 @@ func ParseAccessTokenRequestResponse(rsp *http.Response) (*AccessTokenRequestRes
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -1583,13 +1591,16 @@ func (response AccessTokenRequest503ApplicationProblemPlusJSONResponse) VisitAcc
 	return json.NewEncoder(w).Encode(response)
 }
 
-type AccessTokenRequestdefaultResponse struct {
+type AccessTokenRequestdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response AccessTokenRequestdefaultResponse) VisitAccessTokenRequestResponse(w http.ResponseWriter) error {
+func (response AccessTokenRequestdefaultApplicationProblemPlusJSONResponse) VisitAccessTokenRequestResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

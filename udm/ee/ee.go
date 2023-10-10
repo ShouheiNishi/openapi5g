@@ -2731,15 +2731,16 @@ type ClientWithResponsesInterface interface {
 }
 
 type CreateEeSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *CreatedEeSubscription
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON501 *externalRef1.N501
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *CreatedEeSubscription
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON501     *externalRef1.N501
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2759,12 +2760,13 @@ func (r CreateEeSubscriptionResponse) StatusCode() int {
 }
 
 type DeleteEeSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2784,11 +2786,12 @@ func (r DeleteEeSubscriptionResponse) StatusCode() int {
 }
 
 type UpdateEeSubscriptionResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *externalRef1.PatchResult
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *externalRef1.PatchResult
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2913,6 +2916,13 @@ func ParseCreateEeSubscriptionResponse(rsp *http.Response) (*CreateEeSubscriptio
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2960,6 +2970,13 @@ func ParseDeleteEeSubscriptionResponse(rsp *http.Response) (*DeleteEeSubscriptio
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -2999,6 +3016,13 @@ func ParseUpdateEeSubscriptionResponse(rsp *http.Response) (*UpdateEeSubscriptio
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -3258,13 +3282,16 @@ func (response CreateEeSubscription503ApplicationProblemPlusJSONResponse) VisitC
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateEeSubscriptiondefaultResponse struct {
+type CreateEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateEeSubscriptiondefaultResponse) VisitCreateEeSubscriptionResponse(w http.ResponseWriter) error {
+func (response CreateEeSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitCreateEeSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeleteEeSubscriptionRequestObject struct {
@@ -3328,13 +3355,16 @@ func (response DeleteEeSubscription503ApplicationProblemPlusJSONResponse) VisitD
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeleteEeSubscriptiondefaultResponse struct {
+type DeleteEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response DeleteEeSubscriptiondefaultResponse) VisitDeleteEeSubscriptionResponse(w http.ResponseWriter) error {
+func (response DeleteEeSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitDeleteEeSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateEeSubscriptionRequestObject struct {
@@ -3387,13 +3417,16 @@ func (response UpdateEeSubscription404ApplicationProblemPlusJSONResponse) VisitU
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateEeSubscriptiondefaultResponse struct {
+type UpdateEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateEeSubscriptiondefaultResponse) VisitUpdateEeSubscriptionResponse(w http.ResponseWriter) error {
+func (response UpdateEeSubscriptiondefaultApplicationProblemPlusJSONResponse) VisitUpdateEeSubscriptionResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

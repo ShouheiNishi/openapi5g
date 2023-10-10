@@ -1097,17 +1097,18 @@ type ClientWithResponsesInterface interface {
 }
 
 type NnefPFDmanagementAllFetchResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *[]PfdDataForApp
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *[]PfdDataForApp
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1127,19 +1128,20 @@ func (r NnefPFDmanagementAllFetchResponse) StatusCode() int {
 }
 
 type NnefPFDmanagementIndAppFetchResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdDataForApp
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON414 *externalRef0.N414
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdDataForApp
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1159,19 +1161,20 @@ func (r NnefPFDmanagementIndAppFetchResponse) StatusCode() int {
 }
 
 type NnefPFDmanagementCreateSubscrResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *PfdSubscription
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *PfdSubscription
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1191,17 +1194,18 @@ func (r NnefPFDmanagementCreateSubscrResponse) StatusCode() int {
 }
 
 type NnefPFDmanagementUnsubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1221,21 +1225,22 @@ func (r NnefPFDmanagementUnsubscribeResponse) StatusCode() int {
 }
 
 type NnefPFDmanagementModifySubscrResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *PfdSubscription
-	JSON307                   *externalRef0.N307
-	JSON308                   *externalRef0.N308
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON401 *externalRef0.N401
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON411 *externalRef0.N411
-	ApplicationproblemJSON413 *externalRef0.N413
-	ApplicationproblemJSON415 *externalRef0.N415
-	ApplicationproblemJSON429 *externalRef0.N429
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *PfdSubscription
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -1392,6 +1397,13 @@ func ParseNnefPFDmanagementAllFetchResponse(rsp *http.Response) (*NnefPFDmanagem
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -1487,6 +1499,13 @@ func ParseNnefPFDmanagementIndAppFetchResponse(rsp *http.Response) (*NnefPFDmana
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -1584,6 +1603,13 @@ func ParseNnefPFDmanagementCreateSubscrResponse(rsp *http.Response) (*NnefPFDman
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -1665,6 +1691,13 @@ func ParseNnefPFDmanagementUnsubscribeResponse(rsp *http.Response) (*NnefPFDmana
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -1775,6 +1808,13 @@ func ParseNnefPFDmanagementModifySubscrResponse(rsp *http.Response) (*NnefPFDman
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -2102,6 +2142,18 @@ func (response NnefPFDmanagementAllFetch503ApplicationProblemPlusJSONResponse) V
 	return json.NewEncoder(w).Encode(response)
 }
 
+type NnefPFDmanagementAllFetchdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response NnefPFDmanagementAllFetchdefaultApplicationProblemPlusJSONResponse) VisitNnefPFDmanagementAllFetchResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
+}
+
 type NnefPFDmanagementIndAppFetchRequestObject struct {
 	AppId  string `json:"appId"`
 	Params NnefPFDmanagementIndAppFetchParams
@@ -2235,6 +2287,18 @@ func (response NnefPFDmanagementIndAppFetch503ApplicationProblemPlusJSONResponse
 	w.WriteHeader(503)
 
 	return json.NewEncoder(w).Encode(response)
+}
+
+type NnefPFDmanagementIndAppFetchdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response NnefPFDmanagementIndAppFetchdefaultApplicationProblemPlusJSONResponse) VisitNnefPFDmanagementIndAppFetchResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NnefPFDmanagementCreateSubscrRequestObject struct {
@@ -2372,6 +2436,18 @@ func (response NnefPFDmanagementCreateSubscr503ApplicationProblemPlusJSONRespons
 	return json.NewEncoder(w).Encode(response)
 }
 
+type NnefPFDmanagementCreateSubscrdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response NnefPFDmanagementCreateSubscrdefaultApplicationProblemPlusJSONResponse) VisitNnefPFDmanagementCreateSubscrResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
+}
+
 type NnefPFDmanagementUnsubscribeRequestObject struct {
 	SubscriptionId string `json:"subscriptionId"`
 }
@@ -2485,6 +2561,18 @@ func (response NnefPFDmanagementUnsubscribe503ApplicationProblemPlusJSONResponse
 	w.WriteHeader(503)
 
 	return json.NewEncoder(w).Encode(response)
+}
+
+type NnefPFDmanagementUnsubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
+	StatusCode int
+}
+
+func (response NnefPFDmanagementUnsubscribedefaultApplicationProblemPlusJSONResponse) VisitNnefPFDmanagementUnsubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NnefPFDmanagementModifySubscrRequestObject struct {
@@ -2637,13 +2725,16 @@ func (response NnefPFDmanagementModifySubscr503ApplicationProblemPlusJSONRespons
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NnefPFDmanagementModifySubscrdefaultResponse struct {
+type NnefPFDmanagementModifySubscrdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response NnefPFDmanagementModifySubscrdefaultResponse) VisitNnefPFDmanagementModifySubscrResponse(w http.ResponseWriter) error {
+func (response NnefPFDmanagementModifySubscrdefaultApplicationProblemPlusJSONResponse) VisitNnefPFDmanagementModifySubscrResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

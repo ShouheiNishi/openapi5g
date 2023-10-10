@@ -800,15 +800,16 @@ type ClientWithResponsesInterface interface {
 }
 
 type AuthorizeNiddDataResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AuthorizationData
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AuthorizationData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -906,6 +907,13 @@ func ParseAuthorizeNiddDataResponse(rsp *http.Response) (*AuthorizeNiddDataRespo
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -1068,13 +1076,16 @@ func (response AuthorizeNiddData503ApplicationProblemPlusJSONResponse) VisitAuth
 	return json.NewEncoder(w).Encode(response)
 }
 
-type AuthorizeNiddDatadefaultResponse struct {
+type AuthorizeNiddDatadefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response AuthorizeNiddDatadefaultResponse) VisitAuthorizeNiddDataResponse(w http.ResponseWriter) error {
+func (response AuthorizeNiddDatadefaultApplicationProblemPlusJSONResponse) VisitAuthorizeNiddDataResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

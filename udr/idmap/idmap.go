@@ -232,10 +232,11 @@ type ClientWithResponsesInterface interface {
 }
 
 type GetNfGroupIDsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *NfGroupIdMapResult
-	ApplicationproblemJSON404 *externalRef0.N404
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *NfGroupIdMapResult
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -290,6 +291,13 @@ func ParseGetNfGroupIDsResponse(rsp *http.Response) (*GetNfGroupIDsResponse, err
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -420,13 +428,16 @@ func (response GetNfGroupIDs404ApplicationProblemPlusJSONResponse) VisitGetNfGro
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetNfGroupIDsdefaultResponse struct {
+type GetNfGroupIDsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetNfGroupIDsdefaultResponse) VisitGetNfGroupIDsResponse(w http.ResponseWriter) error {
+func (response GetNfGroupIDsdefaultApplicationProblemPlusJSONResponse) VisitGetNfGroupIDsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

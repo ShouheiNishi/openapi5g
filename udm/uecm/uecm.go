@@ -5113,14 +5113,15 @@ type ClientWithResponsesInterface interface {
 }
 
 type TriggerPCSCFRestorationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON501 *externalRef0.N501
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5140,14 +5141,15 @@ func (r TriggerPCSCFRestorationResponse) StatusCode() int {
 }
 
 type GetRegistrationsResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *RegistrationDataSets
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *RegistrationDataSets
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5167,14 +5169,15 @@ func (r GetRegistrationsResponse) StatusCode() int {
 }
 
 type Get3GppRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *Amf3GppAccessRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *Amf3GppAccessRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5194,15 +5197,16 @@ func (r Get3GppRegistrationResponse) StatusCode() int {
 }
 
 type Update3GppRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *externalRef0.PatchResult
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON422 *externalRef0.ProblemDetails
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON422     *externalRef0.ProblemDetails
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5222,15 +5226,16 @@ func (r Update3GppRegistrationResponse) StatusCode() int {
 }
 
 type N3GppRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *Amf3GppAccessRegistration
-	JSON201                   *Amf3GppAccessRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *Amf3GppAccessRegistration
+	JSON201                       *Amf3GppAccessRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5250,13 +5255,14 @@ func (r N3GppRegistrationResponse) StatusCode() int {
 }
 
 type DeregAMFResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5276,13 +5282,14 @@ func (r DeregAMFResponse) StatusCode() int {
 }
 
 type PeiUpdateResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5302,14 +5309,15 @@ func (r PeiUpdateResponse) StatusCode() int {
 }
 
 type GetNon3GppRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AmfNon3GppAccessRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AmfNon3GppAccessRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5329,15 +5337,16 @@ func (r GetNon3GppRegistrationResponse) StatusCode() int {
 }
 
 type UpdateNon3GppRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *externalRef0.PatchResult
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON422 *externalRef0.ProblemDetails
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON422     *externalRef0.ProblemDetails
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5357,15 +5366,16 @@ func (r UpdateNon3GppRegistrationResponse) StatusCode() int {
 }
 
 type Non3GppRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AmfNon3GppAccessRegistration
-	JSON201                   *AmfNon3GppAccessRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AmfNon3GppAccessRegistration
+	JSON201                       *AmfNon3GppAccessRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5385,12 +5395,13 @@ func (r Non3GppRegistrationResponse) StatusCode() int {
 }
 
 type IpSmGwDeregistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5410,14 +5421,15 @@ func (r IpSmGwDeregistrationResponse) StatusCode() int {
 }
 
 type GetIpSmGwRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *IpSmGwRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *IpSmGwRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5437,15 +5449,16 @@ func (r GetIpSmGwRegistrationResponse) StatusCode() int {
 }
 
 type IpSmGwRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *IpSmGwRegistration
-	JSON201                   *IpSmGwRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *IpSmGwRegistration
+	JSON201                       *IpSmGwRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5465,14 +5478,15 @@ func (r IpSmGwRegistrationResponse) StatusCode() int {
 }
 
 type GetLocationInfoResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *LocationInfo
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *LocationInfo
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5492,14 +5506,15 @@ func (r GetLocationInfoResponse) StatusCode() int {
 }
 
 type GetSmfRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmfRegistrationInfo
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmfRegistrationInfo
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5519,13 +5534,14 @@ func (r GetSmfRegistrationResponse) StatusCode() int {
 }
 
 type SmfDeregistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON422 *externalRef0.ProblemDetails
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON422     *externalRef0.ProblemDetails
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5545,14 +5561,15 @@ func (r SmfDeregistrationResponse) StatusCode() int {
 }
 
 type RetrieveSmfRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmfRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmfRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5572,15 +5589,16 @@ func (r RetrieveSmfRegistrationResponse) StatusCode() int {
 }
 
 type RegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmfRegistration
-	JSON201                   *SmfRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmfRegistration
+	JSON201                       *SmfRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5600,13 +5618,14 @@ func (r RegistrationResponse) StatusCode() int {
 }
 
 type N3GppSmsfDeregistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON422 *externalRef0.ProblemDetails
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON422     *externalRef0.ProblemDetails
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5626,14 +5645,15 @@ func (r N3GppSmsfDeregistrationResponse) StatusCode() int {
 }
 
 type Get3GppSmsfRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmsfRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmsfRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5653,15 +5673,16 @@ func (r Get3GppSmsfRegistrationResponse) StatusCode() int {
 }
 
 type N3GppSmsfRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmsfRegistration
-	JSON201                   *SmsfRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmsfRegistration
+	JSON201                       *SmsfRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5681,13 +5702,14 @@ func (r N3GppSmsfRegistrationResponse) StatusCode() int {
 }
 
 type Non3GppSmsfDeregistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON422 *externalRef0.ProblemDetails
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON422     *externalRef0.ProblemDetails
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5707,14 +5729,15 @@ func (r Non3GppSmsfDeregistrationResponse) StatusCode() int {
 }
 
 type GetNon3GppSmsfRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmsfRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmsfRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -5734,15 +5757,16 @@ func (r GetNon3GppSmsfRegistrationResponse) StatusCode() int {
 }
 
 type Non3GppSmsfRegistrationResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SmsfRegistration
-	JSON201                   *SmsfRegistration
-	ApplicationproblemJSON400 *externalRef0.N400
-	ApplicationproblemJSON403 *externalRef0.N403
-	ApplicationproblemJSON404 *externalRef0.N404
-	ApplicationproblemJSON500 *externalRef0.N500
-	ApplicationproblemJSON503 *externalRef0.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SmsfRegistration
+	JSON201                       *SmsfRegistration
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -6121,6 +6145,13 @@ func ParseTriggerPCSCFRestorationResponse(rsp *http.Response) (*TriggerPCSCFRest
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6182,6 +6213,13 @@ func ParseGetRegistrationsResponse(rsp *http.Response) (*GetRegistrationsRespons
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6242,6 +6280,13 @@ func ParseGet3GppRegistrationResponse(rsp *http.Response) (*Get3GppRegistrationR
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6311,6 +6356,13 @@ func ParseUpdate3GppRegistrationResponse(rsp *http.Response) (*Update3GppRegistr
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6379,6 +6431,13 @@ func ParseN3GppRegistrationResponse(rsp *http.Response) (*N3GppRegistrationRespo
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6433,6 +6492,13 @@ func ParseDeregAMFResponse(rsp *http.Response) (*DeregAMFResponse, error) {
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6486,6 +6552,13 @@ func ParsePeiUpdateResponse(rsp *http.Response) (*PeiUpdateResponse, error) {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6547,6 +6620,13 @@ func ParseGetNon3GppRegistrationResponse(rsp *http.Response) (*GetNon3GppRegistr
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6616,6 +6696,13 @@ func ParseUpdateNon3GppRegistrationResponse(rsp *http.Response) (*UpdateNon3GppR
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6684,6 +6771,13 @@ func ParseNon3GppRegistrationResponse(rsp *http.Response) (*Non3GppRegistrationR
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6730,6 +6824,13 @@ func ParseIpSmGwDeregistrationResponse(rsp *http.Response) (*IpSmGwDeregistratio
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6791,6 +6892,13 @@ func ParseGetIpSmGwRegistrationResponse(rsp *http.Response) (*GetIpSmGwRegistrat
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6860,6 +6968,13 @@ func ParseIpSmGwRegistrationResponse(rsp *http.Response) (*IpSmGwRegistrationRes
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -6920,6 +7035,13 @@ func ParseGetLocationInfoResponse(rsp *http.Response) (*GetLocationInfoResponse,
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -6982,6 +7104,13 @@ func ParseGetSmfRegistrationResponse(rsp *http.Response) (*GetSmfRegistrationRes
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -7035,6 +7164,13 @@ func ParseSmfDeregistrationResponse(rsp *http.Response) (*SmfDeregistrationRespo
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7096,6 +7232,13 @@ func ParseRetrieveSmfRegistrationResponse(rsp *http.Response) (*RetrieveSmfRegis
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7165,6 +7308,13 @@ func ParseRegistrationResponse(rsp *http.Response) (*RegistrationResponse, error
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -7218,6 +7368,13 @@ func ParseN3GppSmsfDeregistrationResponse(rsp *http.Response) (*N3GppSmsfDeregis
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7279,6 +7436,13 @@ func ParseGet3GppSmsfRegistrationResponse(rsp *http.Response) (*Get3GppSmsfRegis
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7348,6 +7512,13 @@ func ParseN3GppSmsfRegistrationResponse(rsp *http.Response) (*N3GppSmsfRegistrat
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -7401,6 +7572,13 @@ func ParseNon3GppSmsfDeregistrationResponse(rsp *http.Response) (*Non3GppSmsfDer
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7462,6 +7640,13 @@ func ParseGetNon3GppSmsfRegistrationResponse(rsp *http.Response) (*GetNon3GppSms
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -7530,6 +7715,13 @@ func ParseNon3GppSmsfRegistrationResponse(rsp *http.Response) (*Non3GppSmsfRegis
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -8597,13 +8789,16 @@ func (response TriggerPCSCFRestoration503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type TriggerPCSCFRestorationdefaultResponse struct {
+type TriggerPCSCFRestorationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response TriggerPCSCFRestorationdefaultResponse) VisitTriggerPCSCFRestorationResponse(w http.ResponseWriter) error {
+func (response TriggerPCSCFRestorationdefaultApplicationProblemPlusJSONResponse) VisitTriggerPCSCFRestorationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetRegistrationsRequestObject struct {
@@ -8679,13 +8874,16 @@ func (response GetRegistrations503ApplicationProblemPlusJSONResponse) VisitGetRe
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetRegistrationsdefaultResponse struct {
+type GetRegistrationsdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetRegistrationsdefaultResponse) VisitGetRegistrationsResponse(w http.ResponseWriter) error {
+func (response GetRegistrationsdefaultApplicationProblemPlusJSONResponse) VisitGetRegistrationsResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Get3GppRegistrationRequestObject struct {
@@ -8761,13 +8959,16 @@ func (response Get3GppRegistration503ApplicationProblemPlusJSONResponse) VisitGe
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Get3GppRegistrationdefaultResponse struct {
+type Get3GppRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Get3GppRegistrationdefaultResponse) VisitGet3GppRegistrationResponse(w http.ResponseWriter) error {
+func (response Get3GppRegistrationdefaultApplicationProblemPlusJSONResponse) VisitGet3GppRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Update3GppRegistrationRequestObject struct {
@@ -8861,13 +9062,16 @@ func (response Update3GppRegistration503ApplicationProblemPlusJSONResponse) Visi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Update3GppRegistrationdefaultResponse struct {
+type Update3GppRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Update3GppRegistrationdefaultResponse) VisitUpdate3GppRegistrationResponse(w http.ResponseWriter) error {
+func (response Update3GppRegistrationdefaultApplicationProblemPlusJSONResponse) VisitUpdate3GppRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type N3GppRegistrationRequestObject struct {
@@ -8968,13 +9172,16 @@ func (response N3GppRegistration503ApplicationProblemPlusJSONResponse) VisitN3Gp
 	return json.NewEncoder(w).Encode(response)
 }
 
-type N3GppRegistrationdefaultResponse struct {
+type N3GppRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response N3GppRegistrationdefaultResponse) VisitN3GppRegistrationResponse(w http.ResponseWriter) error {
+func (response N3GppRegistrationdefaultApplicationProblemPlusJSONResponse) VisitN3GppRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type DeregAMFRequestObject struct {
@@ -9049,13 +9256,16 @@ func (response DeregAMF503ApplicationProblemPlusJSONResponse) VisitDeregAMFRespo
 	return json.NewEncoder(w).Encode(response)
 }
 
-type DeregAMFdefaultResponse struct {
+type DeregAMFdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response DeregAMFdefaultResponse) VisitDeregAMFResponse(w http.ResponseWriter) error {
+func (response DeregAMFdefaultApplicationProblemPlusJSONResponse) VisitDeregAMFResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type PeiUpdateRequestObject struct {
@@ -9130,13 +9340,16 @@ func (response PeiUpdate503ApplicationProblemPlusJSONResponse) VisitPeiUpdateRes
 	return json.NewEncoder(w).Encode(response)
 }
 
-type PeiUpdatedefaultResponse struct {
+type PeiUpdatedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response PeiUpdatedefaultResponse) VisitPeiUpdateResponse(w http.ResponseWriter) error {
+func (response PeiUpdatedefaultApplicationProblemPlusJSONResponse) VisitPeiUpdateResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetNon3GppRegistrationRequestObject struct {
@@ -9212,13 +9425,16 @@ func (response GetNon3GppRegistration503ApplicationProblemPlusJSONResponse) Visi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetNon3GppRegistrationdefaultResponse struct {
+type GetNon3GppRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetNon3GppRegistrationdefaultResponse) VisitGetNon3GppRegistrationResponse(w http.ResponseWriter) error {
+func (response GetNon3GppRegistrationdefaultApplicationProblemPlusJSONResponse) VisitGetNon3GppRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateNon3GppRegistrationRequestObject struct {
@@ -9312,13 +9528,16 @@ func (response UpdateNon3GppRegistration503ApplicationProblemPlusJSONResponse) V
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UpdateNon3GppRegistrationdefaultResponse struct {
+type UpdateNon3GppRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response UpdateNon3GppRegistrationdefaultResponse) VisitUpdateNon3GppRegistrationResponse(w http.ResponseWriter) error {
+func (response UpdateNon3GppRegistrationdefaultApplicationProblemPlusJSONResponse) VisitUpdateNon3GppRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Non3GppRegistrationRequestObject struct {
@@ -9419,13 +9638,16 @@ func (response Non3GppRegistration503ApplicationProblemPlusJSONResponse) VisitNo
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Non3GppRegistrationdefaultResponse struct {
+type Non3GppRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Non3GppRegistrationdefaultResponse) VisitNon3GppRegistrationResponse(w http.ResponseWriter) error {
+func (response Non3GppRegistrationdefaultApplicationProblemPlusJSONResponse) VisitNon3GppRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type IpSmGwDeregistrationRequestObject struct {
@@ -9488,13 +9710,16 @@ func (response IpSmGwDeregistration503ApplicationProblemPlusJSONResponse) VisitI
 	return json.NewEncoder(w).Encode(response)
 }
 
-type IpSmGwDeregistrationdefaultResponse struct {
+type IpSmGwDeregistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response IpSmGwDeregistrationdefaultResponse) VisitIpSmGwDeregistrationResponse(w http.ResponseWriter) error {
+func (response IpSmGwDeregistrationdefaultApplicationProblemPlusJSONResponse) VisitIpSmGwDeregistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetIpSmGwRegistrationRequestObject struct {
@@ -9569,13 +9794,16 @@ func (response GetIpSmGwRegistration503ApplicationProblemPlusJSONResponse) Visit
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetIpSmGwRegistrationdefaultResponse struct {
+type GetIpSmGwRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetIpSmGwRegistrationdefaultResponse) VisitGetIpSmGwRegistrationResponse(w http.ResponseWriter) error {
+func (response GetIpSmGwRegistrationdefaultApplicationProblemPlusJSONResponse) VisitGetIpSmGwRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type IpSmGwRegistrationRequestObject struct {
@@ -9676,13 +9904,16 @@ func (response IpSmGwRegistration503ApplicationProblemPlusJSONResponse) VisitIpS
 	return json.NewEncoder(w).Encode(response)
 }
 
-type IpSmGwRegistrationdefaultResponse struct {
+type IpSmGwRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response IpSmGwRegistrationdefaultResponse) VisitIpSmGwRegistrationResponse(w http.ResponseWriter) error {
+func (response IpSmGwRegistrationdefaultApplicationProblemPlusJSONResponse) VisitIpSmGwRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetLocationInfoRequestObject struct {
@@ -9758,13 +9989,16 @@ func (response GetLocationInfo503ApplicationProblemPlusJSONResponse) VisitGetLoc
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetLocationInfodefaultResponse struct {
+type GetLocationInfodefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetLocationInfodefaultResponse) VisitGetLocationInfoResponse(w http.ResponseWriter) error {
+func (response GetLocationInfodefaultApplicationProblemPlusJSONResponse) VisitGetLocationInfoResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetSmfRegistrationRequestObject struct {
@@ -9840,13 +10074,16 @@ func (response GetSmfRegistration503ApplicationProblemPlusJSONResponse) VisitGet
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetSmfRegistrationdefaultResponse struct {
+type GetSmfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetSmfRegistrationdefaultResponse) VisitGetSmfRegistrationResponse(w http.ResponseWriter) error {
+func (response GetSmfRegistrationdefaultApplicationProblemPlusJSONResponse) VisitGetSmfRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type SmfDeregistrationRequestObject struct {
@@ -9920,13 +10157,16 @@ func (response SmfDeregistration503ApplicationProblemPlusJSONResponse) VisitSmfD
 	return json.NewEncoder(w).Encode(response)
 }
 
-type SmfDeregistrationdefaultResponse struct {
+type SmfDeregistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response SmfDeregistrationdefaultResponse) VisitSmfDeregistrationResponse(w http.ResponseWriter) error {
+func (response SmfDeregistrationdefaultApplicationProblemPlusJSONResponse) VisitSmfDeregistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type RetrieveSmfRegistrationRequestObject struct {
@@ -10002,13 +10242,16 @@ func (response RetrieveSmfRegistration503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type RetrieveSmfRegistrationdefaultResponse struct {
+type RetrieveSmfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response RetrieveSmfRegistrationdefaultResponse) VisitRetrieveSmfRegistrationResponse(w http.ResponseWriter) error {
+func (response RetrieveSmfRegistrationdefaultApplicationProblemPlusJSONResponse) VisitRetrieveSmfRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type RegistrationRequestObject struct {
@@ -10110,13 +10353,16 @@ func (response Registration503ApplicationProblemPlusJSONResponse) VisitRegistrat
 	return json.NewEncoder(w).Encode(response)
 }
 
-type RegistrationdefaultResponse struct {
+type RegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response RegistrationdefaultResponse) VisitRegistrationResponse(w http.ResponseWriter) error {
+func (response RegistrationdefaultApplicationProblemPlusJSONResponse) VisitRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type N3GppSmsfDeregistrationRequestObject struct {
@@ -10189,13 +10435,16 @@ func (response N3GppSmsfDeregistration503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type N3GppSmsfDeregistrationdefaultResponse struct {
+type N3GppSmsfDeregistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response N3GppSmsfDeregistrationdefaultResponse) VisitN3GppSmsfDeregistrationResponse(w http.ResponseWriter) error {
+func (response N3GppSmsfDeregistrationdefaultApplicationProblemPlusJSONResponse) VisitN3GppSmsfDeregistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Get3GppSmsfRegistrationRequestObject struct {
@@ -10271,13 +10520,16 @@ func (response Get3GppSmsfRegistration503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Get3GppSmsfRegistrationdefaultResponse struct {
+type Get3GppSmsfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Get3GppSmsfRegistrationdefaultResponse) VisitGet3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
+func (response Get3GppSmsfRegistrationdefaultApplicationProblemPlusJSONResponse) VisitGet3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type N3GppSmsfRegistrationRequestObject struct {
@@ -10378,13 +10630,16 @@ func (response N3GppSmsfRegistration503ApplicationProblemPlusJSONResponse) Visit
 	return json.NewEncoder(w).Encode(response)
 }
 
-type N3GppSmsfRegistrationdefaultResponse struct {
+type N3GppSmsfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response N3GppSmsfRegistrationdefaultResponse) VisitN3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
+func (response N3GppSmsfRegistrationdefaultApplicationProblemPlusJSONResponse) VisitN3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Non3GppSmsfDeregistrationRequestObject struct {
@@ -10457,13 +10712,16 @@ func (response Non3GppSmsfDeregistration503ApplicationProblemPlusJSONResponse) V
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Non3GppSmsfDeregistrationdefaultResponse struct {
+type Non3GppSmsfDeregistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Non3GppSmsfDeregistrationdefaultResponse) VisitNon3GppSmsfDeregistrationResponse(w http.ResponseWriter) error {
+func (response Non3GppSmsfDeregistrationdefaultApplicationProblemPlusJSONResponse) VisitNon3GppSmsfDeregistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type GetNon3GppSmsfRegistrationRequestObject struct {
@@ -10539,13 +10797,16 @@ func (response GetNon3GppSmsfRegistration503ApplicationProblemPlusJSONResponse) 
 	return json.NewEncoder(w).Encode(response)
 }
 
-type GetNon3GppSmsfRegistrationdefaultResponse struct {
+type GetNon3GppSmsfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response GetNon3GppSmsfRegistrationdefaultResponse) VisitGetNon3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
+func (response GetNon3GppSmsfRegistrationdefaultApplicationProblemPlusJSONResponse) VisitGetNon3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type Non3GppSmsfRegistrationRequestObject struct {
@@ -10646,13 +10907,16 @@ func (response Non3GppSmsfRegistration503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type Non3GppSmsfRegistrationdefaultResponse struct {
+type Non3GppSmsfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
-func (response Non3GppSmsfRegistrationdefaultResponse) VisitNon3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
+func (response Non3GppSmsfRegistrationdefaultApplicationProblemPlusJSONResponse) VisitNon3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

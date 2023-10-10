@@ -1783,6 +1783,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication Non UE N2 Info Subscribe service Operation
             tags:
@@ -1812,6 +1816,11 @@ paths:
                     $ref: TS29571_CommonData.yaml#/components/responses/500
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             summary: Namf_Communication Non UE N2 Info UnSubscribe service Operation
             tags:
                 - Non UE N2 Message Notification Individual Subscription (Document)
@@ -1905,6 +1914,10 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Service Unavailable
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication Non UE N2 Message Transfer service Operation
             tags:
@@ -1989,6 +2002,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication AMF Status Change Subscribe service Operation
             tags:
@@ -2021,6 +2038,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication AMF Status Change UnSubscribe service Operation
             tags:
@@ -2105,6 +2126,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication AMF Status Change Subscribe Modify service Operation
             tags:
@@ -2709,6 +2734,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication CreateUEContext service Operation
             tags:
@@ -2786,6 +2815,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication EBI Assignment service Operation
             tags:
@@ -2850,6 +2883,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication CancelRelocateUEContext service Operation
             tags:
@@ -3001,6 +3038,10 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Gateway Timeout
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication N1N2 Message Transfer (UE Specific) service Operation
             tags:
@@ -3166,6 +3207,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication N1N2 Message Subscribe (UE Specific) service Operation
             tags:
@@ -3209,6 +3254,11 @@ paths:
                     $ref: TS29571_CommonData.yaml#/components/responses/500
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             summary: Namf_Communication N1N2 Message UnSubscribe (UE Specific) service Operation
             tags:
                 - N1N2 Individual Subscription (Document)
@@ -3256,6 +3306,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication ReleaseUEContext service Operation
             tags:
@@ -3481,6 +3535,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication RelocateUEContext service Operation
             tags:
@@ -3580,6 +3638,10 @@ paths:
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
                 default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication UEContextTransfer service Operation
             tags:

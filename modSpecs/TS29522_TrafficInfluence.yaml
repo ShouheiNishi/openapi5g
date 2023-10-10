@@ -268,7 +268,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
             summary: read all of the active subscriptions for the AF
             tags:
                 - Traffic Influence Subscription
@@ -399,7 +403,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
             summary: Creates a new subscription resource
             tags:
                 - Traffic Influence Subscription
@@ -427,7 +435,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
             summary: Deletes an already existing subscription
             tags:
                 - Individual Traffic Influence Subscription
@@ -460,7 +472,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
             summary: read an active subscriptions for the SCS/AS and the subscription Id
             tags:
                 - Individual Traffic Influence Subscription
@@ -516,7 +532,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
             summary: Updates/replaces an existing subscription resource
             tags:
                 - Individual Traffic Influence Subscription
@@ -560,7 +580,11 @@ paths:
                 "503":
                     $ref: TS29122_CommonData.yaml#/components/responses/503
                 default:
-                    $ref: TS29122_CommonData.yaml#/components/responses/default
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
             summary: Updates/replaces an existing subscription resource
             tags:
                 - Individual Traffic Influence Subscription

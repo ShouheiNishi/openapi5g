@@ -12887,19 +12887,20 @@ type ClientWithResponsesInterface interface {
 }
 
 type NonUeN2InfoSubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *NonUeN2InfoSubscriptionCreatedData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *NonUeN2InfoSubscriptionCreatedData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12919,14 +12920,15 @@ func (r NonUeN2InfoSubscribeResponse) StatusCode() int {
 }
 
 type NonUeN2InfoUnSubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12946,24 +12948,25 @@ func (r NonUeN2InfoUnSubscribeResponse) StatusCode() int {
 }
 
 type NonUeN2MessageTransferResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *N2InformationTransferRspData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	JSON400                   *N2InformationTransferError
-	ApplicationproblemJSON400 *externalRef1.ProblemDetails
-	JSON403                   *N2InformationTransferError
-	ApplicationproblemJSON403 *externalRef1.ProblemDetails
-	JSON404                   *N2InformationTransferError
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	JSON500                   *N2InformationTransferError
-	ApplicationproblemJSON500 *externalRef1.ProblemDetails
-	JSON503                   *N2InformationTransferError
-	ApplicationproblemJSON503 *externalRef1.ProblemDetails
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *N2InformationTransferRspData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	JSON400                       *N2InformationTransferError
+	ApplicationproblemJSON400     *externalRef1.ProblemDetails
+	JSON403                       *N2InformationTransferError
+	ApplicationproblemJSON403     *externalRef1.ProblemDetails
+	JSON404                       *N2InformationTransferError
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	JSON500                       *N2InformationTransferError
+	ApplicationproblemJSON500     *externalRef1.ProblemDetails
+	JSON503                       *N2InformationTransferError
+	ApplicationproblemJSON503     *externalRef1.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12983,19 +12986,20 @@ func (r NonUeN2MessageTransferResponse) StatusCode() int {
 }
 
 type AMFStatusChangeSubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *SubscriptionData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *SubscriptionData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13015,15 +13019,16 @@ func (r AMFStatusChangeSubscribeResponse) StatusCode() int {
 }
 
 type AMFStatusChangeUnSubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13043,19 +13048,20 @@ func (r AMFStatusChangeUnSubscribeResponse) StatusCode() int {
 }
 
 type AMFStatusChangeSubscribeModfyResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *SubscriptionData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *SubscriptionData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13075,21 +13081,22 @@ func (r AMFStatusChangeSubscribeModfyResponse) StatusCode() int {
 }
 
 type CreateUEContextResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *UeContextCreatedData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	JSON400                   *UeContextCreateError
-	ApplicationproblemJSON400 *externalRef1.ProblemDetails
-	JSON403                   *UeContextCreateError
-	ApplicationproblemJSON403 *externalRef1.ProblemDetails
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	JSON500                   *UeContextCreateError
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *UeContextCreatedData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	JSON400                       *UeContextCreateError
+	ApplicationproblemJSON400     *externalRef1.ProblemDetails
+	JSON403                       *UeContextCreateError
+	ApplicationproblemJSON403     *externalRef1.ProblemDetails
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	JSON500                       *UeContextCreateError
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13109,23 +13116,24 @@ func (r CreateUEContextResponse) StatusCode() int {
 }
 
 type EBIAssignmentResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *AssignedEbiData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	JSON400                   *AssignEbiError
-	ApplicationproblemJSON400 *externalRef1.ProblemDetails
-	JSON403                   *AssignEbiError
-	ApplicationproblemJSON403 *externalRef1.ProblemDetails
-	JSON409                   *AssignEbiError
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	JSON500                   *AssignEbiError
-	ApplicationproblemJSON500 *externalRef1.ProblemDetails
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *AssignedEbiData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	JSON400                       *AssignEbiError
+	ApplicationproblemJSON400     *externalRef1.ProblemDetails
+	JSON403                       *AssignEbiError
+	ApplicationproblemJSON403     *externalRef1.ProblemDetails
+	JSON409                       *AssignEbiError
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	JSON500                       *AssignEbiError
+	ApplicationproblemJSON500     *externalRef1.ProblemDetails
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13145,19 +13153,20 @@ func (r EBIAssignmentResponse) StatusCode() int {
 }
 
 type CancelRelocateUEContextResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13177,24 +13186,25 @@ func (r CancelRelocateUEContextResponse) StatusCode() int {
 }
 
 type N1N2MessageTransferResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *N1N2MessageTransferRspData
-	JSON202                   *N1N2MessageTransferRspData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	JSON409                   *N1N2MessageTransferError
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
-	JSON504                   *N1N2MessageTransferError
-	ApplicationproblemJSON504 *externalRef1.ProblemDetails
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *N1N2MessageTransferRspData
+	JSON202                       *N1N2MessageTransferRspData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	JSON409                       *N1N2MessageTransferError
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	JSON504                       *N1N2MessageTransferError
+	ApplicationproblemJSON504     *externalRef1.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13214,18 +13224,19 @@ func (r N1N2MessageTransferResponse) StatusCode() int {
 }
 
 type N1N2MessageSubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *UeN1N2InfoSubscriptionCreatedData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *UeN1N2InfoSubscriptionCreatedData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13245,17 +13256,18 @@ func (r N1N2MessageSubscribeResponse) StatusCode() int {
 }
 
 type N1N2MessageUnSubscribeResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13275,19 +13287,20 @@ func (r N1N2MessageUnSubscribeResponse) StatusCode() int {
 }
 
 type ReleaseUEContextResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13307,19 +13320,20 @@ func (r ReleaseUEContextResponse) StatusCode() int {
 }
 
 type RelocateUEContextResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON201                   *UeContextRelocatedData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON201                       *UeContextRelocatedData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13339,20 +13353,21 @@ func (r RelocateUEContextResponse) StatusCode() int {
 }
 
 type UEContextTransferResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *UeContextTransferRspData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *UeContextTransferRspData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13372,20 +13387,21 @@ func (r UEContextTransferResponse) StatusCode() int {
 }
 
 type RegistrationStatusUpdateResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	JSON200                   *UeRegStatusUpdateRspData
-	JSON307                   *externalRef1.N307
-	JSON308                   *externalRef1.N308
-	ApplicationproblemJSON400 *externalRef1.N400
-	ApplicationproblemJSON403 *externalRef1.N403
-	ApplicationproblemJSON404 *externalRef1.N404
-	ApplicationproblemJSON411 *externalRef1.N411
-	ApplicationproblemJSON413 *externalRef1.N413
-	ApplicationproblemJSON415 *externalRef1.N415
-	ApplicationproblemJSON429 *externalRef1.N429
-	ApplicationproblemJSON500 *externalRef1.N500
-	ApplicationproblemJSON503 *externalRef1.N503
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *UeRegStatusUpdateRspData
+	JSON307                       *externalRef1.N307
+	JSON308                       *externalRef1.N308
+	ApplicationproblemJSON400     *externalRef1.N400
+	ApplicationproblemJSON403     *externalRef1.N403
+	ApplicationproblemJSON404     *externalRef1.N404
+	ApplicationproblemJSON411     *externalRef1.N411
+	ApplicationproblemJSON413     *externalRef1.N413
+	ApplicationproblemJSON415     *externalRef1.N415
+	ApplicationproblemJSON429     *externalRef1.N429
+	ApplicationproblemJSON500     *externalRef1.N500
+	ApplicationproblemJSON503     *externalRef1.N503
+	ApplicationproblemJSONDefault *externalRef1.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13719,6 +13735,13 @@ func ParseNonUeN2InfoSubscribeResponse(rsp *http.Response) (*NonUeN2InfoSubscrib
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -13779,6 +13802,13 @@ func ParseNonUeN2InfoUnSubscribeResponse(rsp *http.Response) (*NonUeN2InfoUnSubs
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -13911,6 +13941,13 @@ func ParseNonUeN2MessageTransferResponse(rsp *http.Response) (*NonUeN2MessageTra
 		}
 		response.ApplicationproblemJSON429 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -14007,6 +14044,13 @@ func ParseAMFStatusChangeSubscribeResponse(rsp *http.Response) (*AMFStatusChange
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -14074,6 +14118,13 @@ func ParseAMFStatusChangeUnSubscribeResponse(rsp *http.Response) (*AMFStatusChan
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -14170,6 +14221,13 @@ func ParseAMFStatusChangeSubscribeModfyResponse(rsp *http.Response) (*AMFStatusC
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -14280,6 +14338,13 @@ func ParseCreateUEContextResponse(rsp *http.Response) (*CreateUEContextResponse,
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	case rsp.StatusCode == 201:
 	// Content-type (multipart/related) unsupported
@@ -14411,6 +14476,13 @@ func ParseEBIAssignmentResponse(rsp *http.Response) (*EBIAssignmentResponse, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -14506,6 +14578,13 @@ func ParseCancelRelocateUEContextResponse(rsp *http.Response) (*CancelRelocateUE
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -14638,6 +14717,13 @@ func ParseN1N2MessageTransferResponse(rsp *http.Response) (*N1N2MessageTransferR
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -14727,6 +14813,13 @@ func ParseN1N2MessageSubscribeResponse(rsp *http.Response) (*N1N2MessageSubscrib
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -14808,6 +14901,13 @@ func ParseN1N2MessageUnSubscribeResponse(rsp *http.Response) (*N1N2MessageUnSubs
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -14905,6 +15005,13 @@ func ParseReleaseUEContextResponse(rsp *http.Response) (*ReleaseUEContextRespons
 		}
 		response.ApplicationproblemJSON503 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
+
 	}
 
 	return response, nil
@@ -15000,6 +15107,13 @@ func ParseRelocateUEContextResponse(rsp *http.Response) (*RelocateUEContextRespo
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -15103,6 +15217,13 @@ func ParseUEContextTransferResponse(rsp *http.Response) (*UEContextTransferRespo
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	case rsp.StatusCode == 200:
 		// Content-type (multipart/related) unsupported
@@ -15209,6 +15330,13 @@ func ParseRegistrationStatusUpdateResponse(rsp *http.Response) (*RegistrationSta
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest externalRef1.Default
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSONDefault = &dest
 
 	}
 
@@ -15848,13 +15976,16 @@ func (response NonUeN2InfoSubscribe503ApplicationProblemPlusJSONResponse) VisitN
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NonUeN2InfoSubscribedefaultResponse struct {
+type NonUeN2InfoSubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response NonUeN2InfoSubscribedefaultResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
+func (response NonUeN2InfoSubscribedefaultApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NonUeN2InfoUnSubscribeRequestObject struct {
@@ -15937,6 +16068,18 @@ func (response NonUeN2InfoUnSubscribe503ApplicationProblemPlusJSONResponse) Visi
 	w.WriteHeader(503)
 
 	return json.NewEncoder(w).Encode(response)
+}
+
+type NonUeN2InfoUnSubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
+	StatusCode int
+}
+
+func (response NonUeN2InfoUnSubscribedefaultApplicationProblemPlusJSONResponse) VisitNonUeN2InfoUnSubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type NonUeN2MessageTransferRequestObject struct {
@@ -16104,13 +16247,16 @@ func (response NonUeN2MessageTransfer503ApplicationProblemPlusJSONResponse) Visi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type NonUeN2MessageTransferdefaultResponse struct {
+type NonUeN2MessageTransferdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response NonUeN2MessageTransferdefaultResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
+func (response NonUeN2MessageTransferdefaultApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type AMFStatusChangeSubscribeRequestObject struct {
@@ -16248,13 +16394,16 @@ func (response AMFStatusChangeSubscribe503ApplicationProblemPlusJSONResponse) Vi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type AMFStatusChangeSubscribedefaultResponse struct {
+type AMFStatusChangeSubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response AMFStatusChangeSubscribedefaultResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
+func (response AMFStatusChangeSubscribedefaultApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type AMFStatusChangeUnSubscribeRequestObject struct {
@@ -16350,13 +16499,16 @@ func (response AMFStatusChangeUnSubscribe503ApplicationProblemPlusJSONResponse) 
 	return json.NewEncoder(w).Encode(response)
 }
 
-type AMFStatusChangeUnSubscribedefaultResponse struct {
+type AMFStatusChangeUnSubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response AMFStatusChangeUnSubscribedefaultResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
+func (response AMFStatusChangeUnSubscribedefaultApplicationProblemPlusJSONResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type AMFStatusChangeSubscribeModfyRequestObject struct {
@@ -16487,13 +16639,16 @@ func (response AMFStatusChangeSubscribeModfy503ApplicationProblemPlusJSONRespons
 	return json.NewEncoder(w).Encode(response)
 }
 
-type AMFStatusChangeSubscribeModfydefaultResponse struct {
+type AMFStatusChangeSubscribeModfydefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response AMFStatusChangeSubscribeModfydefaultResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
+func (response AMFStatusChangeSubscribeModfydefaultApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CreateUEContextRequestObject struct {
@@ -16670,13 +16825,16 @@ func (response CreateUEContext503ApplicationProblemPlusJSONResponse) VisitCreate
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CreateUEContextdefaultResponse struct {
+type CreateUEContextdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response CreateUEContextdefaultResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
+func (response CreateUEContextdefaultApplicationProblemPlusJSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type EBIAssignmentRequestObject struct {
@@ -16837,13 +16995,16 @@ func (response EBIAssignment503ApplicationProblemPlusJSONResponse) VisitEBIAssig
 	return json.NewEncoder(w).Encode(response)
 }
 
-type EBIAssignmentdefaultResponse struct {
+type EBIAssignmentdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response EBIAssignmentdefaultResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
+func (response EBIAssignmentdefaultApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type CancelRelocateUEContextRequestObject struct {
@@ -16984,13 +17145,16 @@ func (response CancelRelocateUEContext503ApplicationProblemPlusJSONResponse) Vis
 	return json.NewEncoder(w).Encode(response)
 }
 
-type CancelRelocateUEContextdefaultResponse struct {
+type CancelRelocateUEContextdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response CancelRelocateUEContextdefaultResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
+func (response CancelRelocateUEContextdefaultApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type N1N2MessageTransferRequestObject struct {
@@ -17177,13 +17341,16 @@ func (response N1N2MessageTransfer504ApplicationProblemPlusJSONResponse) VisitN1
 	return json.NewEncoder(w).Encode(response)
 }
 
-type N1N2MessageTransferdefaultResponse struct {
+type N1N2MessageTransferdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response N1N2MessageTransferdefaultResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
+func (response N1N2MessageTransferdefaultApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type N1N2MessageSubscribeRequestObject struct {
@@ -17311,13 +17478,16 @@ func (response N1N2MessageSubscribe503ApplicationProblemPlusJSONResponse) VisitN
 	return json.NewEncoder(w).Encode(response)
 }
 
-type N1N2MessageSubscribedefaultResponse struct {
+type N1N2MessageSubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response N1N2MessageSubscribedefaultResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
+func (response N1N2MessageSubscribedefaultApplicationProblemPlusJSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type N1N2MessageUnSubscribeRequestObject struct {
@@ -17434,6 +17604,18 @@ func (response N1N2MessageUnSubscribe503ApplicationProblemPlusJSONResponse) Visi
 	w.WriteHeader(503)
 
 	return json.NewEncoder(w).Encode(response)
+}
+
+type N1N2MessageUnSubscribedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
+	StatusCode int
+}
+
+func (response N1N2MessageUnSubscribedefaultApplicationProblemPlusJSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(response.StatusCode)
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type ReleaseUEContextRequestObject struct {
@@ -17574,13 +17756,16 @@ func (response ReleaseUEContext503ApplicationProblemPlusJSONResponse) VisitRelea
 	return json.NewEncoder(w).Encode(response)
 }
 
-type ReleaseUEContextdefaultResponse struct {
+type ReleaseUEContextdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response ReleaseUEContextdefaultResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
+func (response ReleaseUEContextdefaultApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type RelocateUEContextRequestObject struct {
@@ -17719,13 +17904,16 @@ func (response RelocateUEContext503ApplicationProblemPlusJSONResponse) VisitRelo
 	return json.NewEncoder(w).Encode(response)
 }
 
-type RelocateUEContextdefaultResponse struct {
+type RelocateUEContextdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response RelocateUEContextdefaultResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
+func (response RelocateUEContextdefaultApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UEContextTransferRequestObject struct {
@@ -17879,13 +18067,16 @@ func (response UEContextTransfer503ApplicationProblemPlusJSONResponse) VisitUECo
 	return json.NewEncoder(w).Encode(response)
 }
 
-type UEContextTransferdefaultResponse struct {
+type UEContextTransferdefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response UEContextTransferdefaultResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
+func (response UEContextTransferdefaultApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type RegistrationStatusUpdateRequestObject struct {
@@ -18027,13 +18218,16 @@ func (response RegistrationStatusUpdate503ApplicationProblemPlusJSONResponse) Vi
 	return json.NewEncoder(w).Encode(response)
 }
 
-type RegistrationStatusUpdatedefaultResponse struct {
+type RegistrationStatusUpdatedefaultApplicationProblemPlusJSONResponse struct {
+	Body       externalRef1.ProblemDetails
 	StatusCode int
 }
 
-func (response RegistrationStatusUpdatedefaultResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
+func (response RegistrationStatusUpdatedefaultApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(response.StatusCode)
-	return nil
+
+	return json.NewEncoder(w).Encode(response.Body)
 }
 
 // StrictServerInterface represents all server handlers.

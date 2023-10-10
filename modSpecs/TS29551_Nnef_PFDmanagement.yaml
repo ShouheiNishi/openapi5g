@@ -167,6 +167,11 @@ paths:
                     $ref: TS29571_CommonData.yaml#/components/responses/500
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             summary: Retrieve PFDs for all applications or for one or multiple applications with query parameter.
             tags:
                 - PFD of applications
@@ -214,6 +219,11 @@ paths:
                     $ref: TS29571_CommonData.yaml#/components/responses/500
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             summary: Retrieve the PFD for an application.
             tags:
                 - Individual application PFD
@@ -315,6 +325,11 @@ paths:
                     $ref: TS29571_CommonData.yaml#/components/responses/500
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             summary: Subscribe the notification of PFD changes.
             tags:
                 - PFD subscriptions
@@ -349,6 +364,11 @@ paths:
                     $ref: TS29571_CommonData.yaml#/components/responses/500
                 "503":
                     $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             summary: Delete a subscription of PFD change notification.
             tags:
                 - Individual PFD subscription

@@ -1188,6 +1188,11 @@ paths:
                             required: true
                             schema:
                                 type: string
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             tags:
                 - Stored Search (Document)
     /searches/{searchId}/complete:
@@ -1227,6 +1232,11 @@ paths:
                             required: true
                             schema:
                                 type: string
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
             tags:
                 - Complete Stored Search (Document)
 security:

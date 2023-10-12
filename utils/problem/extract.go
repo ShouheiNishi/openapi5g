@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"reflect"
+	"strings"
 
 	"github.com/ShouheiNishi/openapi5g/commondata"
 )
@@ -74,7 +75,7 @@ func ExtractStatusCodeAndProblemDetails(v any) (statusCode int, problemDetails *
 
 	statusCode = httpResponse.StatusCode
 
-	if httpResponse.Header.Get("Content-Type") != "application/problem+json" {
+	if !strings.Contains(httpResponse.Header.Get("Content-Type"), "application/problem+json") {
 		return statusCode, nil, errors.New("Content-Type mismatch")
 	}
 

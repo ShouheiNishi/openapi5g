@@ -94,7 +94,7 @@ func TestExtractStatusCodeAndProblemDetails(t *testing.T) {
 	buf, err := json.Marshal(pdSend)
 	assert.NoError(t, err)
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/problem+json")
+		w.Header().Set("Content-Type", "application/problem+json; charset=utf-8")
 		w.WriteHeader(pdSend.Status)
 		_, err := w.Write(buf)
 		assert.NoError(t, err)

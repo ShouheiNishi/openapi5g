@@ -1940,6 +1940,9 @@ func ParseNSSAIAvailabilityOptionsResponse(rsp *http.Response) (*NSSAIAvailabili
 	}
 
 	switch {
+	case rsp.StatusCode == 200:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -1981,6 +1984,9 @@ func ParseNSSAIAvailabilityOptionsResponse(rsp *http.Response) (*NSSAIAvailabili
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case rsp.StatusCode == 405:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
@@ -2153,6 +2159,9 @@ func ParseNSSAIAvailabilityUnsubscribeResponse(rsp *http.Response) (*NSSAIAvaila
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2352,6 +2361,9 @@ func ParseNSSAIAvailabilityDeleteResponse(rsp *http.Response) (*NSSAIAvailabilit
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2440,6 +2452,9 @@ func ParseNSSAIAvailabilityPatchResponse(rsp *http.Response) (*NSSAIAvailability
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
@@ -2557,6 +2572,9 @@ func ParseNSSAIAvailabilityPutResponse(rsp *http.Response) (*NSSAIAvailabilityPu
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307

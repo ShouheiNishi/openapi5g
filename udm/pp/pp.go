@@ -2937,6 +2937,9 @@ func ParseDelete5GVNGroupResponse(rsp *http.Response) (*Delete5GVNGroupResponse,
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -3073,6 +3076,9 @@ func ParseModify5GVNGroupResponse(rsp *http.Response) (*Modify5GVNGroupResponse,
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -3134,6 +3140,9 @@ func ParseCreate5GVNGroupResponse(rsp *http.Response) (*Create5GVNGroupResponse,
 	}
 
 	switch {
+	case rsp.StatusCode == 201:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -3201,6 +3210,9 @@ func ParseUpdateResponse(rsp *http.Response) (*UpdateResponse, error) {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400

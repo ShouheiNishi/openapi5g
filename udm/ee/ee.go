@@ -2942,6 +2942,9 @@ func ParseDeleteEeSubscriptionResponse(rsp *http.Response) (*DeleteEeSubscriptio
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef1.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -3002,6 +3005,9 @@ func ParseUpdateEeSubscriptionResponse(rsp *http.Response) (*UpdateEeSubscriptio
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef1.N403

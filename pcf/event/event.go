@@ -1853,6 +1853,9 @@ func ParseDeletePcEventExposureSubscResponse(rsp *http.Response) (*DeletePcEvent
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -1991,6 +1994,9 @@ func ParseGetPcEventExposureSubscResponse(rsp *http.Response) (*GetPcEventExposu
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2044,6 +2050,9 @@ func ParsePutPcEventExposureSubscResponse(rsp *http.Response) (*PutPcEventExposu
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307

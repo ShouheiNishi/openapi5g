@@ -1161,20 +1161,6 @@ func ParseAccessTokenRequestResponse(rsp *http.Response) (*AccessTokenRequestRes
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
-		var dest AccessTokenErr
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
-		var dest externalRef0.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON400 = &dest
-
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest AccessTokenRsp
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -1195,6 +1181,20 @@ func ParseAccessTokenRequestResponse(rsp *http.Response) (*AccessTokenRequestRes
 			return nil, err
 		}
 		response.JSON308 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
+		var dest AccessTokenErr
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
+		var dest externalRef0.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
 		var dest externalRef0.N401

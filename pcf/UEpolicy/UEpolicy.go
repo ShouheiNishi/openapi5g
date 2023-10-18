@@ -1903,6 +1903,9 @@ func ParseDeleteIndividualUEPolicyAssociationResponse(rsp *http.Response) (*Dele
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef2.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2040,6 +2043,9 @@ func ParseReadIndividualUEPolicyAssociationResponse(rsp *http.Response) (*ReadIn
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case rsp.StatusCode == 406:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef2.N429

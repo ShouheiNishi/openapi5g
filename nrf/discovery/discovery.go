@@ -3930,6 +3930,9 @@ func ParseSearchNFInstancesResponse(rsp *http.Response) (*SearchNFInstancesRespo
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
 		var dest externalRef1.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

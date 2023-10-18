@@ -7990,6 +7990,9 @@ func ParsePostAppSessionsResponse(rsp *http.Response) (*PostAppSessionsResponse,
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 303:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -8086,6 +8089,9 @@ func ParsePcscfRestorationResponse(rsp *http.Response) (*PcscfRestorationRespons
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -8245,6 +8251,9 @@ func ParseGetAppSessionResponse(rsp *http.Response) (*GetAppSessionResponse, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -8298,6 +8307,9 @@ func ParseModAppSessionResponse(rsp *http.Response) (*ModAppSessionResponse, err
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
@@ -8416,6 +8428,9 @@ func ParseDeleteAppSessionResponse(rsp *http.Response) (*DeleteAppSessionRespons
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -8526,6 +8541,9 @@ func ParseDeleteEventsSubscResponse(rsp *http.Response) (*DeleteEventsSubscRespo
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -8628,6 +8646,9 @@ func ParseUpdateEventsSubscResponse(rsp *http.Response) (*UpdateEventsSubscRespo
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307

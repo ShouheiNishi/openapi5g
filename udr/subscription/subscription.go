@@ -17824,6 +17824,9 @@ func ParseDelete5GVnGroupResponse(rsp *http.Response) (*Delete5GVnGroupResponse,
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -17889,6 +17892,9 @@ func ParseModify5GVnGroupResponse(rsp *http.Response) (*Modify5GVnGroupResponse,
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
@@ -18095,6 +18101,9 @@ func ParseRemoveEeGroupSubscriptionsResponse(rsp *http.Response) (*RemoveEeGroup
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18161,6 +18170,9 @@ func ParseModifyEeGroupSubscriptionResponse(rsp *http.Response) (*ModifyEeGroupS
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18201,6 +18213,9 @@ func ParseUpdateEeGroupSubscriptionsResponse(rsp *http.Response) (*UpdateEeGroup
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18356,6 +18371,9 @@ func ParseRemoveMultipleSubscriptionDataSubscriptionsResponse(rsp *http.Response
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18448,6 +18466,9 @@ func ParseRemovesubscriptionDataSubscriptionsResponse(rsp *http.Response) (*Remo
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18514,6 +18535,9 @@ func ParseModifysubscriptionDataSubscriptionResponse(rsp *http.Response) (*Modif
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18554,6 +18578,9 @@ func ParseDeleteAuthenticationStatusResponse(rsp *http.Response) (*DeleteAuthent
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18613,6 +18640,9 @@ func ParseCreateAuthenticationStatusResponse(rsp *http.Response) (*CreateAuthent
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18639,6 +18669,9 @@ func ParseDeleteIndividualAuthenticationStatusResponse(rsp *http.Response) (*Del
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18698,6 +18731,9 @@ func ParseCreateIndividualAuthenticationStatusResponse(rsp *http.Response) (*Cre
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18763,6 +18799,9 @@ func ParseModifyAuthenticationSubscriptionResponse(rsp *http.Response) (*ModifyA
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
@@ -18870,6 +18909,9 @@ func ParseAmfContext3gppResponse(rsp *http.Response) (*AmfContext3gppResponse, e
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -18909,6 +18951,9 @@ func ParseCreateAmfContext3gppResponse(rsp *http.Response) (*CreateAmfContext3gp
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
@@ -18976,6 +19021,9 @@ func ParseAmfContextNon3gppResponse(rsp *http.Response) (*AmfContextNon3gppRespo
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19015,6 +19063,9 @@ func ParseCreateAmfContextNon3gppResponse(rsp *http.Response) (*CreateAmfContext
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
@@ -19108,6 +19159,9 @@ func ParseRemoveeeSubscriptionsResponse(rsp *http.Response) (*RemoveeeSubscripti
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19174,6 +19228,9 @@ func ParseModifyEesubscriptionResponse(rsp *http.Response) (*ModifyEesubscriptio
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19214,6 +19271,9 @@ func ParseUpdateEesubscriptionsResponse(rsp *http.Response) (*UpdateEesubscripti
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19247,6 +19307,9 @@ func ParseRemoveAmfSubscriptionsInfoResponse(rsp *http.Response) (*RemoveAmfSubs
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19313,6 +19376,9 @@ func ParseModifyAmfSubscriptionInfoResponse(rsp *http.Response) (*ModifyAmfSubsc
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19346,6 +19412,9 @@ func ParseCreateAMFSubscriptionsResponse(rsp *http.Response) (*CreateAMFSubscrip
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19372,6 +19441,9 @@ func ParseRemoveHssSubscriptionsInfoResponse(rsp *http.Response) (*RemoveHssSubs
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19438,6 +19510,9 @@ func ParseModifyHssSubscriptionInfoResponse(rsp *http.Response) (*ModifyHssSubsc
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19471,6 +19546,9 @@ func ParseCreateHSSSubscriptionsResponse(rsp *http.Response) (*CreateHSSSubscrip
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19497,6 +19575,9 @@ func ParseRemoveSmfSubscriptionsInfoResponse(rsp *http.Response) (*RemoveSmfSubs
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19563,6 +19644,9 @@ func ParseModifySmfSubscriptionInfoResponse(rsp *http.Response) (*ModifySmfSubsc
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19596,6 +19680,9 @@ func ParseCreateSMFSubscriptionsResponse(rsp *http.Response) (*CreateSMFSubscrip
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19622,6 +19709,9 @@ func ParseDeleteIpSmGwContextResponse(rsp *http.Response) (*DeleteIpSmGwContextR
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19681,6 +19771,9 @@ func ParseModifyIpSmGwContextResponse(rsp *http.Response) (*ModifyIpSmGwContextR
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19721,6 +19814,9 @@ func ParseCreateIpSmGwContextResponse(rsp *http.Response) (*CreateIpSmGwContextR
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19780,6 +19876,9 @@ func ParseDeleteMessageWaitingDataResponse(rsp *http.Response) (*DeleteMessageWa
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19839,6 +19938,9 @@ func ParseModifyMessageWaitingDataResponse(rsp *http.Response) (*ModifyMessageWa
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19879,6 +19981,9 @@ func ParseCreateMessageWaitingDataResponse(rsp *http.Response) (*CreateMessageWa
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -19971,6 +20076,9 @@ func ParseRemovesdmSubscriptionsResponse(rsp *http.Response) (*RemovesdmSubscrip
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest externalRef2.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20044,6 +20152,9 @@ func ParseModifysdmSubscriptionResponse(rsp *http.Response) (*ModifysdmSubscript
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20084,6 +20195,9 @@ func ParseUpdatesdmsubscriptionsResponse(rsp *http.Response) (*Updatesdmsubscrip
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20117,6 +20231,9 @@ func ParseRemoveHssSDMSubscriptionsInfoResponse(rsp *http.Response) (*RemoveHssS
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20183,6 +20300,9 @@ func ParseModifyHssSDMSubscriptionInfoResponse(rsp *http.Response) (*ModifyHssSD
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20216,6 +20336,9 @@ func ParseCreateHSSSDMSubscriptionsResponse(rsp *http.Response) (*CreateHSSSDMSu
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20275,6 +20398,9 @@ func ParseDeleteSmfRegistrationResponse(rsp *http.Response) (*DeleteSmfRegistrat
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20341,6 +20467,9 @@ func ParseCreateOrUpdateSmfRegistrationResponse(rsp *http.Response) (*CreateOrUp
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20367,6 +20496,9 @@ func ParseDeleteSmsfContext3gppResponse(rsp *http.Response) (*DeleteSmsfContext3
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20433,6 +20565,9 @@ func ParseCreateSmsfContext3gppResponse(rsp *http.Response) (*CreateSmsfContext3
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20459,6 +20594,9 @@ func ParseDeleteSmsfContextNon3gppResponse(rsp *http.Response) (*DeleteSmsfConte
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20524,6 +20662,9 @@ func ParseCreateSmsfContextNon3gppResponse(rsp *http.Response) (*CreateSmsfConte
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
@@ -20822,6 +20963,9 @@ func ParseModifyOperSpecDataResponse(rsp *http.Response) (*ModifyOperSpecDataRes
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -20901,6 +21045,9 @@ func ParseModifyPpDataResponse(rsp *http.Response) (*ModifyPpDataResponse, error
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest externalRef2.ProblemDetails
@@ -21001,6 +21148,9 @@ func ParseCreateAuthenticationSoRResponse(rsp *http.Response) (*CreateAuthentica
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -21060,6 +21210,9 @@ func ParseCreateCagUpdateAckResponse(rsp *http.Response) (*CreateCagUpdateAckRes
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -21119,6 +21272,9 @@ func ParseCreateOrUpdateNssaiAckResponse(rsp *http.Response) (*CreateOrUpdateNss
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -21178,6 +21334,9 @@ func ParseCreateAuthenticationUPUResponse(rsp *http.Response) (*CreateAuthentica
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef2.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

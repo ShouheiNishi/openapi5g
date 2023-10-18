@@ -2103,6 +2103,12 @@ func ParseGetAfIdSubscriptionsResponse(rsp *http.Response) (*GetAfIdSubscription
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 307:
+		break // No content-type
+
+	case rsp.StatusCode == 308:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef1.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2288,6 +2294,15 @@ func ParseDeleteAfIdSubscriptionsSubscriptionIdResponse(rsp *http.Response) (*De
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case rsp.StatusCode == 307:
+		break // No content-type
+
+	case rsp.StatusCode == 308:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef1.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2369,6 +2384,12 @@ func ParseGetAfIdSubscriptionsSubscriptionIdResponse(rsp *http.Response) (*GetAf
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 307:
+		break // No content-type
+
+	case rsp.StatusCode == 308:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef1.N400
@@ -2458,6 +2479,12 @@ func ParsePatchAfIdSubscriptionsSubscriptionIdResponse(rsp *http.Response) (*Pat
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 307:
+		break // No content-type
+
+	case rsp.StatusCode == 308:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef1.N400
@@ -2561,6 +2588,12 @@ func ParsePutAfIdSubscriptionsSubscriptionIdResponse(rsp *http.Response) (*PutAf
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 307:
+		break // No content-type
+
+	case rsp.StatusCode == 308:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef1.N400

@@ -1691,6 +1691,9 @@ func ParseNSSelectionGetResponse(rsp *http.Response) (*NSSelectionGetResponse, e
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
 		var dest externalRef0.N414
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

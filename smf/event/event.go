@@ -2222,6 +2222,9 @@ func ParseDeleteIndividualSubcriptionResponse(rsp *http.Response) (*DeleteIndivi
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2360,6 +2363,9 @@ func ParseGetIndividualSubcriptionResponse(rsp *http.Response) (*GetIndividualSu
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef1.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2413,6 +2419,9 @@ func ParseReplaceIndividualSubcriptionResponse(rsp *http.Response) (*ReplaceIndi
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307

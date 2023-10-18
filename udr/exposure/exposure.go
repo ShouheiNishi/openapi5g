@@ -2442,6 +2442,9 @@ func ParseDeleteIndividualExposureDataSubscriptionResponse(rsp *http.Response) (
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2523,6 +2526,9 @@ func ParseReplaceIndividualExposureDataSubscriptionResponse(rsp *http.Response) 
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
@@ -2620,6 +2626,9 @@ func ParseDeleteAccessAndMobilityDataResponse(rsp *http.Response) (*DeleteAccess
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2730,6 +2739,9 @@ func ParseQueryAccessAndMobilityDataResponse(rsp *http.Response) (*QueryAccessAn
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
 		var dest externalRef2.N414
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2784,6 +2796,9 @@ func ParseUpdateAccessAndMobilityDataResponse(rsp *http.Response) (*UpdateAccess
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2894,6 +2909,9 @@ func ParseCreateOrReplaceAccessAndMobilityDataResponse(rsp *http.Response) (*Cre
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2990,6 +3008,9 @@ func ParseDeleteSessionManagementDataResponse(rsp *http.Response) (*DeleteSessio
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -3100,6 +3121,9 @@ func ParseQuerySessionManagementDataResponse(rsp *http.Response) (*QuerySessionM
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
 		var dest externalRef2.N414
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -3167,6 +3191,9 @@ func ParseCreateOrReplaceSessionManagementDataResponse(rsp *http.Response) (*Cre
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400

@@ -6103,6 +6103,9 @@ func ParseTriggerPCSCFRestorationResponse(rsp *http.Response) (*TriggerPCSCFRest
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6314,6 +6317,9 @@ func ParseUpdate3GppRegistrationResponse(rsp *http.Response) (*Update3GppRegistr
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6396,6 +6402,9 @@ func ParseN3GppRegistrationResponse(rsp *http.Response) (*N3GppRegistrationRespo
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6457,6 +6466,9 @@ func ParseDeregAMFResponse(rsp *http.Response) (*DeregAMFResponse, error) {
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6518,6 +6530,9 @@ func ParsePeiUpdateResponse(rsp *http.Response) (*PeiUpdateResponse, error) {
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6654,6 +6669,9 @@ func ParseUpdateNon3GppRegistrationResponse(rsp *http.Response) (*UpdateNon3GppR
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6736,6 +6754,9 @@ func ParseNon3GppRegistrationResponse(rsp *http.Response) (*Non3GppRegistrationR
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6797,6 +6818,9 @@ func ParseIpSmGwDeregistrationResponse(rsp *http.Response) (*IpSmGwDeregistratio
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6932,6 +6956,9 @@ func ParseIpSmGwRegistrationResponse(rsp *http.Response) (*IpSmGwRegistrationRes
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
@@ -7130,6 +7157,9 @@ func ParseSmfDeregistrationResponse(rsp *http.Response) (*SmfDeregistrationRespo
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7273,6 +7303,9 @@ func ParseRegistrationResponse(rsp *http.Response) (*RegistrationResponse, error
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7334,6 +7367,9 @@ func ParseN3GppSmsfDeregistrationResponse(rsp *http.Response) (*N3GppSmsfDeregis
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7477,6 +7513,9 @@ func ParseN3GppSmsfRegistrationResponse(rsp *http.Response) (*N3GppSmsfRegistrat
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7538,6 +7577,9 @@ func ParseNon3GppSmsfDeregistrationResponse(rsp *http.Response) (*Non3GppSmsfDer
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7680,6 +7722,9 @@ func ParseNon3GppSmsfRegistrationResponse(rsp *http.Response) (*Non3GppSmsfRegis
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400

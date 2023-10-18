@@ -12914,6 +12914,9 @@ func ParseUnsubscribeForSharedDataResponse(rsp *http.Response) (*UnsubscribeForS
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -13221,6 +13224,9 @@ func ParseCAGAckResponse(rsp *http.Response) (*CAGAckResponse, error) {
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -13329,6 +13335,9 @@ func ParseSorAckInfoResponse(rsp *http.Response) (*SorAckInfoResponse, error) {
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -13376,6 +13385,9 @@ func ParseSNSSAIsAckResponse(rsp *http.Response) (*SNSSAIsAckResponse, error) {
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -13484,6 +13496,9 @@ func ParseUpuAckResponse(rsp *http.Response) (*UpuAckResponse, error) {
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -14453,6 +14468,9 @@ func ParseUnsubscribeResponse(rsp *http.Response) (*UnsubscribeResponse, error) 
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef2.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

@@ -1369,6 +1369,9 @@ func ParseNnefPFDmanagementAllFetchResponse(rsp *http.Response) (*NnefPFDmanagem
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
 		var dest externalRef0.N414
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -1471,6 +1474,9 @@ func ParseNnefPFDmanagementIndAppFetchResponse(rsp *http.Response) (*NnefPFDmana
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case rsp.StatusCode == 406:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
 		var dest externalRef0.N414
@@ -1629,6 +1635,9 @@ func ParseNnefPFDmanagementUnsubscribeResponse(rsp *http.Response) (*NnefPFDmana
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

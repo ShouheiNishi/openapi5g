@@ -17289,82 +17289,15 @@ func ParsePostPduSessionsResponse(rsp *http.Response) (*PostPduSessionsResponse,
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
-		var dest PduSessionCreateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
-		var dest PduSessionCreateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 404:
-		var dest PduSessionCreateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
-		var dest PduSessionCreateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
-		var dest PduSessionCreateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON503 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
-		var dest PduSessionCreateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
-		var dest PduSessionCreateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON403 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 404:
-		var dest PduSessionCreateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON404 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
-		var dest PduSessionCreateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON500 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
-		var dest PduSessionCreateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON503 = &dest
-
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest PduSessionCreatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 201:
+	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
@@ -17379,6 +17312,57 @@ func ParsePostPduSessionsResponse(rsp *http.Response) (*PostPduSessionsResponse,
 			return nil, err
 		}
 		response.JSON308 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
+		var dest PduSessionCreateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
+		var dest PduSessionCreateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case rsp.StatusCode == 400:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
+		var dest PduSessionCreateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
+		var dest PduSessionCreateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case rsp.StatusCode == 403:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 404:
+		var dest PduSessionCreateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 404:
+		var dest PduSessionCreateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case rsp.StatusCode == 404:
+	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
 		var dest externalRef1.N411
@@ -17408,30 +17392,46 @@ func ParsePostPduSessionsResponse(rsp *http.Response) (*PostPduSessionsResponse,
 		}
 		response.ApplicationproblemJSON429 = &dest
 
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
+		var dest PduSessionCreateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
+		var dest PduSessionCreateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	case rsp.StatusCode == 500:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
+		var dest PduSessionCreateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
+		var dest PduSessionCreateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON503 = &dest
+
+	case rsp.StatusCode == 503:
+	// Content-type (multipart/related) unsupported
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef1.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSONDefault = &dest
-
-	case rsp.StatusCode == 201:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 400:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 403:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 404:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 500:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 503:
-		// Content-type (multipart/related) unsupported
 
 	}
 
@@ -17452,82 +17452,18 @@ func ParseUpdatePduSessionResponse(rsp *http.Response) (*UpdatePduSessionRespons
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
-		var dest HsmfUpdateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
-		var dest HsmfUpdateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 404:
-		var dest HsmfUpdateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
-		var dest HsmfUpdateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
-		var dest HsmfUpdateErrorApplicationJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON503 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
-		var dest HsmfUpdateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
-		var dest HsmfUpdateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON403 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 404:
-		var dest HsmfUpdateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON404 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
-		var dest HsmfUpdateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON500 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
-		var dest HsmfUpdateErrorApplicationProblemPlusJSON
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON503 = &dest
-
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest HsmfUpdatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
@@ -17542,6 +17478,57 @@ func ParseUpdatePduSessionResponse(rsp *http.Response) (*UpdatePduSessionRespons
 			return nil, err
 		}
 		response.JSON308 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
+		var dest HsmfUpdateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
+		var dest HsmfUpdateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case rsp.StatusCode == 400:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
+		var dest HsmfUpdateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
+		var dest HsmfUpdateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case rsp.StatusCode == 403:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 404:
+		var dest HsmfUpdateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 404:
+		var dest HsmfUpdateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case rsp.StatusCode == 404:
+	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
 		var dest externalRef1.N411
@@ -17571,30 +17558,46 @@ func ParseUpdatePduSessionResponse(rsp *http.Response) (*UpdatePduSessionRespons
 		}
 		response.ApplicationproblemJSON429 = &dest
 
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
+		var dest HsmfUpdateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
+		var dest HsmfUpdateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	case rsp.StatusCode == 500:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
+		var dest HsmfUpdateErrorApplicationJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
+		var dest HsmfUpdateErrorApplicationProblemPlusJSON
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON503 = &dest
+
+	case rsp.StatusCode == 503:
+	// Content-type (multipart/related) unsupported
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef1.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSONDefault = &dest
-
-	case rsp.StatusCode == 200:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 400:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 403:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 404:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 500:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 503:
-		// Content-type (multipart/related) unsupported
 
 	}
 
@@ -17621,6 +17624,12 @@ func ParseReleasePduSessionResponse(rsp *http.Response) (*ReleasePduSessionRespo
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
@@ -17705,9 +17714,6 @@ func ParseReleasePduSessionResponse(rsp *http.Response) (*ReleasePduSessionRespo
 			return nil, err
 		}
 		response.ApplicationproblemJSONDefault = &dest
-
-	case rsp.StatusCode == 200:
-		// Content-type (multipart/related) unsupported
 
 	}
 
@@ -17845,6 +17851,9 @@ func ParseTransferMoDataResponse(rsp *http.Response) (*TransferMoDataResponse, e
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -17955,82 +17964,15 @@ func ParsePostSmContextsResponse(rsp *http.Response) (*PostSmContextsResponse, e
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
-		var dest SmContextCreateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
-		var dest SmContextCreateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
-		var dest SmContextCreateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
-		var dest SmContextCreateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON503 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 504:
-		var dest SmContextCreateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON504 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON403 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON500 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON503 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 504:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON504 = &dest
-
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest SmContextCreatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 201:
+	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
@@ -18046,12 +17988,49 @@ func ParsePostSmContextsResponse(rsp *http.Response) (*PostSmContextsResponse, e
 		}
 		response.JSON308 = &dest
 
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
+		var dest SmContextCreateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case rsp.StatusCode == 400:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
+		var dest SmContextCreateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case rsp.StatusCode == 403:
+	// Content-type (multipart/related) unsupported
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest SmContextCreateError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case rsp.StatusCode == 404:
+	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
 		var dest externalRef1.N411
@@ -18081,33 +18060,63 @@ func ParsePostSmContextsResponse(rsp *http.Response) (*PostSmContextsResponse, e
 		}
 		response.ApplicationproblemJSON429 = &dest
 
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
+		var dest SmContextCreateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	case rsp.StatusCode == 500:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
+		var dest SmContextCreateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON503 = &dest
+
+	case rsp.StatusCode == 503:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 504:
+		var dest SmContextCreateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON504 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 504:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON504 = &dest
+
+	case rsp.StatusCode == 504:
+	// Content-type (multipart/related) unsupported
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef1.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSONDefault = &dest
-
-	case rsp.StatusCode == 201:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 400:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 403:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 404:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 500:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 503:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 504:
-		// Content-type (multipart/related) unsupported
 
 	}
 
@@ -18128,68 +18137,18 @@ func ParseUpdateSmContextResponse(rsp *http.Response) (*UpdateSmContextResponse,
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
-		var dest SmContextUpdateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
-		var dest SmContextUpdateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON403 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
-		var dest SmContextUpdateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
-		var dest SmContextUpdateError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON503 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON400 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON403 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON500 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
-		var dest externalRef1.ProblemDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON503 = &dest
-
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SmContextUpdatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
@@ -18205,12 +18164,49 @@ func ParseUpdateSmContextResponse(rsp *http.Response) (*UpdateSmContextResponse,
 		}
 		response.JSON308 = &dest
 
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
+		var dest SmContextUpdateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case rsp.StatusCode == 400:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
+		var dest SmContextUpdateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case rsp.StatusCode == 403:
+	// Content-type (multipart/related) unsupported
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest SmContextUpdateError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case rsp.StatusCode == 404:
+	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
 		var dest externalRef1.N411
@@ -18240,30 +18236,46 @@ func ParseUpdateSmContextResponse(rsp *http.Response) (*UpdateSmContextResponse,
 		}
 		response.ApplicationproblemJSON429 = &dest
 
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
+		var dest SmContextUpdateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	case rsp.StatusCode == 500:
+	// Content-type (multipart/related) unsupported
+
+	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
+		var dest SmContextUpdateError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
+		var dest externalRef1.ProblemDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON503 = &dest
+
+	case rsp.StatusCode == 503:
+	// Content-type (multipart/related) unsupported
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest externalRef1.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSONDefault = &dest
-
-	case rsp.StatusCode == 200:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 400:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 403:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 404:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 500:
-	// Content-type (multipart/related) unsupported
-
-	case rsp.StatusCode == 503:
-		// Content-type (multipart/related) unsupported
 
 	}
 
@@ -18290,6 +18302,9 @@ func ParseReleaseSmContextResponse(rsp *http.Response) (*ReleaseSmContextRespons
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
@@ -18511,6 +18526,9 @@ func ParseSendMoDataResponse(rsp *http.Response) (*SendMoDataResponse, error) {
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef1.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

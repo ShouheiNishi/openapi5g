@@ -6352,6 +6352,9 @@ func ParseReadBdtDataResponse(rsp *http.Response) (*ReadBdtDataResponse, error) 
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6399,6 +6402,9 @@ func ParseDeleteIndividualBdtDataResponse(rsp *http.Response) (*DeleteIndividual
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6509,6 +6515,9 @@ func ParseReadIndividualBdtDataResponse(rsp *http.Response) (*ReadIndividualBdtD
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6562,6 +6571,9 @@ func ParseUpdateIndividualBdtDataResponse(rsp *http.Response) (*UpdateIndividual
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
@@ -6804,6 +6816,9 @@ func ParseReadPlmnUePolicySetResponse(rsp *http.Response) (*ReadPlmnUePolicySetR
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 412:
 		var dest externalRef0.N412
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6865,6 +6880,9 @@ func ParseReadSponsorConnectivityDataResponse(rsp *http.Response) (*ReadSponsorC
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -6892,6 +6910,9 @@ func ParseReadSponsorConnectivityDataResponse(rsp *http.Response) (*ReadSponsorC
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case rsp.StatusCode == 406:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
@@ -7043,6 +7064,9 @@ func ParseDeleteIndividualPolicyDataSubscriptionResponse(rsp *http.Response) (*D
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7124,6 +7148,9 @@ func ParseReplaceIndividualPolicyDataSubscriptionResponse(rsp *http.Response) (*
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
@@ -7256,6 +7283,9 @@ func ParseReadAccessAndMobilityPolicyDataResponse(rsp *http.Response) (*ReadAcce
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7338,6 +7368,9 @@ func ParseReadOperatorSpecificDataResponse(rsp *http.Response) (*ReadOperatorSpe
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
 		var dest externalRef0.N414
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7398,6 +7431,9 @@ func ParseUpdateOperatorSpecificDataResponse(rsp *http.Response) (*UpdateOperato
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
@@ -7501,6 +7537,9 @@ func ParseReplaceOperatorSpecificDataResponse(rsp *http.Response) (*ReplaceOpera
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
@@ -7633,6 +7672,9 @@ func ParseReadSessionManagementPolicyDataResponse(rsp *http.Response) (*ReadSess
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
 		var dest externalRef0.N414
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7693,6 +7735,9 @@ func ParseUpdateSessionManagementPolicyDataResponse(rsp *http.Response) (*Update
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
@@ -7790,6 +7835,9 @@ func ParseDeleteUsageMonitoringInformationResponse(rsp *http.Response) (*DeleteU
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7872,6 +7920,9 @@ func ParseReadUsageMonitoringInformationResponse(rsp *http.Response) (*ReadUsage
 		}
 		response.JSON200 = &dest
 
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7899,6 +7950,9 @@ func ParseReadUsageMonitoringInformationResponse(rsp *http.Response) (*ReadUsage
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case rsp.StatusCode == 406:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
 		var dest externalRef0.N414
@@ -8099,6 +8153,9 @@ func ParseReadUEPolicySetResponse(rsp *http.Response) (*ReadUEPolicySetResponse,
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -8146,6 +8203,9 @@ func ParseUpdateUEPolicySetResponse(rsp *http.Response) (*UpdateUEPolicySetRespo
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -8255,6 +8315,9 @@ func ParseCreateOrReplaceUEPolicySetResponse(rsp *http.Response) (*CreateOrRepla
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400

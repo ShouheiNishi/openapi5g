@@ -2283,6 +2283,9 @@ func ParsePostUeAuthenticationsDeregisterResponse(rsp *http.Response) (*PostUeAu
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2330,6 +2333,9 @@ func ParseDelete5gAkaAuthenticationResultResponse(rsp *http.Response) (*Delete5g
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -2459,6 +2465,9 @@ func ParseDeleteEapAuthenticationResultResponse(rsp *http.Response) (*DeleteEapA
 	}
 
 	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

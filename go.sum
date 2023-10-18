@@ -1,8 +1,8 @@
 github.com/RaveNoX/go-jsoncommentstrip v1.0.0/go.mod h1:78ihd09MekBnJnxpICcwzCMzGrKSKYe4AqU6PDYYpjk=
 github.com/ShouheiNishi/kin-openapi v0.118.1-0.20230809022507-e0d137517940 h1:QTvZerzJ6VDr0jll2FsXGO7F00GSj2L6GBXUtk72oMo=
 github.com/ShouheiNishi/kin-openapi v0.118.1-0.20230809022507-e0d137517940/go.mod h1:l5e9PaFUo9fyLJCPGQeXI2ML8c3P8BHOEV2VaAVf/pc=
-github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20231122012056-3dfd3b7ac623 h1:1CYa3/HRUCVHhU49H2Jw+iAv7rTrgMev1sJm9NUe+YQ=
-github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20231122012056-3dfd3b7ac623/go.mod h1:7zR+ZL3WzLeCkr2k8oWTxEa0v8y/F25ane0l6A5UjLA=
+github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20231122044127-ce40f14ea460 h1:zgglokks2BAOhi7lscdIYZzY5UY1w6WNUmvlXCABG7Y=
+github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20231122044127-ce40f14ea460/go.mod h1:7zR+ZL3WzLeCkr2k8oWTxEa0v8y/F25ane0l6A5UjLA=
 github.com/apapsch/go-jsonmerge/v2 v2.0.0 h1:axGnT1gRIfimI7gJifB699GoE/oq+F2MU7Dml6nw9rQ=
 github.com/apapsch/go-jsonmerge/v2 v2.0.0/go.mod h1:lvDnEdqiQrp0O42VQGgmlKpxL1AP2+08jFMw88y4klk=
 github.com/bmatcuk/doublestar v1.1.1/go.mod h1:UD6OnuiIn0yFxxA2le/rnRU1G4RaI4UvFv1sNto9p6w=

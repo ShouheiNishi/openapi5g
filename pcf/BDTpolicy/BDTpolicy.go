@@ -1620,6 +1620,9 @@ func ParseCreateBDTPolicyResponse(rsp *http.Response) (*CreateBDTPolicyResponse,
 		}
 		response.JSON201 = &dest
 
+	case rsp.StatusCode == 303:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -1765,6 +1768,9 @@ func ParseGetBDTPolicyResponse(rsp *http.Response) (*GetBDTPolicyResponse, error
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case rsp.StatusCode == 406:
+		break // No content-type
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
 		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -1818,6 +1824,9 @@ func ParseUpdateBDTPolicyResponse(rsp *http.Response) (*UpdateBDTPolicyResponse,
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
 		var dest externalRef0.N307

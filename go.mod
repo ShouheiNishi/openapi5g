@@ -57,6 +57,6 @@ require (
 )
 
 replace (
-	github.com/deepmap/oapi-codegen/v2 v2.0.0 => github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20231122012056-3dfd3b7ac623
+	github.com/deepmap/oapi-codegen/v2 v2.0.0 => github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20231122044127-ce40f14ea460
 	github.com/getkin/kin-openapi v0.118.0 => github.com/ShouheiNishi/kin-openapi v0.118.1-0.20230809022507-e0d137517940
 )

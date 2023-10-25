@@ -1489,7 +1489,7 @@ func (response AccessTokenRequest401ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest403ApplicationProblemPlusJSONResponse struct {
@@ -1500,7 +1500,7 @@ func (response AccessTokenRequest403ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest404ApplicationProblemPlusJSONResponse struct {
@@ -1511,7 +1511,7 @@ func (response AccessTokenRequest404ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest411ApplicationProblemPlusJSONResponse struct {
@@ -1522,7 +1522,7 @@ func (response AccessTokenRequest411ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest413ApplicationProblemPlusJSONResponse struct {
@@ -1533,7 +1533,7 @@ func (response AccessTokenRequest413ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest415ApplicationProblemPlusJSONResponse struct {
@@ -1544,7 +1544,7 @@ func (response AccessTokenRequest415ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest429ApplicationProblemPlusJSONResponse struct {
@@ -1555,7 +1555,7 @@ func (response AccessTokenRequest429ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest500ApplicationProblemPlusJSONResponse struct {
@@ -1566,7 +1566,7 @@ func (response AccessTokenRequest500ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest501ApplicationProblemPlusJSONResponse struct {
@@ -1577,7 +1577,7 @@ func (response AccessTokenRequest501ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequest503ApplicationProblemPlusJSONResponse struct {
@@ -1588,7 +1588,7 @@ func (response AccessTokenRequest503ApplicationProblemPlusJSONResponse) VisitAcc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type AccessTokenRequestdefaultApplicationProblemPlusJSONResponse struct {

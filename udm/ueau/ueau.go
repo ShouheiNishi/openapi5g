@@ -3227,7 +3227,7 @@ func (response GetRgAuthData200JSONResponse) VisitGetRgAuthDataResponse(w http.R
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(RgAuthCtx(response))
 }
 
 type GetRgAuthData400ApplicationProblemPlusJSONResponse struct {
@@ -3238,7 +3238,7 @@ func (response GetRgAuthData400ApplicationProblemPlusJSONResponse) VisitGetRgAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetRgAuthData403ApplicationProblemPlusJSONResponse struct {
@@ -3249,7 +3249,7 @@ func (response GetRgAuthData403ApplicationProblemPlusJSONResponse) VisitGetRgAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type GetRgAuthData404ApplicationProblemPlusJSONResponse struct {
@@ -3260,7 +3260,7 @@ func (response GetRgAuthData404ApplicationProblemPlusJSONResponse) VisitGetRgAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetRgAuthData500ApplicationProblemPlusJSONResponse struct {
@@ -3271,7 +3271,7 @@ func (response GetRgAuthData500ApplicationProblemPlusJSONResponse) VisitGetRgAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetRgAuthData503ApplicationProblemPlusJSONResponse struct {
@@ -3282,7 +3282,7 @@ func (response GetRgAuthData503ApplicationProblemPlusJSONResponse) VisitGetRgAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetRgAuthDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -3312,7 +3312,7 @@ func (response GenerateAuthData200JSONResponse) VisitGenerateAuthDataResponse(w 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(AuthenticationInfoResult(response))
 }
 
 type GenerateAuthData400ApplicationProblemPlusJSONResponse struct {
@@ -3323,7 +3323,7 @@ func (response GenerateAuthData400ApplicationProblemPlusJSONResponse) VisitGener
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAuthData403ApplicationProblemPlusJSONResponse struct {
@@ -3334,7 +3334,7 @@ func (response GenerateAuthData403ApplicationProblemPlusJSONResponse) VisitGener
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAuthData404ApplicationProblemPlusJSONResponse struct {
@@ -3345,7 +3345,7 @@ func (response GenerateAuthData404ApplicationProblemPlusJSONResponse) VisitGener
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAuthData500ApplicationProblemPlusJSONResponse struct {
@@ -3356,7 +3356,7 @@ func (response GenerateAuthData500ApplicationProblemPlusJSONResponse) VisitGener
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAuthData501ApplicationProblemPlusJSONResponse struct {
@@ -3367,7 +3367,7 @@ func (response GenerateAuthData501ApplicationProblemPlusJSONResponse) VisitGener
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAuthData503ApplicationProblemPlusJSONResponse struct {
@@ -3378,7 +3378,7 @@ func (response GenerateAuthData503ApplicationProblemPlusJSONResponse) VisitGener
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAuthDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -3427,7 +3427,7 @@ func (response ConfirmAuth400ApplicationProblemPlusJSONResponse) VisitConfirmAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type ConfirmAuth404ApplicationProblemPlusJSONResponse struct {
@@ -3438,7 +3438,7 @@ func (response ConfirmAuth404ApplicationProblemPlusJSONResponse) VisitConfirmAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ConfirmAuth500ApplicationProblemPlusJSONResponse struct {
@@ -3449,7 +3449,7 @@ func (response ConfirmAuth500ApplicationProblemPlusJSONResponse) VisitConfirmAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type ConfirmAuth503ApplicationProblemPlusJSONResponse struct {
@@ -3460,7 +3460,7 @@ func (response ConfirmAuth503ApplicationProblemPlusJSONResponse) VisitConfirmAut
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ConfirmAuthdefaultApplicationProblemPlusJSONResponse struct {
@@ -3501,7 +3501,7 @@ func (response DeleteAuth400ApplicationProblemPlusJSONResponse) VisitDeleteAuthR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteAuth404ApplicationProblemPlusJSONResponse struct {
@@ -3512,7 +3512,7 @@ func (response DeleteAuth404ApplicationProblemPlusJSONResponse) VisitDeleteAuthR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteAuth500ApplicationProblemPlusJSONResponse struct {
@@ -3523,7 +3523,7 @@ func (response DeleteAuth500ApplicationProblemPlusJSONResponse) VisitDeleteAuthR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteAuth503ApplicationProblemPlusJSONResponse struct {
@@ -3534,7 +3534,7 @@ func (response DeleteAuth503ApplicationProblemPlusJSONResponse) VisitDeleteAuthR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteAuthdefaultApplicationProblemPlusJSONResponse struct {
@@ -3565,7 +3565,7 @@ func (response GenerateAv200JSONResponse) VisitGenerateAvResponse(w http.Respons
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(HssAuthenticationInfoResult(response))
 }
 
 type GenerateAv400ApplicationProblemPlusJSONResponse struct {
@@ -3576,7 +3576,7 @@ func (response GenerateAv400ApplicationProblemPlusJSONResponse) VisitGenerateAvR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAv403ApplicationProblemPlusJSONResponse struct {
@@ -3587,7 +3587,7 @@ func (response GenerateAv403ApplicationProblemPlusJSONResponse) VisitGenerateAvR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAv404ApplicationProblemPlusJSONResponse struct {
@@ -3598,7 +3598,7 @@ func (response GenerateAv404ApplicationProblemPlusJSONResponse) VisitGenerateAvR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAv500ApplicationProblemPlusJSONResponse struct {
@@ -3609,7 +3609,7 @@ func (response GenerateAv500ApplicationProblemPlusJSONResponse) VisitGenerateAvR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAv501ApplicationProblemPlusJSONResponse struct {
@@ -3620,7 +3620,7 @@ func (response GenerateAv501ApplicationProblemPlusJSONResponse) VisitGenerateAvR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAv503ApplicationProblemPlusJSONResponse struct {
@@ -3631,7 +3631,7 @@ func (response GenerateAv503ApplicationProblemPlusJSONResponse) VisitGenerateAvR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GenerateAvdefaultApplicationProblemPlusJSONResponse struct {

@@ -803,7 +803,7 @@ func (response PostSupiUeSor200JSONResponse) VisitPostSupiUeSorResponse(w http.R
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(SorSecurityInfo(response))
 }
 
 type PostSupiUeSor307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -834,7 +834,7 @@ func (response PostSupiUeSor503ApplicationProblemPlusJSONResponse) VisitPostSupi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type PostSupiUeSordefaultApplicationProblemPlusJSONResponse struct {

@@ -3089,7 +3089,7 @@ func (response NSSAIAvailabilityOptions400ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityOptions401ApplicationProblemPlusJSONResponse struct {
@@ -3100,7 +3100,7 @@ func (response NSSAIAvailabilityOptions401ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityOptions403ApplicationProblemPlusJSONResponse struct {
@@ -3111,7 +3111,7 @@ func (response NSSAIAvailabilityOptions403ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityOptions404ApplicationProblemPlusJSONResponse struct {
@@ -3122,7 +3122,7 @@ func (response NSSAIAvailabilityOptions404ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityOptions405Response externalRef0.N405Response
@@ -3140,7 +3140,7 @@ func (response NSSAIAvailabilityOptions429ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityOptions500ApplicationProblemPlusJSONResponse struct {
@@ -3151,7 +3151,7 @@ func (response NSSAIAvailabilityOptions500ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityOptions501ApplicationProblemPlusJSONResponse struct {
@@ -3162,7 +3162,7 @@ func (response NSSAIAvailabilityOptions501ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityOptions503ApplicationProblemPlusJSONResponse struct {
@@ -3173,7 +3173,7 @@ func (response NSSAIAvailabilityOptions503ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityOptionsdefaultApplicationProblemPlusJSONResponse struct {
@@ -3246,7 +3246,7 @@ func (response NSSAIAvailabilityPost400ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost401ApplicationProblemPlusJSONResponse struct {
@@ -3257,7 +3257,7 @@ func (response NSSAIAvailabilityPost401ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost403ApplicationProblemPlusJSONResponse struct {
@@ -3268,7 +3268,7 @@ func (response NSSAIAvailabilityPost403ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost404ApplicationProblemPlusJSONResponse struct {
@@ -3279,7 +3279,7 @@ func (response NSSAIAvailabilityPost404ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost411ApplicationProblemPlusJSONResponse struct {
@@ -3290,7 +3290,7 @@ func (response NSSAIAvailabilityPost411ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost413ApplicationProblemPlusJSONResponse struct {
@@ -3301,7 +3301,7 @@ func (response NSSAIAvailabilityPost413ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost415ApplicationProblemPlusJSONResponse struct {
@@ -3312,7 +3312,7 @@ func (response NSSAIAvailabilityPost415ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost429ApplicationProblemPlusJSONResponse struct {
@@ -3323,7 +3323,7 @@ func (response NSSAIAvailabilityPost429ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost500ApplicationProblemPlusJSONResponse struct {
@@ -3334,7 +3334,7 @@ func (response NSSAIAvailabilityPost500ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPost503ApplicationProblemPlusJSONResponse struct {
@@ -3345,7 +3345,7 @@ func (response NSSAIAvailabilityPost503ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPostdefaultApplicationProblemPlusJSONResponse struct {
@@ -3406,7 +3406,7 @@ func (response NSSAIAvailabilityUnsubscribe400ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityUnsubscribe401ApplicationProblemPlusJSONResponse struct {
@@ -3417,7 +3417,7 @@ func (response NSSAIAvailabilityUnsubscribe401ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityUnsubscribe404ApplicationProblemPlusJSONResponse struct {
@@ -3428,7 +3428,7 @@ func (response NSSAIAvailabilityUnsubscribe404ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityUnsubscribe429ApplicationProblemPlusJSONResponse struct {
@@ -3439,7 +3439,7 @@ func (response NSSAIAvailabilityUnsubscribe429ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityUnsubscribe500ApplicationProblemPlusJSONResponse struct {
@@ -3450,7 +3450,7 @@ func (response NSSAIAvailabilityUnsubscribe500ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityUnsubscribe503ApplicationProblemPlusJSONResponse struct {
@@ -3461,7 +3461,7 @@ func (response NSSAIAvailabilityUnsubscribe503ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityUnsubscribedefaultApplicationProblemPlusJSONResponse struct {
@@ -3533,7 +3533,7 @@ func (response NSSAIAvailabilitySubModifyPatch400ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch401ApplicationProblemPlusJSONResponse struct {
@@ -3544,7 +3544,7 @@ func (response NSSAIAvailabilitySubModifyPatch401ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch403ApplicationProblemPlusJSONResponse struct {
@@ -3555,7 +3555,7 @@ func (response NSSAIAvailabilitySubModifyPatch403ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch404ApplicationProblemPlusJSONResponse struct {
@@ -3566,7 +3566,7 @@ func (response NSSAIAvailabilitySubModifyPatch404ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch411ApplicationProblemPlusJSONResponse struct {
@@ -3577,7 +3577,7 @@ func (response NSSAIAvailabilitySubModifyPatch411ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch413ApplicationProblemPlusJSONResponse struct {
@@ -3588,7 +3588,7 @@ func (response NSSAIAvailabilitySubModifyPatch413ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch415ApplicationProblemPlusJSONResponse struct {
@@ -3599,7 +3599,7 @@ func (response NSSAIAvailabilitySubModifyPatch415ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch429ApplicationProblemPlusJSONResponse struct {
@@ -3610,7 +3610,7 @@ func (response NSSAIAvailabilitySubModifyPatch429ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch500ApplicationProblemPlusJSONResponse struct {
@@ -3621,7 +3621,7 @@ func (response NSSAIAvailabilitySubModifyPatch500ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatch503ApplicationProblemPlusJSONResponse struct {
@@ -3632,7 +3632,7 @@ func (response NSSAIAvailabilitySubModifyPatch503ApplicationProblemPlusJSONRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilitySubModifyPatchdefaultApplicationProblemPlusJSONResponse struct {
@@ -3693,7 +3693,7 @@ func (response NSSAIAvailabilityDelete400ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityDelete401ApplicationProblemPlusJSONResponse struct {
@@ -3704,7 +3704,7 @@ func (response NSSAIAvailabilityDelete401ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityDelete404ApplicationProblemPlusJSONResponse struct {
@@ -3715,7 +3715,7 @@ func (response NSSAIAvailabilityDelete404ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityDelete429ApplicationProblemPlusJSONResponse struct {
@@ -3726,7 +3726,7 @@ func (response NSSAIAvailabilityDelete429ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityDelete500ApplicationProblemPlusJSONResponse struct {
@@ -3737,7 +3737,7 @@ func (response NSSAIAvailabilityDelete500ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityDelete503ApplicationProblemPlusJSONResponse struct {
@@ -3748,7 +3748,7 @@ func (response NSSAIAvailabilityDelete503ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityDeletedefaultApplicationProblemPlusJSONResponse struct {
@@ -3830,7 +3830,7 @@ func (response NSSAIAvailabilityPatch400ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch401ApplicationProblemPlusJSONResponse struct {
@@ -3841,7 +3841,7 @@ func (response NSSAIAvailabilityPatch401ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch403ApplicationProblemPlusJSONResponse struct {
@@ -3852,7 +3852,7 @@ func (response NSSAIAvailabilityPatch403ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch404ApplicationProblemPlusJSONResponse struct {
@@ -3863,7 +3863,7 @@ func (response NSSAIAvailabilityPatch404ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch411ApplicationProblemPlusJSONResponse struct {
@@ -3874,7 +3874,7 @@ func (response NSSAIAvailabilityPatch411ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch413ApplicationProblemPlusJSONResponse struct {
@@ -3885,7 +3885,7 @@ func (response NSSAIAvailabilityPatch413ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch415ApplicationProblemPlusJSONResponse struct {
@@ -3896,7 +3896,7 @@ func (response NSSAIAvailabilityPatch415ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch429ApplicationProblemPlusJSONResponse struct {
@@ -3907,7 +3907,7 @@ func (response NSSAIAvailabilityPatch429ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch500ApplicationProblemPlusJSONResponse struct {
@@ -3918,7 +3918,7 @@ func (response NSSAIAvailabilityPatch500ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatch503ApplicationProblemPlusJSONResponse struct {
@@ -3929,7 +3929,7 @@ func (response NSSAIAvailabilityPatch503ApplicationProblemPlusJSONResponse) Visi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPatchdefaultApplicationProblemPlusJSONResponse struct {
@@ -4011,7 +4011,7 @@ func (response NSSAIAvailabilityPut400ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut401ApplicationProblemPlusJSONResponse struct {
@@ -4022,7 +4022,7 @@ func (response NSSAIAvailabilityPut401ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut403ApplicationProblemPlusJSONResponse struct {
@@ -4033,7 +4033,7 @@ func (response NSSAIAvailabilityPut403ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut404ApplicationProblemPlusJSONResponse struct {
@@ -4044,7 +4044,7 @@ func (response NSSAIAvailabilityPut404ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut411ApplicationProblemPlusJSONResponse struct {
@@ -4055,7 +4055,7 @@ func (response NSSAIAvailabilityPut411ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut413ApplicationProblemPlusJSONResponse struct {
@@ -4066,7 +4066,7 @@ func (response NSSAIAvailabilityPut413ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut415ApplicationProblemPlusJSONResponse struct {
@@ -4077,7 +4077,7 @@ func (response NSSAIAvailabilityPut415ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut429ApplicationProblemPlusJSONResponse struct {
@@ -4088,7 +4088,7 @@ func (response NSSAIAvailabilityPut429ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut500ApplicationProblemPlusJSONResponse struct {
@@ -4099,7 +4099,7 @@ func (response NSSAIAvailabilityPut500ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPut503ApplicationProblemPlusJSONResponse struct {
@@ -4110,7 +4110,7 @@ func (response NSSAIAvailabilityPut503ApplicationProblemPlusJSONResponse) VisitN
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NSSAIAvailabilityPutdefaultApplicationProblemPlusJSONResponse struct {

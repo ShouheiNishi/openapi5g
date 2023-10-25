@@ -1927,7 +1927,7 @@ func (response NSSelectionGet200JSONResponse) VisitNSSelectionGetResponse(w http
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(AuthorizedNetworkSliceInfo(response))
 }
 
 type NSSelectionGet307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -1960,7 +1960,7 @@ func (response NSSelectionGet400ApplicationProblemPlusJSONResponse) VisitNSSelec
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NSSelectionGet401ApplicationProblemPlusJSONResponse struct {
@@ -1971,7 +1971,7 @@ func (response NSSelectionGet401ApplicationProblemPlusJSONResponse) VisitNSSelec
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NSSelectionGet403ApplicationProblemPlusJSONResponse struct {
@@ -1982,7 +1982,7 @@ func (response NSSelectionGet403ApplicationProblemPlusJSONResponse) VisitNSSelec
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NSSelectionGet404ApplicationProblemPlusJSONResponse struct {
@@ -1993,7 +1993,7 @@ func (response NSSelectionGet404ApplicationProblemPlusJSONResponse) VisitNSSelec
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NSSelectionGet406Response externalRef0.N406Response
@@ -2011,7 +2011,7 @@ func (response NSSelectionGet414ApplicationProblemPlusJSONResponse) VisitNSSelec
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(414)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N414ApplicationProblemPlusJSONResponse))
 }
 
 type NSSelectionGet429ApplicationProblemPlusJSONResponse struct {
@@ -2022,7 +2022,7 @@ func (response NSSelectionGet429ApplicationProblemPlusJSONResponse) VisitNSSelec
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NSSelectionGet500ApplicationProblemPlusJSONResponse struct {
@@ -2033,7 +2033,7 @@ func (response NSSelectionGet500ApplicationProblemPlusJSONResponse) VisitNSSelec
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NSSelectionGet503ApplicationProblemPlusJSONResponse struct {
@@ -2044,7 +2044,7 @@ func (response NSSelectionGet503ApplicationProblemPlusJSONResponse) VisitNSSelec
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NSSelectionGetdefaultApplicationProblemPlusJSONResponse struct {

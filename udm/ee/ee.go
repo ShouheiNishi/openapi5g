@@ -3230,7 +3230,7 @@ func (response CreateEeSubscription400ApplicationProblemPlusJSONResponse) VisitC
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription403ApplicationProblemPlusJSONResponse struct {
@@ -3241,7 +3241,7 @@ func (response CreateEeSubscription403ApplicationProblemPlusJSONResponse) VisitC
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription404ApplicationProblemPlusJSONResponse struct {
@@ -3252,7 +3252,7 @@ func (response CreateEeSubscription404ApplicationProblemPlusJSONResponse) VisitC
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription500ApplicationProblemPlusJSONResponse struct {
@@ -3263,7 +3263,7 @@ func (response CreateEeSubscription500ApplicationProblemPlusJSONResponse) VisitC
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription501ApplicationProblemPlusJSONResponse struct {
@@ -3274,7 +3274,7 @@ func (response CreateEeSubscription501ApplicationProblemPlusJSONResponse) VisitC
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription503ApplicationProblemPlusJSONResponse struct {
@@ -3285,7 +3285,7 @@ func (response CreateEeSubscription503ApplicationProblemPlusJSONResponse) VisitC
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
@@ -3325,7 +3325,7 @@ func (response DeleteEeSubscription400ApplicationProblemPlusJSONResponse) VisitD
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteEeSubscription404ApplicationProblemPlusJSONResponse struct {
@@ -3336,7 +3336,7 @@ func (response DeleteEeSubscription404ApplicationProblemPlusJSONResponse) VisitD
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteEeSubscription500ApplicationProblemPlusJSONResponse struct {
@@ -3347,7 +3347,7 @@ func (response DeleteEeSubscription500ApplicationProblemPlusJSONResponse) VisitD
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteEeSubscription503ApplicationProblemPlusJSONResponse struct {
@@ -3358,7 +3358,7 @@ func (response DeleteEeSubscription503ApplicationProblemPlusJSONResponse) VisitD
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
@@ -3390,7 +3390,7 @@ func (response UpdateEeSubscription200JSONResponse) VisitUpdateEeSubscriptionRes
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.PatchResult(response))
 }
 
 type UpdateEeSubscription204Response struct {
@@ -3409,7 +3409,7 @@ func (response UpdateEeSubscription403ApplicationProblemPlusJSONResponse) VisitU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateEeSubscription404ApplicationProblemPlusJSONResponse struct {
@@ -3420,7 +3420,7 @@ func (response UpdateEeSubscription404ApplicationProblemPlusJSONResponse) VisitU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {

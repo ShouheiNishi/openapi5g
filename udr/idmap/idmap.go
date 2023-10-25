@@ -414,7 +414,7 @@ func (response GetNfGroupIDs200JSONResponse) VisitGetNfGroupIDsResponse(w http.R
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(NfGroupIdMapResult(response))
 }
 
 type GetNfGroupIDs404ApplicationProblemPlusJSONResponse struct {
@@ -425,7 +425,7 @@ func (response GetNfGroupIDs404ApplicationProblemPlusJSONResponse) VisitGetNfGro
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetNfGroupIDsdefaultApplicationProblemPlusJSONResponse struct {

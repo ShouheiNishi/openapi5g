@@ -2064,7 +2064,7 @@ func (response NnefPFDmanagementAllFetch400ApplicationProblemPlusJSONResponse) V
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementAllFetch401ApplicationProblemPlusJSONResponse struct {
@@ -2075,7 +2075,7 @@ func (response NnefPFDmanagementAllFetch401ApplicationProblemPlusJSONResponse) V
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementAllFetch403ApplicationProblemPlusJSONResponse struct {
@@ -2086,7 +2086,7 @@ func (response NnefPFDmanagementAllFetch403ApplicationProblemPlusJSONResponse) V
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementAllFetch404ApplicationProblemPlusJSONResponse struct {
@@ -2097,7 +2097,7 @@ func (response NnefPFDmanagementAllFetch404ApplicationProblemPlusJSONResponse) V
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementAllFetch406Response externalRef0.N406Response
@@ -2115,7 +2115,7 @@ func (response NnefPFDmanagementAllFetch414ApplicationProblemPlusJSONResponse) V
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(414)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N414ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementAllFetch429ApplicationProblemPlusJSONResponse struct {
@@ -2126,7 +2126,7 @@ func (response NnefPFDmanagementAllFetch429ApplicationProblemPlusJSONResponse) V
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementAllFetch500ApplicationProblemPlusJSONResponse struct {
@@ -2137,7 +2137,7 @@ func (response NnefPFDmanagementAllFetch500ApplicationProblemPlusJSONResponse) V
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementAllFetch503ApplicationProblemPlusJSONResponse struct {
@@ -2148,7 +2148,7 @@ func (response NnefPFDmanagementAllFetch503ApplicationProblemPlusJSONResponse) V
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementAllFetchdefaultApplicationProblemPlusJSONResponse struct {
@@ -2178,7 +2178,7 @@ func (response NnefPFDmanagementIndAppFetch200JSONResponse) VisitNnefPFDmanageme
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(PfdDataForApp(response))
 }
 
 type NnefPFDmanagementIndAppFetch307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -2211,7 +2211,7 @@ func (response NnefPFDmanagementIndAppFetch400ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementIndAppFetch401ApplicationProblemPlusJSONResponse struct {
@@ -2222,7 +2222,7 @@ func (response NnefPFDmanagementIndAppFetch401ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementIndAppFetch403ApplicationProblemPlusJSONResponse struct {
@@ -2233,7 +2233,7 @@ func (response NnefPFDmanagementIndAppFetch403ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementIndAppFetch404ApplicationProblemPlusJSONResponse struct {
@@ -2244,7 +2244,7 @@ func (response NnefPFDmanagementIndAppFetch404ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementIndAppFetch406Response externalRef0.N406Response
@@ -2262,7 +2262,7 @@ func (response NnefPFDmanagementIndAppFetch414ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(414)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N414ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementIndAppFetch429ApplicationProblemPlusJSONResponse struct {
@@ -2273,7 +2273,7 @@ func (response NnefPFDmanagementIndAppFetch429ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementIndAppFetch500ApplicationProblemPlusJSONResponse struct {
@@ -2284,7 +2284,7 @@ func (response NnefPFDmanagementIndAppFetch500ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementIndAppFetch503ApplicationProblemPlusJSONResponse struct {
@@ -2295,7 +2295,7 @@ func (response NnefPFDmanagementIndAppFetch503ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementIndAppFetchdefaultApplicationProblemPlusJSONResponse struct {
@@ -2343,7 +2343,7 @@ func (response NnefPFDmanagementCreateSubscr400ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr401ApplicationProblemPlusJSONResponse struct {
@@ -2354,7 +2354,7 @@ func (response NnefPFDmanagementCreateSubscr401ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr403ApplicationProblemPlusJSONResponse struct {
@@ -2365,7 +2365,7 @@ func (response NnefPFDmanagementCreateSubscr403ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr404ApplicationProblemPlusJSONResponse struct {
@@ -2376,7 +2376,7 @@ func (response NnefPFDmanagementCreateSubscr404ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr411ApplicationProblemPlusJSONResponse struct {
@@ -2387,7 +2387,7 @@ func (response NnefPFDmanagementCreateSubscr411ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr413ApplicationProblemPlusJSONResponse struct {
@@ -2398,7 +2398,7 @@ func (response NnefPFDmanagementCreateSubscr413ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr415ApplicationProblemPlusJSONResponse struct {
@@ -2409,7 +2409,7 @@ func (response NnefPFDmanagementCreateSubscr415ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr429ApplicationProblemPlusJSONResponse struct {
@@ -2420,7 +2420,7 @@ func (response NnefPFDmanagementCreateSubscr429ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr500ApplicationProblemPlusJSONResponse struct {
@@ -2431,7 +2431,7 @@ func (response NnefPFDmanagementCreateSubscr500ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscr503ApplicationProblemPlusJSONResponse struct {
@@ -2442,7 +2442,7 @@ func (response NnefPFDmanagementCreateSubscr503ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementCreateSubscrdefaultApplicationProblemPlusJSONResponse struct {
@@ -2503,7 +2503,7 @@ func (response NnefPFDmanagementUnsubscribe400ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementUnsubscribe401ApplicationProblemPlusJSONResponse struct {
@@ -2514,7 +2514,7 @@ func (response NnefPFDmanagementUnsubscribe401ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementUnsubscribe403ApplicationProblemPlusJSONResponse struct {
@@ -2525,7 +2525,7 @@ func (response NnefPFDmanagementUnsubscribe403ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementUnsubscribe404ApplicationProblemPlusJSONResponse struct {
@@ -2536,7 +2536,7 @@ func (response NnefPFDmanagementUnsubscribe404ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementUnsubscribe429ApplicationProblemPlusJSONResponse struct {
@@ -2547,7 +2547,7 @@ func (response NnefPFDmanagementUnsubscribe429ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementUnsubscribe500ApplicationProblemPlusJSONResponse struct {
@@ -2558,7 +2558,7 @@ func (response NnefPFDmanagementUnsubscribe500ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementUnsubscribe503ApplicationProblemPlusJSONResponse struct {
@@ -2569,7 +2569,7 @@ func (response NnefPFDmanagementUnsubscribe503ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementUnsubscribedefaultApplicationProblemPlusJSONResponse struct {
@@ -2599,7 +2599,7 @@ func (response NnefPFDmanagementModifySubscr200JSONResponse) VisitNnefPFDmanagem
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(PfdSubscription(response))
 }
 
 type NnefPFDmanagementModifySubscr307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -2632,7 +2632,7 @@ func (response NnefPFDmanagementModifySubscr400ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr401ApplicationProblemPlusJSONResponse struct {
@@ -2643,7 +2643,7 @@ func (response NnefPFDmanagementModifySubscr401ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr403ApplicationProblemPlusJSONResponse struct {
@@ -2654,7 +2654,7 @@ func (response NnefPFDmanagementModifySubscr403ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr404ApplicationProblemPlusJSONResponse struct {
@@ -2665,7 +2665,7 @@ func (response NnefPFDmanagementModifySubscr404ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr411ApplicationProblemPlusJSONResponse struct {
@@ -2676,7 +2676,7 @@ func (response NnefPFDmanagementModifySubscr411ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr413ApplicationProblemPlusJSONResponse struct {
@@ -2687,7 +2687,7 @@ func (response NnefPFDmanagementModifySubscr413ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr415ApplicationProblemPlusJSONResponse struct {
@@ -2698,7 +2698,7 @@ func (response NnefPFDmanagementModifySubscr415ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr429ApplicationProblemPlusJSONResponse struct {
@@ -2709,7 +2709,7 @@ func (response NnefPFDmanagementModifySubscr429ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr500ApplicationProblemPlusJSONResponse struct {
@@ -2720,7 +2720,7 @@ func (response NnefPFDmanagementModifySubscr500ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscr503ApplicationProblemPlusJSONResponse struct {
@@ -2731,7 +2731,7 @@ func (response NnefPFDmanagementModifySubscr503ApplicationProblemPlusJSONRespons
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NnefPFDmanagementModifySubscrdefaultApplicationProblemPlusJSONResponse struct {

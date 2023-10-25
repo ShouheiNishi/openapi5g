@@ -16728,7 +16728,7 @@ func (response GetGroupIdentifiers400ApplicationProblemPlusJSONResponse) VisitGe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetGroupIdentifiers404ApplicationProblemPlusJSONResponse struct {
@@ -16739,7 +16739,7 @@ func (response GetGroupIdentifiers404ApplicationProblemPlusJSONResponse) VisitGe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetGroupIdentifiers500ApplicationProblemPlusJSONResponse struct {
@@ -16750,7 +16750,7 @@ func (response GetGroupIdentifiers500ApplicationProblemPlusJSONResponse) VisitGe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetGroupIdentifiers503ApplicationProblemPlusJSONResponse struct {
@@ -16761,7 +16761,7 @@ func (response GetGroupIdentifiers503ApplicationProblemPlusJSONResponse) VisitGe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetGroupIdentifiersdefaultApplicationProblemPlusJSONResponse struct {
@@ -16813,7 +16813,7 @@ func (response GetSharedData400ApplicationProblemPlusJSONResponse) VisitGetShare
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetSharedData404ApplicationProblemPlusJSONResponse struct {
@@ -16824,7 +16824,7 @@ func (response GetSharedData404ApplicationProblemPlusJSONResponse) VisitGetShare
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetSharedData500ApplicationProblemPlusJSONResponse struct {
@@ -16835,7 +16835,7 @@ func (response GetSharedData500ApplicationProblemPlusJSONResponse) VisitGetShare
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetSharedData503ApplicationProblemPlusJSONResponse struct {
@@ -16846,7 +16846,7 @@ func (response GetSharedData503ApplicationProblemPlusJSONResponse) VisitGetShare
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetSharedDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -16894,7 +16894,7 @@ func (response SubscribeToSharedData400ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type SubscribeToSharedData404ApplicationProblemPlusJSONResponse struct {
@@ -16905,7 +16905,7 @@ func (response SubscribeToSharedData404ApplicationProblemPlusJSONResponse) Visit
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type SubscribeToSharedDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -16944,7 +16944,7 @@ func (response UnsubscribeForSharedData400ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type UnsubscribeForSharedData404ApplicationProblemPlusJSONResponse struct {
@@ -16955,7 +16955,7 @@ func (response UnsubscribeForSharedData404ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type UnsubscribeForSharedData500ApplicationProblemPlusJSONResponse struct {
@@ -16966,7 +16966,7 @@ func (response UnsubscribeForSharedData500ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type UnsubscribeForSharedData503ApplicationProblemPlusJSONResponse struct {
@@ -16977,7 +16977,7 @@ func (response UnsubscribeForSharedData503ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type UnsubscribeForSharedDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -17021,7 +17021,7 @@ func (response ModifySharedDataSubs400ApplicationProblemPlusJSONResponse) VisitM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type ModifySharedDataSubs403ApplicationProblemPlusJSONResponse struct {
@@ -17032,7 +17032,7 @@ func (response ModifySharedDataSubs403ApplicationProblemPlusJSONResponse) VisitM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ModifySharedDataSubs404ApplicationProblemPlusJSONResponse struct {
@@ -17043,7 +17043,7 @@ func (response ModifySharedDataSubs404ApplicationProblemPlusJSONResponse) VisitM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ModifySharedDataSubs500ApplicationProblemPlusJSONResponse struct {
@@ -17054,7 +17054,7 @@ func (response ModifySharedDataSubs500ApplicationProblemPlusJSONResponse) VisitM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type ModifySharedDataSubs503ApplicationProblemPlusJSONResponse struct {
@@ -17065,7 +17065,7 @@ func (response ModifySharedDataSubs503ApplicationProblemPlusJSONResponse) VisitM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ModifySharedDataSubsdefaultApplicationProblemPlusJSONResponse struct {
@@ -17118,7 +17118,7 @@ func (response GetIndividualSharedData400ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSharedData404ApplicationProblemPlusJSONResponse struct {
@@ -17129,7 +17129,7 @@ func (response GetIndividualSharedData404ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSharedData500ApplicationProblemPlusJSONResponse struct {
@@ -17140,7 +17140,7 @@ func (response GetIndividualSharedData500ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSharedData503ApplicationProblemPlusJSONResponse struct {
@@ -17151,7 +17151,7 @@ func (response GetIndividualSharedData503ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSharedDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -17204,7 +17204,7 @@ func (response GetDataSets400ApplicationProblemPlusJSONResponse) VisitGetDataSet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetDataSets404ApplicationProblemPlusJSONResponse struct {
@@ -17215,7 +17215,7 @@ func (response GetDataSets404ApplicationProblemPlusJSONResponse) VisitGetDataSet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetDataSets500ApplicationProblemPlusJSONResponse struct {
@@ -17226,7 +17226,7 @@ func (response GetDataSets500ApplicationProblemPlusJSONResponse) VisitGetDataSet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetDataSets503ApplicationProblemPlusJSONResponse struct {
@@ -17237,7 +17237,7 @@ func (response GetDataSets503ApplicationProblemPlusJSONResponse) VisitGetDataSet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetDataSetsdefaultApplicationProblemPlusJSONResponse struct {
@@ -17290,7 +17290,7 @@ func (response GetAmData400ApplicationProblemPlusJSONResponse) VisitGetAmDataRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetAmData404ApplicationProblemPlusJSONResponse struct {
@@ -17301,7 +17301,7 @@ func (response GetAmData404ApplicationProblemPlusJSONResponse) VisitGetAmDataRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetAmData500ApplicationProblemPlusJSONResponse struct {
@@ -17312,7 +17312,7 @@ func (response GetAmData500ApplicationProblemPlusJSONResponse) VisitGetAmDataRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetAmData503ApplicationProblemPlusJSONResponse struct {
@@ -17323,7 +17323,7 @@ func (response GetAmData503ApplicationProblemPlusJSONResponse) VisitGetAmDataRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetAmDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -17363,7 +17363,7 @@ func (response CAGAck400ApplicationProblemPlusJSONResponse) VisitCAGAckResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type CAGAck500ApplicationProblemPlusJSONResponse struct {
@@ -17374,7 +17374,7 @@ func (response CAGAck500ApplicationProblemPlusJSONResponse) VisitCAGAckResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type CAGAck503ApplicationProblemPlusJSONResponse struct {
@@ -17385,7 +17385,7 @@ func (response CAGAck503ApplicationProblemPlusJSONResponse) VisitCAGAckResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type CAGAckdefaultApplicationProblemPlusJSONResponse struct {
@@ -17438,7 +17438,7 @@ func (response GetEcrData400ApplicationProblemPlusJSONResponse) VisitGetEcrDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetEcrData404ApplicationProblemPlusJSONResponse struct {
@@ -17449,7 +17449,7 @@ func (response GetEcrData404ApplicationProblemPlusJSONResponse) VisitGetEcrDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetEcrData500ApplicationProblemPlusJSONResponse struct {
@@ -17460,7 +17460,7 @@ func (response GetEcrData500ApplicationProblemPlusJSONResponse) VisitGetEcrDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetEcrData503ApplicationProblemPlusJSONResponse struct {
@@ -17471,7 +17471,7 @@ func (response GetEcrData503ApplicationProblemPlusJSONResponse) VisitGetEcrDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetEcrDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -17511,7 +17511,7 @@ func (response SorAckInfo400ApplicationProblemPlusJSONResponse) VisitSorAckInfoR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type SorAckInfo500ApplicationProblemPlusJSONResponse struct {
@@ -17522,7 +17522,7 @@ func (response SorAckInfo500ApplicationProblemPlusJSONResponse) VisitSorAckInfoR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type SorAckInfo503ApplicationProblemPlusJSONResponse struct {
@@ -17533,7 +17533,7 @@ func (response SorAckInfo503ApplicationProblemPlusJSONResponse) VisitSorAckInfoR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type SorAckInfodefaultApplicationProblemPlusJSONResponse struct {
@@ -17573,7 +17573,7 @@ func (response SNSSAIsAck400ApplicationProblemPlusJSONResponse) VisitSNSSAIsAckR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type SNSSAIsAck500ApplicationProblemPlusJSONResponse struct {
@@ -17584,7 +17584,7 @@ func (response SNSSAIsAck500ApplicationProblemPlusJSONResponse) VisitSNSSAIsAckR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type SNSSAIsAck503ApplicationProblemPlusJSONResponse struct {
@@ -17595,7 +17595,7 @@ func (response SNSSAIsAck503ApplicationProblemPlusJSONResponse) VisitSNSSAIsAckR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type SNSSAIsAckdefaultApplicationProblemPlusJSONResponse struct {
@@ -17625,7 +17625,7 @@ func (response UpdateSORInfo200JSONResponse) VisitUpdateSORInfoResponse(w http.R
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(SorInfo(response))
 }
 
 type UpdateSORInfo400ApplicationProblemPlusJSONResponse struct {
@@ -17636,7 +17636,7 @@ func (response UpdateSORInfo400ApplicationProblemPlusJSONResponse) VisitUpdateSO
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateSORInfo404ApplicationProblemPlusJSONResponse struct {
@@ -17647,7 +17647,7 @@ func (response UpdateSORInfo404ApplicationProblemPlusJSONResponse) VisitUpdateSO
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateSORInfo500ApplicationProblemPlusJSONResponse struct {
@@ -17658,7 +17658,7 @@ func (response UpdateSORInfo500ApplicationProblemPlusJSONResponse) VisitUpdateSO
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateSORInfo503ApplicationProblemPlusJSONResponse struct {
@@ -17669,7 +17669,7 @@ func (response UpdateSORInfo503ApplicationProblemPlusJSONResponse) VisitUpdateSO
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateSORInfodefaultApplicationProblemPlusJSONResponse struct {
@@ -17709,7 +17709,7 @@ func (response UpuAck400ApplicationProblemPlusJSONResponse) VisitUpuAckResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type UpuAck500ApplicationProblemPlusJSONResponse struct {
@@ -17720,7 +17720,7 @@ func (response UpuAck500ApplicationProblemPlusJSONResponse) VisitUpuAckResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type UpuAck503ApplicationProblemPlusJSONResponse struct {
@@ -17731,7 +17731,7 @@ func (response UpuAck503ApplicationProblemPlusJSONResponse) VisitUpuAckResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type UpuAckdefaultApplicationProblemPlusJSONResponse struct {
@@ -17784,7 +17784,7 @@ func (response GetLcsBcaData400ApplicationProblemPlusJSONResponse) VisitGetLcsBc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsBcaData404ApplicationProblemPlusJSONResponse struct {
@@ -17795,7 +17795,7 @@ func (response GetLcsBcaData404ApplicationProblemPlusJSONResponse) VisitGetLcsBc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsBcaData500ApplicationProblemPlusJSONResponse struct {
@@ -17806,7 +17806,7 @@ func (response GetLcsBcaData500ApplicationProblemPlusJSONResponse) VisitGetLcsBc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsBcaData503ApplicationProblemPlusJSONResponse struct {
@@ -17817,7 +17817,7 @@ func (response GetLcsBcaData503ApplicationProblemPlusJSONResponse) VisitGetLcsBc
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsBcaDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -17870,7 +17870,7 @@ func (response GetLcsMoData400ApplicationProblemPlusJSONResponse) VisitGetLcsMoD
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsMoData404ApplicationProblemPlusJSONResponse struct {
@@ -17881,7 +17881,7 @@ func (response GetLcsMoData404ApplicationProblemPlusJSONResponse) VisitGetLcsMoD
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsMoData500ApplicationProblemPlusJSONResponse struct {
@@ -17892,7 +17892,7 @@ func (response GetLcsMoData500ApplicationProblemPlusJSONResponse) VisitGetLcsMoD
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsMoData503ApplicationProblemPlusJSONResponse struct {
@@ -17903,7 +17903,7 @@ func (response GetLcsMoData503ApplicationProblemPlusJSONResponse) VisitGetLcsMoD
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsMoDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -17956,7 +17956,7 @@ func (response GetNSSAI400ApplicationProblemPlusJSONResponse) VisitGetNSSAIRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetNSSAI404ApplicationProblemPlusJSONResponse struct {
@@ -17967,7 +17967,7 @@ func (response GetNSSAI404ApplicationProblemPlusJSONResponse) VisitGetNSSAIRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetNSSAI500ApplicationProblemPlusJSONResponse struct {
@@ -17978,7 +17978,7 @@ func (response GetNSSAI500ApplicationProblemPlusJSONResponse) VisitGetNSSAIRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetNSSAI503ApplicationProblemPlusJSONResponse struct {
@@ -17989,7 +17989,7 @@ func (response GetNSSAI503ApplicationProblemPlusJSONResponse) VisitGetNSSAIRespo
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetNSSAIdefaultApplicationProblemPlusJSONResponse struct {
@@ -18042,7 +18042,7 @@ func (response GetSmData400ApplicationProblemPlusJSONResponse) VisitGetSmDataRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmData404ApplicationProblemPlusJSONResponse struct {
@@ -18053,7 +18053,7 @@ func (response GetSmData404ApplicationProblemPlusJSONResponse) VisitGetSmDataRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmData500ApplicationProblemPlusJSONResponse struct {
@@ -18064,7 +18064,7 @@ func (response GetSmData500ApplicationProblemPlusJSONResponse) VisitGetSmDataRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmData503ApplicationProblemPlusJSONResponse struct {
@@ -18075,7 +18075,7 @@ func (response GetSmData503ApplicationProblemPlusJSONResponse) VisitGetSmDataRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18128,7 +18128,7 @@ func (response GetSmfSelData400ApplicationProblemPlusJSONResponse) VisitGetSmfSe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmfSelData404ApplicationProblemPlusJSONResponse struct {
@@ -18139,7 +18139,7 @@ func (response GetSmfSelData404ApplicationProblemPlusJSONResponse) VisitGetSmfSe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmfSelData500ApplicationProblemPlusJSONResponse struct {
@@ -18150,7 +18150,7 @@ func (response GetSmfSelData500ApplicationProblemPlusJSONResponse) VisitGetSmfSe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmfSelData503ApplicationProblemPlusJSONResponse struct {
@@ -18161,7 +18161,7 @@ func (response GetSmfSelData503ApplicationProblemPlusJSONResponse) VisitGetSmfSe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmfSelDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18214,7 +18214,7 @@ func (response GetSmsData400ApplicationProblemPlusJSONResponse) VisitGetSmsDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmsData404ApplicationProblemPlusJSONResponse struct {
@@ -18225,7 +18225,7 @@ func (response GetSmsData404ApplicationProblemPlusJSONResponse) VisitGetSmsDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmsData500ApplicationProblemPlusJSONResponse struct {
@@ -18236,7 +18236,7 @@ func (response GetSmsData500ApplicationProblemPlusJSONResponse) VisitGetSmsDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmsData503ApplicationProblemPlusJSONResponse struct {
@@ -18247,7 +18247,7 @@ func (response GetSmsData503ApplicationProblemPlusJSONResponse) VisitGetSmsDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmsDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18300,7 +18300,7 @@ func (response GetSmsMngtData400ApplicationProblemPlusJSONResponse) VisitGetSmsM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmsMngtData404ApplicationProblemPlusJSONResponse struct {
@@ -18311,7 +18311,7 @@ func (response GetSmsMngtData404ApplicationProblemPlusJSONResponse) VisitGetSmsM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmsMngtData500ApplicationProblemPlusJSONResponse struct {
@@ -18322,7 +18322,7 @@ func (response GetSmsMngtData500ApplicationProblemPlusJSONResponse) VisitGetSmsM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmsMngtData503ApplicationProblemPlusJSONResponse struct {
@@ -18333,7 +18333,7 @@ func (response GetSmsMngtData503ApplicationProblemPlusJSONResponse) VisitGetSmsM
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetSmsMngtDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18386,7 +18386,7 @@ func (response GetTraceConfigData400ApplicationProblemPlusJSONResponse) VisitGet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetTraceConfigData404ApplicationProblemPlusJSONResponse struct {
@@ -18397,7 +18397,7 @@ func (response GetTraceConfigData404ApplicationProblemPlusJSONResponse) VisitGet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetTraceConfigData500ApplicationProblemPlusJSONResponse struct {
@@ -18408,7 +18408,7 @@ func (response GetTraceConfigData500ApplicationProblemPlusJSONResponse) VisitGet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetTraceConfigData503ApplicationProblemPlusJSONResponse struct {
@@ -18419,7 +18419,7 @@ func (response GetTraceConfigData503ApplicationProblemPlusJSONResponse) VisitGet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetTraceConfigDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18449,7 +18449,7 @@ func (response GetUeCtxInAmfData200JSONResponse) VisitGetUeCtxInAmfDataResponse(
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(UeContextInAmfData(response))
 }
 
 type GetUeCtxInAmfData400ApplicationProblemPlusJSONResponse struct {
@@ -18460,7 +18460,7 @@ func (response GetUeCtxInAmfData400ApplicationProblemPlusJSONResponse) VisitGetU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInAmfData404ApplicationProblemPlusJSONResponse struct {
@@ -18471,7 +18471,7 @@ func (response GetUeCtxInAmfData404ApplicationProblemPlusJSONResponse) VisitGetU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInAmfData500ApplicationProblemPlusJSONResponse struct {
@@ -18482,7 +18482,7 @@ func (response GetUeCtxInAmfData500ApplicationProblemPlusJSONResponse) VisitGetU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInAmfData503ApplicationProblemPlusJSONResponse struct {
@@ -18493,7 +18493,7 @@ func (response GetUeCtxInAmfData503ApplicationProblemPlusJSONResponse) VisitGetU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInAmfDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18523,7 +18523,7 @@ func (response GetUeCtxInSmfData200JSONResponse) VisitGetUeCtxInSmfDataResponse(
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(UeContextInSmfData(response))
 }
 
 type GetUeCtxInSmfData400ApplicationProblemPlusJSONResponse struct {
@@ -18534,7 +18534,7 @@ func (response GetUeCtxInSmfData400ApplicationProblemPlusJSONResponse) VisitGetU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInSmfData404ApplicationProblemPlusJSONResponse struct {
@@ -18545,7 +18545,7 @@ func (response GetUeCtxInSmfData404ApplicationProblemPlusJSONResponse) VisitGetU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInSmfData500ApplicationProblemPlusJSONResponse struct {
@@ -18556,7 +18556,7 @@ func (response GetUeCtxInSmfData500ApplicationProblemPlusJSONResponse) VisitGetU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInSmfData503ApplicationProblemPlusJSONResponse struct {
@@ -18567,7 +18567,7 @@ func (response GetUeCtxInSmfData503ApplicationProblemPlusJSONResponse) VisitGetU
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInSmfDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18597,7 +18597,7 @@ func (response GetUeCtxInSmsfData200JSONResponse) VisitGetUeCtxInSmsfDataRespons
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(UeContextInSmsfData(response))
 }
 
 type GetUeCtxInSmsfData400ApplicationProblemPlusJSONResponse struct {
@@ -18608,7 +18608,7 @@ func (response GetUeCtxInSmsfData400ApplicationProblemPlusJSONResponse) VisitGet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInSmsfData404ApplicationProblemPlusJSONResponse struct {
@@ -18619,7 +18619,7 @@ func (response GetUeCtxInSmsfData404ApplicationProblemPlusJSONResponse) VisitGet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInSmsfData500ApplicationProblemPlusJSONResponse struct {
@@ -18630,7 +18630,7 @@ func (response GetUeCtxInSmsfData500ApplicationProblemPlusJSONResponse) VisitGet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInSmsfData503ApplicationProblemPlusJSONResponse struct {
@@ -18641,7 +18641,7 @@ func (response GetUeCtxInSmsfData503ApplicationProblemPlusJSONResponse) VisitGet
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetUeCtxInSmsfDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18694,7 +18694,7 @@ func (response GetV2xData400ApplicationProblemPlusJSONResponse) VisitGetV2xDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetV2xData404ApplicationProblemPlusJSONResponse struct {
@@ -18705,7 +18705,7 @@ func (response GetV2xData404ApplicationProblemPlusJSONResponse) VisitGetV2xDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetV2xData500ApplicationProblemPlusJSONResponse struct {
@@ -18716,7 +18716,7 @@ func (response GetV2xData500ApplicationProblemPlusJSONResponse) VisitGetV2xDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetV2xData503ApplicationProblemPlusJSONResponse struct {
@@ -18727,7 +18727,7 @@ func (response GetV2xData503ApplicationProblemPlusJSONResponse) VisitGetV2xDataR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetV2xDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18780,7 +18780,7 @@ func (response GetSupiOrGpsi400ApplicationProblemPlusJSONResponse) VisitGetSupiO
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetSupiOrGpsi404ApplicationProblemPlusJSONResponse struct {
@@ -18791,7 +18791,7 @@ func (response GetSupiOrGpsi404ApplicationProblemPlusJSONResponse) VisitGetSupiO
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetSupiOrGpsi500ApplicationProblemPlusJSONResponse struct {
@@ -18802,7 +18802,7 @@ func (response GetSupiOrGpsi500ApplicationProblemPlusJSONResponse) VisitGetSupiO
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetSupiOrGpsi503ApplicationProblemPlusJSONResponse struct {
@@ -18813,7 +18813,7 @@ func (response GetSupiOrGpsi503ApplicationProblemPlusJSONResponse) VisitGetSupiO
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetSupiOrGpsidefaultApplicationProblemPlusJSONResponse struct {
@@ -18866,7 +18866,7 @@ func (response GetLcsPrivacyData400ApplicationProblemPlusJSONResponse) VisitGetL
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsPrivacyData404ApplicationProblemPlusJSONResponse struct {
@@ -18877,7 +18877,7 @@ func (response GetLcsPrivacyData404ApplicationProblemPlusJSONResponse) VisitGetL
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsPrivacyData500ApplicationProblemPlusJSONResponse struct {
@@ -18888,7 +18888,7 @@ func (response GetLcsPrivacyData500ApplicationProblemPlusJSONResponse) VisitGetL
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsPrivacyData503ApplicationProblemPlusJSONResponse struct {
@@ -18899,7 +18899,7 @@ func (response GetLcsPrivacyData503ApplicationProblemPlusJSONResponse) VisitGetL
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetLcsPrivacyDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -18948,7 +18948,7 @@ func (response Subscribe400ApplicationProblemPlusJSONResponse) VisitSubscribeRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type Subscribe404ApplicationProblemPlusJSONResponse struct {
@@ -18959,7 +18959,7 @@ func (response Subscribe404ApplicationProblemPlusJSONResponse) VisitSubscribeRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type Subscribe500ApplicationProblemPlusJSONResponse struct {
@@ -18970,7 +18970,7 @@ func (response Subscribe500ApplicationProblemPlusJSONResponse) VisitSubscribeRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type Subscribe501ApplicationProblemPlusJSONResponse struct {
@@ -18981,7 +18981,7 @@ func (response Subscribe501ApplicationProblemPlusJSONResponse) VisitSubscribeRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type Subscribe503ApplicationProblemPlusJSONResponse struct {
@@ -18992,7 +18992,7 @@ func (response Subscribe503ApplicationProblemPlusJSONResponse) VisitSubscribeRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type SubscribedefaultApplicationProblemPlusJSONResponse struct {
@@ -19032,7 +19032,7 @@ func (response Unsubscribe400ApplicationProblemPlusJSONResponse) VisitUnsubscrib
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type Unsubscribe404ApplicationProblemPlusJSONResponse struct {
@@ -19043,7 +19043,7 @@ func (response Unsubscribe404ApplicationProblemPlusJSONResponse) VisitUnsubscrib
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type Unsubscribe500ApplicationProblemPlusJSONResponse struct {
@@ -19054,7 +19054,7 @@ func (response Unsubscribe500ApplicationProblemPlusJSONResponse) VisitUnsubscrib
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type Unsubscribe503ApplicationProblemPlusJSONResponse struct {
@@ -19065,7 +19065,7 @@ func (response Unsubscribe503ApplicationProblemPlusJSONResponse) VisitUnsubscrib
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type UnsubscribedefaultApplicationProblemPlusJSONResponse struct {
@@ -19110,7 +19110,7 @@ func (response Modify400ApplicationProblemPlusJSONResponse) VisitModifyResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type Modify403ApplicationProblemPlusJSONResponse struct {
@@ -19121,7 +19121,7 @@ func (response Modify403ApplicationProblemPlusJSONResponse) VisitModifyResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type Modify404ApplicationProblemPlusJSONResponse struct {
@@ -19132,7 +19132,7 @@ func (response Modify404ApplicationProblemPlusJSONResponse) VisitModifyResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type Modify500ApplicationProblemPlusJSONResponse struct {
@@ -19143,7 +19143,7 @@ func (response Modify500ApplicationProblemPlusJSONResponse) VisitModifyResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type Modify503ApplicationProblemPlusJSONResponse struct {
@@ -19154,7 +19154,7 @@ func (response Modify503ApplicationProblemPlusJSONResponse) VisitModifyResponse(
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ModifydefaultApplicationProblemPlusJSONResponse struct {

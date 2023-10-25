@@ -1007,7 +1007,7 @@ func (response AuthorizeNiddData200JSONResponse) VisitAuthorizeNiddDataResponse(
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(AuthorizationData(response))
 }
 
 type AuthorizeNiddData400ApplicationProblemPlusJSONResponse struct {
@@ -1018,7 +1018,7 @@ func (response AuthorizeNiddData400ApplicationProblemPlusJSONResponse) VisitAuth
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type AuthorizeNiddData403ApplicationProblemPlusJSONResponse struct {
@@ -1029,7 +1029,7 @@ func (response AuthorizeNiddData403ApplicationProblemPlusJSONResponse) VisitAuth
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type AuthorizeNiddData404ApplicationProblemPlusJSONResponse struct {
@@ -1040,7 +1040,7 @@ func (response AuthorizeNiddData404ApplicationProblemPlusJSONResponse) VisitAuth
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type AuthorizeNiddData500ApplicationProblemPlusJSONResponse struct {
@@ -1051,7 +1051,7 @@ func (response AuthorizeNiddData500ApplicationProblemPlusJSONResponse) VisitAuth
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type AuthorizeNiddData501ApplicationProblemPlusJSONResponse struct {
@@ -1062,7 +1062,7 @@ func (response AuthorizeNiddData501ApplicationProblemPlusJSONResponse) VisitAuth
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type AuthorizeNiddData503ApplicationProblemPlusJSONResponse struct {
@@ -1073,7 +1073,7 @@ func (response AuthorizeNiddData503ApplicationProblemPlusJSONResponse) VisitAuth
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type AuthorizeNiddDatadefaultApplicationProblemPlusJSONResponse struct {

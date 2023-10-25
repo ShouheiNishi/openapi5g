@@ -449,7 +449,7 @@ func (response BootstrappingInfoRequest200Application3gppHalPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/3gppHal+json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(BootstrappingInfo(response))
 }
 
 type BootstrappingInfoRequest307ResponseHeaders struct {
@@ -494,7 +494,7 @@ func (response BootstrappingInfoRequest400ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type BootstrappingInfoRequest500ApplicationProblemPlusJSONResponse struct {
@@ -505,7 +505,7 @@ func (response BootstrappingInfoRequest500ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type BootstrappingInfoRequestdefaultApplicationProblemPlusJSONResponse struct {

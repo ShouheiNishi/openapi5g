@@ -2562,7 +2562,7 @@ func (response GetPCFBindings200JSONResponse) VisitGetPCFBindingsResponse(w http
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(PcfBinding(response))
 }
 
 type GetPCFBindings204Response struct {
@@ -2581,7 +2581,7 @@ func (response GetPCFBindings400ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetPCFBindings401ApplicationProblemPlusJSONResponse struct {
@@ -2592,7 +2592,7 @@ func (response GetPCFBindings401ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type GetPCFBindings403ApplicationProblemPlusJSONResponse struct {
@@ -2603,7 +2603,7 @@ func (response GetPCFBindings403ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type GetPCFBindings404ApplicationProblemPlusJSONResponse struct {
@@ -2614,7 +2614,7 @@ func (response GetPCFBindings404ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetPCFBindings406Response externalRef0.N406Response
@@ -2632,7 +2632,7 @@ func (response GetPCFBindings414ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(414)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N414ApplicationProblemPlusJSONResponse))
 }
 
 type GetPCFBindings429ApplicationProblemPlusJSONResponse struct {
@@ -2643,7 +2643,7 @@ func (response GetPCFBindings429ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type GetPCFBindings500ApplicationProblemPlusJSONResponse struct {
@@ -2654,7 +2654,7 @@ func (response GetPCFBindings500ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetPCFBindings503ApplicationProblemPlusJSONResponse struct {
@@ -2665,7 +2665,7 @@ func (response GetPCFBindings503ApplicationProblemPlusJSONResponse) VisitGetPCFB
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetPCFBindingsdefaultApplicationProblemPlusJSONResponse struct {
@@ -2713,7 +2713,7 @@ func (response CreatePCFBinding400ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBinding401ApplicationProblemPlusJSONResponse struct {
@@ -2724,7 +2724,7 @@ func (response CreatePCFBinding401ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBinding403ApplicationProblemPlusJSONResponse ExtProblemDetails
@@ -2733,7 +2733,7 @@ func (response CreatePCFBinding403ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(ExtProblemDetails(response))
 }
 
 type CreatePCFBinding404ApplicationProblemPlusJSONResponse struct {
@@ -2744,7 +2744,7 @@ func (response CreatePCFBinding404ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBinding411ApplicationProblemPlusJSONResponse struct {
@@ -2755,7 +2755,7 @@ func (response CreatePCFBinding411ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBinding413ApplicationProblemPlusJSONResponse struct {
@@ -2766,7 +2766,7 @@ func (response CreatePCFBinding413ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBinding415ApplicationProblemPlusJSONResponse struct {
@@ -2777,7 +2777,7 @@ func (response CreatePCFBinding415ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBinding429ApplicationProblemPlusJSONResponse struct {
@@ -2788,7 +2788,7 @@ func (response CreatePCFBinding429ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBinding500ApplicationProblemPlusJSONResponse struct {
@@ -2799,7 +2799,7 @@ func (response CreatePCFBinding500ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBinding503ApplicationProblemPlusJSONResponse struct {
@@ -2810,7 +2810,7 @@ func (response CreatePCFBinding503ApplicationProblemPlusJSONResponse) VisitCreat
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type CreatePCFBindingdefaultApplicationProblemPlusJSONResponse struct {
@@ -2871,7 +2871,7 @@ func (response DeleteIndPCFBinding400ApplicationProblemPlusJSONResponse) VisitDe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndPCFBinding401ApplicationProblemPlusJSONResponse struct {
@@ -2882,7 +2882,7 @@ func (response DeleteIndPCFBinding401ApplicationProblemPlusJSONResponse) VisitDe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndPCFBinding403ApplicationProblemPlusJSONResponse struct {
@@ -2893,7 +2893,7 @@ func (response DeleteIndPCFBinding403ApplicationProblemPlusJSONResponse) VisitDe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndPCFBinding404ApplicationProblemPlusJSONResponse struct {
@@ -2904,7 +2904,7 @@ func (response DeleteIndPCFBinding404ApplicationProblemPlusJSONResponse) VisitDe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndPCFBinding429ApplicationProblemPlusJSONResponse struct {
@@ -2915,7 +2915,7 @@ func (response DeleteIndPCFBinding429ApplicationProblemPlusJSONResponse) VisitDe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndPCFBinding500ApplicationProblemPlusJSONResponse struct {
@@ -2926,7 +2926,7 @@ func (response DeleteIndPCFBinding500ApplicationProblemPlusJSONResponse) VisitDe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndPCFBinding503ApplicationProblemPlusJSONResponse struct {
@@ -2937,7 +2937,7 @@ func (response DeleteIndPCFBinding503ApplicationProblemPlusJSONResponse) VisitDe
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndPCFBindingdefaultApplicationProblemPlusJSONResponse struct {
@@ -2967,7 +2967,7 @@ func (response UpdateIndPCFBinding200JSONResponse) VisitUpdateIndPCFBindingRespo
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(PcfBinding(response))
 }
 
 type UpdateIndPCFBinding307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -3000,7 +3000,7 @@ func (response UpdateIndPCFBinding400ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding401ApplicationProblemPlusJSONResponse struct {
@@ -3011,7 +3011,7 @@ func (response UpdateIndPCFBinding401ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding403ApplicationProblemPlusJSONResponse struct {
@@ -3022,7 +3022,7 @@ func (response UpdateIndPCFBinding403ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding404ApplicationProblemPlusJSONResponse struct {
@@ -3033,7 +3033,7 @@ func (response UpdateIndPCFBinding404ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding411ApplicationProblemPlusJSONResponse struct {
@@ -3044,7 +3044,7 @@ func (response UpdateIndPCFBinding411ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding413ApplicationProblemPlusJSONResponse struct {
@@ -3055,7 +3055,7 @@ func (response UpdateIndPCFBinding413ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding415ApplicationProblemPlusJSONResponse struct {
@@ -3066,7 +3066,7 @@ func (response UpdateIndPCFBinding415ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding429ApplicationProblemPlusJSONResponse struct {
@@ -3077,7 +3077,7 @@ func (response UpdateIndPCFBinding429ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding500ApplicationProblemPlusJSONResponse struct {
@@ -3088,7 +3088,7 @@ func (response UpdateIndPCFBinding500ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBinding503ApplicationProblemPlusJSONResponse struct {
@@ -3099,7 +3099,7 @@ func (response UpdateIndPCFBinding503ApplicationProblemPlusJSONResponse) VisitUp
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateIndPCFBindingdefaultApplicationProblemPlusJSONResponse struct {

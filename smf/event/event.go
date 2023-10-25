@@ -2703,7 +2703,7 @@ func (response CreateIndividualSubcription400ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription401ApplicationProblemPlusJSONResponse struct {
@@ -2714,7 +2714,7 @@ func (response CreateIndividualSubcription401ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription403ApplicationProblemPlusJSONResponse struct {
@@ -2725,7 +2725,7 @@ func (response CreateIndividualSubcription403ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription404ApplicationProblemPlusJSONResponse struct {
@@ -2736,7 +2736,7 @@ func (response CreateIndividualSubcription404ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription411ApplicationProblemPlusJSONResponse struct {
@@ -2747,7 +2747,7 @@ func (response CreateIndividualSubcription411ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription413ApplicationProblemPlusJSONResponse struct {
@@ -2758,7 +2758,7 @@ func (response CreateIndividualSubcription413ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription415ApplicationProblemPlusJSONResponse struct {
@@ -2769,7 +2769,7 @@ func (response CreateIndividualSubcription415ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription429ApplicationProblemPlusJSONResponse struct {
@@ -2780,7 +2780,7 @@ func (response CreateIndividualSubcription429ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription500ApplicationProblemPlusJSONResponse struct {
@@ -2791,7 +2791,7 @@ func (response CreateIndividualSubcription500ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcription503ApplicationProblemPlusJSONResponse struct {
@@ -2802,7 +2802,7 @@ func (response CreateIndividualSubcription503ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse struct {
@@ -2863,7 +2863,7 @@ func (response DeleteIndividualSubcription400ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualSubcription401ApplicationProblemPlusJSONResponse struct {
@@ -2874,7 +2874,7 @@ func (response DeleteIndividualSubcription401ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualSubcription403ApplicationProblemPlusJSONResponse struct {
@@ -2885,7 +2885,7 @@ func (response DeleteIndividualSubcription403ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualSubcription404ApplicationProblemPlusJSONResponse struct {
@@ -2896,7 +2896,7 @@ func (response DeleteIndividualSubcription404ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualSubcription429ApplicationProblemPlusJSONResponse struct {
@@ -2907,7 +2907,7 @@ func (response DeleteIndividualSubcription429ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualSubcription500ApplicationProblemPlusJSONResponse struct {
@@ -2918,7 +2918,7 @@ func (response DeleteIndividualSubcription500ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualSubcription503ApplicationProblemPlusJSONResponse struct {
@@ -2929,7 +2929,7 @@ func (response DeleteIndividualSubcription503ApplicationProblemPlusJSONResponse)
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse struct {
@@ -2958,7 +2958,7 @@ func (response GetIndividualSubcription200JSONResponse) VisitGetIndividualSubcri
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(NsmfEventExposure(response))
 }
 
 type GetIndividualSubcription307JSONResponse struct{ externalRef1.N307JSONResponse }
@@ -2991,7 +2991,7 @@ func (response GetIndividualSubcription400ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSubcription401ApplicationProblemPlusJSONResponse struct {
@@ -3002,7 +3002,7 @@ func (response GetIndividualSubcription401ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSubcription403ApplicationProblemPlusJSONResponse struct {
@@ -3013,7 +3013,7 @@ func (response GetIndividualSubcription403ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSubcription404ApplicationProblemPlusJSONResponse struct {
@@ -3024,7 +3024,7 @@ func (response GetIndividualSubcription404ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSubcription406Response externalRef1.N406Response
@@ -3042,7 +3042,7 @@ func (response GetIndividualSubcription429ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSubcription500ApplicationProblemPlusJSONResponse struct {
@@ -3053,7 +3053,7 @@ func (response GetIndividualSubcription500ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSubcription503ApplicationProblemPlusJSONResponse struct {
@@ -3064,7 +3064,7 @@ func (response GetIndividualSubcription503ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse struct {
@@ -3094,7 +3094,7 @@ func (response ReplaceIndividualSubcription200JSONResponse) VisitReplaceIndividu
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(NsmfEventExposure(response))
 }
 
 type ReplaceIndividualSubcription204Response struct {
@@ -3135,7 +3135,7 @@ func (response ReplaceIndividualSubcription400ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription401ApplicationProblemPlusJSONResponse struct {
@@ -3146,7 +3146,7 @@ func (response ReplaceIndividualSubcription401ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription403ApplicationProblemPlusJSONResponse struct {
@@ -3157,7 +3157,7 @@ func (response ReplaceIndividualSubcription403ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription404ApplicationProblemPlusJSONResponse struct {
@@ -3168,7 +3168,7 @@ func (response ReplaceIndividualSubcription404ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription411ApplicationProblemPlusJSONResponse struct {
@@ -3179,7 +3179,7 @@ func (response ReplaceIndividualSubcription411ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription413ApplicationProblemPlusJSONResponse struct {
@@ -3190,7 +3190,7 @@ func (response ReplaceIndividualSubcription413ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription415ApplicationProblemPlusJSONResponse struct {
@@ -3201,7 +3201,7 @@ func (response ReplaceIndividualSubcription415ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription429ApplicationProblemPlusJSONResponse struct {
@@ -3212,7 +3212,7 @@ func (response ReplaceIndividualSubcription429ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription500ApplicationProblemPlusJSONResponse struct {
@@ -3223,7 +3223,7 @@ func (response ReplaceIndividualSubcription500ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcription503ApplicationProblemPlusJSONResponse struct {
@@ -3234,7 +3234,7 @@ func (response ReplaceIndividualSubcription503ApplicationProblemPlusJSONResponse
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ReplaceIndividualSubcriptiondefaultApplicationProblemPlusJSONResponse struct {

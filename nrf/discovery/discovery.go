@@ -5301,7 +5301,7 @@ func (response SearchNFInstances400ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances401ApplicationProblemPlusJSONResponse struct {
@@ -5312,7 +5312,7 @@ func (response SearchNFInstances401ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances403ApplicationProblemPlusJSONResponse struct {
@@ -5323,7 +5323,7 @@ func (response SearchNFInstances403ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances404ApplicationProblemPlusJSONResponse struct {
@@ -5334,7 +5334,7 @@ func (response SearchNFInstances404ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances406Response externalRef1.N406Response
@@ -5352,7 +5352,7 @@ func (response SearchNFInstances411ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances413ApplicationProblemPlusJSONResponse struct {
@@ -5363,7 +5363,7 @@ func (response SearchNFInstances413ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances415ApplicationProblemPlusJSONResponse struct {
@@ -5374,7 +5374,7 @@ func (response SearchNFInstances415ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances429ApplicationProblemPlusJSONResponse struct {
@@ -5385,7 +5385,7 @@ func (response SearchNFInstances429ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances500ApplicationProblemPlusJSONResponse struct {
@@ -5396,7 +5396,7 @@ func (response SearchNFInstances500ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances501ApplicationProblemPlusJSONResponse struct {
@@ -5407,7 +5407,7 @@ func (response SearchNFInstances501ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances503ApplicationProblemPlusJSONResponse struct {
@@ -5418,7 +5418,7 @@ func (response SearchNFInstances503ApplicationProblemPlusJSONResponse) VisitSear
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstancesdefaultApplicationProblemPlusJSONResponse struct {

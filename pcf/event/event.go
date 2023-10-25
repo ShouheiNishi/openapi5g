@@ -2334,7 +2334,7 @@ func (response PostPcEventExposureSubsc400ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc401ApplicationProblemPlusJSONResponse struct {
@@ -2345,7 +2345,7 @@ func (response PostPcEventExposureSubsc401ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc403ApplicationProblemPlusJSONResponse struct {
@@ -2356,7 +2356,7 @@ func (response PostPcEventExposureSubsc403ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc404ApplicationProblemPlusJSONResponse struct {
@@ -2367,7 +2367,7 @@ func (response PostPcEventExposureSubsc404ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc411ApplicationProblemPlusJSONResponse struct {
@@ -2378,7 +2378,7 @@ func (response PostPcEventExposureSubsc411ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc413ApplicationProblemPlusJSONResponse struct {
@@ -2389,7 +2389,7 @@ func (response PostPcEventExposureSubsc413ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc415ApplicationProblemPlusJSONResponse struct {
@@ -2400,7 +2400,7 @@ func (response PostPcEventExposureSubsc415ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc429ApplicationProblemPlusJSONResponse struct {
@@ -2411,7 +2411,7 @@ func (response PostPcEventExposureSubsc429ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc500ApplicationProblemPlusJSONResponse struct {
@@ -2422,7 +2422,7 @@ func (response PostPcEventExposureSubsc500ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubsc503ApplicationProblemPlusJSONResponse struct {
@@ -2433,7 +2433,7 @@ func (response PostPcEventExposureSubsc503ApplicationProblemPlusJSONResponse) Vi
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type PostPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse struct {
@@ -2494,7 +2494,7 @@ func (response DeletePcEventExposureSubsc400ApplicationProblemPlusJSONResponse) 
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type DeletePcEventExposureSubsc401ApplicationProblemPlusJSONResponse struct {
@@ -2505,7 +2505,7 @@ func (response DeletePcEventExposureSubsc401ApplicationProblemPlusJSONResponse) 
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type DeletePcEventExposureSubsc403ApplicationProblemPlusJSONResponse struct {
@@ -2516,7 +2516,7 @@ func (response DeletePcEventExposureSubsc403ApplicationProblemPlusJSONResponse) 
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type DeletePcEventExposureSubsc404ApplicationProblemPlusJSONResponse struct {
@@ -2527,7 +2527,7 @@ func (response DeletePcEventExposureSubsc404ApplicationProblemPlusJSONResponse) 
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type DeletePcEventExposureSubsc429ApplicationProblemPlusJSONResponse struct {
@@ -2538,7 +2538,7 @@ func (response DeletePcEventExposureSubsc429ApplicationProblemPlusJSONResponse) 
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type DeletePcEventExposureSubsc500ApplicationProblemPlusJSONResponse struct {
@@ -2549,7 +2549,7 @@ func (response DeletePcEventExposureSubsc500ApplicationProblemPlusJSONResponse) 
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type DeletePcEventExposureSubsc503ApplicationProblemPlusJSONResponse struct {
@@ -2560,7 +2560,7 @@ func (response DeletePcEventExposureSubsc503ApplicationProblemPlusJSONResponse) 
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type DeletePcEventExposureSubscdefaultApplicationProblemPlusJSONResponse struct {
@@ -2589,7 +2589,7 @@ func (response GetPcEventExposureSubsc200JSONResponse) VisitGetPcEventExposureSu
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(PcEventExposureSubsc(response))
 }
 
 type GetPcEventExposureSubsc307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -2622,7 +2622,7 @@ func (response GetPcEventExposureSubsc400ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetPcEventExposureSubsc401ApplicationProblemPlusJSONResponse struct {
@@ -2633,7 +2633,7 @@ func (response GetPcEventExposureSubsc401ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type GetPcEventExposureSubsc403ApplicationProblemPlusJSONResponse struct {
@@ -2644,7 +2644,7 @@ func (response GetPcEventExposureSubsc403ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type GetPcEventExposureSubsc404ApplicationProblemPlusJSONResponse struct {
@@ -2655,7 +2655,7 @@ func (response GetPcEventExposureSubsc404ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetPcEventExposureSubsc406Response externalRef0.N406Response
@@ -2673,7 +2673,7 @@ func (response GetPcEventExposureSubsc429ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type GetPcEventExposureSubsc500ApplicationProblemPlusJSONResponse struct {
@@ -2684,7 +2684,7 @@ func (response GetPcEventExposureSubsc500ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetPcEventExposureSubsc503ApplicationProblemPlusJSONResponse struct {
@@ -2695,7 +2695,7 @@ func (response GetPcEventExposureSubsc503ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse struct {
@@ -2725,7 +2725,7 @@ func (response PutPcEventExposureSubsc200JSONResponse) VisitPutPcEventExposureSu
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(PcEventExposureSubsc(response))
 }
 
 type PutPcEventExposureSubsc204Response struct {
@@ -2766,7 +2766,7 @@ func (response PutPcEventExposureSubsc400ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc401ApplicationProblemPlusJSONResponse struct {
@@ -2777,7 +2777,7 @@ func (response PutPcEventExposureSubsc401ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc403ApplicationProblemPlusJSONResponse struct {
@@ -2788,7 +2788,7 @@ func (response PutPcEventExposureSubsc403ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc404ApplicationProblemPlusJSONResponse struct {
@@ -2799,7 +2799,7 @@ func (response PutPcEventExposureSubsc404ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc411ApplicationProblemPlusJSONResponse struct {
@@ -2810,7 +2810,7 @@ func (response PutPcEventExposureSubsc411ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc413ApplicationProblemPlusJSONResponse struct {
@@ -2821,7 +2821,7 @@ func (response PutPcEventExposureSubsc413ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc415ApplicationProblemPlusJSONResponse struct {
@@ -2832,7 +2832,7 @@ func (response PutPcEventExposureSubsc415ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc429ApplicationProblemPlusJSONResponse struct {
@@ -2843,7 +2843,7 @@ func (response PutPcEventExposureSubsc429ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc500ApplicationProblemPlusJSONResponse struct {
@@ -2854,7 +2854,7 @@ func (response PutPcEventExposureSubsc500ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubsc503ApplicationProblemPlusJSONResponse struct {
@@ -2865,7 +2865,7 @@ func (response PutPcEventExposureSubsc503ApplicationProblemPlusJSONResponse) Vis
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type PutPcEventExposureSubscdefaultApplicationProblemPlusJSONResponse struct {

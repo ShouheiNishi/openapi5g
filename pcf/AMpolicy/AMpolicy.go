@@ -2757,7 +2757,7 @@ func (response CreateIndividualAMPolicyAssociation400ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation401ApplicationProblemPlusJSONResponse struct {
@@ -2768,7 +2768,7 @@ func (response CreateIndividualAMPolicyAssociation401ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation403ApplicationProblemPlusJSONResponse struct {
@@ -2779,7 +2779,7 @@ func (response CreateIndividualAMPolicyAssociation403ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation404ApplicationProblemPlusJSONResponse struct {
@@ -2790,7 +2790,7 @@ func (response CreateIndividualAMPolicyAssociation404ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation411ApplicationProblemPlusJSONResponse struct {
@@ -2801,7 +2801,7 @@ func (response CreateIndividualAMPolicyAssociation411ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation413ApplicationProblemPlusJSONResponse struct {
@@ -2812,7 +2812,7 @@ func (response CreateIndividualAMPolicyAssociation413ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation415ApplicationProblemPlusJSONResponse struct {
@@ -2823,7 +2823,7 @@ func (response CreateIndividualAMPolicyAssociation415ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation429ApplicationProblemPlusJSONResponse struct {
@@ -2834,7 +2834,7 @@ func (response CreateIndividualAMPolicyAssociation429ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation500ApplicationProblemPlusJSONResponse struct {
@@ -2845,7 +2845,7 @@ func (response CreateIndividualAMPolicyAssociation500ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociation503ApplicationProblemPlusJSONResponse struct {
@@ -2856,7 +2856,7 @@ func (response CreateIndividualAMPolicyAssociation503ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type CreateIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
@@ -2917,7 +2917,7 @@ func (response DeleteIndividualAMPolicyAssociation400ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualAMPolicyAssociation401ApplicationProblemPlusJSONResponse struct {
@@ -2928,7 +2928,7 @@ func (response DeleteIndividualAMPolicyAssociation401ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualAMPolicyAssociation403ApplicationProblemPlusJSONResponse struct {
@@ -2939,7 +2939,7 @@ func (response DeleteIndividualAMPolicyAssociation403ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualAMPolicyAssociation404ApplicationProblemPlusJSONResponse struct {
@@ -2950,7 +2950,7 @@ func (response DeleteIndividualAMPolicyAssociation404ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualAMPolicyAssociation429ApplicationProblemPlusJSONResponse struct {
@@ -2961,7 +2961,7 @@ func (response DeleteIndividualAMPolicyAssociation429ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualAMPolicyAssociation500ApplicationProblemPlusJSONResponse struct {
@@ -2972,7 +2972,7 @@ func (response DeleteIndividualAMPolicyAssociation500ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualAMPolicyAssociation503ApplicationProblemPlusJSONResponse struct {
@@ -2983,7 +2983,7 @@ func (response DeleteIndividualAMPolicyAssociation503ApplicationProblemPlusJSONR
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
@@ -3012,7 +3012,7 @@ func (response ReadIndividualAMPolicyAssociation200JSONResponse) VisitReadIndivi
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(PolicyAssociation(response))
 }
 
 type ReadIndividualAMPolicyAssociation307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -3045,7 +3045,7 @@ func (response ReadIndividualAMPolicyAssociation400ApplicationProblemPlusJSONRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type ReadIndividualAMPolicyAssociation401ApplicationProblemPlusJSONResponse struct {
@@ -3056,7 +3056,7 @@ func (response ReadIndividualAMPolicyAssociation401ApplicationProblemPlusJSONRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type ReadIndividualAMPolicyAssociation403ApplicationProblemPlusJSONResponse struct {
@@ -3067,7 +3067,7 @@ func (response ReadIndividualAMPolicyAssociation403ApplicationProblemPlusJSONRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ReadIndividualAMPolicyAssociation404ApplicationProblemPlusJSONResponse struct {
@@ -3078,7 +3078,7 @@ func (response ReadIndividualAMPolicyAssociation404ApplicationProblemPlusJSONRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ReadIndividualAMPolicyAssociation406Response externalRef0.N406Response
@@ -3096,7 +3096,7 @@ func (response ReadIndividualAMPolicyAssociation429ApplicationProblemPlusJSONRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type ReadIndividualAMPolicyAssociation500ApplicationProblemPlusJSONResponse struct {
@@ -3107,7 +3107,7 @@ func (response ReadIndividualAMPolicyAssociation500ApplicationProblemPlusJSONRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type ReadIndividualAMPolicyAssociation503ApplicationProblemPlusJSONResponse struct {
@@ -3118,7 +3118,7 @@ func (response ReadIndividualAMPolicyAssociation503ApplicationProblemPlusJSONRes
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ReadIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {
@@ -3148,7 +3148,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation200JSO
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(PolicyUpdate(response))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -3181,7 +3181,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation400App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation401ApplicationProblemPlusJSONResponse struct {
@@ -3192,7 +3192,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation401App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation403ApplicationProblemPlusJSONResponse struct {
@@ -3203,7 +3203,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation403App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation404ApplicationProblemPlusJSONResponse struct {
@@ -3214,7 +3214,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation404App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation411ApplicationProblemPlusJSONResponse struct {
@@ -3225,7 +3225,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation411App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation413ApplicationProblemPlusJSONResponse struct {
@@ -3236,7 +3236,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation413App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation415ApplicationProblemPlusJSONResponse struct {
@@ -3247,7 +3247,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation415App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation429ApplicationProblemPlusJSONResponse struct {
@@ -3258,7 +3258,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation429App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation500ApplicationProblemPlusJSONResponse struct {
@@ -3269,7 +3269,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation500App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociation503ApplicationProblemPlusJSONResponse struct {
@@ -3280,7 +3280,7 @@ func (response ReportObservedEventTriggersForIndividualAMPolicyAssociation503App
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ReportObservedEventTriggersForIndividualAMPolicyAssociationdefaultApplicationProblemPlusJSONResponse struct {

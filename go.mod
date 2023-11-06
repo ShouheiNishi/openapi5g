@@ -3,7 +3,7 @@ module github.com/ShouheiNishi/openapi5g
 go 1.18
 
 require (
-	github.com/deepmap/oapi-codegen v1.15.0
+	github.com/deepmap/oapi-codegen/v2 v2.0.0
 	github.com/free5gc/openapi v1.0.6
 	github.com/getkin/kin-openapi v0.118.0
 	github.com/gin-gonic/gin v1.9.1
@@ -57,6 +57,6 @@ require (
 )
 
 replace (
-	github.com/deepmap/oapi-codegen v1.15.0 => github.com/ShouheiNishi/oapi-codegen v1.15.1-0.20230914020624-063d4412ea45
+	github.com/deepmap/oapi-codegen/v2 v2.0.0 => github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20231121022154-da364d62577b
 	github.com/getkin/kin-openapi v0.118.0 => github.com/ShouheiNishi/kin-openapi v0.118.1-0.20230809022507-e0d137517940
 )

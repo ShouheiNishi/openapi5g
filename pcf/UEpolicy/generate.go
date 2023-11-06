@@ -2,4 +2,4 @@
 
 package UEpolicy
 
-//go:generate go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen --config=config.yaml ../../modSpecs/TS29525_Npcf_UEPolicyControl.yaml
+//go:generate go run github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml ../../modSpecs/TS29525_Npcf_UEPolicyControl.yaml

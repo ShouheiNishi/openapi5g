@@ -2,4 +2,4 @@
 
 package authentication
 
-//go:generate go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen --config=config.yaml ../../modSpecs/TS29509_Nausf_UEAuthentication.yaml
+//go:generate go run github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml ../../modSpecs/TS29509_Nausf_UEAuthentication.yaml

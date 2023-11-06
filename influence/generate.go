@@ -2,4 +2,4 @@
 
 package influence
 
-//go:generate go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen --config=config.yaml ../modSpecs/TS29522_TrafficInfluence.yaml
+//go:generate go run github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml ../modSpecs/TS29522_TrafficInfluence.yaml

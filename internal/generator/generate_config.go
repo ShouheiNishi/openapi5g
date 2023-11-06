@@ -75,7 +75,7 @@ func GenerateConfig(rootDir string, spec string, doc *openapi3.T, deps []string)
 	outLists = append(outLists, filepath.Join(dir, "config.yaml"))
 
 	f := writer.NewOutputFile(filepath.Join(dir, "generate.go"), base, generatorName, writer.ImportSpecs{})
-	fmt.Fprintf(f, "//go:generate go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen --config=config.yaml %s\n", filepath.Join(modTop, spec))
+	fmt.Fprintf(f, "//go:generate go run github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml %s\n", filepath.Join(modTop, spec))
 	if err := f.Close(); err != nil {
 		return nil, err
 	}

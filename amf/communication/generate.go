@@ -2,4 +2,4 @@
 
 package communication
 
-//go:generate go run github.com/deepmap/oapi-codegen/cmd/oapi-codegen --config=config.yaml ../../modSpecs/TS29518_Namf_Communication.yaml
+//go:generate go run github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml ../../modSpecs/TS29518_Namf_Communication.yaml

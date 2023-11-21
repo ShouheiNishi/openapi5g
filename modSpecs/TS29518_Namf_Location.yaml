@@ -1,0 +1,462 @@
+components:
+    schemas:
+        CancelPosInfo:
+            additionalProperties: true
+            properties:
+                hgmlcCallBackURI:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
+                ldrReference:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+                servingLMFIdentification:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                supi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            required:
+                - supi
+                - hgmlcCallBackURI
+                - ldrReference
+            type: object
+        LocationEvent:
+            enum:
+                - EMERGENCY_CALL_ORIGINATION
+                - EMERGENCY_CALL_RELEASE
+                - EMERGENCY_CALL_HANDOVER
+                - ACTIVATION_OF_DEFERRED_LOCATION
+                - UE_MOBILITY_FOR_DEFERRED_LOCATION
+                - CANCELLATION_OF_DEFERRED_LOCATION
+            type: string
+        LocationPrivacyVerResult:
+            enum:
+                - LOCATION_ALLOWED
+                - LOCATION_NOT_ALLOWED
+                - RESPONSE_TIME_OUT
+            type: string
+        LocationType:
+            enum:
+                - CURRENT_LOCATION
+                - CURRENT_OR_LAST_KNOWN_LOCATION
+                - NOTIFICATION_VERIFICATION_ONLY
+                - DEFERRED_LOCATION
+            type: string
+        NotifiedPosInfo:
+            additionalProperties: true
+            properties:
+                ageOfLocationEstimate:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+                altitude:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+                barometricPressure:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
+                civicAddress:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+                ecgi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
+                gnssPositioningDataList:
+                    items:
+                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
+                    maxItems: 9
+                    type: array
+                gpsi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
+                hgmlcCallBackURI:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
+                ldrReference:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+                locationEstimate:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                locationEvent:
+                    $ref: '#/components/schemas/LocationEvent'
+                mscServerId:
+                    $ref: TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
+                ncgi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
+                pei:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
+                positioningDataList:
+                    items:
+                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
+                    maxItems: 9
+                    type: array
+                servingLMFIdentification:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                servingNode:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
+                supi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                targetMmeName:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
+                targetMmeRealm:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
+                terminationCause:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
+                utranSrvccInd:
+                    type: boolean
+                velocityEstimate:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
+            required:
+                - locationEvent
+            type: object
+        ProvideLocInfo:
+            additionalProperties: true
+            properties:
+                additionalLocation:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
+                currentLoc:
+                    type: boolean
+                geoInfo:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                location:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
+                locationAge:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+                oldGuami:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
+                ratType:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+                timezone:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
+            type: object
+        ProvidePosInfo:
+            additionalProperties: true
+            properties:
+                accuracyFulfilmentIndicator:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
+                ageOfLocationEstimate:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+                altitude:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+                barometricPressure:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
+                civicAddress:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+                ecgi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
+                gnssPositioningDataList:
+                    items:
+                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
+                    maxItems: 9
+                    type: array
+                locationEstimate:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                locationPrivacyVerResult:
+                    $ref: '#/components/schemas/LocationPrivacyVerResult'
+                ncgi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
+                positioningDataList:
+                    items:
+                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
+                    maxItems: 9
+                    type: array
+                servingLMFIdentification:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+                targetMmeName:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
+                targetMmeRealm:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
+                targetServingNode:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
+                utranSrvccInd:
+                    type: boolean
+                velocityEstimate:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
+            type: object
+        RequestLocInfo:
+            additionalProperties: true
+            properties:
+                req5gsLoc:
+                    default: false
+                    type: boolean
+                reqCurrentLoc:
+                    default: false
+                    type: boolean
+                reqRatType:
+                    default: false
+                    type: boolean
+                reqTimeZone:
+                    default: false
+                    type: boolean
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            type: object
+        RequestPosInfo:
+            additionalProperties: true
+            properties:
+                additionalLcsSuppGADShapes:
+                    items:
+                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+                    minItems: 1
+                    type: array
+                afID:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
+                areaEventInfo:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
+                codeWord:
+                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
+                externalClientIdentification:
+                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
+                gpsi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
+                hgmlcCallBackURI:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
+                lcsClientType:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
+                lcsLocation:
+                    $ref: '#/components/schemas/LocationType'
+                lcsQoS:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
+                lcsServiceType:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
+                lcsSupportedGADShapes:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+                ldrReference:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+                ldrType:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
+                locationNotificationUri:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
+                motionEventInfo:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
+                oldGuami:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
+                pei:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
+                periodicEventInfo:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
+                priority:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
+                supi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+                uePrivacyRequirements:
+                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
+                velocityRequested:
+                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
+            required:
+                - lcsClientType
+                - lcsLocation
+            type: object
+    securitySchemes:
+        oAuth2ClientCredentials:
+            flows:
+                clientCredentials:
+                    scopes:
+                        namf-loc: Access to the Namf_Location API
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
+            type: oauth2
+externalDocs:
+    description: 3GPP TS 29.518 V16.13.0; 5G System; Access and Mobility Management Services
+    url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.518/
+info:
+    description: |
+        AMF Location Service
+        © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+        All rights reserved.
+    title: Namf_Location
+    version: 1.1.8
+openapi: 3.0.0
+paths:
+    /{ueContextId}/cancel-pos-info:
+        post:
+            operationId: CancelLocation
+            parameters:
+                - description: UE Context Identifier
+                  in: path
+                  name: ueContextId
+                  required: true
+                  schema:
+                    pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|.+)$
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CancelPosInfo'
+                required: true
+            responses:
+                "204":
+                    description: Expected response to a successful cancellation
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                "504":
+                    $ref: TS29571_CommonData.yaml#/components/responses/504
+                default:
+                    $ref: TS29571_CommonData.yaml#/components/responses/default
+            summary: Namf_Location CancelLocation service operation
+            tags:
+                - Individual UE context (Document)
+    /{ueContextId}/provide-loc-info:
+        post:
+            operationId: ProvideLocationInfo
+            parameters:
+                - description: UE Context Identifier
+                  in: path
+                  name: ueContextId
+                  required: true
+                  schema:
+                    pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/RequestLocInfo'
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ProvideLocInfo'
+                    description: Expected response to a valid request
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: Namf_Location ProvideLocationInfo service Operation
+            tags:
+                - Individual UE context (Document)
+    /{ueContextId}/provide-pos-info:
+        post:
+            callbacks:
+                onUELocationNotification:
+                    '{$request.body#/locationNotificationUri}':
+                        post:
+                            requestBody:
+                                content:
+                                    application/json:
+                                        schema:
+                                            $ref: '#/components/schemas/NotifiedPosInfo'
+                                description: UE Location Event Notification
+                            responses:
+                                "204":
+                                    description: Expected response to a successful callback processing
+                                "307":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                                "308":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                                "400":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                                "403":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                                "411":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                                "413":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                                "415":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                                "429":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                                "500":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                                "503":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/503
+            operationId: ProvidePositioningInfo
+            parameters:
+                - description: UE Context Identifier
+                  in: path
+                  name: ueContextId
+                  required: true
+                  schema:
+                    pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/RequestPosInfo'
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ProvidePosInfo'
+                    description: Expected response to a valid request
+                "204":
+                    description: Successful accept of location request with no information returned.
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                "504":
+                    $ref: TS29571_CommonData.yaml#/components/responses/504
+                default:
+                    description: Unexpected error
+            summary: Namf_Location ProvidePositioningInfo service Operation
+            tags:
+                - Individual UE context (Document)
+security:
+    - {}
+    - oAuth2ClientCredentials:
+        - namf-loc
+servers:
+    - url: '{apiRoot}/namf-loc/v1'
+      variables:
+        apiRoot:
+            default: https://example.com
+            description: apiRoot as defined in clause clause 4.4 of 3GPP TS 29.501

@@ -1,0 +1,13 @@
+# This is generated file, DO NOT EDIT.
+package: upu
+generate:
+  models: true
+  client: true
+  gin-server: true
+  strict-server: true
+output-options:
+  skip-prune: true
+import-mapping:
+  TS29509_Nausf_SoRProtection.yaml: github.com/ShouheiNishi/openapi5g/ausf/sor
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+output: upu.go

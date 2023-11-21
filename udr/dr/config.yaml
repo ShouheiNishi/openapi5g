@@ -1,0 +1,20 @@
+# This is generated file, DO NOT EDIT.
+package: dr
+generate:
+  models: true
+  client: true
+  gin-server: true
+  strict-server: true
+output-options:
+  skip-prune: true
+import-mapping:
+  TS29122_CommonData.yaml: github.com/ShouheiNishi/openapi5g/northbound/commondata
+  TS29503_Nudm_PP.yaml: github.com/ShouheiNishi/openapi5g/udm/pp
+  TS29503_Nudm_SDM.yaml: github.com/ShouheiNishi/openapi5g/udm/sdm
+  TS29503_Nudm_UEAU.yaml: github.com/ShouheiNishi/openapi5g/udm/ueau
+  TS29505_Subscription_Data.yaml: github.com/ShouheiNishi/openapi5g/udr/subscription
+  TS29519_Application_Data.yaml: github.com/ShouheiNishi/openapi5g/udr/application
+  TS29519_Exposure_Data.yaml: github.com/ShouheiNishi/openapi5g/udr/exposure
+  TS29519_Policy_Data.yaml: github.com/ShouheiNishi/openapi5g/udr/policy
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+output: dr.go

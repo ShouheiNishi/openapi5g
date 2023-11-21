@@ -1,0 +1,15 @@
+# This is generated file, DO NOT EDIT.
+package: session
+generate:
+  models: true
+  client: true
+  gin-server: true
+  strict-server: true
+output-options:
+  skip-prune: true
+import-mapping:
+  TS29510_Nnrf_NFManagement.yaml: github.com/ShouheiNishi/openapi5g/nrf/management
+  TS29518_Namf_Communication.yaml: github.com/ShouheiNishi/openapi5g/amf/communication
+  TS29519_Policy_Data.yaml: github.com/ShouheiNishi/openapi5g/udr/policy
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+output: session.go

@@ -1,0 +1,17 @@
+# This is generated file, DO NOT EDIT.
+package: application
+generate:
+  models: true
+  client: true
+  gin-server: true
+  strict-server: true
+output-options:
+  skip-prune: true
+import-mapping:
+  TS29122_CommonData.yaml: github.com/ShouheiNishi/openapi5g/northbound/commondata
+  TS29514_Npcf_PolicyAuthorization.yaml: github.com/ShouheiNishi/openapi5g/pcf/authorization
+  TS29522_TrafficInfluence.yaml: github.com/ShouheiNishi/openapi5g/influence
+  TS29551_Nnef_PFDmanagement.yaml: github.com/ShouheiNishi/openapi5g/nef/management
+  TS29554_Npcf_BDTPolicyControl.yaml: github.com/ShouheiNishi/openapi5g/pcf/BDTpolicy
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+output: application.go

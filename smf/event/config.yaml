@@ -1,0 +1,16 @@
+# This is generated file, DO NOT EDIT.
+package: event
+generate:
+  models: true
+  client: true
+  gin-server: true
+  strict-server: true
+output-options:
+  skip-prune: true
+import-mapping:
+  TS29510_Nnrf_NFManagement.yaml: github.com/ShouheiNishi/openapi5g/nrf/management
+  TS29514_Npcf_PolicyAuthorization.yaml: github.com/ShouheiNishi/openapi5g/pcf/authorization
+  TS29518_Namf_EventExposure.yaml: github.com/ShouheiNishi/openapi5g/amf/event
+  TS29522_TrafficInfluence.yaml: github.com/ShouheiNishi/openapi5g/influence
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+output: event.go

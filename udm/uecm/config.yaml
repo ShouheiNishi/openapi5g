@@ -1,0 +1,14 @@
+# This is generated file, DO NOT EDIT.
+package: uecm
+generate:
+  models: true
+  client: true
+  gin-server: true
+  strict-server: true
+output-options:
+  skip-prune: true
+import-mapping:
+  TS29503_Nudm_SDM.yaml: github.com/ShouheiNishi/openapi5g/udm/sdm
+  TS29510_Nnrf_NFManagement.yaml: github.com/ShouheiNishi/openapi5g/nrf/management
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+output: uecm.go

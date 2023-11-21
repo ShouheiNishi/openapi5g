@@ -1,0 +1,14 @@
+# This is generated file, DO NOT EDIT.
+package: event
+generate:
+  models: true
+  client: true
+  gin-server: true
+  strict-server: true
+output-options:
+  skip-prune: true
+import-mapping:
+  TS29510_Nnrf_NFManagement.yaml: github.com/ShouheiNishi/openapi5g/nrf/management
+  TS29531_Nnssf_NSSelection.yaml: github.com/ShouheiNishi/openapi5g/nssf/selection
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+output: event.go

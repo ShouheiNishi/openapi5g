@@ -1,0 +1,509 @@
+components:
+    schemas:
+        AssociationType:
+            enum:
+                - IMEI_CHANGE
+                - IMEISV_CHANGE
+            type: string
+        ChangeOfSupiPeiAssociationReport:
+            additionalProperties: true
+            properties:
+                newPei:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
+            required:
+                - newPei
+            type: object
+        CmInfoReport:
+            additionalProperties: true
+            properties:
+                newCmInfoList:
+                    items:
+                        $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/CmInfo
+                    maxItems: 2
+                    minItems: 1
+                    type: array
+                oldCmInfoList:
+                    items:
+                        $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/CmInfo
+                    maxItems: 2
+                    minItems: 1
+                    type: array
+            required:
+                - newCmInfoList
+            type: object
+        CnType:
+            enum:
+                - SINGLE_4G
+                - SINGLE_5G
+                - DUAL_4G5G
+            type: string
+        CnTypeChangeReport:
+            additionalProperties: true
+            properties:
+                newCnType:
+                    $ref: '#/components/schemas/CnType'
+                oldCnType:
+                    $ref: '#/components/schemas/CnType'
+            required:
+                - newCnType
+            type: object
+        CreatedEeSubscription:
+            additionalProperties: true
+            properties:
+                eeSubscription:
+                    $ref: '#/components/schemas/EeSubscription'
+                epcStatusInd:
+                    type: boolean
+                eventReports:
+                    items:
+                        $ref: '#/components/schemas/MonitoringReport'
+                    minItems: 1
+                    type: array
+                numberOfUes:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
+            required:
+                - eeSubscription
+            type: object
+        DatalinkReportingConfiguration:
+            additionalProperties: true
+            properties:
+                dddStatusList:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
+                    minItems: 1
+                    type: array
+                dddTrafficDes:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
+                    minItems: 1
+                    type: array
+                dnn:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
+                slice:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
+            type: object
+        EeSubscription:
+            additionalProperties: true
+            properties:
+                callbackReference:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
+                contextInfo:
+                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
+                epcAppliedInd:
+                    default: false
+                    type: boolean
+                monitoringConfigurations:
+                    additionalProperties:
+                        $ref: '#/components/schemas/MonitoringConfiguration'
+                    description: A map (list of key-value pairs where ReferenceId serves as key) of MonitoringConfigurations
+                    minProperties: 1
+                    type: object
+                notifyCorrelationId:
+                    type: string
+                reportingOptions:
+                    $ref: '#/components/schemas/ReportingOptions'
+                scefDiamHost:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
+                scefDiamRealm:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
+                subscriptionId:
+                    type: string
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            required:
+                - callbackReference
+                - monitoringConfigurations
+            type: object
+        EventReportMode:
+            enum:
+                - PERIODIC
+                - ON_EVENT_DETECTION
+            type: string
+        EventType:
+            enum:
+                - LOSS_OF_CONNECTIVITY
+                - UE_REACHABILITY_FOR_DATA
+                - UE_REACHABILITY_FOR_SMS
+                - LOCATION_REPORTING
+                - CHANGE_OF_SUPI_PEI_ASSOCIATION
+                - ROAMING_STATUS
+                - COMMUNICATION_FAILURE
+                - AVAILABILITY_AFTER_DDN_FAILURE
+                - CN_TYPE_CHANGE
+                - DL_DATA_DELIVERY_STATUS
+                - PDN_CONNECTIVITY_STATUS
+                - UE_CONNECTION_MANAGEMENT_STATE
+            type: string
+        LocationAccuracy:
+            enum:
+                - CELL_LEVEL
+                - TA_LEVEL
+                - N3IWF_LEVEL
+                - UE_IP
+                - UE_PORT
+            type: string
+        LocationReport:
+            additionalProperties: true
+            properties:
+                location:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
+            required:
+                - location
+            type: object
+        LocationReportingConfiguration:
+            additionalProperties: true
+            properties:
+                accuracy:
+                    $ref: '#/components/schemas/LocationAccuracy'
+                currentLocation:
+                    type: boolean
+                n3gppAccuracy:
+                    $ref: '#/components/schemas/LocationAccuracy'
+                oneTime:
+                    type: boolean
+            required:
+                - currentLocation
+            type: object
+        LossConnectivityCfg:
+            additionalProperties: true
+            properties:
+                maxDetectionTime:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
+            type: object
+        LossConnectivityReport:
+            additionalProperties: true
+            properties:
+                lossOfConnectReason:
+                    $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/LossOfConnectivityReason
+            required:
+                - lossOfConnectReason
+            type: object
+        MaxNumOfReports:
+            type: integer
+        MonitoringConfiguration:
+            additionalProperties: true
+            properties:
+                afId:
+                    type: string
+                associationType:
+                    $ref: '#/components/schemas/AssociationType'
+                datalinkReportCfg:
+                    $ref: '#/components/schemas/DatalinkReportingConfiguration'
+                eventType:
+                    $ref: '#/components/schemas/EventType'
+                idleStatusInd:
+                    default: false
+                    type: boolean
+                immediateFlag:
+                    type: boolean
+                locationReportingConfiguration:
+                    $ref: '#/components/schemas/LocationReportingConfiguration'
+                lossConnectivityCfg:
+                    $ref: '#/components/schemas/LossConnectivityCfg'
+                maximumLatency:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
+                maximumResponseTime:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
+                mtcProviderInformation:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
+                pduSessionStatusCfg:
+                    $ref: '#/components/schemas/PduSessionStatusCfg'
+                reachabilityForSmsCfg:
+                    $ref: '#/components/schemas/ReachabilityForSmsConfiguration'
+                suggestedPacketNumDl:
+                    minimum: 1
+                    type: integer
+            required:
+                - eventType
+            type: object
+        MonitoringReport:
+            additionalProperties: true
+            properties:
+                eventType:
+                    $ref: '#/components/schemas/EventType'
+                gpsi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
+                reachabilityForSmsReport:
+                    $ref: '#/components/schemas/ReachabilityForSmsReport'
+                referenceId:
+                    $ref: '#/components/schemas/ReferenceId'
+                report:
+                    $ref: '#/components/schemas/Report'
+                timeStamp:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
+            required:
+                - referenceId
+                - eventType
+                - timeStamp
+            type: object
+        PdnConnectivityStatReport:
+            additionalProperties: true
+            properties:
+                dnn:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
+                ipv4Addr:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
+                ipv6Addrs:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
+                    minItems: 1
+                    type: array
+                ipv6Prefixes:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
+                    minItems: 1
+                    type: array
+                pdnConnStat:
+                    $ref: '#/components/schemas/PdnConnectivityStatus'
+                pduSeId:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
+                pduSessType:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
+            required:
+                - pdnConnStat
+            type: object
+        PdnConnectivityStatus:
+            enum:
+                - ESTABLISHED
+                - RELEASED
+            type: string
+        PduSessionStatusCfg:
+            additionalProperties: true
+            properties:
+                dnn:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
+            type: object
+        ReachabilityForSmsConfiguration:
+            enum:
+                - REACHABILITY_FOR_SMS_OVER_NAS
+                - REACHABILITY_FOR_SMS_OVER_IP
+            type: string
+        ReachabilityForSmsReport:
+            additionalProperties: true
+            properties:
+                maxAvailabilityTime:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
+                smsfAccessType:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
+            required:
+                - smsfAccessType
+            type: object
+        ReferenceId:
+            type: integer
+        Report:
+            oneOf:
+                - $ref: '#/components/schemas/ChangeOfSupiPeiAssociationReport'
+                - $ref: '#/components/schemas/RoamingStatusReport'
+                - $ref: '#/components/schemas/CnTypeChangeReport'
+                - $ref: '#/components/schemas/CmInfoReport'
+                - $ref: '#/components/schemas/LossConnectivityReport'
+                - $ref: '#/components/schemas/LocationReport'
+                - $ref: '#/components/schemas/PdnConnectivityStatReport'
+        ReportingOptions:
+            additionalProperties: true
+            properties:
+                expiry:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
+                guardTime:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
+                maxNumOfReports:
+                    $ref: '#/components/schemas/MaxNumOfReports'
+                reportMode:
+                    $ref: '#/components/schemas/EventReportMode'
+                reportPeriod:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
+                samplingRatio:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SamplingRatio
+            type: object
+        RoamingStatusReport:
+            additionalProperties: true
+            properties:
+                newServingPlmn:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
+                roaming:
+                    type: boolean
+            required:
+                - roaming
+                - newServingPlmn
+            type: object
+    securitySchemes:
+        oAuth2ClientCredentials:
+            flows:
+                clientCredentials:
+                    scopes:
+                        nudm-ee: Access to the nudm-ee API
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
+            type: oauth2
+externalDocs:
+    description: 3GPP TS 29.503 Unified Data Management Services, version 16.11.0
+    url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.503/
+info:
+    description: "Nudm Event Exposure Service.  \n© 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  \nAll rights reserved.\n"
+    title: Nudm_EE
+    version: 1.1.4
+openapi: 3.0.0
+paths:
+    /{ueIdentity}/ee-subscriptions:
+        post:
+            callbacks:
+                eventOccurrenceNotification:
+                    '{request.body#/callbackReference}':
+                        post:
+                            requestBody:
+                                content:
+                                    application/json:
+                                        schema:
+                                            items:
+                                                $ref: '#/components/schemas/MonitoringReport'
+                                            minItems: 1
+                                            type: array
+                                required: true
+                            responses:
+                                "204":
+                                    description: Successful Notification response
+                                "400":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                                "404":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                                "500":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                                "503":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                                default:
+                                    description: Unexpected error
+            operationId: CreateEeSubscription
+            parameters:
+                - description: Represents the scope of the UE for which the subscription is applied. Contains the GPSI of the user or the external group ID or any UE.
+                  in: path
+                  name: ueIdentity
+                  required: true
+                  schema:
+                    pattern: ^(msisdn-[0-9]{5,15}|.+|extid-[^@]+@[^@]+|extgroupid-[^@]+@[^@]+|anyUE)$
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/EeSubscription'
+                required: true
+            responses:
+                "201":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreatedEeSubscription'
+                    description: Expected response to a valid request
+                    headers:
+                        Location:
+                            description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nudm-ee/v1/{ueIdentity}/ee-subscriptions/{subscriptionId}'
+                            required: true
+                            schema:
+                                type: string
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "501":
+                    $ref: TS29571_CommonData.yaml#/components/responses/501
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: Subscribe
+            tags:
+                - Create EE Subscription
+    /{ueIdentity}/ee-subscriptions/{subscriptionId}:
+        delete:
+            operationId: DeleteEeSubscription
+            parameters:
+                - description: Represents the scope of the UE for which the subscription is applied. Contains the GPSI of the user or the external group ID or any UE.
+                  in: path
+                  name: ueIdentity
+                  required: true
+                  schema:
+                    pattern: ^(msisdn-[0-9]{5,15}|.+|extid-[^@]+@[^@]+|extgroupid-[^@]+@[^@]+|anyUE)$
+                    type: string
+                - description: Id of the EE Subscription
+                  in: path
+                  name: subscriptionId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "204":
+                    description: Successful response
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: Unsubscribe
+            tags:
+                - Delete EE Subscription
+        patch:
+            operationId: UpdateEeSubscription
+            parameters:
+                - description: Represents the scope of the UE for which the subscription is applied. Contains the GPSI of the user or the external group ID or any UE.
+                  in: path
+                  name: ueIdentity
+                  required: true
+                  schema:
+                    pattern: ^(msisdn-[0-9]{5,15}|.+|extid-[^@]+@[^@]+|extgroupid-[^@]+@[^@]+|anyUE)$
+                    type: string
+                - description: Id of the EE Subscription
+                  in: path
+                  name: subscriptionId
+                  required: true
+                  schema:
+                    type: string
+                - description: Features required to be supported by the target NF
+                  in: query
+                  name: supported-features
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            requestBody:
+                content:
+                    application/json-patch+json:
+                        schema:
+                            items:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PatchItem
+                            minItems: 1
+                            type: array
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
+                    description: Expected response to a valid request
+                "204":
+                    description: Successful response
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                default:
+                    description: Unexpected error
+            summary: Patch
+            tags:
+                - Update EE Subscription
+security:
+    - oAuth2ClientCredentials:
+        - nudm-ee
+    - {}
+servers:
+    - url: '{apiRoot}/nudm-ee/v1'
+      variables:
+        apiRoot:
+            default: https://example.com
+            description: apiRoot as defined in clause clause 4.4 of 3GPP TS 29.501.

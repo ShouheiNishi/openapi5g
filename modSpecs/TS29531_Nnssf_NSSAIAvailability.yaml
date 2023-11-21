@@ -1,0 +1,623 @@
+components:
+    schemas:
+        AuthorizedNssaiAvailabilityData:
+            additionalProperties: true
+            properties:
+                restrictedSnssaiList:
+                    items:
+                        $ref: '#/components/schemas/RestrictedSnssai'
+                    minItems: 1
+                    type: array
+                supportedSnssaiList:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
+                    minItems: 1
+                    type: array
+                tai:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Tai
+                taiList:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Tai
+                    minItems: 1
+                    type: array
+                taiRangeList:
+                    items:
+                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TaiRange
+                    minItems: 1
+                    type: array
+            required:
+                - tai
+                - supportedSnssaiList
+            type: object
+        AuthorizedNssaiAvailabilityInfo:
+            additionalProperties: true
+            properties:
+                authorizedNssaiAvailabilityData:
+                    items:
+                        $ref: '#/components/schemas/AuthorizedNssaiAvailabilityData'
+                    minItems: 1
+                    type: array
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            required:
+                - authorizedNssaiAvailabilityData
+            type: object
+        NssaiAvailabilityInfo:
+            additionalProperties: true
+            properties:
+                amfSetId:
+                    pattern: ^[0-9]{3}-[0-9]{2-3}-[A-Fa-f0-9]{2}-[0-3][A-Fa-f0-9]{2}$
+                    type: string
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+                supportedNssaiAvailabilityData:
+                    items:
+                        $ref: '#/components/schemas/SupportedNssaiAvailabilityData'
+                    minItems: 1
+                    type: array
+            required:
+                - supportedNssaiAvailabilityData
+            type: object
+        NssfEventNotification:
+            additionalProperties: true
+            properties:
+                authorizedNssaiAvailabilityData:
+                    items:
+                        $ref: '#/components/schemas/AuthorizedNssaiAvailabilityData'
+                    type: array
+                subscriptionId:
+                    type: string
+            required:
+                - subscriptionId
+                - authorizedNssaiAvailabilityData
+            type: object
+        NssfEventSubscriptionCreateData:
+            additionalProperties: true
+            properties:
+                amfSetId:
+                    pattern: ^[0-9]{3}-[0-9]{2-3}-[A-Fa-f0-9]{2}-[0-3][A-Fa-f0-9]{2}$
+                    type: string
+                event:
+                    $ref: '#/components/schemas/NssfEventType'
+                expiry:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
+                nfNssaiAvailabilityUri:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+                taiList:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Tai
+                    type: array
+                taiRangeList:
+                    items:
+                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TaiRange
+                    minItems: 1
+                    type: array
+            required:
+                - nfNssaiAvailabilityUri
+                - taiList
+                - event
+            type: object
+        NssfEventSubscriptionCreatedData:
+            additionalProperties: true
+            properties:
+                authorizedNssaiAvailabilityData:
+                    items:
+                        $ref: '#/components/schemas/AuthorizedNssaiAvailabilityData'
+                    minItems: 1
+                    type: array
+                expiry:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
+                subscriptionId:
+                    type: string
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            required:
+                - subscriptionId
+            type: object
+        NssfEventType:
+            enum:
+                - SNSSAI_STATUS_CHANGE_REPORT
+            type: string
+        PatchDocument:
+            items:
+                $ref: TS29571_CommonData.yaml#/components/schemas/PatchItem
+            minItems: 1
+            type: array
+        RestrictedSnssai:
+            additionalProperties: true
+            properties:
+                homePlmnId:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
+                homePlmnIdList:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
+                    minItems: 1
+                    type: array
+                roamingRestriction:
+                    default: false
+                    type: boolean
+                sNssaiList:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
+                    minItems: 1
+                    type: array
+            required:
+                - homePlmnId
+                - sNssaiList
+            type: object
+        SupportedNssaiAvailabilityData:
+            additionalProperties: true
+            properties:
+                supportedSnssaiList:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
+                    minItems: 1
+                    type: array
+                tai:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Tai
+                taiList:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Tai
+                    minItems: 1
+                    type: array
+                taiRangeList:
+                    items:
+                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TaiRange
+                    minItems: 1
+                    type: array
+            required:
+                - tai
+                - supportedSnssaiList
+            type: object
+    securitySchemes:
+        oAuth2ClientCredentials:
+            flows:
+                clientCredentials:
+                    scopes:
+                        nnssf-nssaiavailability: Access to the Nnssf_NSSAIAvailability API
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
+            type: oauth2
+externalDocs:
+    description: 3GPP TS 29.531 V16.7.0; 5G System; Network Slice Selection Services; Stage 3
+    url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.531/
+info:
+    description: |
+        NSSF NSSAI Availability Service.
+        © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+        All rights reserved.
+    title: NSSF NSSAI Availability
+    version: 1.1.4
+openapi: 3.0.0
+paths:
+    /nssai-availability:
+        options:
+            operationId: NSSAIAvailabilityOptions
+            responses:
+                "200":
+                    description: OK
+                    headers:
+                        Accept-Encoding:
+                            description: Accept-Encoding, described in IETF RFC 7694
+                            schema:
+                                type: string
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "405":
+                    $ref: TS29571_CommonData.yaml#/components/responses/405
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "501":
+                    $ref: TS29571_CommonData.yaml#/components/responses/501
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    $ref: TS29571_CommonData.yaml#/components/responses/default
+            summary: Discover communication options supported by NSSF for NSSAI Availability
+            tags:
+                - NSSAI Availability Store
+    /nssai-availability/{nfId}:
+        delete:
+            operationId: NSSAIAvailabilityDelete
+            parameters:
+                - description: Identifier of the NF service consumer instance
+                  in: path
+                  name: nfId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "204":
+                    description: No Content (Successful deletion of SNSSAI information per TA)
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: Deletes an already existing S-NSSAIs per TA provided by the NF service consumer (e.g AMF)
+            tags:
+                - NF Instance ID (Document)
+        patch:
+            operationId: NSSAIAvailabilityPatch
+            parameters:
+                - description: Identifier of the NF service consumer instance
+                  in: path
+                  name: nfId
+                  required: true
+                  schema:
+                    type: string
+                - description: Content-Encoding, described in IETF RFC 7231
+                  in: header
+                  name: Content-Encoding
+                  schema:
+                    type: string
+                - description: Accept-Encoding, described in IETF RFC 7231
+                  in: header
+                  name: Accept-Encoding
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    'application/json-patch+json:':
+                        schema:
+                            $ref: '#/components/schemas/PatchDocument'
+                description: JSON Patch instructions to update at the NSSF, the S-NSSAIs supported per TA
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/AuthorizedNssaiAvailabilityInfo'
+                    description: OK (Successful update of SNSSAI information per TA)
+                    headers:
+                        Accept-Encoding:
+                            description: Accept-Encoding, described in IETF RFC 7694
+                            schema:
+                                type: string
+                        Content-Encoding:
+                            description: Content-Encoding, described in IETF RFC 7231
+                            schema:
+                                type: string
+                "204":
+                    description: No Content (No supported slices after Successful update)
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: Updates an already existing S-NSSAIs per TA provided by the NF service consumer (e.g AMF)
+            tags:
+                - NF Instance ID (Document)
+        put:
+            operationId: NSSAIAvailabilityPut
+            parameters:
+                - description: Identifier of the NF service consumer instance
+                  in: path
+                  name: nfId
+                  required: true
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
+                - description: Content-Encoding, described in IETF RFC 7231
+                  in: header
+                  name: Content-Encoding
+                  schema:
+                    type: string
+                - description: Accept-Encoding, described in IETF RFC 7231
+                  in: header
+                  name: Accept-Encoding
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/NssaiAvailabilityInfo'
+                description: Parameters to update/replace at the NSSF, the S-NSSAIs supported per TA
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/AuthorizedNssaiAvailabilityInfo'
+                    description: OK (Successful update of SNSSAI information per TA)
+                    headers:
+                        Accept-Encoding:
+                            description: Accept-Encoding, described in IETF RFC 7694
+                            schema:
+                                type: string
+                        Content-Encoding:
+                            description: Content-Encoding, described in IETF RFC 7231
+                            schema:
+                                type: string
+                "204":
+                    description: No Content (No supported slices after Successful update)
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: Updates/replaces the NSSF with the S-NSSAIs the NF service consumer (e.g AMF)supports per TA
+            tags:
+                - NF Instance ID (Document)
+    /nssai-availability/subscriptions:
+        post:
+            callbacks:
+                nssaiAvailabilityNotification:
+                    '{request.body#/nfNssaiAvailabilityUri}':
+                        post:
+                            parameters:
+                                - description: Content-Encoding, described in IETF RFC 7231
+                                  in: header
+                                  name: Content-Encoding
+                                  schema:
+                                    type: string
+                            requestBody:
+                                content:
+                                    application/json:
+                                        schema:
+                                            $ref: '#/components/schemas/NssfEventNotification'
+                                required: true
+                            responses:
+                                "204":
+                                    description: No Content (successful notification)
+                                    headers:
+                                        Accept-Encoding:
+                                            description: Accept-Encoding, described in IETF RFC 7694
+                                            schema:
+                                                type: string
+                                "307":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                                "308":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                                "400":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                                "411":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                                "413":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                                "415":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                                "429":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                                "500":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                                "503":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                                default:
+                                    description: Unexpected error
+            operationId: NSSAIAvailabilityPost
+            parameters:
+                - description: Content-Encoding, described in IETF RFC 7231
+                  in: header
+                  name: Content-Encoding
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/NssfEventSubscriptionCreateData'
+                description: Subscription for notification about updates to NSSAI availability information
+                required: true
+            responses:
+                "201":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/NssfEventSubscriptionCreatedData'
+                    description: Created (Successful creation of subscription for notification)
+                    headers:
+                        Content-Encoding:
+                            description: Content-Encoding, described in IETF RFC 7231
+                            schema:
+                                type: string
+                        Location:
+                            description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nnssf-nssaiavailability/v1/nssai-availability/subscriptions/{subscriptionId}'
+                            required: true
+                            schema:
+                                type: string
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: Creates subscriptions for notification about updates to NSSAI availability information
+            tags:
+                - Subscriptions (Collection)
+    /nssai-availability/subscriptions/{subscriptionId}:
+        delete:
+            operationId: NSSAIAvailabilityUnsubscribe
+            parameters:
+                - description: Identifier of the subscription for notification
+                  in: path
+                  name: subscriptionId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "204":
+                    description: No Content (Successful deletion of subscription for NSSAI Availability notification)
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: Deletes an already existing NSSAI availability notification subscription
+            tags:
+                - Subscription ID (Document)
+        patch:
+            operationId: NSSAIAvailabilitySubModifyPatch
+            parameters:
+                - description: Identifier of the subscription for notification
+                  in: path
+                  name: subscriptionId
+                  required: true
+                  schema:
+                    type: string
+                - description: Content-Encoding, described in IETF RFC 7231
+                  in: header
+                  name: Content-Encoding
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    'application/json-patch+json:':
+                        schema:
+                            $ref: '#/components/schemas/PatchDocument'
+                description: JSON Patch instructions to update at the NSSF, the NSSAI availability notification subscription
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/NssfEventSubscriptionCreatedData'
+                    description: OK (Successful update of NSSAI availability notification subscription)
+                    headers:
+                        Content-Encoding:
+                            description: Content-Encoding, described in IETF RFC 7231
+                            schema:
+                                type: string
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    description: Unexpected error
+            summary: updates an already existing NSSAI availability notification subscription
+            tags:
+                - Subscription ID (Document)
+security:
+    - {}
+    - oAuth2ClientCredentials:
+        - nnssf-nssaiavailability
+servers:
+    - url: '{apiRoot}/nnssf-nssaiavailability/v1'
+      variables:
+        apiRoot:
+            default: https://example.com
+            description: apiRoot as defined in clause 4.4 of 3GPP TS 29.501

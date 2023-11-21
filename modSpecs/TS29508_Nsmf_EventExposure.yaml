@@ -1,0 +1,553 @@
+components:
+    schemas:
+        AckOfNotify:
+            additionalProperties: true
+            properties:
+                ackResult:
+                    $ref: TS29522_TrafficInfluence.yaml#/components/schemas/AfResultInfo
+                gpsi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
+                notifId:
+                    type: string
+                supi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+            required:
+                - notifId
+                - ackResult
+            type: object
+        EventNotification:
+            additionalProperties: true
+            properties:
+                accType:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
+                adIpv4Addr:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
+                adIpv6Prefix:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
+                appId:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
+                commFailure:
+                    $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/CommunicationFailure
+                dddStatus:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
+                dddTraDescriptor:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
+                dlDelays:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
+                    minItems: 1
+                    type: array
+                dnaiChgType:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DnaiChangeType
+                dnn:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
+                ethfDescs:
+                    items:
+                        $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription
+                    maxItems: 2
+                    minItems: 1
+                    type: array
+                event:
+                    $ref: '#/components/schemas/SmfEvent'
+                fDescs:
+                    items:
+                        $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowDescription
+                    maxItems: 2
+                    minItems: 1
+                    type: array
+                gpsi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
+                ipv4Addr:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
+                ipv6Addrs:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
+                    minItems: 1
+                    type: array
+                ipv6Prefixes:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
+                    minItems: 1
+                    type: array
+                maxWaitTime:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
+                pduSeId:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
+                pduSessType:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
+                plmnId:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
+                qfi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Qfi
+                reIpv4Addr:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
+                reIpv6Prefix:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
+                rtDelays:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
+                    minItems: 1
+                    type: array
+                snssai:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
+                sourceDnai:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
+                sourceTraRouting:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
+                sourceUeIpv4Addr:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
+                sourceUeIpv6Prefix:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
+                supi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                targetDnai:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
+                targetTraRouting:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
+                targetUeIpv4Addr:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
+                targetUeIpv6Prefix:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
+                timeStamp:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
+                ueMac:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
+                ulDelays:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
+                    minItems: 1
+                    type: array
+            required:
+                - event
+                - timeStamp
+            type: object
+        EventSubscription:
+            additionalProperties: true
+            properties:
+                appIds:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
+                    minItems: 1
+                    type: array
+                dddStati:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
+                    minItems: 1
+                    type: array
+                dddTraDescriptors:
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
+                    minItems: 1
+                    type: array
+                dnaiChgType:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DnaiChangeType
+                event:
+                    $ref: '#/components/schemas/SmfEvent'
+            required:
+                - event
+            type: object
+        NotificationMethod:
+            description: |
+                Possible values are - PERIODIC - ONE_TIME - ON_EVENT_DETECTION
+            enum:
+                - PERIODIC
+                - ONE_TIME
+                - ON_EVENT_DETECTION
+            type: string
+        NsmfEventExposure:
+            additionalProperties: true
+            description: Represents an Individual SMF Notification Subscription resource. The serviveName property corresponds to the serviceName in the main body of the specification.
+            properties:
+                ImmeRep:
+                    type: boolean
+                altNotifFqdns:
+                    description: Alternate or backup FQDN(s) where to send Notifications.
+                    items:
+                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
+                    minItems: 1
+                    type: array
+                altNotifIpv4Addrs:
+                    description: Alternate or backup IPv4 address(es) where to send Notifications.
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
+                    minItems: 1
+                    type: array
+                altNotifIpv6Addrs:
+                    description: Alternate or backup IPv6 address(es) where to send Notifications.
+                    items:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
+                    minItems: 1
+                    type: array
+                anyUeInd:
+                    description: Any UE indication. This IE shall be present if the event subscription is applicable to any UE. Default value "false" is used, if not present.
+                    type: boolean
+                dnn:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
+                eventSubs:
+                    description: Subscribed events
+                    items:
+                        $ref: '#/components/schemas/EventSubscription'
+                    minItems: 1
+                    type: array
+                expiry:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
+                gpsi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
+                groupId:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
+                grpRepTime:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
+                guami:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
+                maxReportNbr:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
+                notifId:
+                    description: Notification Correlation ID assigned by the NF service consumer.
+                    type: string
+                notifMethod:
+                    $ref: '#/components/schemas/NotificationMethod'
+                notifUri:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
+                pduSeId:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
+                repPeriod:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
+                sampRatio:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SamplingRatio
+                serviveName:
+                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
+                snssai:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
+                subId:
+                    $ref: '#/components/schemas/SubId'
+                supi:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                supportedFeatures:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            required:
+                - notifId
+                - notifUri
+                - eventSubs
+            type: object
+        NsmfEventExposureNotification:
+            additionalProperties: true
+            properties:
+                ackUri:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
+                eventNotifs:
+                    description: Notifications about Individual Events
+                    items:
+                        $ref: '#/components/schemas/EventNotification'
+                    minItems: 1
+                    type: array
+                notifId:
+                    description: Notification correlation ID
+                    type: string
+            required:
+                - notifId
+                - eventNotifs
+            type: object
+        SmfEvent:
+            description: |
+                Possible values are - AC_TY_CH: Access Type Change - UP_PATH_CH: UP Path Change - PDU_SES_REL: PDU Session Release - PLMN_CH: PLMN Change - UE_IP_CH: UE IP address change - DDDS: Downlink data delivery status - COMM_FAIL: Communication Failure - PDU_SES_EST: PDU Session Establishment - QFI_ALLOC: QFI allocation - QOS_MON: QoS Monitoring
+            enum:
+                - AC_TY_CH
+                - UP_PATH_CH
+                - PDU_SES_REL
+                - PLMN_CH
+                - UE_IP_CH
+                - DDDS
+                - COMM_FAIL
+                - PDU_SES_EST
+                - QFI_ALLOC
+                - QOS_MON
+            type: string
+        SubId:
+            description: Identifies an Individual SMF Notification Subscription. To enable that the value is used as part of a URI, the string shall only contain characters allowed according to the "lower-with-hyphen" naming convention defined in 3GPP TS 29.501. In an OpenAPI schema, the format shall be designated as "SubId".
+            format: SubId
+            type: string
+    securitySchemes:
+        oAuth2ClientCredentials:
+            flows:
+                clientCredentials:
+                    scopes:
+                        nsmf-event-exposure: Access to the Nsmf_EventExposure API
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
+            type: oauth2
+externalDocs:
+    description: 3GPP TS 29.508 V16.10.0; 5G System; Session Management Event Exposure Service.
+    url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.508/
+info:
+    description: |
+        Session Management Event Exposure Service.
+        © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+        All rights reserved.
+    title: Nsmf_EventExposure
+    version: 1.1.3
+openapi: 3.0.0
+paths:
+    /subscriptions:
+        post:
+            callbacks:
+                myNotification:
+                    '{$request.body#/notifUri}':
+                        post:
+                            callbacks:
+                                afAcknowledgement:
+                                    '{request.body#/ackUri}':
+                                        post:
+                                            requestBody:
+                                                content:
+                                                    application/json:
+                                                        schema:
+                                                            $ref: '#/components/schemas/AckOfNotify'
+                                                required: true
+                                            responses:
+                                                "204":
+                                                    description: No Content (successful acknowledgement)
+                                                "307":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                                                "308":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                                                "400":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                                                "401":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                                                "403":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                                                "404":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                                                "411":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                                                "413":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                                                "415":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                                                "429":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                                                "500":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                                                "503":
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                                                default:
+                                                    $ref: TS29571_CommonData.yaml#/components/responses/default
+                            requestBody:
+                                content:
+                                    application/json:
+                                        schema:
+                                            $ref: '#/components/schemas/NsmfEventExposureNotification'
+                                required: true
+                            responses:
+                                "204":
+                                    description: No Content, Notification was successful.
+                                "307":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                                "308":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                                "400":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                                "401":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                                "403":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                                "404":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                                "411":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                                "413":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                                "415":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                                "429":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                                "500":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                                "503":
+                                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                                default:
+                                    $ref: TS29571_CommonData.yaml#/components/responses/default
+            operationId: CreateIndividualSubcription
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/NsmfEventExposure'
+                required: true
+            responses:
+                "201":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/NsmfEventExposure'
+                    description: Created.
+                    headers:
+                        Location:
+                            description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nsmf-event-exposure/v1/subscriptions/{subId}'
+                            required: true
+                            schema:
+                                type: string
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    $ref: TS29571_CommonData.yaml#/components/responses/default
+            summary: Create an individual subscription for event notifications from the SMF
+            tags:
+                - Subscriptions (Collection)
+    /subscriptions/{subId}:
+        delete:
+            operationId: DeleteIndividualSubcription
+            parameters:
+                - description: Event Subscription ID
+                  in: path
+                  name: subId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "204":
+                    description: No Content. Resource was successfully deleted
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    $ref: TS29571_CommonData.yaml#/components/responses/default
+            summary: Delete an individual subscription for event notifications from the SMF
+            tags:
+                - IndividualSubscription (Document)
+        get:
+            operationId: GetIndividualSubcription
+            parameters:
+                - description: Event Subscription ID
+                  in: path
+                  name: subId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/NsmfEventExposure'
+                    description: OK. Resource representation is returned
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "406":
+                    $ref: TS29571_CommonData.yaml#/components/responses/406
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    $ref: TS29571_CommonData.yaml#/components/responses/default
+            summary: Read an individual subscription for event notifications from the SMF
+            tags:
+                - IndividualSubscription (Document)
+        put:
+            operationId: ReplaceIndividualSubcription
+            parameters:
+                - description: Event Subscription ID
+                  in: path
+                  name: subId
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/NsmfEventExposure'
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/NsmfEventExposure'
+                    description: OK. Resource was successfully modified and representation is returned
+                "204":
+                    description: No Content. Resource was successfully modified
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "411":
+                    $ref: TS29571_CommonData.yaml#/components/responses/411
+                "413":
+                    $ref: TS29571_CommonData.yaml#/components/responses/413
+                "415":
+                    $ref: TS29571_CommonData.yaml#/components/responses/415
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    $ref: TS29571_CommonData.yaml#/components/responses/default
+            summary: Replace an individual subscription for event notifications from the SMF
+            tags:
+                - IndividualSubscription (Document)
+security:
+    - {}
+    - oAuth2ClientCredentials:
+        - nsmf-event-exposure
+servers:
+    - url: '{apiRoot}/nsmf-event-exposure/v1'
+      variables:
+        apiRoot:
+            default: https://example.com
+            description: apiRoot as defined in subclause 4.4 of 3GPP TS 29.501

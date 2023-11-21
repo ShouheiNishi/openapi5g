@@ -1,0 +1,14 @@
+# This is generated file, DO NOT EDIT.
+package: ee
+generate:
+  models: true
+  client: true
+  gin-server: true
+  strict-server: true
+output-options:
+  skip-prune: true
+import-mapping:
+  TS29503_Nudm_SDM.yaml: github.com/ShouheiNishi/openapi5g/udm/sdm
+  TS29518_Namf_EventExposure.yaml: github.com/ShouheiNishi/openapi5g/amf/event
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+output: ee.go

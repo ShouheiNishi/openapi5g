@@ -138,7 +138,7 @@ type AuthMethod string
 // AuthenticationSubscription defines model for AuthenticationSubscription.
 type AuthenticationSubscription struct {
 	AlgorithmId                   *string                `json:"algorithmId,omitempty"`
-	AuthenticationManagementField *string                `json:"authenticationManagementField,omitempty"`
+	AuthenticationManagementField string                 `json:"authenticationManagementField,omitempty"`
 	AuthenticationMethod          AuthMethod             `json:"authenticationMethod"`
 	EncOpcKey                     *string                `json:"encOpcKey,omitempty"`
 	EncPermanentKey               *string                `json:"encPermanentKey,omitempty"`
@@ -147,7 +147,7 @@ type AuthenticationSubscription struct {
 	ProtectionParameterId         *string                `json:"protectionParameterId,omitempty"`
 	RgAuthenticationInd           *bool                  `json:"rgAuthenticationInd,omitempty"`
 	SequenceNumber                *SequenceNumber        `json:"sequenceNumber,omitempty"`
-	Supi                          *externalRef2.Supi     `json:"supi,omitempty"`
+	Supi                          externalRef2.Supi      `json:"supi,omitempty"`
 	VectorGenerationInHss         *bool                  `json:"vectorGenerationInHss,omitempty"`
 	AdditionalProperties          map[string]interface{} `json:"-"`
 }
@@ -167,16 +167,16 @@ type ContextDataSetName string
 
 // ContextDataSets defines model for ContextDataSets.
 type ContextDataSets struct {
-	Amf3Gpp                       *Amf3GppAccessRegistration       `json:"amf3Gpp,omitempty"`
-	AmfNon3Gpp                    *AmfNon3GppAccessRegistration    `json:"amfNon3Gpp,omitempty"`
-	EeSubscriptions               *[]EeSubscription                `json:"eeSubscriptions,omitempty"`
-	IpSmGw                        *IpSmGwRegistration              `json:"ipSmGw,omitempty"`
-	SdmSubscriptions              *[]SdmSubscription               `json:"sdmSubscriptions,omitempty"`
-	SmfRegistrations              *SmfRegList                      `json:"smfRegistrations,omitempty"`
-	Smsf3GppAccess                *SmsfRegistration                `json:"smsf3GppAccess,omitempty"`
-	SmsfNon3GppAccess             *SmsfRegistration                `json:"smsfNon3GppAccess,omitempty"`
-	SubscriptionDataSubscriptions *[]SubscriptionDataSubscriptions `json:"subscriptionDataSubscriptions,omitempty"`
-	AdditionalProperties          map[string]interface{}           `json:"-"`
+	Amf3Gpp                       *Amf3GppAccessRegistration      `json:"amf3Gpp,omitempty"`
+	AmfNon3Gpp                    *AmfNon3GppAccessRegistration   `json:"amfNon3Gpp,omitempty"`
+	EeSubscriptions               []EeSubscription                `json:"eeSubscriptions,omitempty"`
+	IpSmGw                        *IpSmGwRegistration             `json:"ipSmGw,omitempty"`
+	SdmSubscriptions              []SdmSubscription               `json:"sdmSubscriptions,omitempty"`
+	SmfRegistrations              *SmfRegList                     `json:"smfRegistrations,omitempty"`
+	Smsf3GppAccess                *SmsfRegistration               `json:"smsf3GppAccess,omitempty"`
+	SmsfNon3GppAccess             *SmsfRegistration               `json:"smsfNon3GppAccess,omitempty"`
+	SubscriptionDataSubscriptions []SubscriptionDataSubscriptions `json:"subscriptionDataSubscriptions,omitempty"`
+	AdditionalProperties          map[string]interface{}          `json:"-"`
 }
 
 // ContextDatasetNames defines model for ContextDatasetNames.
@@ -184,12 +184,12 @@ type ContextDatasetNames = []ContextDataSetName
 
 // DataChangeNotify defines model for DataChangeNotify.
 type DataChangeNotify struct {
-	AdditionalSdmSubscriptions    *[]externalRef7.SdmSubscription  `json:"additionalSdmSubscriptions,omitempty"`
-	NotifyItems                   *[]externalRef2.NotifyItem       `json:"notifyItems,omitempty"`
-	OriginalCallbackReference     *[]externalRef2.Uri              `json:"originalCallbackReference,omitempty"`
+	AdditionalSdmSubscriptions    []externalRef7.SdmSubscription   `json:"additionalSdmSubscriptions,omitempty"`
+	NotifyItems                   []externalRef2.NotifyItem        `json:"notifyItems,omitempty"`
+	OriginalCallbackReference     []externalRef2.Uri               `json:"originalCallbackReference,omitempty"`
 	SdmSubscription               *externalRef7.SdmSubscription    `json:"sdmSubscription,omitempty"`
 	SubscriptionDataSubscriptions *[]SubscriptionDataSubscriptions `json:"subscriptionDataSubscriptions,omitempty"`
-	UeId                          *externalRef2.VarUeId            `json:"ueId,omitempty"`
+	UeId                          externalRef2.VarUeId             `json:"ueId,omitempty"`
 	AdditionalProperties          map[string]interface{}           `json:"-"`
 }
 
@@ -241,8 +241,8 @@ type HssSubscriptionItem struct {
 
 // IdentityData defines model for IdentityData.
 type IdentityData struct {
-	GpsiList             *[]externalRef2.Gpsi   `json:"gpsiList,omitempty"`
-	SupiList             *[]externalRef2.Supi   `json:"supiList,omitempty"`
+	GpsiList             []externalRef2.Gpsi    `json:"gpsiList,omitempty"`
+	SupiList             []externalRef2.Supi    `json:"supiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -263,7 +263,7 @@ type LocationInfo = externalRef9.LocationInfo
 
 // MessageWaitingData defines model for MessageWaitingData.
 type MessageWaitingData struct {
-	MwdList              *[]SmscData            `json:"mwdList,omitempty"`
+	MwdList              []SmscData             `json:"mwdList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -355,10 +355,10 @@ type SdmSubscription = externalRef7.SdmSubscription
 
 // SequenceNumber defines model for SequenceNumber.
 type SequenceNumber struct {
-	DifSign              *Sign                  `json:"difSign,omitempty"`
+	DifSign              Sign                   `json:"difSign,omitempty"`
 	IndLength            *int                   `json:"indLength,omitempty"`
 	LastIndexes          *map[string]int        `json:"lastIndexes,omitempty"`
-	Sqn                  *string                `json:"sqn,omitempty"`
+	Sqn                  string                 `json:"sqn,omitempty"`
 	SqnScheme            *SqnScheme             `json:"sqnScheme,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -400,7 +400,7 @@ type SmsSubscriptionData = externalRef7.SmsSubscriptionData
 // SmscData defines model for SmscData.
 type SmscData struct {
 	SmscDiameterAddress  *externalRef9.NetworkNodeDiameterAddress `json:"smscDiameterAddress,omitempty"`
-	SmscMapAddress       *externalRef9.E164Number                 `json:"smscMapAddress,omitempty"`
+	SmscMapAddress       externalRef9.E164Number                  `json:"smscMapAddress,omitempty"`
 	AdditionalProperties map[string]interface{}                   `json:"-"`
 }
 
@@ -410,8 +410,8 @@ type SmsfRegistration = externalRef9.SmsfRegistration
 // SorData defines model for SorData.
 type SorData struct {
 	ProvisioningTime     externalRef2.DateTime  `json:"provisioningTime"`
-	SorMacIue            *externalRef0.SorMac   `json:"sorMacIue,omitempty"`
-	SorXmacIue           *externalRef0.SorMac   `json:"sorXmacIue,omitempty"`
+	SorMacIue            externalRef0.SorMac    `json:"sorMacIue,omitempty"`
+	SorXmacIue           externalRef0.SorMac    `json:"sorXmacIue,omitempty"`
 	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -428,7 +428,7 @@ type SubscriptionDataSubscriptions struct {
 	SdmSubscription           *externalRef7.SdmSubscription   `json:"sdmSubscription,omitempty"`
 	SubscriptionId            *string                         `json:"subscriptionId,omitempty"`
 	SupportedFeatures         *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	UeId                      *externalRef2.VarUeId           `json:"ueId,omitempty"`
+	UeId                      externalRef2.VarUeId            `json:"ueId,omitempty"`
 	UniqueSubscription        *bool                           `json:"uniqueSubscription,omitempty"`
 	AdditionalProperties      map[string]interface{}          `json:"-"`
 }
@@ -440,8 +440,8 @@ type UeUpdateStatus string
 type UpuData struct {
 	ProvisioningTime     externalRef2.DateTime  `json:"provisioningTime"`
 	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
-	UpuMacIue            *externalRef1.UpuMac   `json:"upuMacIue,omitempty"`
-	UpuXmacIue           *externalRef1.UpuMac   `json:"upuXmacIue,omitempty"`
+	UpuMacIue            externalRef1.UpuMac    `json:"upuMacIue,omitempty"`
+	UpuXmacIue           externalRef1.UpuMac    `json:"upuXmacIue,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -1522,7 +1522,7 @@ func (a AuthenticationSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AuthenticationManagementField != nil {
+	if len(a.AuthenticationManagementField) != 0 {
 		object["authenticationManagementField"], err = json.Marshal(a.AuthenticationManagementField)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'authenticationManagementField': %w", err)
@@ -1583,7 +1583,7 @@ func (a AuthenticationSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1815,7 +1815,7 @@ func (a ContextDataSets) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EeSubscriptions != nil {
+	if len(a.EeSubscriptions) != 0 {
 		object["eeSubscriptions"], err = json.Marshal(a.EeSubscriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'eeSubscriptions': %w", err)
@@ -1829,7 +1829,7 @@ func (a ContextDataSets) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SdmSubscriptions != nil {
+	if len(a.SdmSubscriptions) != 0 {
 		object["sdmSubscriptions"], err = json.Marshal(a.SdmSubscriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sdmSubscriptions': %w", err)
@@ -1857,7 +1857,7 @@ func (a ContextDataSets) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SubscriptionDataSubscriptions != nil {
+	if len(a.SubscriptionDataSubscriptions) != 0 {
 		object["subscriptionDataSubscriptions"], err = json.Marshal(a.SubscriptionDataSubscriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscriptionDataSubscriptions': %w", err)
@@ -1965,21 +1965,21 @@ func (a DataChangeNotify) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AdditionalSdmSubscriptions != nil {
+	if len(a.AdditionalSdmSubscriptions) != 0 {
 		object["additionalSdmSubscriptions"], err = json.Marshal(a.AdditionalSdmSubscriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'additionalSdmSubscriptions': %w", err)
 		}
 	}
 
-	if a.NotifyItems != nil {
+	if len(a.NotifyItems) != 0 {
 		object["notifyItems"], err = json.Marshal(a.NotifyItems)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'notifyItems': %w", err)
 		}
 	}
 
-	if a.OriginalCallbackReference != nil {
+	if len(a.OriginalCallbackReference) != 0 {
 		object["originalCallbackReference"], err = json.Marshal(a.OriginalCallbackReference)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'originalCallbackReference': %w", err)
@@ -2000,7 +2000,7 @@ func (a DataChangeNotify) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeId != nil {
+	if len(a.UeId) != 0 {
 		object["ueId"], err = json.Marshal(a.UeId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueId': %w", err)
@@ -2417,14 +2417,14 @@ func (a IdentityData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.GpsiList != nil {
+	if len(a.GpsiList) != 0 {
 		object["gpsiList"], err = json.Marshal(a.GpsiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiList': %w", err)
 		}
 	}
 
-	if a.SupiList != nil {
+	if len(a.SupiList) != 0 {
 		object["supiList"], err = json.Marshal(a.SupiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supiList': %w", err)
@@ -2492,7 +2492,7 @@ func (a MessageWaitingData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.MwdList != nil {
+	if len(a.MwdList) != 0 {
 		object["mwdList"], err = json.Marshal(a.MwdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mwdList': %w", err)
@@ -3230,7 +3230,7 @@ func (a SequenceNumber) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DifSign != nil {
+	if len(a.DifSign) != 0 {
 		object["difSign"], err = json.Marshal(a.DifSign)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'difSign': %w", err)
@@ -3251,7 +3251,7 @@ func (a SequenceNumber) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Sqn != nil {
+	if len(a.Sqn) != 0 {
 		object["sqn"], err = json.Marshal(a.Sqn)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sqn': %w", err)
@@ -3486,7 +3486,7 @@ func (a SmscData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SmscMapAddress != nil {
+	if len(a.SmscMapAddress) != 0 {
 		object["smscMapAddress"], err = json.Marshal(a.SmscMapAddress)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smscMapAddress': %w", err)
@@ -3583,14 +3583,14 @@ func (a SorData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'provisioningTime': %w", err)
 	}
 
-	if a.SorMacIue != nil {
+	if len(a.SorMacIue) != 0 {
 		object["sorMacIue"], err = json.Marshal(a.SorMacIue)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sorMacIue': %w", err)
 		}
 	}
 
-	if a.SorXmacIue != nil {
+	if len(a.SorXmacIue) != 0 {
 		object["sorXmacIue"], err = json.Marshal(a.SorXmacIue)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sorXmacIue': %w", err)
@@ -3772,7 +3772,7 @@ func (a SubscriptionDataSubscriptions) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UeId != nil {
+	if len(a.UeId) != 0 {
 		object["ueId"], err = json.Marshal(a.UeId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueId': %w", err)
@@ -3881,14 +3881,14 @@ func (a UpuData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'ueUpdateStatus': %w", err)
 	}
 
-	if a.UpuMacIue != nil {
+	if len(a.UpuMacIue) != 0 {
 		object["upuMacIue"], err = json.Marshal(a.UpuMacIue)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'upuMacIue': %w", err)
 		}
 	}
 
-	if a.UpuXmacIue != nil {
+	if len(a.UpuXmacIue) != 0 {
 		object["upuXmacIue"], err = json.Marshal(a.UpuXmacIue)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'upuXmacIue': %w", err)

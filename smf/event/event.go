@@ -51,16 +51,16 @@ const (
 // AckOfNotify defines model for AckOfNotify.
 type AckOfNotify struct {
 	AckResult            externalRef2.AfResultInfo `json:"ackResult"`
-	Gpsi                 *externalRef1.Gpsi        `json:"gpsi,omitempty"`
+	Gpsi                 externalRef1.Gpsi         `json:"gpsi,omitempty"`
 	NotifId              string                    `json:"notifId"`
-	Supi                 *externalRef1.Supi        `json:"supi,omitempty"`
+	Supi                 externalRef1.Supi         `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // EventNotification defines model for EventNotification.
 type EventNotification struct {
-	AccType      *externalRef1.AccessType           `json:"accType,omitempty"`
-	AdIpv4Addr   *externalRef1.Ipv4Addr             `json:"adIpv4Addr,omitempty"`
+	AccType      externalRef1.AccessType            `json:"accType,omitempty"`
+	AdIpv4Addr   externalRef1.Ipv4Addr              `json:"adIpv4Addr,omitempty"`
 	AdIpv6Prefix *externalRef1.Ipv6Prefix           `json:"adIpv6Prefix,omitempty"`
 	AppId        *externalRef1.ApplicationId        `json:"appId,omitempty"`
 	CommFailure  *externalRef0.CommunicationFailure `json:"commFailure,omitempty"`
@@ -68,49 +68,49 @@ type EventNotification struct {
 	// DddStatus Possible values are - BUFFERED: The first downlink data is buffered with extended buffering matching the source of the downlink traffic. - TRANSMITTED: The first downlink data matching the source of the downlink traffic is transmitted after previous buffering or discarding of corresponding packet(s) because the UE of the PDU Session becomes ACTIVE, and buffered data can be delivered to UE. - DISCARDED: The first downlink data matching the source of the downlink traffic is discarded because the Extended Buffering time, as determined by the SMF, expires or the amount of downlink data to be buffered is exceeded.
 	DddStatus        *externalRef1.DlDataDeliveryStatus `json:"dddStatus,omitempty"`
 	DddTraDescriptor *externalRef1.DddTrafficDescriptor `json:"dddTraDescriptor,omitempty"`
-	DlDelays         *[]externalRef1.Uinteger           `json:"dlDelays,omitempty"`
+	DlDelays         []externalRef1.Uinteger            `json:"dlDelays,omitempty"`
 
 	// DnaiChgType Possible values are - EARLY: Early notification of UP path reconfiguration. - EARLY_LATE: Early and late notification of UP path reconfiguration. This value shall only be present in the subscription to the DNAI change event. - LATE: Late notification of UP path reconfiguration.
-	DnaiChgType *externalRef1.DnaiChangeType       `json:"dnaiChgType,omitempty"`
-	Dnn         *externalRef1.Dnn                  `json:"dnn,omitempty"`
-	EthfDescs   *[]externalRef4.EthFlowDescription `json:"ethfDescs,omitempty"`
+	DnaiChgType *externalRef1.DnaiChangeType      `json:"dnaiChgType,omitempty"`
+	Dnn         *externalRef1.Dnn                 `json:"dnn,omitempty"`
+	EthfDescs   []externalRef4.EthFlowDescription `json:"ethfDescs,omitempty"`
 
 	// Event Possible values are - AC_TY_CH: Access Type Change - UP_PATH_CH: UP Path Change - PDU_SES_REL: PDU Session Release - PLMN_CH: PLMN Change - UE_IP_CH: UE IP address change - DDDS: Downlink data delivery status - COMM_FAIL: Communication Failure - PDU_SES_EST: PDU Session Establishment - QFI_ALLOC: QFI allocation - QOS_MON: QoS Monitoring
-	Event                SmfEvent                        `json:"event"`
-	FDescs               *[]externalRef4.FlowDescription `json:"fDescs,omitempty"`
-	Gpsi                 *externalRef1.Gpsi              `json:"gpsi,omitempty"`
-	Ipv4Addr             *externalRef1.Ipv4Addr          `json:"ipv4Addr,omitempty"`
-	Ipv6Addrs            *[]externalRef1.Ipv6Addr        `json:"ipv6Addrs,omitempty"`
-	Ipv6Prefixes         *[]externalRef1.Ipv6Prefix      `json:"ipv6Prefixes,omitempty"`
-	MaxWaitTime          *externalRef1.DateTime          `json:"maxWaitTime,omitempty"`
-	PduSeId              *externalRef1.PduSessionId      `json:"pduSeId,omitempty"`
-	PduSessType          *externalRef1.PduSessionType    `json:"pduSessType,omitempty"`
-	PlmnId               *externalRef1.PlmnId            `json:"plmnId,omitempty"`
-	Qfi                  *externalRef1.Qfi               `json:"qfi,omitempty"`
-	ReIpv4Addr           *externalRef1.Ipv4Addr          `json:"reIpv4Addr,omitempty"`
-	ReIpv6Prefix         *externalRef1.Ipv6Prefix        `json:"reIpv6Prefix,omitempty"`
-	RtDelays             *[]externalRef1.Uinteger        `json:"rtDelays,omitempty"`
-	Snssai               *externalRef1.Snssai            `json:"snssai,omitempty"`
-	SourceDnai           *externalRef1.Dnai              `json:"sourceDnai,omitempty"`
-	SourceTraRouting     *externalRef1.RouteToLocation   `json:"sourceTraRouting"`
-	SourceUeIpv4Addr     *externalRef1.Ipv4Addr          `json:"sourceUeIpv4Addr,omitempty"`
-	SourceUeIpv6Prefix   *externalRef1.Ipv6Prefix        `json:"sourceUeIpv6Prefix,omitempty"`
-	Supi                 *externalRef1.Supi              `json:"supi,omitempty"`
-	TargetDnai           *externalRef1.Dnai              `json:"targetDnai,omitempty"`
-	TargetTraRouting     *externalRef1.RouteToLocation   `json:"targetTraRouting"`
-	TargetUeIpv4Addr     *externalRef1.Ipv4Addr          `json:"targetUeIpv4Addr,omitempty"`
-	TargetUeIpv6Prefix   *externalRef1.Ipv6Prefix        `json:"targetUeIpv6Prefix,omitempty"`
-	TimeStamp            externalRef1.DateTime           `json:"timeStamp"`
-	UeMac                *externalRef1.MacAddr48         `json:"ueMac,omitempty"`
-	UlDelays             *[]externalRef1.Uinteger        `json:"ulDelays,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
+	Event                SmfEvent                       `json:"event"`
+	FDescs               []externalRef4.FlowDescription `json:"fDescs,omitempty"`
+	Gpsi                 externalRef1.Gpsi              `json:"gpsi,omitempty"`
+	Ipv4Addr             externalRef1.Ipv4Addr          `json:"ipv4Addr,omitempty"`
+	Ipv6Addrs            []externalRef1.Ipv6Addr        `json:"ipv6Addrs,omitempty"`
+	Ipv6Prefixes         []externalRef1.Ipv6Prefix      `json:"ipv6Prefixes,omitempty"`
+	MaxWaitTime          *externalRef1.DateTime         `json:"maxWaitTime,omitempty"`
+	PduSeId              *externalRef1.PduSessionId     `json:"pduSeId,omitempty"`
+	PduSessType          *externalRef1.PduSessionType   `json:"pduSessType,omitempty"`
+	PlmnId               *externalRef1.PlmnId           `json:"plmnId,omitempty"`
+	Qfi                  *externalRef1.Qfi              `json:"qfi,omitempty"`
+	ReIpv4Addr           externalRef1.Ipv4Addr          `json:"reIpv4Addr,omitempty"`
+	ReIpv6Prefix         *externalRef1.Ipv6Prefix       `json:"reIpv6Prefix,omitempty"`
+	RtDelays             []externalRef1.Uinteger        `json:"rtDelays,omitempty"`
+	Snssai               *externalRef1.Snssai           `json:"snssai,omitempty"`
+	SourceDnai           *externalRef1.Dnai             `json:"sourceDnai,omitempty"`
+	SourceTraRouting     *externalRef1.RouteToLocation  `json:"sourceTraRouting"`
+	SourceUeIpv4Addr     externalRef1.Ipv4Addr          `json:"sourceUeIpv4Addr,omitempty"`
+	SourceUeIpv6Prefix   *externalRef1.Ipv6Prefix       `json:"sourceUeIpv6Prefix,omitempty"`
+	Supi                 externalRef1.Supi              `json:"supi,omitempty"`
+	TargetDnai           *externalRef1.Dnai             `json:"targetDnai,omitempty"`
+	TargetTraRouting     *externalRef1.RouteToLocation  `json:"targetTraRouting"`
+	TargetUeIpv4Addr     externalRef1.Ipv4Addr          `json:"targetUeIpv4Addr,omitempty"`
+	TargetUeIpv6Prefix   *externalRef1.Ipv6Prefix       `json:"targetUeIpv6Prefix,omitempty"`
+	TimeStamp            externalRef1.DateTime          `json:"timeStamp"`
+	UeMac                externalRef1.MacAddr48         `json:"ueMac,omitempty"`
+	UlDelays             []externalRef1.Uinteger        `json:"ulDelays,omitempty"`
+	AdditionalProperties map[string]interface{}         `json:"-"`
 }
 
 // EventSubscription defines model for EventSubscription.
 type EventSubscription struct {
-	AppIds            *[]externalRef1.ApplicationId        `json:"appIds,omitempty"`
-	DddStati          *[]externalRef1.DlDataDeliveryStatus `json:"dddStati,omitempty"`
-	DddTraDescriptors *[]externalRef1.DddTrafficDescriptor `json:"dddTraDescriptors,omitempty"`
+	AppIds            []externalRef1.ApplicationId        `json:"appIds,omitempty"`
+	DddStati          []externalRef1.DlDataDeliveryStatus `json:"dddStati,omitempty"`
+	DddTraDescriptors []externalRef1.DddTrafficDescriptor `json:"dddTraDescriptors,omitempty"`
 
 	// DnaiChgType Possible values are - EARLY: Early notification of UP path reconfiguration. - EARLY_LATE: Early and late notification of UP path reconfiguration. This value shall only be present in the subscription to the DNAI change event. - LATE: Late notification of UP path reconfiguration.
 	DnaiChgType *externalRef1.DnaiChangeType `json:"dnaiChgType,omitempty"`
@@ -128,13 +128,13 @@ type NsmfEventExposure struct {
 	ImmeRep *bool `json:"ImmeRep,omitempty"`
 
 	// AltNotifFqdns Alternate or backup FQDN(s) where to send Notifications.
-	AltNotifFqdns *[]externalRef3.Fqdn `json:"altNotifFqdns,omitempty"`
+	AltNotifFqdns []externalRef3.Fqdn `json:"altNotifFqdns,omitempty"`
 
 	// AltNotifIpv4Addrs Alternate or backup IPv4 address(es) where to send Notifications.
-	AltNotifIpv4Addrs *[]externalRef1.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
+	AltNotifIpv4Addrs []externalRef1.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
 
 	// AltNotifIpv6Addrs Alternate or backup IPv6 address(es) where to send Notifications.
-	AltNotifIpv6Addrs *[]externalRef1.Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
+	AltNotifIpv6Addrs []externalRef1.Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
 
 	// AnyUeInd Any UE indication. This IE shall be present if the event subscription is applicable to any UE. Default value "false" is used, if not present.
 	AnyUeInd *bool             `json:"anyUeInd,omitempty"`
@@ -143,8 +143,8 @@ type NsmfEventExposure struct {
 	// EventSubs Subscribed events
 	EventSubs    []EventSubscription       `json:"eventSubs"`
 	Expiry       *externalRef1.DateTime    `json:"expiry,omitempty"`
-	Gpsi         *externalRef1.Gpsi        `json:"gpsi,omitempty"`
-	GroupId      *externalRef1.GroupId     `json:"groupId,omitempty"`
+	Gpsi         externalRef1.Gpsi         `json:"gpsi,omitempty"`
+	GroupId      externalRef1.GroupId      `json:"groupId,omitempty"`
 	GrpRepTime   *externalRef1.DurationSec `json:"grpRepTime,omitempty"`
 	Guami        *externalRef1.Guami       `json:"guami,omitempty"`
 	MaxReportNbr *externalRef1.Uinteger    `json:"maxReportNbr,omitempty"`
@@ -153,11 +153,11 @@ type NsmfEventExposure struct {
 	NotifId string `json:"notifId"`
 
 	// NotifMethod Possible values are - PERIODIC - ONE_TIME - ON_EVENT_DETECTION
-	NotifMethod *NotificationMethod         `json:"notifMethod,omitempty"`
-	NotifUri    externalRef1.Uri            `json:"notifUri"`
-	PduSeId     *externalRef1.PduSessionId  `json:"pduSeId,omitempty"`
-	RepPeriod   *externalRef1.DurationSec   `json:"repPeriod,omitempty"`
-	SampRatio   *externalRef1.SamplingRatio `json:"sampRatio,omitempty"`
+	NotifMethod *NotificationMethod        `json:"notifMethod,omitempty"`
+	NotifUri    externalRef1.Uri           `json:"notifUri"`
+	PduSeId     *externalRef1.PduSessionId `json:"pduSeId,omitempty"`
+	RepPeriod   *externalRef1.DurationSec  `json:"repPeriod,omitempty"`
+	SampRatio   externalRef1.SamplingRatio `json:"sampRatio,omitempty"`
 
 	// ServiveName Service names known to NRF
 	ServiveName *externalRef3.ServiceName `json:"serviveName,omitempty"`
@@ -165,7 +165,7 @@ type NsmfEventExposure struct {
 
 	// SubId Identifies an Individual SMF Notification Subscription. To enable that the value is used as part of a URI, the string shall only contain characters allowed according to the "lower-with-hyphen" naming convention defined in 3GPP TS 29.501. In an OpenAPI schema, the format shall be designated as "SubId".
 	SubId                *SubId                          `json:"subId,omitempty"`
-	Supi                 *externalRef1.Supi              `json:"supi,omitempty"`
+	Supi                 externalRef1.Supi               `json:"supi,omitempty"`
 	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -275,7 +275,7 @@ func (a AckOfNotify) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'ackResult': %w", err)
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -287,7 +287,7 @@ func (a AckOfNotify) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'notifId': %w", err)
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -651,14 +651,14 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccType != nil {
+	if len(a.AccType) != 0 {
 		object["accType"], err = json.Marshal(a.AccType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accType': %w", err)
 		}
 	}
 
-	if a.AdIpv4Addr != nil {
+	if len(a.AdIpv4Addr) != 0 {
 		object["adIpv4Addr"], err = json.Marshal(a.AdIpv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'adIpv4Addr': %w", err)
@@ -700,7 +700,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.DlDelays != nil {
+	if len(a.DlDelays) != 0 {
 		object["dlDelays"], err = json.Marshal(a.DlDelays)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dlDelays': %w", err)
@@ -721,7 +721,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EthfDescs != nil {
+	if len(a.EthfDescs) != 0 {
 		object["ethfDescs"], err = json.Marshal(a.EthfDescs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ethfDescs': %w", err)
@@ -733,35 +733,35 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'event': %w", err)
 	}
 
-	if a.FDescs != nil {
+	if len(a.FDescs) != 0 {
 		object["fDescs"], err = json.Marshal(a.FDescs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'fDescs': %w", err)
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
 		}
 	}
 
-	if a.Ipv4Addr != nil {
+	if len(a.Ipv4Addr) != 0 {
 		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
 		}
 	}
 
-	if a.Ipv6Addrs != nil {
+	if len(a.Ipv6Addrs) != 0 {
 		object["ipv6Addrs"], err = json.Marshal(a.Ipv6Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Addrs': %w", err)
 		}
 	}
 
-	if a.Ipv6Prefixes != nil {
+	if len(a.Ipv6Prefixes) != 0 {
 		object["ipv6Prefixes"], err = json.Marshal(a.Ipv6Prefixes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6Prefixes': %w", err)
@@ -803,7 +803,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ReIpv4Addr != nil {
+	if len(a.ReIpv4Addr) != 0 {
 		object["reIpv4Addr"], err = json.Marshal(a.ReIpv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reIpv4Addr': %w", err)
@@ -817,7 +817,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RtDelays != nil {
+	if len(a.RtDelays) != 0 {
 		object["rtDelays"], err = json.Marshal(a.RtDelays)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rtDelays': %w", err)
@@ -843,7 +843,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'sourceTraRouting': %w", err)
 	}
 
-	if a.SourceUeIpv4Addr != nil {
+	if len(a.SourceUeIpv4Addr) != 0 {
 		object["sourceUeIpv4Addr"], err = json.Marshal(a.SourceUeIpv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sourceUeIpv4Addr': %w", err)
@@ -857,7 +857,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -876,7 +876,7 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'targetTraRouting': %w", err)
 	}
 
-	if a.TargetUeIpv4Addr != nil {
+	if len(a.TargetUeIpv4Addr) != 0 {
 		object["targetUeIpv4Addr"], err = json.Marshal(a.TargetUeIpv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetUeIpv4Addr': %w", err)
@@ -895,14 +895,14 @@ func (a EventNotification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'timeStamp': %w", err)
 	}
 
-	if a.UeMac != nil {
+	if len(a.UeMac) != 0 {
 		object["ueMac"], err = json.Marshal(a.UeMac)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueMac': %w", err)
 		}
 	}
 
-	if a.UlDelays != nil {
+	if len(a.UlDelays) != 0 {
 		object["ulDelays"], err = json.Marshal(a.UlDelays)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ulDelays': %w", err)
@@ -1002,21 +1002,21 @@ func (a EventSubscription) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AppIds != nil {
+	if len(a.AppIds) != 0 {
 		object["appIds"], err = json.Marshal(a.AppIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'appIds': %w", err)
 		}
 	}
 
-	if a.DddStati != nil {
+	if len(a.DddStati) != 0 {
 		object["dddStati"], err = json.Marshal(a.DddStati)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dddStati': %w", err)
 		}
 	}
 
-	if a.DddTraDescriptors != nil {
+	if len(a.DddTraDescriptors) != 0 {
 		object["dddTraDescriptors"], err = json.Marshal(a.DddTraDescriptors)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dddTraDescriptors': %w", err)
@@ -1287,21 +1287,21 @@ func (a NsmfEventExposure) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AltNotifFqdns != nil {
+	if len(a.AltNotifFqdns) != 0 {
 		object["altNotifFqdns"], err = json.Marshal(a.AltNotifFqdns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifFqdns': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv4Addrs != nil {
+	if len(a.AltNotifIpv4Addrs) != 0 {
 		object["altNotifIpv4Addrs"], err = json.Marshal(a.AltNotifIpv4Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv4Addrs': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv6Addrs != nil {
+	if len(a.AltNotifIpv6Addrs) != 0 {
 		object["altNotifIpv6Addrs"], err = json.Marshal(a.AltNotifIpv6Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv6Addrs': %w", err)
@@ -1334,14 +1334,14 @@ func (a NsmfEventExposure) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
 		}
 	}
 
-	if a.GroupId != nil {
+	if len(a.GroupId) != 0 {
 		object["groupId"], err = json.Marshal(a.GroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'groupId': %w", err)
@@ -1400,7 +1400,7 @@ func (a NsmfEventExposure) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SampRatio != nil {
+	if a.SampRatio != 0 {
 		object["sampRatio"], err = json.Marshal(a.SampRatio)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sampRatio': %w", err)
@@ -1428,7 +1428,7 @@ func (a NsmfEventExposure) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)

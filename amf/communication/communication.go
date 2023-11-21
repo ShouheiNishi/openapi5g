@@ -209,7 +209,7 @@ type N5GMmCapability = externalRef1.Bytes
 type AmfEventSubscriptionAddInfo struct {
 	// AoiStateList Map of subscribed Area of Interest (AoI) Event State in the old AMF. The JSON pointer to an AmfEventArea element in the areaList IE of the AmfEvent data type shall be the key of the map.
 	AoiStateList *map[string]AreaOfInterestEventState `json:"aoiStateList,omitempty"`
-	BindingInfo  *[]string                            `json:"bindingInfo,omitempty"`
+	BindingInfo  []string                             `json:"bindingInfo,omitempty"`
 	EventSyncInd *bool                                `json:"eventSyncInd,omitempty"`
 
 	// SubscribingNfType NF types known to NRF
@@ -234,7 +234,7 @@ type AmfStatusInfo struct {
 
 // AreaOfInterestEventState Event State of AoI event in old AMF
 type AreaOfInterestEventState struct {
-	IndividualPraIdList  *[]string                  `json:"individualPraIdList,omitempty"`
+	IndividualPraIdList  []string                   `json:"individualPraIdList,omitempty"`
 	Presence             externalRef1.PresenceState `json:"presence"`
 	AdditionalProperties map[string]interface{}     `json:"-"`
 }
@@ -247,10 +247,10 @@ type AreaOfValidity struct {
 
 // AssignEbiData defines model for AssignEbiData.
 type AssignEbiData struct {
-	ArpList              *[]externalRef1.Arp       `json:"arpList,omitempty"`
+	ArpList              []externalRef1.Arp        `json:"arpList,omitempty"`
 	OldGuami             *externalRef1.Guami       `json:"oldGuami,omitempty"`
 	PduSessionId         externalRef1.PduSessionId `json:"pduSessionId"`
-	ReleasedEbiList      *[]EpsBearerId            `json:"releasedEbiList,omitempty"`
+	ReleasedEbiList      []EpsBearerId             `json:"releasedEbiList,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
@@ -263,7 +263,7 @@ type AssignEbiError struct {
 
 // AssignEbiFailed defines model for AssignEbiFailed.
 type AssignEbiFailed struct {
-	FailedArpList        *[]externalRef1.Arp       `json:"failedArpList,omitempty"`
+	FailedArpList        []externalRef1.Arp        `json:"failedArpList,omitempty"`
 	PduSessionId         externalRef1.PduSessionId `json:"pduSessionId"`
 	AdditionalProperties map[string]interface{}    `json:"-"`
 }
@@ -271,9 +271,9 @@ type AssignEbiFailed struct {
 // AssignedEbiData defines model for AssignedEbiData.
 type AssignedEbiData struct {
 	AssignedEbiList      []interface{}             `json:"assignedEbiList"`
-	FailedArpList        *[]externalRef1.Arp       `json:"failedArpList,omitempty"`
+	FailedArpList        []externalRef1.Arp        `json:"failedArpList,omitempty"`
 	PduSessionId         externalRef1.PduSessionId `json:"pduSessionId"`
-	ReleasedEbiList      *[]EpsBearerId            `json:"releasedEbiList,omitempty"`
+	ReleasedEbiList      []EpsBearerId             `json:"releasedEbiList,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
@@ -325,16 +325,16 @@ type ExtAmfEventSubscription struct {
 
 	// AoiStateList Map of subscribed Area of Interest (AoI) Event State in the old AMF. The JSON pointer to an AmfEventArea element in the areaList IE of the AmfEvent data type shall be the key of the map.
 	AoiStateList        *map[string]AreaOfInterestEventState `json:"aoiStateList,omitempty"`
-	BindingInfo         *[]string                            `json:"bindingInfo,omitempty"`
+	BindingInfo         []string                             `json:"bindingInfo,omitempty"`
 	EventList           []externalRef0.AmfEvent              `json:"eventList"`
 	EventNotifyUri      externalRef1.Uri                     `json:"eventNotifyUri"`
 	EventSyncInd        *bool                                `json:"eventSyncInd,omitempty"`
-	Gpsi                *externalRef1.Gpsi                   `json:"gpsi,omitempty"`
-	GroupId             *externalRef1.GroupId                `json:"groupId,omitempty"`
+	Gpsi                externalRef1.Gpsi                    `json:"gpsi,omitempty"`
+	GroupId             externalRef1.GroupId                 `json:"groupId,omitempty"`
 	NfId                externalRef1.NfInstanceId            `json:"nfId"`
 	NotifyCorrelationId string                               `json:"notifyCorrelationId"`
 	Options             *externalRef0.AmfEventMode           `json:"options,omitempty"`
-	Pei                 *externalRef1.Pei                    `json:"pei,omitempty"`
+	Pei                 externalRef1.Pei                     `json:"pei,omitempty"`
 
 	// SourceNfType NF types known to NRF
 	SourceNfType                  *externalRef2.NFType `json:"sourceNfType,omitempty"`
@@ -343,13 +343,13 @@ type ExtAmfEventSubscription struct {
 
 	// SubscribingNfType NF types known to NRF
 	SubscribingNfType    *externalRef2.NFType   `json:"subscribingNfType,omitempty"`
-	Supi                 *externalRef1.Supi     `json:"supi,omitempty"`
+	Supi                 externalRef1.Supi      `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // ImmediateMdtConf defines model for ImmediateMdtConf.
 type ImmediateMdtConf struct {
-	AddPositioningMethodList *[]externalRef1.PositioningMethodMdt    `json:"addPositioningMethodList,omitempty"`
+	AddPositioningMethodList []externalRef1.PositioningMethodMdt     `json:"addPositioningMethodList,omitempty"`
 	AreaScope                *externalRef1.AreaScope                 `json:"areaScope,omitempty"`
 	CollectionPeriodRmmLte   *externalRef1.CollectionPeriodRmmLteMdt `json:"collectionPeriodRmmLte,omitempty"`
 	CollectionPeriodRmmNr    *externalRef1.CollectionPeriodRmmNrMdt  `json:"collectionPeriodRmmNr,omitempty"`
@@ -358,16 +358,16 @@ type ImmediateMdtConf struct {
 	EventThresholdRsrq       *int                                    `json:"eventThresholdRsrq,omitempty"`
 	EventThresholdRsrqNr     *int                                    `json:"eventThresholdRsrqNr,omitempty"`
 	JobType                  externalRef1.JobType                    `json:"jobType"`
-	MdtAllowedPlmnIdList     *[]externalRef1.PlmnId                  `json:"mdtAllowedPlmnIdList,omitempty"`
-	MeasurementLteList       *[]externalRef1.MeasurementLteForMdt    `json:"measurementLteList,omitempty"`
-	MeasurementNrList        *[]externalRef1.MeasurementNrForMdt     `json:"measurementNrList,omitempty"`
+	MdtAllowedPlmnIdList     []externalRef1.PlmnId                   `json:"mdtAllowedPlmnIdList,omitempty"`
+	MeasurementLteList       []externalRef1.MeasurementLteForMdt     `json:"measurementLteList,omitempty"`
+	MeasurementNrList        []externalRef1.MeasurementNrForMdt      `json:"measurementNrList,omitempty"`
 	MeasurementPeriodLte     *externalRef1.MeasurementPeriodLteMdt   `json:"measurementPeriodLte,omitempty"`
 	PositioningMethod        *externalRef1.PositioningMethodMdt      `json:"positioningMethod,omitempty"`
 	ReportAmount             *externalRef1.ReportAmountMdt           `json:"reportAmount,omitempty"`
 	ReportInterval           *externalRef1.ReportIntervalMdt         `json:"reportInterval,omitempty"`
 	ReportIntervalNr         *externalRef1.ReportIntervalNrMdt       `json:"reportIntervalNr,omitempty"`
-	ReportingTriggerList     *[]externalRef1.ReportingTrigger        `json:"reportingTriggerList,omitempty"`
-	SensorMeasurementList    *[]externalRef1.SensorMeasurement       `json:"sensorMeasurementList,omitempty"`
+	ReportingTriggerList     []externalRef1.ReportingTrigger         `json:"reportingTriggerList,omitempty"`
+	SensorMeasurementList    []externalRef1.SensorMeasurement        `json:"sensorMeasurementList,omitempty"`
 	AdditionalProperties     map[string]interface{}                  `json:"-"`
 }
 
@@ -396,8 +396,8 @@ type MSClassmark2 = externalRef1.Bytes
 // MmContext defines model for MmContext.
 type MmContext struct {
 	AccessType              externalRef1.AccessType            `json:"accessType"`
-	AllowedHomeNssai        *[]externalRef1.Snssai             `json:"allowedHomeNssai,omitempty"`
-	AllowedNssai            *[]externalRef1.Snssai             `json:"allowedNssai,omitempty"`
+	AllowedHomeNssai        []externalRef1.Snssai              `json:"allowedHomeNssai,omitempty"`
+	AllowedNssai            []externalRef1.Snssai              `json:"allowedNssai,omitempty"`
 	AnN2ApId                *int                               `json:"anN2ApId,omitempty"`
 	EpsNasSecurityMode      *EpsNasSecurityMode                `json:"epsNasSecurityMode,omitempty"`
 	ExpectedUEbehavior      *ExpectedUeBehavior                `json:"expectedUEbehavior,omitempty"`
@@ -406,10 +406,10 @@ type MmContext struct {
 	NasDownlinkCount        *NasCount                          `json:"nasDownlinkCount,omitempty"`
 	NasSecurityMode         *NasSecurityMode                   `json:"nasSecurityMode,omitempty"`
 	NasUplinkCount          *NasCount                          `json:"nasUplinkCount,omitempty"`
-	NsInstanceList          *[]externalRef3.NsiId              `json:"nsInstanceList,omitempty"`
-	NssaaStatusList         *[]externalRef1.NssaaStatus        `json:"nssaaStatusList,omitempty"`
-	NssaiMappingList        *[]NssaiMapping                    `json:"nssaiMappingList,omitempty"`
-	PendingNssaiMappingList *[]NssaiMapping                    `json:"pendingNssaiMappingList,omitempty"`
+	NsInstanceList          []externalRef3.NsiId               `json:"nsInstanceList,omitempty"`
+	NssaaStatusList         []externalRef1.NssaaStatus         `json:"nssaaStatusList,omitempty"`
+	NssaiMappingList        []NssaiMapping                     `json:"nssaiMappingList,omitempty"`
+	PendingNssaiMappingList []NssaiMapping                     `json:"pendingNssaiMappingList,omitempty"`
 	PlmnAssiUeRadioCapId    *externalRef1.PlmnAssiUeRadioCapId `json:"plmnAssiUeRadioCapId,omitempty"`
 	S1UeNetworkCapability   *S1UeNetworkCapability             `json:"s1UeNetworkCapability,omitempty"`
 	TngfId                  *externalRef1.GlobalRanNodeId      `json:"tngfId,omitempty"`
@@ -439,13 +439,13 @@ type N1MessageNotification struct {
 	Guami               *externalRef1.Guami `json:"guami,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *interface{}       `json:"lcsCorrelationId,omitempty"`
+	LcsCorrelationId       interface{}        `json:"lcsCorrelationId,omitempty"`
 	N1MessageContainer     N1MessageContainer `json:"n1MessageContainer"`
 	N1NotifySubscriptionId *string            `json:"n1NotifySubscriptionId,omitempty"`
 	Ncgi                   *externalRef1.Ncgi `json:"ncgi,omitempty"`
 
 	// NewLmfIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	NewLmfIdentification      *interface{}                  `json:"newLmfIdentification,omitempty"`
+	NewLmfIdentification      interface{}                   `json:"newLmfIdentification,omitempty"`
 	RegistrationCtxtContainer *RegistrationContextContainer `json:"registrationCtxtContainer,omitempty"`
 	AdditionalProperties      map[string]interface{}        `json:"-"`
 }
@@ -469,7 +469,7 @@ type N1N2MessageTransferReqData struct {
 	LastMsgIndication *bool              `json:"lastMsgIndication,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *interface{}                    `json:"lcsCorrelationId,omitempty"`
+	LcsCorrelationId       interface{}                     `json:"lcsCorrelationId,omitempty"`
 	MaAcceptedInd          *bool                           `json:"maAcceptedInd,omitempty"`
 	MtData                 *externalRef1.RefToBinaryData   `json:"mtData,omitempty"`
 	N1MessageContainer     *N1MessageContainer             `json:"n1MessageContainer,omitempty"`
@@ -481,7 +481,7 @@ type N1N2MessageTransferReqData struct {
 	SkipInd                *bool                           `json:"skipInd,omitempty"`
 	SmfReallocationInd     *bool                           `json:"smfReallocationInd,omitempty"`
 	SupportedFeatures      *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TargetAccess           *externalRef1.AccessType        `json:"targetAccess,omitempty"`
+	TargetAccess           externalRef1.AccessType         `json:"targetAccess,omitempty"`
 	AdditionalProperties   map[string]interface{}          `json:"-"`
 }
 
@@ -528,7 +528,7 @@ type N2InfoContent struct {
 
 // N2InfoNotificationRspData defines model for N2InfoNotificationRspData.
 type N2InfoNotificationRspData struct {
-	SecRatDataUsageList  *[]N2SmInformation     `json:"secRatDataUsageList,omitempty"`
+	SecRatDataUsageList  []N2SmInformation      `json:"secRatDataUsageList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -540,20 +540,20 @@ type N2InformationClass string
 
 // N2InformationNotification defines model for N2InformationNotification.
 type N2InformationNotification struct {
-	AnN2IPv4Addr   *externalRef1.Ipv4Addr `json:"anN2IPv4Addr,omitempty"`
+	AnN2IPv4Addr   externalRef1.Ipv4Addr  `json:"anN2IPv4Addr,omitempty"`
 	AnN2IPv6Addr   *externalRef1.Ipv6Addr `json:"anN2IPv6Addr,omitempty"`
 	Guami          *externalRef1.Guami    `json:"guami,omitempty"`
 	InitialAmfName *externalRef1.AmfName  `json:"initialAmfName,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *interface{}                  `json:"lcsCorrelationId,omitempty"`
+	LcsCorrelationId       interface{}                   `json:"lcsCorrelationId,omitempty"`
 	N2InfoContainer        *N2InfoContainer              `json:"n2InfoContainer,omitempty"`
 	N2NotifySubscriptionId string                        `json:"n2NotifySubscriptionId"`
 	NotifyReason           *N2InfoNotifyReason           `json:"notifyReason,omitempty"`
 	NotifySourceNgRan      *bool                         `json:"notifySourceNgRan,omitempty"`
 	RanNodeId              *externalRef1.GlobalRanNodeId `json:"ranNodeId,omitempty"`
-	SmfChangeInfoList      *[]SmfChangeInfo              `json:"smfChangeInfoList,omitempty"`
-	ToReleaseSessionList   *[]externalRef1.PduSessionId  `json:"toReleaseSessionList,omitempty"`
+	SmfChangeInfoList      []SmfChangeInfo               `json:"smfChangeInfoList,omitempty"`
+	ToReleaseSessionList   []externalRef1.PduSessionId   `json:"toReleaseSessionList,omitempty"`
 	AdditionalProperties   map[string]interface{}        `json:"-"`
 }
 
@@ -566,11 +566,11 @@ type N2InformationTransferError struct {
 
 // N2InformationTransferReqData defines model for N2InformationTransferReqData.
 type N2InformationTransferReqData struct {
-	GlobalRanNodeList    *[]externalRef1.GlobalRanNodeId `json:"globalRanNodeList,omitempty"`
+	GlobalRanNodeList    []externalRef1.GlobalRanNodeId  `json:"globalRanNodeList,omitempty"`
 	N2Information        N2InfoContainer                 `json:"n2Information"`
 	RatSelector          *RatSelector                    `json:"ratSelector,omitempty"`
 	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TaiList              *[]externalRef1.Tai             `json:"taiList,omitempty"`
+	TaiList              []externalRef1.Tai              `json:"taiList,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
 
@@ -631,8 +631,8 @@ type NgapIeType string
 
 // NonUeN2InfoSubscriptionCreateData defines model for NonUeN2InfoSubscriptionCreateData.
 type NonUeN2InfoSubscriptionCreateData struct {
-	AnTypeList           *[]externalRef1.AccessType      `json:"anTypeList,omitempty"`
-	GlobalRanNodeList    *[]externalRef1.GlobalRanNodeId `json:"globalRanNodeList,omitempty"`
+	AnTypeList           []externalRef1.AccessType       `json:"anTypeList,omitempty"`
+	GlobalRanNodeList    []externalRef1.GlobalRanNodeId  `json:"globalRanNodeList,omitempty"`
 	N2InformationClass   N2InformationClass              `json:"n2InformationClass"`
 	N2NotifyCallbackUri  externalRef1.Uri                `json:"n2NotifyCallbackUri"`
 	NfId                 *externalRef1.NfInstanceId      `json:"nfId,omitempty"`
@@ -650,7 +650,7 @@ type NonUeN2InfoSubscriptionCreatedData struct {
 
 // NpnAccessInfo NPN Access Information.
 type NpnAccessInfo struct {
-	CellCagInfo          *[]externalRef1.CagId  `json:"cellCagInfo,omitempty"`
+	CellCagInfo          []externalRef1.CagId   `json:"cellCagInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -683,18 +683,18 @@ type PWSResponseData struct {
 	MessageIdentifier    int                    `json:"messageIdentifier"`
 	NgapMessageType      externalRef1.Uinteger  `json:"ngapMessageType"`
 	SerialNumber         externalRef1.Uint16    `json:"serialNumber"`
-	UnknownTaiList       *[]externalRef1.Tai    `json:"unknownTaiList,omitempty"`
+	UnknownTaiList       []externalRef1.Tai     `json:"unknownTaiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // PduSessionContext defines model for PduSessionContext.
 type PduSessionContext struct {
-	AccessType           externalRef1.AccessType  `json:"accessType"`
-	AdditionalAccessType *externalRef1.AccessType `json:"additionalAccessType,omitempty"`
-	AllocatedEbiList     *[]interface{}           `json:"allocatedEbiList,omitempty"`
+	AccessType           externalRef1.AccessType `json:"accessType"`
+	AdditionalAccessType externalRef1.AccessType `json:"additionalAccessType,omitempty"`
+	AllocatedEbiList     []interface{}           `json:"allocatedEbiList,omitempty"`
 
 	// CnAssistedRanPara Original reference TS29502_Nsmf_PDUSession.yaml#/components/schemas/CnAssistedRanPara
-	CnAssistedRanPara    *interface{}                 `json:"cnAssistedRanPara,omitempty"`
+	CnAssistedRanPara    interface{}                  `json:"cnAssistedRanPara,omitempty"`
 	Dnn                  externalRef1.Dnn             `json:"dnn"`
 	HsmfId               *externalRef1.NfInstanceId   `json:"hsmfId,omitempty"`
 	HsmfServiceSetId     *externalRef1.NfServiceSetId `json:"hsmfServiceSetId,omitempty"`
@@ -729,13 +729,13 @@ type Ppi = int
 
 // PwsInformation defines model for PwsInformation.
 type PwsInformation struct {
-	BcEmptyAreaList      *[]externalRef1.GlobalRanNodeId `json:"bcEmptyAreaList,omitempty"`
-	MessageIdentifier    externalRef1.Uint16             `json:"messageIdentifier"`
-	OmcId                *OmcIdentifier                  `json:"omcId,omitempty"`
-	PwsContainer         N2InfoContent                   `json:"pwsContainer"`
-	SendRanResponse      *bool                           `json:"sendRanResponse,omitempty"`
-	SerialNumber         externalRef1.Uint16             `json:"serialNumber"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
+	BcEmptyAreaList      []externalRef1.GlobalRanNodeId `json:"bcEmptyAreaList,omitempty"`
+	MessageIdentifier    externalRef1.Uint16            `json:"messageIdentifier"`
+	OmcId                *OmcIdentifier                 `json:"omcId,omitempty"`
+	PwsContainer         N2InfoContent                  `json:"pwsContainer"`
+	SendRanResponse      *bool                          `json:"sendRanResponse,omitempty"`
+	SerialNumber         externalRef1.Uint16            `json:"serialNumber"`
+	AdditionalProperties map[string]interface{}         `json:"-"`
 }
 
 // RatSelector defines model for RatSelector.
@@ -745,18 +745,18 @@ type RatSelector string
 type RegistrationContextContainer struct {
 	AllowedNssai     *externalRef3.AllowedNssai `json:"allowedNssai,omitempty"`
 	AnN2ApId         int                        `json:"anN2ApId"`
-	AnN2IPv4Addr     *externalRef1.Ipv4Addr     `json:"anN2IPv4Addr,omitempty"`
+	AnN2IPv4Addr     externalRef1.Ipv4Addr      `json:"anN2IPv4Addr,omitempty"`
 	AnN2IPv6Addr     *externalRef1.Ipv6Addr     `json:"anN2IPv6Addr,omitempty"`
 	AnType           externalRef1.AccessType    `json:"anType"`
 	AuthenticatedInd *bool                      `json:"authenticatedInd,omitempty"`
 
 	// CeModeBInd CE-mode-B Support Indicator.
-	CeModeBInd       *CeModeBInd                      `json:"ceModeBInd,omitempty"`
-	ConfiguredNssai  *[]externalRef3.ConfiguredSnssai `json:"configuredNssai,omitempty"`
-	IabNodeInd       *bool                            `json:"iabNodeInd,omitempty"`
-	InitialAmfN2ApId *int                             `json:"initialAmfN2ApId,omitempty"`
-	InitialAmfName   externalRef1.AmfName             `json:"initialAmfName"`
-	LocalTimeZone    *externalRef1.TimeZone           `json:"localTimeZone,omitempty"`
+	CeModeBInd       *CeModeBInd                     `json:"ceModeBInd,omitempty"`
+	ConfiguredNssai  []externalRef3.ConfiguredSnssai `json:"configuredNssai,omitempty"`
+	IabNodeInd       *bool                           `json:"iabNodeInd,omitempty"`
+	InitialAmfN2ApId *int                            `json:"initialAmfN2ApId,omitempty"`
+	InitialAmfName   externalRef1.AmfName            `json:"initialAmfName"`
+	LocalTimeZone    *externalRef1.TimeZone          `json:"localTimeZone,omitempty"`
 
 	// LteMInd LTE-M Indication.
 	LteMInd *LteMInd `json:"lteMInd,omitempty"`
@@ -764,9 +764,9 @@ type RegistrationContextContainer struct {
 	// NpnAccessInfo NPN Access Information.
 	NpnAccessInfo        *NpnAccessInfo               `json:"npnAccessInfo,omitempty"`
 	RanNodeId            externalRef1.GlobalRanNodeId `json:"ranNodeId"`
-	RejectedNssaiInPlmn  *[]externalRef1.Snssai       `json:"rejectedNssaiInPlmn,omitempty"`
-	RejectedNssaiInTa    *[]externalRef1.Snssai       `json:"rejectedNssaiInTa,omitempty"`
-	RrcEstCause          *string                      `json:"rrcEstCause,omitempty"`
+	RejectedNssaiInPlmn  []externalRef1.Snssai        `json:"rejectedNssaiInPlmn,omitempty"`
+	RejectedNssaiInTa    []externalRef1.Snssai        `json:"rejectedNssaiInTa,omitempty"`
+	RrcEstCause          string                       `json:"rrcEstCause,omitempty"`
 	SelectedPlmnId       *externalRef1.PlmnId         `json:"selectedPlmnId,omitempty"`
 	UeContext            UeContext                    `json:"ueContext"`
 	UeContextRequest     *bool                        `json:"ueContextRequest,omitempty"`
@@ -790,7 +790,7 @@ type SeafData struct {
 	KeyAmfHDerivationInd *bool                  `json:"keyAmfHDerivationInd,omitempty"`
 	Ncc                  *int                   `json:"ncc,omitempty"`
 	NgKsi                NgKsi                  `json:"ngKsi"`
-	Nh                   *string                `json:"nh,omitempty"`
+	Nh                   string                 `json:"nh,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -821,7 +821,7 @@ type StatusChange string
 // SubscriptionData defines model for SubscriptionData.
 type SubscriptionData struct {
 	AmfStatusUri         externalRef1.Uri       `json:"amfStatusUri"`
-	GuamiList            *[]externalRef1.Guami  `json:"guamiList,omitempty"`
+	GuamiList            []externalRef1.Guami   `json:"guamiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -834,7 +834,7 @@ type TransferReason string
 // UEContextRelease defines model for UEContextRelease.
 type UEContextRelease struct {
 	NgapCause            externalRef1.NgApCause `json:"ngapCause"`
-	Supi                 *externalRef1.Supi     `json:"supi,omitempty"`
+	Supi                 externalRef1.Supi      `json:"supi,omitempty"`
 	UnauthenticatedSupi  *bool                  `json:"unauthenticatedSupi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -842,24 +842,24 @@ type UEContextRelease struct {
 // UeContext defines model for UeContext.
 type UeContext struct {
 	N5gMmCapability        *N5GMmCapability               `json:"5gMmCapability,omitempty"`
-	AmPolicyReqTriggerList *[]PolicyReqTrigger            `json:"amPolicyReqTriggerList,omitempty"`
+	AmPolicyReqTriggerList []PolicyReqTrigger             `json:"amPolicyReqTriggerList,omitempty"`
 	AusfGroupId            *externalRef1.NfGroupId        `json:"ausfGroupId,omitempty"`
-	CMsisdn                *externalRef1.CMsisdn          `json:"cMsisdn,omitempty"`
+	CMsisdn                externalRef1.CMsisdn           `json:"cMsisdn,omitempty"`
 	CagData                *externalRef5.CagData          `json:"cagData,omitempty"`
 	DrxParameter           *DrxParameter                  `json:"drxParameter,omitempty"`
 	EcRestrictionDataNb    *bool                          `json:"ecRestrictionDataNb,omitempty"`
 	EcRestrictionDataWb    *EcRestrictionDataWb           `json:"ecRestrictionDataWb,omitempty"`
-	EventSubscriptionList  *[]ExtAmfEventSubscription     `json:"eventSubscriptionList,omitempty"`
-	ForbiddenAreaList      *[]externalRef1.Area           `json:"forbiddenAreaList,omitempty"`
-	GpsiList               *[]externalRef1.Gpsi           `json:"gpsiList,omitempty"`
-	GroupList              *[]externalRef1.GroupId        `json:"groupList,omitempty"`
+	EventSubscriptionList  []ExtAmfEventSubscription      `json:"eventSubscriptionList,omitempty"`
+	ForbiddenAreaList      []externalRef1.Area            `json:"forbiddenAreaList,omitempty"`
+	GpsiList               []externalRef1.Gpsi            `json:"gpsiList,omitempty"`
+	GroupList              []externalRef1.GroupId         `json:"groupList,omitempty"`
 	HpcfId                 *externalRef1.NfInstanceId     `json:"hpcfId,omitempty"`
 	HpcfSetId              *externalRef1.NfSetId          `json:"hpcfSetId,omitempty"`
 	IabOperationAllowed    *bool                          `json:"iabOperationAllowed,omitempty"`
 	ImmediateMdtConf       *ImmediateMdtConf              `json:"immediateMdtConf,omitempty"`
 	LteCatMInd             *bool                          `json:"lteCatMInd,omitempty"`
 	ManagementMdtInd       *bool                          `json:"managementMdtInd,omitempty"`
-	MmContextList          *[]MmContext                   `json:"mmContextList,omitempty"`
+	MmContextList          []MmContext                    `json:"mmContextList,omitempty"`
 	MoExpDataCounter       *externalRef1.MoExpDataCounter `json:"moExpDataCounter,omitempty"`
 	MsClassmark2           *MSClassmark2                  `json:"msClassmark2,omitempty"`
 	PcfAmPolicyUri         *externalRef1.Uri              `json:"pcfAmPolicyUri,omitempty"`
@@ -868,47 +868,47 @@ type UeContext struct {
 	PcfBinding             *SbiBindingLevel               `json:"pcfBinding,omitempty"`
 	PcfGroupId             *externalRef1.NfGroupId        `json:"pcfGroupId,omitempty"`
 	PcfId                  *externalRef1.NfInstanceId     `json:"pcfId,omitempty"`
-	PcfRfsp                *externalRef1.RfspIndex        `json:"pcfRfsp,omitempty"`
+	PcfRfsp                externalRef1.RfspIndex         `json:"pcfRfsp,omitempty"`
 	PcfSetId               *externalRef1.NfSetId          `json:"pcfSetId,omitempty"`
 	PcfUeAmbr              *externalRef1.Ambr             `json:"pcfUeAmbr,omitempty"`
 	PcfUePolicyUri         *externalRef1.Uri              `json:"pcfUePolicyUri,omitempty"`
 	PcfUepBindingInfo      *string                        `json:"pcfUepBindingInfo,omitempty"`
 	PcfUepServiceSetId     *externalRef1.NfServiceSetId   `json:"pcfUepServiceSetId,omitempty"`
-	Pei                    *externalRef1.Pei              `json:"pei,omitempty"`
+	Pei                    externalRef1.Pei               `json:"pei,omitempty"`
 
 	// PraInAmPolicy A map(list of key-value pairs) where praId serves as key.
 	PraInAmPolicy *map[string]externalRef1.PresenceInfo `json:"praInAmPolicy,omitempty"`
 
 	// PraInUePolicy A map(list of key-value pairs) where praId serves as key.
 	PraInUePolicy              *map[string]externalRef1.PresenceInfo `json:"praInUePolicy,omitempty"`
-	RestrictedCoreNwTypeList   *[]externalRef1.CoreNetworkType       `json:"restrictedCoreNwTypeList,omitempty"`
-	RestrictedPrimaryRatList   *[]externalRef1.RatType               `json:"restrictedPrimaryRatList,omitempty"`
-	RestrictedRatList          *[]externalRef1.RatType               `json:"restrictedRatList,omitempty"`
-	RestrictedSecondaryRatList *[]externalRef1.RatType               `json:"restrictedSecondaryRatList,omitempty"`
+	RestrictedCoreNwTypeList   []externalRef1.CoreNetworkType        `json:"restrictedCoreNwTypeList,omitempty"`
+	RestrictedPrimaryRatList   []externalRef1.RatType                `json:"restrictedPrimaryRatList,omitempty"`
+	RestrictedRatList          []externalRef1.RatType                `json:"restrictedRatList,omitempty"`
+	RestrictedSecondaryRatList []externalRef1.RatType                `json:"restrictedSecondaryRatList,omitempty"`
 	RoutingIndicator           *string                               `json:"routingIndicator,omitempty"`
 	SeafData                   *SeafData                             `json:"seafData,omitempty"`
 	ServiceAreaRestriction     *externalRef1.ServiceAreaRestriction  `json:"serviceAreaRestriction,omitempty"`
 	ServiceGapExpiryTime       *externalRef1.DateTime                `json:"serviceGapExpiryTime,omitempty"`
-	SessionContextList         *[]PduSessionContext                  `json:"sessionContextList,omitempty"`
-	SmallDataRateStatusInfos   *[]SmallDataRateStatusInfo            `json:"smallDataRateStatusInfos,omitempty"`
+	SessionContextList         []PduSessionContext                   `json:"sessionContextList,omitempty"`
+	SmallDataRateStatusInfos   []SmallDataRateStatusInfo             `json:"smallDataRateStatusInfos,omitempty"`
 	SmfSelInfo                 *externalRef4.SmfSelectionData        `json:"smfSelInfo"`
 	SmsfBindingInfo            *string                               `json:"smsfBindingInfo,omitempty"`
 	SmsfId                     *externalRef1.NfInstanceId            `json:"smsfId,omitempty"`
 	SmsfServiceSetId           *externalRef1.NfServiceSetId          `json:"smsfServiceSetId,omitempty"`
 	SmsfSetId                  *externalRef1.NfSetId                 `json:"smsfSetId,omitempty"`
 	StnSr                      *externalRef1.StnSr                   `json:"stnSr,omitempty"`
-	SubRfsp                    *externalRef1.RfspIndex               `json:"subRfsp,omitempty"`
+	SubRfsp                    externalRef1.RfspIndex                `json:"subRfsp,omitempty"`
 	SubUeAmbr                  *externalRef1.Ambr                    `json:"subUeAmbr,omitempty"`
-	Supi                       *externalRef1.Supi                    `json:"supi,omitempty"`
+	Supi                       externalRef1.Supi                     `json:"supi,omitempty"`
 	SupiUnauthInd              *bool                                 `json:"supiUnauthInd,omitempty"`
-	SupportedCodecList         *[]SupportedCodec                     `json:"supportedCodecList,omitempty"`
+	SupportedCodecList         []SupportedCodec                      `json:"supportedCodecList,omitempty"`
 	TraceData                  *externalRef1.TraceData               `json:"traceData"`
 	UdmGroupId                 *externalRef1.NfGroupId               `json:"udmGroupId,omitempty"`
-	UePolicyReqTriggerList     *[]PolicyReqTrigger                   `json:"uePolicyReqTriggerList,omitempty"`
+	UePolicyReqTriggerList     []PolicyReqTrigger                    `json:"uePolicyReqTriggerList,omitempty"`
 
 	// UpdpSubscriptionData UE policy delivery related N1 message notification subscription data.
 	UpdpSubscriptionData       *UpdpSubscriptionData                        `json:"updpSubscriptionData,omitempty"`
-	UsedRfsp                   *externalRef1.RfspIndex                      `json:"usedRfsp,omitempty"`
+	UsedRfsp                   externalRef1.RfspIndex                       `json:"usedRfsp,omitempty"`
 	UsedServiceAreaRestriction *externalRef1.ServiceAreaRestriction         `json:"usedServiceAreaRestriction,omitempty"`
 	V2xContext                 *V2xContext                                  `json:"v2xContext,omitempty"`
 	WlServAreaRes              *externalRef1.WirelineServiceAreaRestriction `json:"wlServAreaRes,omitempty"`
@@ -918,7 +918,7 @@ type UeContext struct {
 // UeContextCancelRelocateData defines model for UeContextCancelRelocateData.
 type UeContextCancelRelocateData struct {
 	RelocationCancelRequest externalRef1.RefToBinaryData `json:"relocationCancelRequest"`
-	Supi                    *externalRef1.Supi           `json:"supi,omitempty"`
+	Supi                    externalRef1.Supi            `json:"supi,omitempty"`
 	AdditionalProperties    map[string]interface{}       `json:"-"`
 }
 
@@ -946,7 +946,7 @@ type UeContextCreateError struct {
 
 // UeContextCreatedData defines model for UeContextCreatedData.
 type UeContextCreatedData struct {
-	FailedSessionList    *[]N2SmInformation              `json:"failedSessionList,omitempty"`
+	FailedSessionList    []N2SmInformation               `json:"failedSessionList,omitempty"`
 	PcfReselectedInd     *bool                           `json:"pcfReselectedInd,omitempty"`
 	PduSessionList       []N2SmInformation               `json:"pduSessionList"`
 	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
@@ -959,7 +959,7 @@ type UeContextCreatedData struct {
 type UeContextRelocateData struct {
 	ForwardRelocationRequest externalRef1.RefToBinaryData    `json:"forwardRelocationRequest"`
 	NgapCause                *externalRef1.NgApCause         `json:"ngapCause,omitempty"`
-	PduSessionList           *[]N2SmInformation              `json:"pduSessionList,omitempty"`
+	PduSessionList           []N2SmInformation               `json:"pduSessionList,omitempty"`
 	SourceToTargetData       N2InfoContent                   `json:"sourceToTargetData"`
 	SupportedFeatures        *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	TargetId                 NgRanTargetId                   `json:"targetId"`
@@ -1033,11 +1033,11 @@ type UeN1N2InfoSubscriptionCreatedData struct {
 
 // UeRegStatusUpdateReqData defines model for UeRegStatusUpdateReqData.
 type UeRegStatusUpdateReqData struct {
-	PcfReselectedInd     *bool                        `json:"pcfReselectedInd,omitempty"`
-	SmfChangeInfoList    *[]SmfChangeInfo             `json:"smfChangeInfoList,omitempty"`
-	ToReleaseSessionList *[]externalRef1.PduSessionId `json:"toReleaseSessionList,omitempty"`
-	TransferStatus       UeContextTransferStatus      `json:"transferStatus"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
+	PcfReselectedInd     *bool                       `json:"pcfReselectedInd,omitempty"`
+	SmfChangeInfoList    []SmfChangeInfo             `json:"smfChangeInfoList,omitempty"`
+	ToReleaseSessionList []externalRef1.PduSessionId `json:"toReleaseSessionList,omitempty"`
+	TransferStatus       UeContextTransferStatus     `json:"transferStatus"`
+	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
 // UeRegStatusUpdateRspData defines model for UeRegStatusUpdateRspData.
@@ -1060,9 +1060,9 @@ type UpdpSubscriptionData struct {
 
 // V2xContext defines model for V2xContext.
 type V2xContext struct {
-	LteUeSidelinkAmbr    *externalRef1.BitRate    `json:"lteUeSidelinkAmbr,omitempty"`
+	LteUeSidelinkAmbr    externalRef1.BitRate     `json:"lteUeSidelinkAmbr,omitempty"`
 	LteV2xServicesAuth   *externalRef1.LteV2xAuth `json:"lteV2xServicesAuth,omitempty"`
-	NrUeSidelinkAmbr     *externalRef1.BitRate    `json:"nrUeSidelinkAmbr,omitempty"`
+	NrUeSidelinkAmbr     externalRef1.BitRate     `json:"nrUeSidelinkAmbr,omitempty"`
 	NrV2xServicesAuth    *externalRef1.NrV2xAuth  `json:"nrV2xServicesAuth,omitempty"`
 	Pc5QoSPara           *externalRef1.Pc5QoSPara `json:"pc5QoSPara,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
@@ -2305,7 +2305,7 @@ func (a AmfEventSubscriptionAddInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.BindingInfo != nil {
+	if len(a.BindingInfo) != 0 {
 		object["bindingInfo"], err = json.Marshal(a.BindingInfo)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'bindingInfo': %w", err)
@@ -2570,7 +2570,7 @@ func (a AreaOfInterestEventState) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.IndividualPraIdList != nil {
+	if len(a.IndividualPraIdList) != 0 {
 		object["individualPraIdList"], err = json.Marshal(a.IndividualPraIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'individualPraIdList': %w", err)
@@ -2733,7 +2733,7 @@ func (a AssignEbiData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ArpList != nil {
+	if len(a.ArpList) != 0 {
 		object["arpList"], err = json.Marshal(a.ArpList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'arpList': %w", err)
@@ -2752,7 +2752,7 @@ func (a AssignEbiData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
 	}
 
-	if a.ReleasedEbiList != nil {
+	if len(a.ReleasedEbiList) != 0 {
 		object["releasedEbiList"], err = json.Marshal(a.ReleasedEbiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'releasedEbiList': %w", err)
@@ -2907,7 +2907,7 @@ func (a AssignEbiFailed) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.FailedArpList != nil {
+	if len(a.FailedArpList) != 0 {
 		object["failedArpList"], err = json.Marshal(a.FailedArpList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'failedArpList': %w", err)
@@ -3009,7 +3009,7 @@ func (a AssignedEbiData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'assignedEbiList': %w", err)
 	}
 
-	if a.FailedArpList != nil {
+	if len(a.FailedArpList) != 0 {
 		object["failedArpList"], err = json.Marshal(a.FailedArpList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'failedArpList': %w", err)
@@ -3021,7 +3021,7 @@ func (a AssignedEbiData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
 	}
 
-	if a.ReleasedEbiList != nil {
+	if len(a.ReleasedEbiList) != 0 {
 		object["releasedEbiList"], err = json.Marshal(a.ReleasedEbiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'releasedEbiList': %w", err)
@@ -3536,7 +3536,7 @@ func (a ExtAmfEventSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.BindingInfo != nil {
+	if len(a.BindingInfo) != 0 {
 		object["bindingInfo"], err = json.Marshal(a.BindingInfo)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'bindingInfo': %w", err)
@@ -3560,14 +3560,14 @@ func (a ExtAmfEventSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
 		}
 	}
 
-	if a.GroupId != nil {
+	if len(a.GroupId) != 0 {
 		object["groupId"], err = json.Marshal(a.GroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'groupId': %w", err)
@@ -3591,7 +3591,7 @@ func (a ExtAmfEventSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -3626,7 +3626,7 @@ func (a ExtAmfEventSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -3838,7 +3838,7 @@ func (a ImmediateMdtConf) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AddPositioningMethodList != nil {
+	if len(a.AddPositioningMethodList) != 0 {
 		object["addPositioningMethodList"], err = json.Marshal(a.AddPositioningMethodList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'addPositioningMethodList': %w", err)
@@ -3899,21 +3899,21 @@ func (a ImmediateMdtConf) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'jobType': %w", err)
 	}
 
-	if a.MdtAllowedPlmnIdList != nil {
+	if len(a.MdtAllowedPlmnIdList) != 0 {
 		object["mdtAllowedPlmnIdList"], err = json.Marshal(a.MdtAllowedPlmnIdList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mdtAllowedPlmnIdList': %w", err)
 		}
 	}
 
-	if a.MeasurementLteList != nil {
+	if len(a.MeasurementLteList) != 0 {
 		object["measurementLteList"], err = json.Marshal(a.MeasurementLteList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'measurementLteList': %w", err)
 		}
 	}
 
-	if a.MeasurementNrList != nil {
+	if len(a.MeasurementNrList) != 0 {
 		object["measurementNrList"], err = json.Marshal(a.MeasurementNrList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'measurementNrList': %w", err)
@@ -3955,14 +3955,14 @@ func (a ImmediateMdtConf) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ReportingTriggerList != nil {
+	if len(a.ReportingTriggerList) != 0 {
 		object["reportingTriggerList"], err = json.Marshal(a.ReportingTriggerList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reportingTriggerList': %w", err)
 		}
 	}
 
-	if a.SensorMeasurementList != nil {
+	if len(a.SensorMeasurementList) != 0 {
 		object["sensorMeasurementList"], err = json.Marshal(a.SensorMeasurementList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sensorMeasurementList': %w", err)
@@ -4348,14 +4348,14 @@ func (a MmContext) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
 	}
 
-	if a.AllowedHomeNssai != nil {
+	if len(a.AllowedHomeNssai) != 0 {
 		object["allowedHomeNssai"], err = json.Marshal(a.AllowedHomeNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedHomeNssai': %w", err)
 		}
 	}
 
-	if a.AllowedNssai != nil {
+	if len(a.AllowedNssai) != 0 {
 		object["allowedNssai"], err = json.Marshal(a.AllowedNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNssai': %w", err)
@@ -4418,28 +4418,28 @@ func (a MmContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NsInstanceList != nil {
+	if len(a.NsInstanceList) != 0 {
 		object["nsInstanceList"], err = json.Marshal(a.NsInstanceList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nsInstanceList': %w", err)
 		}
 	}
 
-	if a.NssaaStatusList != nil {
+	if len(a.NssaaStatusList) != 0 {
 		object["nssaaStatusList"], err = json.Marshal(a.NssaaStatusList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nssaaStatusList': %w", err)
 		}
 	}
 
-	if a.NssaiMappingList != nil {
+	if len(a.NssaiMappingList) != 0 {
 		object["nssaiMappingList"], err = json.Marshal(a.NssaiMappingList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nssaiMappingList': %w", err)
 		}
 	}
 
-	if a.PendingNssaiMappingList != nil {
+	if len(a.PendingNssaiMappingList) != 0 {
 		object["pendingNssaiMappingList"], err = json.Marshal(a.PendingNssaiMappingList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pendingNssaiMappingList': %w", err)
@@ -5187,7 +5187,7 @@ func (a N1N2MessageTransferReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TargetAccess != nil {
+	if len(a.TargetAccess) != 0 {
 		object["targetAccess"], err = json.Marshal(a.TargetAccess)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetAccess': %w", err)
@@ -5750,7 +5750,7 @@ func (a N2InfoNotificationRspData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.SecRatDataUsageList != nil {
+	if len(a.SecRatDataUsageList) != 0 {
 		object["secRatDataUsageList"], err = json.Marshal(a.SecRatDataUsageList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'secRatDataUsageList': %w", err)
@@ -5906,7 +5906,7 @@ func (a N2InformationNotification) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AnN2IPv4Addr != nil {
+	if len(a.AnN2IPv4Addr) != 0 {
 		object["anN2IPv4Addr"], err = json.Marshal(a.AnN2IPv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'anN2IPv4Addr': %w", err)
@@ -5974,14 +5974,14 @@ func (a N2InformationNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SmfChangeInfoList != nil {
+	if len(a.SmfChangeInfoList) != 0 {
 		object["smfChangeInfoList"], err = json.Marshal(a.SmfChangeInfoList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smfChangeInfoList': %w", err)
 		}
 	}
 
-	if a.ToReleaseSessionList != nil {
+	if len(a.ToReleaseSessionList) != 0 {
 		object["toReleaseSessionList"], err = json.Marshal(a.ToReleaseSessionList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'toReleaseSessionList': %w", err)
@@ -6162,7 +6162,7 @@ func (a N2InformationTransferReqData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.GlobalRanNodeList != nil {
+	if len(a.GlobalRanNodeList) != 0 {
 		object["globalRanNodeList"], err = json.Marshal(a.GlobalRanNodeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'globalRanNodeList': %w", err)
@@ -6188,7 +6188,7 @@ func (a N2InformationTransferReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TaiList != nil {
+	if len(a.TaiList) != 0 {
 		object["taiList"], err = json.Marshal(a.TaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
@@ -6836,14 +6836,14 @@ func (a NonUeN2InfoSubscriptionCreateData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AnTypeList != nil {
+	if len(a.AnTypeList) != 0 {
 		object["anTypeList"], err = json.Marshal(a.AnTypeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'anTypeList': %w", err)
 		}
 	}
 
-	if a.GlobalRanNodeList != nil {
+	if len(a.GlobalRanNodeList) != 0 {
 		object["globalRanNodeList"], err = json.Marshal(a.GlobalRanNodeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'globalRanNodeList': %w", err)
@@ -7031,7 +7031,7 @@ func (a NpnAccessInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.CellCagInfo != nil {
+	if len(a.CellCagInfo) != 0 {
 		object["cellCagInfo"], err = json.Marshal(a.CellCagInfo)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cellCagInfo': %w", err)
@@ -7377,7 +7377,7 @@ func (a PWSResponseData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'serialNumber': %w", err)
 	}
 
-	if a.UnknownTaiList != nil {
+	if len(a.UnknownTaiList) != 0 {
 		object["unknownTaiList"], err = json.Marshal(a.UnknownTaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'unknownTaiList': %w", err)
@@ -7634,14 +7634,14 @@ func (a PduSessionContext) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
 	}
 
-	if a.AdditionalAccessType != nil {
+	if len(a.AdditionalAccessType) != 0 {
 		object["additionalAccessType"], err = json.Marshal(a.AdditionalAccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'additionalAccessType': %w", err)
 		}
 	}
 
-	if a.AllocatedEbiList != nil {
+	if len(a.AllocatedEbiList) != 0 {
 		object["allocatedEbiList"], err = json.Marshal(a.AllocatedEbiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allocatedEbiList': %w", err)
@@ -7888,7 +7888,7 @@ func (a PwsInformation) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.BcEmptyAreaList != nil {
+	if len(a.BcEmptyAreaList) != 0 {
 		object["bcEmptyAreaList"], err = json.Marshal(a.BcEmptyAreaList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'bcEmptyAreaList': %w", err)
@@ -8165,7 +8165,7 @@ func (a RegistrationContextContainer) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'anN2ApId': %w", err)
 	}
 
-	if a.AnN2IPv4Addr != nil {
+	if len(a.AnN2IPv4Addr) != 0 {
 		object["anN2IPv4Addr"], err = json.Marshal(a.AnN2IPv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'anN2IPv4Addr': %w", err)
@@ -8198,7 +8198,7 @@ func (a RegistrationContextContainer) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ConfiguredNssai != nil {
+	if len(a.ConfiguredNssai) != 0 {
 		object["configuredNssai"], err = json.Marshal(a.ConfiguredNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'configuredNssai': %w", err)
@@ -8250,21 +8250,21 @@ func (a RegistrationContextContainer) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'ranNodeId': %w", err)
 	}
 
-	if a.RejectedNssaiInPlmn != nil {
+	if len(a.RejectedNssaiInPlmn) != 0 {
 		object["rejectedNssaiInPlmn"], err = json.Marshal(a.RejectedNssaiInPlmn)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rejectedNssaiInPlmn': %w", err)
 		}
 	}
 
-	if a.RejectedNssaiInTa != nil {
+	if len(a.RejectedNssaiInTa) != 0 {
 		object["rejectedNssaiInTa"], err = json.Marshal(a.RejectedNssaiInTa)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rejectedNssaiInTa': %w", err)
 		}
 	}
 
-	if a.RrcEstCause != nil {
+	if len(a.RrcEstCause) != 0 {
 		object["rrcEstCause"], err = json.Marshal(a.RrcEstCause)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rrcEstCause': %w", err)
@@ -8427,7 +8427,7 @@ func (a SeafData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'ngKsi': %w", err)
 	}
 
-	if a.Nh != nil {
+	if len(a.Nh) != 0 {
 		object["nh"], err = json.Marshal(a.Nh)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nh': %w", err)
@@ -8679,7 +8679,7 @@ func (a SubscriptionData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'amfStatusUri': %w", err)
 	}
 
-	if a.GuamiList != nil {
+	if len(a.GuamiList) != 0 {
 		object["guamiList"], err = json.Marshal(a.GuamiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'guamiList': %w", err)
@@ -8768,7 +8768,7 @@ func (a UEContextRelease) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'ngapCause': %w", err)
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -9362,7 +9362,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AmPolicyReqTriggerList != nil {
+	if len(a.AmPolicyReqTriggerList) != 0 {
 		object["amPolicyReqTriggerList"], err = json.Marshal(a.AmPolicyReqTriggerList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'amPolicyReqTriggerList': %w", err)
@@ -9376,7 +9376,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.CMsisdn != nil {
+	if len(a.CMsisdn) != 0 {
 		object["cMsisdn"], err = json.Marshal(a.CMsisdn)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cMsisdn': %w", err)
@@ -9411,28 +9411,28 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.EventSubscriptionList != nil {
+	if len(a.EventSubscriptionList) != 0 {
 		object["eventSubscriptionList"], err = json.Marshal(a.EventSubscriptionList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'eventSubscriptionList': %w", err)
 		}
 	}
 
-	if a.ForbiddenAreaList != nil {
+	if len(a.ForbiddenAreaList) != 0 {
 		object["forbiddenAreaList"], err = json.Marshal(a.ForbiddenAreaList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'forbiddenAreaList': %w", err)
 		}
 	}
 
-	if a.GpsiList != nil {
+	if len(a.GpsiList) != 0 {
 		object["gpsiList"], err = json.Marshal(a.GpsiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsiList': %w", err)
 		}
 	}
 
-	if a.GroupList != nil {
+	if len(a.GroupList) != 0 {
 		object["groupList"], err = json.Marshal(a.GroupList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'groupList': %w", err)
@@ -9481,7 +9481,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MmContextList != nil {
+	if len(a.MmContextList) != 0 {
 		object["mmContextList"], err = json.Marshal(a.MmContextList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mmContextList': %w", err)
@@ -9544,7 +9544,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PcfRfsp != nil {
+	if a.PcfRfsp != 0 {
 		object["pcfRfsp"], err = json.Marshal(a.PcfRfsp)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfRfsp': %w", err)
@@ -9586,7 +9586,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -9607,28 +9607,28 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RestrictedCoreNwTypeList != nil {
+	if len(a.RestrictedCoreNwTypeList) != 0 {
 		object["restrictedCoreNwTypeList"], err = json.Marshal(a.RestrictedCoreNwTypeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'restrictedCoreNwTypeList': %w", err)
 		}
 	}
 
-	if a.RestrictedPrimaryRatList != nil {
+	if len(a.RestrictedPrimaryRatList) != 0 {
 		object["restrictedPrimaryRatList"], err = json.Marshal(a.RestrictedPrimaryRatList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'restrictedPrimaryRatList': %w", err)
 		}
 	}
 
-	if a.RestrictedRatList != nil {
+	if len(a.RestrictedRatList) != 0 {
 		object["restrictedRatList"], err = json.Marshal(a.RestrictedRatList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'restrictedRatList': %w", err)
 		}
 	}
 
-	if a.RestrictedSecondaryRatList != nil {
+	if len(a.RestrictedSecondaryRatList) != 0 {
 		object["restrictedSecondaryRatList"], err = json.Marshal(a.RestrictedSecondaryRatList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'restrictedSecondaryRatList': %w", err)
@@ -9663,14 +9663,14 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SessionContextList != nil {
+	if len(a.SessionContextList) != 0 {
 		object["sessionContextList"], err = json.Marshal(a.SessionContextList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sessionContextList': %w", err)
 		}
 	}
 
-	if a.SmallDataRateStatusInfos != nil {
+	if len(a.SmallDataRateStatusInfos) != 0 {
 		object["smallDataRateStatusInfos"], err = json.Marshal(a.SmallDataRateStatusInfos)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smallDataRateStatusInfos': %w", err)
@@ -9717,7 +9717,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SubRfsp != nil {
+	if a.SubRfsp != 0 {
 		object["subRfsp"], err = json.Marshal(a.SubRfsp)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subRfsp': %w", err)
@@ -9731,7 +9731,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -9745,7 +9745,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SupportedCodecList != nil {
+	if len(a.SupportedCodecList) != 0 {
 		object["supportedCodecList"], err = json.Marshal(a.SupportedCodecList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supportedCodecList': %w", err)
@@ -9764,7 +9764,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UePolicyReqTriggerList != nil {
+	if len(a.UePolicyReqTriggerList) != 0 {
 		object["uePolicyReqTriggerList"], err = json.Marshal(a.UePolicyReqTriggerList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'uePolicyReqTriggerList': %w", err)
@@ -9778,7 +9778,7 @@ func (a UeContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.UsedRfsp != nil {
+	if a.UsedRfsp != 0 {
 		object["usedRfsp"], err = json.Marshal(a.UsedRfsp)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'usedRfsp': %w", err)
@@ -9880,7 +9880,7 @@ func (a UeContextCancelRelocateData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'relocationCancelRequest': %w", err)
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -10264,7 +10264,7 @@ func (a UeContextCreatedData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.FailedSessionList != nil {
+	if len(a.FailedSessionList) != 0 {
 		object["failedSessionList"], err = json.Marshal(a.FailedSessionList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'failedSessionList': %w", err)
@@ -10429,7 +10429,7 @@ func (a UeContextRelocateData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PduSessionList != nil {
+	if len(a.PduSessionList) != 0 {
 		object["pduSessionList"], err = json.Marshal(a.PduSessionList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pduSessionList': %w", err)
@@ -11255,14 +11255,14 @@ func (a UeRegStatusUpdateReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SmfChangeInfoList != nil {
+	if len(a.SmfChangeInfoList) != 0 {
 		object["smfChangeInfoList"], err = json.Marshal(a.SmfChangeInfoList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'smfChangeInfoList': %w", err)
 		}
 	}
 
-	if a.ToReleaseSessionList != nil {
+	if len(a.ToReleaseSessionList) != 0 {
 		object["toReleaseSessionList"], err = json.Marshal(a.ToReleaseSessionList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'toReleaseSessionList': %w", err)
@@ -11542,7 +11542,7 @@ func (a V2xContext) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.LteUeSidelinkAmbr != nil {
+	if len(a.LteUeSidelinkAmbr) != 0 {
 		object["lteUeSidelinkAmbr"], err = json.Marshal(a.LteUeSidelinkAmbr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'lteUeSidelinkAmbr': %w", err)
@@ -11556,7 +11556,7 @@ func (a V2xContext) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NrUeSidelinkAmbr != nil {
+	if len(a.NrUeSidelinkAmbr) != 0 {
 		object["nrUeSidelinkAmbr"], err = json.Marshal(a.NrUeSidelinkAmbr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nrUeSidelinkAmbr': %w", err)

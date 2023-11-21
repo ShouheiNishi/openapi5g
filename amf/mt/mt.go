@@ -54,17 +54,17 @@ type EnableUeReachabilityRspData struct {
 // ProblemDetailsEnableUeReachability defines model for ProblemDetailsEnableUeReachability.
 type ProblemDetailsEnableUeReachability struct {
 	// AccessTokenError Error returned in the access token response message (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
-	AccessTokenError *interface{} `json:"accessTokenError,omitempty"`
+	AccessTokenError interface{} `json:"accessTokenError,omitempty"`
 
 	// AccessTokenRequest Contains information related to the access token request (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
-	AccessTokenRequest   *interface{}                    `json:"accessTokenRequest,omitempty"`
+	AccessTokenRequest   interface{}                     `json:"accessTokenRequest,omitempty"`
 	Cause                *string                         `json:"cause,omitempty"`
 	Detail               *string                         `json:"detail,omitempty"`
 	Instance             *externalRef1.Uri               `json:"instance,omitempty"`
-	InvalidParams        *[]externalRef1.InvalidParam    `json:"invalidParams,omitempty"`
+	InvalidParams        []externalRef1.InvalidParam     `json:"invalidParams,omitempty"`
 	MaxWaitingTime       *externalRef1.DurationSec       `json:"maxWaitingTime,omitempty"`
 	NrfId                *string                         `json:"nrfId,omitempty"`
-	Status               *int                            `json:"status,omitempty"`
+	Status               int                             `json:"status,omitempty"`
 	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	Title                *string                         `json:"title,omitempty"`
 	Type                 *externalRef1.Uri               `json:"type,omitempty"`
@@ -73,7 +73,7 @@ type ProblemDetailsEnableUeReachability struct {
 
 // UeContextInfo defines model for UeContextInfo.
 type UeContextInfo struct {
-	AccessType           *externalRef1.AccessType        `json:"accessType,omitempty"`
+	AccessType           externalRef1.AccessType         `json:"accessType,omitempty"`
 	LastActTime          *externalRef1.DateTime          `json:"lastActTime,omitempty"`
 	RatType              *externalRef1.RatType           `json:"ratType,omitempty"`
 	SupportVoPS          *bool                           `json:"supportVoPS,omitempty"`
@@ -535,7 +535,7 @@ func (a ProblemDetailsEnableUeReachability) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InvalidParams != nil {
+	if len(a.InvalidParams) != 0 {
 		object["invalidParams"], err = json.Marshal(a.InvalidParams)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)
@@ -556,7 +556,7 @@ func (a ProblemDetailsEnableUeReachability) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Status != nil {
+	if a.Status != 0 {
 		object["status"], err = json.Marshal(a.Status)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'status': %w", err)
@@ -685,7 +685,7 @@ func (a UeContextInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessType != nil {
+	if len(a.AccessType) != 0 {
 		object["accessType"], err = json.Marshal(a.AccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)

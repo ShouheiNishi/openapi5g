@@ -150,12 +150,14 @@ components:
                         $ref: '#/components/schemas/ExternalId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 msisdns:
                     description: Each element identifies the MS internal PSTN/ISDN number allocated for the UE.
                     items:
                         $ref: '#/components/schemas/Msisdn'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 resultReason:
                     $ref: '#/components/schemas/ResultReason'
             required:
@@ -177,6 +179,7 @@ components:
             maximum: 7
             minimum: 1
             type: integer
+            x-go-type-skip-optional-pointer: true
         DurationMin:
             description: Unsigned integer identifying a period of time in units of minutes.
             format: int32
@@ -220,6 +223,7 @@ components:
                         type: integer
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - event
             type: object
@@ -239,6 +243,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 flowId:
                     description: Indicates the IP flow.
                     type: integer
@@ -283,36 +288,44 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 civicAddresses:
                     description: Identifies a list of civic addresses of the user where the UE is located.
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 enodeBIds:
                     description: Indicates a list of eNodeB identities in which the UE is currently located.
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 geographicAreas:
                     description: Identifies a list of geographic area of the user where the UE is located.
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 routingAreaIds:
                     description: Identifies a list of Routing Area Identities of the user where the UE is located.
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 trackingAreaIds:
                     description: Identifies a list of Tracking Area Identities of the user where the UE is located.
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         LocationArea5G:
             additionalProperties: true
@@ -321,14 +334,17 @@ components:
                     description: Identifies a list of civic addresses of the user where the UE is located.
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+                        x-go-type-skip-optional-pointer: true
                     type: array
                 geographicAreas:
                     description: Identifies a list of geographic area of the user where the UE is located.
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                        x-go-type-skip-optional-pointer: true
                     type: array
                 nwAreaInfo:
                     description: Describes a network area information in which the NF service consumer requests the number of UEs. (Original reference TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
+                    x-go-type-skip-optional-pointer: true
             type: object
         Mcc:
             description: String encoding a Mobile Country Code part of the PLMN, comprising 3 digits, as defined in 3GPP TS 38.413.
@@ -348,6 +364,7 @@ components:
                         $ref: '#/components/schemas/EventReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 transaction:
                     $ref: '#/components/schemas/Link'
             required:
@@ -393,6 +410,7 @@ components:
                         $ref: '#/components/schemas/InvalidParam'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 status:
                     description: The HTTP status code for this occurrence of the problem.
                     type: integer

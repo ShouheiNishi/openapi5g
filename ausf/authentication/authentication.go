@@ -46,11 +46,11 @@ type AuthType string
 
 // AuthenticationInfo defines model for AuthenticationInfo.
 type AuthenticationInfo struct {
-	CellCagInfo           *[]externalRef0.CagId               `json:"cellCagInfo,omitempty"`
+	CellCagInfo           []externalRef0.CagId                `json:"cellCagInfo,omitempty"`
 	N5gcInd               *bool                               `json:"n5gcInd,omitempty"`
-	Pei                   *externalRef0.Pei                   `json:"pei,omitempty"`
+	Pei                   externalRef0.Pei                    `json:"pei,omitempty"`
 	ResynchronizationInfo *externalRef1.ResynchronizationInfo `json:"resynchronizationInfo,omitempty"`
-	RoutingIndicator      *string                             `json:"routingIndicator,omitempty"`
+	RoutingIndicator      string                              `json:"routingIndicator,omitempty"`
 	ServingNetworkName    externalRef1.ServingNetworkName     `json:"servingNetworkName"`
 	SupiOrSuci            externalRef0.SupiOrSuci             `json:"supiOrSuci"`
 	SupportedFeatures     *externalRef0.SupportedFeatures     `json:"supportedFeatures,omitempty"`
@@ -77,8 +77,8 @@ type ConfirmationData struct {
 // ConfirmationDataResponse defines model for ConfirmationDataResponse.
 type ConfirmationDataResponse struct {
 	AuthResult           AuthResult             `json:"authResult"`
-	Kseaf                *Kseaf                 `json:"kseaf,omitempty"`
-	Supi                 *externalRef0.Supi     `json:"supi,omitempty"`
+	Kseaf                Kseaf                  `json:"kseaf,omitempty"`
+	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -95,12 +95,12 @@ type EapPayload = string
 // EapSession defines model for EapSession.
 type EapSession struct {
 	Links      *map[string]externalRef0.LinksValueSchema `json:"_links,omitempty"`
-	AuthResult *AuthResult                               `json:"authResult,omitempty"`
+	AuthResult AuthResult                                `json:"authResult,omitempty"`
 
 	// EapPayload contains an EAP packet
 	EapPayload           *EapPayload                     `json:"eapPayload"`
-	KSeaf                *Kseaf                          `json:"kSeaf,omitempty"`
-	Supi                 *externalRef0.Supi              `json:"supi,omitempty"`
+	KSeaf                Kseaf                           `json:"kSeaf,omitempty"`
+	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -118,7 +118,7 @@ type ResStar = string
 type RgAuthCtx struct {
 	AuthInd              *bool                  `json:"authInd,omitempty"`
 	AuthResult           AuthResult             `json:"authResult"`
-	Supi                 *externalRef0.Supi     `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -138,7 +138,7 @@ type UEAuthenticationCtx struct {
 	N5gAuthData          UEAuthenticationCtx_5gAuthData           `json:"5gAuthData"`
 	Links                map[string]externalRef0.LinksValueSchema `json:"_links"`
 	AuthType             AuthType                                 `json:"authType"`
-	ServingNetworkName   *externalRef1.ServingNetworkName         `json:"servingNetworkName,omitempty"`
+	ServingNetworkName   externalRef1.ServingNetworkName          `json:"servingNetworkName,omitempty"`
 	AdditionalProperties map[string]interface{}                   `json:"-"`
 }
 
@@ -286,7 +286,7 @@ func (a AuthenticationInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.CellCagInfo != nil {
+	if len(a.CellCagInfo) != 0 {
 		object["cellCagInfo"], err = json.Marshal(a.CellCagInfo)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cellCagInfo': %w", err)
@@ -300,7 +300,7 @@ func (a AuthenticationInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -314,7 +314,7 @@ func (a AuthenticationInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RoutingIndicator != nil {
+	if len(a.RoutingIndicator) != 0 {
 		object["routingIndicator"], err = json.Marshal(a.RoutingIndicator)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'routingIndicator': %w", err)
@@ -605,14 +605,14 @@ func (a ConfirmationDataResponse) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'authResult': %w", err)
 	}
 
-	if a.Kseaf != nil {
+	if len(a.Kseaf) != 0 {
 		object["kseaf"], err = json.Marshal(a.Kseaf)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'kseaf': %w", err)
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -808,7 +808,7 @@ func (a EapSession) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AuthResult != nil {
+	if len(a.AuthResult) != 0 {
 		object["authResult"], err = json.Marshal(a.AuthResult)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'authResult': %w", err)
@@ -820,14 +820,14 @@ func (a EapSession) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'eapPayload': %w", err)
 	}
 
-	if a.KSeaf != nil {
+	if len(a.KSeaf) != 0 {
 		object["kSeaf"], err = json.Marshal(a.KSeaf)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'kSeaf': %w", err)
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -930,7 +930,7 @@ func (a RgAuthCtx) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'authResult': %w", err)
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1131,7 +1131,7 @@ func (a UEAuthenticationCtx) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'authType': %w", err)
 	}
 
-	if a.ServingNetworkName != nil {
+	if len(a.ServingNetworkName) != 0 {
 		object["servingNetworkName"], err = json.Marshal(a.ServingNetworkName)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'servingNetworkName': %w", err)

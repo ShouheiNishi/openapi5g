@@ -26,6 +26,7 @@ components:
                         $ref: '#/components/schemas/DataFilter'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 expiry:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
                 notificationUri:
@@ -70,6 +71,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dataInd:
                     $ref: '#/components/schemas/DataInd'
                 dnns:
@@ -77,36 +79,43 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 internalGroupIds:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 snssais:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supis:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueIpv4s:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueIpv6s:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueMacs:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - dataInd
             type: object
@@ -131,6 +140,7 @@ components:
                 multiAccCtrls:
                     additionalProperties:
                         description: Original reference TS29522_IPTVConfiguration.yaml#/components/schemas/MulticastAccessControl
+                        x-go-type-skip-optional-pointer: true
                     minProperties: 1
                     type: object
                 resUri:
@@ -157,6 +167,7 @@ components:
                         $ref: TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdContent
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 suppFeat:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
             required:
@@ -177,8 +188,10 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                 paramOverPc5:
                     description: Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
+                    x-go-type-skip-optional-pointer: true
                 paramOverUu:
                     description: Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
+                    x-go-type-skip-optional-pointer: true
                 resUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 snssai:
@@ -217,11 +230,13 @@ components:
                         $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 headers:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 interGroupId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                 nwAreaInfo:
@@ -235,6 +250,7 @@ components:
                         $ref: TS29522_TrafficInfluence.yaml#/components/schemas/SubscribedEvent
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                 supportedFeatures:
@@ -245,6 +261,7 @@ components:
                         $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TemporalValidity
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 traffCorreInd:
                     type: boolean
                 trafficFilters:
@@ -253,12 +270,14 @@ components:
                         $ref: TS29122_CommonData.yaml#/components/schemas/FlowInfo
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 trafficRoutes:
                     description: Identifies the N6 traffic routing requirement.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 upPathChgNotifCorreId:
                     description: Contains the Notification Correlation Id allocated by the NEF for the UP path change notification.
                     type: string
@@ -297,11 +316,13 @@ components:
                         $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 headers:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 internalGroupId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                 nwAreaInfo:
@@ -325,12 +346,14 @@ components:
                         $ref: TS29122_CommonData.yaml#/components/schemas/FlowInfo
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 trafficRoutes:
                     description: Identifies the N6 traffic routing requirement.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 upPathChgNotifCorreId:
                     description: Contains the Notification Correlation Id allocated by the NEF for the UP path change notification.
                     type: string
@@ -350,6 +373,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 expiry:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
                 internalGroupIds:
@@ -358,6 +382,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notificationUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 snssais:
@@ -366,12 +391,14 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supis:
                     description: Each element identifies the user.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
             required:
@@ -401,6 +428,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies a group of users.
                   in: query
                   name: internal-group-ids
@@ -409,6 +437,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies the user.
                   in: query
                   name: supis
@@ -417,6 +446,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             responses:
                 "200":
                     content:
@@ -597,6 +627,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies a DNN.
                   in: query
                   name: dnns
@@ -605,6 +636,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - content:
                     application/json:
                         schema:
@@ -612,6 +644,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: Each element identifies a slice.
                   in: query
                   name: snssais
@@ -623,6 +656,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies the user.
                   in: query
                   name: supis
@@ -631,6 +665,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Supported Features
                   in: query
                   name: supp-feat
@@ -885,6 +920,7 @@ paths:
                                                     - $ref: '#/components/schemas/TrafficInfluDataNotif'
                                             minItems: 1
                                             type: array
+                                            x-go-type-skip-optional-pointer: true
                                 required: true
                             responses:
                                 "204":
@@ -1086,6 +1122,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies a DNN.
                   in: query
                   name: dnns
@@ -1094,6 +1131,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - content:
                     application/json:
                         schema:
@@ -1101,6 +1139,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: Each element identifies a slice.
                   in: query
                   name: snssais
@@ -1112,6 +1151,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies a group of users.
                   in: query
                   name: inter-group-ids
@@ -1120,6 +1160,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             responses:
                 "200":
                     content:
@@ -1198,6 +1239,7 @@ paths:
                     application/merge-patch+json:
                         schema:
                             description: Original reference TS29522_IPTVConfiguration.yaml#/components/schemas/IptvConfigDataPatch
+                            x-go-type-skip-optional-pointer: true
                 required: true
             responses:
                 "200":
@@ -1310,6 +1352,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             responses:
                 "200":
                     content:
@@ -1486,6 +1529,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies a DNN.
                   in: query
                   name: dnns
@@ -1494,6 +1538,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - content:
                     application/json:
                         schema:
@@ -1501,6 +1546,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: Each element identifies a slice.
                   in: query
                   name: snssais
@@ -1512,6 +1558,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies the user.
                   in: query
                   name: supis
@@ -1520,6 +1567,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies the user.
                   in: query
                   name: ue-ipv4s
@@ -1528,6 +1576,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies the user.
                   in: query
                   name: ue-ipv6s
@@ -1536,6 +1585,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Each element identifies the user.
                   in: query
                   name: ue-macs
@@ -1544,6 +1594,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Supported Features
                   in: query
                   name: supp-feat
@@ -1627,6 +1678,7 @@ paths:
                     application/merge-patch+json:
                         schema:
                             description: Original reference TS29522_ServiceParameter.yaml#/components/schemas/ServiceParameterDataPatch
+                            x-go-type-skip-optional-pointer: true
                 required: true
             responses:
                 "200":
@@ -1781,6 +1833,7 @@ paths:
                                                 $ref: '#/components/schemas/ApplicationDataChangeNotif'
                                             minItems: 1
                                             type: array
+                                            x-go-type-skip-optional-pointer: true
                                 required: true
                             responses:
                                 "204":

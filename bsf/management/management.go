@@ -39,29 +39,29 @@ type BindingResp struct {
 	PcfSmFqdn *externalRef1.Fqdn `json:"pcfSmFqdn,omitempty"`
 
 	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-	PcfSmIpEndPoints     *[]externalRef1.IpEndPoint `json:"pcfSmIpEndPoints,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	PcfSmIpEndPoints     []externalRef1.IpEndPoint `json:"pcfSmIpEndPoints,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // ExtProblemDetails defines model for ExtProblemDetails.
 type ExtProblemDetails struct {
 	// AccessTokenError Error returned in the access token response message (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
-	AccessTokenError *interface{} `json:"accessTokenError,omitempty"`
+	AccessTokenError interface{} `json:"accessTokenError,omitempty"`
 
 	// AccessTokenRequest Contains information related to the access token request (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
-	AccessTokenRequest *interface{}                 `json:"accessTokenRequest,omitempty"`
-	Cause              *string                      `json:"cause,omitempty"`
-	Detail             *string                      `json:"detail,omitempty"`
-	Instance           *externalRef0.Uri            `json:"instance,omitempty"`
-	InvalidParams      *[]externalRef0.InvalidParam `json:"invalidParams,omitempty"`
-	NrfId              *string                      `json:"nrfId,omitempty"`
+	AccessTokenRequest interface{}                 `json:"accessTokenRequest,omitempty"`
+	Cause              *string                     `json:"cause,omitempty"`
+	Detail             *string                     `json:"detail,omitempty"`
+	Instance           *externalRef0.Uri           `json:"instance,omitempty"`
+	InvalidParams      []externalRef0.InvalidParam `json:"invalidParams,omitempty"`
+	NrfId              *string                     `json:"nrfId,omitempty"`
 
 	// PcfSmFqdn Fully Qualified Domain Name
 	PcfSmFqdn *externalRef1.Fqdn `json:"pcfSmFqdn,omitempty"`
 
 	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-	PcfSmIpEndPoints     *[]externalRef1.IpEndPoint      `json:"pcfSmIpEndPoints,omitempty"`
-	Status               *int                            `json:"status,omitempty"`
+	PcfSmIpEndPoints     []externalRef1.IpEndPoint       `json:"pcfSmIpEndPoints,omitempty"`
+	Status               int                             `json:"status,omitempty"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	Title                *string                         `json:"title,omitempty"`
 	Type                 *externalRef0.Uri               `json:"type,omitempty"`
@@ -72,48 +72,48 @@ type ExtProblemDetails struct {
 type ParameterCombination struct {
 	Dnn                  *externalRef0.Dnn      `json:"dnn,omitempty"`
 	Snssai               *externalRef0.Snssai   `json:"snssai,omitempty"`
-	Supi                 *externalRef0.Supi     `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // PcfBinding defines model for PcfBinding.
 type PcfBinding struct {
 	// AddIpv6Prefixes The additional IPv6 Address Prefixes of the served UE.
-	AddIpv6Prefixes *[]externalRef0.Ipv6Prefix `json:"addIpv6Prefixes,omitempty"`
+	AddIpv6Prefixes []externalRef0.Ipv6Prefix `json:"addIpv6Prefixes,omitempty"`
 
 	// AddMacAddrs The additional MAC Addresses of the served UE.
-	AddMacAddrs *[]externalRef0.MacAddr48 `json:"addMacAddrs,omitempty"`
+	AddMacAddrs []externalRef0.MacAddr48 `json:"addMacAddrs,omitempty"`
 
 	// BindLevel Possible values are - "NF_SET" - "NF_INSTANCE"
-	BindLevel          *BindingLevel                  `json:"bindLevel,omitempty"`
-	Dnn                externalRef0.Dnn               `json:"dnn"`
-	Gpsi               *externalRef0.Gpsi             `json:"gpsi,omitempty"`
-	IpDomain           *string                        `json:"ipDomain,omitempty"`
-	Ipv4Addr           *externalRef0.Ipv4Addr         `json:"ipv4Addr,omitempty"`
-	Ipv4FrameRouteList *[]externalRef0.Ipv4AddrMask   `json:"ipv4FrameRouteList,omitempty"`
-	Ipv6FrameRouteList *[]externalRef0.Ipv6Prefix     `json:"ipv6FrameRouteList,omitempty"`
-	Ipv6Prefix         *externalRef0.Ipv6Prefix       `json:"ipv6Prefix,omitempty"`
-	MacAddr48          *externalRef0.MacAddr48        `json:"macAddr48,omitempty"`
-	ParaCom            *ParameterCombination          `json:"paraCom,omitempty"`
-	PcfDiamHost        *externalRef0.DiameterIdentity `json:"pcfDiamHost,omitempty"`
-	PcfDiamRealm       *externalRef0.DiameterIdentity `json:"pcfDiamRealm,omitempty"`
+	BindLevel          *BindingLevel                 `json:"bindLevel,omitempty"`
+	Dnn                externalRef0.Dnn              `json:"dnn"`
+	Gpsi               externalRef0.Gpsi             `json:"gpsi,omitempty"`
+	IpDomain           *string                       `json:"ipDomain,omitempty"`
+	Ipv4Addr           externalRef0.Ipv4Addr         `json:"ipv4Addr,omitempty"`
+	Ipv4FrameRouteList []externalRef0.Ipv4AddrMask   `json:"ipv4FrameRouteList,omitempty"`
+	Ipv6FrameRouteList []externalRef0.Ipv6Prefix     `json:"ipv6FrameRouteList,omitempty"`
+	Ipv6Prefix         *externalRef0.Ipv6Prefix      `json:"ipv6Prefix,omitempty"`
+	MacAddr48          externalRef0.MacAddr48        `json:"macAddr48,omitempty"`
+	ParaCom            *ParameterCombination         `json:"paraCom,omitempty"`
+	PcfDiamHost        externalRef0.DiameterIdentity `json:"pcfDiamHost,omitempty"`
+	PcfDiamRealm       externalRef0.DiameterIdentity `json:"pcfDiamRealm,omitempty"`
 
 	// PcfFqdn Fully Qualified Domain Name
 	PcfFqdn *externalRef1.Fqdn         `json:"pcfFqdn,omitempty"`
 	PcfId   *externalRef0.NfInstanceId `json:"pcfId,omitempty"`
 
 	// PcfIpEndPoints IP end points of the PCF hosting the Npcf_PolicyAuthorization service.
-	PcfIpEndPoints *[]externalRef1.IpEndPoint `json:"pcfIpEndPoints,omitempty"`
-	PcfSetId       *externalRef0.NfSetId      `json:"pcfSetId,omitempty"`
+	PcfIpEndPoints []externalRef1.IpEndPoint `json:"pcfIpEndPoints,omitempty"`
+	PcfSetId       *externalRef0.NfSetId     `json:"pcfSetId,omitempty"`
 
 	// PcfSmFqdn Fully Qualified Domain Name
 	PcfSmFqdn *externalRef1.Fqdn `json:"pcfSmFqdn,omitempty"`
 
 	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-	PcfSmIpEndPoints     *[]externalRef1.IpEndPoint      `json:"pcfSmIpEndPoints,omitempty"`
+	PcfSmIpEndPoints     []externalRef1.IpEndPoint       `json:"pcfSmIpEndPoints,omitempty"`
 	RecoveryTime         *externalRef0.DateTime          `json:"recoveryTime,omitempty"`
 	Snssai               externalRef0.Snssai             `json:"snssai"`
-	Supi                 *externalRef0.Supi              `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
 	SuppFeat             *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
@@ -124,21 +124,21 @@ type PcfBindingPatch struct {
 	AddIpv6Prefixes *[]externalRef0.Ipv6Prefix `json:"addIpv6Prefixes"`
 
 	// AddMacAddrs The additional MAC Addresses of the served UE.
-	AddMacAddrs  *[]externalRef0.MacAddr48      `json:"addMacAddrs"`
-	IpDomain     *string                        `json:"ipDomain"`
-	Ipv4Addr     *externalRef0.Ipv4AddrRm       `json:"ipv4Addr"`
-	Ipv6Prefix   *externalRef0.Ipv6PrefixRm     `json:"ipv6Prefix"`
-	MacAddr48    *externalRef0.MacAddr48Rm      `json:"macAddr48"`
-	PcfDiamHost  *externalRef0.DiameterIdentity `json:"pcfDiamHost,omitempty"`
-	PcfDiamRealm *externalRef0.DiameterIdentity `json:"pcfDiamRealm,omitempty"`
+	AddMacAddrs  *[]externalRef0.MacAddr48     `json:"addMacAddrs"`
+	IpDomain     *string                       `json:"ipDomain"`
+	Ipv4Addr     *externalRef0.Ipv4AddrRm      `json:"ipv4Addr"`
+	Ipv6Prefix   *externalRef0.Ipv6PrefixRm    `json:"ipv6Prefix"`
+	MacAddr48    *externalRef0.MacAddr48Rm     `json:"macAddr48"`
+	PcfDiamHost  externalRef0.DiameterIdentity `json:"pcfDiamHost,omitempty"`
+	PcfDiamRealm externalRef0.DiameterIdentity `json:"pcfDiamRealm,omitempty"`
 
 	// PcfFqdn Fully Qualified Domain Name
 	PcfFqdn *externalRef1.Fqdn         `json:"pcfFqdn,omitempty"`
 	PcfId   *externalRef0.NfInstanceId `json:"pcfId,omitempty"`
 
 	// PcfIpEndPoints IP end points of the PCF hosting the Npcf_PolicyAuthorization service.
-	PcfIpEndPoints       *[]externalRef1.IpEndPoint `json:"pcfIpEndPoints,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	PcfIpEndPoints       []externalRef1.IpEndPoint `json:"pcfIpEndPoints,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // GetPCFBindingsParams defines parameters for GetPCFBindings.
@@ -244,7 +244,7 @@ func (a BindingResp) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PcfSmIpEndPoints != nil {
+	if len(a.PcfSmIpEndPoints) != 0 {
 		object["pcfSmIpEndPoints"], err = json.Marshal(a.PcfSmIpEndPoints)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfSmIpEndPoints': %w", err)
@@ -443,7 +443,7 @@ func (a ExtProblemDetails) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InvalidParams != nil {
+	if len(a.InvalidParams) != 0 {
 		object["invalidParams"], err = json.Marshal(a.InvalidParams)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)
@@ -464,14 +464,14 @@ func (a ExtProblemDetails) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PcfSmIpEndPoints != nil {
+	if len(a.PcfSmIpEndPoints) != 0 {
 		object["pcfSmIpEndPoints"], err = json.Marshal(a.PcfSmIpEndPoints)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfSmIpEndPoints': %w", err)
 		}
 	}
 
-	if a.Status != nil {
+	if a.Status != 0 {
 		object["status"], err = json.Marshal(a.Status)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'status': %w", err)
@@ -590,7 +590,7 @@ func (a ParameterCombination) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -842,14 +842,14 @@ func (a PcfBinding) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AddIpv6Prefixes != nil {
+	if len(a.AddIpv6Prefixes) != 0 {
 		object["addIpv6Prefixes"], err = json.Marshal(a.AddIpv6Prefixes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'addIpv6Prefixes': %w", err)
 		}
 	}
 
-	if a.AddMacAddrs != nil {
+	if len(a.AddMacAddrs) != 0 {
 		object["addMacAddrs"], err = json.Marshal(a.AddMacAddrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'addMacAddrs': %w", err)
@@ -868,7 +868,7 @@ func (a PcfBinding) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -882,21 +882,21 @@ func (a PcfBinding) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Ipv4Addr != nil {
+	if len(a.Ipv4Addr) != 0 {
 		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
 		}
 	}
 
-	if a.Ipv4FrameRouteList != nil {
+	if len(a.Ipv4FrameRouteList) != 0 {
 		object["ipv4FrameRouteList"], err = json.Marshal(a.Ipv4FrameRouteList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv4FrameRouteList': %w", err)
 		}
 	}
 
-	if a.Ipv6FrameRouteList != nil {
+	if len(a.Ipv6FrameRouteList) != 0 {
 		object["ipv6FrameRouteList"], err = json.Marshal(a.Ipv6FrameRouteList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ipv6FrameRouteList': %w", err)
@@ -910,7 +910,7 @@ func (a PcfBinding) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MacAddr48 != nil {
+	if len(a.MacAddr48) != 0 {
 		object["macAddr48"], err = json.Marshal(a.MacAddr48)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'macAddr48': %w", err)
@@ -924,14 +924,14 @@ func (a PcfBinding) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PcfDiamHost != nil {
+	if len(a.PcfDiamHost) != 0 {
 		object["pcfDiamHost"], err = json.Marshal(a.PcfDiamHost)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfDiamHost': %w", err)
 		}
 	}
 
-	if a.PcfDiamRealm != nil {
+	if len(a.PcfDiamRealm) != 0 {
 		object["pcfDiamRealm"], err = json.Marshal(a.PcfDiamRealm)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfDiamRealm': %w", err)
@@ -952,7 +952,7 @@ func (a PcfBinding) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PcfIpEndPoints != nil {
+	if len(a.PcfIpEndPoints) != 0 {
 		object["pcfIpEndPoints"], err = json.Marshal(a.PcfIpEndPoints)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfIpEndPoints': %w", err)
@@ -973,7 +973,7 @@ func (a PcfBinding) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PcfSmIpEndPoints != nil {
+	if len(a.PcfSmIpEndPoints) != 0 {
 		object["pcfSmIpEndPoints"], err = json.Marshal(a.PcfSmIpEndPoints)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfSmIpEndPoints': %w", err)
@@ -992,7 +992,7 @@ func (a PcfBinding) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1177,14 +1177,14 @@ func (a PcfBindingPatch) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'macAddr48': %w", err)
 	}
 
-	if a.PcfDiamHost != nil {
+	if len(a.PcfDiamHost) != 0 {
 		object["pcfDiamHost"], err = json.Marshal(a.PcfDiamHost)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfDiamHost': %w", err)
 		}
 	}
 
-	if a.PcfDiamRealm != nil {
+	if len(a.PcfDiamRealm) != 0 {
 		object["pcfDiamRealm"], err = json.Marshal(a.PcfDiamRealm)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfDiamRealm': %w", err)
@@ -1205,7 +1205,7 @@ func (a PcfBindingPatch) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PcfIpEndPoints != nil {
+	if len(a.PcfIpEndPoints) != 0 {
 		object["pcfIpEndPoints"], err = json.Marshal(a.PcfIpEndPoints)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pcfIpEndPoints': %w", err)

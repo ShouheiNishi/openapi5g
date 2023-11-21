@@ -44,7 +44,7 @@ const (
 
 func AccessTokenDenied(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusForbidden),
+		Status: http.StatusForbidden,
 		Cause:  lo.ToPtr(CauseAccessTokenDenied),
 		Title:  lo.ToPtr("Access token denied"),
 		Detail: &detail,
@@ -54,7 +54,7 @@ func AccessTokenDenied(detail string) commondata.ProblemDetails {
 
 func CCAVerificationFailure(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusForbidden),
+		Status: http.StatusForbidden,
 		Cause:  lo.ToPtr(CauseCCAVerificationFailure),
 		Title:  lo.ToPtr("CCA verification failure"),
 		Detail: &detail,
@@ -64,7 +64,7 @@ func CCAVerificationFailure(detail string) commondata.ProblemDetails {
 
 func IncorrectLength(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusLengthRequired),
+		Status: http.StatusLengthRequired,
 		Cause:  lo.ToPtr(CauseIncorrectLength),
 		Title:  lo.ToPtr("Incorrect length"),
 		Detail: &detail,
@@ -74,7 +74,7 @@ func IncorrectLength(detail string) commondata.ProblemDetails {
 
 func InsufficientResources(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusInternalServerError),
+		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseInsufficientResources),
 		Title:  lo.ToPtr("Insufficient resources"),
 		Detail: &detail,
@@ -84,7 +84,7 @@ func InsufficientResources(detail string) commondata.ProblemDetails {
 
 func InvalidAPI(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
+		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseInvalidAPI),
 		Title:  lo.ToPtr("Invalid API"),
 		Detail: &detail,
@@ -94,7 +94,7 @@ func InvalidAPI(detail string) commondata.ProblemDetails {
 
 func InvalidDiscoveryParam(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
+		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseInvalidDiscoveryParam),
 		Title:  lo.ToPtr("Invalid discovery param"),
 		Detail: &detail,
@@ -104,7 +104,7 @@ func InvalidDiscoveryParam(detail string) commondata.ProblemDetails {
 
 func InvalidMsgFormat(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
+		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseInvalidMsgFormat),
 		Title:  lo.ToPtr("Invalid msg format"),
 		Detail: &detail,
@@ -114,72 +114,62 @@ func InvalidMsgFormat(detail string) commondata.ProblemDetails {
 
 func InvalidQueryParam(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseInvalidQueryParam),
-		Title:  lo.ToPtr("Invalid query param"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        http.StatusBadRequest,
+		Cause:         lo.ToPtr(CauseInvalidQueryParam),
+		Title:         lo.ToPtr("Invalid query param"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MandatoryIEIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseMandatoryIEIncorrect),
-		Title:  lo.ToPtr("Mandatory IE incorrect"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        http.StatusBadRequest,
+		Cause:         lo.ToPtr(CauseMandatoryIEIncorrect),
+		Title:         lo.ToPtr("Mandatory IE incorrect"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MandatoryIEMissing(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseMandatoryIEMissing),
-		Title:  lo.ToPtr("Mandatory IE missing"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        http.StatusBadRequest,
+		Cause:         lo.ToPtr(CauseMandatoryIEMissing),
+		Title:         lo.ToPtr("Mandatory IE missing"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MandatoryQueryParamIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseMandatoryQueryParamIncorrect),
-		Title:  lo.ToPtr("Mandatory query param incorrect"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        http.StatusBadRequest,
+		Cause:         lo.ToPtr(CauseMandatoryQueryParamIncorrect),
+		Title:         lo.ToPtr("Mandatory query param incorrect"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MandatoryQueryParamMissing(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseMandatoryQueryParamMissing),
-		Title:  lo.ToPtr("Mandatory query param missing"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        http.StatusBadRequest,
+		Cause:         lo.ToPtr(CauseMandatoryQueryParamMissing),
+		Title:         lo.ToPtr("Mandatory query param missing"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func MissingAccessTokenInfo(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
+		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseMissingAccessTokenInfo),
 		Title:  lo.ToPtr("Missing access token info"),
 		Detail: &detail,
@@ -189,7 +179,7 @@ func MissingAccessTokenInfo(detail string) commondata.ProblemDetails {
 
 func ModificationNotAllowed(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusForbidden),
+		Status: http.StatusForbidden,
 		Cause:  lo.ToPtr(CauseModificationNotAllowed),
 		Title:  lo.ToPtr("Modification not allowed"),
 		Detail: &detail,
@@ -199,7 +189,7 @@ func ModificationNotAllowed(detail string) commondata.ProblemDetails {
 
 func NFCongestion(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusServiceUnavailable),
+		Status: http.StatusServiceUnavailable,
 		Cause:  lo.ToPtr(CauseNFCongestion),
 		Title:  lo.ToPtr("NF congestion"),
 		Detail: &detail,
@@ -209,7 +199,7 @@ func NFCongestion(detail string) commondata.ProblemDetails {
 
 func NFCongestionRisk(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusTooManyRequests),
+		Status: http.StatusTooManyRequests,
 		Cause:  lo.ToPtr(CauseNFCongestionRisk),
 		Title:  lo.ToPtr("NF congestion risk"),
 		Detail: &detail,
@@ -219,7 +209,7 @@ func NFCongestionRisk(detail string) commondata.ProblemDetails {
 
 func NFDiscoveryFailure(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
+		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseNFDiscoveryFailure),
 		Title:  lo.ToPtr("NF discovery failure"),
 		Detail: &detail,
@@ -229,7 +219,7 @@ func NFDiscoveryFailure(detail string) commondata.ProblemDetails {
 
 func NFFailover(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusInternalServerError),
+		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseNFFailover),
 		Title:  lo.ToPtr("NF failover"),
 		Detail: &detail,
@@ -239,7 +229,7 @@ func NFFailover(detail string) commondata.ProblemDetails {
 
 func NFServiceFailover(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusInternalServerError),
+		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseNFServiceFailover),
 		Title:  lo.ToPtr("NF service failover"),
 		Detail: &detail,
@@ -249,33 +239,29 @@ func NFServiceFailover(detail string) commondata.ProblemDetails {
 
 func OptionalIEIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseOptionalIEIncorrect),
-		Title:  lo.ToPtr("Optional IE incorrect"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        http.StatusBadRequest,
+		Cause:         lo.ToPtr(CauseOptionalIEIncorrect),
+		Title:         lo.ToPtr("Optional IE incorrect"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func OptionalQueryParamIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
-		Cause:  lo.ToPtr(CauseOptionalQueryParamIncorrect),
-		Title:  lo.ToPtr("Optional query param incorrect"),
-		Detail: &detail,
-	}
-	if len(invalidParams) == 0 {
-		pd.InvalidParams = &invalidParams
+		Status:        http.StatusBadRequest,
+		Cause:         lo.ToPtr(CauseOptionalQueryParamIncorrect),
+		Title:         lo.ToPtr("Optional query param incorrect"),
+		InvalidParams: invalidParams,
+		Detail:        &detail,
 	}
 	return pd
 }
 
 func ResourceContextNotFound(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
+		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseResourceContextNotFound),
 		Title:  lo.ToPtr("Resource context not found"),
 		Detail: &detail,
@@ -285,7 +271,7 @@ func ResourceContextNotFound(detail string) commondata.ProblemDetails {
 
 func ResourceURIStructureNotFound(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusNotFound),
+		Status: http.StatusNotFound,
 		Cause:  lo.ToPtr(CauseResourceURIStructureNotFound),
 		Title:  lo.ToPtr("Resource URI structure not found"),
 		Detail: &detail,
@@ -295,7 +281,7 @@ func ResourceURIStructureNotFound(detail string) commondata.ProblemDetails {
 
 func SubscriptionNotFound(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusNotFound),
+		Status: http.StatusNotFound,
 		Cause:  lo.ToPtr(CauseSubscriptionNotFound),
 		Title:  lo.ToPtr("Subscription not found"),
 		Detail: &detail,
@@ -305,7 +291,7 @@ func SubscriptionNotFound(detail string) commondata.ProblemDetails {
 
 func SystemFailure(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusInternalServerError),
+		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseSystemFailure),
 		Title:  lo.ToPtr("System failure"),
 		Detail: &detail,
@@ -315,7 +301,7 @@ func SystemFailure(detail string) commondata.ProblemDetails {
 
 func TargetNFNotReachable(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusGatewayTimeout),
+		Status: http.StatusGatewayTimeout,
 		Cause:  lo.ToPtr(CauseTargetNFNotReachable),
 		Title:  lo.ToPtr("Target NF not reachable"),
 		Detail: &detail,
@@ -325,7 +311,7 @@ func TargetNFNotReachable(detail string) commondata.ProblemDetails {
 
 func TimedOutRequest(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusGatewayTimeout),
+		Status: http.StatusGatewayTimeout,
 		Cause:  lo.ToPtr(CauseTimedOutRequest),
 		Title:  lo.ToPtr("Timed out request"),
 		Detail: &detail,
@@ -335,7 +321,7 @@ func TimedOutRequest(detail string) commondata.ProblemDetails {
 
 func TokenCCAMismatch(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusForbidden),
+		Status: http.StatusForbidden,
 		Cause:  lo.ToPtr(CauseTokenCCAMismatch),
 		Title:  lo.ToPtr("Token CCA mismatch"),
 		Detail: &detail,
@@ -345,7 +331,7 @@ func TokenCCAMismatch(detail string) commondata.ProblemDetails {
 
 func UnspecifiedMsgFailure(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusBadRequest),
+		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseUnspecifiedMsgFailure),
 		Title:  lo.ToPtr("Unspecified msg failure"),
 		Detail: &detail,
@@ -355,7 +341,7 @@ func UnspecifiedMsgFailure(detail string) commondata.ProblemDetails {
 
 func UnspecifiedNFFailure(detail string) commondata.ProblemDetails {
 	pd := commondata.ProblemDetails{
-		Status: lo.ToPtr(http.StatusInternalServerError),
+		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseUnspecifiedNFFailure),
 		Title:  lo.ToPtr("Unspecified NF failure"),
 		Detail: &detail,

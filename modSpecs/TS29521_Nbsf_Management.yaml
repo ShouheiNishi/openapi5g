@@ -18,6 +18,7 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         ExtProblemDetails:
             allOf:
@@ -42,12 +43,14 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 addMacAddrs:
                     description: The additional MAC Addresses of the served UE.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 bindLevel:
                     $ref: '#/components/schemas/BindingLevel'
                 dnn:
@@ -63,11 +66,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4AddrMask
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6FrameRouteList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6Prefix:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                 macAddr48:
@@ -88,6 +93,7 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pcfSetId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
                 pcfSmFqdn:
@@ -98,6 +104,7 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 recoveryTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
                 snssai:
@@ -150,6 +157,7 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
     securitySchemes:
         oAuth2ClientCredentials:

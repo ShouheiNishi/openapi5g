@@ -27,8 +27,8 @@ const (
 type N5GVnGroupConfiguration struct {
 	N5gVnGroupData          *N5GVnGroupData                      `json:"5gVnGroupData,omitempty"`
 	AfInstanceId            *string                              `json:"afInstanceId,omitempty"`
-	InternalGroupIdentifier *externalRef0.GroupId                `json:"internalGroupIdentifier,omitempty"`
-	Members                 *[]externalRef0.Gpsi                 `json:"members,omitempty"`
+	InternalGroupIdentifier externalRef0.GroupId                 `json:"internalGroupIdentifier,omitempty"`
+	Members                 []externalRef0.Gpsi                  `json:"members,omitempty"`
 	MtcProviderInformation  *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
 	ReferenceId             *ReferenceId                         `json:"referenceId,omitempty"`
 	AdditionalProperties    map[string]interface{}               `json:"-"`
@@ -36,15 +36,15 @@ type N5GVnGroupConfiguration struct {
 
 // N5GVnGroupData defines model for 5GVnGroupData.
 type N5GVnGroupData struct {
-	AppDescriptors *[]interface{} `json:"appDescriptors,omitempty"`
+	AppDescriptors []interface{} `json:"appDescriptors,omitempty"`
 
 	// DnAaaAddress Original reference TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress
-	DnAaaAddress         *interface{}                   `json:"dnAaaAddress,omitempty"`
-	Dnn                  externalRef0.Dnn               `json:"dnn"`
-	PduSessionTypes      *[]externalRef0.PduSessionType `json:"pduSessionTypes,omitempty"`
-	SNssai               externalRef0.Snssai            `json:"sNssai"`
-	SecondaryAuth        *bool                          `json:"secondaryAuth,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
+	DnAaaAddress         interface{}                   `json:"dnAaaAddress,omitempty"`
+	Dnn                  externalRef0.Dnn              `json:"dnn"`
+	PduSessionTypes      []externalRef0.PduSessionType `json:"pduSessionTypes,omitempty"`
+	SNssai               externalRef0.Snssai           `json:"sNssai"`
+	SecondaryAuth        *bool                         `json:"secondaryAuth,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
 // CommunicationCharacteristics defines model for CommunicationCharacteristics.
@@ -62,7 +62,7 @@ type CommunicationCharacteristics struct {
 type EcRestriction struct {
 	AfInstanceId           string                               `json:"afInstanceId"`
 	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	PlmnEcInfos            *[]PlmnEcInfo                        `json:"plmnEcInfos,omitempty"`
+	PlmnEcInfos            []PlmnEcInfo                         `json:"plmnEcInfos,omitempty"`
 	ReferenceId            ReferenceId                          `json:"referenceId"`
 	AdditionalProperties   map[string]interface{}               `json:"-"`
 }
@@ -91,7 +91,7 @@ type LcsPrivacy struct {
 	AfInstanceId *string `json:"afInstanceId,omitempty"`
 
 	// Lpi Original reference TS29503_Nudm_SDM.yaml#/components/schemas/Lpi
-	Lpi                    *interface{}                         `json:"lpi,omitempty"`
+	Lpi                    interface{}                          `json:"lpi,omitempty"`
 	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
 	ReferenceId            *ReferenceId                         `json:"referenceId,omitempty"`
 	AdditionalProperties   map[string]interface{}               `json:"-"`
@@ -113,16 +113,16 @@ type LocationArea struct {
 // NetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
 type NetworkAreaInfo struct {
 	// Ecgis Contains a list of E-UTRA cell identities.
-	Ecgis *[]externalRef0.Ecgi `json:"ecgis,omitempty"`
+	Ecgis []externalRef0.Ecgi `json:"ecgis,omitempty"`
 
 	// GRanNodeIds Contains a list of NG RAN nodes.
-	GRanNodeIds *[]externalRef0.GlobalRanNodeId `json:"gRanNodeIds,omitempty"`
+	GRanNodeIds []externalRef0.GlobalRanNodeId `json:"gRanNodeIds,omitempty"`
 
 	// Ncgis Contains a list of NR cell identities.
-	Ncgis *[]externalRef0.Ncgi `json:"ncgis,omitempty"`
+	Ncgis []externalRef0.Ncgi `json:"ncgis,omitempty"`
 
 	// Tais Contains a list of tracking area identities.
-	Tais                 *[]externalRef0.Tai    `json:"tais,omitempty"`
+	Tais                 []externalRef0.Tai     `json:"tais,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -131,7 +131,7 @@ type PlmnEcInfo struct {
 	EcRestrictionDataNb *bool `json:"ecRestrictionDataNb,omitempty"`
 
 	// EcRestrictionDataWb Original reference TS29503_Nudm_SDM.yaml#/components/schemas/EcRestrictionDataWb
-	EcRestrictionDataWb  *interface{}           `json:"ecRestrictionDataWb,omitempty"`
+	EcRestrictionDataWb  interface{}            `json:"ecRestrictionDataWb,omitempty"`
 	PlmnId               externalRef0.PlmnId    `json:"plmnId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -155,7 +155,7 @@ type PpData struct {
 	LcsPrivacy                    *LcsPrivacy                   `json:"lcsPrivacy,omitempty"`
 
 	// SorInfo Original reference TS29503_Nudm_SDM.yaml#/components/schemas/SorInfo
-	SorInfo              *interface{}                    `json:"sorInfo,omitempty"`
+	SorInfo              interface{}                     `json:"sorInfo,omitempty"`
 	StnSr                *externalRef0.StnSrRm           `json:"stnSr"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
@@ -345,14 +345,14 @@ func (a N5GVnGroupConfiguration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InternalGroupIdentifier != nil {
+	if len(a.InternalGroupIdentifier) != 0 {
 		object["internalGroupIdentifier"], err = json.Marshal(a.InternalGroupIdentifier)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'internalGroupIdentifier': %w", err)
 		}
 	}
 
-	if a.Members != nil {
+	if len(a.Members) != 0 {
 		object["members"], err = json.Marshal(a.Members)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'members': %w", err)
@@ -474,7 +474,7 @@ func (a N5GVnGroupData) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AppDescriptors != nil {
+	if len(a.AppDescriptors) != 0 {
 		object["appDescriptors"], err = json.Marshal(a.AppDescriptors)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'appDescriptors': %w", err)
@@ -493,7 +493,7 @@ func (a N5GVnGroupData) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
 	}
 
-	if a.PduSessionTypes != nil {
+	if len(a.PduSessionTypes) != 0 {
 		object["pduSessionTypes"], err = json.Marshal(a.PduSessionTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pduSessionTypes': %w", err)
@@ -740,7 +740,7 @@ func (a EcRestriction) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.PlmnEcInfos != nil {
+	if len(a.PlmnEcInfos) != 0 {
 		object["plmnEcInfos"], err = json.Marshal(a.PlmnEcInfos)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'plmnEcInfos': %w", err)
@@ -1271,28 +1271,28 @@ func (a NetworkAreaInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Ecgis != nil {
+	if len(a.Ecgis) != 0 {
 		object["ecgis"], err = json.Marshal(a.Ecgis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ecgis': %w", err)
 		}
 	}
 
-	if a.GRanNodeIds != nil {
+	if len(a.GRanNodeIds) != 0 {
 		object["gRanNodeIds"], err = json.Marshal(a.GRanNodeIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gRanNodeIds': %w", err)
 		}
 	}
 
-	if a.Ncgis != nil {
+	if len(a.Ncgis) != 0 {
 		object["ncgis"], err = json.Marshal(a.Ncgis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ncgis': %w", err)
 		}
 	}
 
-	if a.Tais != nil {
+	if len(a.Tais) != 0 {
 		object["tais"], err = json.Marshal(a.Tais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tais': %w", err)

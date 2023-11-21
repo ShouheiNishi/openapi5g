@@ -65,10 +65,10 @@ type Bytes = string
 // ConfigResult defines model for ConfigResult.
 type ConfigResult struct {
 	// ExternalIds Each element indicates an external identifier of the UE.
-	ExternalIds *[]ExternalId `json:"externalIds,omitempty"`
+	ExternalIds []ExternalId `json:"externalIds,omitempty"`
 
 	// Msisdns Each element identifies the MS internal PSTN/ISDN number allocated for the UE.
-	Msisdns *[]Msisdn `json:"msisdns,omitempty"`
+	Msisdns []Msisdn `json:"msisdns,omitempty"`
 
 	// ResultReason Possible values are - ROAMING_NOT_ALLOWED: Identifies the configuration parameters are not allowed by roaming agreement. - OTHER_REASON: Identifies the configuration parameters are not configured due to other reason.
 	ResultReason         ResultReason           `json:"resultReason"`
@@ -110,7 +110,7 @@ type EventReport struct {
 	Event Event `json:"event"`
 
 	// FlowIds Identifies the IP flows that were sent during event subscription
-	FlowIds              *[]int                 `json:"flowIds,omitempty"`
+	FlowIds              []int                  `json:"flowIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -123,7 +123,7 @@ type ExternalId = string
 // FlowInfo defines model for FlowInfo.
 type FlowInfo struct {
 	// FlowDescriptions Indicates the packet filters of the IP flow. Refer to subclause 5.3.8 of 3GPP TS 29.214 for encoding. It shall contain UL and/or DL IP flow description.
-	FlowDescriptions *[]string `json:"flowDescriptions,omitempty"`
+	FlowDescriptions []string `json:"flowDescriptions,omitempty"`
 
 	// FlowId Indicates the IP flow.
 	FlowId               int                    `json:"flowId"`
@@ -158,22 +158,22 @@ type Link = string
 // LocationArea defines model for LocationArea.
 type LocationArea struct {
 	// CellIds Indicates a list of Cell Global Identities of the user which identifies the cell the UE is registered.
-	CellIds *[]string `json:"cellIds,omitempty"`
+	CellIds []string `json:"cellIds,omitempty"`
 
 	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
-	CivicAddresses *[]interface{} `json:"civicAddresses,omitempty"`
+	CivicAddresses []interface{} `json:"civicAddresses,omitempty"`
 
 	// EnodeBIds Indicates a list of eNodeB identities in which the UE is currently located.
-	EnodeBIds *[]string `json:"enodeBIds,omitempty"`
+	EnodeBIds []string `json:"enodeBIds,omitempty"`
 
 	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
-	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
+	GeographicAreas []interface{} `json:"geographicAreas,omitempty"`
 
 	// RoutingAreaIds Identifies a list of Routing Area Identities of the user where the UE is located.
-	RoutingAreaIds *[]string `json:"routingAreaIds,omitempty"`
+	RoutingAreaIds []string `json:"routingAreaIds,omitempty"`
 
 	// TrackingAreaIds Identifies a list of Tracking Area Identities of the user where the UE is located.
-	TrackingAreaIds      *[]string              `json:"trackingAreaIds,omitempty"`
+	TrackingAreaIds      []string               `json:"trackingAreaIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -186,7 +186,7 @@ type LocationArea5G struct {
 	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original reference TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
-	NwAreaInfo           *interface{}           `json:"nwAreaInfo,omitempty"`
+	NwAreaInfo           interface{}            `json:"nwAreaInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -237,7 +237,7 @@ type ProblemDetails struct {
 	Instance *Uri `json:"instance,omitempty"`
 
 	// InvalidParams Description of invalid parameters, for a request rejected due to invalid parameters.
-	InvalidParams *[]InvalidParam `json:"invalidParams,omitempty"`
+	InvalidParams []InvalidParam `json:"invalidParams,omitempty"`
 
 	// Status The HTTP status code for this occurrence of the problem.
 	Status *int `json:"status,omitempty"`
@@ -629,14 +629,14 @@ func (a ConfigResult) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ExternalIds != nil {
+	if len(a.ExternalIds) != 0 {
 		object["externalIds"], err = json.Marshal(a.ExternalIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'externalIds': %w", err)
 		}
 	}
 
-	if a.Msisdns != nil {
+	if len(a.Msisdns) != 0 {
 		object["msisdns"], err = json.Marshal(a.Msisdns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'msisdns': %w", err)
@@ -737,7 +737,7 @@ func (a EventReport) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'event': %w", err)
 	}
 
-	if a.FlowIds != nil {
+	if len(a.FlowIds) != 0 {
 		object["flowIds"], err = json.Marshal(a.FlowIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flowIds': %w", err)
@@ -813,7 +813,7 @@ func (a FlowInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.FlowDescriptions != nil {
+	if len(a.FlowDescriptions) != 0 {
 		object["flowDescriptions"], err = json.Marshal(a.FlowDescriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flowDescriptions': %w", err)
@@ -1007,42 +1007,42 @@ func (a LocationArea) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.CellIds != nil {
+	if len(a.CellIds) != 0 {
 		object["cellIds"], err = json.Marshal(a.CellIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cellIds': %w", err)
 		}
 	}
 
-	if a.CivicAddresses != nil {
+	if len(a.CivicAddresses) != 0 {
 		object["civicAddresses"], err = json.Marshal(a.CivicAddresses)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'civicAddresses': %w", err)
 		}
 	}
 
-	if a.EnodeBIds != nil {
+	if len(a.EnodeBIds) != 0 {
 		object["enodeBIds"], err = json.Marshal(a.EnodeBIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'enodeBIds': %w", err)
 		}
 	}
 
-	if a.GeographicAreas != nil {
+	if len(a.GeographicAreas) != 0 {
 		object["geographicAreas"], err = json.Marshal(a.GeographicAreas)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'geographicAreas': %w", err)
 		}
 	}
 
-	if a.RoutingAreaIds != nil {
+	if len(a.RoutingAreaIds) != 0 {
 		object["routingAreaIds"], err = json.Marshal(a.RoutingAreaIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'routingAreaIds': %w", err)
 		}
 	}
 
-	if a.TrackingAreaIds != nil {
+	if len(a.TrackingAreaIds) != 0 {
 		object["trackingAreaIds"], err = json.Marshal(a.TrackingAreaIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trackingAreaIds': %w", err)
@@ -1435,7 +1435,7 @@ func (a ProblemDetails) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InvalidParams != nil {
+	if len(a.InvalidParams) != 0 {
 		object["invalidParams"], err = json.Marshal(a.InvalidParams)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)

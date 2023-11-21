@@ -7,18 +7,22 @@ components:
                 afEvents:
                     items:
                         description: Original reference TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 afIds:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 appIds:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - afEvents
             type: object
@@ -44,16 +48,19 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 backupInfoAmfRemoval:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 guamiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 n2InterfaceAmfInfo:
                     $ref: '#/components/schemas/N2InterfaceAmfInfo'
                 taiList:
@@ -61,11 +68,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiRangeList:
                     items:
                         $ref: '#/components/schemas/TaiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - amfSetId
                 - amfRegionId
@@ -87,13 +96,16 @@ components:
                     items:
                         pattern: ^[0-9]{1,4}$
                         type: string
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supiRanges:
                     items:
                         $ref: '#/components/schemas/SupiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         BsfInfo:
             additionalProperties: true
@@ -104,21 +116,25 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipDomainList:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv4AddressRanges:
                     items:
                         $ref: '#/components/schemas/Ipv4AddressRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6PrefixRanges:
                     items:
                         $ref: '#/components/schemas/Ipv6PrefixRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         ChfInfo:
             additionalProperties: true
@@ -133,6 +149,7 @@ components:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 groupId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
                 plmnRangeList:
@@ -140,6 +157,7 @@ components:
                         $ref: '#/components/schemas/PlmnRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 primaryChfInstance:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 secondaryChfInstance:
@@ -149,6 +167,7 @@ components:
                         $ref: '#/components/schemas/SupiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         ConditionEventType:
             description: Indicates whether a notification is due to the NF Instance to start or stop being part of a condition for a subscription to a set of NFs
@@ -174,8 +193,10 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 n1MessageClass:
                     description: Original reference TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
+                    x-go-type-skip-optional-pointer: true
                 n2InformationClass:
                     description: Original reference TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
+                    x-go-type-skip-optional-pointer: true
                 notificationType:
                     $ref: '#/components/schemas/NotificationType'
                 versions:
@@ -183,6 +204,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - notificationType
                 - callbackUri
@@ -205,6 +227,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dnaiNwInstanceList:
                     additionalProperties:
                         type: string
@@ -218,16 +241,19 @@ components:
                         $ref: '#/components/schemas/Ipv4AddressRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6PrefixRanges:
                     items:
                         $ref: '#/components/schemas/Ipv6PrefixRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pduSessionTypes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - dnn
             type: object
@@ -242,13 +268,17 @@ components:
                     items:
                         pattern: ^[0-9]{5,15}$
                         type: string
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servingClientTypes:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         GuamiListCond:
             additionalProperties: true
@@ -272,21 +302,25 @@ components:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 imsPublicIdentityRanges:
                     items:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 imsiRanges:
                     items:
                         $ref: '#/components/schemas/ImsiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 msisdnRanges:
                     items:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         IdentityRange:
             additionalProperties: true
@@ -295,11 +329,13 @@ components:
                 end:
                     pattern: ^[0-9]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 pattern:
                     type: string
                 start:
                     pattern: ^[0-9]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             type: object
         ImsiRange:
             additionalProperties: true
@@ -308,11 +344,13 @@ components:
                 end:
                     pattern: ^[0-9]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 pattern:
                     type: string
                 start:
                     pattern: ^[0-9]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             type: object
         InterfaceUpfInfoItem:
             additionalProperties: true
@@ -327,11 +365,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6EndpointAddresses:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 networkInstance:
                     type: string
             required:
@@ -394,26 +434,32 @@ components:
             properties:
                 lmfId:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                    x-go-type-skip-optional-pointer: true
                 servingAccessTypes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servingAnNodeTypes:
                     items:
                         $ref: '#/components/schemas/AnNodeType'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servingClientTypes:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servingRatTypes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RatType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         N2InterfaceAmfInfo:
             additionalProperties: true
@@ -426,11 +472,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6EndpointAddress:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         NFProfile:
             additionalProperties: true
@@ -441,26 +489,31 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedNfTypes:
                     items:
                         $ref: '#/components/schemas/NFType'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedNssais:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedPlmns:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedSnpns:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 amfInfo:
                     $ref: '#/components/schemas/AmfInfo'
                 amfInfoList:
@@ -517,11 +570,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6Addresses:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 lcHSupportInd:
                     default: false
                     type: boolean
@@ -563,11 +618,13 @@ components:
                         $ref: '#/components/schemas/NFService'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nfSetIdList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nfSetRecoveryTimeList:
                     additionalProperties:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
@@ -584,6 +641,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nwdafInfo:
                     $ref: '#/components/schemas/NwdafInfo'
                 olcHSupportInd:
@@ -606,11 +664,13 @@ components:
                         $ref: '#/components/schemas/PlmnSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 plmnList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 priority:
                     maximum: 65535
                     minimum: 0
@@ -622,11 +682,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scpDomains:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scpInfo:
                     $ref: '#/components/schemas/ScpInfo'
                 serviceSetRecoveryTimeList:
@@ -639,6 +701,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 smfInfo:
                     $ref: '#/components/schemas/SmfInfo'
                 smfInfoList:
@@ -651,6 +714,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 udmInfo:
                     $ref: '#/components/schemas/UdmInfo'
                 udmInfoList:
@@ -693,22 +757,26 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedNfTypes:
                     items:
                         $ref: '#/components/schemas/NFType'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedNssais:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedOperationsPerNfInstance:
                     additionalProperties:
                         items:
                             type: string
                         minItems: 1
                         type: array
+                        x-go-type-skip-optional-pointer: true
                     minProperties: 1
                     type: object
                 allowedOperationsPerNfType:
@@ -717,6 +785,7 @@ components:
                             type: string
                         minItems: 1
                         type: array
+                        x-go-type-skip-optional-pointer: true
                     minProperties: 1
                     type: object
                 allowedPlmns:
@@ -724,11 +793,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedSnpns:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 apiPrefix:
                     type: string
                 capacity:
@@ -740,6 +811,7 @@ components:
                         $ref: '#/components/schemas/DefaultNotificationSubscription'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 fqdn:
                     $ref: '#/components/schemas/Fqdn'
                 interPlmnFqdn:
@@ -749,6 +821,7 @@ components:
                         $ref: '#/components/schemas/IpEndPoint'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 load:
                     maximum: 100
                     minimum: 0
@@ -760,6 +833,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfServiceSetId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nfServiceStatus:
                     $ref: '#/components/schemas/NFServiceStatus'
                 oauth2Required:
@@ -769,6 +843,7 @@ components:
                         $ref: '#/components/schemas/PlmnSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 priority:
                     maximum: 65535
                     minimum: 0
@@ -780,6 +855,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scheme:
                     $ref: TS29571_CommonData.yaml#/components/schemas/UriScheme
                 serviceInstanceId:
@@ -794,6 +870,7 @@ components:
                             $ref: '#/components/schemas/VendorSpecificFeature'
                         minItems: 1
                         type: array
+                        x-go-type-skip-optional-pointer: true
                     minProperties: 1
                     type: object
                 vendorId:
@@ -803,6 +880,7 @@ components:
                         $ref: '#/components/schemas/NFServiceVersion'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - serviceInstanceId
                 - serviceName
@@ -886,22 +964,27 @@ components:
                 afEvents:
                     items:
                         description: Original reference TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 conditionType:
                     enum:
                         - NEF_COND
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 externalGroupIdentifiersRanges:
                     items:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsiRanges:
                     items:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pfdData:
                     $ref: '#/components/schemas/PfdData'
                 servedFqdnList:
@@ -909,11 +992,13 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 snssaiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - conditionType
             type: object
@@ -931,11 +1016,13 @@ components:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsiRanges:
                     items:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nefId:
                     $ref: '#/components/schemas/NefId'
                 pfdData:
@@ -945,6 +1032,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         NetworkSliceCond:
             additionalProperties: true
@@ -975,6 +1063,7 @@ components:
                         - PCF
                         - CHF
                     type: string
+                    x-go-type-skip-optional-pointer: true
             required:
                 - nfType
                 - nfGroupId
@@ -1004,6 +1093,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - nfInstanceIdList
             type: object
@@ -1050,11 +1140,13 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 unmonitoredAttributes:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         NotificationData:
             additionalProperties: true
@@ -1081,6 +1173,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ChangeItem
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - event
                 - nfInstanceUri
@@ -1295,25 +1388,30 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 conditionType:
                     enum:
                         - NWDAF_COND
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 snssaiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiRangeList:
                     items:
                         $ref: '#/components/schemas/TaiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - conditionType
             type: object
@@ -1326,25 +1424,31 @@ components:
                         description: |-
                             Possible values are - LOAD_LEVEL_INFORMATION: Represent the analytics of load level information of corresponding network slice. - NETWORK_PERFORMANCE: Represent the analytics of network performance information. - NF_LOAD: Indicates that the event subscribed is NF Load. - SERVICE_EXPERIENCE: Represent the analytics of service experience information of the specific applications. - UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION: Represent the analytics of UE communication. - QOS_SUSTAINABILITY: Represent the analytics of QoS sustainability information in the certain area.  - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour information. - USER_DATA_CONGESTION: Represent the analytics of the user data congestion in the certain area. - NSI_LOAD_LEVEL: Represent the analytics of Network Slice and the optionally associated Network Slice Instance.
                              (Original reference TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId)
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nwdafEvents:
                     items:
                         description: |-
                             Possible values are - SLICE_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice - NETWORK_PERFORMANCE: Indicates that the event subscribed is network performance information. - NF_LOAD: Indicates that the event subscribed is load level and status of one or several Network Functions. - SERVICE_EXPERIENCE: Indicates that the event subscribed is service experience. - UE_MOBILITY: Indicates that the event subscribed is UE mobility information. - UE_COMMUNICATION: Indicates that the event subscribed is UE communication information. - QOS_SUSTAINABILITY: Indicates that the event subscribed is QoS sustainability. - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour. - USER_DATA_CONGESTION: Indicates that the event subscribed is user data congestion information. - NSI_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice and the optionally associated Network Slice Instance
                              (Original reference TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent)
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiRangeList:
                     items:
                         $ref: '#/components/schemas/TaiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         OptionsResponse:
             additionalProperties: true
@@ -1362,11 +1466,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsiRanges:
                     items:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 groupId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
                 rxDiamHost:
@@ -1378,6 +1484,7 @@ components:
                         $ref: '#/components/schemas/SupiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 v2xSupportInd:
                     default: false
                     type: boolean
@@ -1391,11 +1498,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dnnList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gmFqdn:
                     $ref: '#/components/schemas/Fqdn'
                 gmIpv4Addresses:
@@ -1403,21 +1512,25 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gmIpv6Addresses:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servedIpv4AddressRanges:
                     items:
                         $ref: '#/components/schemas/Ipv4AddressRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servedIpv6PrefixRanges:
                     items:
                         $ref: '#/components/schemas/Ipv6PrefixRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         PfdData:
             additionalProperties: true
@@ -1428,11 +1541,13 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 appIds:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         PlmnRange:
             additionalProperties: true
@@ -1441,11 +1556,13 @@ components:
                 end:
                     pattern: ^[0-9]{3}[0-9]{2,3}$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 pattern:
                     type: string
                 start:
                     pattern: ^[0-9]{3}[0-9]{2,3}$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             type: object
         PlmnSnssai:
             additionalProperties: true
@@ -1460,6 +1577,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - plmnId
                 - sNssaiList
@@ -1473,6 +1591,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - scpDomains
             type: object
@@ -1487,6 +1606,7 @@ components:
                         $ref: '#/components/schemas/IpEndPoint'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scpPorts:
                     additionalProperties:
                         maximum: 65535
@@ -1506,6 +1626,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipReachability:
                     $ref: '#/components/schemas/IpReachability'
                 ipv4AddrRanges:
@@ -1513,26 +1634,31 @@ components:
                         $ref: '#/components/schemas/Ipv4AddressRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv4Addresses:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6PrefixRanges:
                     items:
                         $ref: '#/components/schemas/Ipv6PrefixRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6Prefixes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 remotePlmnList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scpDomainInfoList:
                     additionalProperties:
                         $ref: '#/components/schemas/ScpDomainInfo'
@@ -1552,6 +1678,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         ServiceName:
             description: Service names known to NRF
@@ -1648,6 +1775,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pgwFqdn:
                     $ref: '#/components/schemas/Fqdn'
                 priority:
@@ -1659,16 +1787,19 @@ components:
                         $ref: '#/components/schemas/SnssaiSmfInfoItem'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiRangeList:
                     items:
                         $ref: '#/components/schemas/TaiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 vsmfSupportInd:
                     default: false
                     type: boolean
@@ -1684,6 +1815,7 @@ components:
                         $ref: '#/components/schemas/DnnSmfInfoItem'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sNssai:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
             required:
@@ -1699,6 +1831,7 @@ components:
                         $ref: '#/components/schemas/DnnUpfInfoItem'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 redundantTransport:
                     default: false
                     type: boolean
@@ -1735,26 +1868,31 @@ components:
                         $ref: '#/components/schemas/NotificationEventType'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 reqPerPlmnSnssais:
                     items:
                         $ref: '#/components/schemas/PlmnSnssai'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 reqPlmnList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 reqSnpnList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 reqSnssais:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 requesterFeatures:
                     allOf:
                         - $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
@@ -1764,6 +1902,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 subscrCond:
                     oneOf:
                         - $ref: '#/components/schemas/NfInstanceIdCond'
@@ -1784,6 +1923,7 @@ components:
                     pattern: ^([0-9]{5,6}-)?[^-]+$
                     readOnly: true
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 validityTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
             required:
@@ -1797,11 +1937,13 @@ components:
                 end:
                     pattern: ^[0-9]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 pattern:
                     type: string
                 start:
                     pattern: ^[0-9]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             type: object
         TacRange:
             additionalProperties: true
@@ -1810,11 +1952,13 @@ components:
                 end:
                     pattern: ^([A-Fa-f0-9]{4}|[A-Fa-f0-9]{6})$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 pattern:
                     type: string
                 start:
                     pattern: ^([A-Fa-f0-9]{4}|[A-Fa-f0-9]{6})$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             type: object
         TaiRange:
             additionalProperties: true
@@ -1829,6 +1973,7 @@ components:
                         $ref: '#/components/schemas/TacRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - plmnId
                 - tacRangeList
@@ -1844,11 +1989,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6EndpointAddresses:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         TransportProtocol:
             description: Types of transport protocol used in a given IP endpoint of an NF Service Instance
@@ -1866,11 +2013,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6EndpointAddresses:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         UPInterfaceType:
             description: Types of User-Plane interfaces of the UPF
@@ -1889,11 +2038,13 @@ components:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsiRanges:
                     items:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 groupId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
                 internalGroupIdentifiersRanges:
@@ -1901,17 +2052,21 @@ components:
                         $ref: '#/components/schemas/InternalGroupIdRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 routingIndicators:
                     items:
                         pattern: ^[0-9]{1,4}$
                         type: string
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supiRanges:
                     items:
                         $ref: '#/components/schemas/SupiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         UdrInfo:
             additionalProperties: true
@@ -1922,11 +2077,13 @@ components:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsiRanges:
                     items:
                         $ref: '#/components/schemas/IdentityRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 groupId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
                 supiRanges:
@@ -1934,11 +2091,13 @@ components:
                         $ref: '#/components/schemas/SupiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supportedDataSets:
                     items:
                         $ref: '#/components/schemas/DataSetId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         UdsfInfo:
             additionalProperties: true
@@ -1952,6 +2111,7 @@ components:
                             $ref: '#/components/schemas/IdentityRange'
                         minItems: 1
                         type: array
+                        x-go-type-skip-optional-pointer: true
                     description: A map (list of key-value pairs) where realmId serves as key and each value in the map is an array of IdentityRanges. Each IdentityRange is a range of storageIds.
                     minProperties: 1
                     type: object
@@ -1960,6 +2120,7 @@ components:
                         $ref: '#/components/schemas/SupiRange'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         UpfCond:
             additionalProperties: true
@@ -1969,16 +2130,19 @@ components:
                     enum:
                         - UPF_COND
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 smfServingArea:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - conditionType
             type: object
@@ -1996,6 +2160,7 @@ components:
                         $ref: '#/components/schemas/InterfaceUpfInfoItem'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipups:
                     default: false
                     type: boolean
@@ -2007,6 +2172,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 priority:
                     maximum: 65535
                     minimum: 0
@@ -2019,16 +2185,19 @@ components:
                         $ref: '#/components/schemas/SnssaiUpfInfoItem'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 smfServingArea:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 taiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 tngfInfo:
                     $ref: '#/components/schemas/TngfInfo'
                 twifInfo:
@@ -2045,6 +2214,7 @@ components:
             description: Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
             pattern: ^[0-9]{6}$
             type: string
+            x-go-type-skip-optional-pointer: true
         VendorSpecificFeature:
             additionalProperties: true
             description: Information about a vendor-specific feature
@@ -2068,11 +2238,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6EndpointAddresses:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
@@ -2412,6 +2584,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/PatchItem
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                 required: true
             responses:
                 "200":
@@ -2788,6 +2961,7 @@ paths:
                   schema:
                     pattern: ^([0-9]{5,6}-)?[^-]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             responses:
                 "204":
                     description: Expected response to a successful subscription removal
@@ -2852,6 +3026,7 @@ paths:
                   schema:
                     pattern: ^([0-9]{5,6}-)?[^-]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 - description: Content-Encoding, described in IETF RFC 7231
                   in: header
                   name: Content-Encoding

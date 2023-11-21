@@ -16,6 +16,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/BackupAmfInfo
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 contextInfo:
                     $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
                 deregCallbackUri:
@@ -105,6 +106,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/BackupAmfInfo
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 contextInfo:
                     $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
                 deregCallbackUri:
@@ -187,6 +189,7 @@ components:
         E164Number:
             pattern: ^[0-9]{1,15}$
             type: string
+            x-go-type-skip-optional-pointer: true
         EpsInterworkingInfo:
             additionalProperties: true
             properties:
@@ -235,6 +238,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                 supportedFeatures:
@@ -299,6 +303,7 @@ components:
             minItems: 2
             type: array
             uniqueItems: true
+            x-go-type-skip-optional-pointer: true
         RegistrationLocationInfo:
             additionalProperties: true
             properties:
@@ -308,6 +313,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 amfInstanceId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 guami:
@@ -372,6 +378,7 @@ components:
                         $ref: '#/components/schemas/SmfRegistration'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - smfRegistrationList
             type: object

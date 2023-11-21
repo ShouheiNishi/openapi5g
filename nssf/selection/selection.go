@@ -41,24 +41,24 @@ type AllowedNssai struct {
 type AllowedSnssai struct {
 	AllowedSnssai        externalRef0.Snssai    `json:"allowedSnssai"`
 	MappedHomeSnssai     *externalRef0.Snssai   `json:"mappedHomeSnssai,omitempty"`
-	NsiInformationList   *[]NsiInformation      `json:"nsiInformationList,omitempty"`
+	NsiInformationList   []NsiInformation       `json:"nsiInformationList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AuthorizedNetworkSliceInfo defines model for AuthorizedNetworkSliceInfo.
 type AuthorizedNetworkSliceInfo struct {
-	AllowedNssaiList        *[]AllowedNssai                 `json:"allowedNssaiList,omitempty"`
-	CandidateAmfList        *[]externalRef0.NfInstanceId    `json:"candidateAmfList,omitempty"`
-	ConfiguredNssai         *[]ConfiguredSnssai             `json:"configuredNssai,omitempty"`
+	AllowedNssaiList        []AllowedNssai                  `json:"allowedNssaiList,omitempty"`
+	CandidateAmfList        []externalRef0.NfInstanceId     `json:"candidateAmfList,omitempty"`
+	ConfiguredNssai         []ConfiguredSnssai              `json:"configuredNssai,omitempty"`
 	NrfAmfSet               *externalRef0.Uri               `json:"nrfAmfSet,omitempty"`
 	NrfAmfSetAccessTokenUri *externalRef0.Uri               `json:"nrfAmfSetAccessTokenUri,omitempty"`
 	NrfAmfSetNfMgtUri       *externalRef0.Uri               `json:"nrfAmfSetNfMgtUri,omitempty"`
 	NsiInformation          *NsiInformation                 `json:"nsiInformation,omitempty"`
-	RejectedNssaiInPlmn     *[]externalRef0.Snssai          `json:"rejectedNssaiInPlmn,omitempty"`
-	RejectedNssaiInTa       *[]externalRef0.Snssai          `json:"rejectedNssaiInTa,omitempty"`
+	RejectedNssaiInPlmn     []externalRef0.Snssai           `json:"rejectedNssaiInPlmn,omitempty"`
+	RejectedNssaiInTa       []externalRef0.Snssai           `json:"rejectedNssaiInTa,omitempty"`
 	SupportedFeatures       *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
 	TargetAmfServiceSet     *externalRef0.NfServiceSetId    `json:"targetAmfServiceSet,omitempty"`
-	TargetAmfSet            *string                         `json:"targetAmfSet,omitempty"`
+	TargetAmfSet            string                          `json:"targetAmfSet,omitempty"`
 	AdditionalProperties    map[string]interface{}          `json:"-"`
 }
 
@@ -104,11 +104,11 @@ type SliceInfoForRegistration struct {
 	AllowedNssaiCurrentAccess  *AllowedNssai          `json:"allowedNssaiCurrentAccess,omitempty"`
 	AllowedNssaiOtherAccess    *AllowedNssai          `json:"allowedNssaiOtherAccess,omitempty"`
 	DefaultConfiguredSnssaiInd *bool                  `json:"defaultConfiguredSnssaiInd,omitempty"`
-	MappingOfNssai             *[]MappingOfSnssai     `json:"mappingOfNssai,omitempty"`
+	MappingOfNssai             []MappingOfSnssai      `json:"mappingOfNssai,omitempty"`
 	RequestMapping             *bool                  `json:"requestMapping,omitempty"`
-	RequestedNssai             *[]externalRef0.Snssai `json:"requestedNssai,omitempty"`
-	SNssaiForMapping           *[]externalRef0.Snssai `json:"sNssaiForMapping,omitempty"`
-	SubscribedNssai            *[]SubscribedSnssai    `json:"subscribedNssai,omitempty"`
+	RequestedNssai             []externalRef0.Snssai  `json:"requestedNssai,omitempty"`
+	SNssaiForMapping           []externalRef0.Snssai  `json:"sNssaiForMapping,omitempty"`
+	SubscribedNssai            []SubscribedSnssai     `json:"subscribedNssai,omitempty"`
 	AdditionalProperties       map[string]interface{} `json:"-"`
 }
 
@@ -117,9 +117,9 @@ type SliceInfoForUEConfigurationUpdate struct {
 	AllowedNssaiCurrentAccess  *AllowedNssai          `json:"allowedNssaiCurrentAccess,omitempty"`
 	AllowedNssaiOtherAccess    *AllowedNssai          `json:"allowedNssaiOtherAccess,omitempty"`
 	DefaultConfiguredSnssaiInd *bool                  `json:"defaultConfiguredSnssaiInd,omitempty"`
-	MappingOfNssai             *[]MappingOfSnssai     `json:"mappingOfNssai,omitempty"`
-	RequestedNssai             *[]externalRef0.Snssai `json:"requestedNssai,omitempty"`
-	SubscribedNssai            *[]SubscribedSnssai    `json:"subscribedNssai,omitempty"`
+	MappingOfNssai             []MappingOfSnssai      `json:"mappingOfNssai,omitempty"`
+	RequestedNssai             []externalRef0.Snssai  `json:"requestedNssai,omitempty"`
+	SubscribedNssai            []SubscribedSnssai     `json:"subscribedNssai,omitempty"`
 	AdditionalProperties       map[string]interface{} `json:"-"`
 }
 
@@ -316,7 +316,7 @@ func (a AllowedSnssai) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.NsiInformationList != nil {
+	if len(a.NsiInformationList) != 0 {
 		object["nsiInformationList"], err = json.Marshal(a.NsiInformationList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nsiInformationList': %w", err)
@@ -472,21 +472,21 @@ func (a AuthorizedNetworkSliceInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AllowedNssaiList != nil {
+	if len(a.AllowedNssaiList) != 0 {
 		object["allowedNssaiList"], err = json.Marshal(a.AllowedNssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedNssaiList': %w", err)
 		}
 	}
 
-	if a.CandidateAmfList != nil {
+	if len(a.CandidateAmfList) != 0 {
 		object["candidateAmfList"], err = json.Marshal(a.CandidateAmfList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'candidateAmfList': %w", err)
 		}
 	}
 
-	if a.ConfiguredNssai != nil {
+	if len(a.ConfiguredNssai) != 0 {
 		object["configuredNssai"], err = json.Marshal(a.ConfiguredNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'configuredNssai': %w", err)
@@ -521,14 +521,14 @@ func (a AuthorizedNetworkSliceInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RejectedNssaiInPlmn != nil {
+	if len(a.RejectedNssaiInPlmn) != 0 {
 		object["rejectedNssaiInPlmn"], err = json.Marshal(a.RejectedNssaiInPlmn)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rejectedNssaiInPlmn': %w", err)
 		}
 	}
 
-	if a.RejectedNssaiInTa != nil {
+	if len(a.RejectedNssaiInTa) != 0 {
 		object["rejectedNssaiInTa"], err = json.Marshal(a.RejectedNssaiInTa)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rejectedNssaiInTa': %w", err)
@@ -549,7 +549,7 @@ func (a AuthorizedNetworkSliceInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TargetAmfSet != nil {
+	if len(a.TargetAmfSet) != 0 {
 		object["targetAmfSet"], err = json.Marshal(a.TargetAmfSet)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetAmfSet': %w", err)
@@ -1059,7 +1059,7 @@ func (a SliceInfoForRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MappingOfNssai != nil {
+	if len(a.MappingOfNssai) != 0 {
 		object["mappingOfNssai"], err = json.Marshal(a.MappingOfNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mappingOfNssai': %w", err)
@@ -1073,21 +1073,21 @@ func (a SliceInfoForRegistration) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RequestedNssai != nil {
+	if len(a.RequestedNssai) != 0 {
 		object["requestedNssai"], err = json.Marshal(a.RequestedNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'requestedNssai': %w", err)
 		}
 	}
 
-	if a.SNssaiForMapping != nil {
+	if len(a.SNssaiForMapping) != 0 {
 		object["sNssaiForMapping"], err = json.Marshal(a.SNssaiForMapping)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sNssaiForMapping': %w", err)
 		}
 	}
 
-	if a.SubscribedNssai != nil {
+	if len(a.SubscribedNssai) != 0 {
 		object["subscribedNssai"], err = json.Marshal(a.SubscribedNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscribedNssai': %w", err)
@@ -1216,21 +1216,21 @@ func (a SliceInfoForUEConfigurationUpdate) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MappingOfNssai != nil {
+	if len(a.MappingOfNssai) != 0 {
 		object["mappingOfNssai"], err = json.Marshal(a.MappingOfNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mappingOfNssai': %w", err)
 		}
 	}
 
-	if a.RequestedNssai != nil {
+	if len(a.RequestedNssai) != 0 {
 		object["requestedNssai"], err = json.Marshal(a.RequestedNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'requestedNssai': %w", err)
 		}
 	}
 
-	if a.SubscribedNssai != nil {
+	if len(a.SubscribedNssai) != 0 {
 		object["subscribedNssai"], err = json.Marshal(a.SubscribedNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'subscribedNssai': %w", err)

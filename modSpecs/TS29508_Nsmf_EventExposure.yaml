@@ -37,6 +37,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dnaiChgType:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DnaiChangeType
                 dnn:
@@ -47,6 +48,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 event:
                     $ref: '#/components/schemas/SmfEvent'
                 fDescs:
@@ -55,6 +57,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                 ipv4Addr:
@@ -64,11 +67,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6Prefixes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 maxWaitTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
                 pduSeId:
@@ -88,6 +93,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 snssai:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                 sourceDnai:
@@ -117,6 +123,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - event
                 - timeStamp
@@ -129,16 +136,19 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dddStati:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dddTraDescriptors:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dnaiChgType:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DnaiChangeType
                 event:
@@ -166,18 +176,21 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv4Addrs:
                     description: Alternate or backup IPv4 address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 altNotifIpv6Addrs:
                     description: Alternate or backup IPv6 address(es) where to send Notifications.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 anyUeInd:
                     description: Any UE indication. This IE shall be present if the event subscription is applicable to any UE. Default value "false" is used, if not present.
                     type: boolean
@@ -189,6 +202,7 @@ components:
                         $ref: '#/components/schemas/EventSubscription'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 expiry:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
                 gpsi:
@@ -240,6 +254,7 @@ components:
                         $ref: '#/components/schemas/EventNotification'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notifId:
                     description: Notification correlation ID
                     type: string

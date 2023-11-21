@@ -28,7 +28,7 @@ const (
 type PfdChangeNotification struct {
 	ApplicationId        externalRef0.ApplicationId `json:"applicationId"`
 	PartialFlag          *bool                      `json:"partialFlag,omitempty"`
-	Pfds                 *[]PfdContent              `json:"pfds,omitempty"`
+	Pfds                 []PfdContent               `json:"pfds,omitempty"`
 	RemovalFlag          *bool                      `json:"removalFlag,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"-"`
 }
@@ -46,16 +46,16 @@ type PfdContent struct {
 	DnProtocol *externalRef1.DomainNameProtocol `json:"dnProtocol,omitempty"`
 
 	// DomainNames Indicates an FQDN or a regular expression as a domain name matching criteria.
-	DomainNames *[]string `json:"domainNames,omitempty"`
+	DomainNames []string `json:"domainNames,omitempty"`
 
 	// FlowDescriptions Represents a 3-tuple with protocol, server ip and server port for UL/DL application traffic.
-	FlowDescriptions *[]string `json:"flowDescriptions,omitempty"`
+	FlowDescriptions []string `json:"flowDescriptions,omitempty"`
 
 	// PfdId Identifies a PDF of an application identifier.
 	PfdId *string `json:"pfdId,omitempty"`
 
 	// Urls Indicates a URL or a regular expression which is used to match the significant parts of the URL.
-	Urls                 *[]string              `json:"urls,omitempty"`
+	Urls                 []string               `json:"urls,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -70,7 +70,7 @@ type PfdDataForApp struct {
 
 // PfdSubscription defines model for PfdSubscription.
 type PfdSubscription struct {
-	ApplicationIds       *[]externalRef0.ApplicationId  `json:"applicationIds,omitempty"`
+	ApplicationIds       []externalRef0.ApplicationId   `json:"applicationIds,omitempty"`
 	NotifyUri            externalRef0.Uri               `json:"notifyUri"`
 	SupportedFeatures    externalRef0.SupportedFeatures `json:"supportedFeatures"`
 	AdditionalProperties map[string]interface{}         `json:"-"`
@@ -185,7 +185,7 @@ func (a PfdChangeNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pfds != nil {
+	if len(a.Pfds) != 0 {
 		object["pfds"], err = json.Marshal(a.Pfds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pfds': %w", err)
@@ -378,14 +378,14 @@ func (a PfdContent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.DomainNames != nil {
+	if len(a.DomainNames) != 0 {
 		object["domainNames"], err = json.Marshal(a.DomainNames)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'domainNames': %w", err)
 		}
 	}
 
-	if a.FlowDescriptions != nil {
+	if len(a.FlowDescriptions) != 0 {
 		object["flowDescriptions"], err = json.Marshal(a.FlowDescriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flowDescriptions': %w", err)
@@ -399,7 +399,7 @@ func (a PfdContent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Urls != nil {
+	if len(a.Urls) != 0 {
 		object["urls"], err = json.Marshal(a.Urls)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'urls': %w", err)
@@ -592,7 +592,7 @@ func (a PfdSubscription) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ApplicationIds != nil {
+	if len(a.ApplicationIds) != 0 {
 		object["applicationIds"], err = json.Marshal(a.ApplicationIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'applicationIds': %w", err)

@@ -46,9 +46,9 @@ type AccessTokenClaims struct {
 	Exp                  int                       `json:"exp"`
 	Iss                  externalRef0.NfInstanceId `json:"iss"`
 	ProducerNfSetId      *externalRef0.NfSetId     `json:"producerNfSetId,omitempty"`
-	ProducerNsiList      *[]string                 `json:"producerNsiList,omitempty"`
+	ProducerNsiList      []string                  `json:"producerNsiList,omitempty"`
 	ProducerPlmnId       *externalRef0.PlmnId      `json:"producerPlmnId,omitempty"`
-	ProducerSnssaiList   *[]externalRef0.Snssai    `json:"producerSnssaiList,omitempty"`
+	ProducerSnssaiList   []externalRef0.Snssai     `json:"producerSnssaiList,omitempty"`
 	Scope                string                    `json:"scope"`
 	Sub                  externalRef0.NfInstanceId `json:"sub"`
 	AdditionalProperties map[string]interface{}    `json:"-"`
@@ -84,9 +84,9 @@ type AccessTokenReq struct {
 	// RequesterFqdn Fully Qualified Domain Name
 	RequesterFqdn        *externalRef1.Fqdn           `json:"requesterFqdn,omitempty"`
 	RequesterPlmn        *externalRef0.PlmnId         `json:"requesterPlmn,omitempty"`
-	RequesterPlmnList    *[]externalRef0.PlmnId       `json:"requesterPlmnList,omitempty"`
-	RequesterSnpnList    *[]externalRef0.PlmnIdNid    `json:"requesterSnpnList,omitempty"`
-	RequesterSnssaiList  *[]externalRef0.Snssai       `json:"requesterSnssaiList,omitempty"`
+	RequesterPlmnList    []externalRef0.PlmnId        `json:"requesterPlmnList,omitempty"`
+	RequesterSnpnList    []externalRef0.PlmnIdNid     `json:"requesterSnpnList,omitempty"`
+	RequesterSnssaiList  []externalRef0.Snssai        `json:"requesterSnssaiList,omitempty"`
 	Scope                string                       `json:"scope"`
 	TargetNfInstanceId   *externalRef0.NfInstanceId   `json:"targetNfInstanceId,omitempty"`
 	TargetNfServiceSetId *externalRef0.NfServiceSetId `json:"targetNfServiceSetId,omitempty"`
@@ -94,9 +94,9 @@ type AccessTokenReq struct {
 
 	// TargetNfType NF types known to NRF
 	TargetNfType         *externalRef1.NFType   `json:"targetNfType,omitempty"`
-	TargetNsiList        *[]string              `json:"targetNsiList,omitempty"`
+	TargetNsiList        []string               `json:"targetNsiList,omitempty"`
 	TargetPlmn           *externalRef0.PlmnId   `json:"targetPlmn,omitempty"`
-	TargetSnssaiList     *[]externalRef0.Snssai `json:"targetSnssaiList,omitempty"`
+	TargetSnssaiList     []externalRef0.Snssai  `json:"targetSnssaiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -108,7 +108,7 @@ type AccessTokenRsp struct {
 	// AccessToken JWS Compact Serialized representation of JWS signed JSON object (AccessTokenClaims)
 	AccessToken          string                  `json:"access_token"`
 	ExpiresIn            *int                    `json:"expires_in,omitempty"`
-	Scope                *string                 `json:"scope,omitempty"`
+	Scope                string                  `json:"scope,omitempty"`
 	TokenType            AccessTokenRspTokenType `json:"token_type"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
@@ -281,7 +281,7 @@ func (a AccessTokenClaims) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ProducerNsiList != nil {
+	if len(a.ProducerNsiList) != 0 {
 		object["producerNsiList"], err = json.Marshal(a.ProducerNsiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'producerNsiList': %w", err)
@@ -295,7 +295,7 @@ func (a AccessTokenClaims) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ProducerSnssaiList != nil {
+	if len(a.ProducerSnssaiList) != 0 {
 		object["producerSnssaiList"], err = json.Marshal(a.ProducerSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'producerSnssaiList': %w", err)
@@ -620,21 +620,21 @@ func (a AccessTokenReq) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RequesterPlmnList != nil {
+	if len(a.RequesterPlmnList) != 0 {
 		object["requesterPlmnList"], err = json.Marshal(a.RequesterPlmnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'requesterPlmnList': %w", err)
 		}
 	}
 
-	if a.RequesterSnpnList != nil {
+	if len(a.RequesterSnpnList) != 0 {
 		object["requesterSnpnList"], err = json.Marshal(a.RequesterSnpnList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'requesterSnpnList': %w", err)
 		}
 	}
 
-	if a.RequesterSnssaiList != nil {
+	if len(a.RequesterSnssaiList) != 0 {
 		object["requesterSnssaiList"], err = json.Marshal(a.RequesterSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'requesterSnssaiList': %w", err)
@@ -674,7 +674,7 @@ func (a AccessTokenReq) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TargetNsiList != nil {
+	if len(a.TargetNsiList) != 0 {
 		object["targetNsiList"], err = json.Marshal(a.TargetNsiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetNsiList': %w", err)
@@ -688,7 +688,7 @@ func (a AccessTokenReq) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TargetSnssaiList != nil {
+	if len(a.TargetSnssaiList) != 0 {
 		object["targetSnssaiList"], err = json.Marshal(a.TargetSnssaiList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'targetSnssaiList': %w", err)
@@ -792,7 +792,7 @@ func (a AccessTokenRsp) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Scope != nil {
+	if len(a.Scope) != 0 {
 		object["scope"], err = json.Marshal(a.Scope)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'scope': %w", err)

@@ -54,16 +54,16 @@ type Pfd struct {
 	DnProtocol *DomainNameProtocol `json:"dnProtocol,omitempty"`
 
 	// DomainNames Indicates an FQDN or a regular expression as a domain name matching criteria.
-	DomainNames *[]string `json:"domainNames,omitempty"`
+	DomainNames []string `json:"domainNames,omitempty"`
 
 	// FlowDescriptions Represents a 3-tuple with protocol, server ip and server port for UL/DL application traffic. The content of the string has the same encoding as the IPFilterRule AVP value as defined in IETF RFC 6733.
-	FlowDescriptions *[]string `json:"flowDescriptions,omitempty"`
+	FlowDescriptions []string `json:"flowDescriptions,omitempty"`
 
 	// PfdId Identifies a PDF of an application identifier.
 	PfdId string `json:"pfdId"`
 
 	// Urls Indicates a URL or a regular expression which is used to match the significant parts of the URL.
-	Urls                 *[]string              `json:"urls,omitempty"`
+	Urls                 []string               `json:"urls,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -233,14 +233,14 @@ func (a Pfd) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.DomainNames != nil {
+	if len(a.DomainNames) != 0 {
 		object["domainNames"], err = json.Marshal(a.DomainNames)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'domainNames': %w", err)
 		}
 	}
 
-	if a.FlowDescriptions != nil {
+	if len(a.FlowDescriptions) != 0 {
 		object["flowDescriptions"], err = json.Marshal(a.FlowDescriptions)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flowDescriptions': %w", err)
@@ -252,7 +252,7 @@ func (a Pfd) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'pfdId': %w", err)
 	}
 
-	if a.Urls != nil {
+	if len(a.Urls) != 0 {
 		object["urls"], err = json.Marshal(a.Urls)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'urls': %w", err)

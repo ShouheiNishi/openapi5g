@@ -136,7 +136,7 @@ type AmfCreateEventSubscription struct {
 
 // AmfCreatedEventSubscription defines model for AmfCreatedEventSubscription.
 type AmfCreatedEventSubscription struct {
-	ReportList           *[]AmfEventReport               `json:"reportList,omitempty"`
+	ReportList           []AmfEventReport                `json:"reportList,omitempty"`
 	Subscription         AmfEventSubscription            `json:"subscription"`
 	SubscriptionId       externalRef0.Uri                `json:"subscriptionId"`
 	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
@@ -145,19 +145,19 @@ type AmfCreatedEventSubscription struct {
 
 // AmfEvent defines model for AmfEvent.
 type AmfEvent struct {
-	AreaList               *[]AmfEventArea           `json:"areaList,omitempty"`
+	AreaList               []AmfEventArea            `json:"areaList,omitempty"`
 	IdleStatusInd          *bool                     `json:"idleStatusInd,omitempty"`
 	ImmediateFlag          *bool                     `json:"immediateFlag,omitempty"`
-	LocationFilterList     *[]LocationFilter         `json:"locationFilterList,omitempty"`
+	LocationFilterList     []LocationFilter          `json:"locationFilterList,omitempty"`
 	MaxReports             *int                      `json:"maxReports,omitempty"`
 	MaxResponseTime        *externalRef0.DurationSec `json:"maxResponseTime,omitempty"`
 	NextPeriodicReportTime *externalRef0.DateTime    `json:"nextPeriodicReportTime,omitempty"`
 	ReachabilityFilter     *ReachabilityFilter       `json:"reachabilityFilter,omitempty"`
 
 	// RefId Original reference TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
-	RefId                 *interface{}           `json:"refId,omitempty"`
+	RefId                 interface{}            `json:"refId,omitempty"`
 	ReportUeReachable     *bool                  `json:"reportUeReachable,omitempty"`
-	TrafficDescriptorList *[]TrafficDescriptor   `json:"trafficDescriptorList,omitempty"`
+	TrafficDescriptorList []TrafficDescriptor    `json:"trafficDescriptorList,omitempty"`
 	Type                  AmfEventType           `json:"type"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
@@ -173,53 +173,53 @@ type AmfEventArea struct {
 
 // AmfEventMode defines model for AmfEventMode.
 type AmfEventMode struct {
-	Expiry               *externalRef0.DateTime      `json:"expiry,omitempty"`
-	MaxReports           *int                        `json:"maxReports,omitempty"`
-	RepPeriod            *externalRef0.DurationSec   `json:"repPeriod,omitempty"`
-	SampRatio            *externalRef0.SamplingRatio `json:"sampRatio,omitempty"`
-	Trigger              AmfEventTrigger             `json:"trigger"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
+	Expiry               *externalRef0.DateTime     `json:"expiry,omitempty"`
+	MaxReports           *int                       `json:"maxReports,omitempty"`
+	RepPeriod            *externalRef0.DurationSec  `json:"repPeriod,omitempty"`
+	SampRatio            externalRef0.SamplingRatio `json:"sampRatio,omitempty"`
+	Trigger              AmfEventTrigger            `json:"trigger"`
+	AdditionalProperties map[string]interface{}     `json:"-"`
 }
 
 // AmfEventNotification defines model for AmfEventNotification.
 type AmfEventNotification struct {
 	EventSubsSyncInfo             *AmfEventSubsSyncInfo  `json:"eventSubsSyncInfo,omitempty"`
 	NotifyCorrelationId           *string                `json:"notifyCorrelationId,omitempty"`
-	ReportList                    *[]AmfEventReport      `json:"reportList,omitempty"`
+	ReportList                    []AmfEventReport       `json:"reportList,omitempty"`
 	SubsChangeNotifyCorrelationId *string                `json:"subsChangeNotifyCorrelationId,omitempty"`
 	AdditionalProperties          map[string]interface{} `json:"-"`
 }
 
 // AmfEventReport defines model for AmfEventReport.
 type AmfEventReport struct {
-	N5gsUserStateList    *[]N5GsUserStateInfo       `json:"5gsUserStateList,omitempty"`
-	AccessTypeList       *[]externalRef0.AccessType `json:"accessTypeList,omitempty"`
+	N5gsUserStateList    []N5GsUserStateInfo        `json:"5gsUserStateList,omitempty"`
+	AccessTypeList       []externalRef0.AccessType  `json:"accessTypeList,omitempty"`
 	AdditionalLocation   *externalRef0.UserLocation `json:"additionalLocation,omitempty"`
 	AnyUe                *bool                      `json:"anyUe,omitempty"`
-	AreaList             *[]AmfEventArea            `json:"areaList,omitempty"`
-	CmInfoList           *[]CmInfo                  `json:"cmInfoList,omitempty"`
+	AreaList             []AmfEventArea             `json:"areaList,omitempty"`
+	CmInfoList           []CmInfo                   `json:"cmInfoList,omitempty"`
 	CommFailure          *CommunicationFailure      `json:"commFailure,omitempty"`
-	Gpsi                 *externalRef0.Gpsi         `json:"gpsi,omitempty"`
+	Gpsi                 externalRef0.Gpsi          `json:"gpsi,omitempty"`
 	IdleStatusIndication *IdleStatusIndication      `json:"idleStatusIndication,omitempty"`
 	Location             *externalRef0.UserLocation `json:"location,omitempty"`
 	LossOfConnectReason  *LossOfConnectivityReason  `json:"lossOfConnectReason,omitempty"`
 	MaxAvailabilityTime  *externalRef0.DateTime     `json:"maxAvailabilityTime,omitempty"`
 	NumberOfUes          *int                       `json:"numberOfUes,omitempty"`
-	Pei                  *externalRef0.Pei          `json:"pei,omitempty"`
+	Pei                  externalRef0.Pei           `json:"pei,omitempty"`
 	Reachability         *UeReachability            `json:"reachability,omitempty"`
 
 	// RefId Original reference TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
-	RefId                *interface{}           `json:"refId,omitempty"`
+	RefId                interface{}            `json:"refId,omitempty"`
 	RegistrationNumber   *int                   `json:"registrationNumber,omitempty"`
-	RmInfoList           *[]RmInfo              `json:"rmInfoList,omitempty"`
+	RmInfoList           []RmInfo               `json:"rmInfoList,omitempty"`
 	State                AmfEventState          `json:"state"`
 	SubscriptionId       *externalRef0.Uri      `json:"subscriptionId,omitempty"`
-	Supi                 *externalRef0.Supi     `json:"supi,omitempty"`
+	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
 	TimeStamp            externalRef0.DateTime  `json:"timeStamp"`
 	Timezone             *externalRef0.TimeZone `json:"timezone,omitempty"`
 	Type                 AmfEventType           `json:"type"`
-	TypeCode             *string                `json:"typeCode,omitempty"`
-	UeIdExt              *[]UEIdExt             `json:"ueIdExt,omitempty"`
+	TypeCode             string                 `json:"typeCode,omitempty"`
+	UeIdExt              []UEIdExt              `json:"ueIdExt,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -242,18 +242,18 @@ type AmfEventSubscription struct {
 	AnyUE               *bool                     `json:"anyUE,omitempty"`
 	EventList           []AmfEvent                `json:"eventList"`
 	EventNotifyUri      externalRef0.Uri          `json:"eventNotifyUri"`
-	Gpsi                *externalRef0.Gpsi        `json:"gpsi,omitempty"`
-	GroupId             *externalRef0.GroupId     `json:"groupId,omitempty"`
+	Gpsi                externalRef0.Gpsi         `json:"gpsi,omitempty"`
+	GroupId             externalRef0.GroupId      `json:"groupId,omitempty"`
 	NfId                externalRef0.NfInstanceId `json:"nfId"`
 	NotifyCorrelationId string                    `json:"notifyCorrelationId"`
 	Options             *AmfEventMode             `json:"options,omitempty"`
-	Pei                 *externalRef0.Pei         `json:"pei,omitempty"`
+	Pei                 externalRef0.Pei          `json:"pei,omitempty"`
 
 	// SourceNfType NF types known to NRF
 	SourceNfType                  *externalRef1.NFType   `json:"sourceNfType,omitempty"`
 	SubsChangeNotifyCorrelationId *string                `json:"subsChangeNotifyCorrelationId,omitempty"`
 	SubsChangeNotifyUri           *externalRef0.Uri      `json:"subsChangeNotifyUri,omitempty"`
-	Supi                          *externalRef0.Supi     `json:"supi,omitempty"`
+	Supi                          externalRef0.Supi      `json:"supi,omitempty"`
 	AdditionalProperties          map[string]interface{} `json:"-"`
 }
 
@@ -296,7 +296,7 @@ type AmfUpdateEventSubscriptionItemOp string
 
 // AmfUpdatedEventSubscription defines model for AmfUpdatedEventSubscription.
 type AmfUpdatedEventSubscription struct {
-	ReportList           *[]AmfEventReport      `json:"reportList,omitempty"`
+	ReportList           []AmfEventReport       `json:"reportList,omitempty"`
 	Subscription         AmfEventSubscription   `json:"subscription"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -356,16 +356,16 @@ type RmState string
 
 // TrafficDescriptor defines model for TrafficDescriptor.
 type TrafficDescriptor struct {
-	DddTrafficDescriptorList *[]externalRef0.DddTrafficDescriptor `json:"dddTrafficDescriptorList,omitempty"`
-	Dnn                      *externalRef0.Dnn                    `json:"dnn,omitempty"`
-	SNssai                   *externalRef0.Snssai                 `json:"sNssai,omitempty"`
-	AdditionalProperties     map[string]interface{}               `json:"-"`
+	DddTrafficDescriptorList []externalRef0.DddTrafficDescriptor `json:"dddTrafficDescriptorList,omitempty"`
+	Dnn                      *externalRef0.Dnn                   `json:"dnn,omitempty"`
+	SNssai                   *externalRef0.Snssai                `json:"sNssai,omitempty"`
+	AdditionalProperties     map[string]interface{}              `json:"-"`
 }
 
 // UEIdExt defines model for UEIdExt.
 type UEIdExt struct {
-	Gpsi                 *externalRef0.Gpsi     `json:"gpsi,omitempty"`
-	Supi                 *externalRef0.Supi     `json:"supi,omitempty"`
+	Gpsi                 externalRef0.Gpsi      `json:"gpsi,omitempty"`
+	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -640,7 +640,7 @@ func (a AmfCreatedEventSubscription) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ReportList != nil {
+	if len(a.ReportList) != 0 {
 		object["reportList"], err = json.Marshal(a.ReportList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reportList': %w", err)
@@ -813,7 +813,7 @@ func (a AmfEvent) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AreaList != nil {
+	if len(a.AreaList) != 0 {
 		object["areaList"], err = json.Marshal(a.AreaList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'areaList': %w", err)
@@ -834,7 +834,7 @@ func (a AmfEvent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.LocationFilterList != nil {
+	if len(a.LocationFilterList) != 0 {
 		object["locationFilterList"], err = json.Marshal(a.LocationFilterList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'locationFilterList': %w", err)
@@ -883,7 +883,7 @@ func (a AmfEvent) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.TrafficDescriptorList != nil {
+	if len(a.TrafficDescriptorList) != 0 {
 		object["trafficDescriptorList"], err = json.Marshal(a.TrafficDescriptorList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'trafficDescriptorList': %w", err)
@@ -1122,7 +1122,7 @@ func (a AmfEventMode) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.SampRatio != nil {
+	if a.SampRatio != 0 {
 		object["sampRatio"], err = json.Marshal(a.SampRatio)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'sampRatio': %w", err)
@@ -1233,7 +1233,7 @@ func (a AmfEventNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.ReportList != nil {
+	if len(a.ReportList) != 0 {
 		object["reportList"], err = json.Marshal(a.ReportList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reportList': %w", err)
@@ -1508,14 +1508,14 @@ func (a AmfEventReport) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.N5gsUserStateList != nil {
+	if len(a.N5gsUserStateList) != 0 {
 		object["5gsUserStateList"], err = json.Marshal(a.N5gsUserStateList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling '5gsUserStateList': %w", err)
 		}
 	}
 
-	if a.AccessTypeList != nil {
+	if len(a.AccessTypeList) != 0 {
 		object["accessTypeList"], err = json.Marshal(a.AccessTypeList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessTypeList': %w", err)
@@ -1536,14 +1536,14 @@ func (a AmfEventReport) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.AreaList != nil {
+	if len(a.AreaList) != 0 {
 		object["areaList"], err = json.Marshal(a.AreaList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'areaList': %w", err)
 		}
 	}
 
-	if a.CmInfoList != nil {
+	if len(a.CmInfoList) != 0 {
 		object["cmInfoList"], err = json.Marshal(a.CmInfoList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'cmInfoList': %w", err)
@@ -1557,7 +1557,7 @@ func (a AmfEventReport) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
@@ -1599,7 +1599,7 @@ func (a AmfEventReport) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -1627,7 +1627,7 @@ func (a AmfEventReport) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RmInfoList != nil {
+	if len(a.RmInfoList) != 0 {
 		object["rmInfoList"], err = json.Marshal(a.RmInfoList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rmInfoList': %w", err)
@@ -1646,7 +1646,7 @@ func (a AmfEventReport) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -1670,14 +1670,14 @@ func (a AmfEventReport) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'type': %w", err)
 	}
 
-	if a.TypeCode != nil {
+	if len(a.TypeCode) != 0 {
 		object["typeCode"], err = json.Marshal(a.TypeCode)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'typeCode': %w", err)
 		}
 	}
 
-	if a.UeIdExt != nil {
+	if len(a.UeIdExt) != 0 {
 		object["ueIdExt"], err = json.Marshal(a.UeIdExt)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueIdExt': %w", err)
@@ -2020,14 +2020,14 @@ func (a AmfEventSubscription) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'eventNotifyUri': %w", err)
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
 		}
 	}
 
-	if a.GroupId != nil {
+	if len(a.GroupId) != 0 {
 		object["groupId"], err = json.Marshal(a.GroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'groupId': %w", err)
@@ -2051,7 +2051,7 @@ func (a AmfEventSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -2079,7 +2079,7 @@ func (a AmfEventSubscription) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
@@ -2450,7 +2450,7 @@ func (a AmfUpdatedEventSubscription) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.ReportList != nil {
+	if len(a.ReportList) != 0 {
 		object["reportList"], err = json.Marshal(a.ReportList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'reportList': %w", err)
@@ -2989,7 +2989,7 @@ func (a TrafficDescriptor) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.DddTrafficDescriptorList != nil {
+	if len(a.DddTrafficDescriptorList) != 0 {
 		object["dddTrafficDescriptorList"], err = json.Marshal(a.DddTrafficDescriptorList)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'dddTrafficDescriptorList': %w", err)
@@ -3079,14 +3079,14 @@ func (a UEIdExt) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
 		}
 	}
 
-	if a.Supi != nil {
+	if len(a.Supi) != 0 {
 		object["supi"], err = json.Marshal(a.Supi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'supi': %w", err)

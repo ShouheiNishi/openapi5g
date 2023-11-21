@@ -61,11 +61,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pduSessionManagementData:
                     items:
                         $ref: '#/components/schemas/PduSessionManagementData'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ueId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/VarUeId
             type: object
@@ -79,6 +81,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 notificationUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 supportedFeatures:
@@ -105,12 +108,14 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6Prefix:
                     description: UE IPv6 prefix.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 n6TrafficRoutingInfo:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
@@ -403,6 +408,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 - description: Supported Features
                   in: query
                   name: supp-feat
@@ -519,6 +525,7 @@ paths:
                                                 $ref: '#/components/schemas/ExposureDataChangeNotification'
                                             minItems: 1
                                             type: array
+                                            x-go-type-skip-optional-pointer: true
                                 required: true
                             responses:
                                 "204":

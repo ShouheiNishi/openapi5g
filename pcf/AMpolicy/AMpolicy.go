@@ -57,13 +57,13 @@ type PolicyAssociation struct {
 
 	// Request Information which the NF service consumer provides when requesting the creation of a policy association. The serviveName property corresponds to the serviceName in the main body of the specification.
 	Request     *PolicyAssociationRequest            `json:"request,omitempty"`
-	Rfsp        *externalRef0.RfspIndex              `json:"rfsp,omitempty"`
+	Rfsp        externalRef0.RfspIndex               `json:"rfsp,omitempty"`
 	ServAreaRes *externalRef0.ServiceAreaRestriction `json:"servAreaRes,omitempty"`
 	SmfSelInfo  *SmfSelectionData                    `json:"smfSelInfo"`
 	SuppFeat    externalRef0.SupportedFeatures       `json:"suppFeat"`
 
 	// Triggers Request Triggers that the PCF subscribes.
-	Triggers             *[]RequestTrigger                            `json:"triggers,omitempty"`
+	Triggers             []RequestTrigger                             `json:"triggers,omitempty"`
 	UeAmbr               *externalRef0.Ambr                           `json:"ueAmbr,omitempty"`
 	WlServAreaRes        *externalRef0.WirelineServiceAreaRestriction `json:"wlServAreaRes,omitempty"`
 	AdditionalProperties map[string]interface{}                       `json:"-"`
@@ -74,34 +74,34 @@ type PolicyAssociationReleaseCause string
 
 // PolicyAssociationRequest Information which the NF service consumer provides when requesting the creation of a policy association. The serviveName property corresponds to the serviceName in the main body of the specification.
 type PolicyAssociationRequest struct {
-	AccessType  *externalRef0.AccessType   `json:"accessType,omitempty"`
-	AccessTypes *[]externalRef0.AccessType `json:"accessTypes,omitempty"`
+	AccessType  externalRef0.AccessType   `json:"accessType,omitempty"`
+	AccessTypes []externalRef0.AccessType `json:"accessTypes,omitempty"`
 
 	// AllowedSnssais array of allowed S-NSSAIs for the 3GPP access.
-	AllowedSnssais *[]externalRef0.Snssai `json:"allowedSnssais,omitempty"`
+	AllowedSnssais []externalRef0.Snssai `json:"allowedSnssais,omitempty"`
 
 	// AltNotifFqdns Alternate or backup FQDN(s) where to send Notifications.
-	AltNotifFqdns *[]externalRef1.Fqdn `json:"altNotifFqdns,omitempty"`
+	AltNotifFqdns []externalRef1.Fqdn `json:"altNotifFqdns,omitempty"`
 
 	// AltNotifIpv4Addrs Alternate or backup IPv4 Address(es) where to send Notifications.
-	AltNotifIpv4Addrs *[]externalRef0.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
+	AltNotifIpv4Addrs []externalRef0.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
 
 	// AltNotifIpv6Addrs Alternate or backup IPv6 Address(es) where to send Notifications.
-	AltNotifIpv6Addrs *[]externalRef0.Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
-	Gpsi              *externalRef0.Gpsi       `json:"gpsi,omitempty"`
-	GroupIds          *[]externalRef0.GroupId  `json:"groupIds,omitempty"`
-	Guami             *externalRef0.Guami      `json:"guami,omitempty"`
+	AltNotifIpv6Addrs []externalRef0.Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
+	Gpsi              externalRef0.Gpsi       `json:"gpsi,omitempty"`
+	GroupIds          []externalRef0.GroupId  `json:"groupIds,omitempty"`
+	Guami             *externalRef0.Guami     `json:"guami,omitempty"`
 
 	// MappingSnssais mapping of each S-NSSAI of the Allowed NSSAI to the corresponding S-NSSAI of the HPLMN.
-	MappingSnssais *[]externalRef2.MappingOfSnssai `json:"mappingSnssais,omitempty"`
+	MappingSnssais []externalRef2.MappingOfSnssai `json:"mappingSnssais,omitempty"`
 
 	// N3gAllowedSnssais array of allowed S-NSSAIs for the Non-3GPP access.
-	N3gAllowedSnssais *[]externalRef0.Snssai               `json:"n3gAllowedSnssais,omitempty"`
+	N3gAllowedSnssais []externalRef0.Snssai                `json:"n3gAllowedSnssais,omitempty"`
 	NotificationUri   externalRef0.Uri                     `json:"notificationUri"`
-	Pei               *externalRef0.Pei                    `json:"pei,omitempty"`
+	Pei               externalRef0.Pei                     `json:"pei,omitempty"`
 	RatType           *externalRef0.RatType                `json:"ratType,omitempty"`
-	RatTypes          *[]externalRef0.RatType              `json:"ratTypes,omitempty"`
-	Rfsp              *externalRef0.RfspIndex              `json:"rfsp,omitempty"`
+	RatTypes          []externalRef0.RatType               `json:"ratTypes,omitempty"`
+	Rfsp              externalRef0.RfspIndex               `json:"rfsp,omitempty"`
 	ServAreaRes       *externalRef0.ServiceAreaRestriction `json:"servAreaRes,omitempty"`
 	ServingPlmn       *externalRef0.PlmnIdNid              `json:"servingPlmn,omitempty"`
 
@@ -119,38 +119,38 @@ type PolicyAssociationRequest struct {
 
 // PolicyAssociationUpdateRequest defines model for PolicyAssociationUpdateRequest.
 type PolicyAssociationUpdateRequest struct {
-	AccessTypes *[]externalRef0.AccessType `json:"accessTypes,omitempty"`
+	AccessTypes []externalRef0.AccessType `json:"accessTypes,omitempty"`
 
 	// AllowedSnssais array of allowed S-NSSAIs for the 3GPP access.
-	AllowedSnssais *[]externalRef0.Snssai `json:"allowedSnssais,omitempty"`
+	AllowedSnssais []externalRef0.Snssai `json:"allowedSnssais,omitempty"`
 
 	// AltNotifFqdns Alternate or backup FQDN(s) where to send Notifications.
-	AltNotifFqdns *[]externalRef1.Fqdn `json:"altNotifFqdns,omitempty"`
+	AltNotifFqdns []externalRef1.Fqdn `json:"altNotifFqdns,omitempty"`
 
 	// AltNotifIpv4Addrs Alternate or backup IPv4 Address(es) where to send Notifications.
-	AltNotifIpv4Addrs *[]externalRef0.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
+	AltNotifIpv4Addrs []externalRef0.Ipv4Addr `json:"altNotifIpv4Addrs,omitempty"`
 
 	// AltNotifIpv6Addrs Alternate or backup IPv6 Address(es) where to send Notifications.
-	AltNotifIpv6Addrs *[]externalRef0.Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
-	Guami             *externalRef0.Guami      `json:"guami,omitempty"`
+	AltNotifIpv6Addrs []externalRef0.Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
+	Guami             *externalRef0.Guami     `json:"guami,omitempty"`
 
 	// MappingSnssais mapping of each S-NSSAI of the Allowed NSSAI to the corresponding S-NSSAI of the HPLMN.
-	MappingSnssais *[]externalRef2.MappingOfSnssai `json:"mappingSnssais,omitempty"`
+	MappingSnssais []externalRef2.MappingOfSnssai `json:"mappingSnssais,omitempty"`
 
 	// N3gAllowedSnssais array of allowed S-NSSAIs for the Non-3GPP access.
-	N3gAllowedSnssais *[]externalRef0.Snssai `json:"n3gAllowedSnssais,omitempty"`
-	NotificationUri   *externalRef0.Uri      `json:"notificationUri,omitempty"`
+	N3gAllowedSnssais []externalRef0.Snssai `json:"n3gAllowedSnssais,omitempty"`
+	NotificationUri   *externalRef0.Uri     `json:"notificationUri,omitempty"`
 
 	// PraStatuses Map of PRA status information.
 	PraStatuses *map[string]externalRef0.PresenceInfo `json:"praStatuses,omitempty"`
-	RatTypes    *[]externalRef0.RatType               `json:"ratTypes,omitempty"`
-	Rfsp        *externalRef0.RfspIndex               `json:"rfsp,omitempty"`
+	RatTypes    []externalRef0.RatType                `json:"ratTypes,omitempty"`
+	Rfsp        externalRef0.RfspIndex                `json:"rfsp,omitempty"`
 	ServAreaRes *externalRef0.ServiceAreaRestriction  `json:"servAreaRes,omitempty"`
 	SmfSelInfo  *SmfSelectionData                     `json:"smfSelInfo"`
 	TraceReq    *externalRef0.TraceData               `json:"traceReq"`
 
 	// Triggers Request Triggers that the NF service consumer observes.
-	Triggers             *[]RequestTrigger                            `json:"triggers,omitempty"`
+	Triggers             []RequestTrigger                             `json:"triggers,omitempty"`
 	UeAmbr               *externalRef0.Ambr                           `json:"ueAmbr,omitempty"`
 	UserLoc              *externalRef0.UserLocation                   `json:"userLoc,omitempty"`
 	WlServAreaRes        *externalRef0.WirelineServiceAreaRestriction `json:"wlServAreaRes,omitempty"`
@@ -162,7 +162,7 @@ type PolicyUpdate struct {
 	// Pras Map of PRA information.
 	Pras        *map[string]*externalRef0.PresenceInfoRm `json:"pras"`
 	ResourceUri externalRef0.Uri                         `json:"resourceUri"`
-	Rfsp        *externalRef0.RfspIndex                  `json:"rfsp,omitempty"`
+	Rfsp        externalRef0.RfspIndex                   `json:"rfsp,omitempty"`
 	ServAreaRes *externalRef0.ServiceAreaRestriction     `json:"servAreaRes,omitempty"`
 	SmfSelInfo  *SmfSelectionData                        `json:"smfSelInfo"`
 
@@ -409,7 +409,7 @@ func (a PolicyAssociation) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Rfsp != nil {
+	if a.Rfsp != 0 {
 		object["rfsp"], err = json.Marshal(a.Rfsp)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rfsp': %w", err)
@@ -433,7 +433,7 @@ func (a PolicyAssociation) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'suppFeat': %w", err)
 	}
 
-	if a.Triggers != nil {
+	if len(a.Triggers) != 0 {
 		object["triggers"], err = json.Marshal(a.Triggers)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'triggers': %w", err)
@@ -715,56 +715,56 @@ func (a PolicyAssociationRequest) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessType != nil {
+	if len(a.AccessType) != 0 {
 		object["accessType"], err = json.Marshal(a.AccessType)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
 		}
 	}
 
-	if a.AccessTypes != nil {
+	if len(a.AccessTypes) != 0 {
 		object["accessTypes"], err = json.Marshal(a.AccessTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessTypes': %w", err)
 		}
 	}
 
-	if a.AllowedSnssais != nil {
+	if len(a.AllowedSnssais) != 0 {
 		object["allowedSnssais"], err = json.Marshal(a.AllowedSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedSnssais': %w", err)
 		}
 	}
 
-	if a.AltNotifFqdns != nil {
+	if len(a.AltNotifFqdns) != 0 {
 		object["altNotifFqdns"], err = json.Marshal(a.AltNotifFqdns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifFqdns': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv4Addrs != nil {
+	if len(a.AltNotifIpv4Addrs) != 0 {
 		object["altNotifIpv4Addrs"], err = json.Marshal(a.AltNotifIpv4Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv4Addrs': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv6Addrs != nil {
+	if len(a.AltNotifIpv6Addrs) != 0 {
 		object["altNotifIpv6Addrs"], err = json.Marshal(a.AltNotifIpv6Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv6Addrs': %w", err)
 		}
 	}
 
-	if a.Gpsi != nil {
+	if len(a.Gpsi) != 0 {
 		object["gpsi"], err = json.Marshal(a.Gpsi)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
 		}
 	}
 
-	if a.GroupIds != nil {
+	if len(a.GroupIds) != 0 {
 		object["groupIds"], err = json.Marshal(a.GroupIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'groupIds': %w", err)
@@ -778,14 +778,14 @@ func (a PolicyAssociationRequest) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MappingSnssais != nil {
+	if len(a.MappingSnssais) != 0 {
 		object["mappingSnssais"], err = json.Marshal(a.MappingSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mappingSnssais': %w", err)
 		}
 	}
 
-	if a.N3gAllowedSnssais != nil {
+	if len(a.N3gAllowedSnssais) != 0 {
 		object["n3gAllowedSnssais"], err = json.Marshal(a.N3gAllowedSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'n3gAllowedSnssais': %w", err)
@@ -797,7 +797,7 @@ func (a PolicyAssociationRequest) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'notificationUri': %w", err)
 	}
 
-	if a.Pei != nil {
+	if len(a.Pei) != 0 {
 		object["pei"], err = json.Marshal(a.Pei)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
@@ -811,14 +811,14 @@ func (a PolicyAssociationRequest) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RatTypes != nil {
+	if len(a.RatTypes) != 0 {
 		object["ratTypes"], err = json.Marshal(a.RatTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ratTypes': %w", err)
 		}
 	}
 
-	if a.Rfsp != nil {
+	if a.Rfsp != 0 {
 		object["rfsp"], err = json.Marshal(a.Rfsp)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rfsp': %w", err)
@@ -1094,35 +1094,35 @@ func (a PolicyAssociationUpdateRequest) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.AccessTypes != nil {
+	if len(a.AccessTypes) != 0 {
 		object["accessTypes"], err = json.Marshal(a.AccessTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'accessTypes': %w", err)
 		}
 	}
 
-	if a.AllowedSnssais != nil {
+	if len(a.AllowedSnssais) != 0 {
 		object["allowedSnssais"], err = json.Marshal(a.AllowedSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'allowedSnssais': %w", err)
 		}
 	}
 
-	if a.AltNotifFqdns != nil {
+	if len(a.AltNotifFqdns) != 0 {
 		object["altNotifFqdns"], err = json.Marshal(a.AltNotifFqdns)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifFqdns': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv4Addrs != nil {
+	if len(a.AltNotifIpv4Addrs) != 0 {
 		object["altNotifIpv4Addrs"], err = json.Marshal(a.AltNotifIpv4Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv4Addrs': %w", err)
 		}
 	}
 
-	if a.AltNotifIpv6Addrs != nil {
+	if len(a.AltNotifIpv6Addrs) != 0 {
 		object["altNotifIpv6Addrs"], err = json.Marshal(a.AltNotifIpv6Addrs)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'altNotifIpv6Addrs': %w", err)
@@ -1136,14 +1136,14 @@ func (a PolicyAssociationUpdateRequest) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.MappingSnssais != nil {
+	if len(a.MappingSnssais) != 0 {
 		object["mappingSnssais"], err = json.Marshal(a.MappingSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mappingSnssais': %w", err)
 		}
 	}
 
-	if a.N3gAllowedSnssais != nil {
+	if len(a.N3gAllowedSnssais) != 0 {
 		object["n3gAllowedSnssais"], err = json.Marshal(a.N3gAllowedSnssais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'n3gAllowedSnssais': %w", err)
@@ -1164,14 +1164,14 @@ func (a PolicyAssociationUpdateRequest) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RatTypes != nil {
+	if len(a.RatTypes) != 0 {
 		object["ratTypes"], err = json.Marshal(a.RatTypes)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ratTypes': %w", err)
 		}
 	}
 
-	if a.Rfsp != nil {
+	if a.Rfsp != 0 {
 		object["rfsp"], err = json.Marshal(a.Rfsp)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rfsp': %w", err)
@@ -1195,7 +1195,7 @@ func (a PolicyAssociationUpdateRequest) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'traceReq': %w", err)
 	}
 
-	if a.Triggers != nil {
+	if len(a.Triggers) != 0 {
 		object["triggers"], err = json.Marshal(a.Triggers)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'triggers': %w", err)
@@ -1350,7 +1350,7 @@ func (a PolicyUpdate) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'resourceUri': %w", err)
 	}
 
-	if a.Rfsp != nil {
+	if a.Rfsp != 0 {
 		object["rfsp"], err = json.Marshal(a.Rfsp)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'rfsp': %w", err)

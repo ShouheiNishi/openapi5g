@@ -22,12 +22,14 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 oldCmInfoList:
                     items:
                         $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/CmInfo
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - newCmInfoList
             type: object
@@ -59,6 +61,7 @@ components:
                         $ref: '#/components/schemas/MonitoringReport'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 numberOfUes:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
             required:
@@ -72,11 +75,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dddTrafficDes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 dnn:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                 slice:
@@ -213,6 +218,7 @@ components:
                 suggestedPacketNumDl:
                     minimum: 1
                     type: integer
+                    x-go-type-skip-optional-pointer: true
             required:
                 - eventType
             type: object
@@ -248,11 +254,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6Prefixes:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pdnConnStat:
                     $ref: '#/components/schemas/PdnConnectivityStatus'
                 pduSeId:
@@ -357,6 +365,7 @@ paths:
                                                 $ref: '#/components/schemas/MonitoringReport'
                                             minItems: 1
                                             type: array
+                                            x-go-type-skip-optional-pointer: true
                                 required: true
                             responses:
                                 "204":
@@ -380,6 +389,7 @@ paths:
                   schema:
                     pattern: ^(msisdn-[0-9]{5,15}|.+|extid-[^@]+@[^@]+|extgroupid-[^@]+@[^@]+|anyUE)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:
@@ -427,6 +437,7 @@ paths:
                   schema:
                     pattern: ^(msisdn-[0-9]{5,15}|.+|extid-[^@]+@[^@]+|extgroupid-[^@]+@[^@]+|anyUE)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 - description: Id of the EE Subscription
                   in: path
                   name: subscriptionId
@@ -459,6 +470,7 @@ paths:
                   schema:
                     pattern: ^(msisdn-[0-9]{5,15}|.+|extid-[^@]+@[^@]+|extgroupid-[^@]+@[^@]+|anyUE)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 - description: Id of the EE Subscription
                   in: path
                   name: subscriptionId
@@ -478,6 +490,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/PatchItem
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                 required: true
             responses:
                 "200":

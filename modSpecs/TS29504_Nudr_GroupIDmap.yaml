@@ -8,6 +8,7 @@ components:
         SubscriberId:
             pattern: ^(imsi-[0-9]{5,15}|nai-.+|msisdn-[0-9]{5,15}|extid-[^@]+@[^@]+|impi-.+|impu-.+|.+)$
             type: string
+            x-go-type-skip-optional-pointer: true
     securitySchemes:
         oAuth2ClientCredentials:
             flows:
@@ -42,6 +43,7 @@ paths:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: Identifier of the subscriber
                   in: query

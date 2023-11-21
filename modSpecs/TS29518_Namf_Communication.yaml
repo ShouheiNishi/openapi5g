@@ -16,6 +16,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 eventSyncInd:
                     type: boolean
                 subscribingNfType:
@@ -29,6 +30,7 @@ components:
                         $ref: '#/components/schemas/AmfStatusInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - amfStatusInfoList
             type: object
@@ -40,6 +42,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 statusChange:
                     $ref: '#/components/schemas/StatusChange'
                 targetAmfFailure:
@@ -59,6 +62,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 presence:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PresenceState
             required:
@@ -82,6 +86,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Arp
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 oldGuami:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 pduSessionId:
@@ -91,6 +96,7 @@ components:
                         $ref: '#/components/schemas/EpsBearerId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - pduSessionId
             type: object
@@ -113,6 +119,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Arp
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pduSessionId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
             required:
@@ -124,12 +131,14 @@ components:
                 assignedEbiList:
                     items:
                         description: Original reference TS29502_Nsmf_PDUSession.yaml#/components/schemas/EbiArpMapping
+                        x-go-type-skip-optional-pointer: true
                     type: array
                 failedArpList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Arp
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pduSessionId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
                 releasedEbiList:
@@ -137,6 +146,7 @@ components:
                         $ref: '#/components/schemas/EpsBearerId'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - pduSessionId
                 - assignedEbiList
@@ -207,6 +217,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 validityTime:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
             required:
@@ -225,6 +236,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PositioningMethodMdt
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 areaScope:
                     $ref: TS29571_CommonData.yaml#/components/schemas/AreaScope
                 collectionPeriodRmmLte:
@@ -255,16 +267,19 @@ components:
                     maxItems: 16
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 measurementLteList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/MeasurementLteForMdt
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 measurementNrList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/MeasurementNrForMdt
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 measurementPeriodLte:
                     $ref: TS29571_CommonData.yaml#/components/schemas/MeasurementPeriodLteMdt
                 positioningMethod:
@@ -280,11 +295,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ReportingTrigger
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sensorMeasurementList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/SensorMeasurement
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - jobType
             type: object
@@ -332,11 +349,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 allowedNssai:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 anN2ApId:
                     type: integer
                 epsNasSecurityMode:
@@ -358,21 +377,25 @@ components:
                         $ref: TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nssaaStatusList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NssaaStatus
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nssaiMappingList:
                     items:
                         $ref: '#/components/schemas/NssaiMapping'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pendingNssaiMappingList:
                     items:
                         $ref: '#/components/schemas/NssaiMapping'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 plmnAssiUeRadioCapId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnAssiUeRadioCapId
                 s1UeNetworkCapability:
@@ -426,6 +449,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 lcsCorrelationId:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
+                    x-go-type-skip-optional-pointer: true
                 n1MessageContainer:
                     $ref: '#/components/schemas/N1MessageContainer'
                 n1NotifySubscriptionId:
@@ -434,6 +458,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
                 newLmfIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                    x-go-type-skip-optional-pointer: true
                 registrationCtxtContainer:
                     $ref: '#/components/schemas/RegistrationContextContainer'
             required:
@@ -476,6 +501,7 @@ components:
                     type: boolean
                 lcsCorrelationId:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
+                    x-go-type-skip-optional-pointer: true
                 maAcceptedInd:
                     default: false
                     type: boolean
@@ -573,6 +599,7 @@ components:
                         $ref: '#/components/schemas/N2SmInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         N2InfoNotifyReason:
             enum:
@@ -601,6 +628,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/AmfName
                 lcsCorrelationId:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
+                    x-go-type-skip-optional-pointer: true
                 n2InfoContainer:
                     $ref: '#/components/schemas/N2InfoContainer'
                 n2NotifySubscriptionId:
@@ -617,11 +645,13 @@ components:
                         $ref: '#/components/schemas/SmfChangeInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 toReleaseSessionList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - n2NotifySubscriptionId
             type: object
@@ -643,6 +673,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GlobalRanNodeId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 n2Information:
                     $ref: '#/components/schemas/N2InfoContainer'
                 ratSelector:
@@ -654,6 +685,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - n2Information
             type: object
@@ -764,11 +796,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 globalRanNodeList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GlobalRanNodeId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 n2InformationClass:
                     $ref: '#/components/schemas/N2InformationClass'
                 n2NotifyCallbackUri:
@@ -802,6 +836,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/CagId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             type: object
         NrppaInformation:
             additionalProperties: true
@@ -851,6 +886,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - ngapMessageType
                 - serialNumber
@@ -866,10 +902,13 @@ components:
                 allocatedEbiList:
                     items:
                         description: Original reference TS29502_Nsmf_PDUSession.yaml#/components/schemas/EbiArpMapping
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 cnAssistedRanPara:
                     description: Original reference TS29502_Nsmf_PDUSession.yaml#/components/schemas/CnAssistedRanPara
+                    x-go-type-skip-optional-pointer: true
                 dnn:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                 hsmfId:
@@ -945,6 +984,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GlobalRanNodeId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 messageIdentifier:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uint16
                 omcId:
@@ -989,6 +1029,7 @@ components:
                         $ref: TS29531_Nnssf_NSSelection.yaml#/components/schemas/ConfiguredSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 iabNodeInd:
                     default: false
                     type: boolean
@@ -1009,14 +1050,17 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 rejectedNssaiInTa:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 rrcEstCause:
                     pattern: ^[0-9a-fA-F]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 selectedPlmnId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                 ueContext:
@@ -1066,6 +1110,7 @@ components:
                 nh:
                     pattern: ^[A-Fa-f0-9]+$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             required:
                 - ngKsi
                 - keyAmf
@@ -1097,6 +1142,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 smfChangeInd:
                     $ref: '#/components/schemas/SmfChangeIndication'
             required:
@@ -1125,6 +1171,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - amfStatusUri
             type: object
@@ -1159,6 +1206,7 @@ components:
                         $ref: '#/components/schemas/PolicyReqTrigger'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ausfGroupId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
                 cMsisdn:
@@ -1177,21 +1225,25 @@ components:
                         $ref: '#/components/schemas/ExtAmfEventSubscription'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 forbiddenAreaList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Area
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 gpsiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 groupList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 hpcfId:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 hpcfSetId:
@@ -1212,6 +1264,7 @@ components:
                     maxItems: 2
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 moExpDataCounter:
                     $ref: TS29571_CommonData.yaml#/components/schemas/MoExpDataCounter
                 msClassmark2:
@@ -1259,21 +1312,25 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/CoreNetworkType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 restrictedPrimaryRatList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RatType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 restrictedRatList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RatType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 restrictedSecondaryRatList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RatType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 routingIndicator:
                     type: string
                 seafData:
@@ -1287,11 +1344,13 @@ components:
                         $ref: '#/components/schemas/PduSessionContext'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 smallDataRateStatusInfos:
                     items:
                         $ref: '#/components/schemas/SmallDataRateStatusInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 smfSelInfo:
                     $ref: TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/SmfSelectionData
                 smsfBindingInfo:
@@ -1317,6 +1376,7 @@ components:
                         $ref: '#/components/schemas/SupportedCodec'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 traceData:
                     $ref: TS29571_CommonData.yaml#/components/schemas/TraceData
                 udmGroupId:
@@ -1326,6 +1386,7 @@ components:
                         $ref: '#/components/schemas/PolicyReqTrigger'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 updpSubscriptionData:
                     $ref: '#/components/schemas/UpdpSubscriptionData'
                 usedRfsp:
@@ -1359,6 +1420,7 @@ components:
                         $ref: '#/components/schemas/N2SmInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 servingNetwork:
                     $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                 sourceToTargetData:
@@ -1397,6 +1459,7 @@ components:
                         $ref: '#/components/schemas/N2SmInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 pcfReselectedInd:
                     type: boolean
                 pduSessionList:
@@ -1404,6 +1467,7 @@ components:
                         $ref: '#/components/schemas/N2SmInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 targetToSourceData:
@@ -1427,6 +1491,7 @@ components:
                         $ref: '#/components/schemas/N2SmInformation'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 sourceToTargetData:
                     $ref: '#/components/schemas/N2InfoContent'
                 supportedFeatures:
@@ -1543,11 +1608,13 @@ components:
                         $ref: '#/components/schemas/SmfChangeInfo'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 toReleaseSessionList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 transferStatus:
                     $ref: '#/components/schemas/UeContextTransferStatus'
             required:
@@ -2250,6 +2317,7 @@ paths:
                   schema:
                     pattern: ^(5g-guti-[0-9]{5,6}[0-9a-fA-F]{14}|imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     multipart/related:
@@ -2656,6 +2724,7 @@ paths:
                   schema:
                     pattern: ^(5g-guti-[0-9]{5,6}[0-9a-fA-F]{14}|imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:
@@ -2732,6 +2801,7 @@ paths:
                   schema:
                     pattern: ^(5g-guti-[0-9]{5,6}[0-9a-fA-F]{14}|imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     multipart/related:
@@ -2830,6 +2900,7 @@ paths:
                   schema:
                     pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|cid-.{1,255}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:
@@ -3056,6 +3127,7 @@ paths:
                   schema:
                     pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:
@@ -3109,6 +3181,7 @@ paths:
                   schema:
                     pattern: ^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 - description: Subscription Identifier
                   in: path
                   name: subscriptionId
@@ -3150,6 +3223,7 @@ paths:
                   schema:
                     pattern: ^(5g-guti-[0-9]{5,6}[0-9a-fA-F]{14}|imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:
@@ -3197,6 +3271,7 @@ paths:
                   schema:
                     pattern: ^(5g-guti-[0-9]{5,6}[0-9a-fA-F]{14}|imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     multipart/related:
@@ -3421,6 +3496,7 @@ paths:
                   schema:
                     pattern: ^(5g-guti-[0-9]{5,6}[0-9a-fA-F]{14}|imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:
@@ -3519,6 +3595,7 @@ paths:
                   schema:
                     pattern: ^(5g-guti-[0-9]{5,6}[0-9a-fA-F]{14}|imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|imei-[0-9]{15}|imeisv-[0-9]{16}|.+)$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             requestBody:
                 content:
                     application/json:

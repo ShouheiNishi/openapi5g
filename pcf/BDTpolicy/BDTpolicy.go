@@ -64,7 +64,7 @@ type BdtReqData struct {
 	AspId        AspId                   `json:"aspId"`
 	DesTimeInt   externalRef1.TimeWindow `json:"desTimeInt"`
 	Dnn          *externalRef0.Dnn       `json:"dnn,omitempty"`
-	InterGroupId *externalRef0.GroupId   `json:"interGroupId,omitempty"`
+	InterGroupId externalRef0.GroupId    `json:"interGroupId,omitempty"`
 	NotifUri     *externalRef0.Uri       `json:"notifUri,omitempty"`
 
 	// NumOfUes Indicates a number of UEs.
@@ -76,7 +76,7 @@ type BdtReqData struct {
 	SuppFeat   *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
 
 	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-	TrafficDes *interface{}                `json:"trafficDes,omitempty"`
+	TrafficDes interface{}                 `json:"trafficDes,omitempty"`
 	VolPerUe   externalRef1.UsageThreshold `json:"volPerUe"`
 
 	// WarnNotifReq Indicates whether the BDT warning notification is enabled or disabled.
@@ -94,16 +94,16 @@ type BdtReqDataPatch struct {
 // NetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
 type NetworkAreaInfo struct {
 	// Ecgis Contains a list of E-UTRA cell identities.
-	Ecgis *[]externalRef0.Ecgi `json:"ecgis,omitempty"`
+	Ecgis []externalRef0.Ecgi `json:"ecgis,omitempty"`
 
 	// GRanNodeIds Contains a list of NG RAN nodes.
-	GRanNodeIds *[]externalRef0.GlobalRanNodeId `json:"gRanNodeIds,omitempty"`
+	GRanNodeIds []externalRef0.GlobalRanNodeId `json:"gRanNodeIds,omitempty"`
 
 	// Ncgis Contains a list of NR cell identities.
-	Ncgis *[]externalRef0.Ncgi `json:"ncgis,omitempty"`
+	Ncgis []externalRef0.Ncgi `json:"ncgis,omitempty"`
 
 	// Tais Contains a list of tracking area identities.
-	Tais                 *[]externalRef0.Tai    `json:"tais,omitempty"`
+	Tais                 []externalRef0.Tai     `json:"tais,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -113,7 +113,7 @@ type Notification struct {
 	BdtRefId externalRef1.BdtReferenceId `json:"bdtRefId"`
 
 	// CandPolicies Contains a list of the candidate transfer policies from which the AF may select a new transfer policy due to a network performance is below the criteria set by the operator.
-	CandPolicies *[]TransferPolicy `json:"candPolicies,omitempty"`
+	CandPolicies []TransferPolicy `json:"candPolicies,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
 	NwAreaInfo           *NetworkAreaInfo         `json:"nwAreaInfo,omitempty"`
@@ -133,8 +133,8 @@ type PatchBdtPolicy struct {
 
 // TransferPolicy Describes a transfer policy.
 type TransferPolicy struct {
-	MaxBitRateDl *externalRef0.BitRate `json:"maxBitRateDl,omitempty"`
-	MaxBitRateUl *externalRef0.BitRate `json:"maxBitRateUl,omitempty"`
+	MaxBitRateDl externalRef0.BitRate `json:"maxBitRateDl,omitempty"`
+	MaxBitRateUl externalRef0.BitRate `json:"maxBitRateUl,omitempty"`
 
 	// RatingGroup Indicates a rating group for the recommended time window.
 	RatingGroup int                     `json:"ratingGroup"`
@@ -566,7 +566,7 @@ func (a BdtReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.InterGroupId != nil {
+	if len(a.InterGroupId) != 0 {
 		object["interGroupId"], err = json.Marshal(a.InterGroupId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
@@ -778,28 +778,28 @@ func (a NetworkAreaInfo) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.Ecgis != nil {
+	if len(a.Ecgis) != 0 {
 		object["ecgis"], err = json.Marshal(a.Ecgis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ecgis': %w", err)
 		}
 	}
 
-	if a.GRanNodeIds != nil {
+	if len(a.GRanNodeIds) != 0 {
 		object["gRanNodeIds"], err = json.Marshal(a.GRanNodeIds)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'gRanNodeIds': %w", err)
 		}
 	}
 
-	if a.Ncgis != nil {
+	if len(a.Ncgis) != 0 {
 		object["ncgis"], err = json.Marshal(a.Ncgis)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ncgis': %w", err)
 		}
 	}
 
-	if a.Tais != nil {
+	if len(a.Tais) != 0 {
 		object["tais"], err = json.Marshal(a.Tais)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'tais': %w", err)
@@ -896,7 +896,7 @@ func (a Notification) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'bdtRefId': %w", err)
 	}
 
-	if a.CandPolicies != nil {
+	if len(a.CandPolicies) != 0 {
 		object["candPolicies"], err = json.Marshal(a.CandPolicies)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'candPolicies': %w", err)
@@ -1093,14 +1093,14 @@ func (a TransferPolicy) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
-	if a.MaxBitRateDl != nil {
+	if len(a.MaxBitRateDl) != 0 {
 		object["maxBitRateDl"], err = json.Marshal(a.MaxBitRateDl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'maxBitRateDl': %w", err)
 		}
 	}
 
-	if a.MaxBitRateUl != nil {
+	if len(a.MaxBitRateUl) != 0 {
 		object["maxBitRateUl"], err = json.Marshal(a.MaxBitRateUl)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'maxBitRateUl': %w", err)

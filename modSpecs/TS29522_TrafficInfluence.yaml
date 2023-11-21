@@ -105,6 +105,7 @@ components:
                         $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 externalGroupId:
                     $ref: TS29122_CommonData.yaml#/components/schemas/ExternalGroupId
                 gpsi:
@@ -132,6 +133,7 @@ components:
                         $ref: '#/components/schemas/SubscribedEvent'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 suppFeat:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 tempValidities:
@@ -146,18 +148,21 @@ components:
                         $ref: TS29122_CommonData.yaml#/components/schemas/FlowInfo
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 trafficRoutes:
                     description: Identifies the N6 traffic routing requirement.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 validGeoZoneIds:
                     description: Identifies a geographic zone that the AF request applies only to the traffic of UE(s) located in this specific zone.
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 websockNotifConfig:
                     $ref: TS29122_CommonData.yaml#/components/schemas/WebsockNotifConfig
             type: object
@@ -180,6 +185,7 @@ components:
                         $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 tempValidities:
                     items:
                         $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TemporalValidity
@@ -195,12 +201,14 @@ components:
                         $ref: TS29122_CommonData.yaml#/components/schemas/FlowInfo
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 trafficRoutes:
                     description: Identifies the N6 traffic routing requirement.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 validGeoZoneIds:
                     description: Identifies a geographic zone that the AF request applies only to the traffic of UE(s) located in this specific zone.
                     items:

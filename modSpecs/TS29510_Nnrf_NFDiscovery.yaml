@@ -84,11 +84,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 ipv6Addresses:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 lcHSupportInd:
                     default: false
                     type: boolean
@@ -122,11 +124,13 @@ components:
                         $ref: '#/components/schemas/NFService'
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nfSetIdList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nfSetRecoveryTimeList:
                     additionalProperties:
                         $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
@@ -141,6 +145,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nwdafInfo:
                     $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafInfo
                 olcHSupportInd:
@@ -163,11 +168,13 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 plmnList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 priority:
                     maximum: 65535
                     minimum: 0
@@ -179,11 +186,13 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scpDomains:
                     items:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scpInfo:
                     $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ScpInfo
                 serviceSetRecoveryTimeList:
@@ -196,6 +205,7 @@ components:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 smfInfo:
                     $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/SmfInfo
                 smfInfoList:
@@ -208,6 +218,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 udmInfo:
                     $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdmInfo
                 udmInfoList:
@@ -251,6 +262,7 @@ components:
                             type: string
                         minItems: 1
                         type: array
+                        x-go-type-skip-optional-pointer: true
                     minProperties: 1
                     type: object
                 allowedOperationsPerNfType:
@@ -259,6 +271,7 @@ components:
                             type: string
                         minItems: 1
                         type: array
+                        x-go-type-skip-optional-pointer: true
                     minProperties: 1
                     type: object
                 apiPrefix:
@@ -272,6 +285,7 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/DefaultNotificationSubscription
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 fqdn:
                     $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
                 ipEndPoints:
@@ -279,6 +293,7 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 load:
                     maximum: 100
                     minimum: 0
@@ -290,6 +305,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfServiceSetId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 nfServiceStatus:
                     $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFServiceStatus
                 oauth2Required:
@@ -299,6 +315,7 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 priority:
                     maximum: 65535
                     minimum: 0
@@ -310,6 +327,7 @@ components:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                 scheme:
                     $ref: TS29571_CommonData.yaml#/components/schemas/UriScheme
                 serviceInstanceId:
@@ -324,6 +342,7 @@ components:
                             $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorSpecificFeature
                         minItems: 1
                         type: array
+                        x-go-type-skip-optional-pointer: true
                     minProperties: 1
                     type: object
                 vendorId:
@@ -333,6 +352,7 @@ components:
                         $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFServiceVersion
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
             required:
                 - serviceInstanceId
                 - serviceName
@@ -446,6 +466,7 @@ paths:
                     minItems: 1
                     type: array
                     uniqueItems: true
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: FQDN of the requester NF
                   in: query
@@ -459,6 +480,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: Id of the PLMN of the target NF
                   in: query
                   name: target-plmn-list
@@ -469,6 +491,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: Id of the PLMN where the NF issuing the Discovery request is located
                   in: query
                   name: requester-plmn-list
@@ -494,6 +517,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: Slice info of the target NF
                   in: query
                   name: snssais
@@ -504,6 +528,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: Slice info of the requester NF
                   in: query
                   name: requester-snssais
@@ -514,6 +539,7 @@ paths:
                                 $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: PLMN specific Slice info of the target NF
                   in: query
                   name: plmn-specific-snssai-list
@@ -524,6 +550,7 @@ paths:
                                 $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: PLMN-specific slice info of the NF issuing the Discovery request
                   in: query
                   name: requester-plmn-specific-snssai-list
@@ -541,6 +568,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - in: query
                   name: smf-serving-area
@@ -633,6 +661,7 @@ paths:
                   schema:
                     pattern: ^[0-9]{1,4}$
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 - description: Group IDs of the NFs being discovered
                   explode: false
                   in: query
@@ -642,6 +671,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: Data network access identifiers of the NFs being discovered
                   explode: false
@@ -652,6 +682,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: list of PDU Session Type required to be supported by the target NF
                   explode: false
@@ -662,6 +693,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: Analytics event(s) requested to be supported by the Nnwdaf_AnalyticsInfo service
                   explode: false
@@ -672,8 +704,10 @@ paths:
                         description: |-
                             Possible values are - LOAD_LEVEL_INFORMATION: Represent the analytics of load level information of corresponding network slice. - NETWORK_PERFORMANCE: Represent the analytics of network performance information. - NF_LOAD: Indicates that the event subscribed is NF Load. - SERVICE_EXPERIENCE: Represent the analytics of service experience information of the specific applications. - UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION: Represent the analytics of UE communication. - QOS_SUSTAINABILITY: Represent the analytics of QoS sustainability information in the certain area.  - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour information. - USER_DATA_CONGESTION: Represent the analytics of the user data congestion in the certain area. - NSI_LOAD_LEVEL: Represent the analytics of Network Slice and the optionally associated Network Slice Instance.
                              (Original reference TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId)
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: Analytics event(s) requested to be supported by the Nnwdaf_EventsSubscription service.
                   explode: false
@@ -684,8 +718,10 @@ paths:
                         description: |-
                             Possible values are - SLICE_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice - NETWORK_PERFORMANCE: Indicates that the event subscribed is network performance information. - NF_LOAD: Indicates that the event subscribed is load level and status of one or several Network Functions. - SERVICE_EXPERIENCE: Indicates that the event subscribed is service experience. - UE_MOBILITY: Indicates that the event subscribed is UE mobility information. - UE_COMMUNICATION: Indicates that the event subscribed is UE communication information. - QOS_SUSTAINABILITY: Indicates that the event subscribed is QoS sustainability. - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour. - USER_DATA_CONGESTION: Indicates that the event subscribed is user data congestion information. - NSI_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice and the optionally associated Network Slice Instance
                              (Original reference TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent)
+                        x-go-type-skip-optional-pointer: true
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: Features required to be supported by the target NF
                   in: query
@@ -720,6 +756,7 @@ paths:
                   schema:
                     minimum: 1
                     type: integer
+                    x-go-type-skip-optional-pointer: true
                 - description: Features required to be supported by the target NF
                   explode: false
                   in: query
@@ -729,6 +766,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - content:
                     application/json:
@@ -766,6 +804,7 @@ paths:
                     application/json:
                         schema:
                             description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
+                            x-go-type-skip-optional-pointer: true
                   description: Requested client type served by the NF
                   in: query
                   name: client-type
@@ -773,6 +812,7 @@ paths:
                     application/json:
                         schema:
                             description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+                            x-go-type-skip-optional-pointer: true
                   description: LMF identification to be discovered
                   in: query
                   name: lmf-id
@@ -806,6 +846,7 @@ paths:
                         $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: Validator for conditional requests, as described in IETF RFC 7232, 3.2
                   in: header
@@ -826,6 +867,7 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
                             minItems: 1
                             type: array
+                            x-go-type-skip-optional-pointer: true
                   description: SNPN ID(s) of the NF instance issuing the Discovery request
                   in: query
                   name: requester-snpn-list
@@ -896,6 +938,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: IMSI of the requester UE to search for an appropriate NF (e.g. HSS)
                   in: query
@@ -956,6 +999,7 @@ paths:
                         type: string
                     minItems: 1
                     type: array
+                    x-go-type-skip-optional-pointer: true
                   style: form
                 - description: Address domain reachable through the SCP
                   in: query
@@ -1020,6 +1064,7 @@ paths:
                   schema:
                     pattern: ^[0-9]{5,15}$
                     type: string
+                    x-go-type-skip-optional-pointer: true
             responses:
                 "200":
                     content:

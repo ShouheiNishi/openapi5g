@@ -39,6 +39,10 @@ func RemoveOldFiles(rootDir string, lists []string) error {
 			}
 		}
 
+		if path == filepath.Join(rootDir, ".github") {
+			return filepath.SkipDir
+		}
+
 		if path == filepath.Join(rootDir, "specs") {
 			return filepath.SkipDir
 		}

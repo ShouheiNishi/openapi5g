@@ -6,6 +6,9 @@ import (
 	"context"
 	"testing"
 
+	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/stretchr/testify/assert"
+
 	TS29518_Namf_Communication "github.com/ShouheiNishi/openapi5g/amf/communication"
 	TS29518_Namf_EventExposure "github.com/ShouheiNishi/openapi5g/amf/event"
 	TS29518_Namf_Location "github.com/ShouheiNishi/openapi5g/amf/location"
@@ -46,8 +49,6 @@ import (
 	TS29504_Nudr_GroupIDmap "github.com/ShouheiNishi/openapi5g/udr/idmap"
 	TS29519_Policy_Data "github.com/ShouheiNishi/openapi5g/udr/policy"
 	TS29505_Subscription_Data "github.com/ShouheiNishi/openapi5g/udr/subscription"
-	"github.com/getkin/kin-openapi/openapi3"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestLoader(t *testing.T) {

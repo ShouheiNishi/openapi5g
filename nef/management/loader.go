@@ -8,6 +8,8 @@ import (
 	"path"
 	"sync"
 
+	"github.com/getkin/kin-openapi/openapi3"
+
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29122_CommonData"
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29122_CpProvisioning"
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29122_PfdManagement"
@@ -43,7 +45,6 @@ import (
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29571_CommonData"
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29572_Nlmf_Location"
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS32291_Nchf_ConvergedCharging"
-	"github.com/getkin/kin-openapi/openapi3"
 )
 
 var specTable map[string][]byte = map[string][]byte{

@@ -17,9 +17,14 @@ package writer
 import (
 	"bytes"
 	"fmt"
-	"go/format"
 	"os"
+
+	"golang.org/x/tools/imports"
 )
+
+func init() {
+	imports.LocalPrefix = "github.com/ShouheiNishi/openapi5g"
+}
 
 // Writer and formatter of golang source file
 type outputFile struct {
@@ -62,7 +67,7 @@ func NewOutputFile(fileName string, pkgName string, generatorName string, import
 
 func (o *outputFile) Close() (err error) {
 	// Output to file
-	out, err := format.Source(o.Bytes())
+	out, err := imports.Process(o.fileName, o.Bytes(), nil)
 	if err != nil {
 		return fmt.Errorf("format error: %w\n%s\n", err, o.String())
 	}

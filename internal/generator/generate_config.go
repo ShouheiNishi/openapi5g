@@ -20,8 +20,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 	"github.com/getkin/kin-openapi/openapi3"
+
+	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
 
 func GenerateConfig(rootDir string, spec string, doc *openapi3.T, deps []string) (outLists []string, err error) {

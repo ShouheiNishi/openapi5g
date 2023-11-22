@@ -15,13 +15,19 @@ import (
 
 // Defines values for AccessType.
 const (
-	N3GPPACCESS   AccessType = "3GPP_ACCESS"
-	NON3GPPACCESS AccessType = "NON_3GPP_ACCESS"
+	AccessTypeN3GPPACCESS   AccessType = "3GPP_ACCESS"
+	AccessTypeNON3GPPACCESS AccessType = "NON_3GPP_ACCESS"
 )
 
-// Defines values for AdditionalQosFlowInfo0.
+// Defines values for AccessTypeRm.
 const (
-	MORELIKELY AdditionalQosFlowInfo0 = "MORE_LIKELY"
+	AccessTypeRmN3GPPACCESS   AccessTypeRm = "3GPP_ACCESS"
+	AccessTypeRmNON3GPPACCESS AccessTypeRm = "NON_3GPP_ACCESS"
+)
+
+// Defines values for AdditionalQosFlowInfo.
+const (
+	MORELIKELY AdditionalQosFlowInfo = "MORE_LIKELY"
 )
 
 // Defines values for AuthStatus.
@@ -61,22 +67,42 @@ const (
 
 // Defines values for CoreNetworkType.
 const (
-	EPC  CoreNetworkType = "EPC"
-	N5GC CoreNetworkType = "5GC"
+	CoreNetworkTypeEPC  CoreNetworkType = "EPC"
+	CoreNetworkTypeN5GC CoreNetworkType = "5GC"
+)
+
+// Defines values for CoreNetworkTypeRm.
+const (
+	CoreNetworkTypeRmEPC  CoreNetworkTypeRm = "EPC"
+	CoreNetworkTypeRmN5GC CoreNetworkTypeRm = "5GC"
 )
 
 // Defines values for DlDataDeliveryStatus.
 const (
-	BUFFERED    DlDataDeliveryStatus = "BUFFERED"
-	DISCARDED   DlDataDeliveryStatus = "DISCARDED"
-	TRANSMITTED DlDataDeliveryStatus = "TRANSMITTED"
+	DlDataDeliveryStatusBUFFERED    DlDataDeliveryStatus = "BUFFERED"
+	DlDataDeliveryStatusDISCARDED   DlDataDeliveryStatus = "DISCARDED"
+	DlDataDeliveryStatusTRANSMITTED DlDataDeliveryStatus = "TRANSMITTED"
+)
+
+// Defines values for DlDataDeliveryStatusRm.
+const (
+	DlDataDeliveryStatusRmBUFFERED    DlDataDeliveryStatusRm = "BUFFERED"
+	DlDataDeliveryStatusRmDISCARDED   DlDataDeliveryStatusRm = "DISCARDED"
+	DlDataDeliveryStatusRmTRANSMITTED DlDataDeliveryStatusRm = "TRANSMITTED"
 )
 
 // Defines values for DnaiChangeType.
 const (
-	EARLY     DnaiChangeType = "EARLY"
-	EARLYLATE DnaiChangeType = "EARLY_LATE"
-	LATE      DnaiChangeType = "LATE"
+	DnaiChangeTypeEARLY     DnaiChangeType = "EARLY"
+	DnaiChangeTypeEARLYLATE DnaiChangeType = "EARLY_LATE"
+	DnaiChangeTypeLATE      DnaiChangeType = "LATE"
+)
+
+// Defines values for DnaiChangeTypeRm.
+const (
+	DnaiChangeTypeRmEARLY     DnaiChangeTypeRm = "EARLY"
+	DnaiChangeTypeRmEARLYLATE DnaiChangeTypeRm = "EARLY_LATE"
+	DnaiChangeTypeRmLATE      DnaiChangeTypeRm = "LATE"
 )
 
 // Defines values for EventForMdt.
@@ -126,8 +152,14 @@ const (
 
 // Defines values for LineType.
 const (
-	DSL LineType = "DSL"
-	PON LineType = "PON"
+	LineTypeDSL LineType = "DSL"
+	LineTypePON LineType = "PON"
+)
+
+// Defines values for LineTypeRm.
+const (
+	LineTypeRmDSL LineTypeRm = "DSL"
+	LineTypeRmPON LineTypeRm = "PON"
 )
 
 // Defines values for LoggingDurationMdt.
@@ -224,15 +256,21 @@ const (
 
 // Defines values for NotificationControl.
 const (
-	NOTREQUESTED NotificationControl = "NOT_REQUESTED"
-	REQUESTED    NotificationControl = "REQUESTED"
+	NotificationControlNOTREQUESTED NotificationControl = "NOT_REQUESTED"
+	NotificationControlREQUESTED    NotificationControl = "REQUESTED"
 )
 
-// Defines values for OdbPacketServices0.
+// Defines values for NotificationControlRm.
 const (
-	ALLPACKETSERVICES   OdbPacketServices0 = "ALL_PACKET_SERVICES"
-	ROAMERACCESSHPLMNAP OdbPacketServices0 = "ROAMER_ACCESS_HPLMN_AP"
-	ROAMERACCESSVPLMNAP OdbPacketServices0 = "ROAMER_ACCESS_VPLMN_AP"
+	NotificationControlRmNOTREQUESTED NotificationControlRm = "NOT_REQUESTED"
+	NotificationControlRmREQUESTED    NotificationControlRm = "REQUESTED"
+)
+
+// Defines values for OdbPacketServices.
+const (
+	ALLPACKETSERVICES   OdbPacketServices = "ALL_PACKET_SERVICES"
+	ROAMERACCESSHPLMNAP OdbPacketServices = "ROAMER_ACCESS_HPLMN_AP"
+	ROAMERACCESSVPLMNAP OdbPacketServices = "ROAMER_ACCESS_VPLMN_AP"
 )
 
 // Defines values for PatchOperation.
@@ -247,11 +285,20 @@ const (
 
 // Defines values for PduSessionType.
 const (
-	ETHERNET     PduSessionType = "ETHERNET"
-	IPV4         PduSessionType = "IPV4"
-	IPV4V6       PduSessionType = "IPV4V6"
-	IPV6         PduSessionType = "IPV6"
-	UNSTRUCTURED PduSessionType = "UNSTRUCTURED"
+	PduSessionTypeETHERNET     PduSessionType = "ETHERNET"
+	PduSessionTypeIPV4         PduSessionType = "IPV4"
+	PduSessionTypeIPV4V6       PduSessionType = "IPV4V6"
+	PduSessionTypeIPV6         PduSessionType = "IPV6"
+	PduSessionTypeUNSTRUCTURED PduSessionType = "UNSTRUCTURED"
+)
+
+// Defines values for PduSessionTypeRm.
+const (
+	PduSessionTypeRmETHERNET     PduSessionTypeRm = "ETHERNET"
+	PduSessionTypeRmIPV4         PduSessionTypeRm = "IPV4"
+	PduSessionTypeRmIPV4V6       PduSessionTypeRm = "IPV4V6"
+	PduSessionTypeRmIPV6         PduSessionTypeRm = "IPV6"
+	PduSessionTypeRmUNSTRUCTURED PduSessionTypeRm = "UNSTRUCTURED"
 )
 
 // Defines values for PositioningMethodMdt.
@@ -262,14 +309,26 @@ const (
 
 // Defines values for PreemptionCapability.
 const (
-	MAYPREEMPT PreemptionCapability = "MAY_PREEMPT"
-	NOTPREEMPT PreemptionCapability = "NOT_PREEMPT"
+	PreemptionCapabilityMAYPREEMPT PreemptionCapability = "MAY_PREEMPT"
+	PreemptionCapabilityNOTPREEMPT PreemptionCapability = "NOT_PREEMPT"
+)
+
+// Defines values for PreemptionCapabilityRm.
+const (
+	PreemptionCapabilityRmMAYPREEMPT PreemptionCapabilityRm = "MAY_PREEMPT"
+	PreemptionCapabilityRmNOTPREEMPT PreemptionCapabilityRm = "NOT_PREEMPT"
 )
 
 // Defines values for PreemptionVulnerability.
 const (
-	NOTPREEMPTABLE PreemptionVulnerability = "NOT_PREEMPTABLE"
-	PREEMPTABLE    PreemptionVulnerability = "PREEMPTABLE"
+	PreemptionVulnerabilityNOTPREEMPTABLE PreemptionVulnerability = "NOT_PREEMPTABLE"
+	PreemptionVulnerabilityPREEMPTABLE    PreemptionVulnerability = "PREEMPTABLE"
+)
+
+// Defines values for PreemptionVulnerabilityRm.
+const (
+	PreemptionVulnerabilityRmNOTPREEMPTABLE PreemptionVulnerabilityRm = "NOT_PREEMPTABLE"
+	PreemptionVulnerabilityRmPREEMPTABLE    PreemptionVulnerabilityRm = "PREEMPTABLE"
 )
 
 // Defines values for PresenceState.
@@ -282,34 +341,66 @@ const (
 
 // Defines values for QosResourceType.
 const (
-	CRITICALGBR    QosResourceType = "CRITICAL_GBR"
-	NONCRITICALGBR QosResourceType = "NON_CRITICAL_GBR"
-	NONGBR         QosResourceType = "NON_GBR"
+	QosResourceTypeCRITICALGBR    QosResourceType = "CRITICAL_GBR"
+	QosResourceTypeNONCRITICALGBR QosResourceType = "NON_CRITICAL_GBR"
+	QosResourceTypeNONGBR         QosResourceType = "NON_GBR"
+)
+
+// Defines values for QosResourceTypeRm.
+const (
+	QosResourceTypeRmCRITICALGBR    QosResourceTypeRm = "CRITICAL_GBR"
+	QosResourceTypeRmNONCRITICALGBR QosResourceTypeRm = "NON_CRITICAL_GBR"
+	QosResourceTypeRmNONGBR         QosResourceTypeRm = "NON_GBR"
 )
 
 // Defines values for RatType.
 const (
-	EUTRA         RatType = "EUTRA"
-	EUTRAU        RatType = "EUTRA_U"
-	GERA          RatType = "GERA"
-	LTEM          RatType = "LTE-M"
-	NBIOT         RatType = "NBIOT"
-	NR            RatType = "NR"
-	NRU           RatType = "NR_U"
-	TRUSTEDN3GA   RatType = "TRUSTED_N3GA"
-	TRUSTEDWLAN   RatType = "TRUSTED_WLAN"
-	UTRA          RatType = "UTRA"
-	VIRTUAL       RatType = "VIRTUAL"
-	WIRELINE      RatType = "WIRELINE"
-	WIRELINEBBF   RatType = "WIRELINE_BBF"
-	WIRELINECABLE RatType = "WIRELINE_CABLE"
-	WLAN          RatType = "WLAN"
+	RatTypeEUTRA         RatType = "EUTRA"
+	RatTypeEUTRAU        RatType = "EUTRA_U"
+	RatTypeGERA          RatType = "GERA"
+	RatTypeLTEM          RatType = "LTE-M"
+	RatTypeNBIOT         RatType = "NBIOT"
+	RatTypeNR            RatType = "NR"
+	RatTypeNRU           RatType = "NR_U"
+	RatTypeTRUSTEDN3GA   RatType = "TRUSTED_N3GA"
+	RatTypeTRUSTEDWLAN   RatType = "TRUSTED_WLAN"
+	RatTypeUTRA          RatType = "UTRA"
+	RatTypeVIRTUAL       RatType = "VIRTUAL"
+	RatTypeWIRELINE      RatType = "WIRELINE"
+	RatTypeWIRELINEBBF   RatType = "WIRELINE_BBF"
+	RatTypeWIRELINECABLE RatType = "WIRELINE_CABLE"
+	RatTypeWLAN          RatType = "WLAN"
+)
+
+// Defines values for RatTypeRm.
+const (
+	RatTypeRmEUTRA         RatTypeRm = "EUTRA"
+	RatTypeRmEUTRAU        RatTypeRm = "EUTRA_U"
+	RatTypeRmGERA          RatTypeRm = "GERA"
+	RatTypeRmLTEM          RatTypeRm = "LTE-M"
+	RatTypeRmNBIOT         RatTypeRm = "NBIOT"
+	RatTypeRmNR            RatTypeRm = "NR"
+	RatTypeRmNRU           RatTypeRm = "NR_U"
+	RatTypeRmTRUSTEDN3GA   RatTypeRm = "TRUSTED_N3GA"
+	RatTypeRmTRUSTEDWLAN   RatTypeRm = "TRUSTED_WLAN"
+	RatTypeRmUTRA          RatTypeRm = "UTRA"
+	RatTypeRmVIRTUAL       RatTypeRm = "VIRTUAL"
+	RatTypeRmWIRELINE      RatTypeRm = "WIRELINE"
+	RatTypeRmWIRELINEBBF   RatTypeRm = "WIRELINE_BBF"
+	RatTypeRmWIRELINECABLE RatTypeRm = "WIRELINE_CABLE"
+	RatTypeRmWLAN          RatTypeRm = "WLAN"
 )
 
 // Defines values for ReflectiveQoSAttribute.
 const (
-	NORQOS ReflectiveQoSAttribute = "NO_RQOS"
-	RQOS   ReflectiveQoSAttribute = "RQOS"
+	ReflectiveQoSAttributeNORQOS ReflectiveQoSAttribute = "NO_RQOS"
+	ReflectiveQoSAttributeRQOS   ReflectiveQoSAttribute = "RQOS"
+)
+
+// Defines values for ReflectiveQoSAttributeRm.
+const (
+	ReflectiveQoSAttributeRmNORQOS ReflectiveQoSAttributeRm = "NO_RQOS"
+	ReflectiveQoSAttributeRmRQOS   ReflectiveQoSAttributeRm = "RQOS"
 )
 
 // Defines values for ReportAmountMdt.
@@ -376,8 +467,14 @@ const (
 
 // Defines values for RestrictionType.
 const (
-	ALLOWEDAREAS    RestrictionType = "ALLOWED_AREAS"
-	NOTALLOWEDAREAS RestrictionType = "NOT_ALLOWED_AREAS"
+	RestrictionTypeALLOWEDAREAS    RestrictionType = "ALLOWED_AREAS"
+	RestrictionTypeNOTALLOWEDAREAS RestrictionType = "NOT_ALLOWED_AREAS"
+)
+
+// Defines values for RestrictionTypeRm.
+const (
+	RestrictionTypeRmALLOWEDAREAS    RestrictionTypeRm = "ALLOWED_AREAS"
+	RestrictionTypeRmNOTALLOWEDAREAS RestrictionTypeRm = "NOT_ALLOWED_AREAS"
 )
 
 // Defines values for RoamingOdb.
@@ -388,9 +485,16 @@ const (
 
 // Defines values for ScheduledCommunicationType.
 const (
-	BIDIRECTIONAL ScheduledCommunicationType = "BIDIRECTIONAL"
-	DOWNLINKONLY  ScheduledCommunicationType = "DOWNLINK_ONLY"
-	UPLINKONLY    ScheduledCommunicationType = "UPLINK_ONLY"
+	ScheduledCommunicationTypeBIDIRECTIONAL ScheduledCommunicationType = "BIDIRECTIONAL"
+	ScheduledCommunicationTypeDOWNLINKONLY  ScheduledCommunicationType = "DOWNLINK_ONLY"
+	ScheduledCommunicationTypeUPLINKONLY    ScheduledCommunicationType = "UPLINK_ONLY"
+)
+
+// Defines values for ScheduledCommunicationTypeRm.
+const (
+	ScheduledCommunicationTypeRmBIDIRECTIONAL ScheduledCommunicationTypeRm = "BIDIRECTIONAL"
+	ScheduledCommunicationTypeRmDOWNLINKONLY  ScheduledCommunicationTypeRm = "DOWNLINK_ONLY"
+	ScheduledCommunicationTypeRmUPLINKONLY    ScheduledCommunicationTypeRm = "UPLINK_ONLY"
 )
 
 // Defines values for SensorMeasurement.
@@ -407,34 +511,66 @@ const (
 
 // Defines values for SscMode.
 const (
-	SSCMODE1 SscMode = "SSC_MODE_1"
-	SSCMODE2 SscMode = "SSC_MODE_2"
-	SSCMODE3 SscMode = "SSC_MODE_3"
+	SscModeSSCMODE1 SscMode = "SSC_MODE_1"
+	SscModeSSCMODE2 SscMode = "SSC_MODE_2"
+	SscModeSSCMODE3 SscMode = "SSC_MODE_3"
+)
+
+// Defines values for SscModeRm.
+const (
+	SscModeRmSSCMODE1 SscModeRm = "SSC_MODE_1"
+	SscModeRmSSCMODE2 SscModeRm = "SSC_MODE_2"
+	SscModeRmSSCMODE3 SscModeRm = "SSC_MODE_3"
 )
 
 // Defines values for StationaryIndication.
 const (
-	MOBILE     StationaryIndication = "MOBILE"
-	STATIONARY StationaryIndication = "STATIONARY"
+	StationaryIndicationMOBILE     StationaryIndication = "MOBILE"
+	StationaryIndicationSTATIONARY StationaryIndication = "STATIONARY"
+)
+
+// Defines values for StationaryIndicationRm.
+const (
+	StationaryIndicationRmMOBILE     StationaryIndicationRm = "MOBILE"
+	StationaryIndicationRmSTATIONARY StationaryIndicationRm = "STATIONARY"
 )
 
 // Defines values for TraceDepth.
 const (
-	MAXIMUM                  TraceDepth = "MAXIMUM"
-	MAXIMUMWOVENDOREXTENSION TraceDepth = "MAXIMUM_WO_VENDOR_EXTENSION"
-	MEDIUM                   TraceDepth = "MEDIUM"
-	MEDIUMWOVENDOREXTENSION  TraceDepth = "MEDIUM_WO_VENDOR_EXTENSION"
-	MINIMUM                  TraceDepth = "MINIMUM"
-	MINIMUMWOVENDOREXTENSION TraceDepth = "MINIMUM_WO_VENDOR_EXTENSION"
+	TraceDepthMAXIMUM                  TraceDepth = "MAXIMUM"
+	TraceDepthMAXIMUMWOVENDOREXTENSION TraceDepth = "MAXIMUM_WO_VENDOR_EXTENSION"
+	TraceDepthMEDIUM                   TraceDepth = "MEDIUM"
+	TraceDepthMEDIUMWOVENDOREXTENSION  TraceDepth = "MEDIUM_WO_VENDOR_EXTENSION"
+	TraceDepthMINIMUM                  TraceDepth = "MINIMUM"
+	TraceDepthMINIMUMWOVENDOREXTENSION TraceDepth = "MINIMUM_WO_VENDOR_EXTENSION"
+)
+
+// Defines values for TraceDepthRm.
+const (
+	TraceDepthRmMAXIMUM                  TraceDepthRm = "MAXIMUM"
+	TraceDepthRmMAXIMUMWOVENDOREXTENSION TraceDepthRm = "MAXIMUM_WO_VENDOR_EXTENSION"
+	TraceDepthRmMEDIUM                   TraceDepthRm = "MEDIUM"
+	TraceDepthRmMEDIUMWOVENDOREXTENSION  TraceDepthRm = "MEDIUM_WO_VENDOR_EXTENSION"
+	TraceDepthRmMINIMUM                  TraceDepthRm = "MINIMUM"
+	TraceDepthRmMINIMUMWOVENDOREXTENSION TraceDepthRm = "MINIMUM_WO_VENDOR_EXTENSION"
 )
 
 // Defines values for TrafficProfile.
 const (
-	DUALTRANSDLFIRST TrafficProfile = "DUAL_TRANS_DL_FIRST"
-	DUALTRANSULFIRST TrafficProfile = "DUAL_TRANS_UL_FIRST"
-	MULTITRANS       TrafficProfile = "MULTI_TRANS"
-	SINGLETRANSDL    TrafficProfile = "SINGLE_TRANS_DL"
-	SINGLETRANSUL    TrafficProfile = "SINGLE_TRANS_UL"
+	TrafficProfileDUALTRANSDLFIRST TrafficProfile = "DUAL_TRANS_DL_FIRST"
+	TrafficProfileDUALTRANSULFIRST TrafficProfile = "DUAL_TRANS_UL_FIRST"
+	TrafficProfileMULTITRANS       TrafficProfile = "MULTI_TRANS"
+	TrafficProfileSINGLETRANSDL    TrafficProfile = "SINGLE_TRANS_DL"
+	TrafficProfileSINGLETRANSUL    TrafficProfile = "SINGLE_TRANS_UL"
+)
+
+// Defines values for TrafficProfileRm.
+const (
+	TrafficProfileRmDUALTRANSDLFIRST TrafficProfileRm = "DUAL_TRANS_DL_FIRST"
+	TrafficProfileRmDUALTRANSULFIRST TrafficProfileRm = "DUAL_TRANS_UL_FIRST"
+	TrafficProfileRmMULTITRANS       TrafficProfileRm = "MULTI_TRANS"
+	TrafficProfileRmSINGLETRANSDL    TrafficProfileRm = "SINGLE_TRANS_DL"
+	TrafficProfileRmSINGLETRANSUL    TrafficProfileRm = "SINGLE_TRANS_UL"
 )
 
 // Defines values for TransportProtocol.
@@ -456,11 +592,25 @@ const (
 	UpConfidentialityREQUIRED  UpConfidentiality = "REQUIRED"
 )
 
+// Defines values for UpConfidentialityRm.
+const (
+	UpConfidentialityRmNOTNEEDED UpConfidentialityRm = "NOT_NEEDED"
+	UpConfidentialityRmPREFERRED UpConfidentialityRm = "PREFERRED"
+	UpConfidentialityRmREQUIRED  UpConfidentialityRm = "REQUIRED"
+)
+
 // Defines values for UpIntegrity.
 const (
 	UpIntegrityNOTNEEDED UpIntegrity = "NOT_NEEDED"
 	UpIntegrityPREFERRED UpIntegrity = "PREFERRED"
 	UpIntegrityREQUIRED  UpIntegrity = "REQUIRED"
+)
+
+// Defines values for UpIntegrityRm.
+const (
+	UpIntegrityRmNOTNEEDED UpIntegrityRm = "NOT_NEEDED"
+	UpIntegrityRmPREFERRED UpIntegrityRm = "PREFERRED"
+	UpIntegrityRmREQUIRED  UpIntegrityRm = "REQUIRED"
 )
 
 // Defines values for UriScheme.
@@ -488,9 +638,7 @@ type N5QiRm = int
 type AccessType string
 
 // AccessTypeRm defines model for AccessTypeRm.
-type AccessTypeRm struct {
-	union json.RawMessage
-}
+type AccessTypeRm string
 
 // AcsInfo defines model for AcsInfo.
 type AcsInfo struct {
@@ -502,16 +650,14 @@ type AcsInfo struct {
 
 // AcsInfoRm defines model for AcsInfoRm.
 type AcsInfoRm struct {
-	union json.RawMessage
+	AcsIpv4Addr          Ipv4Addr               `json:"acsIpv4Addr,omitempty"`
+	AcsIpv6Addr          *Ipv6Addr              `json:"acsIpv6Addr,omitempty"`
+	AcsUrl               *Uri                   `json:"acsUrl,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AdditionalQosFlowInfo defines model for AdditionalQosFlowInfo.
-type AdditionalQosFlowInfo struct {
-	union json.RawMessage
-}
-
-// AdditionalQosFlowInfo0 defines model for AdditionalQosFlowInfo.0.
-type AdditionalQosFlowInfo0 string
+type AdditionalQosFlowInfo string
 
 // Ambr defines model for Ambr.
 type Ambr struct {
@@ -522,7 +668,9 @@ type Ambr struct {
 
 // AmbrRm defines model for AmbrRm.
 type AmbrRm struct {
-	union json.RawMessage
+	Downlink             BitRate                `json:"downlink"`
+	Uplink               BitRate                `json:"uplink"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AmfId defines model for AmfId.
@@ -599,7 +747,12 @@ type ArpPriorityLevelRm = int
 
 // ArpRm defines model for ArpRm.
 type ArpRm struct {
-	union json.RawMessage
+	PreemptCap  PreemptionCapability    `json:"preemptCap"`
+	PreemptVuln PreemptionVulnerability `json:"preemptVuln"`
+
+	// PriorityLevel nullable true shall not be used for this attribute
+	PriorityLevel        *ArpPriorityLevel      `json:"priorityLevel"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // Atom defines model for Atom.
@@ -644,7 +797,10 @@ type BatteryIndication struct {
 
 // BatteryIndicationRm defines model for BatteryIndicationRm.
 type BatteryIndicationRm struct {
-	union json.RawMessage
+	BatteryInd           *bool                  `json:"batteryInd,omitempty"`
+	RechargeableInd      *bool                  `json:"rechargeableInd,omitempty"`
+	ReplaceableInd       *bool                  `json:"replaceableInd,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // Binary defines model for Binary.
@@ -725,9 +881,7 @@ type ComplexQuery struct {
 type CoreNetworkType string
 
 // CoreNetworkTypeRm defines model for CoreNetworkTypeRm.
-type CoreNetworkTypeRm struct {
-	union json.RawMessage
-}
+type CoreNetworkTypeRm string
 
 // Date defines model for Date.
 type Date = openapi_types.Date
@@ -762,10 +916,8 @@ type DiameterIdentityRm = string
 // DlDataDeliveryStatus Possible values are - BUFFERED: The first downlink data is buffered with extended buffering matching the source of the downlink traffic. - TRANSMITTED: The first downlink data matching the source of the downlink traffic is transmitted after previous buffering or discarding of corresponding packet(s) because the UE of the PDU Session becomes ACTIVE, and buffered data can be delivered to UE. - DISCARDED: The first downlink data matching the source of the downlink traffic is discarded because the Extended Buffering time, as determined by the SMF, expires or the amount of downlink data to be buffered is exceeded.
 type DlDataDeliveryStatus string
 
-// DlDataDeliveryStatusRm defines model for DlDataDeliveryStatusRm.
-type DlDataDeliveryStatusRm struct {
-	union json.RawMessage
-}
+// DlDataDeliveryStatusRm Possible values are - BUFFERED: The first downlink data is buffered with extended buffering matching the source of the downlink traffic. - TRANSMITTED: The first downlink data matching the source of the downlink traffic is transmitted after previous buffering or discarding of corresponding packet(s) because the UE of the PDU Session becomes ACTIVE, and buffered data can be delivered to UE. - DISCARDED: The first downlink data matching the source of the downlink traffic is discarded because the Extended Buffering time, as determined by the SMF, expires or the amount of downlink data to be buffered is exceeded.
+type DlDataDeliveryStatusRm string
 
 // Dnai defines model for Dnai.
 type Dnai = string
@@ -773,10 +925,8 @@ type Dnai = string
 // DnaiChangeType Possible values are - EARLY: Early notification of UP path reconfiguration. - EARLY_LATE: Early and late notification of UP path reconfiguration. This value shall only be present in the subscription to the DNAI change event. - LATE: Late notification of UP path reconfiguration.
 type DnaiChangeType string
 
-// DnaiChangeTypeRm defines model for DnaiChangeTypeRm.
-type DnaiChangeTypeRm struct {
-	union json.RawMessage
-}
+// DnaiChangeTypeRm Possible values are - EARLY: Early notification of UP path reconfiguration. - EARLY_LATE: Early and late notification of UP path reconfiguration. This value shall only be present in the subscription to the DNAI change event. - LATE: Late notification of UP path reconfiguration.
+type DnaiChangeTypeRm string
 
 // DnaiRm defines model for DnaiRm.
 type DnaiRm = string
@@ -839,7 +989,10 @@ type Ecgi struct {
 
 // EcgiRm defines model for EcgiRm.
 type EcgiRm struct {
-	union json.RawMessage
+	EutraCellId          EutraCellId            `json:"eutraCellId"`
+	Nid                  Nid                    `json:"nid,omitempty"`
+	PlmnId               PlmnId                 `json:"plmnId"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // EutraCellId defines model for EutraCellId.
@@ -865,7 +1018,17 @@ type EutraLocation struct {
 
 // EutraLocationRm defines model for EutraLocationRm.
 type EutraLocationRm struct {
-	union json.RawMessage
+	AgeOfLocationInformation *int                   `json:"ageOfLocationInformation,omitempty"`
+	Ecgi                     Ecgi                   `json:"ecgi"`
+	GeodeticInformation      string                 `json:"geodeticInformation,omitempty"`
+	GeographicalInformation  string                 `json:"geographicalInformation,omitempty"`
+	GlobalENbId              *GlobalRanNodeId       `json:"globalENbId,omitempty"`
+	GlobalNgenbId            *GlobalRanNodeId       `json:"globalNgenbId,omitempty"`
+	IgnoreEcgi               *bool                  `json:"ignoreEcgi,omitempty"`
+	IgnoreTai                *bool                  `json:"ignoreTai,omitempty"`
+	Tai                      Tai                    `json:"tai"`
+	UeLocationTimestamp      *DateTime              `json:"ueLocationTimestamp,omitempty"`
+	AdditionalProperties     map[string]interface{} `json:"-"`
 }
 
 // EventForMdt defines model for EventForMdt.
@@ -970,7 +1133,9 @@ type Guami = f5gcModels.Guami
 
 // GuamiRm defines model for GuamiRm.
 type GuamiRm struct {
-	union json.RawMessage
+	AmfId                AmfId                  `json:"amfId"`
+	PlmnId               PlmnIdNid              `json:"plmnId"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // HalTemplate defines model for HalTemplate.
@@ -996,7 +1161,8 @@ type HfcNodeId struct {
 
 // HfcNodeIdRm defines model for HfcNodeIdRm.
 type HfcNodeIdRm struct {
-	union json.RawMessage
+	HfcNId               HfcNId                 `json:"hfcNId"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // HttpMethod defines model for HttpMethod.
@@ -1061,10 +1227,8 @@ type LcsServiceAuth string
 // LineType Possible values are - DSL: Identifies a DSL line - PON: Identifies a PON line
 type LineType string
 
-// LineTypeRm defines model for LineTypeRm.
-type LineTypeRm struct {
-	union json.RawMessage
-}
+// LineTypeRm Possible values are - DSL: Identifies a DSL line - PON: Identifies a PON line
+type LineTypeRm string
 
 // Link defines model for Link.
 type Link struct {
@@ -1231,7 +1395,10 @@ type Ncgi struct {
 
 // NcgiRm defines model for NcgiRm.
 type NcgiRm struct {
-	union json.RawMessage
+	Nid                  Nid                    `json:"nid,omitempty"`
+	NrCellId             NrCellId               `json:"nrCellId"`
+	PlmnId               PlmnId                 `json:"plmnId"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NetworkId defines model for NetworkId.
@@ -1284,9 +1451,7 @@ type NonDynamic5Qi struct {
 type NotificationControl string
 
 // NotificationControlRm defines model for NotificationControlRm.
-type NotificationControlRm struct {
-	union json.RawMessage
-}
+type NotificationControlRm string
 
 // NotifyItem defines model for NotifyItem.
 type NotifyItem struct {
@@ -1316,7 +1481,15 @@ type NrLocation struct {
 
 // NrLocationRm defines model for NrLocationRm.
 type NrLocationRm struct {
-	union json.RawMessage
+	AgeOfLocationInformation *int                   `json:"ageOfLocationInformation,omitempty"`
+	GeodeticInformation      string                 `json:"geodeticInformation,omitempty"`
+	GeographicalInformation  string                 `json:"geographicalInformation,omitempty"`
+	GlobalGnbId              *GlobalRanNodeId       `json:"globalGnbId,omitempty"`
+	IgnoreNcgi               *bool                  `json:"ignoreNcgi,omitempty"`
+	Ncgi                     Ncgi                   `json:"ncgi"`
+	Tai                      Tai                    `json:"tai"`
+	UeLocationTimestamp      *DateTime              `json:"ueLocationTimestamp,omitempty"`
+	AdditionalProperties     map[string]interface{} `json:"-"`
 }
 
 // NrV2xAuth defines model for NrV2xAuth.
@@ -1337,7 +1510,11 @@ type NssaaStatus struct {
 
 // NssaaStatusRm defines model for NssaaStatusRm.
 type NssaaStatusRm struct {
-	union json.RawMessage
+	Snssai Snssai `json:"snssai"`
+
+	// Status Possible values are - "EAP_SUCCESS": The NSSAA status is EAP-Success. - "EAP_FAILURE": The NSSAA status is EAP-Failure. - "PENDING": The NSSAA status is Pending.
+	Status               AuthStatus             `json:"status"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NullValue defines model for NullValue.
@@ -1350,12 +1527,7 @@ type OdbData struct {
 }
 
 // OdbPacketServices defines model for OdbPacketServices.
-type OdbPacketServices struct {
-	union json.RawMessage
-}
-
-// OdbPacketServices0 defines model for OdbPacketServices.0.
-type OdbPacketServices0 string
+type OdbPacketServices string
 
 // PacketDelBudget defines model for PacketDelBudget.
 type PacketDelBudget = int
@@ -1422,9 +1594,7 @@ type PduSessionId = int
 type PduSessionType string
 
 // PduSessionTypeRm defines model for PduSessionTypeRm.
-type PduSessionTypeRm struct {
-	union json.RawMessage
-}
+type PduSessionTypeRm string
 
 // Pei defines model for Pei.
 type Pei = string
@@ -1451,7 +1621,9 @@ type PlmnIdNid struct {
 
 // PlmnIdRm defines model for PlmnIdRm.
 type PlmnIdRm struct {
-	union json.RawMessage
+	Mcc                  Mcc                    `json:"mcc"`
+	Mnc                  Mnc                    `json:"mnc"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // PositioningMethodMdt defines model for PositioningMethodMdt.
@@ -1461,17 +1633,13 @@ type PositioningMethodMdt string
 type PreemptionCapability string
 
 // PreemptionCapabilityRm defines model for PreemptionCapabilityRm.
-type PreemptionCapabilityRm struct {
-	union json.RawMessage
-}
+type PreemptionCapabilityRm string
 
 // PreemptionVulnerability defines model for PreemptionVulnerability.
 type PreemptionVulnerability string
 
 // PreemptionVulnerabilityRm defines model for PreemptionVulnerabilityRm.
-type PreemptionVulnerabilityRm struct {
-	union json.RawMessage
-}
+type PreemptionVulnerabilityRm string
 
 // PresenceInfo defines model for PresenceInfo.
 type PresenceInfo struct {
@@ -1550,17 +1718,13 @@ type QosFlowUsageReport struct {
 type QosResourceType string
 
 // QosResourceTypeRm defines model for QosResourceTypeRm.
-type QosResourceTypeRm struct {
-	union json.RawMessage
-}
+type QosResourceTypeRm string
 
 // RatType defines model for RatType.
 type RatType string
 
 // RatTypeRm defines model for RatTypeRm.
-type RatTypeRm struct {
-	union json.RawMessage
-}
+type RatTypeRm string
 
 // RatingGroup defines model for RatingGroup.
 type RatingGroup = Uint32
@@ -1581,16 +1745,15 @@ type RefToBinaryData struct {
 
 // RefToBinaryDataRm defines model for RefToBinaryDataRm.
 type RefToBinaryDataRm struct {
-	union json.RawMessage
+	ContentId            string                 `json:"contentId"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // ReflectiveQoSAttribute defines model for ReflectiveQoSAttribute.
 type ReflectiveQoSAttribute string
 
 // ReflectiveQoSAttributeRm defines model for ReflectiveQoSAttributeRm.
-type ReflectiveQoSAttributeRm struct {
-	union json.RawMessage
-}
+type ReflectiveQoSAttributeRm string
 
 // ReportAmountMdt defines model for ReportAmountMdt.
 type ReportAmountMdt string
@@ -1617,9 +1780,7 @@ type ReportingTrigger string
 type RestrictionType string
 
 // RestrictionTypeRm defines model for RestrictionTypeRm.
-type RestrictionTypeRm struct {
-	union json.RawMessage
-}
+type RestrictionTypeRm string
 
 // RfspIndex defines model for RfspIndex.
 type RfspIndex = int
@@ -1631,9 +1792,7 @@ type RfspIndexRm = int
 type RgWirelineCharacteristics = Bytes
 
 // RgWirelineCharacteristicsRm defines model for RgWirelineCharacteristicsRm.
-type RgWirelineCharacteristicsRm struct {
-	union json.RawMessage
-}
+type RgWirelineCharacteristicsRm = []byte
 
 // RoamingOdb defines model for RoamingOdb.
 type RoamingOdb string
@@ -1683,16 +1842,22 @@ type ScheduledCommunicationTime struct {
 
 // ScheduledCommunicationTimeRm defines model for ScheduledCommunicationTimeRm.
 type ScheduledCommunicationTimeRm struct {
-	union json.RawMessage
+	// DaysOfWeek Identifies the day(s) of the week. If absent, it indicates every day of the week.
+	DaysOfWeek []DayOfWeek `json:"daysOfWeek,omitempty"`
+
+	// TimeOfDayEnd String with format partial-time or full-time as defined in clause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind UTC).
+	TimeOfDayEnd *TimeOfDay `json:"timeOfDayEnd,omitempty"`
+
+	// TimeOfDayStart String with format partial-time or full-time as defined in clause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind UTC).
+	TimeOfDayStart       *TimeOfDay             `json:"timeOfDayStart,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // ScheduledCommunicationType defines model for ScheduledCommunicationType.
 type ScheduledCommunicationType string
 
 // ScheduledCommunicationTypeRm defines model for ScheduledCommunicationTypeRm.
-type ScheduledCommunicationTypeRm struct {
-	union json.RawMessage
-}
+type ScheduledCommunicationTypeRm string
 
 // SdRange A range of SDs (Slice Differentiators)
 type SdRange struct {
@@ -1775,17 +1940,13 @@ type SnssaiExtensionWildcardSd bool
 type SscMode string
 
 // SscModeRm defines model for SscModeRm.
-type SscModeRm struct {
-	union json.RawMessage
-}
+type SscModeRm string
 
 // StationaryIndication Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
 type StationaryIndication string
 
-// StationaryIndicationRm defines model for StationaryIndicationRm.
-type StationaryIndicationRm struct {
-	union json.RawMessage
-}
+// StationaryIndicationRm Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
+type StationaryIndicationRm string
 
 // StnSr defines model for StnSr.
 type StnSr = string
@@ -1835,7 +1996,10 @@ type Tai struct {
 
 // TaiRm defines model for TaiRm.
 type TaiRm struct {
-	union json.RawMessage
+	Nid                  Nid                    `json:"nid,omitempty"`
+	PlmnId               PlmnId                 `json:"plmnId"`
+	Tac                  Tac                    `json:"tac"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // TimeOfDay String with format partial-time or full-time as defined in clause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind UTC).
@@ -1857,7 +2021,10 @@ type TnapId struct {
 
 // TnapIdRm defines model for TnapIdRm.
 type TnapIdRm struct {
-	union json.RawMessage
+	BssId                *string                `json:"bssId,omitempty"`
+	CivicAddress         *Bytes                 `json:"civicAddress,omitempty"`
+	SsId                 *string                `json:"ssId,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // TngfId defines model for TngfId.
@@ -1879,17 +2046,13 @@ type TraceData struct {
 type TraceDepth string
 
 // TraceDepthRm defines model for TraceDepthRm.
-type TraceDepthRm struct {
-	union json.RawMessage
-}
+type TraceDepthRm string
 
 // TrafficProfile Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
 type TrafficProfile string
 
-// TrafficProfileRm defines model for TrafficProfileRm.
-type TrafficProfileRm struct {
-	union json.RawMessage
-}
+// TrafficProfileRm Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
+type TrafficProfileRm string
 
 // TransportProtocol Possible values are - UDP: User Datagram Protocol. - TCP: Transmission Control Protocol.
 type TransportProtocol string
@@ -1904,7 +2067,10 @@ type TwapId struct {
 
 // TwapIdRm defines model for TwapIdRm.
 type TwapIdRm struct {
-	union json.RawMessage
+	BssId                *string                `json:"bssId,omitempty"`
+	CivicAddress         *Bytes                 `json:"civicAddress,omitempty"`
+	SsId                 string                 `json:"ssId"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // TypeAllocationCode defines model for TypeAllocationCode.
@@ -1941,17 +2107,13 @@ type UintegerRm = uint
 type UpConfidentiality string
 
 // UpConfidentialityRm defines model for UpConfidentialityRm.
-type UpConfidentialityRm struct {
-	union json.RawMessage
-}
+type UpConfidentialityRm string
 
 // UpIntegrity defines model for UpIntegrity.
 type UpIntegrity string
 
 // UpIntegrityRm defines model for UpIntegrityRm.
-type UpIntegrityRm struct {
-	union json.RawMessage
-}
+type UpIntegrityRm string
 
 // UpSecurity defines model for UpSecurity.
 type UpSecurity struct {
@@ -1962,7 +2124,9 @@ type UpSecurity struct {
 
 // UpSecurityRm defines model for UpSecurityRm.
 type UpSecurityRm struct {
-	union json.RawMessage
+	UpConfid             UpConfidentiality      `json:"upConfid"`
+	UpIntegr             UpIntegrity            `json:"upIntegr"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // Uri defines model for Uri.
@@ -2195,6 +2359,104 @@ func (a AcsInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for AcsInfoRm. Returns the specified
+// element and whether it was found
+func (a AcsInfoRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for AcsInfoRm
+func (a *AcsInfoRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for AcsInfoRm to handle AdditionalProperties
+func (a *AcsInfoRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["acsIpv4Addr"]; found {
+		err = json.Unmarshal(raw, &a.AcsIpv4Addr)
+		if err != nil {
+			return fmt.Errorf("error reading 'acsIpv4Addr': %w", err)
+		}
+		delete(object, "acsIpv4Addr")
+	}
+
+	if raw, found := object["acsIpv6Addr"]; found {
+		err = json.Unmarshal(raw, &a.AcsIpv6Addr)
+		if err != nil {
+			return fmt.Errorf("error reading 'acsIpv6Addr': %w", err)
+		}
+		delete(object, "acsIpv6Addr")
+	}
+
+	if raw, found := object["acsUrl"]; found {
+		err = json.Unmarshal(raw, &a.AcsUrl)
+		if err != nil {
+			return fmt.Errorf("error reading 'acsUrl': %w", err)
+		}
+		delete(object, "acsUrl")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for AcsInfoRm to handle AdditionalProperties
+func (a AcsInfoRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.AcsIpv4Addr) != 0 {
+		object["acsIpv4Addr"], err = json.Marshal(a.AcsIpv4Addr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'acsIpv4Addr': %w", err)
+		}
+	}
+
+	if a.AcsIpv6Addr != nil {
+		object["acsIpv6Addr"], err = json.Marshal(a.AcsIpv6Addr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'acsIpv6Addr': %w", err)
+		}
+	}
+
+	if a.AcsUrl != nil {
+		object["acsUrl"], err = json.Marshal(a.AcsUrl)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'acsUrl': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for Ambr. Returns the specified
 // element and whether it was found
 func (a Ambr) Get(fieldName string) (value interface{}, found bool) {
@@ -2252,6 +2514,85 @@ func (a *Ambr) UnmarshalJSON(b []byte) error {
 
 // Override default JSON handling for Ambr to handle AdditionalProperties
 func (a Ambr) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["downlink"], err = json.Marshal(a.Downlink)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'downlink': %w", err)
+	}
+
+	object["uplink"], err = json.Marshal(a.Uplink)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'uplink': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for AmbrRm. Returns the specified
+// element and whether it was found
+func (a AmbrRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for AmbrRm
+func (a *AmbrRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for AmbrRm to handle AdditionalProperties
+func (a *AmbrRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["downlink"]; found {
+		err = json.Unmarshal(raw, &a.Downlink)
+		if err != nil {
+			return fmt.Errorf("error reading 'downlink': %w", err)
+		}
+		delete(object, "downlink")
+	}
+
+	if raw, found := object["uplink"]; found {
+		err = json.Unmarshal(raw, &a.Uplink)
+		if err != nil {
+			return fmt.Errorf("error reading 'uplink': %w", err)
+		}
+		delete(object, "uplink")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for AmbrRm to handle AdditionalProperties
+func (a AmbrRm) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
@@ -2690,6 +3031,98 @@ func (a Arp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for ArpRm. Returns the specified
+// element and whether it was found
+func (a ArpRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ArpRm
+func (a *ArpRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ArpRm to handle AdditionalProperties
+func (a *ArpRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["preemptCap"]; found {
+		err = json.Unmarshal(raw, &a.PreemptCap)
+		if err != nil {
+			return fmt.Errorf("error reading 'preemptCap': %w", err)
+		}
+		delete(object, "preemptCap")
+	}
+
+	if raw, found := object["preemptVuln"]; found {
+		err = json.Unmarshal(raw, &a.PreemptVuln)
+		if err != nil {
+			return fmt.Errorf("error reading 'preemptVuln': %w", err)
+		}
+		delete(object, "preemptVuln")
+	}
+
+	if raw, found := object["priorityLevel"]; found {
+		err = json.Unmarshal(raw, &a.PriorityLevel)
+		if err != nil {
+			return fmt.Errorf("error reading 'priorityLevel': %w", err)
+		}
+		delete(object, "priorityLevel")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ArpRm to handle AdditionalProperties
+func (a ArpRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["preemptCap"], err = json.Marshal(a.PreemptCap)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'preemptCap': %w", err)
+	}
+
+	object["preemptVuln"], err = json.Marshal(a.PreemptVuln)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'preemptVuln': %w", err)
+	}
+
+	object["priorityLevel"], err = json.Marshal(a.PriorityLevel)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'priorityLevel': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for Atom. Returns the specified
 // element and whether it was found
 func (a Atom) Get(fieldName string) (value interface{}, found bool) {
@@ -3028,6 +3461,104 @@ func (a *BatteryIndication) UnmarshalJSON(b []byte) error {
 
 // Override default JSON handling for BatteryIndication to handle AdditionalProperties
 func (a BatteryIndication) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BatteryInd != nil {
+		object["batteryInd"], err = json.Marshal(a.BatteryInd)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'batteryInd': %w", err)
+		}
+	}
+
+	if a.RechargeableInd != nil {
+		object["rechargeableInd"], err = json.Marshal(a.RechargeableInd)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'rechargeableInd': %w", err)
+		}
+	}
+
+	if a.ReplaceableInd != nil {
+		object["replaceableInd"], err = json.Marshal(a.ReplaceableInd)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'replaceableInd': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for BatteryIndicationRm. Returns the specified
+// element and whether it was found
+func (a BatteryIndicationRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for BatteryIndicationRm
+func (a *BatteryIndicationRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for BatteryIndicationRm to handle AdditionalProperties
+func (a *BatteryIndicationRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["batteryInd"]; found {
+		err = json.Unmarshal(raw, &a.BatteryInd)
+		if err != nil {
+			return fmt.Errorf("error reading 'batteryInd': %w", err)
+		}
+		delete(object, "batteryInd")
+	}
+
+	if raw, found := object["rechargeableInd"]; found {
+		err = json.Unmarshal(raw, &a.RechargeableInd)
+		if err != nil {
+			return fmt.Errorf("error reading 'rechargeableInd': %w", err)
+		}
+		delete(object, "rechargeableInd")
+	}
+
+	if raw, found := object["replaceableInd"]; found {
+		err = json.Unmarshal(raw, &a.ReplaceableInd)
+		if err != nil {
+			return fmt.Errorf("error reading 'replaceableInd': %w", err)
+		}
+		delete(object, "replaceableInd")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for BatteryIndicationRm to handle AdditionalProperties
+func (a BatteryIndicationRm) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
@@ -3943,6 +4474,100 @@ func (a Ecgi) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for EcgiRm. Returns the specified
+// element and whether it was found
+func (a EcgiRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for EcgiRm
+func (a *EcgiRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for EcgiRm to handle AdditionalProperties
+func (a *EcgiRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["eutraCellId"]; found {
+		err = json.Unmarshal(raw, &a.EutraCellId)
+		if err != nil {
+			return fmt.Errorf("error reading 'eutraCellId': %w", err)
+		}
+		delete(object, "eutraCellId")
+	}
+
+	if raw, found := object["nid"]; found {
+		err = json.Unmarshal(raw, &a.Nid)
+		if err != nil {
+			return fmt.Errorf("error reading 'nid': %w", err)
+		}
+		delete(object, "nid")
+	}
+
+	if raw, found := object["plmnId"]; found {
+		err = json.Unmarshal(raw, &a.PlmnId)
+		if err != nil {
+			return fmt.Errorf("error reading 'plmnId': %w", err)
+		}
+		delete(object, "plmnId")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for EcgiRm to handle AdditionalProperties
+func (a EcgiRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["eutraCellId"], err = json.Marshal(a.EutraCellId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'eutraCellId': %w", err)
+	}
+
+	if len(a.Nid) != 0 {
+		object["nid"], err = json.Marshal(a.Nid)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
+		}
+	}
+
+	object["plmnId"], err = json.Marshal(a.PlmnId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for EutraLocation. Returns the specified
 // element and whether it was found
 func (a EutraLocation) Get(fieldName string) (value interface{}, found bool) {
@@ -4064,6 +4689,205 @@ func (a *EutraLocation) UnmarshalJSON(b []byte) error {
 
 // Override default JSON handling for EutraLocation to handle AdditionalProperties
 func (a EutraLocation) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.AgeOfLocationInformation != nil {
+		object["ageOfLocationInformation"], err = json.Marshal(a.AgeOfLocationInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ageOfLocationInformation': %w", err)
+		}
+	}
+
+	object["ecgi"], err = json.Marshal(a.Ecgi)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ecgi': %w", err)
+	}
+
+	if len(a.GeodeticInformation) != 0 {
+		object["geodeticInformation"], err = json.Marshal(a.GeodeticInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'geodeticInformation': %w", err)
+		}
+	}
+
+	if len(a.GeographicalInformation) != 0 {
+		object["geographicalInformation"], err = json.Marshal(a.GeographicalInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'geographicalInformation': %w", err)
+		}
+	}
+
+	if a.GlobalENbId != nil {
+		object["globalENbId"], err = json.Marshal(a.GlobalENbId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'globalENbId': %w", err)
+		}
+	}
+
+	if a.GlobalNgenbId != nil {
+		object["globalNgenbId"], err = json.Marshal(a.GlobalNgenbId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'globalNgenbId': %w", err)
+		}
+	}
+
+	if a.IgnoreEcgi != nil {
+		object["ignoreEcgi"], err = json.Marshal(a.IgnoreEcgi)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ignoreEcgi': %w", err)
+		}
+	}
+
+	if a.IgnoreTai != nil {
+		object["ignoreTai"], err = json.Marshal(a.IgnoreTai)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ignoreTai': %w", err)
+		}
+	}
+
+	object["tai"], err = json.Marshal(a.Tai)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tai': %w", err)
+	}
+
+	if a.UeLocationTimestamp != nil {
+		object["ueLocationTimestamp"], err = json.Marshal(a.UeLocationTimestamp)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ueLocationTimestamp': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for EutraLocationRm. Returns the specified
+// element and whether it was found
+func (a EutraLocationRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for EutraLocationRm
+func (a *EutraLocationRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for EutraLocationRm to handle AdditionalProperties
+func (a *EutraLocationRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["ageOfLocationInformation"]; found {
+		err = json.Unmarshal(raw, &a.AgeOfLocationInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'ageOfLocationInformation': %w", err)
+		}
+		delete(object, "ageOfLocationInformation")
+	}
+
+	if raw, found := object["ecgi"]; found {
+		err = json.Unmarshal(raw, &a.Ecgi)
+		if err != nil {
+			return fmt.Errorf("error reading 'ecgi': %w", err)
+		}
+		delete(object, "ecgi")
+	}
+
+	if raw, found := object["geodeticInformation"]; found {
+		err = json.Unmarshal(raw, &a.GeodeticInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'geodeticInformation': %w", err)
+		}
+		delete(object, "geodeticInformation")
+	}
+
+	if raw, found := object["geographicalInformation"]; found {
+		err = json.Unmarshal(raw, &a.GeographicalInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'geographicalInformation': %w", err)
+		}
+		delete(object, "geographicalInformation")
+	}
+
+	if raw, found := object["globalENbId"]; found {
+		err = json.Unmarshal(raw, &a.GlobalENbId)
+		if err != nil {
+			return fmt.Errorf("error reading 'globalENbId': %w", err)
+		}
+		delete(object, "globalENbId")
+	}
+
+	if raw, found := object["globalNgenbId"]; found {
+		err = json.Unmarshal(raw, &a.GlobalNgenbId)
+		if err != nil {
+			return fmt.Errorf("error reading 'globalNgenbId': %w", err)
+		}
+		delete(object, "globalNgenbId")
+	}
+
+	if raw, found := object["ignoreEcgi"]; found {
+		err = json.Unmarshal(raw, &a.IgnoreEcgi)
+		if err != nil {
+			return fmt.Errorf("error reading 'ignoreEcgi': %w", err)
+		}
+		delete(object, "ignoreEcgi")
+	}
+
+	if raw, found := object["ignoreTai"]; found {
+		err = json.Unmarshal(raw, &a.IgnoreTai)
+		if err != nil {
+			return fmt.Errorf("error reading 'ignoreTai': %w", err)
+		}
+		delete(object, "ignoreTai")
+	}
+
+	if raw, found := object["tai"]; found {
+		err = json.Unmarshal(raw, &a.Tai)
+		if err != nil {
+			return fmt.Errorf("error reading 'tai': %w", err)
+		}
+		delete(object, "tai")
+	}
+
+	if raw, found := object["ueLocationTimestamp"]; found {
+		err = json.Unmarshal(raw, &a.UeLocationTimestamp)
+		if err != nil {
+			return fmt.Errorf("error reading 'ueLocationTimestamp': %w", err)
+		}
+		delete(object, "ueLocationTimestamp")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for EutraLocationRm to handle AdditionalProperties
+func (a EutraLocationRm) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
@@ -4721,6 +5545,85 @@ func (a GlobalRanNodeId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for GuamiRm. Returns the specified
+// element and whether it was found
+func (a GuamiRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for GuamiRm
+func (a *GuamiRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for GuamiRm to handle AdditionalProperties
+func (a *GuamiRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["amfId"]; found {
+		err = json.Unmarshal(raw, &a.AmfId)
+		if err != nil {
+			return fmt.Errorf("error reading 'amfId': %w", err)
+		}
+		delete(object, "amfId")
+	}
+
+	if raw, found := object["plmnId"]; found {
+		err = json.Unmarshal(raw, &a.PlmnId)
+		if err != nil {
+			return fmt.Errorf("error reading 'plmnId': %w", err)
+		}
+		delete(object, "plmnId")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for GuamiRm to handle AdditionalProperties
+func (a GuamiRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["amfId"], err = json.Marshal(a.AmfId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'amfId': %w", err)
+	}
+
+	object["plmnId"], err = json.Marshal(a.PlmnId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for HalTemplate. Returns the specified
 // element and whether it was found
 func (a HalTemplate) Get(fieldName string) (value interface{}, found bool) {
@@ -4881,6 +5784,72 @@ func (a *HfcNodeId) UnmarshalJSON(b []byte) error {
 
 // Override default JSON handling for HfcNodeId to handle AdditionalProperties
 func (a HfcNodeId) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["hfcNId"], err = json.Marshal(a.HfcNId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'hfcNId': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for HfcNodeIdRm. Returns the specified
+// element and whether it was found
+func (a HfcNodeIdRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for HfcNodeIdRm
+func (a *HfcNodeIdRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for HfcNodeIdRm to handle AdditionalProperties
+func (a *HfcNodeIdRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["hfcNId"]; found {
+		err = json.Unmarshal(raw, &a.HfcNId)
+		if err != nil {
+			return fmt.Errorf("error reading 'hfcNId': %w", err)
+		}
+		delete(object, "hfcNId")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for HfcNodeIdRm to handle AdditionalProperties
+func (a HfcNodeIdRm) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
@@ -6305,6 +7274,100 @@ func (a Ncgi) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for NcgiRm. Returns the specified
+// element and whether it was found
+func (a NcgiRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for NcgiRm
+func (a *NcgiRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for NcgiRm to handle AdditionalProperties
+func (a *NcgiRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["nid"]; found {
+		err = json.Unmarshal(raw, &a.Nid)
+		if err != nil {
+			return fmt.Errorf("error reading 'nid': %w", err)
+		}
+		delete(object, "nid")
+	}
+
+	if raw, found := object["nrCellId"]; found {
+		err = json.Unmarshal(raw, &a.NrCellId)
+		if err != nil {
+			return fmt.Errorf("error reading 'nrCellId': %w", err)
+		}
+		delete(object, "nrCellId")
+	}
+
+	if raw, found := object["plmnId"]; found {
+		err = json.Unmarshal(raw, &a.PlmnId)
+		if err != nil {
+			return fmt.Errorf("error reading 'plmnId': %w", err)
+		}
+		delete(object, "plmnId")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for NcgiRm to handle AdditionalProperties
+func (a NcgiRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.Nid) != 0 {
+		object["nid"], err = json.Marshal(a.Nid)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
+		}
+	}
+
+	object["nrCellId"], err = json.Marshal(a.NrCellId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'nrCellId': %w", err)
+	}
+
+	object["plmnId"], err = json.Marshal(a.PlmnId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for NetworkId. Returns the specified
 // element and whether it was found
 func (a NetworkId) Get(fieldName string) (value interface{}, found bool) {
@@ -6858,6 +7921,175 @@ func (a NrLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for NrLocationRm. Returns the specified
+// element and whether it was found
+func (a NrLocationRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for NrLocationRm
+func (a *NrLocationRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for NrLocationRm to handle AdditionalProperties
+func (a *NrLocationRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["ageOfLocationInformation"]; found {
+		err = json.Unmarshal(raw, &a.AgeOfLocationInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'ageOfLocationInformation': %w", err)
+		}
+		delete(object, "ageOfLocationInformation")
+	}
+
+	if raw, found := object["geodeticInformation"]; found {
+		err = json.Unmarshal(raw, &a.GeodeticInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'geodeticInformation': %w", err)
+		}
+		delete(object, "geodeticInformation")
+	}
+
+	if raw, found := object["geographicalInformation"]; found {
+		err = json.Unmarshal(raw, &a.GeographicalInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'geographicalInformation': %w", err)
+		}
+		delete(object, "geographicalInformation")
+	}
+
+	if raw, found := object["globalGnbId"]; found {
+		err = json.Unmarshal(raw, &a.GlobalGnbId)
+		if err != nil {
+			return fmt.Errorf("error reading 'globalGnbId': %w", err)
+		}
+		delete(object, "globalGnbId")
+	}
+
+	if raw, found := object["ignoreNcgi"]; found {
+		err = json.Unmarshal(raw, &a.IgnoreNcgi)
+		if err != nil {
+			return fmt.Errorf("error reading 'ignoreNcgi': %w", err)
+		}
+		delete(object, "ignoreNcgi")
+	}
+
+	if raw, found := object["ncgi"]; found {
+		err = json.Unmarshal(raw, &a.Ncgi)
+		if err != nil {
+			return fmt.Errorf("error reading 'ncgi': %w", err)
+		}
+		delete(object, "ncgi")
+	}
+
+	if raw, found := object["tai"]; found {
+		err = json.Unmarshal(raw, &a.Tai)
+		if err != nil {
+			return fmt.Errorf("error reading 'tai': %w", err)
+		}
+		delete(object, "tai")
+	}
+
+	if raw, found := object["ueLocationTimestamp"]; found {
+		err = json.Unmarshal(raw, &a.UeLocationTimestamp)
+		if err != nil {
+			return fmt.Errorf("error reading 'ueLocationTimestamp': %w", err)
+		}
+		delete(object, "ueLocationTimestamp")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for NrLocationRm to handle AdditionalProperties
+func (a NrLocationRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.AgeOfLocationInformation != nil {
+		object["ageOfLocationInformation"], err = json.Marshal(a.AgeOfLocationInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ageOfLocationInformation': %w", err)
+		}
+	}
+
+	if len(a.GeodeticInformation) != 0 {
+		object["geodeticInformation"], err = json.Marshal(a.GeodeticInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'geodeticInformation': %w", err)
+		}
+	}
+
+	if len(a.GeographicalInformation) != 0 {
+		object["geographicalInformation"], err = json.Marshal(a.GeographicalInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'geographicalInformation': %w", err)
+		}
+	}
+
+	if a.GlobalGnbId != nil {
+		object["globalGnbId"], err = json.Marshal(a.GlobalGnbId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'globalGnbId': %w", err)
+		}
+	}
+
+	if a.IgnoreNcgi != nil {
+		object["ignoreNcgi"], err = json.Marshal(a.IgnoreNcgi)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ignoreNcgi': %w", err)
+		}
+	}
+
+	object["ncgi"], err = json.Marshal(a.Ncgi)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ncgi': %w", err)
+	}
+
+	object["tai"], err = json.Marshal(a.Tai)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tai': %w", err)
+	}
+
+	if a.UeLocationTimestamp != nil {
+		object["ueLocationTimestamp"], err = json.Marshal(a.UeLocationTimestamp)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ueLocationTimestamp': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for NrV2xAuth. Returns the specified
 // element and whether it was found
 func (a NrV2xAuth) Get(fieldName string) (value interface{}, found bool) {
@@ -6998,6 +8230,85 @@ func (a *NssaaStatus) UnmarshalJSON(b []byte) error {
 
 // Override default JSON handling for NssaaStatus to handle AdditionalProperties
 func (a NssaaStatus) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["snssai"], err = json.Marshal(a.Snssai)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
+	}
+
+	object["status"], err = json.Marshal(a.Status)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for NssaaStatusRm. Returns the specified
+// element and whether it was found
+func (a NssaaStatusRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for NssaaStatusRm
+func (a *NssaaStatusRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for NssaaStatusRm to handle AdditionalProperties
+func (a *NssaaStatusRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["snssai"]; found {
+		err = json.Unmarshal(raw, &a.Snssai)
+		if err != nil {
+			return fmt.Errorf("error reading 'snssai': %w", err)
+		}
+		delete(object, "snssai")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for NssaaStatusRm to handle AdditionalProperties
+func (a NssaaStatusRm) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
@@ -7606,6 +8917,85 @@ func (a PlmnIdNid) MarshalJSON() ([]byte, error) {
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
 		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PlmnIdRm. Returns the specified
+// element and whether it was found
+func (a PlmnIdRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PlmnIdRm
+func (a *PlmnIdRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PlmnIdRm to handle AdditionalProperties
+func (a *PlmnIdRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["mcc"]; found {
+		err = json.Unmarshal(raw, &a.Mcc)
+		if err != nil {
+			return fmt.Errorf("error reading 'mcc': %w", err)
+		}
+		delete(object, "mcc")
+	}
+
+	if raw, found := object["mnc"]; found {
+		err = json.Unmarshal(raw, &a.Mnc)
+		if err != nil {
+			return fmt.Errorf("error reading 'mnc': %w", err)
+		}
+		delete(object, "mnc")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PlmnIdRm to handle AdditionalProperties
+func (a PlmnIdRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["mcc"], err = json.Marshal(a.Mcc)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'mcc': %w", err)
+	}
+
+	object["mnc"], err = json.Marshal(a.Mnc)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'mnc': %w", err)
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -8574,6 +9964,72 @@ func (a RefToBinaryData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for RefToBinaryDataRm. Returns the specified
+// element and whether it was found
+func (a RefToBinaryDataRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for RefToBinaryDataRm
+func (a *RefToBinaryDataRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for RefToBinaryDataRm to handle AdditionalProperties
+func (a *RefToBinaryDataRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["contentId"]; found {
+		err = json.Unmarshal(raw, &a.ContentId)
+		if err != nil {
+			return fmt.Errorf("error reading 'contentId': %w", err)
+		}
+		delete(object, "contentId")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for RefToBinaryDataRm to handle AdditionalProperties
+func (a RefToBinaryDataRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["contentId"], err = json.Marshal(a.ContentId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'contentId': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for ReportItem. Returns the specified
 // element and whether it was found
 func (a ReportItem) Get(fieldName string) (value interface{}, found bool) {
@@ -8985,6 +10441,104 @@ func (a *ScheduledCommunicationTime) UnmarshalJSON(b []byte) error {
 
 // Override default JSON handling for ScheduledCommunicationTime to handle AdditionalProperties
 func (a ScheduledCommunicationTime) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.DaysOfWeek) != 0 {
+		object["daysOfWeek"], err = json.Marshal(a.DaysOfWeek)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'daysOfWeek': %w", err)
+		}
+	}
+
+	if a.TimeOfDayEnd != nil {
+		object["timeOfDayEnd"], err = json.Marshal(a.TimeOfDayEnd)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'timeOfDayEnd': %w", err)
+		}
+	}
+
+	if a.TimeOfDayStart != nil {
+		object["timeOfDayStart"], err = json.Marshal(a.TimeOfDayStart)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'timeOfDayStart': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ScheduledCommunicationTimeRm. Returns the specified
+// element and whether it was found
+func (a ScheduledCommunicationTimeRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ScheduledCommunicationTimeRm
+func (a *ScheduledCommunicationTimeRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ScheduledCommunicationTimeRm to handle AdditionalProperties
+func (a *ScheduledCommunicationTimeRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["daysOfWeek"]; found {
+		err = json.Unmarshal(raw, &a.DaysOfWeek)
+		if err != nil {
+			return fmt.Errorf("error reading 'daysOfWeek': %w", err)
+		}
+		delete(object, "daysOfWeek")
+	}
+
+	if raw, found := object["timeOfDayEnd"]; found {
+		err = json.Unmarshal(raw, &a.TimeOfDayEnd)
+		if err != nil {
+			return fmt.Errorf("error reading 'timeOfDayEnd': %w", err)
+		}
+		delete(object, "timeOfDayEnd")
+	}
+
+	if raw, found := object["timeOfDayStart"]; found {
+		err = json.Unmarshal(raw, &a.TimeOfDayStart)
+		if err != nil {
+			return fmt.Errorf("error reading 'timeOfDayStart': %w", err)
+		}
+		delete(object, "timeOfDayStart")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ScheduledCommunicationTimeRm to handle AdditionalProperties
+func (a ScheduledCommunicationTimeRm) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
@@ -10012,6 +11566,100 @@ func (a Tai) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for TaiRm. Returns the specified
+// element and whether it was found
+func (a TaiRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for TaiRm
+func (a *TaiRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for TaiRm to handle AdditionalProperties
+func (a *TaiRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["nid"]; found {
+		err = json.Unmarshal(raw, &a.Nid)
+		if err != nil {
+			return fmt.Errorf("error reading 'nid': %w", err)
+		}
+		delete(object, "nid")
+	}
+
+	if raw, found := object["plmnId"]; found {
+		err = json.Unmarshal(raw, &a.PlmnId)
+		if err != nil {
+			return fmt.Errorf("error reading 'plmnId': %w", err)
+		}
+		delete(object, "plmnId")
+	}
+
+	if raw, found := object["tac"]; found {
+		err = json.Unmarshal(raw, &a.Tac)
+		if err != nil {
+			return fmt.Errorf("error reading 'tac': %w", err)
+		}
+		delete(object, "tac")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for TaiRm to handle AdditionalProperties
+func (a TaiRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.Nid) != 0 {
+		object["nid"], err = json.Marshal(a.Nid)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
+		}
+	}
+
+	object["plmnId"], err = json.Marshal(a.PlmnId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
+	}
+
+	object["tac"], err = json.Marshal(a.Tac)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tac': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for TnapId. Returns the specified
 // element and whether it was found
 func (a TnapId) Get(fieldName string) (value interface{}, found bool) {
@@ -10077,6 +11725,104 @@ func (a *TnapId) UnmarshalJSON(b []byte) error {
 
 // Override default JSON handling for TnapId to handle AdditionalProperties
 func (a TnapId) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BssId != nil {
+		object["bssId"], err = json.Marshal(a.BssId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'bssId': %w", err)
+		}
+	}
+
+	if a.CivicAddress != nil {
+		object["civicAddress"], err = json.Marshal(a.CivicAddress)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'civicAddress': %w", err)
+		}
+	}
+
+	if a.SsId != nil {
+		object["ssId"], err = json.Marshal(a.SsId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ssId': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for TnapIdRm. Returns the specified
+// element and whether it was found
+func (a TnapIdRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for TnapIdRm
+func (a *TnapIdRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for TnapIdRm to handle AdditionalProperties
+func (a *TnapIdRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["bssId"]; found {
+		err = json.Unmarshal(raw, &a.BssId)
+		if err != nil {
+			return fmt.Errorf("error reading 'bssId': %w", err)
+		}
+		delete(object, "bssId")
+	}
+
+	if raw, found := object["civicAddress"]; found {
+		err = json.Unmarshal(raw, &a.CivicAddress)
+		if err != nil {
+			return fmt.Errorf("error reading 'civicAddress': %w", err)
+		}
+		delete(object, "civicAddress")
+	}
+
+	if raw, found := object["ssId"]; found {
+		err = json.Unmarshal(raw, &a.SsId)
+		if err != nil {
+			return fmt.Errorf("error reading 'ssId': %w", err)
+		}
+		delete(object, "ssId")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for TnapIdRm to handle AdditionalProperties
+func (a TnapIdRm) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
@@ -10356,6 +12102,102 @@ func (a TwapId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for TwapIdRm. Returns the specified
+// element and whether it was found
+func (a TwapIdRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for TwapIdRm
+func (a *TwapIdRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for TwapIdRm to handle AdditionalProperties
+func (a *TwapIdRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["bssId"]; found {
+		err = json.Unmarshal(raw, &a.BssId)
+		if err != nil {
+			return fmt.Errorf("error reading 'bssId': %w", err)
+		}
+		delete(object, "bssId")
+	}
+
+	if raw, found := object["civicAddress"]; found {
+		err = json.Unmarshal(raw, &a.CivicAddress)
+		if err != nil {
+			return fmt.Errorf("error reading 'civicAddress': %w", err)
+		}
+		delete(object, "civicAddress")
+	}
+
+	if raw, found := object["ssId"]; found {
+		err = json.Unmarshal(raw, &a.SsId)
+		if err != nil {
+			return fmt.Errorf("error reading 'ssId': %w", err)
+		}
+		delete(object, "ssId")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for TwapIdRm to handle AdditionalProperties
+func (a TwapIdRm) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BssId != nil {
+		object["bssId"], err = json.Marshal(a.BssId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'bssId': %w", err)
+		}
+	}
+
+	if a.CivicAddress != nil {
+		object["civicAddress"], err = json.Marshal(a.CivicAddress)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'civicAddress': %w", err)
+		}
+	}
+
+	object["ssId"], err = json.Marshal(a.SsId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ssId': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for UpSecurity. Returns the specified
 // element and whether it was found
 func (a UpSecurity) Get(fieldName string) (value interface{}, found bool) {
@@ -10413,6 +12255,85 @@ func (a *UpSecurity) UnmarshalJSON(b []byte) error {
 
 // Override default JSON handling for UpSecurity to handle AdditionalProperties
 func (a UpSecurity) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["upConfid"], err = json.Marshal(a.UpConfid)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'upConfid': %w", err)
+	}
+
+	object["upIntegr"], err = json.Marshal(a.UpIntegr)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'upIntegr': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UpSecurityRm. Returns the specified
+// element and whether it was found
+func (a UpSecurityRm) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UpSecurityRm
+func (a *UpSecurityRm) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UpSecurityRm to handle AdditionalProperties
+func (a *UpSecurityRm) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["upConfid"]; found {
+		err = json.Unmarshal(raw, &a.UpConfid)
+		if err != nil {
+			return fmt.Errorf("error reading 'upConfid': %w", err)
+		}
+		delete(object, "upConfid")
+	}
+
+	if raw, found := object["upIntegr"]; found {
+		err = json.Unmarshal(raw, &a.UpIntegr)
+		if err != nil {
+			return fmt.Errorf("error reading 'upIntegr': %w", err)
+		}
+		delete(object, "upIntegr")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UpSecurityRm to handle AdditionalProperties
+func (a UpSecurityRm) MarshalJSON() ([]byte, error) {
 	var err error
 	object := make(map[string]json.RawMessage)
 
@@ -11037,378 +12958,6 @@ func (a WirelineServiceAreaRestriction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
-// AsAccessType returns the union data inside the AccessTypeRm as a AccessType
-func (t AccessTypeRm) AsAccessType() (AccessType, error) {
-	var body AccessType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAccessType overwrites any union data inside the AccessTypeRm as the provided AccessType
-func (t *AccessTypeRm) FromAccessType(v AccessType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAccessType performs a merge with any union data inside the AccessTypeRm, using the provided AccessType
-func (t *AccessTypeRm) MergeAccessType(v AccessType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the AccessTypeRm as a NullValue
-func (t AccessTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the AccessTypeRm as the provided NullValue
-func (t *AccessTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the AccessTypeRm, using the provided NullValue
-func (t *AccessTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t AccessTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *AccessTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsAcsInfo returns the union data inside the AcsInfoRm as a AcsInfo
-func (t AcsInfoRm) AsAcsInfo() (AcsInfo, error) {
-	var body AcsInfo
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAcsInfo overwrites any union data inside the AcsInfoRm as the provided AcsInfo
-func (t *AcsInfoRm) FromAcsInfo(v AcsInfo) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAcsInfo performs a merge with any union data inside the AcsInfoRm, using the provided AcsInfo
-func (t *AcsInfoRm) MergeAcsInfo(v AcsInfo) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the AcsInfoRm as a NullValue
-func (t AcsInfoRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the AcsInfoRm as the provided NullValue
-func (t *AcsInfoRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the AcsInfoRm, using the provided NullValue
-func (t *AcsInfoRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t AcsInfoRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *AcsInfoRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsAdditionalQosFlowInfo0 returns the union data inside the AdditionalQosFlowInfo as a AdditionalQosFlowInfo0
-func (t AdditionalQosFlowInfo) AsAdditionalQosFlowInfo0() (AdditionalQosFlowInfo0, error) {
-	var body AdditionalQosFlowInfo0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAdditionalQosFlowInfo0 overwrites any union data inside the AdditionalQosFlowInfo as the provided AdditionalQosFlowInfo0
-func (t *AdditionalQosFlowInfo) FromAdditionalQosFlowInfo0(v AdditionalQosFlowInfo0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAdditionalQosFlowInfo0 performs a merge with any union data inside the AdditionalQosFlowInfo, using the provided AdditionalQosFlowInfo0
-func (t *AdditionalQosFlowInfo) MergeAdditionalQosFlowInfo0(v AdditionalQosFlowInfo0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the AdditionalQosFlowInfo as a NullValue
-func (t AdditionalQosFlowInfo) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the AdditionalQosFlowInfo as the provided NullValue
-func (t *AdditionalQosFlowInfo) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the AdditionalQosFlowInfo, using the provided NullValue
-func (t *AdditionalQosFlowInfo) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t AdditionalQosFlowInfo) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *AdditionalQosFlowInfo) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsAmbr returns the union data inside the AmbrRm as a Ambr
-func (t AmbrRm) AsAmbr() (Ambr, error) {
-	var body Ambr
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAmbr overwrites any union data inside the AmbrRm as the provided Ambr
-func (t *AmbrRm) FromAmbr(v Ambr) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAmbr performs a merge with any union data inside the AmbrRm, using the provided Ambr
-func (t *AmbrRm) MergeAmbr(v Ambr) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the AmbrRm as a NullValue
-func (t AmbrRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the AmbrRm as the provided NullValue
-func (t *AmbrRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the AmbrRm, using the provided NullValue
-func (t *AmbrRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t AmbrRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *AmbrRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsArp returns the union data inside the ArpRm as a Arp
-func (t ArpRm) AsArp() (Arp, error) {
-	var body Arp
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromArp overwrites any union data inside the ArpRm as the provided Arp
-func (t *ArpRm) FromArp(v Arp) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeArp performs a merge with any union data inside the ArpRm, using the provided Arp
-func (t *ArpRm) MergeArp(v Arp) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the ArpRm as a NullValue
-func (t ArpRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the ArpRm as the provided NullValue
-func (t *ArpRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the ArpRm, using the provided NullValue
-func (t *ArpRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ArpRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ArpRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsBatteryIndication returns the union data inside the BatteryIndicationRm as a BatteryIndication
-func (t BatteryIndicationRm) AsBatteryIndication() (BatteryIndication, error) {
-	var body BatteryIndication
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBatteryIndication overwrites any union data inside the BatteryIndicationRm as the provided BatteryIndication
-func (t *BatteryIndicationRm) FromBatteryIndication(v BatteryIndication) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBatteryIndication performs a merge with any union data inside the BatteryIndicationRm, using the provided BatteryIndication
-func (t *BatteryIndicationRm) MergeBatteryIndication(v BatteryIndication) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the BatteryIndicationRm as a NullValue
-func (t BatteryIndicationRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the BatteryIndicationRm as the provided NullValue
-func (t *BatteryIndicationRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the BatteryIndicationRm, using the provided NullValue
-func (t *BatteryIndicationRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t BatteryIndicationRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *BatteryIndicationRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsCnf returns the union data inside the ComplexQuery as a Cnf
 func (t ComplexQuery) AsCnf() (Cnf, error) {
 	var body Cnf
@@ -11471,502 +13020,6 @@ func (t *ComplexQuery) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsCoreNetworkType returns the union data inside the CoreNetworkTypeRm as a CoreNetworkType
-func (t CoreNetworkTypeRm) AsCoreNetworkType() (CoreNetworkType, error) {
-	var body CoreNetworkType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCoreNetworkType overwrites any union data inside the CoreNetworkTypeRm as the provided CoreNetworkType
-func (t *CoreNetworkTypeRm) FromCoreNetworkType(v CoreNetworkType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCoreNetworkType performs a merge with any union data inside the CoreNetworkTypeRm, using the provided CoreNetworkType
-func (t *CoreNetworkTypeRm) MergeCoreNetworkType(v CoreNetworkType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the CoreNetworkTypeRm as a NullValue
-func (t CoreNetworkTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the CoreNetworkTypeRm as the provided NullValue
-func (t *CoreNetworkTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the CoreNetworkTypeRm, using the provided NullValue
-func (t *CoreNetworkTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t CoreNetworkTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *CoreNetworkTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsDlDataDeliveryStatus returns the union data inside the DlDataDeliveryStatusRm as a DlDataDeliveryStatus
-func (t DlDataDeliveryStatusRm) AsDlDataDeliveryStatus() (DlDataDeliveryStatus, error) {
-	var body DlDataDeliveryStatus
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromDlDataDeliveryStatus overwrites any union data inside the DlDataDeliveryStatusRm as the provided DlDataDeliveryStatus
-func (t *DlDataDeliveryStatusRm) FromDlDataDeliveryStatus(v DlDataDeliveryStatus) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeDlDataDeliveryStatus performs a merge with any union data inside the DlDataDeliveryStatusRm, using the provided DlDataDeliveryStatus
-func (t *DlDataDeliveryStatusRm) MergeDlDataDeliveryStatus(v DlDataDeliveryStatus) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the DlDataDeliveryStatusRm as a NullValue
-func (t DlDataDeliveryStatusRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the DlDataDeliveryStatusRm as the provided NullValue
-func (t *DlDataDeliveryStatusRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the DlDataDeliveryStatusRm, using the provided NullValue
-func (t *DlDataDeliveryStatusRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t DlDataDeliveryStatusRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *DlDataDeliveryStatusRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsDnaiChangeType returns the union data inside the DnaiChangeTypeRm as a DnaiChangeType
-func (t DnaiChangeTypeRm) AsDnaiChangeType() (DnaiChangeType, error) {
-	var body DnaiChangeType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromDnaiChangeType overwrites any union data inside the DnaiChangeTypeRm as the provided DnaiChangeType
-func (t *DnaiChangeTypeRm) FromDnaiChangeType(v DnaiChangeType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeDnaiChangeType performs a merge with any union data inside the DnaiChangeTypeRm, using the provided DnaiChangeType
-func (t *DnaiChangeTypeRm) MergeDnaiChangeType(v DnaiChangeType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the DnaiChangeTypeRm as a NullValue
-func (t DnaiChangeTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the DnaiChangeTypeRm as the provided NullValue
-func (t *DnaiChangeTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the DnaiChangeTypeRm, using the provided NullValue
-func (t *DnaiChangeTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t DnaiChangeTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *DnaiChangeTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsEcgi returns the union data inside the EcgiRm as a Ecgi
-func (t EcgiRm) AsEcgi() (Ecgi, error) {
-	var body Ecgi
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromEcgi overwrites any union data inside the EcgiRm as the provided Ecgi
-func (t *EcgiRm) FromEcgi(v Ecgi) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeEcgi performs a merge with any union data inside the EcgiRm, using the provided Ecgi
-func (t *EcgiRm) MergeEcgi(v Ecgi) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the EcgiRm as a NullValue
-func (t EcgiRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the EcgiRm as the provided NullValue
-func (t *EcgiRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the EcgiRm, using the provided NullValue
-func (t *EcgiRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t EcgiRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *EcgiRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsEutraLocation returns the union data inside the EutraLocationRm as a EutraLocation
-func (t EutraLocationRm) AsEutraLocation() (EutraLocation, error) {
-	var body EutraLocation
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromEutraLocation overwrites any union data inside the EutraLocationRm as the provided EutraLocation
-func (t *EutraLocationRm) FromEutraLocation(v EutraLocation) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeEutraLocation performs a merge with any union data inside the EutraLocationRm, using the provided EutraLocation
-func (t *EutraLocationRm) MergeEutraLocation(v EutraLocation) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the EutraLocationRm as a NullValue
-func (t EutraLocationRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the EutraLocationRm as the provided NullValue
-func (t *EutraLocationRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the EutraLocationRm, using the provided NullValue
-func (t *EutraLocationRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t EutraLocationRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *EutraLocationRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsGuami returns the union data inside the GuamiRm as a Guami
-func (t GuamiRm) AsGuami() (Guami, error) {
-	var body Guami
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromGuami overwrites any union data inside the GuamiRm as the provided Guami
-func (t *GuamiRm) FromGuami(v Guami) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeGuami performs a merge with any union data inside the GuamiRm, using the provided Guami
-func (t *GuamiRm) MergeGuami(v Guami) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the GuamiRm as a NullValue
-func (t GuamiRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the GuamiRm as the provided NullValue
-func (t *GuamiRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the GuamiRm, using the provided NullValue
-func (t *GuamiRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t GuamiRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *GuamiRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsHfcNodeId returns the union data inside the HfcNodeIdRm as a HfcNodeId
-func (t HfcNodeIdRm) AsHfcNodeId() (HfcNodeId, error) {
-	var body HfcNodeId
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromHfcNodeId overwrites any union data inside the HfcNodeIdRm as the provided HfcNodeId
-func (t *HfcNodeIdRm) FromHfcNodeId(v HfcNodeId) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeHfcNodeId performs a merge with any union data inside the HfcNodeIdRm, using the provided HfcNodeId
-func (t *HfcNodeIdRm) MergeHfcNodeId(v HfcNodeId) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the HfcNodeIdRm as a NullValue
-func (t HfcNodeIdRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the HfcNodeIdRm as the provided NullValue
-func (t *HfcNodeIdRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the HfcNodeIdRm, using the provided NullValue
-func (t *HfcNodeIdRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t HfcNodeIdRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *HfcNodeIdRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsLineType returns the union data inside the LineTypeRm as a LineType
-func (t LineTypeRm) AsLineType() (LineType, error) {
-	var body LineType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromLineType overwrites any union data inside the LineTypeRm as the provided LineType
-func (t *LineTypeRm) FromLineType(v LineType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeLineType performs a merge with any union data inside the LineTypeRm, using the provided LineType
-func (t *LineTypeRm) MergeLineType(v LineType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the LineTypeRm as a NullValue
-func (t LineTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the LineTypeRm as the provided NullValue
-func (t *LineTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the LineTypeRm, using the provided NullValue
-func (t *LineTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t LineTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *LineTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsLinksValueSchema0 returns the union data inside the LinksValueSchema as a LinksValueSchema0
 func (t LinksValueSchema) AsLinksValueSchema0() (LinksValueSchema0, error) {
 	var body LinksValueSchema0
@@ -12025,1680 +13078,6 @@ func (t LinksValueSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (t *LinksValueSchema) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsNcgi returns the union data inside the NcgiRm as a Ncgi
-func (t NcgiRm) AsNcgi() (Ncgi, error) {
-	var body Ncgi
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNcgi overwrites any union data inside the NcgiRm as the provided Ncgi
-func (t *NcgiRm) FromNcgi(v Ncgi) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNcgi performs a merge with any union data inside the NcgiRm, using the provided Ncgi
-func (t *NcgiRm) MergeNcgi(v Ncgi) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the NcgiRm as a NullValue
-func (t NcgiRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the NcgiRm as the provided NullValue
-func (t *NcgiRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the NcgiRm, using the provided NullValue
-func (t *NcgiRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t NcgiRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *NcgiRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsNotificationControl returns the union data inside the NotificationControlRm as a NotificationControl
-func (t NotificationControlRm) AsNotificationControl() (NotificationControl, error) {
-	var body NotificationControl
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNotificationControl overwrites any union data inside the NotificationControlRm as the provided NotificationControl
-func (t *NotificationControlRm) FromNotificationControl(v NotificationControl) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNotificationControl performs a merge with any union data inside the NotificationControlRm, using the provided NotificationControl
-func (t *NotificationControlRm) MergeNotificationControl(v NotificationControl) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the NotificationControlRm as a NullValue
-func (t NotificationControlRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the NotificationControlRm as the provided NullValue
-func (t *NotificationControlRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the NotificationControlRm, using the provided NullValue
-func (t *NotificationControlRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t NotificationControlRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *NotificationControlRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsNrLocation returns the union data inside the NrLocationRm as a NrLocation
-func (t NrLocationRm) AsNrLocation() (NrLocation, error) {
-	var body NrLocation
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNrLocation overwrites any union data inside the NrLocationRm as the provided NrLocation
-func (t *NrLocationRm) FromNrLocation(v NrLocation) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNrLocation performs a merge with any union data inside the NrLocationRm, using the provided NrLocation
-func (t *NrLocationRm) MergeNrLocation(v NrLocation) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the NrLocationRm as a NullValue
-func (t NrLocationRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the NrLocationRm as the provided NullValue
-func (t *NrLocationRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the NrLocationRm, using the provided NullValue
-func (t *NrLocationRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t NrLocationRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *NrLocationRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsNssaaStatus returns the union data inside the NssaaStatusRm as a NssaaStatus
-func (t NssaaStatusRm) AsNssaaStatus() (NssaaStatus, error) {
-	var body NssaaStatus
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNssaaStatus overwrites any union data inside the NssaaStatusRm as the provided NssaaStatus
-func (t *NssaaStatusRm) FromNssaaStatus(v NssaaStatus) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNssaaStatus performs a merge with any union data inside the NssaaStatusRm, using the provided NssaaStatus
-func (t *NssaaStatusRm) MergeNssaaStatus(v NssaaStatus) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the NssaaStatusRm as a NullValue
-func (t NssaaStatusRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the NssaaStatusRm as the provided NullValue
-func (t *NssaaStatusRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the NssaaStatusRm, using the provided NullValue
-func (t *NssaaStatusRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t NssaaStatusRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *NssaaStatusRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsOdbPacketServices0 returns the union data inside the OdbPacketServices as a OdbPacketServices0
-func (t OdbPacketServices) AsOdbPacketServices0() (OdbPacketServices0, error) {
-	var body OdbPacketServices0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOdbPacketServices0 overwrites any union data inside the OdbPacketServices as the provided OdbPacketServices0
-func (t *OdbPacketServices) FromOdbPacketServices0(v OdbPacketServices0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOdbPacketServices0 performs a merge with any union data inside the OdbPacketServices, using the provided OdbPacketServices0
-func (t *OdbPacketServices) MergeOdbPacketServices0(v OdbPacketServices0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the OdbPacketServices as a NullValue
-func (t OdbPacketServices) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the OdbPacketServices as the provided NullValue
-func (t *OdbPacketServices) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the OdbPacketServices, using the provided NullValue
-func (t *OdbPacketServices) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OdbPacketServices) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OdbPacketServices) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsPduSessionType returns the union data inside the PduSessionTypeRm as a PduSessionType
-func (t PduSessionTypeRm) AsPduSessionType() (PduSessionType, error) {
-	var body PduSessionType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPduSessionType overwrites any union data inside the PduSessionTypeRm as the provided PduSessionType
-func (t *PduSessionTypeRm) FromPduSessionType(v PduSessionType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePduSessionType performs a merge with any union data inside the PduSessionTypeRm, using the provided PduSessionType
-func (t *PduSessionTypeRm) MergePduSessionType(v PduSessionType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the PduSessionTypeRm as a NullValue
-func (t PduSessionTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the PduSessionTypeRm as the provided NullValue
-func (t *PduSessionTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the PduSessionTypeRm, using the provided NullValue
-func (t *PduSessionTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t PduSessionTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *PduSessionTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsPlmnId returns the union data inside the PlmnIdRm as a PlmnId
-func (t PlmnIdRm) AsPlmnId() (PlmnId, error) {
-	var body PlmnId
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPlmnId overwrites any union data inside the PlmnIdRm as the provided PlmnId
-func (t *PlmnIdRm) FromPlmnId(v PlmnId) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePlmnId performs a merge with any union data inside the PlmnIdRm, using the provided PlmnId
-func (t *PlmnIdRm) MergePlmnId(v PlmnId) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the PlmnIdRm as a NullValue
-func (t PlmnIdRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the PlmnIdRm as the provided NullValue
-func (t *PlmnIdRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the PlmnIdRm, using the provided NullValue
-func (t *PlmnIdRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t PlmnIdRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *PlmnIdRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsPreemptionCapability returns the union data inside the PreemptionCapabilityRm as a PreemptionCapability
-func (t PreemptionCapabilityRm) AsPreemptionCapability() (PreemptionCapability, error) {
-	var body PreemptionCapability
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPreemptionCapability overwrites any union data inside the PreemptionCapabilityRm as the provided PreemptionCapability
-func (t *PreemptionCapabilityRm) FromPreemptionCapability(v PreemptionCapability) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePreemptionCapability performs a merge with any union data inside the PreemptionCapabilityRm, using the provided PreemptionCapability
-func (t *PreemptionCapabilityRm) MergePreemptionCapability(v PreemptionCapability) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the PreemptionCapabilityRm as a NullValue
-func (t PreemptionCapabilityRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the PreemptionCapabilityRm as the provided NullValue
-func (t *PreemptionCapabilityRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the PreemptionCapabilityRm, using the provided NullValue
-func (t *PreemptionCapabilityRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t PreemptionCapabilityRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *PreemptionCapabilityRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsPreemptionVulnerability returns the union data inside the PreemptionVulnerabilityRm as a PreemptionVulnerability
-func (t PreemptionVulnerabilityRm) AsPreemptionVulnerability() (PreemptionVulnerability, error) {
-	var body PreemptionVulnerability
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPreemptionVulnerability overwrites any union data inside the PreemptionVulnerabilityRm as the provided PreemptionVulnerability
-func (t *PreemptionVulnerabilityRm) FromPreemptionVulnerability(v PreemptionVulnerability) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePreemptionVulnerability performs a merge with any union data inside the PreemptionVulnerabilityRm, using the provided PreemptionVulnerability
-func (t *PreemptionVulnerabilityRm) MergePreemptionVulnerability(v PreemptionVulnerability) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the PreemptionVulnerabilityRm as a NullValue
-func (t PreemptionVulnerabilityRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the PreemptionVulnerabilityRm as the provided NullValue
-func (t *PreemptionVulnerabilityRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the PreemptionVulnerabilityRm, using the provided NullValue
-func (t *PreemptionVulnerabilityRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t PreemptionVulnerabilityRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *PreemptionVulnerabilityRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsQosResourceType returns the union data inside the QosResourceTypeRm as a QosResourceType
-func (t QosResourceTypeRm) AsQosResourceType() (QosResourceType, error) {
-	var body QosResourceType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromQosResourceType overwrites any union data inside the QosResourceTypeRm as the provided QosResourceType
-func (t *QosResourceTypeRm) FromQosResourceType(v QosResourceType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeQosResourceType performs a merge with any union data inside the QosResourceTypeRm, using the provided QosResourceType
-func (t *QosResourceTypeRm) MergeQosResourceType(v QosResourceType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the QosResourceTypeRm as a NullValue
-func (t QosResourceTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the QosResourceTypeRm as the provided NullValue
-func (t *QosResourceTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the QosResourceTypeRm, using the provided NullValue
-func (t *QosResourceTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t QosResourceTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *QosResourceTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRatType returns the union data inside the RatTypeRm as a RatType
-func (t RatTypeRm) AsRatType() (RatType, error) {
-	var body RatType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRatType overwrites any union data inside the RatTypeRm as the provided RatType
-func (t *RatTypeRm) FromRatType(v RatType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRatType performs a merge with any union data inside the RatTypeRm, using the provided RatType
-func (t *RatTypeRm) MergeRatType(v RatType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the RatTypeRm as a NullValue
-func (t RatTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the RatTypeRm as the provided NullValue
-func (t *RatTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the RatTypeRm, using the provided NullValue
-func (t *RatTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RatTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RatTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRefToBinaryData returns the union data inside the RefToBinaryDataRm as a RefToBinaryData
-func (t RefToBinaryDataRm) AsRefToBinaryData() (RefToBinaryData, error) {
-	var body RefToBinaryData
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRefToBinaryData overwrites any union data inside the RefToBinaryDataRm as the provided RefToBinaryData
-func (t *RefToBinaryDataRm) FromRefToBinaryData(v RefToBinaryData) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRefToBinaryData performs a merge with any union data inside the RefToBinaryDataRm, using the provided RefToBinaryData
-func (t *RefToBinaryDataRm) MergeRefToBinaryData(v RefToBinaryData) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the RefToBinaryDataRm as a NullValue
-func (t RefToBinaryDataRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the RefToBinaryDataRm as the provided NullValue
-func (t *RefToBinaryDataRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the RefToBinaryDataRm, using the provided NullValue
-func (t *RefToBinaryDataRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RefToBinaryDataRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RefToBinaryDataRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsReflectiveQoSAttribute returns the union data inside the ReflectiveQoSAttributeRm as a ReflectiveQoSAttribute
-func (t ReflectiveQoSAttributeRm) AsReflectiveQoSAttribute() (ReflectiveQoSAttribute, error) {
-	var body ReflectiveQoSAttribute
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromReflectiveQoSAttribute overwrites any union data inside the ReflectiveQoSAttributeRm as the provided ReflectiveQoSAttribute
-func (t *ReflectiveQoSAttributeRm) FromReflectiveQoSAttribute(v ReflectiveQoSAttribute) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeReflectiveQoSAttribute performs a merge with any union data inside the ReflectiveQoSAttributeRm, using the provided ReflectiveQoSAttribute
-func (t *ReflectiveQoSAttributeRm) MergeReflectiveQoSAttribute(v ReflectiveQoSAttribute) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the ReflectiveQoSAttributeRm as a NullValue
-func (t ReflectiveQoSAttributeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the ReflectiveQoSAttributeRm as the provided NullValue
-func (t *ReflectiveQoSAttributeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the ReflectiveQoSAttributeRm, using the provided NullValue
-func (t *ReflectiveQoSAttributeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ReflectiveQoSAttributeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ReflectiveQoSAttributeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRestrictionType returns the union data inside the RestrictionTypeRm as a RestrictionType
-func (t RestrictionTypeRm) AsRestrictionType() (RestrictionType, error) {
-	var body RestrictionType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRestrictionType overwrites any union data inside the RestrictionTypeRm as the provided RestrictionType
-func (t *RestrictionTypeRm) FromRestrictionType(v RestrictionType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRestrictionType performs a merge with any union data inside the RestrictionTypeRm, using the provided RestrictionType
-func (t *RestrictionTypeRm) MergeRestrictionType(v RestrictionType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the RestrictionTypeRm as a NullValue
-func (t RestrictionTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the RestrictionTypeRm as the provided NullValue
-func (t *RestrictionTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the RestrictionTypeRm, using the provided NullValue
-func (t *RestrictionTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RestrictionTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RestrictionTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRgWirelineCharacteristics returns the union data inside the RgWirelineCharacteristicsRm as a RgWirelineCharacteristics
-func (t RgWirelineCharacteristicsRm) AsRgWirelineCharacteristics() (RgWirelineCharacteristics, error) {
-	var body RgWirelineCharacteristics
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRgWirelineCharacteristics overwrites any union data inside the RgWirelineCharacteristicsRm as the provided RgWirelineCharacteristics
-func (t *RgWirelineCharacteristicsRm) FromRgWirelineCharacteristics(v RgWirelineCharacteristics) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRgWirelineCharacteristics performs a merge with any union data inside the RgWirelineCharacteristicsRm, using the provided RgWirelineCharacteristics
-func (t *RgWirelineCharacteristicsRm) MergeRgWirelineCharacteristics(v RgWirelineCharacteristics) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the RgWirelineCharacteristicsRm as a NullValue
-func (t RgWirelineCharacteristicsRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the RgWirelineCharacteristicsRm as the provided NullValue
-func (t *RgWirelineCharacteristicsRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the RgWirelineCharacteristicsRm, using the provided NullValue
-func (t *RgWirelineCharacteristicsRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RgWirelineCharacteristicsRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RgWirelineCharacteristicsRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsScheduledCommunicationTime returns the union data inside the ScheduledCommunicationTimeRm as a ScheduledCommunicationTime
-func (t ScheduledCommunicationTimeRm) AsScheduledCommunicationTime() (ScheduledCommunicationTime, error) {
-	var body ScheduledCommunicationTime
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromScheduledCommunicationTime overwrites any union data inside the ScheduledCommunicationTimeRm as the provided ScheduledCommunicationTime
-func (t *ScheduledCommunicationTimeRm) FromScheduledCommunicationTime(v ScheduledCommunicationTime) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeScheduledCommunicationTime performs a merge with any union data inside the ScheduledCommunicationTimeRm, using the provided ScheduledCommunicationTime
-func (t *ScheduledCommunicationTimeRm) MergeScheduledCommunicationTime(v ScheduledCommunicationTime) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the ScheduledCommunicationTimeRm as a NullValue
-func (t ScheduledCommunicationTimeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the ScheduledCommunicationTimeRm as the provided NullValue
-func (t *ScheduledCommunicationTimeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the ScheduledCommunicationTimeRm, using the provided NullValue
-func (t *ScheduledCommunicationTimeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ScheduledCommunicationTimeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ScheduledCommunicationTimeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsScheduledCommunicationType returns the union data inside the ScheduledCommunicationTypeRm as a ScheduledCommunicationType
-func (t ScheduledCommunicationTypeRm) AsScheduledCommunicationType() (ScheduledCommunicationType, error) {
-	var body ScheduledCommunicationType
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromScheduledCommunicationType overwrites any union data inside the ScheduledCommunicationTypeRm as the provided ScheduledCommunicationType
-func (t *ScheduledCommunicationTypeRm) FromScheduledCommunicationType(v ScheduledCommunicationType) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeScheduledCommunicationType performs a merge with any union data inside the ScheduledCommunicationTypeRm, using the provided ScheduledCommunicationType
-func (t *ScheduledCommunicationTypeRm) MergeScheduledCommunicationType(v ScheduledCommunicationType) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the ScheduledCommunicationTypeRm as a NullValue
-func (t ScheduledCommunicationTypeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the ScheduledCommunicationTypeRm as the provided NullValue
-func (t *ScheduledCommunicationTypeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the ScheduledCommunicationTypeRm, using the provided NullValue
-func (t *ScheduledCommunicationTypeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ScheduledCommunicationTypeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ScheduledCommunicationTypeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsSscMode returns the union data inside the SscModeRm as a SscMode
-func (t SscModeRm) AsSscMode() (SscMode, error) {
-	var body SscMode
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSscMode overwrites any union data inside the SscModeRm as the provided SscMode
-func (t *SscModeRm) FromSscMode(v SscMode) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSscMode performs a merge with any union data inside the SscModeRm, using the provided SscMode
-func (t *SscModeRm) MergeSscMode(v SscMode) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the SscModeRm as a NullValue
-func (t SscModeRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the SscModeRm as the provided NullValue
-func (t *SscModeRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the SscModeRm, using the provided NullValue
-func (t *SscModeRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t SscModeRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *SscModeRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsStationaryIndication returns the union data inside the StationaryIndicationRm as a StationaryIndication
-func (t StationaryIndicationRm) AsStationaryIndication() (StationaryIndication, error) {
-	var body StationaryIndication
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromStationaryIndication overwrites any union data inside the StationaryIndicationRm as the provided StationaryIndication
-func (t *StationaryIndicationRm) FromStationaryIndication(v StationaryIndication) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeStationaryIndication performs a merge with any union data inside the StationaryIndicationRm, using the provided StationaryIndication
-func (t *StationaryIndicationRm) MergeStationaryIndication(v StationaryIndication) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the StationaryIndicationRm as a NullValue
-func (t StationaryIndicationRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the StationaryIndicationRm as the provided NullValue
-func (t *StationaryIndicationRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the StationaryIndicationRm, using the provided NullValue
-func (t *StationaryIndicationRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t StationaryIndicationRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *StationaryIndicationRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsTai returns the union data inside the TaiRm as a Tai
-func (t TaiRm) AsTai() (Tai, error) {
-	var body Tai
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromTai overwrites any union data inside the TaiRm as the provided Tai
-func (t *TaiRm) FromTai(v Tai) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeTai performs a merge with any union data inside the TaiRm, using the provided Tai
-func (t *TaiRm) MergeTai(v Tai) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the TaiRm as a NullValue
-func (t TaiRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the TaiRm as the provided NullValue
-func (t *TaiRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the TaiRm, using the provided NullValue
-func (t *TaiRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t TaiRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *TaiRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsTnapId returns the union data inside the TnapIdRm as a TnapId
-func (t TnapIdRm) AsTnapId() (TnapId, error) {
-	var body TnapId
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromTnapId overwrites any union data inside the TnapIdRm as the provided TnapId
-func (t *TnapIdRm) FromTnapId(v TnapId) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeTnapId performs a merge with any union data inside the TnapIdRm, using the provided TnapId
-func (t *TnapIdRm) MergeTnapId(v TnapId) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the TnapIdRm as a NullValue
-func (t TnapIdRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the TnapIdRm as the provided NullValue
-func (t *TnapIdRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the TnapIdRm, using the provided NullValue
-func (t *TnapIdRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t TnapIdRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *TnapIdRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsTraceDepth returns the union data inside the TraceDepthRm as a TraceDepth
-func (t TraceDepthRm) AsTraceDepth() (TraceDepth, error) {
-	var body TraceDepth
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromTraceDepth overwrites any union data inside the TraceDepthRm as the provided TraceDepth
-func (t *TraceDepthRm) FromTraceDepth(v TraceDepth) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeTraceDepth performs a merge with any union data inside the TraceDepthRm, using the provided TraceDepth
-func (t *TraceDepthRm) MergeTraceDepth(v TraceDepth) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the TraceDepthRm as a NullValue
-func (t TraceDepthRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the TraceDepthRm as the provided NullValue
-func (t *TraceDepthRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the TraceDepthRm, using the provided NullValue
-func (t *TraceDepthRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t TraceDepthRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *TraceDepthRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsTrafficProfile returns the union data inside the TrafficProfileRm as a TrafficProfile
-func (t TrafficProfileRm) AsTrafficProfile() (TrafficProfile, error) {
-	var body TrafficProfile
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromTrafficProfile overwrites any union data inside the TrafficProfileRm as the provided TrafficProfile
-func (t *TrafficProfileRm) FromTrafficProfile(v TrafficProfile) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeTrafficProfile performs a merge with any union data inside the TrafficProfileRm, using the provided TrafficProfile
-func (t *TrafficProfileRm) MergeTrafficProfile(v TrafficProfile) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the TrafficProfileRm as a NullValue
-func (t TrafficProfileRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the TrafficProfileRm as the provided NullValue
-func (t *TrafficProfileRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the TrafficProfileRm, using the provided NullValue
-func (t *TrafficProfileRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t TrafficProfileRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *TrafficProfileRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsTwapId returns the union data inside the TwapIdRm as a TwapId
-func (t TwapIdRm) AsTwapId() (TwapId, error) {
-	var body TwapId
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromTwapId overwrites any union data inside the TwapIdRm as the provided TwapId
-func (t *TwapIdRm) FromTwapId(v TwapId) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeTwapId performs a merge with any union data inside the TwapIdRm, using the provided TwapId
-func (t *TwapIdRm) MergeTwapId(v TwapId) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the TwapIdRm as a NullValue
-func (t TwapIdRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the TwapIdRm as the provided NullValue
-func (t *TwapIdRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the TwapIdRm, using the provided NullValue
-func (t *TwapIdRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t TwapIdRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *TwapIdRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsUpConfidentiality returns the union data inside the UpConfidentialityRm as a UpConfidentiality
-func (t UpConfidentialityRm) AsUpConfidentiality() (UpConfidentiality, error) {
-	var body UpConfidentiality
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromUpConfidentiality overwrites any union data inside the UpConfidentialityRm as the provided UpConfidentiality
-func (t *UpConfidentialityRm) FromUpConfidentiality(v UpConfidentiality) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeUpConfidentiality performs a merge with any union data inside the UpConfidentialityRm, using the provided UpConfidentiality
-func (t *UpConfidentialityRm) MergeUpConfidentiality(v UpConfidentiality) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the UpConfidentialityRm as a NullValue
-func (t UpConfidentialityRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the UpConfidentialityRm as the provided NullValue
-func (t *UpConfidentialityRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the UpConfidentialityRm, using the provided NullValue
-func (t *UpConfidentialityRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t UpConfidentialityRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *UpConfidentialityRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsUpIntegrity returns the union data inside the UpIntegrityRm as a UpIntegrity
-func (t UpIntegrityRm) AsUpIntegrity() (UpIntegrity, error) {
-	var body UpIntegrity
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromUpIntegrity overwrites any union data inside the UpIntegrityRm as the provided UpIntegrity
-func (t *UpIntegrityRm) FromUpIntegrity(v UpIntegrity) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeUpIntegrity performs a merge with any union data inside the UpIntegrityRm, using the provided UpIntegrity
-func (t *UpIntegrityRm) MergeUpIntegrity(v UpIntegrity) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the UpIntegrityRm as a NullValue
-func (t UpIntegrityRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the UpIntegrityRm as the provided NullValue
-func (t *UpIntegrityRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the UpIntegrityRm, using the provided NullValue
-func (t *UpIntegrityRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t UpIntegrityRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *UpIntegrityRm) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsUpSecurity returns the union data inside the UpSecurityRm as a UpSecurity
-func (t UpSecurityRm) AsUpSecurity() (UpSecurity, error) {
-	var body UpSecurity
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromUpSecurity overwrites any union data inside the UpSecurityRm as the provided UpSecurity
-func (t *UpSecurityRm) FromUpSecurity(v UpSecurity) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeUpSecurity performs a merge with any union data inside the UpSecurityRm, using the provided UpSecurity
-func (t *UpSecurityRm) MergeUpSecurity(v UpSecurity) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNullValue returns the union data inside the UpSecurityRm as a NullValue
-func (t UpSecurityRm) AsNullValue() (NullValue, error) {
-	var body NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNullValue overwrites any union data inside the UpSecurityRm as the provided NullValue
-func (t *UpSecurityRm) FromNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNullValue performs a merge with any union data inside the UpSecurityRm, using the provided NullValue
-func (t *UpSecurityRm) MergeNullValue(v NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t UpSecurityRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *UpSecurityRm) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }

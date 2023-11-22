@@ -90,9 +90,16 @@ const (
 
 // Defines values for PreemptionControlInformation.
 const (
-	HIGHESTBW   PreemptionControlInformation = "HIGHEST_BW"
-	LEASTRECENT PreemptionControlInformation = "LEAST_RECENT"
-	MOSTRECENT  PreemptionControlInformation = "MOST_RECENT"
+	PreemptionControlInformationHIGHESTBW   PreemptionControlInformation = "HIGHEST_BW"
+	PreemptionControlInformationLEASTRECENT PreemptionControlInformation = "LEAST_RECENT"
+	PreemptionControlInformationMOSTRECENT  PreemptionControlInformation = "MOST_RECENT"
+)
+
+// Defines values for PreemptionControlInformationRm.
+const (
+	PreemptionControlInformationRmHIGHESTBW   PreemptionControlInformationRm = "HIGHEST_BW"
+	PreemptionControlInformationRmLEASTRECENT PreemptionControlInformationRm = "LEAST_RECENT"
+	PreemptionControlInformationRmMOSTRECENT  PreemptionControlInformationRm = "MOST_RECENT"
 )
 
 // Defines values for PrioritySharingIndicator.
@@ -707,9 +714,7 @@ type PduSessionTsnBridge struct {
 type PreemptionControlInformation string
 
 // PreemptionControlInformationRm defines model for PreemptionControlInformationRm.
-type PreemptionControlInformationRm struct {
-	union json.RawMessage
-}
+type PreemptionControlInformationRm string
 
 // PrioritySharingIndicator defines model for PrioritySharingIndicator.
 type PrioritySharingIndicator string
@@ -6951,68 +6956,6 @@ func (t EventsSubscPutData) MarshalJSON() ([]byte, error) {
 }
 
 func (t *EventsSubscPutData) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsPreemptionControlInformation returns the union data inside the PreemptionControlInformationRm as a PreemptionControlInformation
-func (t PreemptionControlInformationRm) AsPreemptionControlInformation() (PreemptionControlInformation, error) {
-	var body PreemptionControlInformation
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPreemptionControlInformation overwrites any union data inside the PreemptionControlInformationRm as the provided PreemptionControlInformation
-func (t *PreemptionControlInformationRm) FromPreemptionControlInformation(v PreemptionControlInformation) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePreemptionControlInformation performs a merge with any union data inside the PreemptionControlInformationRm, using the provided PreemptionControlInformation
-func (t *PreemptionControlInformationRm) MergePreemptionControlInformation(v PreemptionControlInformation) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsExternalRef0NullValue returns the union data inside the PreemptionControlInformationRm as a externalRef0.NullValue
-func (t PreemptionControlInformationRm) AsExternalRef0NullValue() (externalRef0.NullValue, error) {
-	var body externalRef0.NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromExternalRef0NullValue overwrites any union data inside the PreemptionControlInformationRm as the provided externalRef0.NullValue
-func (t *PreemptionControlInformationRm) FromExternalRef0NullValue(v externalRef0.NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeExternalRef0NullValue performs a merge with any union data inside the PreemptionControlInformationRm, using the provided externalRef0.NullValue
-func (t *PreemptionControlInformationRm) MergeExternalRef0NullValue(v externalRef0.NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t PreemptionControlInformationRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *PreemptionControlInformationRm) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }

@@ -173,9 +173,11 @@ components:
             type: string
             x-go-type-skip-optional-pointer: true
         AccessTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/AccessType'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - 3GPP_ACCESS
+                - NON_3GPP_ACCESS
+            type: string
+            x-go-type-skip-optional-pointer: true
         AcsInfo:
             additionalProperties: true
             properties:
@@ -187,15 +189,19 @@ components:
                     $ref: '#/components/schemas/Uri'
             type: object
         AcsInfoRm:
-            anyOf:
-                - $ref: '#/components/schemas/AcsInfo'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                acsIpv4Addr:
+                    $ref: '#/components/schemas/Ipv4Addr'
+                acsIpv6Addr:
+                    $ref: '#/components/schemas/Ipv6Addr'
+                acsUrl:
+                    $ref: '#/components/schemas/Uri'
+            type: object
         AdditionalQosFlowInfo:
-            anyOf:
-                - enum:
-                    - MORE_LIKELY
-                  type: string
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - MORE_LIKELY
+            type: string
         Ambr:
             additionalProperties: true
             properties:
@@ -208,9 +214,16 @@ components:
                 - downlink
             type: object
         AmbrRm:
-            anyOf:
-                - $ref: '#/components/schemas/Ambr'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                downlink:
+                    $ref: '#/components/schemas/BitRate'
+                uplink:
+                    $ref: '#/components/schemas/BitRate'
+            required:
+                - uplink
+                - downlink
+            type: object
         AmfId:
             pattern: ^[A-Fa-f0-9]{6}$
             type: string
@@ -323,9 +336,19 @@ components:
             nullable: true
             type: integer
         ArpRm:
-            anyOf:
-                - $ref: '#/components/schemas/Arp'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                preemptCap:
+                    $ref: '#/components/schemas/PreemptionCapability'
+                preemptVuln:
+                    $ref: '#/components/schemas/PreemptionVulnerability'
+                priorityLevel:
+                    $ref: '#/components/schemas/ArpPriorityLevel'
+            required:
+                - priorityLevel
+                - preemptCap
+                - preemptVuln
+            type: object
         Atom:
             additionalProperties: true
             properties:
@@ -396,9 +419,15 @@ components:
                     type: boolean
             type: object
         BatteryIndicationRm:
-            anyOf:
-                - $ref: '#/components/schemas/BatteryIndication'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                batteryInd:
+                    type: boolean
+                rechargeableInd:
+                    type: boolean
+                replaceableInd:
+                    type: boolean
+            type: object
         Binary:
             format: binary
             type: string
@@ -527,9 +556,10 @@ components:
                 - EPC
             type: string
         CoreNetworkTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/CoreNetworkType'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - 5GC
+                - EPC
+            type: string
         Date:
             format: date
             type: string
@@ -579,9 +609,13 @@ components:
                 - DISCARDED
             type: string
         DlDataDeliveryStatusRm:
-            anyOf:
-                - $ref: '#/components/schemas/DlDataDeliveryStatus'
-                - $ref: '#/components/schemas/NullValue'
+            description: |
+                Possible values are - BUFFERED: The first downlink data is buffered with extended buffering matching the source of the downlink traffic. - TRANSMITTED: The first downlink data matching the source of the downlink traffic is transmitted after previous buffering or discarding of corresponding packet(s) because the UE of the PDU Session becomes ACTIVE, and buffered data can be delivered to UE. - DISCARDED: The first downlink data matching the source of the downlink traffic is discarded because the Extended Buffering time, as determined by the SMF, expires or the amount of downlink data to be buffered is exceeded.
+            enum:
+                - BUFFERED
+                - TRANSMITTED
+                - DISCARDED
+            type: string
         Dnai:
             type: string
         DnaiChangeType:
@@ -593,9 +627,13 @@ components:
                 - LATE
             type: string
         DnaiChangeTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/DnaiChangeType'
-                - $ref: '#/components/schemas/NullValue'
+            description: |
+                Possible values are - EARLY: Early notification of UP path reconfiguration. - EARLY_LATE: Early and late notification of UP path reconfiguration. This value shall only be present in the subscription to the DNAI change event. - LATE: Late notification of UP path reconfiguration.
+            enum:
+                - EARLY
+                - EARLY_LATE
+                - LATE
+            type: string
         DnaiRm:
             nullable: true
             type: string
@@ -687,9 +725,18 @@ components:
                 - eutraCellId
             type: object
         EcgiRm:
-            anyOf:
-                - $ref: '#/components/schemas/Ecgi'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                eutraCellId:
+                    $ref: '#/components/schemas/EutraCellId'
+                nid:
+                    $ref: '#/components/schemas/Nid'
+                plmnId:
+                    $ref: '#/components/schemas/PlmnId'
+            required:
+                - plmnId
+                - eutraCellId
+            type: object
         EutraCellId:
             pattern: ^[A-Fa-f0-9]{7}$
             type: string
@@ -734,9 +781,40 @@ components:
                 - ecgi
             type: object
         EutraLocationRm:
-            anyOf:
-                - $ref: '#/components/schemas/EutraLocation'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                ageOfLocationInformation:
+                    maximum: 32767
+                    minimum: 0
+                    type: integer
+                ecgi:
+                    $ref: '#/components/schemas/Ecgi'
+                geodeticInformation:
+                    pattern: ^[0-9A-F]{20}$
+                    type: string
+                    x-go-type-skip-optional-pointer: true
+                geographicalInformation:
+                    pattern: ^[0-9A-F]{16}$
+                    type: string
+                    x-go-type-skip-optional-pointer: true
+                globalENbId:
+                    $ref: '#/components/schemas/GlobalRanNodeId'
+                globalNgenbId:
+                    $ref: '#/components/schemas/GlobalRanNodeId'
+                ignoreEcgi:
+                    default: false
+                    type: boolean
+                ignoreTai:
+                    default: false
+                    type: boolean
+                tai:
+                    $ref: '#/components/schemas/Tai'
+                ueLocationTimestamp:
+                    $ref: '#/components/schemas/DateTime'
+            required:
+                - tai
+                - ecgi
+            type: object
         EventForMdt:
             enum:
                 - OUT_OF_COVERAG
@@ -897,9 +975,16 @@ components:
                 name: f5gcModels
                 path: github.com/free5gc/openapi/models
         GuamiRm:
-            anyOf:
-                - $ref: '#/components/schemas/Guami'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                amfId:
+                    $ref: '#/components/schemas/AmfId'
+                plmnId:
+                    $ref: '#/components/schemas/PlmnIdNid'
+            required:
+                - plmnId
+                - amfId
+            type: object
         HalTemplate:
             additionalProperties: true
             properties:
@@ -934,9 +1019,13 @@ components:
                 - hfcNId
             type: object
         HfcNodeIdRm:
-            anyOf:
-                - $ref: '#/components/schemas/HfcNodeId'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                hfcNId:
+                    $ref: '#/components/schemas/HfcNId'
+            required:
+                - hfcNId
+            type: object
         HttpMethod:
             enum:
                 - GET
@@ -1050,9 +1139,12 @@ components:
                 - PON
             type: string
         LineTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/LineType'
-                - $ref: '#/components/schemas/NullValue'
+            description: |
+                Possible values are - DSL: Identifies a DSL line - PON: Identifies a PON line
+            enum:
+                - DSL
+                - PON
+            type: string
         Link:
             additionalProperties: true
             properties:
@@ -1393,9 +1485,18 @@ components:
                 - nrCellId
             type: object
         NcgiRm:
-            anyOf:
-                - $ref: '#/components/schemas/Ncgi'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                nid:
+                    $ref: '#/components/schemas/Nid'
+                nrCellId:
+                    $ref: '#/components/schemas/NrCellId'
+                plmnId:
+                    $ref: '#/components/schemas/PlmnId'
+            required:
+                - plmnId
+                - nrCellId
+            type: object
         NetworkId:
             additionalProperties: true
             properties:
@@ -1458,9 +1559,10 @@ components:
                 - NOT_REQUESTED
             type: string
         NotificationControlRm:
-            anyOf:
-                - $ref: '#/components/schemas/NotificationControl'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - REQUESTED
+                - NOT_REQUESTED
+            type: string
         NotifyItem:
             additionalProperties: true
             properties:
@@ -1515,9 +1617,35 @@ components:
                 - ncgi
             type: object
         NrLocationRm:
-            anyOf:
-                - $ref: '#/components/schemas/NrLocation'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                ageOfLocationInformation:
+                    maximum: 32767
+                    minimum: 0
+                    type: integer
+                geodeticInformation:
+                    pattern: ^[0-9A-F]{20}$
+                    type: string
+                    x-go-type-skip-optional-pointer: true
+                geographicalInformation:
+                    pattern: ^[0-9A-F]{16}$
+                    type: string
+                    x-go-type-skip-optional-pointer: true
+                globalGnbId:
+                    $ref: '#/components/schemas/GlobalRanNodeId'
+                ignoreNcgi:
+                    default: false
+                    type: boolean
+                ncgi:
+                    $ref: '#/components/schemas/Ncgi'
+                tai:
+                    $ref: '#/components/schemas/Tai'
+                ueLocationTimestamp:
+                    $ref: '#/components/schemas/DateTime'
+            required:
+                - tai
+                - ncgi
+            type: object
         NrV2xAuth:
             additionalProperties: true
             properties:
@@ -1538,9 +1666,16 @@ components:
                 - status
             type: object
         NssaaStatusRm:
-            anyOf:
-                - $ref: '#/components/schemas/NssaaStatus'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                snssai:
+                    $ref: '#/components/schemas/Snssai'
+                status:
+                    $ref: '#/components/schemas/AuthStatus'
+            required:
+                - snssai
+                - status
+            type: object
         NullValue:
             enum:
                 - null
@@ -1551,13 +1686,11 @@ components:
                     $ref: '#/components/schemas/RoamingOdb'
             type: object
         OdbPacketServices:
-            anyOf:
-                - enum:
-                    - ALL_PACKET_SERVICES
-                    - ROAMER_ACCESS_HPLMN_AP
-                    - ROAMER_ACCESS_VPLMN_AP
-                  type: string
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - ALL_PACKET_SERVICES
+                - ROAMER_ACCESS_HPLMN_AP
+                - ROAMER_ACCESS_VPLMN_AP
+            type: string
         PacketDelBudget:
             minimum: 1
             type: integer
@@ -1663,9 +1796,13 @@ components:
                 - ETHERNET
             type: string
         PduSessionTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/PduSessionType'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - IPV4
+                - IPV6
+                - IPV4V6
+                - UNSTRUCTURED
+                - ETHERNET
+            type: string
         Pei:
             pattern: ^(imei-[0-9]{15}|imeisv-[0-9]{16}|mac((-[0-9a-fA-F]{2}){6})(-untrusted)?|eui((-[0-9a-fA-F]{2}){8})|.+)$
             type: string
@@ -1709,9 +1846,16 @@ components:
                 - mnc
             type: object
         PlmnIdRm:
-            anyOf:
-                - $ref: '#/components/schemas/PlmnId'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                mcc:
+                    $ref: '#/components/schemas/Mcc'
+                mnc:
+                    $ref: '#/components/schemas/Mnc'
+            required:
+                - mcc
+                - mnc
+            type: object
         PositioningMethodMdt:
             enum:
                 - GNSS
@@ -1723,18 +1867,20 @@ components:
                 - MAY_PREEMPT
             type: string
         PreemptionCapabilityRm:
-            anyOf:
-                - $ref: '#/components/schemas/PreemptionCapability'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - NOT_PREEMPT
+                - MAY_PREEMPT
+            type: string
         PreemptionVulnerability:
             enum:
                 - NOT_PREEMPTABLE
                 - PREEMPTABLE
             type: string
         PreemptionVulnerabilityRm:
-            anyOf:
-                - $ref: '#/components/schemas/PreemptionVulnerability'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - NOT_PREEMPTABLE
+                - PREEMPTABLE
+            type: string
         PresenceInfo:
             additionalProperties: true
             properties:
@@ -1898,9 +2044,11 @@ components:
                 - CRITICAL_GBR
             type: string
         QosResourceTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/QosResourceType'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - NON_GBR
+                - NON_CRITICAL_GBR
+                - CRITICAL_GBR
+            type: string
         RatType:
             enum:
                 - NR
@@ -1920,9 +2068,23 @@ components:
                 - GERA
             type: string
         RatTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/RatType'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - NR
+                - EUTRA
+                - WLAN
+                - VIRTUAL
+                - NBIOT
+                - WIRELINE
+                - WIRELINE_CABLE
+                - WIRELINE_BBF
+                - LTE-M
+                - NR_U
+                - EUTRA_U
+                - TRUSTED_N3GA
+                - TRUSTED_WLAN
+                - UTRA
+                - GERA
+            type: string
         RatingGroup:
             $ref: '#/components/schemas/Uint32'
         RedirectResponse:
@@ -1944,18 +2106,23 @@ components:
                 - contentId
             type: object
         RefToBinaryDataRm:
-            anyOf:
-                - $ref: '#/components/schemas/RefToBinaryData'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                contentId:
+                    type: string
+            required:
+                - contentId
+            type: object
         ReflectiveQoSAttribute:
             enum:
                 - RQOS
                 - NO_RQOS
             type: string
         ReflectiveQoSAttributeRm:
-            anyOf:
-                - $ref: '#/components/schemas/ReflectiveQoSAttribute'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - RQOS
+                - NO_RQOS
+            type: string
         ReportAmountMdt:
             enum:
                 - 1
@@ -2027,9 +2194,10 @@ components:
                 - NOT_ALLOWED_AREAS
             type: string
         RestrictionTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/RestrictionType'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - ALLOWED_AREAS
+                - NOT_ALLOWED_AREAS
+            type: string
         RfspIndex:
             maximum: 256
             minimum: 1
@@ -2043,9 +2211,8 @@ components:
         RgWirelineCharacteristics:
             $ref: '#/components/schemas/Bytes'
         RgWirelineCharacteristicsRm:
-            anyOf:
-                - $ref: '#/components/schemas/RgWirelineCharacteristics'
-                - $ref: '#/components/schemas/NullValue'
+            format: byte
+            type: string
         RoamingOdb:
             enum:
                 - OUTSIDE_HOME_PLMN
@@ -2123,9 +2290,21 @@ components:
                     $ref: '#/components/schemas/TimeOfDay'
             type: object
         ScheduledCommunicationTimeRm:
-            anyOf:
-                - $ref: '#/components/schemas/ScheduledCommunicationTime'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                daysOfWeek:
+                    description: Identifies the day(s) of the week. If absent, it indicates every day of the week.
+                    items:
+                        $ref: '#/components/schemas/DayOfWeek'
+                    maxItems: 6
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                timeOfDayEnd:
+                    $ref: '#/components/schemas/TimeOfDay'
+                timeOfDayStart:
+                    $ref: '#/components/schemas/TimeOfDay'
+            type: object
         ScheduledCommunicationType:
             enum:
                 - DOWNLINK_ONLY
@@ -2133,9 +2312,11 @@ components:
                 - BIDIRECTIONAL
             type: string
         ScheduledCommunicationTypeRm:
-            anyOf:
-                - $ref: '#/components/schemas/ScheduledCommunicationType'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - DOWNLINK_ONLY
+                - UPLINK_ONLY
+                - BIDIRECTIONAL
+            type: string
         SdRange:
             additionalProperties: true
             description: A range of SDs (Slice Differentiators)
@@ -2296,9 +2477,11 @@ components:
                 - SSC_MODE_3
             type: string
         SscModeRm:
-            anyOf:
-                - $ref: '#/components/schemas/SscMode'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - SSC_MODE_1
+                - SSC_MODE_2
+                - SSC_MODE_3
+            type: string
         StationaryIndication:
             description: |
                 Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
@@ -2307,9 +2490,12 @@ components:
                 - MOBILE
             type: string
         StationaryIndicationRm:
-            anyOf:
-                - $ref: '#/components/schemas/StationaryIndication'
-                - $ref: '#/components/schemas/NullValue'
+            description: |
+                Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
+            enum:
+                - STATIONARY
+                - MOBILE
+            type: string
         StnSr:
             type: string
         StnSrRm:
@@ -2377,9 +2563,18 @@ components:
                 - tac
             type: object
         TaiRm:
-            anyOf:
-                - $ref: '#/components/schemas/Tai'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                nid:
+                    $ref: '#/components/schemas/Nid'
+                plmnId:
+                    $ref: '#/components/schemas/PlmnId'
+                tac:
+                    $ref: '#/components/schemas/Tac'
+            required:
+                - plmnId
+                - tac
+            type: object
         TimeOfDay:
             description: String with format partial-time or full-time as defined in clause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind UTC).
             type: string
@@ -2399,9 +2594,15 @@ components:
                     type: string
             type: object
         TnapIdRm:
-            anyOf:
-                - $ref: '#/components/schemas/TnapId'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                bssId:
+                    type: string
+                civicAddress:
+                    $ref: '#/components/schemas/Bytes'
+                ssId:
+                    type: string
+            type: object
         TngfId:
             pattern: ^[A-Fa-f0-9]+$
             type: string
@@ -2448,9 +2649,14 @@ components:
                 - MAXIMUM_WO_VENDOR_EXTENSION
             type: string
         TraceDepthRm:
-            anyOf:
-                - $ref: '#/components/schemas/TraceDepth'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - MINIMUM
+                - MEDIUM
+                - MAXIMUM
+                - MINIMUM_WO_VENDOR_EXTENSION
+                - MEDIUM_WO_VENDOR_EXTENSION
+                - MAXIMUM_WO_VENDOR_EXTENSION
+            type: string
         TrafficProfile:
             description: |
                 Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
@@ -2462,9 +2668,15 @@ components:
                 - MULTI_TRANS
             type: string
         TrafficProfileRm:
-            anyOf:
-                - $ref: '#/components/schemas/TrafficProfile'
-                - $ref: '#/components/schemas/NullValue'
+            description: |
+                Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
+            enum:
+                - SINGLE_TRANS_UL
+                - SINGLE_TRANS_DL
+                - DUAL_TRANS_UL_FIRST
+                - DUAL_TRANS_DL_FIRST
+                - MULTI_TRANS
+            type: string
         TransportProtocol:
             description: |
                 Possible values are - UDP: User Datagram Protocol. - TCP: Transmission Control Protocol.
@@ -2485,9 +2697,17 @@ components:
                 - ssId
             type: object
         TwapIdRm:
-            anyOf:
-                - $ref: '#/components/schemas/TwapId'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                bssId:
+                    type: string
+                civicAddress:
+                    $ref: '#/components/schemas/Bytes'
+                ssId:
+                    type: string
+            required:
+                - ssId
+            type: object
         TypeAllocationCode:
             pattern: ^[0-9]{8}$
             type: string
@@ -2542,9 +2762,11 @@ components:
                 - NOT_NEEDED
             type: string
         UpConfidentialityRm:
-            anyOf:
-                - $ref: '#/components/schemas/UpConfidentiality'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - REQUIRED
+                - PREFERRED
+                - NOT_NEEDED
+            type: string
         UpIntegrity:
             enum:
                 - REQUIRED
@@ -2552,9 +2774,11 @@ components:
                 - NOT_NEEDED
             type: string
         UpIntegrityRm:
-            anyOf:
-                - $ref: '#/components/schemas/UpIntegrity'
-                - $ref: '#/components/schemas/NullValue'
+            enum:
+                - REQUIRED
+                - PREFERRED
+                - NOT_NEEDED
+            type: string
         UpSecurity:
             additionalProperties: true
             properties:
@@ -2567,9 +2791,16 @@ components:
                 - upConfid
             type: object
         UpSecurityRm:
-            anyOf:
-                - $ref: '#/components/schemas/UpSecurity'
-                - $ref: '#/components/schemas/NullValue'
+            additionalProperties: true
+            properties:
+                upConfid:
+                    $ref: '#/components/schemas/UpConfidentiality'
+                upIntegr:
+                    $ref: '#/components/schemas/UpIntegrity'
+            required:
+                - upIntegr
+                - upConfid
+            type: object
         Uri:
             type: string
         UriRm:

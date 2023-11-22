@@ -80,10 +80,14 @@ type ExpectedUeBehaviour struct {
 	ReferenceId                ReferenceId                                `json:"referenceId"`
 	ScheduledCommunicationTime *externalRef0.ScheduledCommunicationTimeRm `json:"scheduledCommunicationTime,omitempty"`
 	ScheduledCommunicationType *externalRef0.ScheduledCommunicationTypeRm `json:"scheduledCommunicationType,omitempty"`
-	StationaryIndication       *externalRef0.StationaryIndicationRm       `json:"stationaryIndication,omitempty"`
-	TrafficProfile             *externalRef0.TrafficProfileRm             `json:"trafficProfile,omitempty"`
-	ValidityTime               *externalRef0.DateTime                     `json:"validityTime,omitempty"`
-	AdditionalProperties       map[string]interface{}                     `json:"-"`
+
+	// StationaryIndication Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
+	StationaryIndication *externalRef0.StationaryIndicationRm `json:"stationaryIndication,omitempty"`
+
+	// TrafficProfile Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
+	TrafficProfile       *externalRef0.TrafficProfileRm `json:"trafficProfile,omitempty"`
+	ValidityTime         *externalRef0.DateTime         `json:"validityTime,omitempty"`
+	AdditionalProperties map[string]interface{}         `json:"-"`
 }
 
 // LcsPrivacy defines model for LcsPrivacy.

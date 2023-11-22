@@ -93,6 +93,14 @@ const (
 	FlowDirectionUPLINK        FlowDirection = "UPLINK"
 )
 
+// Defines values for FlowDirectionRm.
+const (
+	FlowDirectionRmBIDIRECTIONAL FlowDirectionRm = "BIDIRECTIONAL"
+	FlowDirectionRmDOWNLINK      FlowDirectionRm = "DOWNLINK"
+	FlowDirectionRmUNSPECIFIED   FlowDirectionRm = "UNSPECIFIED"
+	FlowDirectionRmUPLINK        FlowDirectionRm = "UPLINK"
+)
+
 // Defines values for MaPduIndication.
 const (
 	MAPDUNETWORKUPGRADEALLOWED MaPduIndication = "MA_PDU_NETWORK_UPGRADE_ALLOWED"
@@ -216,9 +224,9 @@ const (
 
 // Defines values for RequestedQosMonitoringParameter.
 const (
-	RequestedQosMonitoringParameterDOWNLINK  RequestedQosMonitoringParameter = "DOWNLINK"
-	RequestedQosMonitoringParameterROUNDTRIP RequestedQosMonitoringParameter = "ROUND_TRIP"
-	RequestedQosMonitoringParameterUPLINK    RequestedQosMonitoringParameter = "UPLINK"
+	DOWNLINK  RequestedQosMonitoringParameter = "DOWNLINK"
+	ROUNDTRIP RequestedQosMonitoringParameter = "ROUND_TRIP"
+	UPLINK    RequestedQosMonitoringParameter = "UPLINK"
 )
 
 // Defines values for RequestedRuleDataType.
@@ -510,10 +518,8 @@ type FlowDescription = string
 // FlowDirection Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
 type FlowDirection string
 
-// FlowDirectionRm defines model for FlowDirectionRm.
-type FlowDirectionRm struct {
-	union json.RawMessage
-}
+// FlowDirectionRm Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
+type FlowDirectionRm string
 
 // FlowInformation defines model for FlowInformation.
 type FlowInformation struct {
@@ -522,7 +528,9 @@ type FlowInformation struct {
 
 	// FlowDescription Defines a packet filter for an IP flow.
 	FlowDescription *FlowDescription `json:"flowDescription,omitempty"`
-	FlowDirection   *FlowDirectionRm `json:"flowDirection,omitempty"`
+
+	// FlowDirection Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
+	FlowDirection *FlowDirectionRm `json:"flowDirection,omitempty"`
 
 	// FlowLabel the Ipv6 flow label header field.
 	FlowLabel *string `json:"flowLabel"`
@@ -1243,12 +1251,12 @@ type SteeringFunctionality string
 
 // SteeringMode defines model for SteeringMode.
 type SteeringMode struct {
-	N3gLoad              *externalRef0.Uinteger     `json:"3gLoad,omitempty"`
-	Active               externalRef0.AccessType    `json:"active,omitempty"`
-	PrioAcc              externalRef0.AccessType    `json:"prioAcc,omitempty"`
-	Standby              *externalRef0.AccessTypeRm `json:"standby,omitempty"`
-	SteerModeValue       SteerModeValue             `json:"steerModeValue"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	N3gLoad              *externalRef0.Uinteger    `json:"3gLoad,omitempty"`
+	Active               externalRef0.AccessType   `json:"active,omitempty"`
+	PrioAcc              externalRef0.AccessType   `json:"prioAcc,omitempty"`
+	Standby              externalRef0.AccessTypeRm `json:"standby,omitempty"`
+	SteerModeValue       SteerModeValue            `json:"steerModeValue"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // TerminationNotification defines model for TerminationNotification.
@@ -8182,7 +8190,7 @@ func (a SteeringMode) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.Standby != nil {
+	if len(a.Standby) != 0 {
 		object["standby"], err = json.Marshal(a.Standby)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'standby': %w", err)
@@ -9332,68 +9340,6 @@ func (t AfSigProtocol) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AfSigProtocol) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsFlowDirection returns the union data inside the FlowDirectionRm as a FlowDirection
-func (t FlowDirectionRm) AsFlowDirection() (FlowDirection, error) {
-	var body FlowDirection
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromFlowDirection overwrites any union data inside the FlowDirectionRm as the provided FlowDirection
-func (t *FlowDirectionRm) FromFlowDirection(v FlowDirection) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeFlowDirection performs a merge with any union data inside the FlowDirectionRm, using the provided FlowDirection
-func (t *FlowDirectionRm) MergeFlowDirection(v FlowDirection) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsExternalRef0NullValue returns the union data inside the FlowDirectionRm as a externalRef0.NullValue
-func (t FlowDirectionRm) AsExternalRef0NullValue() (externalRef0.NullValue, error) {
-	var body externalRef0.NullValue
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromExternalRef0NullValue overwrites any union data inside the FlowDirectionRm as the provided externalRef0.NullValue
-func (t *FlowDirectionRm) FromExternalRef0NullValue(v externalRef0.NullValue) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeExternalRef0NullValue performs a merge with any union data inside the FlowDirectionRm, using the provided externalRef0.NullValue
-func (t *FlowDirectionRm) MergeExternalRef0NullValue(v externalRef0.NullValue) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t FlowDirectionRm) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *FlowDirectionRm) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }

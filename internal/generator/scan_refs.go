@@ -722,7 +722,11 @@ func (s *scanRefType) walkSchema(v *openapi3.Schema) error {
 		return err
 	}
 
-	if err := fixAllOfEnum(v); err != nil {
+	if err := fixAnyOfEnum(v); err != nil {
+		return err
+	}
+
+	if err := fixAnyOfString(v); err != nil {
 		return err
 	}
 

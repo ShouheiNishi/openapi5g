@@ -7,10 +7,10 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 supi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                 supportedFeatures:
@@ -71,7 +71,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 locationEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
                     x-go-type-skip-optional-pointer: true
@@ -91,7 +91,7 @@ components:
                     type: array
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 servingNode:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
                 supi:
@@ -102,7 +102,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
                 terminationCause:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 utranSrvccInd:
                     type: boolean
                 velocityEstimate:
@@ -140,7 +140,7 @@ components:
             properties:
                 accuracyFulfilmentIndicator:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 ageOfLocationEstimate:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
                     x-go-type-skip-optional-pointer: true
@@ -176,7 +176,7 @@ components:
                     type: array
                 servingLMFIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 supportedFeatures:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 targetMmeName:
@@ -215,7 +215,7 @@ components:
                 additionalLcsSuppGADShapes:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-                        x-go-type-skip-optional-pointer: true
+                        type: string
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -226,17 +226,17 @@ components:
                     x-go-type-skip-optional-pointer: true
                 codeWord:
                     description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 externalClientIdentification:
                     description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 gpsi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                 hgmlcCallBackURI:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 lcsClientType:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 lcsLocation:
                     $ref: '#/components/schemas/LocationType'
                 lcsQoS:
@@ -247,13 +247,13 @@ components:
                     x-go-type-skip-optional-pointer: true
                 lcsSupportedGADShapes:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 ldrReference:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 ldrType:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 locationNotificationUri:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Uri
                 motionEventInfo:
@@ -268,7 +268,7 @@ components:
                     x-go-type-skip-optional-pointer: true
                 priority:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 supi:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                 supportedFeatures:
@@ -278,7 +278,7 @@ components:
                     x-go-type-skip-optional-pointer: true
                 velocityRequested:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
-                    x-go-type-skip-optional-pointer: true
+                    type: string
             required:
                 - lcsClientType
                 - lcsLocation

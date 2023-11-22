@@ -113,57 +113,52 @@ type N3GppChargingCharacteristics = string
 
 // AccessAndMobilitySubscriptionData defines model for AccessAndMobilitySubscriptionData.
 type AccessAndMobilitySubscriptionData struct {
-	ActiveTime                     *externalRef2.DurationSecRm                                 `json:"activeTime"`
-	CMsisdn                        externalRef2.CMsisdn                                        `json:"cMsisdn,omitempty"`
-	CagData                        *CagData                                                    `json:"cagData,omitempty"`
-	CoreNetworkTypeRestrictions    *[]externalRef2.CoreNetworkType                             `json:"coreNetworkTypeRestrictions,omitempty"`
-	EcRestrictionDataNb            *bool                                                       `json:"ecRestrictionDataNb,omitempty"`
-	EcRestrictionDataWb            *EcRestrictionDataWb                                        `json:"ecRestrictionDataWb,omitempty"`
-	EdrxParametersList             []EdrxParameters                                            `json:"edrxParametersList,omitempty"`
-	ExpectedUeBehaviourList        *ExpectedUeBehaviourData                                    `json:"expectedUeBehaviourList,omitempty"`
-	ForbiddenAreas                 *[]externalRef2.Area                                        `json:"forbiddenAreas,omitempty"`
-	Gpsis                          *[]externalRef2.Gpsi                                        `json:"gpsis,omitempty"`
-	IabOperationAllowed            *bool                                                       `json:"iabOperationAllowed,omitempty"`
-	InternalGroupIds               []externalRef2.GroupId                                      `json:"internalGroupIds,omitempty"`
-	McsPriority                    *McsPriorityIndicator                                       `json:"mcsPriority,omitempty"`
-	MdtConfiguration               *externalRef2.MdtConfiguration                              `json:"mdtConfiguration,omitempty"`
-	MdtUserConsent                 *MdtUserConsent                                             `json:"mdtUserConsent,omitempty"`
-	MicoAllowed                    *MicoAllowed                                                `json:"micoAllowed,omitempty"`
-	MpsPriority                    *MpsPriorityIndicator                                       `json:"mpsPriority,omitempty"`
-	NbIoTUePriority                *NbIoTUePriority                                            `json:"nbIoTUePriority,omitempty"`
-	Nssai                          *Nssai                                                      `json:"nssai"`
-	NssaiInclusionAllowed          *bool                                                       `json:"nssaiInclusionAllowed,omitempty"`
-	OdbPacketServices              *externalRef2.OdbPacketServices                             `json:"odbPacketServices,omitempty"`
-	PrimaryRatRestrictions         *[]externalRef2.RatType                                     `json:"primaryRatRestrictions,omitempty"`
-	PtwParametersList              []PtwParameters                                             `json:"ptwParametersList,omitempty"`
-	RatRestrictions                *[]externalRef2.RatType                                     `json:"ratRestrictions,omitempty"`
-	RfspIndex                      *externalRef2.RfspIndexRm                                   `json:"rfspIndex"`
-	RgWirelineCharacteristics      *externalRef2.RgWirelineCharacteristics                     `json:"rgWirelineCharacteristics,omitempty"`
-	SecondaryRatRestrictions       *[]externalRef2.RatType                                     `json:"secondaryRatRestrictions,omitempty"`
-	ServiceAreaRestriction         *externalRef2.ServiceAreaRestriction                        `json:"serviceAreaRestriction,omitempty"`
-	ServiceGapTime                 *externalRef2.DurationSec                                   `json:"serviceGapTime,omitempty"`
-	SharedAmDataIds                []SharedDataId                                              `json:"sharedAmDataIds,omitempty"`
-	SharedVnGroupDataIds           *map[string]SharedDataId                                    `json:"sharedVnGroupDataIds,omitempty"`
-	SorInfo                        *SorInfo                                                    `json:"sorInfo,omitempty"`
-	SorInfoExpectInd               *bool                                                       `json:"sorInfoExpectInd,omitempty"`
-	SorUpdateIndicatorList         []SorUpdateIndicator                                        `json:"sorUpdateIndicatorList,omitempty"`
-	SorafRetrieval                 *bool                                                       `json:"sorafRetrieval,omitempty"`
-	StnSr                          *externalRef2.StnSr                                         `json:"stnSr,omitempty"`
-	SubsRegTimer                   *externalRef2.DurationSecRm                                 `json:"subsRegTimer"`
-	SubscribedDnnList              *[]AccessAndMobilitySubscriptionData_SubscribedDnnList_Item `json:"subscribedDnnList,omitempty"`
-	SubscribedUeAmbr               *externalRef2.AmbrRm                                        `json:"subscribedUeAmbr,omitempty"`
-	SupportedFeatures              *externalRef2.SupportedFeatures                             `json:"supportedFeatures,omitempty"`
-	TraceData                      *externalRef2.TraceData                                     `json:"traceData"`
-	UeUsageType                    *UeUsageType                                                `json:"ueUsageType,omitempty"`
-	UpuInfo                        *UpuInfo                                                    `json:"upuInfo,omitempty"`
-	WirelineForbiddenAreas         *[]externalRef2.WirelineArea                                `json:"wirelineForbiddenAreas,omitempty"`
-	WirelineServiceAreaRestriction *externalRef2.WirelineServiceAreaRestriction                `json:"wirelineServiceAreaRestriction,omitempty"`
-	AdditionalProperties           map[string]interface{}                                      `json:"-"`
-}
-
-// AccessAndMobilitySubscriptionData_SubscribedDnnList_Item defines model for AccessAndMobilitySubscriptionData.subscribedDnnList.Item.
-type AccessAndMobilitySubscriptionData_SubscribedDnnList_Item struct {
-	union json.RawMessage
+	ActiveTime                     *externalRef2.DurationSecRm                  `json:"activeTime"`
+	CMsisdn                        externalRef2.CMsisdn                         `json:"cMsisdn,omitempty"`
+	CagData                        *CagData                                     `json:"cagData,omitempty"`
+	CoreNetworkTypeRestrictions    *[]externalRef2.CoreNetworkType              `json:"coreNetworkTypeRestrictions,omitempty"`
+	EcRestrictionDataNb            *bool                                        `json:"ecRestrictionDataNb,omitempty"`
+	EcRestrictionDataWb            *EcRestrictionDataWb                         `json:"ecRestrictionDataWb,omitempty"`
+	EdrxParametersList             []EdrxParameters                             `json:"edrxParametersList,omitempty"`
+	ExpectedUeBehaviourList        *ExpectedUeBehaviourData                     `json:"expectedUeBehaviourList,omitempty"`
+	ForbiddenAreas                 *[]externalRef2.Area                         `json:"forbiddenAreas,omitempty"`
+	Gpsis                          *[]externalRef2.Gpsi                         `json:"gpsis,omitempty"`
+	IabOperationAllowed            *bool                                        `json:"iabOperationAllowed,omitempty"`
+	InternalGroupIds               []externalRef2.GroupId                       `json:"internalGroupIds,omitempty"`
+	McsPriority                    *McsPriorityIndicator                        `json:"mcsPriority,omitempty"`
+	MdtConfiguration               *externalRef2.MdtConfiguration               `json:"mdtConfiguration,omitempty"`
+	MdtUserConsent                 *MdtUserConsent                              `json:"mdtUserConsent,omitempty"`
+	MicoAllowed                    *MicoAllowed                                 `json:"micoAllowed,omitempty"`
+	MpsPriority                    *MpsPriorityIndicator                        `json:"mpsPriority,omitempty"`
+	NbIoTUePriority                *NbIoTUePriority                             `json:"nbIoTUePriority,omitempty"`
+	Nssai                          *Nssai                                       `json:"nssai"`
+	NssaiInclusionAllowed          *bool                                        `json:"nssaiInclusionAllowed,omitempty"`
+	OdbPacketServices              *externalRef2.OdbPacketServices              `json:"odbPacketServices,omitempty"`
+	PrimaryRatRestrictions         *[]externalRef2.RatType                      `json:"primaryRatRestrictions,omitempty"`
+	PtwParametersList              []PtwParameters                              `json:"ptwParametersList,omitempty"`
+	RatRestrictions                *[]externalRef2.RatType                      `json:"ratRestrictions,omitempty"`
+	RfspIndex                      *externalRef2.RfspIndexRm                    `json:"rfspIndex"`
+	RgWirelineCharacteristics      *externalRef2.RgWirelineCharacteristics      `json:"rgWirelineCharacteristics,omitempty"`
+	SecondaryRatRestrictions       *[]externalRef2.RatType                      `json:"secondaryRatRestrictions,omitempty"`
+	ServiceAreaRestriction         *externalRef2.ServiceAreaRestriction         `json:"serviceAreaRestriction,omitempty"`
+	ServiceGapTime                 *externalRef2.DurationSec                    `json:"serviceGapTime,omitempty"`
+	SharedAmDataIds                []SharedDataId                               `json:"sharedAmDataIds,omitempty"`
+	SharedVnGroupDataIds           *map[string]SharedDataId                     `json:"sharedVnGroupDataIds,omitempty"`
+	SorInfo                        *SorInfo                                     `json:"sorInfo,omitempty"`
+	SorInfoExpectInd               *bool                                        `json:"sorInfoExpectInd,omitempty"`
+	SorUpdateIndicatorList         []SorUpdateIndicator                         `json:"sorUpdateIndicatorList,omitempty"`
+	SorafRetrieval                 *bool                                        `json:"sorafRetrieval,omitempty"`
+	StnSr                          *externalRef2.StnSr                          `json:"stnSr,omitempty"`
+	SubsRegTimer                   *externalRef2.DurationSecRm                  `json:"subsRegTimer"`
+	SubscribedDnnList              *[]string                                    `json:"subscribedDnnList,omitempty"`
+	SubscribedUeAmbr               *externalRef2.AmbrRm                         `json:"subscribedUeAmbr,omitempty"`
+	SupportedFeatures              *externalRef2.SupportedFeatures              `json:"supportedFeatures,omitempty"`
+	TraceData                      *externalRef2.TraceData                      `json:"traceData"`
+	UeUsageType                    *UeUsageType                                 `json:"ueUsageType,omitempty"`
+	UpuInfo                        *UpuInfo                                     `json:"upuInfo,omitempty"`
+	WirelineForbiddenAreas         *[]externalRef2.WirelineArea                 `json:"wirelineForbiddenAreas,omitempty"`
+	WirelineServiceAreaRestriction *externalRef2.WirelineServiceAreaRestriction `json:"wirelineServiceAreaRestriction,omitempty"`
+	AdditionalProperties           map[string]interface{}                       `json:"-"`
 }
 
 // AcknowledgeInfo defines model for AcknowledgeInfo.
@@ -283,8 +278,12 @@ type DnnIndicator = bool
 
 // DnnInfo defines model for DnnInfo.
 type DnnInfo struct {
-	DefaultDnnIndicator  *DnnIndicator               `json:"defaultDnnIndicator,omitempty"`
-	Dnn                  DnnInfo_Dnn                 `json:"dnn"`
+	DefaultDnnIndicator *DnnIndicator `json:"defaultDnnIndicator,omitempty"`
+
+	// Dnn Merged type of
+	//   string in TS29571_CommonData.yaml#/components/schemas/Dnn
+	//   string in TS29571_CommonData.yaml#/components/schemas/WildcardDnn
+	Dnn                  string                      `json:"dnn"`
 	DnnBarred            *bool                       `json:"dnnBarred,omitempty"`
 	InvokeNefInd         *bool                       `json:"invokeNefInd,omitempty"`
 	IwkEpsInd            *IwkEpsInd                  `json:"iwkEpsInd,omitempty"`
@@ -292,11 +291,6 @@ type DnnInfo struct {
 	SameSmfInd           *bool                       `json:"sameSmfInd,omitempty"`
 	SmfList              []externalRef2.NfInstanceId `json:"smfList,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// DnnInfo_Dnn defines model for DnnInfo.Dnn.
-type DnnInfo_Dnn struct {
-	union json.RawMessage
 }
 
 // EcRestrictionDataWb defines model for EcRestrictionDataWb.
@@ -8388,130 +8382,6 @@ func (a VnGroupData) MarshalJSON() ([]byte, error) {
 		}
 	}
 	return json.Marshal(object)
-}
-
-// AsExternalRef2Dnn returns the union data inside the AccessAndMobilitySubscriptionData_SubscribedDnnList_Item as a externalRef2.Dnn
-func (t AccessAndMobilitySubscriptionData_SubscribedDnnList_Item) AsExternalRef2Dnn() (externalRef2.Dnn, error) {
-	var body externalRef2.Dnn
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromExternalRef2Dnn overwrites any union data inside the AccessAndMobilitySubscriptionData_SubscribedDnnList_Item as the provided externalRef2.Dnn
-func (t *AccessAndMobilitySubscriptionData_SubscribedDnnList_Item) FromExternalRef2Dnn(v externalRef2.Dnn) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeExternalRef2Dnn performs a merge with any union data inside the AccessAndMobilitySubscriptionData_SubscribedDnnList_Item, using the provided externalRef2.Dnn
-func (t *AccessAndMobilitySubscriptionData_SubscribedDnnList_Item) MergeExternalRef2Dnn(v externalRef2.Dnn) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsExternalRef2WildcardDnn returns the union data inside the AccessAndMobilitySubscriptionData_SubscribedDnnList_Item as a externalRef2.WildcardDnn
-func (t AccessAndMobilitySubscriptionData_SubscribedDnnList_Item) AsExternalRef2WildcardDnn() (externalRef2.WildcardDnn, error) {
-	var body externalRef2.WildcardDnn
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromExternalRef2WildcardDnn overwrites any union data inside the AccessAndMobilitySubscriptionData_SubscribedDnnList_Item as the provided externalRef2.WildcardDnn
-func (t *AccessAndMobilitySubscriptionData_SubscribedDnnList_Item) FromExternalRef2WildcardDnn(v externalRef2.WildcardDnn) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeExternalRef2WildcardDnn performs a merge with any union data inside the AccessAndMobilitySubscriptionData_SubscribedDnnList_Item, using the provided externalRef2.WildcardDnn
-func (t *AccessAndMobilitySubscriptionData_SubscribedDnnList_Item) MergeExternalRef2WildcardDnn(v externalRef2.WildcardDnn) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t AccessAndMobilitySubscriptionData_SubscribedDnnList_Item) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *AccessAndMobilitySubscriptionData_SubscribedDnnList_Item) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsExternalRef2Dnn returns the union data inside the DnnInfo_Dnn as a externalRef2.Dnn
-func (t DnnInfo_Dnn) AsExternalRef2Dnn() (externalRef2.Dnn, error) {
-	var body externalRef2.Dnn
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromExternalRef2Dnn overwrites any union data inside the DnnInfo_Dnn as the provided externalRef2.Dnn
-func (t *DnnInfo_Dnn) FromExternalRef2Dnn(v externalRef2.Dnn) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeExternalRef2Dnn performs a merge with any union data inside the DnnInfo_Dnn, using the provided externalRef2.Dnn
-func (t *DnnInfo_Dnn) MergeExternalRef2Dnn(v externalRef2.Dnn) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsExternalRef2WildcardDnn returns the union data inside the DnnInfo_Dnn as a externalRef2.WildcardDnn
-func (t DnnInfo_Dnn) AsExternalRef2WildcardDnn() (externalRef2.WildcardDnn, error) {
-	var body externalRef2.WildcardDnn
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromExternalRef2WildcardDnn overwrites any union data inside the DnnInfo_Dnn as the provided externalRef2.WildcardDnn
-func (t *DnnInfo_Dnn) FromExternalRef2WildcardDnn(v externalRef2.WildcardDnn) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeExternalRef2WildcardDnn performs a merge with any union data inside the DnnInfo_Dnn, using the provided externalRef2.WildcardDnn
-func (t *DnnInfo_Dnn) MergeExternalRef2WildcardDnn(v externalRef2.WildcardDnn) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JsonMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t DnnInfo_Dnn) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *DnnInfo_Dnn) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
 }
 
 // AsSteeringContainer0 returns the union data inside the SteeringContainer as a SteeringContainer0

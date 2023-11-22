@@ -121,10 +121,10 @@ type ServiceParameterData struct {
 	InterGroupId externalRef0.GroupId `json:"interGroupId,omitempty"`
 
 	// ParamOverPc5 Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
-	ParamOverPc5 interface{} `json:"paramOverPc5,omitempty"`
+	ParamOverPc5 *string `json:"paramOverPc5,omitempty"`
 
 	// ParamOverUu Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
-	ParamOverUu interface{}                     `json:"paramOverUu,omitempty"`
+	ParamOverUu *string                         `json:"paramOverUu,omitempty"`
 	ResUri      *externalRef0.Uri               `json:"resUri,omitempty"`
 	Snssai      *externalRef0.Snssai            `json:"snssai,omitempty"`
 	Supi        externalRef0.Supi               `json:"supi,omitempty"`

@@ -439,13 +439,13 @@ type N1MessageNotification struct {
 	Guami               *externalRef1.Guami `json:"guami,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       interface{}        `json:"lcsCorrelationId,omitempty"`
+	LcsCorrelationId       *string            `json:"lcsCorrelationId,omitempty"`
 	N1MessageContainer     N1MessageContainer `json:"n1MessageContainer"`
 	N1NotifySubscriptionId *string            `json:"n1NotifySubscriptionId,omitempty"`
 	Ncgi                   *externalRef1.Ncgi `json:"ncgi,omitempty"`
 
 	// NewLmfIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	NewLmfIdentification      interface{}                   `json:"newLmfIdentification,omitempty"`
+	NewLmfIdentification      *string                       `json:"newLmfIdentification,omitempty"`
 	RegistrationCtxtContainer *RegistrationContextContainer `json:"registrationCtxtContainer,omitempty"`
 	AdditionalProperties      map[string]interface{}        `json:"-"`
 }
@@ -469,7 +469,7 @@ type N1N2MessageTransferReqData struct {
 	LastMsgIndication *bool              `json:"lastMsgIndication,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       interface{}                     `json:"lcsCorrelationId,omitempty"`
+	LcsCorrelationId       *string                         `json:"lcsCorrelationId,omitempty"`
 	MaAcceptedInd          *bool                           `json:"maAcceptedInd,omitempty"`
 	MtData                 *externalRef1.RefToBinaryData   `json:"mtData,omitempty"`
 	N1MessageContainer     *N1MessageContainer             `json:"n1MessageContainer,omitempty"`
@@ -546,7 +546,7 @@ type N2InformationNotification struct {
 	InitialAmfName *externalRef1.AmfName  `json:"initialAmfName,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       interface{}                   `json:"lcsCorrelationId,omitempty"`
+	LcsCorrelationId       *string                       `json:"lcsCorrelationId,omitempty"`
 	N2InfoContainer        *N2InfoContainer              `json:"n2InfoContainer,omitempty"`
 	N2NotifySubscriptionId string                        `json:"n2NotifySubscriptionId"`
 	NotifyReason           *N2InfoNotifyReason           `json:"notifyReason,omitempty"`

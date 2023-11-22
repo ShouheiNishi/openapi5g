@@ -35,7 +35,7 @@ type UpuData struct {
 	DefaultConfNssai []externalRef1.Snssai `json:"defaultConfNssai,omitempty"`
 
 	// RoutingId Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-	RoutingId            interface{}                 `json:"routingId,omitempty"`
+	RoutingId            *string                     `json:"routingId,omitempty"`
 	SecPacket            *externalRef0.SecuredPacket `json:"secPacket,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }

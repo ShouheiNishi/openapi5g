@@ -68,7 +68,7 @@ type BdtData struct {
 	SuppFeat   *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
 
 	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-	TrafficDes interface{} `json:"trafficDes,omitempty"`
+	TrafficDes *string `json:"trafficDes,omitempty"`
 
 	// TransPolicy Describes a transfer policy.
 	TransPolicy          externalRef2.TransferPolicy  `json:"transPolicy"`
@@ -3660,7 +3660,7 @@ type ClientInterface interface {
 	CreateIndividualBdtData(ctx context.Context, bdtReferenceId string, body CreateIndividualBdtDataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReadPlmnUePolicySet request
-	ReadPlmnUePolicySet(ctx context.Context, plmnId interface{}, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ReadPlmnUePolicySet(ctx context.Context, plmnId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReadSponsorConnectivityData request
 	ReadSponsorConnectivityData(ctx context.Context, sponsorId string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3811,7 +3811,7 @@ func (c *Client) CreateIndividualBdtData(ctx context.Context, bdtReferenceId str
 	return c.Client.Do(req)
 }
 
-func (c *Client) ReadPlmnUePolicySet(ctx context.Context, plmnId interface{}, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ReadPlmnUePolicySet(ctx context.Context, plmnId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReadPlmnUePolicySetRequest(c.Server, plmnId)
 	if err != nil {
 		return nil, err
@@ -4361,7 +4361,7 @@ func NewCreateIndividualBdtDataRequestWithBody(server string, bdtReferenceId str
 }
 
 // NewReadPlmnUePolicySetRequest generates requests for ReadPlmnUePolicySet
-func NewReadPlmnUePolicySetRequest(server string, plmnId interface{}) (*http.Request, error) {
+func NewReadPlmnUePolicySetRequest(server string, plmnId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5265,7 +5265,7 @@ type ClientWithResponsesInterface interface {
 	CreateIndividualBdtDataWithResponse(ctx context.Context, bdtReferenceId string, body CreateIndividualBdtDataJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualBdtDataResponse, error)
 
 	// ReadPlmnUePolicySetWithResponse request
-	ReadPlmnUePolicySetWithResponse(ctx context.Context, plmnId interface{}, reqEditors ...RequestEditorFn) (*ReadPlmnUePolicySetResponse, error)
+	ReadPlmnUePolicySetWithResponse(ctx context.Context, plmnId string, reqEditors ...RequestEditorFn) (*ReadPlmnUePolicySetResponse, error)
 
 	// ReadSponsorConnectivityDataWithResponse request
 	ReadSponsorConnectivityDataWithResponse(ctx context.Context, sponsorId string, reqEditors ...RequestEditorFn) (*ReadSponsorConnectivityDataResponse, error)
@@ -6065,7 +6065,7 @@ func (c *ClientWithResponses) CreateIndividualBdtDataWithResponse(ctx context.Co
 }
 
 // ReadPlmnUePolicySetWithResponse request returning *ReadPlmnUePolicySetResponse
-func (c *ClientWithResponses) ReadPlmnUePolicySetWithResponse(ctx context.Context, plmnId interface{}, reqEditors ...RequestEditorFn) (*ReadPlmnUePolicySetResponse, error) {
+func (c *ClientWithResponses) ReadPlmnUePolicySetWithResponse(ctx context.Context, plmnId string, reqEditors ...RequestEditorFn) (*ReadPlmnUePolicySetResponse, error) {
 	rsp, err := c.ReadPlmnUePolicySet(ctx, plmnId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -8181,7 +8181,7 @@ type ServerInterface interface {
 	CreateIndividualBdtData(c *gin.Context, bdtReferenceId string)
 	// Retrieve the UE policy set data for an H-PLMN
 	// (GET /policy-data/plmns/{plmnId}/ue-policy-set)
-	ReadPlmnUePolicySet(c *gin.Context, plmnId interface{})
+	ReadPlmnUePolicySet(c *gin.Context, plmnId string)
 	// Retrieves the sponsored connectivity information for a given sponsorId
 	// (GET /policy-data/sponsor-connectivity-data/{sponsorId})
 	ReadSponsorConnectivityData(c *gin.Context, sponsorId string)
@@ -8388,7 +8388,7 @@ func (siw *ServerInterfaceWrapper) ReadPlmnUePolicySet(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "plmnId" -------------
-	var plmnId interface{}
+	var plmnId string
 
 	err = runtime.BindStyledParameter("simple", false, "plmnId", c.Param("plmnId"), &plmnId)
 	if err != nil {
@@ -9565,7 +9565,7 @@ func (response CreateIndividualBdtDatadefaultResponse) VisitCreateIndividualBdtD
 }
 
 type ReadPlmnUePolicySetRequestObject struct {
-	PlmnId interface{} `json:"plmnId"`
+	PlmnId string `json:"plmnId"`
 }
 
 type ReadPlmnUePolicySetResponseObject interface {
@@ -12018,7 +12018,7 @@ func (sh *strictHandler) CreateIndividualBdtData(ctx *gin.Context, bdtReferenceI
 }
 
 // ReadPlmnUePolicySet operation middleware
-func (sh *strictHandler) ReadPlmnUePolicySet(ctx *gin.Context, plmnId interface{}) {
+func (sh *strictHandler) ReadPlmnUePolicySet(ctx *gin.Context, plmnId string) {
 	var request ReadPlmnUePolicySetRequestObject
 
 	request.PlmnId = plmnId

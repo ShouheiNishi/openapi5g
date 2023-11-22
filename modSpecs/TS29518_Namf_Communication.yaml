@@ -449,7 +449,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Guami
                 lcsCorrelationId:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 n1MessageContainer:
                     $ref: '#/components/schemas/N1MessageContainer'
                 n1NotifySubscriptionId:
@@ -458,7 +458,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
                 newLmfIdentification:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 registrationCtxtContainer:
                     $ref: '#/components/schemas/RegistrationContextContainer'
             required:
@@ -501,7 +501,7 @@ components:
                     type: boolean
                 lcsCorrelationId:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 maAcceptedInd:
                     default: false
                     type: boolean
@@ -628,7 +628,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/AmfName
                 lcsCorrelationId:
                     description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 n2InfoContainer:
                     $ref: '#/components/schemas/N2InfoContainer'
                 n2NotifySubscriptionId:

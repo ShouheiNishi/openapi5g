@@ -76,7 +76,7 @@ type BdtReqData struct {
 	SuppFeat   *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
 
 	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-	TrafficDes interface{}                 `json:"trafficDes,omitempty"`
+	TrafficDes *string                     `json:"trafficDes,omitempty"`
 	VolPerUe   externalRef1.UsageThreshold `json:"volPerUe"`
 
 	// WarnNotifReq Indicates whether the BDT warning notification is enabled or disabled.

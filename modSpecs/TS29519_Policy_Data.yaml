@@ -38,7 +38,7 @@ components:
                     $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
                 trafficDes:
                     description: Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-                    x-go-type-skip-optional-pointer: true
+                    type: string
                 transPolicy:
                     $ref: TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/TransferPolicy
                 volPerUe:
@@ -849,7 +849,7 @@ paths:
               required: true
               schema:
                 description: Original reference TS29505_Subscription_Data.yaml#/components/schemas/VarPlmnId
-                x-go-type-skip-optional-pointer: true
+                type: string
     /policy-data/sponsor-connectivity-data/{sponsorId}:
         get:
             operationId: ReadSponsorConnectivityData

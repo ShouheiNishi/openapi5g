@@ -304,10 +304,10 @@ type SearchNFInstancesParams struct {
 	PduSessionTypes *[]externalRef1.PduSessionType `form:"pdu-session-types,omitempty" json:"pdu-session-types,omitempty"`
 
 	// EventIdList Analytics event(s) requested to be supported by the Nnwdaf_AnalyticsInfo service
-	EventIdList *[]interface{} `form:"event-id-list,omitempty" json:"event-id-list,omitempty"`
+	EventIdList *[]string `form:"event-id-list,omitempty" json:"event-id-list,omitempty"`
 
 	// NwdafEventList Analytics event(s) requested to be supported by the Nnwdaf_EventsSubscription service.
-	NwdafEventList *[]interface{} `form:"nwdaf-event-list,omitempty" json:"nwdaf-event-list,omitempty"`
+	NwdafEventList *[]string `form:"nwdaf-event-list,omitempty" json:"nwdaf-event-list,omitempty"`
 
 	// SupportedFeatures Features required to be supported by the target NF
 	SupportedFeatures *externalRef1.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
@@ -346,10 +346,10 @@ type SearchNFInstancesParams struct {
 	UpfUeIpAddrInd *bool `form:"upf-ue-ip-addr-ind,omitempty" json:"upf-ue-ip-addr-ind,omitempty"`
 
 	// ClientType Requested client type served by the NF
-	ClientType *interface{} `form:"client-type,omitempty" json:"client-type,omitempty"`
+	ClientType *string `form:"client-type,omitempty" json:"client-type,omitempty"`
 
 	// LmfId LMF identification to be discovered
-	LmfId *interface{} `form:"lmf-id,omitempty" json:"lmf-id,omitempty"`
+	LmfId *string `form:"lmf-id,omitempty" json:"lmf-id,omitempty"`
 
 	// AnNodeType Requested AN node type served by the NF
 	AnNodeType *externalRef2.AnNodeType `form:"an-node-type,omitempty" json:"an-node-type,omitempty"`
@@ -4595,7 +4595,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("client-type"); paramValue != "" {
 
-		var value interface{}
+		var value string
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'client-type' as JSON: %w", err), http.StatusBadRequest)
@@ -4610,7 +4610,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("lmf-id"); paramValue != "" {
 
-		var value interface{}
+		var value string
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'lmf-id' as JSON: %w", err), http.StatusBadRequest)

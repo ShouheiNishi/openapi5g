@@ -906,7 +906,7 @@ type RuleReport struct {
 	FailureCode *FailureCode `json:"failureCode,omitempty"`
 
 	// FinUnitAct Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
-	FinUnitAct interface{} `json:"finUnitAct,omitempty"`
+	FinUnitAct *string `json:"finUnitAct,omitempty"`
 
 	// PccRuleIds Contains the identifier of the affected PCC rule(s).
 	PccRuleIds []string `json:"pccRuleIds"`

@@ -241,7 +241,7 @@ const (
 
 // AfEventExposureData AF Event Exposure data managed by a given NEF Instance
 type AfEventExposureData struct {
-	AfEvents             []interface{}          `json:"afEvents"`
+	AfEvents             []string               `json:"afEvents"`
 	AfIds                []string               `json:"afIds,omitempty"`
 	AppIds               []string               `json:"appIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -312,10 +312,10 @@ type DefaultNotificationSubscription struct {
 	CallbackUri externalRef0.Uri `json:"callbackUri"`
 
 	// N1MessageClass Original reference TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
-	N1MessageClass interface{} `json:"n1MessageClass,omitempty"`
+	N1MessageClass *string `json:"n1MessageClass,omitempty"`
 
 	// N2InformationClass Original reference TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
-	N2InformationClass interface{} `json:"n2InformationClass,omitempty"`
+	N2InformationClass *string `json:"n2InformationClass,omitempty"`
 
 	// NotificationType Types of notifications used in Default Notification URIs in the NF Profile of an NF Instance
 	NotificationType     NotificationType       `json:"notificationType"`
@@ -348,7 +348,7 @@ type Fqdn = string
 // GmlcInfo Information of a GMLC NF Instance
 type GmlcInfo struct {
 	GmlcNumbers          []string               `json:"gmlcNumbers,omitempty"`
-	ServingClientTypes   []interface{}          `json:"servingClientTypes,omitempty"`
+	ServingClientTypes   []string               `json:"servingClientTypes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -436,10 +436,10 @@ type Ipv6PrefixRange struct {
 // LmfInfo Information of an LMF NF Instance
 type LmfInfo struct {
 	// LmfId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	LmfId                interface{}               `json:"lmfId,omitempty"`
+	LmfId                *string                   `json:"lmfId,omitempty"`
 	ServingAccessTypes   []externalRef0.AccessType `json:"servingAccessTypes,omitempty"`
 	ServingAnNodeTypes   []AnNodeType              `json:"servingAnNodeTypes,omitempty"`
-	ServingClientTypes   []interface{}             `json:"servingClientTypes,omitempty"`
+	ServingClientTypes   []string                  `json:"servingClientTypes,omitempty"`
 	ServingRatTypes      []externalRef0.RatType    `json:"servingRatTypes,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"-"`
 }
@@ -628,7 +628,7 @@ type NFType string
 
 // NefCond Subscription to a set of NF Instances (NEFs), identified by Event ID(s) provided by AF, S-NSSAI(s), AF Instance ID, Application Identifier, External Identifier, External Group Identifier, or domain name.
 type NefCond struct {
-	AfEvents                       []interface{}        `json:"afEvents,omitempty"`
+	AfEvents                       []string             `json:"afEvents,omitempty"`
 	ConditionType                  NefCondConditionType `json:"conditionType"`
 	ExternalGroupIdentifiersRanges []IdentityRange      `json:"externalGroupIdentifiersRanges,omitempty"`
 	GpsiRanges                     []IdentityRange      `json:"gpsiRanges,omitempty"`
@@ -903,8 +903,8 @@ type NwdafCondConditionType string
 
 // NwdafInfo Information of a NWDAF NF Instance
 type NwdafInfo struct {
-	EventIds             []interface{}          `json:"eventIds,omitempty"`
-	NwdafEvents          []interface{}          `json:"nwdafEvents,omitempty"`
+	EventIds             []string               `json:"eventIds,omitempty"`
+	NwdafEvents          []string               `json:"nwdafEvents,omitempty"`
 	TaiList              []externalRef0.Tai     `json:"taiList,omitempty"`
 	TaiRangeList         []TaiRange             `json:"taiRangeList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`

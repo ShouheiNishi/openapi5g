@@ -54,7 +54,9 @@ func GenerateEmbed(rootDir string, deps []string) (outLists []string, err error)
 				return nil, err
 			} else {
 				defer fOut.Close()
-				io.Copy(fOut, fIn)
+				if _, err := io.Copy(fOut, fIn); err != nil {
+					return nil, err
+				}
 			}
 		}
 	}

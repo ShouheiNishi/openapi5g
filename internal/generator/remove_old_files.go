@@ -67,6 +67,10 @@ func RemoveOldFiles(rootDir string, lists []string) error {
 			return nil
 		}
 
+		if path == filepath.Join(rootDir, ".golangci.yml") {
+			return nil
+		}
+
 		if path == filepath.Join(rootDir, "LICENSE") {
 			return nil
 		}

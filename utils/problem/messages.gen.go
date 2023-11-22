@@ -5,8 +5,9 @@ package problem
 import (
 	"net/http"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
 	"github.com/samber/lo"
+
+	"github.com/ShouheiNishi/openapi5g/commondata"
 )
 
 const (

@@ -167,6 +167,9 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 		if buf, err := yaml.Marshal(doc); err != nil {
 			return nil, nil, err
 		} else {
+			if _, err := f.WriteString("# This is generated file.\n\n"); err != nil {
+				return nil, nil, err
+			}
 			if _, err := f.Write(buf); err != nil {
 				return nil, nil, err
 			}

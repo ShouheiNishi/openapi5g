@@ -17,8 +17,9 @@ package main
 import (
 	"reflect"
 
-	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 	"github.com/getkin/kin-openapi/openapi3"
+
+	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
 
 func main() {

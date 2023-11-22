@@ -21,8 +21,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 	"github.com/getkin/kin-openapi/openapi3"
+
+	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
 
 type OpenApi3WalkerGeneratorConfig struct {

@@ -18,10 +18,11 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
-	"github.com/ShouheiNishi/openapi5g/utils/problem"
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/ShouheiNishi/openapi5g/commondata"
+	"github.com/ShouheiNishi/openapi5g/utils/problem"
 )
 
 func TestMessages(t *testing.T) {

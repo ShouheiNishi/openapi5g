@@ -7,6 +7,7 @@ require (
 	github.com/free5gc/openapi v1.0.6
 	github.com/getkin/kin-openapi v0.118.0
 	github.com/gin-gonic/gin v1.9.1
+	github.com/google/uuid v1.4.0
 	github.com/invopop/yaml v0.2.0
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826
 	github.com/oapi-codegen/runtime v1.1.0
@@ -30,7 +31,6 @@ require (
 	github.com/go-playground/validator/v10 v10.14.1 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
-	github.com/google/uuid v1.4.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect

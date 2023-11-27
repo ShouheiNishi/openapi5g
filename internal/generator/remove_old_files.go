@@ -59,6 +59,14 @@ func RemoveOldFiles(rootDir string, lists []string) error {
 			return nil
 		}
 
+		if path == filepath.Join(rootDir, "commondata/problemdetails.go") {
+			return nil
+		}
+
+		if path == filepath.Join(rootDir, "commondata/problemdetails_test.go") {
+			return nil
+		}
+
 		if path == filepath.Join(rootDir, ".gitmodules") {
 			return nil
 		}

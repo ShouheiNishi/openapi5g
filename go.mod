@@ -13,7 +13,7 @@ require (
 	github.com/oapi-codegen/runtime v1.1.0
 	github.com/samber/lo v1.39.0
 	github.com/stretchr/testify v1.8.4
-	golang.org/x/tools v0.16.0
+	golang.org/x/tools v0.16.1
 )
 
 require (

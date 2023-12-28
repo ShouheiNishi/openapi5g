@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"mime"
 	"mime/multipart"
 	"net/http"
 	"net/url"
@@ -19011,7 +19012,7 @@ type PostPduSessions201MultipartResponse struct {
 
 func (response PostPduSessions201MultipartResponse) VisitPostPduSessionsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(201)
 
@@ -19067,7 +19068,7 @@ type PostPduSessions400MultipartResponse PduSessionCreateErrorMultipartResponse
 
 func (response PostPduSessions400MultipartResponse) VisitPostPduSessionsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(400)
 
 	defer writer.Close()
@@ -19096,7 +19097,7 @@ type PostPduSessions403MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostPduSessions403MultipartResponse) VisitPostPduSessionsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(403)
 
 	defer writer.Close()
@@ -19125,7 +19126,7 @@ type PostPduSessions404MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostPduSessions404MultipartResponse) VisitPostPduSessionsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(404)
 
 	defer writer.Close()
@@ -19198,7 +19199,7 @@ type PostPduSessions500MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostPduSessions500MultipartResponse) VisitPostPduSessionsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(500)
 
 	defer writer.Close()
@@ -19227,7 +19228,7 @@ type PostPduSessions503MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostPduSessions503MultipartResponse) VisitPostPduSessionsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(503)
 
 	defer writer.Close()
@@ -19269,7 +19270,7 @@ type UpdatePduSession200MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdatePduSession200MultipartResponse) VisitUpdatePduSessionResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(200)
 
 	defer writer.Close()
@@ -19330,7 +19331,7 @@ type UpdatePduSession400MultipartResponse HsmfUpdateErrorMultipartResponse
 
 func (response UpdatePduSession400MultipartResponse) VisitUpdatePduSessionResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(400)
 
 	defer writer.Close()
@@ -19359,7 +19360,7 @@ type UpdatePduSession403MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdatePduSession403MultipartResponse) VisitUpdatePduSessionResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(403)
 
 	defer writer.Close()
@@ -19388,7 +19389,7 @@ type UpdatePduSession404MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdatePduSession404MultipartResponse) VisitUpdatePduSessionResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(404)
 
 	defer writer.Close()
@@ -19461,7 +19462,7 @@ type UpdatePduSession500MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdatePduSession500MultipartResponse) VisitUpdatePduSessionResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(500)
 
 	defer writer.Close()
@@ -19490,7 +19491,7 @@ type UpdatePduSession503MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdatePduSession503MultipartResponse) VisitUpdatePduSessionResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(503)
 
 	defer writer.Close()
@@ -19532,7 +19533,7 @@ type ReleasePduSession200MultipartResponse func(writer *multipart.Writer) error
 
 func (response ReleasePduSession200MultipartResponse) VisitReleasePduSessionResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(200)
 
 	defer writer.Close()
@@ -20035,7 +20036,7 @@ type PostSmContexts201MultipartResponse struct {
 
 func (response PostSmContexts201MultipartResponse) VisitPostSmContextsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(201)
 
@@ -20087,7 +20088,7 @@ type PostSmContexts400MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostSmContexts400MultipartResponse) VisitPostSmContextsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(400)
 
 	defer writer.Close()
@@ -20116,7 +20117,7 @@ type PostSmContexts403MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostSmContexts403MultipartResponse) VisitPostSmContextsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(403)
 
 	defer writer.Close()
@@ -20136,7 +20137,7 @@ type PostSmContexts404MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostSmContexts404MultipartResponse) VisitPostSmContextsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(404)
 
 	defer writer.Close()
@@ -20209,7 +20210,7 @@ type PostSmContexts500MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostSmContexts500MultipartResponse) VisitPostSmContextsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(500)
 
 	defer writer.Close()
@@ -20238,7 +20239,7 @@ type PostSmContexts503MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostSmContexts503MultipartResponse) VisitPostSmContextsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(503)
 
 	defer writer.Close()
@@ -20267,7 +20268,7 @@ type PostSmContexts504MultipartResponse func(writer *multipart.Writer) error
 
 func (response PostSmContexts504MultipartResponse) VisitPostSmContextsResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(504)
 
 	defer writer.Close()
@@ -20309,7 +20310,7 @@ type UpdateSmContext200MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdateSmContext200MultipartResponse) VisitUpdateSmContextResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(200)
 
 	defer writer.Close()
@@ -20368,7 +20369,7 @@ type UpdateSmContext400MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdateSmContext400MultipartResponse) VisitUpdateSmContextResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(400)
 
 	defer writer.Close()
@@ -20397,7 +20398,7 @@ type UpdateSmContext403MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdateSmContext403MultipartResponse) VisitUpdateSmContextResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(403)
 
 	defer writer.Close()
@@ -20417,7 +20418,7 @@ type UpdateSmContext404MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdateSmContext404MultipartResponse) VisitUpdateSmContextResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(404)
 
 	defer writer.Close()
@@ -20490,7 +20491,7 @@ type UpdateSmContext500MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdateSmContext500MultipartResponse) VisitUpdateSmContextResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(500)
 
 	defer writer.Close()
@@ -20519,7 +20520,7 @@ type UpdateSmContext503MultipartResponse func(writer *multipart.Writer) error
 
 func (response UpdateSmContext503MultipartResponse) VisitUpdateSmContextResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(503)
 
 	defer writer.Close()
@@ -21082,11 +21083,14 @@ func (sh *strictHandler) PostPduSessions(ctx *gin.Context) {
 		request.JSONBody = &body
 	}
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "multipart/related") {
-		if reader, err := ctx.Request.MultipartReader(); err == nil {
-			request.MultipartBody = reader
-		} else {
+		if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 			ctx.Error(err)
 			return
+		} else if boundary := params["boundary"]; boundary == "" {
+			ctx.Error(http.ErrMissingBoundary)
+			return
+		} else {
+			request.MultipartBody = multipart.NewReader(ctx.Request.Body, boundary)
 		}
 	}
 
@@ -21127,11 +21131,14 @@ func (sh *strictHandler) UpdatePduSession(ctx *gin.Context, pduSessionRef string
 		request.JSONBody = &body
 	}
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "multipart/related") {
-		if reader, err := ctx.Request.MultipartReader(); err == nil {
-			request.MultipartBody = reader
-		} else {
+		if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 			ctx.Error(err)
 			return
+		} else if boundary := params["boundary"]; boundary == "" {
+			ctx.Error(http.ErrMissingBoundary)
+			return
+		} else {
+			request.MultipartBody = multipart.NewReader(ctx.Request.Body, boundary)
 		}
 	}
 
@@ -21172,11 +21179,14 @@ func (sh *strictHandler) ReleasePduSession(ctx *gin.Context, pduSessionRef strin
 		request.JSONBody = &body
 	}
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "multipart/related") {
-		if reader, err := ctx.Request.MultipartReader(); err == nil {
-			request.MultipartBody = reader
-		} else {
+		if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 			ctx.Error(err)
 			return
+		} else if boundary := params["boundary"]; boundary == "" {
+			ctx.Error(http.ErrMissingBoundary)
+			return
+		} else {
+			request.MultipartBody = multipart.NewReader(ctx.Request.Body, boundary)
 		}
 	}
 
@@ -21242,11 +21252,14 @@ func (sh *strictHandler) TransferMoData(ctx *gin.Context, pduSessionRef string) 
 
 	request.PduSessionRef = pduSessionRef
 
-	if reader, err := ctx.Request.MultipartReader(); err == nil {
-		request.Body = reader
-	} else {
+	if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 		ctx.Error(err)
 		return
+	} else if boundary := params["boundary"]; boundary == "" {
+		ctx.Error(http.ErrMissingBoundary)
+		return
+	} else {
+		request.Body = multipart.NewReader(ctx.Request.Body, boundary)
 	}
 
 	handler := func(ctx *gin.Context, request interface{}) (interface{}, error) {
@@ -21274,11 +21287,14 @@ func (sh *strictHandler) TransferMoData(ctx *gin.Context, pduSessionRef string) 
 func (sh *strictHandler) PostSmContexts(ctx *gin.Context) {
 	var request PostSmContextsRequestObject
 
-	if reader, err := ctx.Request.MultipartReader(); err == nil {
-		request.Body = reader
-	} else {
+	if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 		ctx.Error(err)
 		return
+	} else if boundary := params["boundary"]; boundary == "" {
+		ctx.Error(http.ErrMissingBoundary)
+		return
+	} else {
+		request.Body = multipart.NewReader(ctx.Request.Body, boundary)
 	}
 
 	handler := func(ctx *gin.Context, request interface{}) (interface{}, error) {
@@ -21318,11 +21334,14 @@ func (sh *strictHandler) UpdateSmContext(ctx *gin.Context, smContextRef string) 
 		request.JSONBody = &body
 	}
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "multipart/related") {
-		if reader, err := ctx.Request.MultipartReader(); err == nil {
-			request.MultipartBody = reader
-		} else {
+		if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 			ctx.Error(err)
 			return
+		} else if boundary := params["boundary"]; boundary == "" {
+			ctx.Error(http.ErrMissingBoundary)
+			return
+		} else {
+			request.MultipartBody = multipart.NewReader(ctx.Request.Body, boundary)
 		}
 	}
 
@@ -21363,11 +21382,14 @@ func (sh *strictHandler) ReleaseSmContext(ctx *gin.Context, smContextRef string)
 		request.JSONBody = &body
 	}
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "multipart/related") {
-		if reader, err := ctx.Request.MultipartReader(); err == nil {
-			request.MultipartBody = reader
-		} else {
+		if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 			ctx.Error(err)
 			return
+		} else if boundary := params["boundary"]; boundary == "" {
+			ctx.Error(http.ErrMissingBoundary)
+			return
+		} else {
+			request.MultipartBody = multipart.NewReader(ctx.Request.Body, boundary)
 		}
 	}
 
@@ -21433,11 +21455,14 @@ func (sh *strictHandler) SendMoData(ctx *gin.Context, smContextRef string) {
 
 	request.SmContextRef = smContextRef
 
-	if reader, err := ctx.Request.MultipartReader(); err == nil {
-		request.Body = reader
-	} else {
+	if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 		ctx.Error(err)
 		return
+	} else if boundary := params["boundary"]; boundary == "" {
+		ctx.Error(http.ErrMissingBoundary)
+		return
+	} else {
+		request.Body = multipart.NewReader(ctx.Request.Body, boundary)
 	}
 
 	handler := func(ctx *gin.Context, request interface{}) (interface{}, error) {

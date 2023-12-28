@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"mime"
 	"mime/multipart"
 	"net/http"
 	"net/url"
@@ -16699,7 +16700,7 @@ type CreateUEContext201MultipartResponse struct {
 
 func (response CreateUEContext201MultipartResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(201)
 
@@ -16769,7 +16770,7 @@ type CreateUEContext403MultipartResponse func(writer *multipart.Writer) error
 
 func (response CreateUEContext403MultipartResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(403)
 
 	defer writer.Close()
@@ -17954,7 +17955,7 @@ type UEContextTransfer200MultipartResponse func(writer *multipart.Writer) error
 
 func (response UEContextTransfer200MultipartResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	writer := multipart.NewWriter(w)
-	w.Header().Set("Content-Type", writer.FormDataContentType())
+	w.Header().Set("Content-Type", mime.FormatMediaType("multipart/related", map[string]string{"boundary": writer.Boundary()}))
 	w.WriteHeader(200)
 
 	defer writer.Close()
@@ -18384,11 +18385,14 @@ func (sh *strictHandler) NonUeN2MessageTransfer(ctx *gin.Context) {
 		request.JSONBody = &body
 	}
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "multipart/related") {
-		if reader, err := ctx.Request.MultipartReader(); err == nil {
-			request.MultipartBody = reader
-		} else {
+		if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 			ctx.Error(err)
 			return
+		} else if boundary := params["boundary"]; boundary == "" {
+			ctx.Error(http.ErrMissingBoundary)
+			return
+		} else {
+			request.MultipartBody = multipart.NewReader(ctx.Request.Body, boundary)
 		}
 	}
 
@@ -18514,11 +18518,14 @@ func (sh *strictHandler) CreateUEContext(ctx *gin.Context, ueContextId string) {
 
 	request.UeContextId = ueContextId
 
-	if reader, err := ctx.Request.MultipartReader(); err == nil {
-		request.Body = reader
-	} else {
+	if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 		ctx.Error(err)
 		return
+	} else if boundary := params["boundary"]; boundary == "" {
+		ctx.Error(http.ErrMissingBoundary)
+		return
+	} else {
+		request.Body = multipart.NewReader(ctx.Request.Body, boundary)
 	}
 
 	handler := func(ctx *gin.Context, request interface{}) (interface{}, error) {
@@ -18583,11 +18590,14 @@ func (sh *strictHandler) CancelRelocateUEContext(ctx *gin.Context, ueContextId s
 
 	request.UeContextId = ueContextId
 
-	if reader, err := ctx.Request.MultipartReader(); err == nil {
-		request.Body = reader
-	} else {
+	if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 		ctx.Error(err)
 		return
+	} else if boundary := params["boundary"]; boundary == "" {
+		ctx.Error(http.ErrMissingBoundary)
+		return
+	} else {
+		request.Body = multipart.NewReader(ctx.Request.Body, boundary)
 	}
 
 	handler := func(ctx *gin.Context, request interface{}) (interface{}, error) {
@@ -18627,11 +18637,14 @@ func (sh *strictHandler) N1N2MessageTransfer(ctx *gin.Context, ueContextId strin
 		request.JSONBody = &body
 	}
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "multipart/related") {
-		if reader, err := ctx.Request.MultipartReader(); err == nil {
-			request.MultipartBody = reader
-		} else {
+		if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 			ctx.Error(err)
 			return
+		} else if boundary := params["boundary"]; boundary == "" {
+			ctx.Error(http.ErrMissingBoundary)
+			return
+		} else {
+			request.MultipartBody = multipart.NewReader(ctx.Request.Body, boundary)
 		}
 	}
 
@@ -18760,11 +18773,14 @@ func (sh *strictHandler) RelocateUEContext(ctx *gin.Context, ueContextId string)
 
 	request.UeContextId = ueContextId
 
-	if reader, err := ctx.Request.MultipartReader(); err == nil {
-		request.Body = reader
-	} else {
+	if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 		ctx.Error(err)
 		return
+	} else if boundary := params["boundary"]; boundary == "" {
+		ctx.Error(http.ErrMissingBoundary)
+		return
+	} else {
+		request.Body = multipart.NewReader(ctx.Request.Body, boundary)
 	}
 
 	handler := func(ctx *gin.Context, request interface{}) (interface{}, error) {
@@ -18804,11 +18820,14 @@ func (sh *strictHandler) UEContextTransfer(ctx *gin.Context, ueContextId string)
 		request.JSONBody = &body
 	}
 	if strings.HasPrefix(ctx.GetHeader("Content-Type"), "multipart/related") {
-		if reader, err := ctx.Request.MultipartReader(); err == nil {
-			request.MultipartBody = reader
-		} else {
+		if _, params, err := mime.ParseMediaType(ctx.Request.Header.Get("Content-Type")); err != nil {
 			ctx.Error(err)
 			return
+		} else if boundary := params["boundary"]; boundary == "" {
+			ctx.Error(http.ErrMissingBoundary)
+			return
+		} else {
+			request.MultipartBody = multipart.NewReader(ctx.Request.Body, boundary)
 		}
 	}
 

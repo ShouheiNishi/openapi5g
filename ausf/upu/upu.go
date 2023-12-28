@@ -757,7 +757,9 @@ type PostSupiUeUpu307JSONResponse struct{ externalRef1.N307JSONResponse }
 
 func (response PostSupiUeUpu307JSONResponse) VisitPostSupiUeUpuResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -765,7 +767,7 @@ func (response PostSupiUeUpu307JSONResponse) VisitPostSupiUeUpuResponse(w http.R
 }
 
 type PostSupiUeUpu308ResponseHeaders struct {
-	N3gppSbiTargetNfId string
+	N3gppSbiTargetNfId *string
 	Location           string
 }
 
@@ -776,7 +778,9 @@ type PostSupiUeUpu308JSONResponse struct {
 
 func (response PostSupiUeUpu308JSONResponse) VisitPostSupiUeUpuResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 

@@ -5220,9 +5220,9 @@ func RegisterHandlersWithOptions(router gin.IRouter, si ServerInterface, options
 }
 
 type N200ResponseHeaders struct {
-	CacheControl    string
-	ContentEncoding string
-	ETag            string
+	CacheControl    *string
+	ContentEncoding *string
+	ETag            *string
 }
 type N200JSONResponse struct {
 	Body StoredSearchResult
@@ -5239,9 +5239,9 @@ type SearchNFInstancesResponseObject interface {
 }
 
 type SearchNFInstances200ResponseHeaders struct {
-	CacheControl    string
-	ContentEncoding string
-	ETag            string
+	CacheControl    *string
+	ContentEncoding *string
+	ETag            *string
 }
 
 type SearchNFInstances200JSONResponse struct {
@@ -5251,9 +5251,15 @@ type SearchNFInstances200JSONResponse struct {
 
 func (response SearchNFInstances200JSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -5446,9 +5452,15 @@ type RetrieveStoredSearch200JSONResponse struct{ N200JSONResponse }
 
 func (response RetrieveStoredSearch200JSONResponse) VisitRetrieveStoredSearchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -5513,9 +5525,15 @@ type RetrieveCompleteSearch200JSONResponse struct{ N200JSONResponse }
 
 func (response RetrieveCompleteSearch200JSONResponse) VisitRetrieveCompleteSearchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)

@@ -16700,9 +16700,9 @@ type GetGroupIdentifiersResponseObject interface {
 }
 
 type GetGroupIdentifiers200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetGroupIdentifiers200JSONResponse struct {
@@ -16712,9 +16712,15 @@ type GetGroupIdentifiers200JSONResponse struct {
 
 func (response GetGroupIdentifiers200JSONResponse) VisitGetGroupIdentifiersResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -16785,9 +16791,9 @@ type GetSharedDataResponseObject interface {
 }
 
 type GetSharedData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetSharedData200JSONResponse struct {
@@ -16797,9 +16803,15 @@ type GetSharedData200JSONResponse struct {
 
 func (response GetSharedData200JSONResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -17090,9 +17102,9 @@ type GetIndividualSharedDataResponseObject interface {
 }
 
 type GetIndividualSharedData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetIndividualSharedData200JSONResponse struct {
@@ -17102,9 +17114,15 @@ type GetIndividualSharedData200JSONResponse struct {
 
 func (response GetIndividualSharedData200JSONResponse) VisitGetIndividualSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -17176,9 +17194,9 @@ type GetDataSetsResponseObject interface {
 }
 
 type GetDataSets200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetDataSets200JSONResponse struct {
@@ -17188,9 +17206,15 @@ type GetDataSets200JSONResponse struct {
 
 func (response GetDataSets200JSONResponse) VisitGetDataSetsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -17262,9 +17286,9 @@ type GetAmDataResponseObject interface {
 }
 
 type GetAmData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetAmData200JSONResponse struct {
@@ -17274,9 +17298,15 @@ type GetAmData200JSONResponse struct {
 
 func (response GetAmData200JSONResponse) VisitGetAmDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -17410,9 +17440,9 @@ type GetEcrDataResponseObject interface {
 }
 
 type GetEcrData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetEcrData200JSONResponse struct {
@@ -17422,9 +17452,15 @@ type GetEcrData200JSONResponse struct {
 
 func (response GetEcrData200JSONResponse) VisitGetEcrDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -17756,9 +17792,9 @@ type GetLcsBcaDataResponseObject interface {
 }
 
 type GetLcsBcaData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetLcsBcaData200JSONResponse struct {
@@ -17768,9 +17804,15 @@ type GetLcsBcaData200JSONResponse struct {
 
 func (response GetLcsBcaData200JSONResponse) VisitGetLcsBcaDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -17842,9 +17884,9 @@ type GetLcsMoDataResponseObject interface {
 }
 
 type GetLcsMoData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetLcsMoData200JSONResponse struct {
@@ -17854,9 +17896,15 @@ type GetLcsMoData200JSONResponse struct {
 
 func (response GetLcsMoData200JSONResponse) VisitGetLcsMoDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -17928,9 +17976,9 @@ type GetNSSAIResponseObject interface {
 }
 
 type GetNSSAI200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetNSSAI200JSONResponse struct {
@@ -17940,9 +17988,15 @@ type GetNSSAI200JSONResponse struct {
 
 func (response GetNSSAI200JSONResponse) VisitGetNSSAIResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -18014,9 +18068,9 @@ type GetSmDataResponseObject interface {
 }
 
 type GetSmData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetSmData200JSONResponse struct {
@@ -18026,9 +18080,15 @@ type GetSmData200JSONResponse struct {
 
 func (response GetSmData200JSONResponse) VisitGetSmDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -18100,9 +18160,9 @@ type GetSmfSelDataResponseObject interface {
 }
 
 type GetSmfSelData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetSmfSelData200JSONResponse struct {
@@ -18112,9 +18172,15 @@ type GetSmfSelData200JSONResponse struct {
 
 func (response GetSmfSelData200JSONResponse) VisitGetSmfSelDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -18186,9 +18252,9 @@ type GetSmsDataResponseObject interface {
 }
 
 type GetSmsData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetSmsData200JSONResponse struct {
@@ -18198,9 +18264,15 @@ type GetSmsData200JSONResponse struct {
 
 func (response GetSmsData200JSONResponse) VisitGetSmsDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -18272,9 +18344,9 @@ type GetSmsMngtDataResponseObject interface {
 }
 
 type GetSmsMngtData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetSmsMngtData200JSONResponse struct {
@@ -18284,9 +18356,15 @@ type GetSmsMngtData200JSONResponse struct {
 
 func (response GetSmsMngtData200JSONResponse) VisitGetSmsMngtDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -18358,9 +18436,9 @@ type GetTraceConfigDataResponseObject interface {
 }
 
 type GetTraceConfigData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetTraceConfigData200JSONResponse struct {
@@ -18370,9 +18448,15 @@ type GetTraceConfigData200JSONResponse struct {
 
 func (response GetTraceConfigData200JSONResponse) VisitGetTraceConfigDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -18666,9 +18750,9 @@ type GetV2xDataResponseObject interface {
 }
 
 type GetV2xData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetV2xData200JSONResponse struct {
@@ -18678,9 +18762,15 @@ type GetV2xData200JSONResponse struct {
 
 func (response GetV2xData200JSONResponse) VisitGetV2xDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -18752,9 +18842,9 @@ type GetSupiOrGpsiResponseObject interface {
 }
 
 type GetSupiOrGpsi200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetSupiOrGpsi200JSONResponse struct {
@@ -18764,9 +18854,15 @@ type GetSupiOrGpsi200JSONResponse struct {
 
 func (response GetSupiOrGpsi200JSONResponse) VisitGetSupiOrGpsiResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -18838,9 +18934,9 @@ type GetLcsPrivacyDataResponseObject interface {
 }
 
 type GetLcsPrivacyData200ResponseHeaders struct {
-	CacheControl string
-	ETag         string
-	LastModified string
+	CacheControl *string
+	ETag         *string
+	LastModified *string
 }
 
 type GetLcsPrivacyData200JSONResponse struct {
@@ -18850,9 +18946,15 @@ type GetLcsPrivacyData200JSONResponse struct {
 
 func (response GetLcsPrivacyData200JSONResponse) VisitGetLcsPrivacyDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
-	w.Header().Set("Last-Modified", fmt.Sprint(response.Headers.LastModified))
+	if response.Headers.CacheControl != nil {
+		w.Header().Set("Cache-Control", fmt.Sprint(*response.Headers.CacheControl))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
+	if response.Headers.LastModified != nil {
+		w.Header().Set("Last-Modified", fmt.Sprint(*response.Headers.LastModified))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)

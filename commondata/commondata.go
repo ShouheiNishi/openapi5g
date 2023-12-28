@@ -13083,7 +13083,7 @@ func (t *LinksValueSchema) UnmarshalJSON(b []byte) error {
 }
 
 type N307ResponseHeaders struct {
-	N3gppSbiTargetNfId string
+	N3gppSbiTargetNfId *string
 	Location           string
 }
 type N307JSONResponse struct {
@@ -13093,7 +13093,7 @@ type N307JSONResponse struct {
 }
 
 type N308ResponseHeaders struct {
-	N3gppSbiTargetNfId string
+	N3gppSbiTargetNfId *string
 	Location           string
 }
 type N308JSONResponse struct {

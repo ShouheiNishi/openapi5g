@@ -1392,9 +1392,9 @@ type AccessTokenRequestResponseObject interface {
 }
 
 type AccessTokenRequest200ResponseHeaders struct {
-	AcceptEncoding  string
+	AcceptEncoding  *string
 	CacheControl    string
-	ContentEncoding string
+	ContentEncoding *string
 	Pragma          string
 }
 
@@ -1405,9 +1405,13 @@ type AccessTokenRequest200JSONResponse struct {
 
 func (response AccessTokenRequest200JSONResponse) VisitAccessTokenRequestResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
 	w.Header().Set("Cache-Control", fmt.Sprint(response.Headers.CacheControl))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
 	w.Header().Set("Pragma", fmt.Sprint(response.Headers.Pragma))
 	w.WriteHeader(200)
 

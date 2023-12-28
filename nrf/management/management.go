@@ -14629,7 +14629,7 @@ type OptionsNFInstancesResponseObject interface {
 }
 
 type OptionsNFInstances200ResponseHeaders struct {
-	AcceptEncoding string
+	AcceptEncoding *string
 }
 
 type OptionsNFInstances200JSONResponse struct {
@@ -14639,14 +14639,16 @@ type OptionsNFInstances200JSONResponse struct {
 
 func (response OptionsNFInstances200JSONResponse) VisitOptionsNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type OptionsNFInstances204ResponseHeaders struct {
-	AcceptEncoding string
+	AcceptEncoding *string
 }
 
 type OptionsNFInstances204Response struct {
@@ -14654,7 +14656,9 @@ type OptionsNFInstances204Response struct {
 }
 
 func (response OptionsNFInstances204Response) VisitOptionsNFInstancesResponse(w http.ResponseWriter) error {
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
 	w.WriteHeader(204)
 	return nil
 }
@@ -14971,7 +14975,7 @@ type GetNFInstanceResponseObject interface {
 }
 
 type GetNFInstance200ResponseHeaders struct {
-	ETag string
+	ETag *string
 }
 
 type GetNFInstance200JSONResponse struct {
@@ -14981,7 +14985,9 @@ type GetNFInstance200JSONResponse struct {
 
 func (response GetNFInstance200JSONResponse) VisitGetNFInstanceResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -15172,9 +15178,9 @@ type UpdateNFInstanceResponseObject interface {
 }
 
 type UpdateNFInstance200ResponseHeaders struct {
-	AcceptEncoding  string
-	ContentEncoding string
-	ETag            string
+	AcceptEncoding  *string
+	ContentEncoding *string
+	ETag            *string
 }
 
 type UpdateNFInstance200JSONResponse struct {
@@ -15184,16 +15190,22 @@ type UpdateNFInstance200JSONResponse struct {
 
 func (response UpdateNFInstance200JSONResponse) VisitUpdateNFInstanceResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateNFInstance204ResponseHeaders struct {
-	AcceptEncoding string
+	AcceptEncoding *string
 }
 
 type UpdateNFInstance204Response struct {
@@ -15201,7 +15213,9 @@ type UpdateNFInstance204Response struct {
 }
 
 func (response UpdateNFInstance204Response) VisitUpdateNFInstanceResponse(w http.ResponseWriter) error {
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
 	w.WriteHeader(204)
 	return nil
 }
@@ -15395,9 +15409,9 @@ type RegisterNFInstanceResponseObject interface {
 }
 
 type RegisterNFInstance200ResponseHeaders struct {
-	AcceptEncoding  string
-	ContentEncoding string
-	ETag            string
+	AcceptEncoding  *string
+	ContentEncoding *string
+	ETag            *string
 }
 
 type RegisterNFInstance200JSONResponse struct {
@@ -15407,18 +15421,24 @@ type RegisterNFInstance200JSONResponse struct {
 
 func (response RegisterNFInstance200JSONResponse) VisitRegisterNFInstanceResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type RegisterNFInstance201ResponseHeaders struct {
-	AcceptEncoding  string
-	ContentEncoding string
-	ETag            string
+	AcceptEncoding  *string
+	ContentEncoding *string
+	ETag            *string
 	Location        string
 }
 
@@ -15429,9 +15449,15 @@ type RegisterNFInstance201JSONResponse struct {
 
 func (response RegisterNFInstance201JSONResponse) VisitRegisterNFInstanceResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
-	w.Header().Set("ETag", fmt.Sprint(response.Headers.ETag))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
+	if response.Headers.ETag != nil {
+		w.Header().Set("ETag", fmt.Sprint(*response.Headers.ETag))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(201)
 
@@ -15615,8 +15641,8 @@ type CreateSubscriptionResponseObject interface {
 }
 
 type CreateSubscription201ResponseHeaders struct {
-	AcceptEncoding  string
-	ContentEncoding string
+	AcceptEncoding  *string
+	ContentEncoding *string
 	Location        string
 }
 
@@ -15627,8 +15653,12 @@ type CreateSubscription201JSONResponse struct {
 
 func (response CreateSubscription201JSONResponse) VisitCreateSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(201)
 
@@ -15996,8 +16026,8 @@ type UpdateSubscriptionResponseObject interface {
 }
 
 type UpdateSubscription200ResponseHeaders struct {
-	AcceptEncoding  string
-	ContentEncoding string
+	AcceptEncoding  *string
+	ContentEncoding *string
 }
 
 type UpdateSubscription200JSONResponse struct {
@@ -16007,15 +16037,19 @@ type UpdateSubscription200JSONResponse struct {
 
 func (response UpdateSubscription200JSONResponse) VisitUpdateSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
 type UpdateSubscription204ResponseHeaders struct {
-	AcceptEncoding string
+	AcceptEncoding *string
 }
 
 type UpdateSubscription204Response struct {
@@ -16023,7 +16057,9 @@ type UpdateSubscription204Response struct {
 }
 
 func (response UpdateSubscription204Response) VisitUpdateSubscriptionResponse(w http.ResponseWriter) error {
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
 	w.WriteHeader(204)
 	return nil
 }

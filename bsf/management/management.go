@@ -2845,7 +2845,9 @@ type DeleteIndPCFBinding307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response DeleteIndPCFBinding307JSONResponse) VisitDeleteIndPCFBindingResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2856,7 +2858,9 @@ type DeleteIndPCFBinding308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response DeleteIndPCFBinding308JSONResponse) VisitDeleteIndPCFBindingResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -2974,7 +2978,9 @@ type UpdateIndPCFBinding307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response UpdateIndPCFBinding307JSONResponse) VisitUpdateIndPCFBindingResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2985,7 +2991,9 @@ type UpdateIndPCFBinding308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response UpdateIndPCFBinding308JSONResponse) VisitUpdateIndPCFBindingResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 

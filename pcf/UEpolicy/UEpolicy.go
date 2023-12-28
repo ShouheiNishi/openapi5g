@@ -2515,7 +2515,9 @@ type DeleteIndividualUEPolicyAssociation307JSONResponse struct{ externalRef2.N30
 
 func (response DeleteIndividualUEPolicyAssociation307JSONResponse) VisitDeleteIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2526,7 +2528,9 @@ type DeleteIndividualUEPolicyAssociation308JSONResponse struct{ externalRef2.N30
 
 func (response DeleteIndividualUEPolicyAssociation308JSONResponse) VisitDeleteIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -2643,7 +2647,9 @@ type ReadIndividualUEPolicyAssociation307JSONResponse struct{ externalRef2.N307J
 
 func (response ReadIndividualUEPolicyAssociation307JSONResponse) VisitReadIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2654,7 +2660,9 @@ type ReadIndividualUEPolicyAssociation308JSONResponse struct{ externalRef2.N308J
 
 func (response ReadIndividualUEPolicyAssociation308JSONResponse) VisitReadIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -2779,7 +2787,9 @@ type ReportObservedEventTriggersForIndividualUEPolicyAssociation307JSONResponse 
 
 func (response ReportObservedEventTriggersForIndividualUEPolicyAssociation307JSONResponse) VisitReportObservedEventTriggersForIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2790,7 +2800,9 @@ type ReportObservedEventTriggersForIndividualUEPolicyAssociation308JSONResponse 
 
 func (response ReportObservedEventTriggersForIndividualUEPolicyAssociation308JSONResponse) VisitReportObservedEventTriggersForIndividualUEPolicyAssociationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 

@@ -1499,7 +1499,9 @@ type ProvideDomainSelectionInfo307JSONResponse struct{ externalRef1.N307JSONResp
 
 func (response ProvideDomainSelectionInfo307JSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -1510,7 +1512,9 @@ type ProvideDomainSelectionInfo308JSONResponse struct{ externalRef1.N308JSONResp
 
 func (response ProvideDomainSelectionInfo308JSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -1628,7 +1632,9 @@ type EnableUeReachability307JSONResponse struct{ externalRef1.N307JSONResponse }
 
 func (response EnableUeReachability307JSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -1639,7 +1645,9 @@ type EnableUeReachability308JSONResponse struct{ externalRef1.N308JSONResponse }
 
 func (response EnableUeReachability308JSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 

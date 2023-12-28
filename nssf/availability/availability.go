@@ -3046,7 +3046,7 @@ type NSSAIAvailabilityOptionsResponseObject interface {
 }
 
 type NSSAIAvailabilityOptions200ResponseHeaders struct {
-	AcceptEncoding string
+	AcceptEncoding *string
 }
 
 type NSSAIAvailabilityOptions200Response struct {
@@ -3054,7 +3054,9 @@ type NSSAIAvailabilityOptions200Response struct {
 }
 
 func (response NSSAIAvailabilityOptions200Response) VisitNSSAIAvailabilityOptionsResponse(w http.ResponseWriter) error {
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
 	w.WriteHeader(200)
 	return nil
 }
@@ -3063,7 +3065,9 @@ type NSSAIAvailabilityOptions307JSONResponse struct{ externalRef0.N307JSONRespon
 
 func (response NSSAIAvailabilityOptions307JSONResponse) VisitNSSAIAvailabilityOptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -3074,7 +3078,9 @@ type NSSAIAvailabilityOptions308JSONResponse struct{ externalRef0.N308JSONRespon
 
 func (response NSSAIAvailabilityOptions308JSONResponse) VisitNSSAIAvailabilityOptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -3198,7 +3204,7 @@ type NSSAIAvailabilityPostResponseObject interface {
 }
 
 type NSSAIAvailabilityPost201ResponseHeaders struct {
-	ContentEncoding string
+	ContentEncoding *string
 	Location        string
 }
 
@@ -3209,7 +3215,9 @@ type NSSAIAvailabilityPost201JSONResponse struct {
 
 func (response NSSAIAvailabilityPost201JSONResponse) VisitNSSAIAvailabilityPostResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(201)
 
@@ -3220,7 +3228,9 @@ type NSSAIAvailabilityPost307JSONResponse struct{ externalRef0.N307JSONResponse 
 
 func (response NSSAIAvailabilityPost307JSONResponse) VisitNSSAIAvailabilityPostResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -3231,7 +3241,9 @@ type NSSAIAvailabilityPost308JSONResponse struct{ externalRef0.N308JSONResponse 
 
 func (response NSSAIAvailabilityPost308JSONResponse) VisitNSSAIAvailabilityPostResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -3380,7 +3392,9 @@ type NSSAIAvailabilityUnsubscribe307JSONResponse struct{ externalRef0.N307JSONRe
 
 func (response NSSAIAvailabilityUnsubscribe307JSONResponse) VisitNSSAIAvailabilityUnsubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -3391,7 +3405,9 @@ type NSSAIAvailabilityUnsubscribe308JSONResponse struct{ externalRef0.N308JSONRe
 
 func (response NSSAIAvailabilityUnsubscribe308JSONResponse) VisitNSSAIAvailabilityUnsubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -3487,7 +3503,7 @@ type NSSAIAvailabilitySubModifyPatchResponseObject interface {
 }
 
 type NSSAIAvailabilitySubModifyPatch200ResponseHeaders struct {
-	ContentEncoding string
+	ContentEncoding *string
 }
 
 type NSSAIAvailabilitySubModifyPatch200JSONResponse struct {
@@ -3497,7 +3513,9 @@ type NSSAIAvailabilitySubModifyPatch200JSONResponse struct {
 
 func (response NSSAIAvailabilitySubModifyPatch200JSONResponse) VisitNSSAIAvailabilitySubModifyPatchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -3507,7 +3525,9 @@ type NSSAIAvailabilitySubModifyPatch307JSONResponse struct{ externalRef0.N307JSO
 
 func (response NSSAIAvailabilitySubModifyPatch307JSONResponse) VisitNSSAIAvailabilitySubModifyPatchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -3518,7 +3538,9 @@ type NSSAIAvailabilitySubModifyPatch308JSONResponse struct{ externalRef0.N308JSO
 
 func (response NSSAIAvailabilitySubModifyPatch308JSONResponse) VisitNSSAIAvailabilitySubModifyPatchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -3667,7 +3689,9 @@ type NSSAIAvailabilityDelete307JSONResponse struct{ externalRef0.N307JSONRespons
 
 func (response NSSAIAvailabilityDelete307JSONResponse) VisitNSSAIAvailabilityDeleteResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -3678,7 +3702,9 @@ type NSSAIAvailabilityDelete308JSONResponse struct{ externalRef0.N308JSONRespons
 
 func (response NSSAIAvailabilityDelete308JSONResponse) VisitNSSAIAvailabilityDeleteResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -3774,8 +3800,8 @@ type NSSAIAvailabilityPatchResponseObject interface {
 }
 
 type NSSAIAvailabilityPatch200ResponseHeaders struct {
-	AcceptEncoding  string
-	ContentEncoding string
+	AcceptEncoding  *string
+	ContentEncoding *string
 }
 
 type NSSAIAvailabilityPatch200JSONResponse struct {
@@ -3785,8 +3811,12 @@ type NSSAIAvailabilityPatch200JSONResponse struct {
 
 func (response NSSAIAvailabilityPatch200JSONResponse) VisitNSSAIAvailabilityPatchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -3804,7 +3834,9 @@ type NSSAIAvailabilityPatch307JSONResponse struct{ externalRef0.N307JSONResponse
 
 func (response NSSAIAvailabilityPatch307JSONResponse) VisitNSSAIAvailabilityPatchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -3815,7 +3847,9 @@ type NSSAIAvailabilityPatch308JSONResponse struct{ externalRef0.N308JSONResponse
 
 func (response NSSAIAvailabilityPatch308JSONResponse) VisitNSSAIAvailabilityPatchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -3955,8 +3989,8 @@ type NSSAIAvailabilityPutResponseObject interface {
 }
 
 type NSSAIAvailabilityPut200ResponseHeaders struct {
-	AcceptEncoding  string
-	ContentEncoding string
+	AcceptEncoding  *string
+	ContentEncoding *string
 }
 
 type NSSAIAvailabilityPut200JSONResponse struct {
@@ -3966,8 +4000,12 @@ type NSSAIAvailabilityPut200JSONResponse struct {
 
 func (response NSSAIAvailabilityPut200JSONResponse) VisitNSSAIAvailabilityPutResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Accept-Encoding", fmt.Sprint(response.Headers.AcceptEncoding))
-	w.Header().Set("Content-Encoding", fmt.Sprint(response.Headers.ContentEncoding))
+	if response.Headers.AcceptEncoding != nil {
+		w.Header().Set("Accept-Encoding", fmt.Sprint(*response.Headers.AcceptEncoding))
+	}
+	if response.Headers.ContentEncoding != nil {
+		w.Header().Set("Content-Encoding", fmt.Sprint(*response.Headers.ContentEncoding))
+	}
 	w.WriteHeader(200)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -3985,7 +4023,9 @@ type NSSAIAvailabilityPut307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response NSSAIAvailabilityPut307JSONResponse) VisitNSSAIAvailabilityPutResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -3996,7 +4036,9 @@ type NSSAIAvailabilityPut308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response NSSAIAvailabilityPut308JSONResponse) VisitNSSAIAvailabilityPutResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 

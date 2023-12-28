@@ -2837,7 +2837,9 @@ type DeleteIndividualSubcription307JSONResponse struct{ externalRef1.N307JSONRes
 
 func (response DeleteIndividualSubcription307JSONResponse) VisitDeleteIndividualSubcriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2848,7 +2850,9 @@ type DeleteIndividualSubcription308JSONResponse struct{ externalRef1.N308JSONRes
 
 func (response DeleteIndividualSubcription308JSONResponse) VisitDeleteIndividualSubcriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -2965,7 +2969,9 @@ type GetIndividualSubcription307JSONResponse struct{ externalRef1.N307JSONRespon
 
 func (response GetIndividualSubcription307JSONResponse) VisitGetIndividualSubcriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2976,7 +2982,9 @@ type GetIndividualSubcription308JSONResponse struct{ externalRef1.N308JSONRespon
 
 func (response GetIndividualSubcription308JSONResponse) VisitGetIndividualSubcriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -3109,7 +3117,9 @@ type ReplaceIndividualSubcription307JSONResponse struct{ externalRef1.N307JSONRe
 
 func (response ReplaceIndividualSubcription307JSONResponse) VisitReplaceIndividualSubcriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -3120,7 +3130,9 @@ type ReplaceIndividualSubcription308JSONResponse struct{ externalRef1.N308JSONRe
 
 func (response ReplaceIndividualSubcription308JSONResponse) VisitReplaceIndividualSubcriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 

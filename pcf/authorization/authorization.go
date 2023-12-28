@@ -8981,7 +8981,7 @@ func (response PostAppSessions401ApplicationProblemPlusJSONResponse) VisitPostAp
 }
 
 type PostAppSessions403ResponseHeaders struct {
-	RetryAfter struct {
+	RetryAfter *struct {
 		union json.RawMessage
 	}
 }
@@ -8993,7 +8993,9 @@ type PostAppSessions403ApplicationProblemPlusJSONResponse struct {
 
 func (response PostAppSessions403ApplicationProblemPlusJSONResponse) VisitPostAppSessionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
-	w.Header().Set("Retry-After", fmt.Sprint(response.Headers.RetryAfter))
+	if response.Headers.RetryAfter != nil {
+		w.Header().Set("Retry-After", fmt.Sprint(*response.Headers.RetryAfter))
+	}
 	w.WriteHeader(403)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -9108,7 +9110,9 @@ type PcscfRestoration307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response PcscfRestoration307JSONResponse) VisitPcscfRestorationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -9119,7 +9123,9 @@ type PcscfRestoration308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response PcscfRestoration308JSONResponse) VisitPcscfRestorationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -9269,7 +9275,9 @@ type GetAppSession307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response GetAppSession307JSONResponse) VisitGetAppSessionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -9280,7 +9288,9 @@ type GetAppSession308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response GetAppSession308JSONResponse) VisitGetAppSessionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -9413,7 +9423,9 @@ type ModAppSession307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response ModAppSession307JSONResponse) VisitModAppSessionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -9424,7 +9436,9 @@ type ModAppSession308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response ModAppSession308JSONResponse) VisitModAppSessionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -9454,7 +9468,7 @@ func (response ModAppSession401ApplicationProblemPlusJSONResponse) VisitModAppSe
 }
 
 type ModAppSession403ResponseHeaders struct {
-	RetryAfter struct {
+	RetryAfter *struct {
 		union json.RawMessage
 	}
 }
@@ -9466,7 +9480,9 @@ type ModAppSession403ApplicationProblemPlusJSONResponse struct {
 
 func (response ModAppSession403ApplicationProblemPlusJSONResponse) VisitModAppSessionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
-	w.Header().Set("Retry-After", fmt.Sprint(response.Headers.RetryAfter))
+	if response.Headers.RetryAfter != nil {
+		w.Header().Set("Retry-After", fmt.Sprint(*response.Headers.RetryAfter))
+	}
 	w.WriteHeader(403)
 
 	return json.NewEncoder(w).Encode(response.Body)
@@ -9591,7 +9607,9 @@ type DeleteAppSession307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response DeleteAppSession307JSONResponse) VisitDeleteAppSessionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -9602,7 +9620,9 @@ type DeleteAppSession308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response DeleteAppSession308JSONResponse) VisitDeleteAppSessionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -9751,7 +9771,9 @@ type DeleteEventsSubsc307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response DeleteEventsSubsc307JSONResponse) VisitDeleteEventsSubscResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -9762,7 +9784,9 @@ type DeleteEventsSubsc308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response DeleteEventsSubsc308JSONResponse) VisitDeleteEventsSubscResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -9905,7 +9929,9 @@ type UpdateEventsSubsc307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response UpdateEventsSubsc307JSONResponse) VisitUpdateEventsSubscResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -9916,7 +9942,9 @@ type UpdateEventsSubsc308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response UpdateEventsSubsc308JSONResponse) VisitUpdateEventsSubscResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 

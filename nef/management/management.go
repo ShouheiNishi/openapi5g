@@ -2185,7 +2185,9 @@ type NnefPFDmanagementIndAppFetch307JSONResponse struct{ externalRef0.N307JSONRe
 
 func (response NnefPFDmanagementIndAppFetch307JSONResponse) VisitNnefPFDmanagementIndAppFetchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2196,7 +2198,9 @@ type NnefPFDmanagementIndAppFetch308JSONResponse struct{ externalRef0.N308JSONRe
 
 func (response NnefPFDmanagementIndAppFetch308JSONResponse) VisitNnefPFDmanagementIndAppFetchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -2477,7 +2481,9 @@ type NnefPFDmanagementUnsubscribe307JSONResponse struct{ externalRef0.N307JSONRe
 
 func (response NnefPFDmanagementUnsubscribe307JSONResponse) VisitNnefPFDmanagementUnsubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2488,7 +2494,9 @@ type NnefPFDmanagementUnsubscribe308JSONResponse struct{ externalRef0.N308JSONRe
 
 func (response NnefPFDmanagementUnsubscribe308JSONResponse) VisitNnefPFDmanagementUnsubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 
@@ -2606,7 +2614,9 @@ type NnefPFDmanagementModifySubscr307JSONResponse struct{ externalRef0.N307JSONR
 
 func (response NnefPFDmanagementModifySubscr307JSONResponse) VisitNnefPFDmanagementModifySubscrResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(307)
 
@@ -2617,7 +2627,9 @@ type NnefPFDmanagementModifySubscr308JSONResponse struct{ externalRef0.N308JSONR
 
 func (response NnefPFDmanagementModifySubscr308JSONResponse) VisitNnefPFDmanagementModifySubscrResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(response.Headers.N3gppSbiTargetNfId))
+	if response.Headers.N3gppSbiTargetNfId != nil {
+		w.Header().Set("3gpp-Sbi-Target-Nf-Id", fmt.Sprint(*response.Headers.N3gppSbiTargetNfId))
+	}
 	w.Header().Set("Location", fmt.Sprint(response.Headers.Location))
 	w.WriteHeader(308)
 

@@ -43,6 +43,12 @@ func Generate(rootDir string) error {
 	}
 	outLists = append(outLists, outs...)
 
+	outs, err = GeneratePkgMap(rootDir)
+	if err != nil {
+		return fmt.Errorf("GeneratePkgMap: %w", err)
+	}
+	outLists = append(outLists, outs...)
+
 	err = RemoveOldFiles(rootDir, outLists)
 	if err != nil {
 		return fmt.Errorf("RemoveOldFiles: %w", err)

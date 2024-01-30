@@ -3,9 +3,9 @@ module github.com/ShouheiNishi/openapi5g
 go 1.18
 
 require (
-	github.com/deepmap/oapi-codegen/v2 v2.0.0
+	github.com/deepmap/oapi-codegen/v2 v2.0.1-0.20240123090344-d326c01d279a
 	github.com/free5gc/openapi v1.0.6
-	github.com/getkin/kin-openapi v0.118.0
+	github.com/getkin/kin-openapi v0.122.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/uuid v1.5.0
 	github.com/invopop/yaml v0.2.0
@@ -24,8 +24,8 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/go-openapi/jsonpointer v0.19.5 // indirect
-	github.com/go-openapi/swag v0.19.5 // indirect
+	github.com/go-openapi/jsonpointer v0.19.6 // indirect
+	github.com/go-openapi/swag v0.22.4 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.14.1 // indirect
@@ -40,7 +40,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.9 // indirect
-	github.com/perimeterx/marshmallow v1.1.4 // indirect
+	github.com/perimeterx/marshmallow v1.1.5 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
@@ -57,6 +57,6 @@ require (
 )
 
 replace (
-	github.com/deepmap/oapi-codegen/v2 v2.0.0 => github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20231228051324-1782e7fafd13
-	github.com/getkin/kin-openapi v0.118.0 => github.com/ShouheiNishi/kin-openapi v0.118.1-0.20230809022507-e0d137517940
+	github.com/deepmap/oapi-codegen/v2 v2.0.1-0.20240123090344-d326c01d279a => github.com/ShouheiNishi/oapi-codegen/v2 v2.0.0-20240130024248-ea21b85ac0b4
+	github.com/getkin/kin-openapi v0.122.0 => github.com/ShouheiNishi/kin-openapi v0.120.1-0.20240130043656-caf78162e0eb
 )

@@ -66,28 +66,28 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 			}
 		}
 	} else {
-		for _, pathItem := range doc.Paths {
+		for _, pathItem := range doc.Paths.Map() {
 			if pathItem.Ref != "" {
 				continue
 			}
 			for _, op := range pathItem.Operations() {
 				if op.Responses == nil {
-					op.Responses = make(openapi3.Responses)
+					op.Responses = &openapi3.Responses{}
 				}
-				if op.Responses["default"] == nil {
-					op.Responses["default"] = &openapi3.ResponseRef{Value: openapi3.NewResponse()}
+				if op.Responses.Value("default") == nil {
+					op.Responses.Set("default", &openapi3.ResponseRef{Value: openapi3.NewResponse()})
 				}
-				if op.Responses["default"].Ref != "TS29571_CommonData.yaml#/components/responses/default" {
-					if op.Responses["default"].Value.Content == nil {
-						op.Responses["default"].Value.Content = openapi3.NewContent()
+				if op.Responses.Value("default").Ref != "TS29571_CommonData.yaml#/components/responses/default" {
+					if op.Responses.Value("default").Value.Content == nil {
+						op.Responses.Value("default").Value.Content = openapi3.NewContent()
 					}
-					if op.Responses["default"].Value.Content["application/problem+json"] == nil {
-						resNew := deepcopy.Copy(op.Responses["default"]).(*openapi3.ResponseRef)
+					if op.Responses.Value("default").Value.Content["application/problem+json"] == nil {
+						resNew := deepcopy.Copy(op.Responses.Value("default")).(*openapi3.ResponseRef)
 						resNew.Ref = ""
 						resNew.Value.Content["application/problem+json"] = openapi3.NewMediaType().WithSchemaRef(
 							openapi3.NewSchemaRef("TS29571_CommonData.yaml#/components/schemas/ProblemDetails", nil),
 						)
-						op.Responses["default"] = resNew
+						op.Responses.Set("default", resNew)
 					}
 				}
 			}
@@ -95,7 +95,7 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 	}
 
 	if spec == "TS29503_Nudm_SDM.yaml" {
-		for _, parameterRef := range doc.Paths["/shared-data"].Get.Parameters {
+		for _, parameterRef := range doc.Paths.Value("/shared-data").Get.Parameters {
 			parameter := parameterRef.Value
 			if parameter.Name == "supportedFeatures" {
 				if parameter.Extensions == nil {

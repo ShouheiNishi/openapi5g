@@ -160,10 +160,18 @@ func (s *openApi3WalkerGeneratorState) generateFuncs(t reflect.Type) {
 	str += "if _, exist := s.visited[v] ; exist {\nreturn nil\n}\ns.visited[v] = struct{}{}\n"
 
 	var elems []string
+	hasMap := false
+	var mapMethod reflect.Method
 fieldLoop:
 	for i := 0; i < t.NumField(); i++ {
 		f := t.Field(i)
 		switch f.Name {
+		case "m":
+			if m, exist := reflect.PointerTo(t).MethodByName("Map"); exist {
+				hasMap = true
+				mapMethod = m
+				continue fieldLoop
+			}
 		case "Default":
 			if t == reflect.TypeOf(openapi3.Schema{}) && f.Type == anyReflectType {
 				continue fieldLoop
@@ -212,6 +220,13 @@ fieldLoop:
 	for i, n := range elems {
 		f, _ := t.FieldByName(n)
 		if s2 := s.generateValueOp("v."+n, f.Type, 0, i); s2 != "" {
+			str += "\n" + s2 + "\n"
+			empty = false
+		}
+	}
+
+	if hasMap {
+		if s2 := s.generateValueOp("v.Map()", mapMethod.Type.Out(0), 0, len(elems)); s2 != "" {
 			str += "\n" + s2 + "\n"
 			empty = false
 		}

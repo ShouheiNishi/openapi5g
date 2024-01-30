@@ -52,11 +52,11 @@ func GenerateConfig(rootDir string, spec string, doc *openapi3.T, deps []string)
 		fmt.Fprintf(f, "package: %s\n", base)
 		fmt.Fprintf(f, "generate:\n")
 		fmt.Fprintf(f, "  models: true\n")
-		if len(doc.Paths) != 0 {
+		if len(doc.Paths.Map()) != 0 {
 			fmt.Fprintf(f, "  client: true\n")
 			fmt.Fprintf(f, "  gin-server: true\n")
 		}
-		if len(doc.Paths) != 0 || (doc.Components != nil && len(doc.Components.Responses) != 0) {
+		if len(doc.Paths.Map()) != 0 || (doc.Components != nil && len(doc.Components.Responses) != 0) {
 			fmt.Fprintf(f, "  strict-server: true\n")
 		}
 		fmt.Fprintf(f, "output-options:\n")

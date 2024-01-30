@@ -41,6 +41,28 @@ func (s *fixLocalRefIType) walkAdditionalProperties(v *openapi3.AdditionalProper
 	return nil
 }
 
+func (s *fixLocalRefIType) walkCallback(v *openapi3.Callback, curUri string) error {
+	if _, exist := s.visited[v]; exist {
+		return nil
+	}
+	s.visited[v] = struct{}{}
+
+	k0s0 := make([]string, 0, len(v.Map()))
+	for k0 := range v.Map() {
+		k0s0 = append(k0s0, k0)
+	}
+	sort.Strings(k0s0)
+	for _, k0 := range k0s0 {
+		if v.Map()[k0] != nil {
+			if err := s.walkPathItem(v.Map()[k0], curUri); err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
 func (s *fixLocalRefIType) walkCallbackRef(v *openapi3.CallbackRef, curUri string) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
@@ -64,17 +86,8 @@ func (s *fixLocalRefIType) walkCallbackRef(v *openapi3.CallbackRef, curUri strin
 	}
 
 	if v.Value != nil {
-		k1s1 := make([]string, 0, len(*v.Value))
-		for k1 := range *v.Value {
-			k1s1 = append(k1s1, k1)
-		}
-		sort.Strings(k1s1)
-		for _, k1 := range k1s1 {
-			if (*v.Value)[k1] != nil {
-				if err := s.walkPathItem((*v.Value)[k1], curUri); err != nil {
-					return err
-				}
-			}
+		if err := s.walkCallback(v.Value, curUri); err != nil {
+			return err
 		}
 	}
 
@@ -397,16 +410,9 @@ func (s *fixLocalRefIType) walkOperation(v *openapi3.Operation, curUri string) e
 		}
 	}
 
-	k0s7 := make([]string, 0, len(v.Responses))
-	for k0 := range v.Responses {
-		k0s7 = append(k0s7, k0)
-	}
-	sort.Strings(k0s7)
-	for _, k0 := range k0s7 {
-		if v.Responses[k0] != nil {
-			if err := s.walkResponseRef(v.Responses[k0], curUri); err != nil {
-				return err
-			}
+	if v.Responses != nil {
+		if err := s.walkResponses(v.Responses, curUri); err != nil {
+			return err
 		}
 	}
 
@@ -572,6 +578,28 @@ func (s *fixLocalRefIType) walkPathItem(v *openapi3.PathItem, curUri string) err
 	return nil
 }
 
+func (s *fixLocalRefIType) walkPaths(v *openapi3.Paths, curUri string) error {
+	if _, exist := s.visited[v]; exist {
+		return nil
+	}
+	s.visited[v] = struct{}{}
+
+	k0s0 := make([]string, 0, len(v.Map()))
+	for k0 := range v.Map() {
+		k0s0 = append(k0s0, k0)
+	}
+	sort.Strings(k0s0)
+	for _, k0 := range k0s0 {
+		if v.Map()[k0] != nil {
+			if err := s.walkPathItem(v.Map()[k0], curUri); err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
 func (s *fixLocalRefIType) walkRequestBody(v *openapi3.RequestBody, curUri string) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
@@ -698,6 +726,28 @@ func (s *fixLocalRefIType) walkResponseRef(v *openapi3.ResponseRef, curUri strin
 	if v.Value != nil {
 		if err := s.walkResponse(v.Value, curUri); err != nil {
 			return err
+		}
+	}
+
+	return nil
+}
+
+func (s *fixLocalRefIType) walkResponses(v *openapi3.Responses, curUri string) error {
+	if _, exist := s.visited[v]; exist {
+		return nil
+	}
+	s.visited[v] = struct{}{}
+
+	k0s0 := make([]string, 0, len(v.Map()))
+	for k0 := range v.Map() {
+		k0s0 = append(k0s0, k0)
+	}
+	sort.Strings(k0s0)
+	for _, k0 := range k0s0 {
+		if v.Map()[k0] != nil {
+			if err := s.walkResponseRef(v.Map()[k0], curUri); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -834,16 +884,9 @@ func (s *fixLocalRefIType) walkT(v *openapi3.T, curUri string) error {
 		}
 	}
 
-	k0s4 := make([]string, 0, len(v.Paths))
-	for k0 := range v.Paths {
-		k0s4 = append(k0s4, k0)
-	}
-	sort.Strings(k0s4)
-	for _, k0 := range k0s4 {
-		if v.Paths[k0] != nil {
-			if err := s.walkPathItem(v.Paths[k0], curUri); err != nil {
-				return err
-			}
+	if v.Paths != nil {
+		if err := s.walkPaths(v.Paths, curUri); err != nil {
+			return err
 		}
 	}
 

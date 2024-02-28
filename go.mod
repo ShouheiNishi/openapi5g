@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/deepmap/oapi-codegen/v2 v2.0.1-0.20240123090344-d326c01d279a
-	github.com/free5gc/openapi v1.0.6
+	github.com/free5gc/openapi v1.0.7
 	github.com/getkin/kin-openapi v0.122.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/uuid v1.6.0

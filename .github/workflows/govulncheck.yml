@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: golang-govulncheck-action
-      uses: golang/govulncheck-action@v1.0.2
+      uses: golang/govulncheck-action@v1.0.4
       with:
         go-version-input: '1.23.x'
         check-latest: true

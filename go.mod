@@ -1,6 +1,6 @@
 module github.com/ShouheiNishi/openapi5g
 
-go 1.18
+go 1.22.0
 
 require (
 	github.com/deepmap/oapi-codegen/v2 v2.0.1-0.20240123090344-d326c01d279a

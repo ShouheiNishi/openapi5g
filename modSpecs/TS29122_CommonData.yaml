@@ -337,12 +337,14 @@ components:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
                         x-go-type-skip-optional-pointer: true
+                    minItems: 0
                     type: array
                 geographicAreas:
                     description: Identifies a list of geographic area of the user where the UE is located.
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
                         x-go-type-skip-optional-pointer: true
+                    minItems: 0
                     type: array
                 nwAreaInfo:
                     description: Describes a network area information in which the NF service consumer requests the number of UEs. (Original reference TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)

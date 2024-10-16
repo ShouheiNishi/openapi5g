@@ -18,48 +18,43 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path"
 	"path/filepath"
 	"strings"
 
 	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
 
-func GenerateEmbed(rootDir string, deps []string) (outLists []string, err error) {
-	for _, d := range deps {
+func (s *GeneratorState) GenerateEmbed() error {
+	for d := range s.Specs {
 		base := strings.TrimSuffix(d, ".yaml")
-		dir := path.Join(rootDir, "internal/embed", base)
-		if err := os.MkdirAll(dir, 0o755); err != nil {
-			return nil, err
+
+		if name, err := s.CreateFileName("internal/embed", base, "embed.go"); err != nil {
+			return fmt.Errorf("CreateFileName: %w", err)
+		} else {
+			out := writer.NewOutputFile(name, base, generatorName, writer.ImportSpecs{
+				{PackageName: "_", ImportPath: "embed"},
+			})
+			fmt.Fprintf(out, "//go:embed %s\n", d)
+			fmt.Fprintln(out, "var SpecYaml []byte")
+			if err := out.Close(); err != nil {
+				return err
+			}
 		}
 
-		name := path.Join(dir, "embed.go")
-		out := writer.NewOutputFile(name, base, generatorName, writer.ImportSpecs{
-			{PackageName: "_", ImportPath: "embed"},
-		})
-		outLists = append(outLists, name)
-		fmt.Fprintf(out, "//go:embed %s\n", d)
-		fmt.Fprintln(out, "var SpecYaml []byte")
-		if err := out.Close(); err != nil {
-			return nil, err
-		}
-
-		if fIn, err := os.Open(filepath.Join(rootDir, "specs", d)); err != nil {
-			return nil, err
+		if fIn, err := os.Open(filepath.Join(s.RootDir, "specs", d)); err != nil {
+			return err
 		} else {
 			defer fIn.Close()
-			name := path.Join(dir, d)
-			outLists = append(outLists, name)
-			if fOut, err := os.Create(name); err != nil {
-				return nil, err
+			if fOut, err := s.CreateFile("internal/embed", base, d); err != nil {
+				return err
 			} else {
 				defer fOut.Close()
 				if _, err := io.Copy(fOut, fIn); err != nil {
-					return nil, err
+					return err
 				}
 			}
 		}
 	}
 
-	return outLists, nil
+	return nil
 }

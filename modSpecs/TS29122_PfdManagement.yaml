@@ -132,6 +132,7 @@ components:
                     description: Identifies a list of DNAI which the user plane functions support.
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
+                    minItems: 0
                     type: array
                 locationArea:
                     $ref: TS29122_CommonData.yaml#/components/schemas/LocationArea
@@ -140,11 +141,11 @@ components:
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
-                    scopes: {}
                     tokenUrl: '{tokenUrl}'
-            type: oauth2
+                    scopes: {}
 externalDocs:
     description: 3GPP TS 29.122 V16.16.0 T8 reference point for Northbound APIs
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.122/
@@ -158,6 +159,13 @@ info:
 openapi: 3.0.0
 paths:
     /{scsAsId}/transactions:
+        parameters:
+            - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
+              in: path
+              name: scsAsId
+              required: true
+              schema:
+                type: string
         get:
             responses:
                 "200":
@@ -194,13 +202,6 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Generic Error
-        parameters:
-            - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
-              in: path
-              name: scsAsId
-              required: true
-              schema:
-                type: string
         post:
             callbacks:
                 notificationDestination:
@@ -303,34 +304,19 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Generic Error
     /{scsAsId}/transactions/{transactionId}:
-        delete:
-            responses:
-                "204":
-                    description: No Content. The transaction was deleted successfully. The payload body shall be empty.
-                "307":
-                    $ref: TS29122_CommonData.yaml#/components/responses/307
-                "308":
-                    $ref: TS29122_CommonData.yaml#/components/responses/308
-                "400":
-                    $ref: TS29122_CommonData.yaml#/components/responses/400
-                "401":
-                    $ref: TS29122_CommonData.yaml#/components/responses/401
-                "403":
-                    $ref: TS29122_CommonData.yaml#/components/responses/403
-                "404":
-                    $ref: TS29122_CommonData.yaml#/components/responses/404
-                "429":
-                    $ref: TS29122_CommonData.yaml#/components/responses/429
-                "500":
-                    $ref: TS29122_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29122_CommonData.yaml#/components/responses/503
-                default:
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Generic Error
+        parameters:
+            - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
+              in: path
+              name: scsAsId
+              required: true
+              schema:
+                type: string
+            - description: Transaction ID
+              in: path
+              name: transactionId
+              required: true
+              schema:
+                type: string
         get:
             responses:
                 "200":
@@ -365,19 +351,6 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Generic Error
-        parameters:
-            - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
-              in: path
-              name: scsAsId
-              required: true
-              schema:
-                type: string
-            - description: Transaction ID
-              in: path
-              name: transactionId
-              required: true
-              schema:
-                type: string
         put:
             requestBody:
                 content:
@@ -434,11 +407,10 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Generic Error
-    /{scsAsId}/transactions/{transactionId}/applications/{appId}:
         delete:
             responses:
                 "204":
-                    description: No Content. The application was deleted successfully. The payload body shall be empty.
+                    description: No Content. The transaction was deleted successfully. The payload body shall be empty.
                 "307":
                     $ref: TS29122_CommonData.yaml#/components/responses/307
                 "308":
@@ -463,6 +435,26 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Generic Error
+    /{scsAsId}/transactions/{transactionId}/applications/{appId}:
+        parameters:
+            - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
+              in: path
+              name: scsAsId
+              required: true
+              schema:
+                type: string
+            - description: Transaction ID
+              in: path
+              name: transactionId
+              required: true
+              schema:
+                type: string
+            - description: Identifier of the application
+              in: path
+              name: appId
+              required: true
+              schema:
+                type: string
         get:
             responses:
                 "200":
@@ -497,32 +489,13 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Generic Error
-        parameters:
-            - description: Identifier of the SCS/AS as defined in subclause subclause 5.2.4 of 3GPP TS 29.122.
-              in: path
-              name: scsAsId
-              required: true
-              schema:
-                type: string
-            - description: Transaction ID
-              in: path
-              name: transactionId
-              required: true
-              schema:
-                type: string
-            - description: Identifier of the application
-              in: path
-              name: appId
-              required: true
-              schema:
-                type: string
-        patch:
+        put:
             requestBody:
                 content:
-                    application/merge-patch+json:
+                    application/json:
                         schema:
                             $ref: '#/components/schemas/PfdData'
-                description: Change information in PFD management transaction.
+                description: Change information in application.
                 required: true
             responses:
                 "200":
@@ -530,7 +503,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/PfdData'
-                    description: OK. The transaction was modified successfully. The SCEF shall return an updated transaction in the response payload body.
+                    description: OK. The application resource was modified successfully. The SCEF shall return an updated application resource in the response payload body.
                 "307":
                     $ref: TS29122_CommonData.yaml#/components/responses/307
                 "308":
@@ -584,13 +557,41 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Generic Error
-        put:
+        delete:
+            responses:
+                "204":
+                    description: No Content. The application was deleted successfully. The payload body shall be empty.
+                "307":
+                    $ref: TS29122_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29122_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29122_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29122_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29122_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29122_CommonData.yaml#/components/responses/404
+                "429":
+                    $ref: TS29122_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29122_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29122_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
+        patch:
             requestBody:
                 content:
-                    application/json:
+                    application/merge-patch+json:
                         schema:
                             $ref: '#/components/schemas/PfdData'
-                description: Change information in application.
+                description: Change information in PFD management transaction.
                 required: true
             responses:
                 "200":
@@ -598,7 +599,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/PfdData'
-                    description: OK. The application resource was modified successfully. The SCEF shall return an updated application resource in the response payload body.
+                    description: OK. The transaction was modified successfully. The SCEF shall return an updated transaction in the response payload body.
                 "307":
                     $ref: TS29122_CommonData.yaml#/components/responses/307
                 "308":

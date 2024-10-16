@@ -285,12 +285,12 @@ components:
             type: string
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
                     scopes:
                         nsmf-event-exposure: Access to the Nsmf_EventExposure API
-                    tokenUrl: '{nrfApiRoot}/oauth2/token'
-            type: oauth2
 externalDocs:
     description: 3GPP TS 29.508 V16.10.0; 5G System; Session Management Event Exposure Service.
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.508/
@@ -429,41 +429,6 @@ paths:
             tags:
                 - Subscriptions (Collection)
     /subscriptions/{subId}:
-        delete:
-            operationId: DeleteIndividualSubcription
-            parameters:
-                - description: Event Subscription ID
-                  in: path
-                  name: subId
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "204":
-                    description: No Content. Resource was successfully deleted
-                "307":
-                    $ref: TS29571_CommonData.yaml#/components/responses/307
-                "308":
-                    $ref: TS29571_CommonData.yaml#/components/responses/308
-                "400":
-                    $ref: TS29571_CommonData.yaml#/components/responses/400
-                "401":
-                    $ref: TS29571_CommonData.yaml#/components/responses/401
-                "403":
-                    $ref: TS29571_CommonData.yaml#/components/responses/403
-                "404":
-                    $ref: TS29571_CommonData.yaml#/components/responses/404
-                "429":
-                    $ref: TS29571_CommonData.yaml#/components/responses/429
-                "500":
-                    $ref: TS29571_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29571_CommonData.yaml#/components/responses/503
-                default:
-                    $ref: TS29571_CommonData.yaml#/components/responses/default
-            summary: Delete an individual subscription for event notifications from the SMF
-            tags:
-                - IndividualSubscription (Document)
         get:
             operationId: GetIndividualSubcription
             parameters:
@@ -556,6 +521,41 @@ paths:
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
             summary: Replace an individual subscription for event notifications from the SMF
+            tags:
+                - IndividualSubscription (Document)
+        delete:
+            operationId: DeleteIndividualSubcription
+            parameters:
+                - description: Event Subscription ID
+                  in: path
+                  name: subId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "204":
+                    description: No Content. Resource was successfully deleted
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29571_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    $ref: TS29571_CommonData.yaml#/components/responses/default
+            summary: Delete an individual subscription for event notifications from the SMF
             tags:
                 - IndividualSubscription (Document)
 security:

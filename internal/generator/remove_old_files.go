@@ -20,18 +20,13 @@ import (
 	"path/filepath"
 )
 
-func RemoveOldFiles(rootDir string, lists []string) error {
-	e := make(map[string]struct{})
-	for _, p := range lists {
-		e[p] = struct{}{}
-	}
-
-	return filepath.WalkDir(rootDir, func(path string, d fs.DirEntry, err error) error {
+func (s *GeneratorState) RemoveOldFiles() error {
+	return filepath.WalkDir(s.RootDir, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
 
-		if path == filepath.Join(rootDir, ".git") {
+		if path == filepath.Join(s.RootDir, ".git") {
 			if d.IsDir() {
 				return filepath.SkipDir
 			} else {
@@ -39,71 +34,71 @@ func RemoveOldFiles(rootDir string, lists []string) error {
 			}
 		}
 
-		if path == filepath.Join(rootDir, ".github") {
+		if path == filepath.Join(s.RootDir, ".github") {
 			return filepath.SkipDir
 		}
 
-		if path == filepath.Join(rootDir, "specs") {
+		if path == filepath.Join(s.RootDir, "specs") {
 			return filepath.SkipDir
 		}
 
-		if path == filepath.Join(rootDir, "utils") {
+		if path == filepath.Join(s.RootDir, "utils") {
 			return filepath.SkipDir
 		}
 
-		if path == filepath.Join(rootDir, "internal/generator") {
+		if path == filepath.Join(s.RootDir, "internal/generator") {
 			return filepath.SkipDir
 		}
 
-		if path == filepath.Join(rootDir, "internal/generate.go") {
+		if path == filepath.Join(s.RootDir, "internal/generate.go") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, "commondata/problemdetails.go") {
+		if path == filepath.Join(s.RootDir, "commondata/problemdetails.go") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, "commondata/problemdetails_test.go") {
+		if path == filepath.Join(s.RootDir, "commondata/problemdetails_test.go") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, ".gitmodules") {
+		if path == filepath.Join(s.RootDir, ".gitmodules") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, ".gitignore") {
+		if path == filepath.Join(s.RootDir, ".gitignore") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, ".golangci.yml") {
+		if path == filepath.Join(s.RootDir, ".golangci.yml") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, "LICENSE") {
+		if path == filepath.Join(s.RootDir, "LICENSE") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, "NOTICE") {
+		if path == filepath.Join(s.RootDir, "NOTICE") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, "README.md") {
+		if path == filepath.Join(s.RootDir, "README.md") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, "go.mod") {
+		if path == filepath.Join(s.RootDir, "go.mod") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, "go.sum") {
+		if path == filepath.Join(s.RootDir, "go.sum") {
 			return nil
 		}
 
-		if path == filepath.Join(rootDir, "internal/tools.go") {
+		if path == filepath.Join(s.RootDir, "internal/tools.go") {
 			return nil
 		}
 
-		if _, exist := e[path]; exist {
+		if _, exist := s.OutFiles[path]; exist {
 			return nil
 		}
 

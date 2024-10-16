@@ -17,26 +17,25 @@ package generator
 import (
 	"fmt"
 	"math"
-	"os"
-	"path/filepath"
+	"math/big"
 	"regexp"
 	"sort"
 	"strings"
 
-	"github.com/getkin/kin-openapi/openapi3"
-	"github.com/invopop/yaml"
 	"github.com/mohae/deepcopy"
+	"github.com/samber/lo"
+	"gopkg.in/yaml.v3"
+
+	"github.com/ShouheiNishi/openapi5g/internal/generator/openapi"
 )
 
 const nameForModels = "f5gcModels"
 const importForModels = "github.com/free5gc/openapi/models"
 
-const maxSafeInteger = (1<<53 - 1)
-const minSafeInteger = -maxSafeInteger
-
-func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []string, deps []string, err error) {
-	if err := fixLocalRefInRemoteRef(doc, spec); err != nil {
-		return nil, nil, err
+func (s *GeneratorState) RewriteYaml(spec string) error {
+	doc := s.Specs[spec]
+	if doc == nil {
+		return fmt.Errorf("spec %s is not exist", spec)
 	}
 
 	refs := map[string]struct{}{}
@@ -44,50 +43,53 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 	for _, s := range pkgList[spec].cutRefs {
 		cutRefs[s] = struct{}{}
 	}
-	if err := scanRef(doc, spec, refs, cutRefs); err != nil {
-		return nil, nil, err
+
+	if err := scanRef(doc, refs, cutRefs); err != nil {
+		return err
 	}
 
 	if spec == "TS29571_CommonData.yaml" {
 		schema := doc.Components.Schemas["ProblemDetails"].Value.Properties["status"].Value
-		if schema.Extensions == nil {
-			schema.Extensions = make(map[string]interface{})
-		}
-		schema.Extensions["x-go-type-skip-optional-pointer"] = true
+		schema.GoTypeSkipOptionalPointer = true
 	}
 
 	if spec == "TS29571_CommonData.yaml" {
 		for statusCode, res := range doc.Components.Responses {
 			if statusCode == "default" {
-				res.Value.Content = openapi3.NewContent()
-				res.Value.Content["application/problem+json"] = openapi3.NewMediaType().WithSchemaRef(
-					openapi3.NewSchemaRef("#/components/schemas/ProblemDetails", nil),
-				)
+				res.Value.Content = map[string]*openapi.MediaType{
+					"application/problem+json": {
+						Schema: openapi.Ref[openapi.Schema]{
+							Ref: "TS29571_CommonData.yaml#/components/schemas/ProblemDetails",
+						},
+					},
+				}
 			}
 		}
 	} else {
-		for _, pathItem := range doc.Paths.Map() {
+		for _, pathItem := range doc.Paths {
 			if pathItem.Ref != "" {
 				continue
 			}
-			for _, op := range pathItem.Operations() {
+			for _, op := range pathItem.Value.Operations() {
 				if op.Responses == nil {
-					op.Responses = &openapi3.Responses{}
+					op.Responses = make(map[string]*openapi.Ref[openapi.Response])
 				}
-				if op.Responses.Value("default") == nil {
-					op.Responses.Set("default", &openapi3.ResponseRef{Value: openapi3.NewResponse()})
+				if op.Responses["default"] == nil {
+					op.Responses["default"] = &openapi.Ref[openapi.Response]{Value: &openapi.Response{}}
 				}
-				if op.Responses.Value("default").Ref != "TS29571_CommonData.yaml#/components/responses/default" {
-					if op.Responses.Value("default").Value.Content == nil {
-						op.Responses.Value("default").Value.Content = openapi3.NewContent()
+				if op.Responses["default"].Ref != "TS29571_CommonData.yaml#/components/responses/default" {
+					if op.Responses["default"].Value.Content == nil {
+						op.Responses["default"].Value.Content = make(map[string]*openapi.MediaType)
 					}
-					if op.Responses.Value("default").Value.Content["application/problem+json"] == nil {
-						resNew := deepcopy.Copy(op.Responses.Value("default")).(*openapi3.ResponseRef)
+					if op.Responses["default"].Value.Content["application/problem+json"] == nil {
+						resNew := deepcopy.Copy(op.Responses["default"]).(*openapi.Ref[openapi.Response])
 						resNew.Ref = ""
-						resNew.Value.Content["application/problem+json"] = openapi3.NewMediaType().WithSchemaRef(
-							openapi3.NewSchemaRef("TS29571_CommonData.yaml#/components/schemas/ProblemDetails", nil),
-						)
-						op.Responses.Set("default", resNew)
+						resNew.Value.Content["application/problem+json"] = &openapi.MediaType{
+							Schema: openapi.Ref[openapi.Schema]{
+								Ref: "TS29571_CommonData.yaml#/components/schemas/ProblemDetails",
+							},
+						}
+						op.Responses["default"] = resNew
 					}
 				}
 			}
@@ -95,13 +97,10 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 	}
 
 	if spec == "TS29503_Nudm_SDM.yaml" {
-		for _, parameterRef := range doc.Paths.Value("/shared-data").Get.Parameters {
+		for _, parameterRef := range doc.Paths["/shared-data"].Value.Get.Parameters {
 			parameter := parameterRef.Value
 			if parameter.Name == "supportedFeatures" {
-				if parameter.Extensions == nil {
-					parameter.Extensions = make(map[string]interface{})
-				}
-				parameter.Extensions["x-go-name"] = "SupportedFeaturesShouldNotBeUsed"
+				parameter.GoName = "SupportedFeaturesShouldNotBeUsed"
 			}
 		}
 	}
@@ -111,77 +110,62 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 		for i := range schema.AllOf {
 			if strings.HasSuffix(schema.AllOf[i].Ref, "/Snssai") {
 				newSchema := *schema.AllOf[i].Value
-				if newSchema.Extensions != nil {
-					newSchema.Extensions = deepcopy.Copy(newSchema.Extensions).(map[string]interface{})
-				}
-				schema.AllOf[i] = &openapi3.SchemaRef{
+				schema.AllOf[i] = openapi.Ref[openapi.Schema]{
 					Value: &newSchema,
 				}
 			}
 		}
 
 		schema = doc.Components.Schemas["Snssai"].Value
-		if schema.Extensions == nil {
-			schema.Extensions = make(map[string]interface{})
-		}
-		schema.Extensions["x-go-type"] = nameForModels + ".Snssai"
-		schema.Extensions["x-go-type-import"] = map[string]interface{}{
-			"name": nameForModels,
-			"path": importForModels,
+		schema.GoType = nameForModels + ".Snssai"
+		schema.GoTypeImport = &openapi.GoTypeImport{
+			Name: nameForModels,
+			Path: importForModels,
 		}
 
 		schema = doc.Components.Schemas["PlmnId"].Value
-		if schema.Extensions == nil {
-			schema.Extensions = make(map[string]interface{})
-		}
-		schema.Extensions["x-go-type"] = nameForModels + ".PlmnId"
-		schema.Extensions["x-go-type-import"] = map[string]interface{}{
-			"name": nameForModels,
-			"path": importForModels,
+		schema.GoType = nameForModels + ".PlmnId"
+		schema.GoTypeImport = &openapi.GoTypeImport{
+			Name: nameForModels,
+			Path: importForModels,
 		}
 
 		schema = doc.Components.Schemas["Guami"].Value
-		if schema.Extensions == nil {
-			schema.Extensions = make(map[string]interface{})
-		}
-		schema.Extensions["x-go-type"] = nameForModels + ".Guami"
-		schema.Extensions["x-go-type-import"] = map[string]interface{}{
-			"name": nameForModels,
-			"path": importForModels,
+		schema.GoType = nameForModels + ".Guami"
+		schema.GoTypeImport = &openapi.GoTypeImport{
+			Name: nameForModels,
+			Path: importForModels,
 		}
 
 		for _, t := range []string{"Int32", "Int64", "Uint16", "Uint32", "Uint64"} {
 			doc.Components.Schemas[t].Value.Format = strings.ToLower(t)
+			doc.Components.Schemas[t].Value.Minimum = nil
+			doc.Components.Schemas[t].Value.ExclusiveMinimum = false
+			doc.Components.Schemas[t].Value.Maximum = nil
+			doc.Components.Schemas[t].Value.ExclusiveMaximum = false
 			doc.Components.Schemas[t+"Rm"].Value.Format = strings.ToLower(t)
+			doc.Components.Schemas[t+"Rm"].Value.Minimum = nil
+			doc.Components.Schemas[t+"Rm"].Value.ExclusiveMinimum = false
+			doc.Components.Schemas[t+"Rm"].Value.Maximum = nil
+			doc.Components.Schemas[t+"Rm"].Value.ExclusiveMaximum = false
 		}
 		doc.Components.Schemas["Uinteger"].Value.Format = "uint"
+		doc.Components.Schemas["Uinteger"].Value.Minimum = nil
+		doc.Components.Schemas["Uinteger"].Value.ExclusiveMinimum = false
+		doc.Components.Schemas["Uinteger"].Value.Maximum = nil
+		doc.Components.Schemas["Uinteger"].Value.ExclusiveMaximum = false
 		doc.Components.Schemas["UintegerRm"].Value.Format = "uint"
+		doc.Components.Schemas["UintegerRm"].Value.Minimum = nil
+		doc.Components.Schemas["UintegerRm"].Value.ExclusiveMinimum = false
+		doc.Components.Schemas["UintegerRm"].Value.Maximum = nil
+		doc.Components.Schemas["UintegerRm"].Value.ExclusiveMaximum = false
 	}
 
-	if err := os.MkdirAll(filepath.Join(rootDir, "modSpecs"), 0o755); err != nil {
-		return nil, nil, err
-	}
-	if f, err := os.Create(filepath.Join(rootDir, "modSpecs", spec)); err != nil {
-		return nil, nil, err
-	} else {
-		if buf, err := yaml.Marshal(doc); err != nil {
-			return nil, nil, err
-		} else {
-			if _, err := f.WriteString("# This is generated file.\n\n"); err != nil {
-				return nil, nil, err
-			}
-			if _, err := f.Write(buf); err != nil {
-				return nil, nil, err
-			}
-			if err := f.Close(); err != nil {
-				return nil, nil, err
-			}
-		}
-	}
-	outLists = append(outLists, filepath.Join(rootDir, "modSpecs", spec))
-
-	deps = make([]string, 0, len(refs))
+	deps := make([]string, 0, len(refs))
 	for r := range refs {
+		if r == spec {
+			continue
+		}
 		if _, exist := pkgList[r]; !exist {
 			if _, exist := cutRefs[r]; !exist {
 				panic(fmt.Sprintf("%s is not defined.", r))
@@ -191,16 +175,24 @@ func RewriteYaml(rootDir string, spec string, doc *openapi3.T) (outLists []strin
 	}
 	sort.Strings(deps)
 
-	return outLists, deps, nil
+	s.DepsForImport[spec] = deps
+
+	return nil
 }
 
-func fixAnyOfEnum(v *openapi3.Schema) error {
+func getSchemaType(schema *openapi.Schema) openapi.SchemaType {
+	if schema.Type != nil {
+		return *schema.Type
+	}
+	return ""
+}
+
+func fixAnyOfEnum(v *openapi.Schema) error {
 	if len(v.AnyOf) == 2 && v.AnyOf[0].Ref == "" && v.AnyOf[1].Ref == "" {
 		v0 := v.AnyOf[0].Value
 		v1 := v.AnyOf[1].Value
-		// v0.
-		if v0.Type == v1.Type && v0.Format == v1.Format &&
-			(v0.Type == openapi3.TypeInteger || v0.Type == openapi3.TypeString) {
+		if getSchemaType(v0) == getSchemaType(v1) && v0.Format == v1.Format &&
+			(getSchemaType(v0) == openapi.SchemaTypeInteger || getSchemaType(v1) == openapi.SchemaTypeString) {
 			newDescription := v.Description
 			if newDescription == "" {
 				newDescription = v0.Description
@@ -219,30 +211,17 @@ func fixAnyOfEnum(v *openapi3.Schema) error {
 				merged = true
 			}
 			if merged {
-				newSkipOptionalPointer := false
-				if b, ok := v0.Extensions["x-go-type-skip-optional-pointer"].(bool); b && ok {
-					if b, ok := v1.Extensions["x-go-type-skip-optional-pointer"].(bool); b && ok {
-						newSkipOptionalPointer = true
-					}
-				}
-				if newSkipOptionalPointer {
-					if v.Extensions == nil {
-						v.Extensions = make(map[string]interface{})
-					}
-					v.Extensions["x-go-type-skip-optional-pointer"] = true
-				} else {
-					delete(v.Extensions, "x-go-type-skip-optional-pointer")
-				}
+				v.GoTypeSkipOptionalPointer = v0.GoTypeSkipOptionalPointer && v1.GoTypeSkipOptionalPointer
 			}
 		}
 	}
 	return nil
 }
 
-func fixAnyOfString(v *openapi3.Schema) error {
+func fixAnyOfString(v *openapi.Schema) error {
 	if len(v.AnyOf) > 0 {
 		for _, vRef := range v.AnyOf {
-			if vRef.Value.Type != openapi3.TypeString {
+			if vRef.Value.Type == nil || *vRef.Value.Type != openapi.SchemaTypeString {
 				return nil
 			}
 		}
@@ -262,35 +241,31 @@ func fixAnyOfString(v *openapi3.Schema) error {
 					newDescription = append(newDescription, "  "+vRef.Value.Description+" in "+vRef.Ref)
 				}
 			}
-			if b, ok := vRef.Value.Extensions["x-go-type-skip-optional-pointer"].(bool); !ok || !b {
+			if !vRef.Value.GoTypeSkipOptionalPointer {
 				newSkipOptionalPointer = false
 			}
 		}
-		*v = openapi3.Schema{
-			Type:        openapi3.TypeString,
-			Description: strings.Join(newDescription, "\n"),
-		}
-		if newSkipOptionalPointer {
-			v.Extensions = map[string]interface{}{
-				"x-go-type-skip-optional-pointer": true,
-			}
+		*v = openapi.Schema{
+			Type:                      lo.ToPtr(openapi.SchemaTypeString),
+			Description:               strings.Join(newDescription, "\n"),
+			GoTypeSkipOptionalPointer: newSkipOptionalPointer,
 		}
 	}
 	return nil
 }
 
-func fixImplicitArray(v *openapi3.Schema) error {
-	if v.Type == "" && v.Items != nil {
-		v.Type = openapi3.TypeArray
+func fixImplicitArray(v *openapi.Schema) error {
+	if getSchemaType(v) == "" && !v.Items.IsZero() {
+		v.Type = lo.ToPtr(openapi.SchemaTypeArray)
 	}
 	return nil
 }
 
-func fixEliminateCheckerUnion(v *openapi3.Schema) error {
-	var newOneOf openapi3.SchemaRefs
+func fixEliminateCheckerUnion(v *openapi.Schema) error {
+	var newOneOf []openapi.Ref[openapi.Schema]
 	for _, ref := range v.OneOf {
 		if !(ref.Ref == "" &&
-			ref.Value.Type == "" &&
+			getSchemaType(ref.Value) == "" &&
 			ref.Value.Description == "" &&
 			len(ref.Value.Properties) == 0 &&
 			ref.Value.OneOf == nil &&
@@ -301,10 +276,10 @@ func fixEliminateCheckerUnion(v *openapi3.Schema) error {
 	}
 	v.OneOf = newOneOf
 
-	var newAnyOf openapi3.SchemaRefs
+	var newAnyOf []openapi.Ref[openapi.Schema]
 	for _, ref := range v.AnyOf {
 		if !(ref.Ref == "" &&
-			ref.Value.Type == "" &&
+			getSchemaType(ref.Value) == "" &&
 			ref.Value.Description == "" &&
 			len(ref.Value.Properties) == 0 &&
 			ref.Value.OneOf == nil &&
@@ -315,10 +290,10 @@ func fixEliminateCheckerUnion(v *openapi3.Schema) error {
 	}
 	v.AnyOf = newAnyOf
 
-	var newAllOf openapi3.SchemaRefs
+	var newAllOf []openapi.Ref[openapi.Schema]
 	for _, ref := range v.AllOf {
 		if !(ref.Ref == "" &&
-			ref.Value.Type == "" &&
+			getSchemaType(ref.Value) == "" &&
 			ref.Value.Description == "" &&
 			len(ref.Value.Properties) == 0 &&
 			ref.Value.OneOf == nil &&
@@ -332,23 +307,49 @@ func fixEliminateCheckerUnion(v *openapi3.Schema) error {
 	return nil
 }
 
-func fixAdditionalProperties(v *openapi3.Schema) error {
-	if (v.Type == openapi3.TypeObject || v.Type == "") && len(v.Properties) > 0 &&
-		v.AdditionalProperties.Has == nil && v.AdditionalProperties.Schema == nil {
-		v.WithAnyAdditionalProperties()
+func fixAdditionalProperties(v *openapi.Schema) error {
+	if (getSchemaType(v) == openapi.SchemaTypeObject || getSchemaType(v) == "") && len(v.Properties) > 0 &&
+		v.AdditionalProperties.Bool == nil && v.AdditionalProperties.SchemaRef == nil {
+		v.AdditionalProperties.Bool = lo.ToPtr(true)
 	}
 	return nil
 }
 
-func fixSkipOptionalPointer(v *openapi3.Schema) error {
+func maySkipOptionalPointerByMin[T int | int64 | uint64 | float64](v T, exclusive bool) bool {
+	if exclusive {
+		if v >= T(0) {
+			return true
+		}
+	} else {
+		if v > T(0) {
+			return true
+		}
+	}
+	return false
+}
+
+func maySkipOptionalPointerByMax[T int | int64 | uint64 | float64](v T, exclusive bool) bool {
+	if exclusive {
+		if v <= T(0) {
+			return true
+		}
+	} else {
+		if v < T(0) {
+			return true
+		}
+	}
+	return false
+}
+
+func fixSkipOptionalPointer(v *openapi.Schema) error {
 	skipOptionalPointer := false
 
-	if v.Nullable {
+	if v.Nullable != nil && *v.Nullable {
 		return nil
 	}
 
-	switch v.Type {
-	case openapi3.TypeString:
+	switch getSchemaType(v) {
+	case openapi.SchemaTypeString:
 		// TODO format check
 		// Check whether allow empty string
 		if v.MinLength > 0 {
@@ -364,11 +365,9 @@ func fixSkipOptionalPointer(v *openapi3.Schema) error {
 		if len(v.Enum) != 0 {
 			existEmptyMember := false
 			for _, m := range v.Enum {
-				if s, ok := m.(string); ok {
-					if s == "" {
-						existEmptyMember = true
-						break
-					}
+				if m.Kind == yaml.ScalarNode && m.Value == "" {
+					existEmptyMember = true
+					break
 				}
 			}
 			if !existEmptyMember {
@@ -377,52 +376,65 @@ func fixSkipOptionalPointer(v *openapi3.Schema) error {
 			}
 		}
 
-	case openapi3.TypeArray:
-		if v.MinItems > 0 {
+	case openapi.SchemaTypeArray:
+		if v.MinItems != nil && *v.MinItems > 0 {
 			skipOptionalPointer = true
 			break
 		}
 
-	case openapi3.TypeInteger, openapi3.TypeNumber:
-		if v.Min != nil {
-			if v.ExclusiveMin {
-				if *v.Min >= 0 {
-					skipOptionalPointer = true
-					break
-				}
-			} else {
-				if *v.Min > 0 {
-					skipOptionalPointer = true
-					break
-				}
+	case openapi.SchemaTypeInteger, openapi.SchemaTypeNumber:
+		switch m := v.Minimum.(type) {
+		case nil:
+		case int:
+			if maySkipOptionalPointerByMin(m, v.ExclusiveMinimum) {
+				skipOptionalPointer = true
 			}
+		case int64:
+			if maySkipOptionalPointerByMin(m, v.ExclusiveMinimum) {
+				skipOptionalPointer = true
+			}
+		case uint64:
+			if maySkipOptionalPointerByMin(m, v.ExclusiveMinimum) {
+				skipOptionalPointer = true
+			}
+		case float64:
+			if maySkipOptionalPointerByMin(m, v.ExclusiveMinimum) {
+				skipOptionalPointer = true
+			}
+		default:
+			return fmt.Errorf("unknown minimum type %T", m)
 		}
-		if v.Max != nil {
-			if v.ExclusiveMax {
-				if *v.Max <= 0 {
-					skipOptionalPointer = true
-					break
-				}
-			} else {
-				if *v.Max < 0 {
-					skipOptionalPointer = true
-					break
-				}
+		switch m := v.Maximum.(type) {
+		case nil:
+		case int:
+			if maySkipOptionalPointerByMax(m, v.ExclusiveMaximum) {
+				skipOptionalPointer = true
 			}
+		case int64:
+			if maySkipOptionalPointerByMax(m, v.ExclusiveMaximum) {
+				skipOptionalPointer = true
+			}
+		case uint64:
+			if maySkipOptionalPointerByMax(m, v.ExclusiveMaximum) {
+				skipOptionalPointer = true
+			}
+		case float64:
+			if maySkipOptionalPointerByMax(m, v.ExclusiveMaximum) {
+				skipOptionalPointer = true
+			}
+		default:
+			return fmt.Errorf("unknown maximum type %T", m)
 		}
 	}
 
 	if skipOptionalPointer {
-		if v.Extensions == nil {
-			v.Extensions = make(map[string]interface{})
-		}
-		v.Extensions["x-go-type-skip-optional-pointer"] = true
+		v.GoTypeSkipOptionalPointer = true
 	}
 
 	return nil
 }
 
-func fixCutSchemaRef(v *openapi3.SchemaRef) error {
+func fixCutSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	origSchema := v.Value
 
 	newDescription := v.Value.Description
@@ -433,154 +445,176 @@ func fixCutSchemaRef(v *openapi3.SchemaRef) error {
 	}
 
 	v.Ref = ""
-	v.Value = &openapi3.Schema{
+	v.Value = &openapi.Schema{
 		Description: newDescription,
 	}
 
 	skipPointer := true
 
-	switch origSchema.Type {
+	switch getSchemaType(origSchema) {
 	case "":
 		if len(origSchema.AnyOf) == 2 &&
-			origSchema.AnyOf[0].Value.Type == openapi3.TypeString &&
-			origSchema.AnyOf[1].Value.Type == openapi3.TypeString {
-			v.Value.Type = openapi3.TypeString
+			origSchema.AnyOf[0].Value.Type != nil &&
+			*origSchema.AnyOf[0].Value.Type == openapi.SchemaTypeString &&
+			origSchema.AnyOf[1].Value.Type != nil &&
+			*origSchema.AnyOf[1].Value.Type == openapi.SchemaTypeString {
+			v.Value.Type = lo.ToPtr(openapi.SchemaTypeString)
 			skipPointer = false
 		}
-	case openapi3.TypeBoolean, openapi3.TypeString:
+	case openapi.SchemaTypeBoolean, openapi.SchemaTypeString:
 		v.Value.Type = origSchema.Type
 		skipPointer = false
 	}
 
 	if skipPointer {
-		v.Value.Extensions = map[string]interface{}{
-			"x-go-type-skip-optional-pointer": true,
-		}
+		v.Value.GoTypeSkipOptionalPointer = true
 	}
 
 	return nil
 }
 
-func fixNullable(v *openapi3.Schema, specName string) error {
-	nullValueRef := ""
-	if specName == "TS29571_CommonData.yaml" {
-		nullValueRef = "#/components/schemas/NullValue"
-	} else {
-		nullValueRef = "TS29571_CommonData.yaml#/components/schemas/NullValue"
-	}
+func fixNullable(v *openapi.Schema) error {
+	nullValueRef := "TS29571_CommonData.yaml#/components/schemas/NullValue"
 
 	if len(v.AnyOf) == 2 {
 		if v.AnyOf[0].Ref == nullValueRef {
-			*v = *(deepcopy.Copy(v.AnyOf[1].Value).(*openapi3.Schema))
+			*v = *(deepcopy.Copy(v.AnyOf[1].Value).(*openapi.Schema))
 			// kin-openapi don`t allow this
 			// v.Nullable = true
-			v.Nullable = false
+			v.Nullable = nil
 		} else if v.AnyOf[1].Ref == nullValueRef {
-			*v = *(deepcopy.Copy(v.AnyOf[0].Value).(*openapi3.Schema))
+			*v = *(deepcopy.Copy(v.AnyOf[0].Value).(*openapi.Schema))
 			// kin-openapi don`t allow this
 			// v.Nullable = true
-			v.Nullable = false
+			v.Nullable = nil
 		}
 	}
 	return nil
 }
 
-func getRangeForGeneratedType(v *openapi3.Schema) (minValue float64, maxValue float64) {
+func getRangeForGeneratedType(v *openapi.Schema) (minValue *big.Int, maxValue *big.Int) {
 	switch v.Format {
 	case "int64":
-		return math.MinInt64, math.MaxInt64
+		return big.NewInt(math.MinInt64), big.NewInt(math.MaxInt64)
 	case "int32":
-		return math.MinInt32, math.MaxInt32
+		return big.NewInt(math.MinInt32), big.NewInt(math.MaxInt32)
 	case "int16":
-		return math.MinInt16, math.MaxInt16
+		return big.NewInt(math.MinInt16), big.NewInt(math.MaxInt16)
 	case "int8":
-		return math.MinInt8, math.MaxInt8
+		return big.NewInt(math.MinInt8), big.NewInt(math.MaxInt8)
 	case "int":
 		// support for 32bit arch
-		return math.MinInt32, math.MaxInt32
+		return big.NewInt(math.MinInt32), big.NewInt(math.MaxInt32)
 	case "uint64":
-		return 0, math.MaxUint64
+		return big.NewInt(0), new(big.Int).SetUint64(math.MaxUint64)
 	case "uint32":
-		return 0, math.MaxUint32
+		return big.NewInt(0), big.NewInt(math.MaxUint32)
 	case "uint16":
-		return 0, math.MaxUint16
+		return big.NewInt(0), big.NewInt(math.MaxUint16)
 	case "uint8":
-		return 0, math.MaxUint8
+		return big.NewInt(0), big.NewInt(math.MaxUint8)
 	case "uint":
 		// support for 32bit arch
-		return 0, math.MaxUint32
+		return big.NewInt(0), big.NewInt(math.MaxUint32)
 	default:
 		// use int type
 		// support for 32bit arch
-		return math.MinInt32, math.MaxInt32
+		return big.NewInt(math.MinInt32), big.NewInt(math.MaxInt32)
 	}
 }
 
-func isFitRange(v *openapi3.Schema) bool {
+func isFitRange(v *openapi.Schema, min *big.Int, max *big.Int) bool {
 	minValue, maxValue := getRangeForGeneratedType(v)
-	if v.Min != nil {
-		if *v.Min < minValue || *v.Min > maxValue {
+	if min != nil {
+		if min.Cmp(minValue) < 0 || min.Cmp(maxValue) > 0 {
 			return false
 		}
 	}
-	if v.Max != nil {
-		if *v.Max < minValue || *v.Max > maxValue {
+	if max != nil {
+		if max.Cmp(minValue) < 0 || max.Cmp(maxValue) > 0 {
 			return false
 		}
 	}
 	return true
 }
 
-func dumpAndPanicSchema(v *openapi3.Schema) {
-	vMin := "<nil>"
-	if v.Min != nil {
-		vMin = fmt.Sprint(*v.Min)
-	}
-	vMax := "<nil>"
-	if v.Max != nil {
-		vMax = fmt.Sprint(*v.Max)
-	}
-	panic(fmt.Sprintf("%+v %+v %+v", *v, vMin, vMax))
+func dumpAndPanicSchema(v *openapi.Schema) {
+	panic(fmt.Sprintf("%+v %+v %+v", *v, v.Minimum, v.Maximum))
 }
 
-func fixIntegerFormat(v *openapi3.Schema) error {
-	if v.Type != openapi3.TypeInteger {
-		return nil
+var bigOne = big.NewInt(1)
+
+func setupMinMax(in any, exclusive bool, max bool) (r *big.Int, err error) {
+	var minMax string
+	if max {
+		minMax = "max"
+	} else {
+		minMax = "min"
+	}
+	switch in := in.(type) {
+	case nil:
+		return nil, nil
+	case int:
+		r = big.NewInt(int64(in))
+	case int64:
+		r = big.NewInt(in)
+	case uint64:
+		r = new(big.Int).SetUint64(in)
+	case float64:
+		if i, a := new(big.Float).SetFloat64(in).Int(nil); a != big.Exact {
+			return nil, fmt.Errorf("%s value is not integer", minMax)
+		} else {
+			r = i
+		}
+	default:
+		return nil, fmt.Errorf("unknown %s type %T", minMax, in)
 	}
 
-	if (v.Min != nil && (*v.Min > maxSafeInteger || *v.Min < minSafeInteger)) ||
-		(v.Max != nil && (*v.Max > maxSafeInteger || *v.Max < minSafeInteger)) {
-		switch {
-		case v.Min != nil && *v.Min == 0 && v.Max != nil && *v.Max == 1.8446744073709552e+19:
-			// TS29571_CommonData.yaml#/components/schemas/Uint64
-			// TS29571_CommonData.yaml#/components/schemas/Uint64Rm
-			v.Min = nil
-			v.Max = nil
-			v.Format = "uint64"
-		default:
-			dumpAndPanicSchema(v)
+	if exclusive {
+		if max {
+			r = r.Sub(r, bigOne)
+		} else {
+			r = r.Add(r, bigOne)
 		}
 	}
 
+	return r, nil
+}
+
+func fixIntegerFormat(v *openapi.Schema) error {
+	if v.Type == nil || *v.Type != openapi.SchemaTypeInteger {
+		return nil
+	}
+
+	var min, max *big.Int
+	if m, err := setupMinMax(v.Minimum, v.ExclusiveMinimum, false); err != nil {
+		return err
+	} else {
+		min = m
+	}
+	if m, err := setupMinMax(v.Maximum, v.ExclusiveMaximum, true); err != nil {
+		return err
+	} else {
+		max = m
+	}
+
 	// Check whether min/max value fit to generated type
-	if isFitRange(v) {
+	if isFitRange(v, min, max) {
 		return nil
 	}
 
 	v.Format = "" // assume int type
-	if v.Min != nil {
-		if *v.Min < math.MinInt32 || *v.Min > math.MaxInt32 {
-			v.Format = "int64"
-		}
+	if isFitRange(v, min, max) {
+		return nil
 	}
-	if v.Max != nil {
-		if *v.Max < math.MinInt32 || *v.Max > math.MaxInt32 {
-			v.Format = "int64"
-		}
+	v.Format = "int64"
+	if isFitRange(v, min, max) {
+		return nil
 	}
+	v.Format = "uint64"
 
-	// Double check
-	if !isFitRange(v) {
+	// Check whether min/max value fit to generated type
+	if !isFitRange(v, min, max) {
 		dumpAndPanicSchema(v)
 	}
 

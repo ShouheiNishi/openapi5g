@@ -221,11 +221,11 @@ components:
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
-                    scopes: {}
                     tokenUrl: '{tokenUrl}'
-            type: oauth2
+                    scopes: {}
 externalDocs:
     description: 3GPP TS 29.522 V16.7.0; 5G System; Network Exposure Function Northbound APIs.
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.522/
@@ -239,6 +239,13 @@ info:
 openapi: 3.0.0
 paths:
     /{afId}/subscriptions:
+        parameters:
+            - description: Identifier of the AF
+              in: path
+              name: afId
+              required: true
+              schema:
+                type: string
         get:
             responses:
                 "200":
@@ -278,13 +285,6 @@ paths:
             summary: read all of the active subscriptions for the AF
             tags:
                 - Traffic Influence Subscription
-        parameters:
-            - description: Identifier of the AF
-              in: path
-              name: afId
-              required: true
-              schema:
-                type: string
         post:
             callbacks:
                 notificationDestination:
@@ -414,37 +414,19 @@ paths:
             tags:
                 - Traffic Influence Subscription
     /{afId}/subscriptions/{subscriptionId}:
-        delete:
-            responses:
-                "204":
-                    description: No Content (Successful deletion of the existing subscription)
-                "307":
-                    $ref: TS29122_CommonData.yaml#/components/responses/307
-                "308":
-                    $ref: TS29122_CommonData.yaml#/components/responses/308
-                "400":
-                    $ref: TS29122_CommonData.yaml#/components/responses/400
-                "401":
-                    $ref: TS29122_CommonData.yaml#/components/responses/401
-                "403":
-                    $ref: TS29122_CommonData.yaml#/components/responses/403
-                "404":
-                    $ref: TS29122_CommonData.yaml#/components/responses/404
-                "429":
-                    $ref: TS29122_CommonData.yaml#/components/responses/429
-                "500":
-                    $ref: TS29122_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29122_CommonData.yaml#/components/responses/503
-                default:
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Generic Error
-            summary: Deletes an already existing subscription
-            tags:
-                - Individual Traffic Influence Subscription
+        parameters:
+            - description: Identifier of the AF
+              in: path
+              name: afId
+              required: true
+              schema:
+                type: string
+            - description: Identifier of the subscription resource
+              in: path
+              name: subscriptionId
+              required: true
+              schema:
+                type: string
         get:
             responses:
                 "200":
@@ -482,25 +464,13 @@ paths:
             summary: read an active subscriptions for the SCS/AS and the subscription Id
             tags:
                 - Individual Traffic Influence Subscription
-        parameters:
-            - description: Identifier of the AF
-              in: path
-              name: afId
-              required: true
-              schema:
-                type: string
-            - description: Identifier of the subscription resource
-              in: path
-              name: subscriptionId
-              required: true
-              schema:
-                type: string
-        patch:
+        put:
             requestBody:
                 content:
-                    application/merge-patch+json:
+                    application/json:
                         schema:
-                            $ref: '#/components/schemas/TrafficInfluSubPatch'
+                            $ref: '#/components/schemas/TrafficInfluSub'
+                description: Parameters to update/replace the existing subscription
                 required: true
             responses:
                 "200":
@@ -508,7 +478,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/TrafficInfluSub'
-                    description: OK. The subscription was modified successfully.
+                    description: OK (Successful update of the subscription)
                 "307":
                     $ref: TS29122_CommonData.yaml#/components/responses/307
                 "308":
@@ -542,13 +512,43 @@ paths:
             summary: Updates/replaces an existing subscription resource
             tags:
                 - Individual Traffic Influence Subscription
-        put:
+        delete:
+            responses:
+                "204":
+                    description: No Content (Successful deletion of the existing subscription)
+                "307":
+                    $ref: TS29122_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29122_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29122_CommonData.yaml#/components/responses/400
+                "401":
+                    $ref: TS29122_CommonData.yaml#/components/responses/401
+                "403":
+                    $ref: TS29122_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29122_CommonData.yaml#/components/responses/404
+                "429":
+                    $ref: TS29122_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29122_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29122_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Generic Error
+            summary: Deletes an already existing subscription
+            tags:
+                - Individual Traffic Influence Subscription
+        patch:
             requestBody:
                 content:
-                    application/json:
+                    application/merge-patch+json:
                         schema:
-                            $ref: '#/components/schemas/TrafficInfluSub'
-                description: Parameters to update/replace the existing subscription
+                            $ref: '#/components/schemas/TrafficInfluSubPatch'
                 required: true
             responses:
                 "200":
@@ -556,7 +556,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/TrafficInfluSub'
-                    description: OK (Successful update of the subscription)
+                    description: OK. The subscription was modified successfully.
                 "307":
                     $ref: TS29122_CommonData.yaml#/components/responses/307
                 "308":

@@ -1080,34 +1080,34 @@ components:
                 - param
             type: object
         Ipv4Addr:
-            example: 198.51.100.1
+            example: '198.51.100.1'
             pattern: ^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$
             type: string
             x-go-type-skip-optional-pointer: true
         Ipv4AddrMask:
-            example: 198.51.0.0/16
+            example: '198.51.0.0/16'
             pattern: ^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$
             type: string
             x-go-type-skip-optional-pointer: true
         Ipv4AddrMaskRm:
-            example: 198.51.0.0/16
+            example: '198.51.0.0/16'
             nullable: true
             pattern: ^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\/([0-9]|[1-2][0-9]|3[0-2]))$
             type: string
         Ipv4AddrRm:
-            example: 198.51.100.1
+            example: '198.51.100.1'
             nullable: true
             pattern: ^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$
             type: string
         Ipv6Addr:
-            example: 2001:db8:85a3::8a2e:370:7334
+            example: '2001:db8:85a3::8a2e:370:7334'
             type: string
         Ipv6AddrRm:
-            example: 2001:db8:85a3::8a2e:370:7334
+            example: '2001:db8:85a3::8a2e:370:7334'
             nullable: true
             type: string
         Ipv6Prefix:
-            example: 2001:db8:abcd:12::0/64
+            example: '2001:db8:abcd:12::0/64'
             type: string
         Ipv6PrefixRm:
             nullable: true
@@ -1126,12 +1126,12 @@ components:
             description: |
                 Possible values are - "LOCATION_ALLOWED_WITH_NOTIFICATION": Location allowed with notification - "LOCATION_ALLOWED_WITHOUT_NOTIFICATION": Location allowed without notification - "LOCATION_ALLOWED_WITHOUT_RESPONSE": Location with notification and privacy verification; location allowed if no response - "LOCATION_RESTRICTED_WITHOUT_RESPONSE": Location with notification and privacy verification; location restricted if no response - "NOTIFICATION_ONLY": Notification only - "NOTIFICATION_AND_VERIFICATION_ONLY": Notification and privacy verification only
             enum:
-                - LOCATION_ALLOWED_WITH_NOTIFICATION
-                - LOCATION_ALLOWED_WITHOUT_NOTIFICATION
-                - LOCATION_ALLOWED_WITHOUT_RESPONSE
-                - LOCATION_RESTRICTED_WITHOUT_RESPONSE
-                - NOTIFICATION_ONLY
-                - NOTIFICATION_AND_VERIFICATION_ONLY
+                - "LOCATION_ALLOWED_WITH_NOTIFICATION"
+                - "LOCATION_ALLOWED_WITHOUT_NOTIFICATION"
+                - "LOCATION_ALLOWED_WITHOUT_RESPONSE"
+                - "LOCATION_RESTRICTED_WITHOUT_RESPONSE"
+                - "NOTIFICATION_ONLY"
+                - "NOTIFICATION_AND_VERIFICATION_ONLY"
             type: string
         LineType:
             description: |
@@ -1541,6 +1541,7 @@ components:
             type: string
         NonDynamic5Qi:
             additionalProperties: true
+            minProperties: 0
             properties:
                 averWindow:
                     $ref: '#/components/schemas/AverWindow'
@@ -1681,6 +1682,9 @@ components:
         NullValue:
             enum:
                 - null
+                #
+                #  COMMON STRUCTURED DATA TYPES
+                #
         OdbData:
             additionalProperties: true
             properties:
@@ -1932,6 +1936,7 @@ components:
                 ecgiList:
                     items:
                         $ref: '#/components/schemas/Ecgi'
+                    minItems: 0
                     type: array
                 globalRanNodeIdList:
                     items:
@@ -1946,6 +1951,7 @@ components:
                 ncgiList:
                     items:
                         $ref: '#/components/schemas/Ncgi'
+                    minItems: 0
                     type: array
                 praId:
                     type: string
@@ -1954,6 +1960,7 @@ components:
                 trackingAreaList:
                     items:
                         $ref: '#/components/schemas/Tai'
+                    minItems: 0
                     type: array
             type: object
         PresenceState:
@@ -2721,24 +2728,16 @@ components:
             type: string
         Uint16:
             format: uint16
-            maximum: 65535
-            minimum: 0
             type: integer
         Uint16Rm:
             format: uint16
-            maximum: 65535
-            minimum: 0
             nullable: true
             type: integer
         Uint32:
             format: uint32
-            maximum: 4294967295
-            minimum: 0
             type: integer
         Uint32Rm:
             format: uint32
-            maximum: 4294967295
-            minimum: 0
             nullable: true
             type: integer
         Uint64:
@@ -2750,11 +2749,9 @@ components:
             type: integer
         Uinteger:
             format: uint
-            minimum: 0
             type: integer
         UintegerRm:
             format: uint
-            minimum: 0
             nullable: true
             type: integer
         UpConfidentiality:

@@ -427,12 +427,12 @@ components:
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
                     scopes:
                         nudm-uecm: Access to the nudm-uecm API
-                    tokenUrl: '{nrfApiRoot}/oauth2/token'
-            type: oauth2
 externalDocs:
     description: 3GPP TS 29.503 Unified Data Management Services, version 16.14.0
     url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.503/
@@ -540,60 +540,6 @@ paths:
             summary: retrieve the AMF registration for 3GPP access information
             tags:
                 - AMF 3Gpp-access Registration Info Retrieval
-        patch:
-            operationId: Update3GppRegistration
-            parameters:
-                - description: Identifier of the UE
-                  in: path
-                  name: ueId
-                  required: true
-                  schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                - description: Features required to be supported by the target NF
-                  in: query
-                  name: supported-features
-                  schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            requestBody:
-                content:
-                    application/merge-patch+json:
-                        schema:
-                            $ref: '#/components/schemas/Amf3GppAccessRegistrationModification'
-                required: true
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
-                    description: Expected response to a valid request
-                "204":
-                    description: Expected response to a valid request
-                "400":
-                    $ref: TS29571_CommonData.yaml#/components/responses/400
-                "403":
-                    $ref: TS29571_CommonData.yaml#/components/responses/403
-                "404":
-                    $ref: TS29571_CommonData.yaml#/components/responses/404
-                "422":
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unprocessable Request
-                "500":
-                    $ref: TS29571_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29571_CommonData.yaml#/components/responses/503
-                default:
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unexpected error
-            summary: Update a parameter in the AMF registration for 3GPP access
-            tags:
-                - Parameter update in the AMF registration for 3GPP access
         put:
             callbacks:
                 deregistrationeNotification:
@@ -704,6 +650,60 @@ paths:
             summary: register as AMF for 3GPP access
             tags:
                 - AMF registration for 3GPP access
+        patch:
+            operationId: Update3GppRegistration
+            parameters:
+                - description: Identifier of the UE
+                  in: path
+                  name: ueId
+                  required: true
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                - description: Features required to be supported by the target NF
+                  in: query
+                  name: supported-features
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            requestBody:
+                content:
+                    application/merge-patch+json:
+                        schema:
+                            $ref: '#/components/schemas/Amf3GppAccessRegistrationModification'
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
+                    description: Expected response to a valid request
+                "204":
+                    description: Expected response to a valid request
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "422":
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unprocessable Request
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unexpected error
+            summary: Update a parameter in the AMF registration for 3GPP access
+            tags:
+                - Parameter update in the AMF registration for 3GPP access
     /{ueId}/registrations/amf-3gpp-access/dereg-amf:
         post:
             operationId: deregAMF
@@ -820,60 +820,6 @@ paths:
             summary: retrieve the AMF registration for non-3GPP access information
             tags:
                 - AMF non-3GPP-access Registration Info  Retrieval
-        patch:
-            operationId: UpdateNon3GppRegistration
-            parameters:
-                - description: Identifier of the UE
-                  in: path
-                  name: ueId
-                  required: true
-                  schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                - description: Features required to be supported by the target NF
-                  in: query
-                  name: supported-features
-                  schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            requestBody:
-                content:
-                    application/merge-patch+json:
-                        schema:
-                            $ref: '#/components/schemas/AmfNon3GppAccessRegistrationModification'
-                required: true
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
-                    description: Expected response to a valid request
-                "204":
-                    description: Expected response to a valid request
-                "400":
-                    $ref: TS29571_CommonData.yaml#/components/responses/400
-                "403":
-                    $ref: TS29571_CommonData.yaml#/components/responses/403
-                "404":
-                    $ref: TS29571_CommonData.yaml#/components/responses/404
-                "422":
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unprocessable Request
-                "500":
-                    $ref: TS29571_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29571_CommonData.yaml#/components/responses/503
-                default:
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unexpected error
-            summary: update a parameter in the AMF registration for non-3GPP access
-            tags:
-                - Parameter update in the AMF registration for non-3GPP access
         put:
             callbacks:
                 deregistrationeNotification:
@@ -982,9 +928,8 @@ paths:
             summary: register as AMF for non-3GPP access
             tags:
                 - AMF registration for non-3GPP access
-    /{ueId}/registrations/ip-sm-gw:
-        delete:
-            operationId: IpSmGwDeregistration
+        patch:
+            operationId: UpdateNon3GppRegistration
             parameters:
                 - description: Identifier of the UE
                   in: path
@@ -992,13 +937,38 @@ paths:
                   required: true
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                - description: Features required to be supported by the target NF
+                  in: query
+                  name: supported-features
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
+            requestBody:
+                content:
+                    application/merge-patch+json:
+                        schema:
+                            $ref: '#/components/schemas/AmfNon3GppAccessRegistrationModification'
+                required: true
             responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
+                    description: Expected response to a valid request
                 "204":
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
                 "404":
                     $ref: TS29571_CommonData.yaml#/components/responses/404
+                "422":
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unprocessable Request
                 "500":
                     $ref: TS29571_CommonData.yaml#/components/responses/500
                 "503":
@@ -1009,9 +979,10 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
-            summary: Delete the IP-SM-GW registration
+            summary: update a parameter in the AMF registration for non-3GPP access
             tags:
-                - IP-SM-GW Deregistration
+                - Parameter update in the AMF registration for non-3GPP access
+    /{ueId}/registrations/ip-sm-gw:
         get:
             operationId: GetIpSmGwRegistration
             parameters:
@@ -1102,6 +1073,35 @@ paths:
             summary: Register an IP-SM-GW
             tags:
                 - IP-SM-GW registration
+        delete:
+            operationId: IpSmGwDeregistration
+            parameters:
+                - description: Identifier of the UE
+                  in: path
+                  name: ueId
+                  required: true
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+            responses:
+                "204":
+                    description: Expected response to a valid request
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unexpected error
+            summary: Delete the IP-SM-GW registration
+            tags:
+                - IP-SM-GW Deregistration
     /{ueId}/registrations/location:
         get:
             operationId: GetLocationInfo
@@ -1193,55 +1193,6 @@ paths:
             tags:
                 - SMF SmfRegistration
     /{ueId}/registrations/smf-registrations/{pduSessionId}:
-        delete:
-            operationId: SmfDeregistration
-            parameters:
-                - description: Identifier of the UE
-                  in: path
-                  name: ueId
-                  required: true
-                  schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                - description: Identifier of the PDU session
-                  in: path
-                  name: pduSessionId
-                  required: true
-                  schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                - in: query
-                  name: smf-set-id
-                  schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                - in: query
-                  name: smf-instance-id
-                  schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-            responses:
-                "204":
-                    description: Expected response to a valid request
-                "400":
-                    $ref: TS29571_CommonData.yaml#/components/responses/400
-                "404":
-                    $ref: TS29571_CommonData.yaml#/components/responses/404
-                "422":
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unprocessable Request
-                "500":
-                    $ref: TS29571_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29571_CommonData.yaml#/components/responses/503
-                default:
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unexpected error
-            summary: delete an SMF registration
-            tags:
-                - SMF Deregistration
         get:
             operationId: RetrieveSmfRegistration
             parameters:
@@ -1397,9 +1348,8 @@ paths:
             summary: register as SMF
             tags:
                 - SMF SmfRegistration
-    /{ueId}/registrations/smsf-3gpp-access:
         delete:
-            operationId: 3GppSmsfDeregistration
+            operationId: SmfDeregistration
             parameters:
                 - description: Identifier of the UE
                   in: path
@@ -1407,10 +1357,20 @@ paths:
                   required: true
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                - description: Identifier of the PDU session
+                  in: path
+                  name: pduSessionId
+                  required: true
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
                 - in: query
-                  name: smsf-set-id
+                  name: smf-set-id
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
+                - in: query
+                  name: smf-instance-id
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
             responses:
                 "204":
                     description: Expected response to a valid request
@@ -1434,9 +1394,10 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
-            summary: delete the SMSF registration for 3GPP access
+            summary: delete an SMF registration
             tags:
-                - SMSF Deregistration for 3GPP Access
+                - SMF Deregistration
+    /{ueId}/registrations/smsf-3gpp-access:
         get:
             operationId: Get3GppSmsfRegistration
             parameters:
@@ -1531,9 +1492,8 @@ paths:
             summary: register as SMSF for 3GPP access
             tags:
                 - SMSF registration for 3GPP access
-    /{ueId}/registrations/smsf-non-3gpp-access:
         delete:
-            operationId: Non3GppSmsfDeregistration
+            operationId: 3GppSmsfDeregistration
             parameters:
                 - description: Identifier of the UE
                   in: path
@@ -1568,9 +1528,10 @@ paths:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
-            summary: delete SMSF registration for non 3GPP access
+            summary: delete the SMSF registration for 3GPP access
             tags:
-                - SMSF Deregistration for non-3GPP access
+                - SMSF Deregistration for 3GPP Access
+    /{ueId}/registrations/smsf-non-3gpp-access:
         get:
             operationId: GetNon3GppSmsfRegistration
             parameters:
@@ -1665,6 +1626,45 @@ paths:
             summary: register as SMSF for non-3GPP access
             tags:
                 - SMSF registration for non-3GPP access
+        delete:
+            operationId: Non3GppSmsfDeregistration
+            parameters:
+                - description: Identifier of the UE
+                  in: path
+                  name: ueId
+                  required: true
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
+                - in: query
+                  name: smsf-set-id
+                  schema:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
+            responses:
+                "204":
+                    description: Expected response to a valid request
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "422":
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unprocessable Request
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unexpected error
+            summary: delete SMSF registration for non 3GPP access
+            tags:
+                - SMSF Deregistration for non-3GPP access
     /restore-pcscf:
         post:
             operationId: Trigger P-CSCF Restoration

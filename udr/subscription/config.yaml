@@ -16,6 +16,5 @@ import-mapping:
   TS29503_Nudm_UECM.yaml: github.com/ShouheiNishi/openapi5g/udm/uecm
   TS29509_Nausf_SoRProtection.yaml: github.com/ShouheiNishi/openapi5g/ausf/sor
   TS29509_Nausf_UPUProtection.yaml: github.com/ShouheiNishi/openapi5g/ausf/upu
-  TS29510_Nnrf_NFManagement.yaml: github.com/ShouheiNishi/openapi5g/nrf/management
   TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
 output: subscription.go

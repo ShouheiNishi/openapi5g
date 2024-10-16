@@ -417,12 +417,12 @@ components:
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '/oauth2/token'
                     scopes:
                         nnrf-disc: Access to the Nnrf_NFDiscovery API
-                    tokenUrl: /oauth2/token
-            type: oauth2
 externalDocs:
     description: 3GPP TS 29.510 V16.13.0; 5G System; Network Function Repository Services; Stage 3
     url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.510/
@@ -755,6 +755,7 @@ paths:
                 - description: Maximum number of NFProfiles to return in the response
                   in: query
                   name: limit
+                  required: false
                   schema:
                     minimum: 1
                     type: integer
@@ -780,6 +781,7 @@ paths:
                 - description: Maximum payload size of the response expressed in kilo octets
                   in: query
                   name: max-payload-size
+                  required: false
                   schema:
                     default: 124
                     maximum: 2000
@@ -787,6 +789,7 @@ paths:
                 - description: Extended query for maximum payload size of the response expressed in kilo octets
                   in: query
                   name: max-payload-size-ext
+                  required: false
                   schema:
                     default: 124
                     type: integer
@@ -1195,6 +1198,7 @@ paths:
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: ""
             tags:
                 - Stored Search (Document)
     /searches/{searchId}/complete:
@@ -1239,6 +1243,7 @@ paths:
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: ""
             tags:
                 - Complete Stored Search (Document)
 security:

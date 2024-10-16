@@ -16,15 +16,17 @@ package generator
 
 import (
 	"fmt"
-	"path"
 	"sort"
 	"strings"
 
 	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
 
-func GeneratePkgMap(rootDir string) (outLists []string, err error) {
-	name := path.Join(rootDir, "utils/pkgmap/map.gen.go")
+func (s *GeneratorState) GeneratePkgMap() error {
+	name, err := s.CreateFileName("utils/pkgmap/map.gen.go")
+	if err != nil {
+		return fmt.Errorf("CreateFileName: %w", err)
+	}
 	imports := writer.ImportSpecs{
 		{ImportPath: "github.com/getkin/kin-openapi/openapi3"},
 	}
@@ -35,7 +37,6 @@ func GeneratePkgMap(rootDir string) (outLists []string, err error) {
 		})
 	}
 	out := writer.NewOutputFile(name, "pkgmap", generatorName, imports)
-	outLists = append(outLists, name)
 
 	s2p := make(map[string]string)
 	p2s := make(map[string]string)
@@ -74,8 +75,8 @@ func GeneratePkgMap(rootDir string) (outLists []string, err error) {
 	fmt.Fprintln(out, "}")
 
 	if err := out.Close(); err != nil {
-		return nil, err
+		return err
 	}
 
-	return outLists, nil
+	return nil
 }

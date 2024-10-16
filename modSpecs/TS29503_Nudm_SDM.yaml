@@ -1263,12 +1263,12 @@ components:
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
                     scopes:
                         nudm-sdm: Access to the nudm-sdm API
-                    tokenUrl: '{nrfApiRoot}/oauth2/token'
-            type: oauth2
 externalDocs:
     description: 3GPP TS 29.503 Unified Data Management Services, version 16.11.0
     url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.503/
@@ -2694,16 +2694,19 @@ paths:
                 - description: External Group Identifier
                   in: query
                   name: ext-group-id
+                  required: false
                   schema:
                     $ref: '#/components/schemas/ExtGroupId'
                 - description: Internal Group Identifier
                   in: query
                   name: int-group-id
+                  required: false
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
                 - description: Indication whether UE identifiers are required or not
                   in: query
                   name: ue-id-ind
+                  required: false
                   schema:
                     default: false
                     type: boolean

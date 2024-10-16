@@ -15,13 +15,15 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"go/types"
 	"io"
-	"reflect"
+	"path"
 	"sort"
 	"strings"
 
-	"github.com/getkin/kin-openapi/openapi3"
+	"golang.org/x/tools/go/packages"
 
 	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
@@ -42,8 +44,8 @@ type OpenApi3WalkerGeneratorConfig struct {
 
 	ExtraWalkArgs     string
 	ExtraWalkArgsCall string
-	WalkPreHook       func(t reflect.Type) string
-	WalkPostHook      func(t reflect.Type) string
+	WalkPreHook       func(t *types.Named) string
+	WalkPostHook      func(t *types.Named) string
 }
 
 type openApi3WalkerGeneratorState struct {
@@ -54,64 +56,56 @@ type openApi3WalkerGeneratorState struct {
 
 const generatedFunctionPrefix = "walk"
 
-var dummyForAnyReflectType interface{}
-var anyReflectType = reflect.TypeOf(&dummyForAnyReflectType).Elem()
+var anyType = types.Universe.Lookup("any").Type()
 
-func typeName(t reflect.Type) string {
-	n := t.Name()
-	if n == "" {
-		panic("empty type name")
+var documentType *types.Named
+
+func funcName(t *types.Named) string {
+	n := t.Obj().Name()
+	if tl := t.TypeArgs(); tl != nil {
+		n = tl.At(0).(*types.Named).Obj().Name() + n
 	}
-	p := t.PkgPath()
-	if p == "" {
-		return n
-	}
-	sp := strings.Split(p, "/")
-	return sp[len(sp)-1] + "." + n
+	return generatedFunctionPrefix + n
 }
 
-func (s *openApi3WalkerGeneratorState) generateValueOp(n string, t reflect.Type, depth int, id int) string {
-	switch t.Kind() {
-	case reflect.Struct:
-		if !strings.HasSuffix(t.PkgPath(), "/openapi3") {
+func typeName(t *types.Named) string {
+	return types.TypeString(t,
+		func(p *types.Package) string {
+			return p.Name()
+		})
+}
+
+func (s *openApi3WalkerGeneratorState) generateValueOp(n string, t types.Type, depth int, id int) string {
+	switch t := t.(type) {
+	case *types.Named:
+		u := t.Underlying()
+		if st, _ := u.(*types.Struct); st == nil {
+			return s.generateValueOp(n, u, depth, id)
+		}
+		if !strings.HasSuffix(t.Obj().Pkg().Path(), "/openapi") {
 			return ""
 		}
 		s.generateFuncs(t)
-		if s.funcs[generatedFunctionPrefix+t.Name()] == "*" {
+		if s.funcs[funcName(t)] == "*" {
 			return ""
 		}
 		n2 := "&" + n
 		if strings.HasPrefix(n, "*") {
 			n2 = strings.TrimPrefix(n, "*")
 		}
-		return fmt.Sprintf("if err := s.%s(%s %s) ; err != nil {\nreturn err\n}", generatedFunctionPrefix+t.Name(), n2, s.ExtraWalkArgsCall)
-	case reflect.Bool:
-	case reflect.Int:
-	case reflect.Int8:
-	case reflect.Int16:
-	case reflect.Int32:
-	case reflect.Int64:
-	case reflect.Uint:
-	case reflect.Uint8:
-	case reflect.Uint16:
-	case reflect.Uint32:
-	case reflect.Uint64:
-	case reflect.Uintptr:
-	case reflect.Float32:
-	case reflect.Float64:
-	case reflect.Complex64:
-	case reflect.Complex128:
-	case reflect.String:
+		return fmt.Sprintf("if err := s.%s(%s %s) ; err != nil {\nreturn err\n}", funcName(t), n2, s.ExtraWalkArgsCall)
+	case *types.TypeParam:
+	case *types.Basic:
 		return ""
-	case reflect.Interface:
+	case *types.Interface:
 		return fmt.Sprintf("if %s != nil {panic(\"Non nil interface\")}", n)
-	case reflect.Pointer:
+	case *types.Pointer:
 		str := s.generateValueOp("*"+n, t.Elem(), depth+1, id)
 		if str == "" {
 			return ""
 		}
 		return fmt.Sprintf("if %s != nil {\n%s\n}", n, str)
-	case reflect.Slice:
+	case *types.Slice:
 		n2 := n
 		if strings.HasPrefix(n, "*") {
 			n2 = "(" + n + ")"
@@ -121,7 +115,7 @@ func (s *openApi3WalkerGeneratorState) generateValueOp(n string, t reflect.Type,
 			return ""
 		}
 		return fmt.Sprintf("for i%d := range %s {\n%s\n}", depth, n, str)
-	case reflect.Map:
+	case *types.Map:
 		n2 := n
 		if strings.HasPrefix(n, "*") {
 			n2 = "(" + n + ")"
@@ -130,7 +124,7 @@ func (s *openApi3WalkerGeneratorState) generateValueOp(n string, t reflect.Type,
 		if str == "" {
 			return ""
 		}
-		if t.Key() == reflect.TypeOf(string("")) {
+		if t.Key() == types.Typ[types.String] {
 			return fmt.Sprintf("k%ds%d := make([]string, 0, len(%s))\nfor k%d := range %s {\nk%ds%d = append(k%ds%d, k%d)\n}\n"+
 				"sort.Strings(k%ds%d)\nfor _, k%d := range k%ds%d {\n%s\n}",
 				depth, id, n, depth, n, depth, id, depth, id, depth,
@@ -139,17 +133,18 @@ func (s *openApi3WalkerGeneratorState) generateValueOp(n string, t reflect.Type,
 			return fmt.Sprintf("for k%d := range %s {\n%s\n}", depth, n, str)
 		}
 	default:
-		panic(fmt.Sprintf("%s is unsupported type %s", n, t))
+		panic(fmt.Sprintf("%s is unsupported type %T", t, t))
 	}
 	return ""
 }
 
-func (s *openApi3WalkerGeneratorState) generateFuncs(t reflect.Type) {
-	if t.Kind() != reflect.Struct {
+func (s *openApi3WalkerGeneratorState) generateFuncs(t *types.Named) {
+	st, _ := t.Underlying().(*types.Struct)
+	if st == nil {
 		panic(fmt.Sprintf("%s is not struct", t))
 	}
 
-	fname := "walk" + t.Name()
+	fname := funcName(t)
 
 	if _, exist := s.funcs[fname]; exist {
 		return
@@ -160,51 +155,23 @@ func (s *openApi3WalkerGeneratorState) generateFuncs(t reflect.Type) {
 	str += "if _, exist := s.visited[v] ; exist {\nreturn nil\n}\ns.visited[v] = struct{}{}\n"
 
 	var elems []string
-	hasMap := false
-	var mapMethod reflect.Method
+	elemIndex := make(map[string]int)
 fieldLoop:
-	for i := 0; i < t.NumField(); i++ {
-		f := t.Field(i)
-		switch f.Name {
-		case "m":
-			if m, exist := reflect.PointerTo(t).MethodByName("Map"); exist {
-				hasMap = true
-				mapMethod = m
+	for i := 0; i < st.NumFields(); i++ {
+		f := st.Field(i)
+		fName := f.Name()
+		switch fName {
+		case "Maximum":
+			if t.Obj().Name() == "Schema" && f.Type() == anyType {
 				continue fieldLoop
 			}
-		case "Default":
-			if t == reflect.TypeOf(openapi3.Schema{}) && f.Type == anyReflectType {
-				continue fieldLoop
-			}
-		case "Enum":
-			if t == reflect.TypeOf(openapi3.Schema{}) && f.Type == reflect.TypeOf([]interface{}{}) {
-				continue fieldLoop
-			}
-		case "Example":
-			if (t == reflect.TypeOf(openapi3.MediaType{}) ||
-				t == reflect.TypeOf(openapi3.Parameter{}) ||
-				t == reflect.TypeOf(openapi3.Schema{})) &&
-				f.Type == anyReflectType {
-				continue fieldLoop
-			}
-		case "Extensions":
-			if f.Type == reflect.TypeOf(map[string]interface{}{}) {
-				continue fieldLoop
-			}
-		case "Parameters":
-			if t == reflect.TypeOf(openapi3.Link{}) && f.Type == reflect.TypeOf(map[string]interface{}{}) {
-				continue fieldLoop
-			}
-		case "RequestBody":
-			if t == reflect.TypeOf(openapi3.Link{}) && f.Type == anyReflectType {
-				continue fieldLoop
-			}
-		case "Value":
-			if t == reflect.TypeOf(openapi3.Example{}) && f.Type == anyReflectType {
+		case "Minimum":
+			if t.Obj().Name() == "Schema" && f.Type() == anyType {
 				continue fieldLoop
 			}
 		}
-		elems = append(elems, f.Name)
+		elems = append(elems, fName)
+		elemIndex[fName] = i
 	}
 
 	sort.Strings(elems)
@@ -218,15 +185,8 @@ fieldLoop:
 	}
 
 	for i, n := range elems {
-		f, _ := t.FieldByName(n)
-		if s2 := s.generateValueOp("v."+n, f.Type, 0, i); s2 != "" {
-			str += "\n" + s2 + "\n"
-			empty = false
-		}
-	}
-
-	if hasMap {
-		if s2 := s.generateValueOp("v.Map()", mapMethod.Type.Out(0), 0, len(elems)); s2 != "" {
+		f := st.Field(elemIndex[n])
+		if s2 := s.generateValueOp("v."+n, f.Type(), 0, i); s2 != "" {
 			str += "\n" + s2 + "\n"
 			empty = false
 		}
@@ -245,6 +205,7 @@ fieldLoop:
 		s.funcs[fname] = "*"
 		return
 	}
+
 	s.funcs[fname] = str
 }
 
@@ -257,12 +218,12 @@ func OpenApi3WalkerGenerate(c *OpenApi3WalkerGeneratorConfig) error {
 
 	fmt.Fprintf(s.out, "type %s struct{", c.StateType)
 	fmt.Fprintln(s.out, "visited map[interface{}]struct{}")
-	fmt.Fprintln(s.out, "doc *openapi3.T")
+	fmt.Fprintln(s.out, "doc *openapi.Document")
 	fmt.Fprint(s.out, s.ExtraState)
 	fmt.Fprintln(s.out, "}")
 	fmt.Fprintln(s.out, "")
 
-	fmt.Fprintf(s.out, "func %s(d *openapi3.T %s) error {\n", c.RootFuncName, c.ExtraRootArgs)
+	fmt.Fprintf(s.out, "func %s(d *openapi.Document %s) error {\n", c.RootFuncName, c.ExtraRootArgs)
 	fmt.Fprintf(s.out, "s := &%s {\n", c.StateType)
 	fmt.Fprintln(s.out, "visited: make(map[interface{}]struct{}),")
 	fmt.Fprintln(s.out, "doc: d,")
@@ -271,13 +232,13 @@ func OpenApi3WalkerGenerate(c *OpenApi3WalkerGeneratorConfig) error {
 		fmt.Fprintf(s.out, "\n%s", c.ExtraInit)
 	}
 	fmt.Fprintln(s.out, "")
-	fmt.Fprintf(s.out, "return s.%sT(s.doc %s)\n", generatedFunctionPrefix, s.ExtraWalkArgsInit)
+	fmt.Fprintf(s.out, "return s.%sDocument(s.doc %s)\n", generatedFunctionPrefix, s.ExtraWalkArgsInit)
 	fmt.Fprintln(s.out, "}")
 	fmt.Fprintln(s.out, "")
 
 	oldEmptyCount := 0
 	for {
-		s.generateFuncs(reflect.TypeOf(openapi3.T{}))
+		s.generateFuncs(documentType)
 		emptyCount := 0
 		for n := range s.funcs {
 			if s.funcs[n] == "*" {
@@ -291,7 +252,7 @@ func OpenApi3WalkerGenerate(c *OpenApi3WalkerGeneratorConfig) error {
 		}
 		oldEmptyCount = emptyCount
 	}
-	s.generateFuncs(reflect.TypeOf(openapi3.T{}))
+	s.generateFuncs(documentType)
 	fn := make([]string, 0, len(s.funcs))
 	for n := range s.funcs {
 		fn = append(fn, n)
@@ -305,4 +266,28 @@ func OpenApi3WalkerGenerate(c *OpenApi3WalkerGeneratorConfig) error {
 	}
 
 	return s.out.Close()
+}
+
+func LoadPackage(root string) error {
+	if pkgs, err := packages.Load(&packages.Config{
+		Mode: packages.NeedName | packages.NeedTypes | packages.NeedDeps | packages.NeedImports,
+	}, path.Join(root, "internal/generator/openapi")); err != nil {
+		return err
+	} else {
+		for _, pkg := range pkgs {
+			if pkg.PkgPath == "github.com/ShouheiNishi/openapi5g/internal/generator/openapi" {
+				if o := pkg.Types.Scope().Lookup("Document"); o == nil {
+					return errors.New("no Document type")
+				} else if tn, _ := o.(*types.TypeName); tn == nil {
+					return errors.New("object Document is not type name")
+				} else if t, _ := tn.Type().(*types.Named); t == nil {
+					return errors.New("object Document is not named type")
+				} else {
+					documentType = t
+					return nil
+				}
+			}
+		}
+		return errors.New("no openapi package")
+	}
 }

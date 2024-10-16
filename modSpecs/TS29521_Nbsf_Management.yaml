@@ -163,12 +163,12 @@ components:
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
                     scopes:
                         nbsf-management: Access to the Nbsf_Management API
-                    tokenUrl: '{nrfApiRoot}/oauth2/token'
-            type: oauth2
 externalDocs:
     description: 3GPP TS 29.521 V16.8.0; 5G System; Binding Support Management Service.
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.521/
@@ -188,31 +188,37 @@ paths:
                 - description: The IPv4 Address of the served UE.
                   in: query
                   name: ipv4Addr
+                  required: false
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
                 - description: The IPv6 Address of the served UE. The NF service consumer shall append '/128' to the IPv6 address in the attribute value. E.g. '2001:db8:85a3::8a2e:370:7334/128'.
                   in: query
                   name: ipv6Prefix
+                  required: false
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
                 - description: The MAC Address of the served UE.
                   in: query
                   name: macAddr48
+                  required: false
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
                 - description: DNN.
                   in: query
                   name: dnn
+                  required: false
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                 - description: Subscription Permanent Identifier.
                   in: query
                   name: supi
+                  required: false
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Supi
                 - description: Generic Public Subscription Identifier
                   in: query
                   name: gpsi
+                  required: false
                   schema:
                     $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
                 - content:
@@ -222,9 +228,11 @@ paths:
                   description: The identification of slice.
                   in: query
                   name: snssai
+                  required: false
                 - description: The IPv4 address domain identifier.
                   in: query
                   name: ipDomain
+                  required: false
                   schema:
                     type: string
                 - description: To filter irrelevant responses related to unsupported features

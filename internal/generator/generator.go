@@ -16,105 +16,199 @@ package generator
 
 import (
 	"fmt"
-	"net/url"
+	"io"
+	"os"
 	"path"
 	"path/filepath"
-	"sort"
+	"strings"
 
-	"github.com/getkin/kin-openapi/openapi3"
+	"gopkg.in/yaml.v3"
+
+	"github.com/ShouheiNishi/openapi5g/internal/generator/openapi"
 )
 
+type GeneratorState struct {
+	RootDir       string
+	OutFiles      map[string]struct{}
+	Specs         map[string]*openapi.Document
+	DepsBase      map[string]map[string]struct{}
+	DepsForImport map[string][]string
+	DepsForLoader map[string][]string
+	CurSpec       string
+}
+
 func Generate(rootDir string) error {
-	outLists, deps, err := RewriteYamlAndGenerateConfig(rootDir)
-	if err != nil {
-		return fmt.Errorf("GenerateOapiCodeGenConfig: %w", err)
+	s := GeneratorState{
+		OutFiles:      make(map[string]struct{}),
+		Specs:         make(map[string]*openapi.Document),
+		DepsBase:      make(map[string]map[string]struct{}),
+		DepsForImport: make(map[string][]string),
+	}
+	if abs, err := filepath.Abs(rootDir); err != nil {
+		return fmt.Errorf("filepath.Abs: %w", err)
+	} else {
+		s.RootDir = abs
 	}
 
-	var outs []string
-	outs, err = GenerateEmbed(rootDir, deps)
-	if err != nil {
+	if err := s.RewriteYamlAndGenerateConfig(); err != nil {
+		return fmt.Errorf("RewriteYamlAndGenerateConfig: %w", err)
+	}
+
+	if err := s.GenerateEmbed(); err != nil {
 		return fmt.Errorf("GenerateEmbed: %w", err)
 	}
-	outLists = append(outLists, outs...)
 
-	outs, err = GenerateLoaderTest(rootDir)
-	if err != nil {
+	if err := s.GenerateLoaderTest(); err != nil {
 		return fmt.Errorf("GenerateLoaderTest: %w", err)
 	}
-	outLists = append(outLists, outs...)
 
-	outs, err = GeneratePkgMap(rootDir)
-	if err != nil {
+	if err := s.GeneratePkgMap(); err != nil {
 		return fmt.Errorf("GeneratePkgMap: %w", err)
 	}
-	outLists = append(outLists, outs...)
 
-	err = RemoveOldFiles(rootDir, outLists)
-	if err != nil {
+	if err := s.RemoveOldFiles(); err != nil {
 		return fmt.Errorf("RemoveOldFiles: %w", err)
 	}
 
 	return nil
 }
 
-func RewriteYamlAndGenerateConfig(rootDir string) (outLists []string, depsAll []string, err error) {
-	dep := make(map[string]struct{})
+func (s *GeneratorState) RewriteYamlAndGenerateConfig() error {
+	for spec := range pkgList {
+		if err := s.LoadSpec(spec); err != nil {
+			return fmt.Errorf("LoadSpec(%s): %w", spec, err)
+		}
+	}
+
+	if err := s.MakeDepsForLoader(); err != nil {
+		return fmt.Errorf("MakeDepsForLoader(): %w", err)
+	}
 
 	for spec := range pkgList {
-		doc, depsOne, err := LoadOpenApi3Spec(rootDir, spec)
-		if err != nil {
-			return nil, nil, fmt.Errorf("LoadOpenApi3Spec: %w", err)
+		if err := s.RewriteYaml(spec); err != nil {
+			return fmt.Errorf("RewriteYaml(%s): %w", spec, err)
 		}
-		for _, d := range depsOne {
-			dep[d] = struct{}{}
-		}
-
-		var outs []string
-		var depsRewrite []string
-		outs, depsRewrite, err = RewriteYaml(rootDir, spec, doc)
-		if err != nil {
-			return nil, nil, fmt.Errorf("RewriteYaml: %w", err)
-		}
-		outLists = append(outLists, outs...)
-
-		outs, err = GenerateConfig(rootDir, spec, doc, depsRewrite)
-		if err != nil {
-			return nil, nil, fmt.Errorf("GenerateConfig: %w", err)
-		}
-		outLists = append(outLists, outs...)
-
-		outs, err = GenerateLoader(rootDir, spec, depsOne)
-		if err != nil {
-			return nil, nil, fmt.Errorf("GenerateLoader(: %w", err)
-		}
-		outLists = append(outLists, outs...)
 	}
 
-	for d := range dep {
-		depsAll = append(depsAll, d)
-	}
-	sort.Strings(depsAll)
+	for spec := range pkgList {
+		if err := s.WriteSpec(spec); err != nil {
+			return fmt.Errorf("WriteSpec(%s): %w", spec, err)
+		}
 
-	return outLists, depsAll, nil
+		if err := s.GenerateConfig(spec); err != nil {
+			return fmt.Errorf("GenerateConfig(%s): %w", spec, err)
+		}
+
+		if err := s.GenerateLoader(spec); err != nil {
+			return fmt.Errorf("GenerateLoader(: %w", err)
+		}
+	}
+	return nil
 }
 
-func LoadOpenApi3Spec(rootDir string, spec string) (doc *openapi3.T, deps []string, err error) {
-	d := make(map[string]struct{})
-	loader := openapi3.NewLoader()
-	loader.IsExternalRefsAllowed = true
-	loader.ReadFromURIFunc = func(loader *openapi3.Loader, url *url.URL) ([]byte, error) {
-		d[path.Base(url.Path)] = struct{}{}
-		return openapi3.DefaultReadFromURI(loader, url)
+func (s *GeneratorState) CreateFileName(paths ...string) (string, error) {
+	newPath := path.Join(append([]string{s.RootDir}, paths...)...)
+	newDir := path.Dir(newPath)
+	if err := os.MkdirAll(newDir, 0o755); err != nil {
+		return "", fmt.Errorf("MkdirAll(%s): %w", newDir, err)
 	}
-	doc, err = loader.LoadFromFile(filepath.Join(rootDir, "specs", spec))
-	if err != nil {
-		return nil, nil, err
+	if _, exist := s.OutFiles[newPath]; exist {
+		return "", fmt.Errorf("file %s is already created", newPath)
+	}
+	s.OutFiles[newPath] = struct{}{}
+	return newPath, nil
+}
+
+func (s *GeneratorState) CreateFile(paths ...string) (io.WriteCloser, error) {
+	if newPath, err := s.CreateFileName(paths...); err != nil {
+		return nil, fmt.Errorf("CreateFile(%v): %w", paths, err)
+	} else if f, err := os.Create(newPath); err != nil {
+		return nil, fmt.Errorf("Create(%s): %w", newPath, err)
+	} else {
+		return f, nil
+	}
+}
+
+func (s *GeneratorState) LoadSpec(spec string) error {
+	if f, err := os.Open(filepath.Join(s.RootDir, "specs", spec)); err != nil {
+		return fmt.Errorf("os.Open(%s): %w", spec, err)
+	} else {
+		defer f.Close()
+
+		if buf, err := io.ReadAll(f); err != nil {
+			return fmt.Errorf("io.ReadAll(%s): %w", spec, err)
+		} else {
+			var doc openapi.Document
+			if err = yaml.Unmarshal(buf, &doc); err != nil {
+				return fmt.Errorf("yaml.Unmarshal(%s): %w", spec, err)
+			} else {
+				deps := make(map[string]struct{})
+				if err := setupRefs(&doc, spec, deps); err != nil {
+					return fmt.Errorf("setupRefs(%s): %w", spec, err)
+				} else {
+					s.Specs[spec] = &doc
+					s.DepsBase[spec] = deps
+					return resolveRefs(&doc, s)
+				}
+			}
+		}
+	}
+}
+
+func (s *GeneratorState) WriteSpec(spec string) error {
+	if doc := s.Specs[spec]; doc == nil {
+		return fmt.Errorf("spec %s is not exist", spec)
+	} else if err := postRefs(doc, &s.CurSpec); err != nil {
+		return fmt.Errorf("postRefs(%s): %w", spec, err)
+	} else if f, err := s.CreateFile("modSpecs", spec); err != nil {
+		return fmt.Errorf("CreateFile(\"modSpecs\", \"%s\"): %w", spec, err)
+	} else {
+		defer f.Close()
+		fmt.Fprintf(f, "# This is generated file.\n\n")
+		s.CurSpec = spec
+		if err := yaml.NewEncoder(f).Encode(doc); err != nil {
+			return fmt.Errorf("encode for %s: %w", spec, err)
+		} else {
+			return nil
+		}
+	}
+}
+
+func ResolveRef[T any](s *GeneratorState, ref string) (*T, error) {
+	refSplit := strings.Split(ref, "#")
+	if len(refSplit) != 2 || refSplit[0] == "" || refSplit[1] == "" {
+		return nil, fmt.Errorf("invalid ref %s", ref)
+	}
+	spec := refSplit[0]
+	if s.Specs[spec] == nil {
+		if err := s.LoadSpec(spec); err != nil {
+			return nil, fmt.Errorf("LoadSpec(%s): %w", spec, err)
+		} else if s.Specs[spec] == nil {
+			return nil, fmt.Errorf("LoadSpec(%s): not loaded", spec)
+		}
 	}
 
-	for s := range d {
-		deps = append(deps, s)
+	if v, err := s.Specs[spec].GetFromJsonPointer(refSplit[1]); err != nil {
+		return nil, fmt.Errorf("GetFromJsonPointer(%s - %s): %w", spec, refSplit[1], err)
+	} else if r, ok := v.(*T); ok {
+		return r, nil
+	} else if r, ok := v.(*openapi.Ref[T]); ok {
+		if r == nil {
+			return nil, fmt.Errorf("nil Ref pointer")
+		} else if r.Ref == "" {
+			if r.Value == nil {
+				return nil, fmt.Errorf("nil Value pointer")
+			} else {
+				return r.Value, nil
+			}
+		} else {
+			if r2, err := ResolveRef[T](s, r.Ref); err != nil {
+				return nil, fmt.Errorf("ResolvedRef(%s): %w", r.Ref, err)
+			} else {
+				return r2, nil
+			}
+		}
+	} else {
+		return nil, fmt.Errorf("invalid resolved type %T", v)
 	}
-	sort.Strings(deps)
-
-	return doc, deps, nil
 }

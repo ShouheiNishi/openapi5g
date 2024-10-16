@@ -11,26 +11,26 @@ import (
 	"github.com/ShouheiNishi/openapi5g/internal/generator/openapi"
 )
 
-type scanRefType struct {
+type setupRefsType struct {
 	visited map[interface{}]struct{}
 	doc     *openapi.Document
-	refs    map[string]struct{}
-	cutRefs map[string]struct{}
+	curFile string
+	deps    map[string]struct{}
 }
 
-func scanRef(d *openapi.Document, refs map[string]struct{}, cutRefs map[string]struct{}) error {
-	s := &scanRefType{
+func setupRefs(d *openapi.Document, curFile string, deps map[string]struct{}) error {
+	s := &setupRefsType{
 		visited: make(map[interface{}]struct{}),
 		doc:     d,
 	}
 
-	s.refs = refs
-	s.cutRefs = cutRefs
+	s.curFile = curFile
+	s.deps = deps
 
 	return s.walkDocument(s.doc)
 }
 
-func (s *scanRefType) walkAdditionalProperties(v *openapi.AdditionalProperties) error {
+func (s *setupRefsType) walkAdditionalProperties(v *openapi.AdditionalProperties) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -45,7 +45,7 @@ func (s *scanRefType) walkAdditionalProperties(v *openapi.AdditionalProperties) 
 	return nil
 }
 
-func (s *scanRefType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
+func (s *setupRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -53,13 +53,14 @@ func (s *scanRefType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -80,7 +81,7 @@ func (s *scanRefType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	return nil
 }
 
-func (s *scanRefType) walkComponents(v *openapi.Components) error {
+func (s *setupRefsType) walkComponents(v *openapi.Components) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -206,7 +207,7 @@ func (s *scanRefType) walkComponents(v *openapi.Components) error {
 	return nil
 }
 
-func (s *scanRefType) walkDocument(v *openapi.Document) error {
+func (s *setupRefsType) walkDocument(v *openapi.Document) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -234,7 +235,7 @@ func (s *scanRefType) walkDocument(v *openapi.Document) error {
 	return nil
 }
 
-func (s *scanRefType) walkEncoding(v *openapi.Encoding) error {
+func (s *setupRefsType) walkEncoding(v *openapi.Encoding) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -256,7 +257,7 @@ func (s *scanRefType) walkEncoding(v *openapi.Encoding) error {
 	return nil
 }
 
-func (s *scanRefType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
+func (s *setupRefsType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -264,19 +265,20 @@ func (s *scanRefType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	return nil
 }
 
-func (s *scanRefType) walkHeader(v *openapi.Header) error {
+func (s *setupRefsType) walkHeader(v *openapi.Header) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -315,7 +317,7 @@ func (s *scanRefType) walkHeader(v *openapi.Header) error {
 	return nil
 }
 
-func (s *scanRefType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
+func (s *setupRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -323,13 +325,14 @@ func (s *scanRefType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -341,7 +344,7 @@ func (s *scanRefType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	return nil
 }
 
-func (s *scanRefType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
+func (s *setupRefsType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -349,19 +352,20 @@ func (s *scanRefType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	return nil
 }
 
-func (s *scanRefType) walkMediaType(v *openapi.MediaType) error {
+func (s *setupRefsType) walkMediaType(v *openapi.MediaType) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -400,7 +404,7 @@ func (s *scanRefType) walkMediaType(v *openapi.MediaType) error {
 	return nil
 }
 
-func (s *scanRefType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
+func (s *setupRefsType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -408,19 +412,20 @@ func (s *scanRefType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	return nil
 }
 
-func (s *scanRefType) walkOperation(v *openapi.Operation) error {
+func (s *setupRefsType) walkOperation(v *openapi.Operation) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -465,7 +470,7 @@ func (s *scanRefType) walkOperation(v *openapi.Operation) error {
 	return nil
 }
 
-func (s *scanRefType) walkParameter(v *openapi.Parameter) error {
+func (s *setupRefsType) walkParameter(v *openapi.Parameter) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -504,7 +509,7 @@ func (s *scanRefType) walkParameter(v *openapi.Parameter) error {
 	return nil
 }
 
-func (s *scanRefType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error {
+func (s *setupRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -512,13 +517,14 @@ func (s *scanRefType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error 
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -530,7 +536,7 @@ func (s *scanRefType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error 
 	return nil
 }
 
-func (s *scanRefType) walkPathItemBase(v *openapi.PathItemBase) error {
+func (s *setupRefsType) walkPathItemBase(v *openapi.PathItemBase) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -593,11 +599,23 @@ func (s *scanRefType) walkPathItemBase(v *openapi.PathItemBase) error {
 	return nil
 }
 
-func (s *scanRefType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) error {
+func (s *setupRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
+
+	if v.Ref != "" {
+		split := strings.SplitN(v.Ref, "#", 2)
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
+			} else {
+				s.deps[split[0]] = struct{}{}
+			}
+		}
+		return nil
+	}
 
 	if v.Value != nil {
 		if err := s.walkPathItemBase(v.Value); err != nil {
@@ -608,7 +626,7 @@ func (s *scanRefType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) 
 	return nil
 }
 
-func (s *scanRefType) walkRequestBody(v *openapi.RequestBody) error {
+func (s *setupRefsType) walkRequestBody(v *openapi.RequestBody) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -630,7 +648,7 @@ func (s *scanRefType) walkRequestBody(v *openapi.RequestBody) error {
 	return nil
 }
 
-func (s *scanRefType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) error {
+func (s *setupRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -638,13 +656,14 @@ func (s *scanRefType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) er
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -656,7 +675,7 @@ func (s *scanRefType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) er
 	return nil
 }
 
-func (s *scanRefType) walkResponse(v *openapi.Response) error {
+func (s *setupRefsType) walkResponse(v *openapi.Response) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -704,7 +723,7 @@ func (s *scanRefType) walkResponse(v *openapi.Response) error {
 	return nil
 }
 
-func (s *scanRefType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
+func (s *setupRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -712,13 +731,14 @@ func (s *scanRefType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -730,7 +750,7 @@ func (s *scanRefType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	return nil
 }
 
-func (s *scanRefType) walkSchema(v *openapi.Schema) error {
+func (s *setupRefsType) walkSchema(v *openapi.Schema) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -779,42 +799,10 @@ func (s *scanRefType) walkSchema(v *openapi.Schema) error {
 		}
 	}
 
-	if err := fixSkipOptionalPointer(v); err != nil {
-		return err
-	}
-
-	if err := fixIntegerFormat(v); err != nil {
-		return err
-	}
-
-	if err := fixAnyOfEnum(v); err != nil {
-		return err
-	}
-
-	if err := fixAnyOfString(v); err != nil {
-		return err
-	}
-
-	if err := fixNullable(v); err != nil {
-		return err
-	}
-
-	if err := fixImplicitArray(v); err != nil {
-		return err
-	}
-
-	if err := fixEliminateCheckerUnion(v); err != nil {
-		return err
-	}
-
-	if err := fixAdditionalProperties(v); err != nil {
-		return err
-	}
-
 	return nil
 }
 
-func (s *scanRefType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
+func (s *setupRefsType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -822,17 +810,14 @@ func (s *scanRefType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 
 	if v.Ref != "" {
 		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-				if err := fixCutSchemaRef(v); err != nil {
-					return err
-				}
-				return nil
+		if len(split) == 2 {
+			if split[0] == "" {
+				v.Ref = s.curFile + "#" + split[1]
 			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+				s.deps[split[0]] = struct{}{}
 			}
 		}
+		return nil
 	}
 
 	if v.Value != nil {

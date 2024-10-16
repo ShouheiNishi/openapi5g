@@ -15,85 +15,138 @@
 package main
 
 import (
-	"reflect"
-
-	"github.com/getkin/kin-openapi/openapi3"
+	"go/types"
 
 	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
 
 func main() {
-	err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
-		FileName:      "fix_local_refs.go",
+	if err := LoadPackage("../.."); err != nil {
+		panic(err)
+	}
+
+	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
+		FileName:      "setup_refs.go",
 		PkgName:       "generator",
 		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
 		Imports: writer.ImportSpecs{
-			{ImportPath: "sort"},
-			{ImportPath: "strings"},
-			{},
-			{ImportPath: "github.com/getkin/kin-openapi/openapi3"},
+			{ImportPath: "github.com/ShouheiNishi/openapi5g/internal/generator/openapi"},
+			{ImportPath: "gopkg.in/yaml.v3"},
 		},
 
-		RootFuncName:      "fixLocalRefInRemoteRef",
-		ExtraRootArgs:     ",rootUri string",
-		ExtraInit:         "s.rootUri = rootUri\n",
-		ExtraWalkArgsInit: ",rootUri",
+		RootFuncName:  "setupRefs",
+		ExtraRootArgs: ", curFile string, deps map[string]struct{}",
+		ExtraInit:     "s.curFile = curFile\ns.deps = deps\n",
 
-		StateType:  "fixLocalRefIType",
-		ExtraState: "rootUri string\n",
+		StateType:  "setupRefsType",
+		ExtraState: "curFile string\ndeps map[string]struct{}\n",
 
-		ExtraWalkArgs:     ",curUri string",
-		ExtraWalkArgsCall: ",curUri",
-		WalkPreHook: func(t reflect.Type) string {
-			if _, exist := t.FieldByName("Ref"); exist {
+		WalkPreHook: func(t *types.Named) string {
+			if t.Obj().Name() == "Ref" {
 				return `if v.Ref != "" {
 					split := strings.SplitN(v.Ref, "#", 2)
 					if len(split) == 2 {
-						if split[0] != "" {
-							curUri = split[0]
-						}
-						if curUri == s.rootUri {
-							v.Ref = "#" + split[1]
+						if split[0] == "" {
+							v.Ref = s.curFile + "#" + split[1]
 						} else {
-							v.Ref = curUri + "#" + split[1]
+							s.deps[split[0]] = struct{}{}
 						}
+					}
+					return nil
+				}
+`
+			}
+			return ""
+		},
+	}); err != nil {
+		panic(err)
+	}
+
+	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
+		FileName:      "resolve_refs.go",
+		PkgName:       "generator",
+		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
+		Imports: writer.ImportSpecs{
+			{ImportPath: "github.com/ShouheiNishi/openapi5g/internal/generator/openapi"},
+			{ImportPath: "gopkg.in/yaml.v3"},
+		},
+
+		RootFuncName:  "resolveRefs",
+		ExtraRootArgs: ",gs *GeneratorState",
+		ExtraInit:     "s.generatorState = gs\n",
+
+		StateType:  "resolveRefsType",
+		ExtraState: "generatorState *GeneratorState\n",
+
+		WalkPreHook: func(t *types.Named) string {
+			if t.Obj().Name() == "Ref" {
+				return `if v.Ref != "" {
+					if vRes, err := ResolveRef[` + typeName(t.TypeArgs().At(0).(*types.Named)) + `](s.generatorState, v.Ref); err != nil {
+						return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
 					} else {
-						curUri = split[0]
+						v.Value = vRes
+						return nil
 					}
 				}
 `
 			}
 			return ""
 		},
-	})
-
-	if err != nil {
+	}); err != nil {
 		panic(err)
 	}
 
-	err = OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
+	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
+		FileName:      "post_refs.go",
+		PkgName:       "generator",
+		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
+		Imports: writer.ImportSpecs{
+			{ImportPath: "github.com/ShouheiNishi/openapi5g/internal/generator/openapi"},
+			{ImportPath: "gopkg.in/yaml.v3"},
+		},
+
+		RootFuncName:  "postRefs",
+		ExtraRootArgs: ", curFile *string",
+		ExtraInit:     "s.curFile = curFile\n",
+
+		StateType:  "postRefsType",
+		ExtraState: "curFile *string\n",
+
+		WalkPreHook: func(t *types.Named) string {
+			if t.Obj().Name() == "Ref" {
+				return `v.CurFile = s.curFile
+				if v.Ref != "" {
+					return nil
+				}
+`
+			}
+			return ""
+		},
+	}); err != nil {
+		panic(err)
+	}
+
+	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
 		FileName:      "scan_refs.go",
 		PkgName:       "generator",
 		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
 		Imports: writer.ImportSpecs{
-			{ImportPath: "sort"},
-			{ImportPath: "strings"},
-			{},
-			{ImportPath: "github.com/getkin/kin-openapi/openapi3"},
+			{ImportPath: "github.com/ShouheiNishi/openapi5g/internal/generator/openapi"},
+			{ImportPath: "gopkg.in/yaml.v3"},
 		},
 
 		RootFuncName:  "scanRef",
-		ExtraRootArgs: ", specName string, refs map[string]struct{}, cutRefs map[string]struct{}",
-		ExtraInit:     "s.specName = specName\ns.refs = refs\ns.cutRefs = cutRefs\n",
+		ExtraRootArgs: ", refs map[string]struct{}, cutRefs map[string]struct{}",
+		ExtraInit:     "s.refs = refs\ns.cutRefs = cutRefs\n",
 
 		StateType:  "scanRefType",
-		ExtraState: "specName string\nrefs map[string]struct{}\ncutRefs map[string]struct{}\n",
+		ExtraState: "refs map[string]struct{}\ncutRefs map[string]struct{}\n",
 
-		WalkPreHook: func(t reflect.Type) string {
-			if t != reflect.TypeOf(openapi3.PathItem{}) {
-				if _, exist := t.FieldByName("Ref"); exist {
+		WalkPreHook: func(t *types.Named) string {
+			if t.Obj().Name() == "Ref" {
+				if t.TypeArgs().At(0).(*types.Named).Obj().Name() != "PathItemBase" {
 					cutOp := ""
-					if t == reflect.TypeOf(openapi3.SchemaRef{}) {
+					if t.TypeArgs().At(0).(*types.Named).Obj().Name() == "Schema" {
 						cutOp = "if err := fixCutSchemaRef(v) ; err != nil{return err}\nreturn nil\n"
 					}
 					return `	if v.Ref != "" {
@@ -113,13 +166,13 @@ func main() {
 			return ""
 		},
 
-		WalkPostHook: func(t reflect.Type) string {
-			if t == reflect.TypeOf(openapi3.Schema{}) {
+		WalkPostHook: func(t *types.Named) string {
+			if t.Obj().Name() == "Schema" {
 				return "if err := fixSkipOptionalPointer(v) ; err != nil{return err}\n" +
 					"\nif err := fixIntegerFormat(v) ; err != nil{return err}\n" +
 					"\nif err := fixAnyOfEnum(v) ; err != nil{return err}\n" +
 					"\nif err := fixAnyOfString(v) ; err != nil{return err}\n" +
-					"\nif err := fixNullable(v, s.specName) ; err != nil{return err}\n" +
+					"\nif err := fixNullable(v) ; err != nil{return err}\n" +
 					"\nif err := fixImplicitArray(v) ; err != nil{return err}\n" +
 					"\nif err := fixEliminateCheckerUnion(v) ; err != nil{return err}\n" +
 					"\nif err := fixAdditionalProperties(v) ; err != nil{return err}\n"
@@ -141,9 +194,7 @@ func main() {
 		// 		}
 		// 	}
 		// }
-	})
-
-	if err != nil {
+	}); err != nil {
 		panic(err)
 	}
 }

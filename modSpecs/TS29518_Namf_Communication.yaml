@@ -76,6 +76,7 @@ components:
                 taiList:
                     items:
                         $ref: TS29571_CommonData.yaml#/components/schemas/Tai
+                    minItems: 0
                     type: array
             required:
                 - taiList
@@ -134,6 +135,7 @@ components:
                     items:
                         description: Original reference TS29502_Nsmf_PDUSession.yaml#/components/schemas/EbiArpMapping
                         x-go-type-skip-optional-pointer: true
+                    minItems: 0
                     type: array
                 failedArpList:
                     items:
@@ -1670,12 +1672,12 @@ components:
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
                     scopes:
                         namf-comm: Access to the Namf_Communication API
-                    tokenUrl: '{nrfApiRoot}/oauth2/token'
-            type: oauth2
 externalDocs:
     description: 3GPP TS 29.518 V16.15.0; 5G System; Access and Mobility Management Services
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.518/
@@ -1823,6 +1825,7 @@ paths:
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: ""
             summary: Namf_Communication Non UE N2 Info UnSubscribe service Operation
             tags:
                 - Non UE N2 Message Notification Individual Subscription (Document)
@@ -2013,41 +2016,6 @@ paths:
             tags:
                 - subscriptions collection (Document)
     /subscriptions/{subscriptionId}:
-        delete:
-            operationId: AMFStatusChangeUnSubscribe
-            parameters:
-                - description: AMF Status Change Subscription Identifier
-                  in: path
-                  name: subscriptionId
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "204":
-                    description: N1N2 Message Subscription successfully removed.
-                "307":
-                    $ref: TS29571_CommonData.yaml#/components/responses/307
-                "308":
-                    $ref: TS29571_CommonData.yaml#/components/responses/308
-                "400":
-                    $ref: TS29571_CommonData.yaml#/components/responses/400
-                "404":
-                    $ref: TS29571_CommonData.yaml#/components/responses/404
-                "429":
-                    $ref: TS29571_CommonData.yaml#/components/responses/429
-                "500":
-                    $ref: TS29571_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29571_CommonData.yaml#/components/responses/503
-                default:
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unexpected error
-            summary: Namf_Communication AMF Status Change UnSubscribe service Operation
-            tags:
-                - individual subscription (Document)
         put:
             callbacks:
                 OnAmfStatusChange:
@@ -2134,6 +2102,41 @@ paths:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
                     description: Unexpected error
             summary: Namf_Communication AMF Status Change Subscribe Modify service Operation
+            tags:
+                - individual subscription (Document)
+        delete:
+            operationId: AMFStatusChangeUnSubscribe
+            parameters:
+                - description: AMF Status Change Subscription Identifier
+                  in: path
+                  name: subscriptionId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "204":
+                    description: N1N2 Message Subscription successfully removed.
+                "307":
+                    $ref: TS29571_CommonData.yaml#/components/responses/307
+                "308":
+                    $ref: TS29571_CommonData.yaml#/components/responses/308
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "429":
+                    $ref: TS29571_CommonData.yaml#/components/responses/429
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unexpected error
+            summary: Namf_Communication AMF Status Change UnSubscribe service Operation
             tags:
                 - individual subscription (Document)
     /ue-contexts/{ueContextId}:
@@ -3261,6 +3264,7 @@ paths:
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: ""
             summary: Namf_Communication N1N2 Message UnSubscribe (UE Specific) service Operation
             tags:
                 - N1N2 Individual Subscription (Document)

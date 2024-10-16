@@ -143,12 +143,14 @@ components:
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
                         x-go-type-skip-optional-pointer: true
+                    minItems: 0
                     type: array
                 geographicAreas:
                     description: Identifies a list of geographic area of the user where the UE is located.
                     items:
                         description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
                         x-go-type-skip-optional-pointer: true
+                    minItems: 0
                     type: array
                 nwAreaInfo:
                     $ref: '#/components/schemas/NetworkAreaInfo'
@@ -320,12 +322,12 @@ components:
             type: integer
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
                     scopes:
                         nudm-pp: Access to the nudm-pp API
-                    tokenUrl: '{nrfApiRoot}/oauth2/token'
-            type: oauth2
 externalDocs:
     description: 3GPP TS 29.503 Unified Data Management Services, version 16.8.0
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.503/
@@ -392,6 +394,80 @@ paths:
             tags:
                 - Subscription Data Update
     /5g-vn-groups/{extGroupId}:
+        get:
+            operationId: Get 5G VN Group
+            parameters:
+                - description: External Identifier of the group
+                  in: path
+                  name: extGroupId
+                  required: true
+                  schema:
+                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/5GVnGroupConfiguration'
+                    description: Expected response to a valid request
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unexpected error
+            summary: get 5G VN Group
+            tags:
+                - 5G VN Group Modification
+        put:
+            operationId: Create 5G VN Group
+            parameters:
+                - description: External Identifier of the Group
+                  in: path
+                  name: extGroupId
+                  required: true
+                  schema:
+                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/5GVnGroupConfiguration'
+                required: true
+            responses:
+                "201":
+                    description: Expected response to a valid request
+                "400":
+                    $ref: TS29571_CommonData.yaml#/components/responses/400
+                "403":
+                    $ref: TS29571_CommonData.yaml#/components/responses/403
+                "404":
+                    $ref: TS29571_CommonData.yaml#/components/responses/404
+                "500":
+                    $ref: TS29571_CommonData.yaml#/components/responses/500
+                "503":
+                    $ref: TS29571_CommonData.yaml#/components/responses/503
+                default:
+                    content:
+                        application/problem+json:
+                            schema:
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
+                    description: Unexpected error
+            summary: create a 5G VN Group
+            tags:
+                - 5G VN Group Creation
         delete:
             operationId: Delete 5G VN Group
             parameters:
@@ -434,42 +510,6 @@ paths:
             summary: delete a 5G VN Group
             tags:
                 - 5G VN Group Deletion
-        get:
-            operationId: Get 5G VN Group
-            parameters:
-                - description: External Identifier of the group
-                  in: path
-                  name: extGroupId
-                  required: true
-                  schema:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    type: string
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/5GVnGroupConfiguration'
-                    description: Expected response to a valid request
-                "400":
-                    $ref: TS29571_CommonData.yaml#/components/responses/400
-                "403":
-                    $ref: TS29571_CommonData.yaml#/components/responses/403
-                "404":
-                    $ref: TS29571_CommonData.yaml#/components/responses/404
-                "500":
-                    $ref: TS29571_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29571_CommonData.yaml#/components/responses/503
-                default:
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unexpected error
-            summary: get 5G VN Group
-            tags:
-                - 5G VN Group Modification
         patch:
             operationId: Modify 5G VN Group
             parameters:
@@ -519,44 +559,6 @@ paths:
             summary: modify a 5G VN Group
             tags:
                 - 5G VN Group Modification
-        put:
-            operationId: Create 5G VN Group
-            parameters:
-                - description: External Identifier of the Group
-                  in: path
-                  name: extGroupId
-                  required: true
-                  schema:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/5GVnGroupConfiguration'
-                required: true
-            responses:
-                "201":
-                    description: Expected response to a valid request
-                "400":
-                    $ref: TS29571_CommonData.yaml#/components/responses/400
-                "403":
-                    $ref: TS29571_CommonData.yaml#/components/responses/403
-                "404":
-                    $ref: TS29571_CommonData.yaml#/components/responses/404
-                "500":
-                    $ref: TS29571_CommonData.yaml#/components/responses/500
-                "503":
-                    $ref: TS29571_CommonData.yaml#/components/responses/503
-                default:
-                    content:
-                        application/problem+json:
-                            schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                    description: Unexpected error
-            summary: create a 5G VN Group
-            tags:
-                - 5G VN Group Creation
 security:
     - oAuth2ClientCredentials:
         - nudm-pp

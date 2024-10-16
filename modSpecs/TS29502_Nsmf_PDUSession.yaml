@@ -588,6 +588,7 @@ components:
                 epsBearerId:
                     items:
                         $ref: '#/components/schemas/EpsBearerId'
+                    minItems: 0
                     type: array
                 epsInterworkingInd:
                     $ref: '#/components/schemas/EpsInterworkingIndication'
@@ -2070,6 +2071,7 @@ components:
                 epsBearerSetup:
                     items:
                         $ref: '#/components/schemas/EpsBearerContainer'
+                    minItems: 0
                     type: array
                 epsInterworkingInd:
                     $ref: '#/components/schemas/EpsInterworkingIndication'
@@ -2594,12 +2596,12 @@ components:
             type: object
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
                     scopes:
                         nsmf-pdusession: Access to the nsmf-pdusession API
-                    tokenUrl: '{nrfApiRoot}/oauth2/token'
-            type: oauth2
 externalDocs:
     description: 3GPP TS 29.502 V16.14.0; 5G System; Session Management Services; Stage 3
     url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.502/
@@ -3203,6 +3205,7 @@ paths:
                                     $ref: '#/components/schemas/ReleaseData'
                             type: object
                 description: data sent to H-SMF or SMF when releasing the PDU session
+                required: false
             responses:
                 "200":
                     content:
@@ -4066,6 +4069,7 @@ paths:
                                     $ref: '#/components/schemas/SmContextReleaseData'
                             type: object
                 description: representation of the data to be sent to the SMF when releasing the SM context
+                required: false
             responses:
                 "200":
                     content:
@@ -4118,6 +4122,7 @@ paths:
                         schema:
                             $ref: '#/components/schemas/SmContextRetrieveData'
                 description: parameters used to retrieve the SM context
+                required: false
             responses:
                 "200":
                     content:

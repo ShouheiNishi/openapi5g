@@ -17,15 +17,44 @@ package generator
 import (
 	"fmt"
 	"path"
-	"path/filepath"
 	"sort"
 	"strings"
 
 	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
 
-func GenerateLoader(rootDir string, spec string, depsOne []string) (outLists []string, err error) {
-	name := path.Join(rootDir, pkgList[spec].path, "loader.go")
+func (s *GeneratorState) MakeDepsForLoader() error {
+	s.DepsForLoader = make(map[string][]string)
+	for spec := range pkgList {
+		depsLoaderMap := map[string]struct{}{spec: struct{}{}}
+		for {
+			populated := false
+			for spec2 := range depsLoaderMap {
+				for spec3 := range s.DepsBase[spec2] {
+					if _, exist := depsLoaderMap[spec3]; !exist {
+						depsLoaderMap[spec3] = struct{}{}
+						populated = true
+					}
+				}
+			}
+			if !populated {
+				break
+			}
+		}
+
+		depsLoader := make([]string, 0, len(depsLoaderMap))
+		for spec2 := range depsLoaderMap {
+			depsLoader = append(depsLoader, spec2)
+		}
+		sort.Strings(depsLoader)
+		s.DepsForLoader[spec] = depsLoader
+	}
+
+	return nil
+}
+
+func (s *GeneratorState) GenerateLoader(spec string) (err error) {
+	depsOne := s.DepsForLoader[spec]
 	imports := writer.ImportSpecs{
 		{ImportPath: "fmt"},
 		{ImportPath: "net/url"},
@@ -40,8 +69,12 @@ func GenerateLoader(rootDir string, spec string, depsOne []string) (outLists []s
 			ImportPath: modBase + "/internal/embed/" + strings.TrimSuffix(d, ".yaml"),
 		})
 	}
+
+	name, err := s.CreateFileName(pkgList[spec].path, "loader.go")
+	if err != nil {
+		return fmt.Errorf("CreateFileName: %w", err)
+	}
 	out := writer.NewOutputFile(name, path.Base(pkgList[spec].path), generatorName, imports)
-	outLists = append(outLists, name)
 
 	fmt.Fprintln(out, "var specTable map[string][]byte=map[string][]byte{")
 	for _, d := range depsOne {
@@ -79,13 +112,13 @@ func GenerateLoader(rootDir string, spec string, depsOne []string) (outLists []s
 	fmt.Fprintln(out, "}")
 
 	if err := out.Close(); err != nil {
-		return nil, err
+		return err
 	}
 
-	return outLists, nil
+	return nil
 }
 
-func GenerateLoaderTest(rootDir string) (outLists []string, err error) {
+func (s *GeneratorState) GenerateLoaderTest() error {
 	l := make([]string, 0, len(pkgList))
 	for spec := range pkgList {
 		l = append(l, spec)
@@ -105,8 +138,11 @@ func GenerateLoaderTest(rootDir string) (outLists []string, err error) {
 			ImportPath:  modBase + "/" + pkgList[spec].path,
 		})
 	}
-	f := writer.NewOutputFile(filepath.Join(rootDir, "loader_test.go"), "openapi5g_test", generatorName, imp)
-	outLists = append(outLists, filepath.Join(rootDir, "loader_test.go"))
+	name, err := s.CreateFileName("loader_test.go")
+	if err != nil {
+		return fmt.Errorf("CreateFileName: %w", err)
+	}
+	f := writer.NewOutputFile(name, "openapi5g_test", generatorName, imp)
 
 	fmt.Fprintf(f, "func TestLoader(t *testing.T) {\n")
 	fmt.Fprintf(f, "var doc *openapi3.T\n")
@@ -121,8 +157,8 @@ func GenerateLoaderTest(rootDir string) (outLists []string, err error) {
 	}
 	fmt.Fprintf(f, "}\n")
 	if err := f.Close(); err != nil {
-		return nil, err
+		return err
 	}
 
-	return outLists, nil
+	return nil
 }

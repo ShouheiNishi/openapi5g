@@ -16,16 +16,13 @@ package generator
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/getkin/kin-openapi/openapi3"
 
 	"github.com/ShouheiNishi/openapi5g/internal/generator/writer"
 )
 
-func GenerateConfig(rootDir string, spec string, doc *openapi3.T, deps []string) (outLists []string, err error) {
+func (s *GeneratorState) GenerateConfig(spec string) error {
 	e := pkgList[spec]
 
 	_, base := filepath.Split(e.path)
@@ -40,28 +37,28 @@ func GenerateConfig(rootDir string, spec string, doc *openapi3.T, deps []string)
 		modTop = filepath.Join("..", modTop)
 	}
 
-	dir := filepath.Join(rootDir, e.path)
-	if err := os.MkdirAll(dir, 0o755); err != nil {
-		return nil, err
+	doc := s.Specs[spec]
+	if doc == nil {
+		return fmt.Errorf("spec %s is not exist", spec)
 	}
 
-	if f, err := os.Create(filepath.Join(dir, "config.yaml")); err != nil {
-		return nil, err
+	if f, err := s.CreateFile(e.path, "config.yaml"); err != nil {
+		return fmt.Errorf("CreateFile(%s, \"config.yaml\"): %w", e.path, err)
 	} else {
 		fmt.Fprintf(f, "# This is generated file, DO NOT EDIT.\n")
 		fmt.Fprintf(f, "package: %s\n", base)
 		fmt.Fprintf(f, "generate:\n")
 		fmt.Fprintf(f, "  models: true\n")
-		if len(doc.Paths.Map()) != 0 {
+		if len(doc.Paths) != 0 {
 			fmt.Fprintf(f, "  client: true\n")
 			fmt.Fprintf(f, "  gin-server: true\n")
 		}
-		if len(doc.Paths.Map()) != 0 || (doc.Components != nil && len(doc.Components.Responses) != 0) {
+		if len(doc.Paths) != 0 || (doc.Components != nil && len(doc.Components.Responses) != 0) {
 			fmt.Fprintf(f, "  strict-server: true\n")
 		}
 		fmt.Fprintf(f, "output-options:\n")
 		fmt.Fprintf(f, "  skip-prune: true\n")
-		if len(deps) != 0 {
+		if deps := s.DepsForImport[spec]; len(deps) != 0 {
 			fmt.Fprintf(f, "import-mapping:\n")
 			for _, d := range deps {
 				fmt.Fprintf(f, "  %s: %s/%s\n", d, modBase, pkgList[d].path)
@@ -70,19 +67,23 @@ func GenerateConfig(rootDir string, spec string, doc *openapi3.T, deps []string)
 		fmt.Fprintf(f, "output: %s.go\n", base)
 
 		if err := f.Close(); err != nil {
-			return nil, err
+			return fmt.Errorf("Close(): %w", err)
 		}
 	}
-	outLists = append(outLists, filepath.Join(dir, "config.yaml"))
 
-	f := writer.NewOutputFile(filepath.Join(dir, "generate.go"), base, generatorName, writer.ImportSpecs{})
-	fmt.Fprintf(f, "//go:generate go run github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml %s\n", filepath.Join(modTop, spec))
-	if err := f.Close(); err != nil {
-		return nil, err
+	if n, err := s.CreateFileName(e.path, "generate.go"); err != nil {
+		return fmt.Errorf("CreateFileName(%s, \"generate.go\"): %w", e.path, err)
+	} else {
+		f := writer.NewOutputFile(n, base, generatorName, writer.ImportSpecs{})
+		fmt.Fprintf(f, "//go:generate go run github.com/deepmap/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml %s\n", filepath.Join(modTop, spec))
+		if err := f.Close(); err != nil {
+			return fmt.Errorf("Close(): %w", err)
+		}
 	}
-	outLists = append(outLists, filepath.Join(dir, "generate.go"))
 
-	outLists = append(outLists, filepath.Join(dir, base+".go"))
+	if _, err := s.CreateFileName(e.path, base+".go"); err != nil {
+		return fmt.Errorf("CreateFileName(%s, %s): %w", e.path, base+".go", err)
+	}
 
-	return outLists, nil
+	return nil
 }

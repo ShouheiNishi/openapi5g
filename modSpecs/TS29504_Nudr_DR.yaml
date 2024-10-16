@@ -3,14 +3,14 @@
 components:
     securitySchemes:
         oAuth2ClientCredentials:
+            type: oauth2
             flows:
                 clientCredentials:
+                    tokenUrl: '{nrfApiRoot}/oauth2/token'
                     scopes:
                         nudr-dr: Access to the Nudr_DataRepository API
-                        nudr-dr:subscription-data:authentication-subscription:modify: Access to update the AuthenticationSubscription resource of the SubscriptionData data set
                         nudr-dr:subscription-data:authentication-subscription:read: Access to read the AuthenticationSubscription resource of the SubscriptionData data set
-                    tokenUrl: '{nrfApiRoot}/oauth2/token'
-            type: oauth2
+                        nudr-dr:subscription-data:authentication-subscription:modify: Access to update the AuthenticationSubscription resource of the SubscriptionData data set
 externalDocs:
     description: 3GPP TS 29.504 V16.11.0; 5G System; Unified Data Repository Services; Stage 3
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.504/

@@ -59,7 +59,8 @@ func (s *GeneratorState) RewriteYaml(spec string) error {
 				res.Value.Content = map[string]*openapi.MediaType{
 					"application/problem+json": {
 						Schema: openapi.Ref[openapi.Schema]{
-							Ref: "TS29571_CommonData.yaml#/components/schemas/ProblemDetails",
+							RefFile:    "TS29571_CommonData.yaml",
+							RefPointer: "/components/schemas/ProblemDetails",
 						},
 					},
 				}
@@ -67,7 +68,7 @@ func (s *GeneratorState) RewriteYaml(spec string) error {
 		}
 	} else {
 		for _, pathItem := range doc.Paths {
-			if pathItem.Ref != "" {
+			if pathItem.HasRef() {
 				continue
 			}
 			for _, op := range pathItem.Value.Operations() {
@@ -77,16 +78,18 @@ func (s *GeneratorState) RewriteYaml(spec string) error {
 				if op.Responses["default"] == nil {
 					op.Responses["default"] = &openapi.Ref[openapi.Response]{Value: &openapi.Response{}}
 				}
-				if op.Responses["default"].Ref != "TS29571_CommonData.yaml#/components/responses/default" {
+				if op.Responses["default"].Ref() != "TS29571_CommonData.yaml#/components/responses/default" {
 					if op.Responses["default"].Value.Content == nil {
 						op.Responses["default"].Value.Content = make(map[string]*openapi.MediaType)
 					}
 					if op.Responses["default"].Value.Content["application/problem+json"] == nil {
 						resNew := deepcopy.Copy(op.Responses["default"]).(*openapi.Ref[openapi.Response])
-						resNew.Ref = ""
+						resNew.RefFile = ""
+						resNew.RefPointer = ""
 						resNew.Value.Content["application/problem+json"] = &openapi.MediaType{
 							Schema: openapi.Ref[openapi.Schema]{
-								Ref: "TS29571_CommonData.yaml#/components/schemas/ProblemDetails",
+								RefFile:    "TS29571_CommonData.yaml",
+								RefPointer: "/components/schemas/ProblemDetails",
 							},
 						}
 						op.Responses["default"] = resNew
@@ -108,7 +111,7 @@ func (s *GeneratorState) RewriteYaml(spec string) error {
 	if spec == "TS29571_CommonData.yaml" {
 		schema := doc.Components.Schemas["ExtSnssai"].Value
 		for i := range schema.AllOf {
-			if strings.HasSuffix(schema.AllOf[i].Ref, "/Snssai") {
+			if strings.HasSuffix(schema.AllOf[i].RefPointer, "/Snssai") {
 				newSchema := *schema.AllOf[i].Value
 				schema.AllOf[i] = openapi.Ref[openapi.Schema]{
 					Value: &newSchema,
@@ -188,7 +191,7 @@ func getSchemaType(schema *openapi.Schema) openapi.SchemaType {
 }
 
 func fixAnyOfEnum(v *openapi.Schema) error {
-	if len(v.AnyOf) == 2 && v.AnyOf[0].Ref == "" && v.AnyOf[1].Ref == "" {
+	if len(v.AnyOf) == 2 && !v.AnyOf[0].HasRef() && !v.AnyOf[1].HasRef() {
 		v0 := v.AnyOf[0].Value
 		v1 := v.AnyOf[1].Value
 		if getSchemaType(v0) == getSchemaType(v1) && v0.Format == v1.Format &&
@@ -228,7 +231,7 @@ func fixAnyOfString(v *openapi.Schema) error {
 		newDescription := []string{"Merged type of"}
 		newSkipOptionalPointer := true
 		for _, vRef := range v.AnyOf {
-			if vRef.Ref == "" {
+			if !vRef.HasRef() {
 				if vRef.Value.Description == "" {
 					newDescription = append(newDescription, "  Anonymous string")
 				} else {
@@ -236,9 +239,9 @@ func fixAnyOfString(v *openapi.Schema) error {
 				}
 			} else {
 				if vRef.Value.Description == "" {
-					newDescription = append(newDescription, "  string in "+vRef.Ref)
+					newDescription = append(newDescription, "  string in "+vRef.Ref())
 				} else {
-					newDescription = append(newDescription, "  "+vRef.Value.Description+" in "+vRef.Ref)
+					newDescription = append(newDescription, "  "+vRef.Value.Description+" in "+vRef.Ref())
 				}
 			}
 			if !vRef.Value.GoTypeSkipOptionalPointer {
@@ -264,7 +267,7 @@ func fixImplicitArray(v *openapi.Schema) error {
 func fixEliminateCheckerUnion(v *openapi.Schema) error {
 	var newOneOf []openapi.Ref[openapi.Schema]
 	for _, ref := range v.OneOf {
-		if !(ref.Ref == "" &&
+		if !(!ref.HasRef() &&
 			getSchemaType(ref.Value) == "" &&
 			ref.Value.Description == "" &&
 			len(ref.Value.Properties) == 0 &&
@@ -278,7 +281,7 @@ func fixEliminateCheckerUnion(v *openapi.Schema) error {
 
 	var newAnyOf []openapi.Ref[openapi.Schema]
 	for _, ref := range v.AnyOf {
-		if !(ref.Ref == "" &&
+		if !(!ref.HasRef() &&
 			getSchemaType(ref.Value) == "" &&
 			ref.Value.Description == "" &&
 			len(ref.Value.Properties) == 0 &&
@@ -292,7 +295,7 @@ func fixEliminateCheckerUnion(v *openapi.Schema) error {
 
 	var newAllOf []openapi.Ref[openapi.Schema]
 	for _, ref := range v.AllOf {
-		if !(ref.Ref == "" &&
+		if !(!ref.HasRef() &&
 			getSchemaType(ref.Value) == "" &&
 			ref.Value.Description == "" &&
 			len(ref.Value.Properties) == 0 &&
@@ -439,12 +442,13 @@ func fixCutSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 
 	newDescription := v.Value.Description
 	if newDescription == "" {
-		newDescription = fmt.Sprintf("Original reference %s", v.Ref)
+		newDescription = fmt.Sprintf("Original reference %s", v.Ref())
 	} else {
-		newDescription = fmt.Sprintf("%s (Original reference %s)", v.Value.Description, v.Ref)
+		newDescription = fmt.Sprintf("%s (Original reference %s)", v.Value.Description, v.Ref())
 	}
 
-	v.Ref = ""
+	v.RefFile = ""
+	v.RefPointer = ""
 	v.Value = &openapi.Schema{
 		Description: newDescription,
 	}
@@ -477,12 +481,12 @@ func fixNullable(v *openapi.Schema) error {
 	nullValueRef := "TS29571_CommonData.yaml#/components/schemas/NullValue"
 
 	if len(v.AnyOf) == 2 {
-		if v.AnyOf[0].Ref == nullValueRef {
+		if v.AnyOf[0].Ref() == nullValueRef {
 			*v = *(deepcopy.Copy(v.AnyOf[1].Value).(*openapi.Schema))
 			// kin-openapi don`t allow this
 			// v.Nullable = true
 			v.Nullable = nil
-		} else if v.AnyOf[1].Ref == nullValueRef {
+		} else if v.AnyOf[1].Ref() == nullValueRef {
 			*v = *(deepcopy.Copy(v.AnyOf[0].Value).(*openapi.Schema))
 			// kin-openapi don`t allow this
 			// v.Nullable = true

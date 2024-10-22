@@ -49,9 +49,9 @@ func (s *resolveRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) erro
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.Callback](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.Callback](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -59,12 +59,12 @@ func (s *resolveRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) erro
 	}
 
 	if v.Value != nil {
-		k1s4 := make([]string, 0, len(*v.Value))
+		k1s5 := make([]string, 0, len(*v.Value))
 		for k1 := range *v.Value {
-			k1s4 = append(k1s4, k1)
+			k1s5 = append(k1s5, k1)
 		}
-		sort.Strings(k1s4)
-		for _, k1 := range k1s4 {
+		sort.Strings(k1s5)
+		for _, k1 := range k1s5 {
 			if (*v.Value)[k1] != nil {
 				if err := s.walkPathItemBaseRef((*v.Value)[k1]); err != nil {
 					return err
@@ -258,9 +258,9 @@ func (s *resolveRefsType) walkExampleRef(v *openapi.Ref[openapi.Example]) error 
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.Example](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.Example](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -315,9 +315,9 @@ func (s *resolveRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.Header](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.Header](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -339,9 +339,9 @@ func (s *resolveRefsType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.Link](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.Link](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -396,9 +396,9 @@ func (s *resolveRefsType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[yaml.Node](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[yaml.Node](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -498,9 +498,9 @@ func (s *resolveRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) er
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.Parameter](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.Parameter](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -585,9 +585,9 @@ func (s *resolveRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBas
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.PathItemBase](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.PathItemBase](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -631,9 +631,9 @@ func (s *resolveRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.RequestBody](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.RequestBody](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -703,9 +703,9 @@ func (s *resolveRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) erro
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.Response](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.Response](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil
@@ -779,9 +779,9 @@ func (s *resolveRefsType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		if vRes, err := ResolveRef[openapi.Schema](s.generatorState, v.Ref); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+	if v.HasRef() {
+		if vRes, err := ResolveRef[openapi.Schema](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 		} else {
 			v.Value = vRes
 			return nil

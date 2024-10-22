@@ -49,17 +49,17 @@ func (s *postRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
 	if v.Value != nil {
-		k1s4 := make([]string, 0, len(*v.Value))
+		k1s5 := make([]string, 0, len(*v.Value))
 		for k1 := range *v.Value {
-			k1s4 = append(k1s4, k1)
+			k1s5 = append(k1s5, k1)
 		}
-		sort.Strings(k1s4)
-		for _, k1 := range k1s4 {
+		sort.Strings(k1s5)
+		for _, k1 := range k1s5 {
 			if (*v.Value)[k1] != nil {
 				if err := s.walkPathItemBaseRef((*v.Value)[k1]); err != nil {
 					return err
@@ -254,7 +254,7 @@ func (s *postRefsType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
@@ -307,7 +307,7 @@ func (s *postRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
@@ -327,7 +327,7 @@ func (s *postRefsType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
@@ -380,7 +380,7 @@ func (s *postRefsType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
@@ -478,7 +478,7 @@ func (s *postRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
@@ -561,7 +561,7 @@ func (s *postRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase])
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
@@ -603,7 +603,7 @@ func (s *postRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) e
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
@@ -671,7 +671,7 @@ func (s *postRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 
@@ -743,7 +743,7 @@ func (s *postRefsType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	s.visited[v] = struct{}{}
 
 	v.CurFile = s.curFile
-	if v.Ref != "" {
+	if v.HasRef() {
 		return nil
 	}
 

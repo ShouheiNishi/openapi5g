@@ -4,7 +4,6 @@ package generator
 
 import (
 	"sort"
-	"strings"
 
 	"gopkg.in/yaml.v3"
 
@@ -51,24 +50,21 @@ func (s *scanRefType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
-			}
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 
 	if v.Value != nil {
-		k1s4 := make([]string, 0, len(*v.Value))
+		k1s5 := make([]string, 0, len(*v.Value))
 		for k1 := range *v.Value {
-			k1s4 = append(k1s4, k1)
+			k1s5 = append(k1s5, k1)
 		}
-		sort.Strings(k1s4)
-		for _, k1 := range k1s4 {
+		sort.Strings(k1s5)
+		for _, k1 := range k1s5 {
 			if (*v.Value)[k1] != nil {
 				if err := s.walkPathItemBaseRef((*v.Value)[k1]); err != nil {
 					return err
@@ -262,14 +258,11 @@ func (s *scanRefType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
-			}
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 
@@ -321,14 +314,11 @@ func (s *scanRefType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
-			}
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 
@@ -347,14 +337,11 @@ func (s *scanRefType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
-			}
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 
@@ -406,14 +393,11 @@ func (s *scanRefType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
-			}
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 
@@ -510,14 +494,11 @@ func (s *scanRefType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error 
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
-			}
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 
@@ -636,14 +617,11 @@ func (s *scanRefType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) er
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
-			}
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 
@@ -710,14 +688,11 @@ func (s *scanRefType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
-			}
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 
@@ -820,18 +795,15 @@ func (s *scanRefType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 && split[0] != "" {
-			if _, exist := s.cutRefs[split[0]]; exist {
-				if err := fixCutSchemaRef(v); err != nil {
-					return err
-				}
-				return nil
-			} else {
-				s.refs[split[0]] = struct{}{}
-				return nil
+	if v.HasRef() {
+		if _, exist := s.cutRefs[v.RefFile]; exist {
+			if err := fixCutSchemaRef(v); err != nil {
+				return err
 			}
+			return nil
+		} else {
+			s.refs[v.RefFile] = struct{}{}
+			return nil
 		}
 	}
 

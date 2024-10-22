@@ -4,7 +4,6 @@ package generator
 
 import (
 	"sort"
-	"strings"
 
 	"gopkg.in/yaml.v3"
 
@@ -51,25 +50,22 @@ func (s *setupRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error 
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
 
 	if v.Value != nil {
-		k1s4 := make([]string, 0, len(*v.Value))
+		k1s5 := make([]string, 0, len(*v.Value))
 		for k1 := range *v.Value {
-			k1s4 = append(k1s4, k1)
+			k1s5 = append(k1s5, k1)
 		}
-		sort.Strings(k1s4)
-		for _, k1 := range k1s4 {
+		sort.Strings(k1s5)
+		for _, k1 := range k1s5 {
 			if (*v.Value)[k1] != nil {
 				if err := s.walkPathItemBaseRef((*v.Value)[k1]); err != nil {
 					return err
@@ -263,14 +259,11 @@ func (s *setupRefsType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
@@ -323,14 +316,11 @@ func (s *setupRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
@@ -350,14 +340,11 @@ func (s *setupRefsType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
@@ -410,14 +397,11 @@ func (s *setupRefsType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
@@ -515,14 +499,11 @@ func (s *setupRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) erro
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
@@ -605,14 +586,11 @@ func (s *setupRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
@@ -654,14 +632,11 @@ func (s *setupRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) 
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
@@ -729,14 +704,11 @@ func (s *setupRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) error 
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}
@@ -808,14 +780,11 @@ func (s *setupRefsType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	}
 	s.visited[v] = struct{}{}
 
-	if v.Ref != "" {
-		split := strings.SplitN(v.Ref, "#", 2)
-		if len(split) == 2 {
-			if split[0] == "" {
-				v.Ref = s.curFile + "#" + split[1]
-			} else {
-				s.deps[split[0]] = struct{}{}
-			}
+	if v.HasRef() {
+		if v.RefFile == "" {
+			v.RefFile = s.curFile
+		} else {
+			s.deps[v.RefFile] = struct{}{}
 		}
 		return nil
 	}

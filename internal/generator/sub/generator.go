@@ -43,14 +43,11 @@ func main() {
 
 		WalkPreHook: func(t *types.Named) string {
 			if t.Obj().Name() == "Ref" {
-				return `if v.Ref != "" {
-					split := strings.SplitN(v.Ref, "#", 2)
-					if len(split) == 2 {
-						if split[0] == "" {
-							v.Ref = s.curFile + "#" + split[1]
-						} else {
-							s.deps[split[0]] = struct{}{}
-						}
+				return `if v.HasRef() {
+					if v.RefFile == "" {
+						v.RefFile = s.curFile
+					} else {
+						s.deps[v.RefFile] = struct{}{}
 					}
 					return nil
 				}
@@ -80,9 +77,9 @@ func main() {
 
 		WalkPreHook: func(t *types.Named) string {
 			if t.Obj().Name() == "Ref" {
-				return `if v.Ref != "" {
-					if vRes, err := ResolveRef[` + typeName(t.TypeArgs().At(0).(*types.Named)) + `](s.generatorState, v.Ref); err != nil {
-						return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
+				return `if v.HasRef() {
+					if vRes, err := ResolveRef[` + typeName(t.TypeArgs().At(0).(*types.Named)) + `](s.generatorState, v.RefFile, v.RefPointer); err != nil {
+						return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
 					} else {
 						v.Value = vRes
 						return nil
@@ -115,7 +112,7 @@ func main() {
 		WalkPreHook: func(t *types.Named) string {
 			if t.Obj().Name() == "Ref" {
 				return `v.CurFile = s.curFile
-				if v.Ref != "" {
+				if v.HasRef() {
 					return nil
 				}
 `
@@ -149,15 +146,12 @@ func main() {
 					if t.TypeArgs().At(0).(*types.Named).Obj().Name() == "Schema" {
 						cutOp = "if err := fixCutSchemaRef(v) ; err != nil{return err}\nreturn nil\n"
 					}
-					return `	if v.Ref != "" {
-						split := strings.SplitN(v.Ref, "#", 2)
-						if len(split) == 2 && split[0] != "" {
-							if _, exist := s.cutRefs[split[0]]; exist {
+					return `	if v.HasRef() {
+						if _, exist := s.cutRefs[v.RefFile]; exist {
 ` + cutOp +
-						`	} else {
-								s.refs[split[0]] = struct{}{}
-								return nil
-							}
+						`} else {
+							s.refs[v.RefFile] = struct{}{}
+							return nil
 						}
 					}
 `

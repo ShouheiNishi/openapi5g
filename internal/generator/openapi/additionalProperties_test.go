@@ -51,7 +51,8 @@ dummy: 1
 			value: testAdditionalProperties{
 				Test: openapi.AdditionalProperties{
 					SchemaRef: &openapi.Ref[openapi.Schema]{
-						Ref: "test#/",
+						RefFile:    "test",
+						RefPointer: "/",
 					},
 				},
 			},

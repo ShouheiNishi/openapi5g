@@ -29,7 +29,8 @@ type baseRef struct {
 }
 
 type Ref[T any] struct {
-	Ref         string
+	RefFile     string
+	RefPointer  string
 	Description string
 	MinItems    int
 	Value       *T
@@ -41,17 +42,28 @@ var _ yaml.Marshaler = Ref[int]{}
 var _ yaml.Unmarshaler = &Ref[int]{}
 
 func (r Ref[T]) IsZero() bool {
-	return r.Ref == "" && r.Value == nil
+	return r.RefFile == "" && r.RefPointer == "" && r.Value == nil
+}
+
+func (r Ref[T]) HasRef() bool {
+	return r.RefPointer != ""
+}
+
+func (r Ref[T]) Ref() string {
+	if r.HasRef() {
+		return r.RefFile + "#" + r.RefPointer
+	}
+	return ""
 }
 
 func (r Ref[T]) MarshalYAML() (interface{}, error) {
-	if r.Ref == "" {
+	if !r.HasRef() {
 		return r.Value, nil
 	}
-	ref := r.Ref
+	ref := r.Ref()
 	if r.CurFile != nil {
-		if strings.HasPrefix(ref, *r.CurFile+"#") {
-			ref = strings.TrimPrefix(ref, *r.CurFile)
+		if r.RefFile == *r.CurFile {
+			ref = "#" + r.RefPointer
 		}
 	}
 	return baseRef{Ref: ref, Description: r.Description, MinItems: r.MinItems}, nil
@@ -60,7 +72,12 @@ func (r Ref[T]) MarshalYAML() (interface{}, error) {
 func (r *Ref[T]) UnmarshalYAML(value *yaml.Node) error {
 	var rNew baseRef
 	if err := value.Decode(&rNew); err == nil && rNew.Ref != "" {
-		r.Ref = rNew.Ref
+		refSplit := strings.Split(rNew.Ref, "#")
+		if len(refSplit) != 2 || refSplit[1] == "" {
+			return fmt.Errorf("invalid ref %s", rNew.Ref)
+		}
+		r.RefFile = refSplit[0]
+		r.RefPointer = refSplit[1]
 		r.Description = rNew.Description
 		r.MinItems = rNew.MinItems
 		return nil
@@ -74,7 +91,7 @@ func (r *Ref[T]) UnmarshalYAML(value *yaml.Node) error {
 }
 
 func (r *Ref[T]) GetFromJsonPointerSub(p jsonPointer) (any, error) {
-	if r.Ref == "" {
+	if !r.HasRef() {
 		if r.Value == nil {
 			return nil, errors.New("cannot traverse empty ref")
 		} else {
@@ -89,7 +106,7 @@ func (r *Ref[T]) GetFromJsonPointerSub(p jsonPointer) (any, error) {
 	switch p[0] {
 	case "$ref":
 		if len(p) == 1 {
-			return r.Ref, nil
+			return r.Ref(), nil
 		} else {
 			return nil, errors.New("cannot traverse type string")
 		}

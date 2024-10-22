@@ -55,7 +55,8 @@ dummy: 1
 			name: "Ref",
 			value: testTypeOuter{
 				Test: openapi.Ref[testTypeInner]{
-					Ref: "test#/",
+					RefFile:    "test",
+					RefPointer: "/",
 				},
 			},
 			yaml: `
@@ -83,7 +84,8 @@ test:
 			name: "refValue",
 			value: testTypeOuter{
 				Test: openapi.Ref[testTypeInner]{
-					Ref: "test#/",
+					RefFile:    "test",
+					RefPointer: "/",
 					Value: &testTypeInner{
 						Foo: "foo",
 					},
@@ -99,7 +101,8 @@ test:
 			name: "refRemove",
 			value: testTypeOuter{
 				Test: openapi.Ref[testTypeInner]{
-					Ref: "test#/",
+					RefFile:    "test",
+					RefPointer: "/",
 					Value: &testTypeInner{
 						Foo: "foo",
 					},
@@ -116,7 +119,8 @@ test:
 			name: "refNotRemove",
 			value: testTypeOuter{
 				Test: openapi.Ref[testTypeInner]{
-					Ref: "test#/",
+					RefFile:    "test",
+					RefPointer: "/",
 					Value: &testTypeInner{
 						Foo: "foo",
 					},

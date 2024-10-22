@@ -20,7 +20,6 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"strings"
 
 	"gopkg.in/yaml.v3"
 
@@ -174,36 +173,34 @@ func (s *GeneratorState) WriteSpec(spec string) error {
 	}
 }
 
-func ResolveRef[T any](s *GeneratorState, ref string) (*T, error) {
-	refSplit := strings.Split(ref, "#")
-	if len(refSplit) != 2 || refSplit[0] == "" || refSplit[1] == "" {
-		return nil, fmt.Errorf("invalid ref %s", ref)
+func ResolveRef[T any](s *GeneratorState, refFile string, refPointer string) (*T, error) {
+	if refFile == "" || refPointer == "" {
+		return nil, fmt.Errorf("invalid ref %s#%s", refFile, refPointer)
 	}
-	spec := refSplit[0]
-	if s.Specs[spec] == nil {
-		if err := s.LoadSpec(spec); err != nil {
-			return nil, fmt.Errorf("LoadSpec(%s): %w", spec, err)
-		} else if s.Specs[spec] == nil {
-			return nil, fmt.Errorf("LoadSpec(%s): not loaded", spec)
+	if s.Specs[refFile] == nil {
+		if err := s.LoadSpec(refFile); err != nil {
+			return nil, fmt.Errorf("LoadSpec(%s): %w", refFile, err)
+		} else if s.Specs[refFile] == nil {
+			return nil, fmt.Errorf("LoadSpec(%s): not loaded", refFile)
 		}
 	}
 
-	if v, err := s.Specs[spec].GetFromJsonPointer(refSplit[1]); err != nil {
-		return nil, fmt.Errorf("GetFromJsonPointer(%s - %s): %w", spec, refSplit[1], err)
+	if v, err := s.Specs[refFile].GetFromJsonPointer(refPointer); err != nil {
+		return nil, fmt.Errorf("GetFromJsonPointer(%s - %s): %w", refFile, refPointer, err)
 	} else if r, ok := v.(*T); ok {
 		return r, nil
 	} else if r, ok := v.(*openapi.Ref[T]); ok {
 		if r == nil {
 			return nil, fmt.Errorf("nil Ref pointer")
-		} else if r.Ref == "" {
+		} else if !r.HasRef() {
 			if r.Value == nil {
 				return nil, fmt.Errorf("nil Value pointer")
 			} else {
 				return r.Value, nil
 			}
 		} else {
-			if r2, err := ResolveRef[T](s, r.Ref); err != nil {
-				return nil, fmt.Errorf("ResolvedRef(%s): %w", r.Ref, err)
+			if r2, err := ResolveRef[T](s, r.RefFile, r.RefPointer); err != nil {
+				return nil, fmt.Errorf("ResolvedRef(%s): %w", r.Ref(), err)
 			} else {
 				return r2, nil
 			}

@@ -39,6 +39,9 @@ type NSSelectionGetParams struct {
 	// SliceInfoRequestForUeCu Requested network slice information during UE confuguration update procedure
 	SliceInfoRequestForUeCu *externalRef0.SliceInfoForUEConfigurationUpdate `form:"slice-info-request-for-ue-cu,omitempty" json:"slice-info-request-for-ue-cu,omitempty"`
 
+	// SliceInfoRequestForPdnConnection Requested network slice information during PDN Connection establishment procedure
+	SliceInfoRequestForPdnConnection *[]externalRef0.Snssai `form:"slice-info-request-for-pdn-connection,omitempty" json:"slice-info-request-for-pdn-connection,omitempty"`
+
 	// HomePlmnId PLMN ID of the HPLMN
 	HomePlmnId *externalRef0.PlmnId `form:"home-plmn-id,omitempty" json:"home-plmn-id,omitempty"`
 
@@ -210,6 +213,16 @@ func NewNSSelectionGetRequest(server string, params *NSSelectionGetParams) (*htt
 				return nil, err
 			} else {
 				queryValues.Add("slice-info-request-for-ue-cu", string(queryParamBuf))
+			}
+
+		}
+
+		if params.SliceInfoRequestForPdnConnection != nil {
+
+			if queryParamBuf, err := json.Marshal(*params.SliceInfoRequestForPdnConnection); err != nil {
+				return nil, err
+			} else {
+				queryValues.Add("slice-info-request-for-pdn-connection", string(queryParamBuf))
 			}
 
 		}
@@ -554,6 +567,21 @@ func (siw *ServerInterfaceWrapper) NSSelectionGet(c *gin.Context) {
 		}
 
 		params.SliceInfoRequestForUeCu = &value
+
+	}
+
+	// ------------- Optional query parameter "slice-info-request-for-pdn-connection" -------------
+
+	if paramValue := c.Query("slice-info-request-for-pdn-connection"); paramValue != "" {
+
+		var value []externalRef0.Snssai
+		err = json.Unmarshal([]byte(paramValue), &value)
+		if err != nil {
+			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'slice-info-request-for-pdn-connection' as JSON: %w", err), http.StatusBadRequest)
+			return
+		}
+
+		params.SliceInfoRequestForPdnConnection = &value
 
 	}
 

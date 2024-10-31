@@ -10947,7 +10947,7 @@ func (r RemovesubscriptionDataSubscriptionsResponse) StatusCode() int {
 type QuerySubscriptionDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef0.SubscriptionDataSubscriptions
+	JSON200                       *externalRef0.SubscriptionDataSubscriptions
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -15216,7 +15216,7 @@ func ParseQuerySubscriptionDataSubscriptionsResponse(rsp *http.Response) (*Query
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef0.SubscriptionDataSubscriptions
+		var dest externalRef0.SubscriptionDataSubscriptions
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24371,13 +24371,13 @@ type QuerySubscriptionDataSubscriptionsResponseObject interface {
 	VisitQuerySubscriptionDataSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type QuerySubscriptionDataSubscriptions200JSONResponse []externalRef0.SubscriptionDataSubscriptions
+type QuerySubscriptionDataSubscriptions200JSONResponse externalRef0.SubscriptionDataSubscriptions
 
 func (response QuerySubscriptionDataSubscriptions200JSONResponse) VisitQuerySubscriptionDataSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(externalRef0.SubscriptionDataSubscriptions(response))
 }
 
 type QuerySubscriptionDataSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {

@@ -33,6 +33,7 @@ type GeneratorState struct {
 	DepsBase      map[string]map[string]struct{}
 	DepsForImport map[string][]string
 	DepsForLoader map[string][]string
+	schemaInfo    map[*openapi.Schema]*schemaInfo
 	CurSpec       string
 }
 

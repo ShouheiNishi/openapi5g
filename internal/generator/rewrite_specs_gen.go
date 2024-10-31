@@ -13,16 +13,18 @@ import (
 type walkRewriteSpecsType struct {
 	visited map[interface{}]struct{}
 	doc     *openapi.Document
+	state   *GeneratorState
 	refs    map[string]struct{}
 	cutRefs map[string]struct{}
 }
 
-func walkRewriteSpecs(d *openapi.Document, refs map[string]struct{}, cutRefs map[string]struct{}) error {
+func walkRewriteSpecs(d *openapi.Document, state *GeneratorState, refs map[string]struct{}, cutRefs map[string]struct{}) error {
 	s := &walkRewriteSpecsType{
 		visited: make(map[interface{}]struct{}),
 		doc:     d,
 	}
 
+	s.state = state
 	s.refs = refs
 	s.cutRefs = cutRefs
 
@@ -766,7 +768,7 @@ func (s *walkRewriteSpecsType) walkSchema(v *openapi.Schema) error {
 		return err
 	}
 
-	if err := fixAnyOfString(v); err != nil {
+	if err := s.state.fixAnyOfString(v); err != nil {
 		return err
 	}
 

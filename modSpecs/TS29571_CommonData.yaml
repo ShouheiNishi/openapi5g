@@ -185,7 +185,7 @@ components:
                 mtcProviderInformation:
                     $ref: '#/components/schemas/MtcProviderInformation'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
             type: object
         5GVnGroupData:
             additionalProperties: true
@@ -533,82 +533,6 @@ components:
                 - resourceUri
                 - cause
             type: object
-        AUSF-AuthType:
-            enum:
-                - 5G_AKA
-                - EAP_AKA_PRIME
-                - EAP_TLS
-            type: string
-        AUSF-RgAuthCtx:
-            additionalProperties: true
-            properties:
-                authInd:
-                    default: false
-                    type: boolean
-                authResult:
-                    $ref: '#/components/schemas/AuthResult'
-                supi:
-                    $ref: '#/components/schemas/Supi'
-            required:
-                - authResult
-            type: object
-        AUSF-SecuredPacket:
-            format: base64
-            type: string
-        AUSF-SorInfo:
-            additionalProperties: true
-            properties:
-                ackInd:
-                    $ref: '#/components/schemas/AckInd'
-                steeringContainer:
-                    $ref: '#/components/schemas/AUSF-SteeringContainer'
-                supportedFeatures:
-                    $ref: '#/components/schemas/SupportedFeatures'
-            required:
-                - ackInd
-            type: object
-        AUSF-SteeringContainer:
-            oneOf:
-                - items:
-                    $ref: '#/components/schemas/SteeringInfo'
-                  minItems: 1
-                  type: array
-                  x-go-type-skip-optional-pointer: true
-                - $ref: '#/components/schemas/AUSF-SecuredPacket'
-        AUSF-UpuData:
-            additionalProperties: true
-            properties:
-                defaultConfNssai:
-                    items:
-                        $ref: '#/components/schemas/Snssai'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                routingId:
-                    description: Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-                    type: string
-                secPacket:
-                    $ref: '#/components/schemas/AUSF-SecuredPacket'
-            type: object
-        AUSF-UpuInfo:
-            additionalProperties: true
-            properties:
-                supportedFeatures:
-                    $ref: '#/components/schemas/SupportedFeatures'
-                upuAckInd:
-                    $ref: '#/components/schemas/UpuAckInd'
-                upuDataList:
-                    items:
-                        $ref: '#/components/schemas/AUSF-UpuData'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                upuHeader:
-                    $ref: '#/components/schemas/UpuHeader'
-            required:
-                - upuDataList
-                - upuAckInd
-            type: object
         AccNetChId:
             additionalProperties: true
             properties:
@@ -718,7 +642,7 @@ components:
                     default: false
                     type: boolean
                 ecRestrictionDataWb:
-                    $ref: '#/components/schemas/UDM-EcRestrictionDataWb'
+                    $ref: '#/components/schemas/udm-EcRestrictionDataWb'
                 edrxParametersList:
                     items:
                         $ref: '#/components/schemas/EdrxParameters'
@@ -1578,7 +1502,7 @@ components:
                 reachabilityFilter:
                     $ref: '#/components/schemas/ReachabilityFilter'
                 refId:
-                    $ref: '#/components/schemas/UDM-EE-ReferenceId'
+                    $ref: '#/components/schemas/udm-EE-ReferenceId'
                 reportUeReachable:
                     default: false
                     type: boolean
@@ -1687,7 +1611,7 @@ components:
                 reachability:
                     $ref: '#/components/schemas/UeReachability'
                 refId:
-                    $ref: '#/components/schemas/UDM-EE-ReferenceId'
+                    $ref: '#/components/schemas/udm-EE-ReferenceId'
                 registrationNumber:
                     type: integer
                 rmInfoList:
@@ -1815,7 +1739,7 @@ components:
                     $ref: '#/components/schemas/Uri'
                 refIdList:
                     items:
-                        $ref: '#/components/schemas/UDM-EE-ReferenceId'
+                        $ref: '#/components/schemas/udm-EE-ReferenceId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -3036,10 +2960,6 @@ components:
         BDTPolicyControl-AspId:
             description: Contains an identity of an application service provider.
             type: string
-        BSF-ExtProblemDetails:
-            allOf:
-                - $ref: '#/components/schemas/ProblemDetails'
-                - $ref: '#/components/schemas/BindingResp'
         BackupAmfInfo:
             additionalProperties: true
             properties:
@@ -3089,7 +3009,7 @@ components:
                 numOfUes:
                     $ref: '#/components/schemas/Uinteger'
                 nwAreaInfo:
-                    $ref: '#/components/schemas/PCF-NetworkAreaInfo'
+                    $ref: '#/components/schemas/pcf-NetworkAreaInfo'
                 snssai:
                     $ref: '#/components/schemas/Snssai'
                 suppFeat:
@@ -3119,7 +3039,7 @@ components:
             description: Represents an Individual BDT policy resource.
             properties:
                 bdtPolData:
-                    $ref: '#/components/schemas/PCF-BdtPolicyData'
+                    $ref: '#/components/schemas/pcf-BdtPolicyData'
                 bdtReqData:
                     $ref: '#/components/schemas/BdtReqData'
             type: object
@@ -3181,7 +3101,7 @@ components:
                     description: Indicates a number of UEs.
                     type: integer
                 nwAreaInfo:
-                    $ref: '#/components/schemas/PCF-NetworkAreaInfo'
+                    $ref: '#/components/schemas/pcf-NetworkAreaInfo'
                 snssai:
                     $ref: '#/components/schemas/Snssai'
                 suppFeat:
@@ -4520,7 +4440,7 @@ components:
                 arp:
                     $ref: '#/components/schemas/Arp'
                 epsBearerId:
-                    $ref: '#/components/schemas/SMF-EpsBearerId'
+                    $ref: '#/components/schemas/smf-EpsBearerId'
             required:
                 - epsBearerId
                 - arp
@@ -4539,7 +4459,7 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
             required:
                 - afInstanceId
                 - referenceId
@@ -4717,7 +4637,7 @@ components:
                 bearerLevelQoS:
                     $ref: '#/components/schemas/Bytes'
                 ebi:
-                    $ref: '#/components/schemas/SMF-EpsBearerId'
+                    $ref: '#/components/schemas/smf-EpsBearerId'
                 pgwS8uFteid:
                     $ref: '#/components/schemas/Bytes'
             required:
@@ -4785,7 +4705,7 @@ components:
             additionalProperties: true
             properties:
                 linkedBearerId:
-                    $ref: '#/components/schemas/SMF-EpsBearerId'
+                    $ref: '#/components/schemas/smf-EpsBearerId'
                 pgwNodeName:
                     $ref: '#/components/schemas/Bytes'
                 pgwS8cFteid:
@@ -5276,7 +5196,7 @@ components:
                 expectedUmts:
                     description: Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
                     items:
-                        $ref: '#/components/schemas/UDM-LocationArea'
+                        $ref: '#/components/schemas/udm-LocationArea'
                     minItems: 1
                     nullable: true
                     type: array
@@ -5285,7 +5205,7 @@ components:
                 periodicTime:
                     $ref: '#/components/schemas/DurationSecRm'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
                 scheduledCommunicationTime:
                     $ref: '#/components/schemas/ScheduledCommunicationTimeRm'
                 scheduledCommunicationType:
@@ -5310,7 +5230,7 @@ components:
                 expectedUmts:
                     description: Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
                     items:
-                        $ref: '#/components/schemas/UDM-LocationArea'
+                        $ref: '#/components/schemas/udm-LocationArea'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -5810,7 +5730,7 @@ components:
                     x-go-type-skip-optional-pointer: true
                 epsBearerId:
                     items:
-                        $ref: '#/components/schemas/SMF-EpsBearerId'
+                        $ref: '#/components/schemas/smf-EpsBearerId'
                     minItems: 0
                     type: array
                 epsInterworkingInd:
@@ -5883,7 +5803,7 @@ components:
                     $ref: '#/components/schemas/RequestIndication'
                 revokeEbiList:
                     items:
-                        $ref: '#/components/schemas/SMF-EpsBearerId'
+                        $ref: '#/components/schemas/smf-EpsBearerId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -6418,7 +6338,7 @@ components:
                     minimum: 0
                     type: integer
                 transport:
-                    $ref: '#/components/schemas/NRF-TransportProtocol'
+                    $ref: '#/components/schemas/nrf-TransportProtocol'
             type: object
         IpFlowInfo:
             additionalProperties: true
@@ -6670,7 +6590,7 @@ components:
                 mtcProviderInformation:
                     $ref: '#/components/schemas/MtcProviderInformation'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
             type: object
         LcsPrivacyData:
             additionalProperties: true
@@ -6841,7 +6761,7 @@ components:
                     minItems: 0
                     type: array
                 nwAreaInfo:
-                    $ref: '#/components/schemas/PCF-NetworkAreaInfo'
+                    $ref: '#/components/schemas/pcf-NetworkAreaInfo'
             type: object
         LocationAreaId:
             additionalProperties: true
@@ -7756,7 +7676,7 @@ components:
                 reachabilityForSmsReport:
                     $ref: '#/components/schemas/ReachabilityForSmsReport'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-EE-ReferenceId'
+                    $ref: '#/components/schemas/udm-EE-ReferenceId'
                 report:
                     $ref: '#/components/schemas/Report'
                 timeStamp:
@@ -8569,7 +8489,7 @@ components:
                     writeOnly: true
                 nfServiceList:
                     additionalProperties:
-                        $ref: '#/components/schemas/NRF-NFService'
+                        $ref: '#/components/schemas/nrf-NFService'
                     minProperties: 1
                     type: object
                 nfServicePersistence:
@@ -8578,7 +8498,7 @@ components:
                 nfServices:
                     deprecated: true
                     items:
-                        $ref: '#/components/schemas/NRF-NFService'
+                        $ref: '#/components/schemas/nrf-NFService'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -8888,257 +8808,6 @@ components:
                 - IMS_AS
                 - CEF
             type: string
-        NRF-NFService:
-            additionalProperties: true
-            description: Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance
-            properties:
-                allowedNfDomains:
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                allowedNfTypes:
-                    items:
-                        $ref: '#/components/schemas/NFType'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                allowedNssais:
-                    items:
-                        $ref: '#/components/schemas/ExtSnssai'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                allowedOperationsPerNfInstance:
-                    additionalProperties:
-                        items:
-                            type: string
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    minProperties: 1
-                    type: object
-                allowedOperationsPerNfType:
-                    additionalProperties:
-                        items:
-                            type: string
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    minProperties: 1
-                    type: object
-                allowedPlmns:
-                    items:
-                        $ref: '#/components/schemas/PlmnId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                allowedSnpns:
-                    items:
-                        $ref: '#/components/schemas/PlmnIdNid'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                apiPrefix:
-                    type: string
-                capacity:
-                    maximum: 65535
-                    minimum: 0
-                    type: integer
-                defaultNotificationSubscriptions:
-                    items:
-                        $ref: '#/components/schemas/DefaultNotificationSubscription'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                fqdn:
-                    $ref: '#/components/schemas/Fqdn'
-                interPlmnFqdn:
-                    $ref: '#/components/schemas/Fqdn'
-                ipEndPoints:
-                    items:
-                        $ref: '#/components/schemas/IpEndPoint'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                load:
-                    maximum: 100
-                    minimum: 0
-                    type: integer
-                loadTimeStamp:
-                    $ref: '#/components/schemas/DateTime'
-                nfServiceSetIdList:
-                    items:
-                        $ref: '#/components/schemas/NfServiceSetId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                nfServiceStatus:
-                    $ref: '#/components/schemas/NFServiceStatus'
-                oauth2Required:
-                    type: boolean
-                perPlmnSnssaiList:
-                    items:
-                        $ref: '#/components/schemas/PlmnSnssai'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                priority:
-                    maximum: 65535
-                    minimum: 0
-                    type: integer
-                recoveryTime:
-                    $ref: '#/components/schemas/DateTime'
-                sNssais:
-                    items:
-                        $ref: '#/components/schemas/ExtSnssai'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                scheme:
-                    $ref: '#/components/schemas/UriScheme'
-                serviceInstanceId:
-                    type: string
-                serviceName:
-                    $ref: '#/components/schemas/ServiceName'
-                supportedFeatures:
-                    $ref: '#/components/schemas/SupportedFeatures'
-                supportedVendorSpecificFeatures:
-                    additionalProperties:
-                        items:
-                            $ref: '#/components/schemas/VendorSpecificFeature'
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    minProperties: 1
-                    type: object
-                vendorId:
-                    $ref: '#/components/schemas/VendorId'
-                versions:
-                    items:
-                        $ref: '#/components/schemas/NFServiceVersion'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - serviceInstanceId
-                - serviceName
-                - versions
-                - scheme
-                - nfServiceStatus
-            type: object
-        NRF-PfdData:
-            additionalProperties: true
-            description: List of Application IDs and/or AF IDs managed by a given NEF Instance
-            properties:
-                afIds:
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                appIds:
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        NRF-SubscriptionData:
-            additionalProperties: true
-            description: Information of a subscription to notifications to NRF events, included in subscription requests and responses
-            properties:
-                nfStatusNotificationUri:
-                    type: string
-                nid:
-                    $ref: '#/components/schemas/Nid'
-                notifCondition:
-                    $ref: '#/components/schemas/NotifCondition'
-                nrfSupportedFeatures:
-                    allOf:
-                        - $ref: '#/components/schemas/SupportedFeatures'
-                    readOnly: true
-                plmnId:
-                    $ref: '#/components/schemas/PlmnId'
-                reqNfFqdn:
-                    $ref: '#/components/schemas/Fqdn'
-                reqNfInstanceId:
-                    $ref: '#/components/schemas/NfInstanceId'
-                reqNfType:
-                    $ref: '#/components/schemas/NFType'
-                reqNotifEvents:
-                    items:
-                        $ref: '#/components/schemas/NotificationEventType'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                reqPerPlmnSnssais:
-                    items:
-                        $ref: '#/components/schemas/PlmnSnssai'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                reqPlmnList:
-                    items:
-                        $ref: '#/components/schemas/PlmnId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                reqSnpnList:
-                    items:
-                        $ref: '#/components/schemas/PlmnIdNid'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                reqSnssais:
-                    items:
-                        $ref: '#/components/schemas/Snssai'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                requesterFeatures:
-                    allOf:
-                        - $ref: '#/components/schemas/SupportedFeatures'
-                    writeOnly: true
-                servingScope:
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                subscrCond:
-                    oneOf:
-                        - $ref: '#/components/schemas/NfInstanceIdCond'
-                        - $ref: '#/components/schemas/NfInstanceIdListCond'
-                        - $ref: '#/components/schemas/NfTypeCond'
-                        - $ref: '#/components/schemas/ServiceNameCond'
-                        - $ref: '#/components/schemas/AmfCond'
-                        - $ref: '#/components/schemas/GuamiListCond'
-                        - $ref: '#/components/schemas/NetworkSliceCond'
-                        - $ref: '#/components/schemas/NfGroupCond'
-                        - $ref: '#/components/schemas/NfSetCond'
-                        - $ref: '#/components/schemas/NfServiceSetCond'
-                        - $ref: '#/components/schemas/UpfCond'
-                        - $ref: '#/components/schemas/ScpDomainCond'
-                        - $ref: '#/components/schemas/NwdafCond'
-                        - $ref: '#/components/schemas/NefCond'
-                subscriptionId:
-                    pattern: ^([0-9]{5,6}-)?[^-]+$
-                    readOnly: true
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                validityTime:
-                    $ref: '#/components/schemas/DateTime'
-            required:
-                - nfStatusNotificationUri
-                - subscriptionId
-            type: object
-        NRF-TransportProtocol:
-            description: Types of transport protocol used in a given IP endpoint of an NF Service Instance
-            enum:
-                - TCP
-            type: string
         NasCount:
             $ref: '#/components/schemas/Uinteger'
         NasSecurityMode:
@@ -9198,7 +8867,7 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
                 pfdData:
-                    $ref: '#/components/schemas/NRF-PfdData'
+                    $ref: '#/components/schemas/nrf-PfdData'
                 servedFqdnList:
                     items:
                         type: string
@@ -9238,7 +8907,7 @@ components:
                 nefId:
                     $ref: '#/components/schemas/NefId'
                 pfdData:
-                    $ref: '#/components/schemas/NRF-PfdData'
+                    $ref: '#/components/schemas/nrf-PfdData'
                 servedFqdnList:
                     items:
                         type: string
@@ -9615,7 +9284,7 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
                 nwAreaInfo:
-                    $ref: '#/components/schemas/PCF-NetworkAreaInfo'
+                    $ref: '#/components/schemas/pcf-NetworkAreaInfo'
                 timeWindow:
                     $ref: '#/components/schemas/TimeWindow'
             required:
@@ -9658,7 +9327,7 @@ components:
                             nfServices:
                                 items:
                                     allOf:
-                                        - $ref: '#/components/schemas/NRF-NFService'
+                                        - $ref: '#/components/schemas/nrf-NFService'
                                 type: array
                 profileChanges:
                     items:
@@ -10461,126 +10130,6 @@ components:
             required:
                 - finUnitAct
             type: object
-        PCF-AtsssCapability:
-            enum:
-                - MPTCP_ATSSS_LL_WITH_ASMODE_UL
-                - MPTCP_ATSSS_LL_WITH_EXSDMODE_DL_ASMODE_UL
-                - MPTCP_ATSSS_LL_WITH_ASMODE_DLUL
-                - ATSSS_LL
-                - MPTCP_ATSSS_LL
-            type: string
-        PCF-BdtPolicyData:
-            additionalProperties: true
-            description: Describes the authorization data of an Individual BDT policy resource.
-            properties:
-                bdtRefId:
-                    $ref: '#/components/schemas/BdtReferenceId'
-                selTransPolicyId:
-                    description: Contains an identity of the selected transfer policy.
-                    type: integer
-                suppFeat:
-                    $ref: '#/components/schemas/SupportedFeatures'
-                transfPolicies:
-                    description: Contains transfer policies.
-                    items:
-                        $ref: '#/components/schemas/TransferPolicy'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - bdtRefId
-                - transfPolicies
-            type: object
-        PCF-BdtPolicyDataPatch:
-            additionalProperties: true
-            description: A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure.
-            properties:
-                selTransPolicyId:
-                    description: Contains an identity (i.e. transPolicyId value) of the selected transfer policy. If the BdtNotification_5G feature is supported value 0 indicates that no transfer policy is selected.
-                    type: integer
-            required:
-                - selTransPolicyId
-            type: object
-        PCF-FailureCode:
-            description: |
-                Possible values are
-                  - UNK_RULE_ID: Indicates that the pre-provisioned PCC rule could not be successfully activated because the PCC rule identifier is unknown to the SMF.
-                  - RA_GR_ERR: Indicate that the PCC rule could not be successfully installed or enforced because the Rating Group specified within the Charging Data policy decision which the PCC rule refers to is unknown or, invalid.
-                  - SER_ID_ERR: Indicate that the PCC rule could not be successfully installed or enforced because the Service Identifier specified within the Charging Data policy decision which the PCC rule refers to is invalid, unknown, or not applicable to the service being charged.
-                  - NF_MAL: Indicate that the PCC rule could not be successfully installed (for those provisioned from the PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to SMF/UPF malfunction.
-                  - RES_LIM: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to a limitation of resources at the SMF/UPF.
-                  - MAX_NR_QoS_FLOW: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to the fact that the maximum number of QoS flows has been reached for the PDU session.
-                  - MISS_FLOW_INFO: Indicate that the PCC rule could not be successfully installed or enforced because neither the "flowInfos" attribute nor the "appId" attribute is specified within the PccRule data structure by the PCF during the first install request of the PCC rule.
-                  - RES_ALLO_FAIL: Indicate that the PCC rule could not be successfully installed or maintained since the QoS flow establishment/modification failed, or the QoS flow was released.
-                  - UNSUCC_QOS_VAL: indicate that the QoS validation has failed or when Guaranteed Bandwidth > Max-Requested-Bandwidth.
-                  - INCOR_FLOW_INFO: Indicate that the PCC rule could not be successfully installed or modified at the SMF because the provided flow information is not supported by the network (e.g. the provided IP address(es) or Ipv6 prefix(es) do not correspond to an IP version applicable for the PDU session).
-                  - PS_TO_CS_HAN: Indicate that the PCC rule could not be maintained because of PS to CS handover.
-                  - APP_ID_ERR: Indicate that the rule could not be successfully installed or enforced because the Application Identifier is invalid, unknown, or not applicable to the application required for detection.
-                  - NO_QOS_FLOW_BOUND: Indicate that there is no QoS flow which the SMF can bind the PCC rule(s) to.
-                  - FILTER_RES: Indicate that the Flow Information within the "flowInfos" attribute cannot be handled by the SMF because any of the restrictions defined in subclause 5.4.2 of 3GPP TS 29.212 was not met.
-                  - MISS_REDI_SER_ADDR: Indicate that the PCC rule could not be successfully installed or enforced at the SMF because there is no valid Redirect Server Address within the Traffic Control Data policy decision which the PCC rule refers to provided by the PCF and no preconfigured redirection address for this PCC rule at the SMF.
-                  - CM_END_USER_SER_DENIED: Indicate that the charging system denied the service request due to service restrictions (e.g. terminate rating group) or limitations related to the end-user, for example the end-user's account could not cover the requested service.
-                  - CM_CREDIT_CON_NOT_APP: Indicate that the charging system determined that the service can be granted to the end user but no further credit control is needed for the service (e.g. service is free of charge or is treated for offline charging).
-                  - CM_AUTH_REJ: Indicate that the charging system denied the service request in order to terminate the service for which credit is requested.
-                  - CM_USER_UNK: Indicate that the specified end user could not be found in the charging system.
-                  - CM_RAT_FAILED: Indicate that the charging system cannot rate the service request due to insufficient rating input, incorrect AVP combination or due to an attribute or an attribute value that is not recognized or supported in the rating.
-                  - UE_STA_SUSP: Indicates that the UE is in suspend state.
-            enum:
-                - UNK_RULE_ID
-                - RA_GR_ERR
-                - SER_ID_ERR
-                - NF_MAL
-                - RES_LIM
-                - MAX_NR_QoS_FLOW
-                - MISS_FLOW_INFO
-                - RES_ALLO_FAIL
-                - UNSUCC_QOS_VAL
-                - INCOR_FLOW_INFO
-                - PS_TO_CS_HAN
-                - APP_ID_ERR
-                - NO_QOS_FLOW_BOUND
-                - FILTER_RES
-                - MISS_REDI_SER_ADDR
-                - CM_END_USER_SER_DENIED
-                - CM_CREDIT_CON_NOT_APP
-                - CM_AUTH_REJ
-                - CM_USER_UNK
-                - CM_RAT_FAILED
-                - UE_STA_SUSP
-            type: string
-        PCF-NetworkAreaInfo:
-            additionalProperties: true
-            description: Describes a network area information in which the NF service consumer requests the number of UEs.
-            properties:
-                ecgis:
-                    description: Contains a list of E-UTRA cell identities.
-                    items:
-                        $ref: '#/components/schemas/Ecgi'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                gRanNodeIds:
-                    description: Contains a list of NG RAN nodes.
-                    items:
-                        $ref: '#/components/schemas/GlobalRanNodeId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ncgis:
-                    description: Contains a list of NR cell identities.
-                    items:
-                        $ref: '#/components/schemas/Ncgi'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                tais:
-                    description: Contains a list of tracking area identities.
-                    items:
-                        $ref: '#/components/schemas/Tai'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
         PWSErrorData:
             additionalProperties: true
             properties:
@@ -10699,7 +10248,7 @@ components:
             description: Describes the updates in authorization data of an Individual BDT Policy created by the PCF.
             properties:
                 bdtPolData:
-                    $ref: '#/components/schemas/PCF-BdtPolicyDataPatch'
+                    $ref: '#/components/schemas/pcf-BdtPolicyDataPatch'
                 bdtReqData:
                     $ref: '#/components/schemas/BdtReqDataPatch'
             type: object
@@ -11376,7 +10925,7 @@ components:
                     $ref: '#/components/schemas/EpsBearerContextStatus'
                 epsBearerId:
                     items:
-                        $ref: '#/components/schemas/SMF-EpsBearerId'
+                        $ref: '#/components/schemas/smf-EpsBearerId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -11521,7 +11070,7 @@ components:
                 cnTunnelInfo:
                     $ref: '#/components/schemas/TunnelInfo'
                 dnAaaAddress:
-                    $ref: '#/components/schemas/SMF-IpAddress'
+                    $ref: '#/components/schemas/smf-IpAddress'
                 dnaiList:
                     items:
                         $ref: '#/components/schemas/Dnai'
@@ -12025,7 +11574,7 @@ components:
                     default: false
                     type: boolean
                 ecRestrictionDataWb:
-                    $ref: '#/components/schemas/UDM-EcRestrictionDataWb'
+                    $ref: '#/components/schemas/udm-EcRestrictionDataWb'
                 plmnId:
                     $ref: '#/components/schemas/PlmnId'
             required:
@@ -12358,7 +11907,7 @@ components:
                 mtcProviderInformation:
                     $ref: '#/components/schemas/MtcProviderInformation'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
                 validityTime:
                     $ref: '#/components/schemas/DateTime'
             required:
@@ -12398,7 +11947,7 @@ components:
                 mtcProviderInformation:
                     $ref: '#/components/schemas/MtcProviderInformation'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
                 validityTime:
                     $ref: '#/components/schemas/DateTime'
             required:
@@ -12416,7 +11965,7 @@ components:
                 mtcProviderInformation:
                     $ref: '#/components/schemas/MtcProviderInformation'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
                 validityTime:
                     $ref: '#/components/schemas/DateTime'
             required:
@@ -12435,7 +11984,7 @@ components:
                 mtcProviderInformation:
                     $ref: '#/components/schemas/MtcProviderInformation'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
                 validityTime:
                     $ref: '#/components/schemas/DateTime'
             required:
@@ -12468,7 +12017,7 @@ components:
                 mtcProviderInformation:
                     $ref: '#/components/schemas/MtcProviderInformation'
                 referenceId:
-                    $ref: '#/components/schemas/UDM-PP-ReferenceId'
+                    $ref: '#/components/schemas/udm-PP-ReferenceId'
                 subsRegTimer:
                     $ref: '#/components/schemas/DurationSec'
                 validityTime:
@@ -12962,7 +12511,7 @@ components:
                 associatedAnType:
                     $ref: '#/components/schemas/QosFlowAccessType'
                 ebi:
-                    $ref: '#/components/schemas/SMF-EpsBearerId'
+                    $ref: '#/components/schemas/smf-EpsBearerId'
                 qfi:
                     $ref: '#/components/schemas/Qfi'
                 qosFlowDescription:
@@ -13053,7 +12602,7 @@ components:
                 defaultQosRuleInd:
                     type: boolean
                 ebi:
-                    $ref: '#/components/schemas/SMF-EpsBearerId'
+                    $ref: '#/components/schemas/smf-EpsBearerId'
                 qfi:
                     $ref: '#/components/schemas/Qfi'
                 qosFlowDescription:
@@ -14077,7 +13626,7 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
                 failureCode:
-                    $ref: '#/components/schemas/PCF-FailureCode'
+                    $ref: '#/components/schemas/pcf-FailureCode'
                 finUnitAct:
                     description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
                     type: string
@@ -14110,20 +13659,6 @@ components:
             type: string
         S1UeNetworkCapability:
             $ref: '#/components/schemas/Bytes'
-        SMF-EpsBearerId:
-            maximum: 15
-            minimum: 0
-            type: integer
-        SMF-IpAddress:
-            additionalProperties: true
-            properties:
-                ipv4Addr:
-                    $ref: '#/components/schemas/Ipv4Addr'
-                ipv6Addr:
-                    $ref: '#/components/schemas/Ipv6Addr'
-                ipv6Prefix:
-                    $ref: '#/components/schemas/Ipv6Prefix'
-            type: object
         SMPolicy-FlowDescription:
             description: Defines a packet filter for an IP flow.
             type: string
@@ -15024,7 +14559,7 @@ components:
                 dlsetSupportInd:
                     type: boolean
                 dnAaaAddress:
-                    $ref: '#/components/schemas/SMF-IpAddress'
+                    $ref: '#/components/schemas/smf-IpAddress'
                 dnn:
                     $ref: '#/components/schemas/Dnn'
                 enablePauseCharging:
@@ -15418,7 +14953,7 @@ components:
             properties:
                 notToTransferEbiList:
                     items:
-                        $ref: '#/components/schemas/SMF-EpsBearerId'
+                        $ref: '#/components/schemas/smf-EpsBearerId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -15594,7 +15129,7 @@ components:
                     type: boolean
                 revokeEbiList:
                     items:
-                        $ref: '#/components/schemas/SMF-EpsBearerId'
+                        $ref: '#/components/schemas/smf-EpsBearerId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -15705,7 +15240,7 @@ components:
                     x-go-type-skip-optional-pointer: true
                 releaseEbiList:
                     items:
-                        $ref: '#/components/schemas/SMF-EpsBearerId'
+                        $ref: '#/components/schemas/smf-EpsBearerId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -15738,7 +15273,7 @@ components:
                 addAccessInfo:
                     $ref: '#/components/schemas/AdditionalAccessInfo'
                 atsssCapab:
-                    $ref: '#/components/schemas/PCF-AtsssCapability'
+                    $ref: '#/components/schemas/pcf-AtsssCapability'
                 authProfIndex:
                     description: Indicates the DN-AAA authorization profile index
                     type: string
@@ -16198,7 +15733,7 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
                 atsssCapab:
-                    $ref: '#/components/schemas/PCF-AtsssCapability'
+                    $ref: '#/components/schemas/pcf-AtsssCapability'
                 authProfIndex:
                     description: Indicates the DN-AAA authorization profile index
                     type: string
@@ -17706,7 +17241,7 @@ components:
                     $ref: '#/components/schemas/GroupId'
                     description: Identifies a group of users.
                 nwAreaInfo:
-                    $ref: '#/components/schemas/PCF-NetworkAreaInfo'
+                    $ref: '#/components/schemas/pcf-NetworkAreaInfo'
                 resUri:
                     $ref: '#/components/schemas/Uri'
                 snssai:
@@ -17793,7 +17328,7 @@ components:
                     $ref: '#/components/schemas/GroupId'
                     description: Identifies a group of users.
                 nwAreaInfo:
-                    $ref: '#/components/schemas/PCF-NetworkAreaInfo'
+                    $ref: '#/components/schemas/pcf-NetworkAreaInfo'
                 snssai:
                     $ref: '#/components/schemas/Snssai'
                 supi:
@@ -18116,60 +17651,6 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
             type: object
-        UDM-DataSetName:
-            enum:
-                - AM
-                - SMF_SEL
-                - UEC_SMF
-                - UEC_SMSF
-                - SMS_SUB
-                - SM
-                - TRACE
-                - SMS_MNG
-                - LCS_PRIVACY
-                - LCS_MO
-                - UEC_AMF
-                - V2X
-            type: string
-        UDM-DatasetNames:
-            items:
-                $ref: '#/components/schemas/UDM-DataSetName'
-            minItems: 2
-            type: array
-            uniqueItems: true
-            x-go-type-skip-optional-pointer: true
-        UDM-EE-ReferenceId:
-            type: integer
-        UDM-EcRestrictionDataWb:
-            additionalProperties: true
-            properties:
-                ecModeARestricted:
-                    type: boolean
-                ecModeBRestricted:
-                    type: boolean
-            type: object
-        UDM-LocationArea:
-            additionalProperties: true
-            properties:
-                civicAddresses:
-                    description: Identifies a list of civic addresses of the user where the UE is located.
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                        x-go-type-skip-optional-pointer: true
-                    minItems: 0
-                    type: array
-                geographicAreas:
-                    description: Identifies a list of geographic area of the user where the UE is located.
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
-                    minItems: 0
-                    type: array
-                nwAreaInfo:
-                    $ref: '#/components/schemas/NetworkAreaInfo'
-            type: object
-        UDM-PP-ReferenceId:
-            type: integer
         UEAuthenticationCtx:
             additionalProperties: true
             properties:
@@ -18182,7 +17663,7 @@ components:
                         - $ref: '#/components/schemas/Av5gAka'
                         - $ref: '#/components/schemas/EapPayload'
                 authType:
-                    $ref: '#/components/schemas/AUSF-AuthType'
+                    $ref: '#/components/schemas/ausf-AuthType'
                 servingNetworkName:
                     $ref: '#/components/schemas/ServingNetworkName'
             required:
@@ -19465,7 +18946,7 @@ components:
                     $ref: '#/components/schemas/UpuAckInd'
                 upuDataList:
                     items:
-                        $ref: '#/components/schemas/AUSF-UpuData'
+                        $ref: '#/components/schemas/ausf-UpuData'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -19915,7 +19396,7 @@ components:
                     $ref: '#/components/schemas/RequestIndication'
                 revokeEbiList:
                     items:
-                        $ref: '#/components/schemas/SMF-EpsBearerId'
+                        $ref: '#/components/schemas/smf-EpsBearerId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -20015,7 +19496,7 @@ components:
                     x-go-type-skip-optional-pointer: true
                 releasedEbiList:
                     items:
-                        $ref: '#/components/schemas/SMF-EpsBearerId'
+                        $ref: '#/components/schemas/smf-EpsBearerId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -20112,6 +19593,525 @@ components:
             pattern: ^[A-Fa-f0-9]{32}$
             type: string
             x-go-type-skip-optional-pointer: true
+        ausf-AuthType:
+            enum:
+                - 5G_AKA
+                - EAP_AKA_PRIME
+                - EAP_TLS
+            type: string
+        ausf-RgAuthCtx:
+            additionalProperties: true
+            properties:
+                authInd:
+                    default: false
+                    type: boolean
+                authResult:
+                    $ref: '#/components/schemas/AuthResult'
+                supi:
+                    $ref: '#/components/schemas/Supi'
+            required:
+                - authResult
+            type: object
+        ausf-SecuredPacket:
+            format: base64
+            type: string
+        ausf-SorInfo:
+            additionalProperties: true
+            properties:
+                ackInd:
+                    $ref: '#/components/schemas/AckInd'
+                steeringContainer:
+                    $ref: '#/components/schemas/ausf-SteeringContainer'
+                supportedFeatures:
+                    $ref: '#/components/schemas/SupportedFeatures'
+            required:
+                - ackInd
+            type: object
+        ausf-SteeringContainer:
+            oneOf:
+                - items:
+                    $ref: '#/components/schemas/SteeringInfo'
+                  minItems: 1
+                  type: array
+                  x-go-type-skip-optional-pointer: true
+                - $ref: '#/components/schemas/ausf-SecuredPacket'
+        ausf-UpuData:
+            additionalProperties: true
+            properties:
+                defaultConfNssai:
+                    items:
+                        $ref: '#/components/schemas/Snssai'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                routingId:
+                    description: Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
+                    type: string
+                secPacket:
+                    $ref: '#/components/schemas/ausf-SecuredPacket'
+            type: object
+        ausf-UpuInfo:
+            additionalProperties: true
+            properties:
+                supportedFeatures:
+                    $ref: '#/components/schemas/SupportedFeatures'
+                upuAckInd:
+                    $ref: '#/components/schemas/UpuAckInd'
+                upuDataList:
+                    items:
+                        $ref: '#/components/schemas/ausf-UpuData'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                upuHeader:
+                    $ref: '#/components/schemas/UpuHeader'
+            required:
+                - upuDataList
+                - upuAckInd
+            type: object
+        bsf-ExtProblemDetails:
+            allOf:
+                - $ref: '#/components/schemas/ProblemDetails'
+                - $ref: '#/components/schemas/BindingResp'
+        nrf-NFService:
+            additionalProperties: true
+            description: Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance
+            properties:
+                allowedNfDomains:
+                    items:
+                        type: string
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                allowedNfTypes:
+                    items:
+                        $ref: '#/components/schemas/NFType'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                allowedNssais:
+                    items:
+                        $ref: '#/components/schemas/ExtSnssai'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                allowedOperationsPerNfInstance:
+                    additionalProperties:
+                        items:
+                            type: string
+                        minItems: 1
+                        type: array
+                        x-go-type-skip-optional-pointer: true
+                    minProperties: 1
+                    type: object
+                allowedOperationsPerNfType:
+                    additionalProperties:
+                        items:
+                            type: string
+                        minItems: 1
+                        type: array
+                        x-go-type-skip-optional-pointer: true
+                    minProperties: 1
+                    type: object
+                allowedPlmns:
+                    items:
+                        $ref: '#/components/schemas/PlmnId'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                allowedSnpns:
+                    items:
+                        $ref: '#/components/schemas/PlmnIdNid'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                apiPrefix:
+                    type: string
+                capacity:
+                    maximum: 65535
+                    minimum: 0
+                    type: integer
+                defaultNotificationSubscriptions:
+                    items:
+                        $ref: '#/components/schemas/DefaultNotificationSubscription'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                fqdn:
+                    $ref: '#/components/schemas/Fqdn'
+                interPlmnFqdn:
+                    $ref: '#/components/schemas/Fqdn'
+                ipEndPoints:
+                    items:
+                        $ref: '#/components/schemas/IpEndPoint'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                load:
+                    maximum: 100
+                    minimum: 0
+                    type: integer
+                loadTimeStamp:
+                    $ref: '#/components/schemas/DateTime'
+                nfServiceSetIdList:
+                    items:
+                        $ref: '#/components/schemas/NfServiceSetId'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                nfServiceStatus:
+                    $ref: '#/components/schemas/NFServiceStatus'
+                oauth2Required:
+                    type: boolean
+                perPlmnSnssaiList:
+                    items:
+                        $ref: '#/components/schemas/PlmnSnssai'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                priority:
+                    maximum: 65535
+                    minimum: 0
+                    type: integer
+                recoveryTime:
+                    $ref: '#/components/schemas/DateTime'
+                sNssais:
+                    items:
+                        $ref: '#/components/schemas/ExtSnssai'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                scheme:
+                    $ref: '#/components/schemas/UriScheme'
+                serviceInstanceId:
+                    type: string
+                serviceName:
+                    $ref: '#/components/schemas/ServiceName'
+                supportedFeatures:
+                    $ref: '#/components/schemas/SupportedFeatures'
+                supportedVendorSpecificFeatures:
+                    additionalProperties:
+                        items:
+                            $ref: '#/components/schemas/VendorSpecificFeature'
+                        minItems: 1
+                        type: array
+                        x-go-type-skip-optional-pointer: true
+                    minProperties: 1
+                    type: object
+                vendorId:
+                    $ref: '#/components/schemas/VendorId'
+                versions:
+                    items:
+                        $ref: '#/components/schemas/NFServiceVersion'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+            required:
+                - serviceInstanceId
+                - serviceName
+                - versions
+                - scheme
+                - nfServiceStatus
+            type: object
+        nrf-PfdData:
+            additionalProperties: true
+            description: List of Application IDs and/or AF IDs managed by a given NEF Instance
+            properties:
+                afIds:
+                    items:
+                        type: string
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                appIds:
+                    items:
+                        type: string
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+            type: object
+        nrf-SubscriptionData:
+            additionalProperties: true
+            description: Information of a subscription to notifications to NRF events, included in subscription requests and responses
+            properties:
+                nfStatusNotificationUri:
+                    type: string
+                nid:
+                    $ref: '#/components/schemas/Nid'
+                notifCondition:
+                    $ref: '#/components/schemas/NotifCondition'
+                nrfSupportedFeatures:
+                    allOf:
+                        - $ref: '#/components/schemas/SupportedFeatures'
+                    readOnly: true
+                plmnId:
+                    $ref: '#/components/schemas/PlmnId'
+                reqNfFqdn:
+                    $ref: '#/components/schemas/Fqdn'
+                reqNfInstanceId:
+                    $ref: '#/components/schemas/NfInstanceId'
+                reqNfType:
+                    $ref: '#/components/schemas/NFType'
+                reqNotifEvents:
+                    items:
+                        $ref: '#/components/schemas/NotificationEventType'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                reqPerPlmnSnssais:
+                    items:
+                        $ref: '#/components/schemas/PlmnSnssai'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                reqPlmnList:
+                    items:
+                        $ref: '#/components/schemas/PlmnId'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                reqSnpnList:
+                    items:
+                        $ref: '#/components/schemas/PlmnIdNid'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                reqSnssais:
+                    items:
+                        $ref: '#/components/schemas/Snssai'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                requesterFeatures:
+                    allOf:
+                        - $ref: '#/components/schemas/SupportedFeatures'
+                    writeOnly: true
+                servingScope:
+                    items:
+                        type: string
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                subscrCond:
+                    oneOf:
+                        - $ref: '#/components/schemas/NfInstanceIdCond'
+                        - $ref: '#/components/schemas/NfInstanceIdListCond'
+                        - $ref: '#/components/schemas/NfTypeCond'
+                        - $ref: '#/components/schemas/ServiceNameCond'
+                        - $ref: '#/components/schemas/AmfCond'
+                        - $ref: '#/components/schemas/GuamiListCond'
+                        - $ref: '#/components/schemas/NetworkSliceCond'
+                        - $ref: '#/components/schemas/NfGroupCond'
+                        - $ref: '#/components/schemas/NfSetCond'
+                        - $ref: '#/components/schemas/NfServiceSetCond'
+                        - $ref: '#/components/schemas/UpfCond'
+                        - $ref: '#/components/schemas/ScpDomainCond'
+                        - $ref: '#/components/schemas/NwdafCond'
+                        - $ref: '#/components/schemas/NefCond'
+                subscriptionId:
+                    pattern: ^([0-9]{5,6}-)?[^-]+$
+                    readOnly: true
+                    type: string
+                    x-go-type-skip-optional-pointer: true
+                validityTime:
+                    $ref: '#/components/schemas/DateTime'
+            required:
+                - nfStatusNotificationUri
+                - subscriptionId
+            type: object
+        nrf-TransportProtocol:
+            description: Types of transport protocol used in a given IP endpoint of an NF Service Instance
+            enum:
+                - TCP
+            type: string
+        pcf-AtsssCapability:
+            enum:
+                - MPTCP_ATSSS_LL_WITH_ASMODE_UL
+                - MPTCP_ATSSS_LL_WITH_EXSDMODE_DL_ASMODE_UL
+                - MPTCP_ATSSS_LL_WITH_ASMODE_DLUL
+                - ATSSS_LL
+                - MPTCP_ATSSS_LL
+            type: string
+        pcf-BdtPolicyData:
+            additionalProperties: true
+            description: Describes the authorization data of an Individual BDT policy resource.
+            properties:
+                bdtRefId:
+                    $ref: '#/components/schemas/BdtReferenceId'
+                selTransPolicyId:
+                    description: Contains an identity of the selected transfer policy.
+                    type: integer
+                suppFeat:
+                    $ref: '#/components/schemas/SupportedFeatures'
+                transfPolicies:
+                    description: Contains transfer policies.
+                    items:
+                        $ref: '#/components/schemas/TransferPolicy'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+            required:
+                - bdtRefId
+                - transfPolicies
+            type: object
+        pcf-BdtPolicyDataPatch:
+            additionalProperties: true
+            description: A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure.
+            properties:
+                selTransPolicyId:
+                    description: Contains an identity (i.e. transPolicyId value) of the selected transfer policy. If the BdtNotification_5G feature is supported value 0 indicates that no transfer policy is selected.
+                    type: integer
+            required:
+                - selTransPolicyId
+            type: object
+        pcf-FailureCode:
+            description: |
+                Possible values are
+                  - UNK_RULE_ID: Indicates that the pre-provisioned PCC rule could not be successfully activated because the PCC rule identifier is unknown to the SMF.
+                  - RA_GR_ERR: Indicate that the PCC rule could not be successfully installed or enforced because the Rating Group specified within the Charging Data policy decision which the PCC rule refers to is unknown or, invalid.
+                  - SER_ID_ERR: Indicate that the PCC rule could not be successfully installed or enforced because the Service Identifier specified within the Charging Data policy decision which the PCC rule refers to is invalid, unknown, or not applicable to the service being charged.
+                  - NF_MAL: Indicate that the PCC rule could not be successfully installed (for those provisioned from the PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to SMF/UPF malfunction.
+                  - RES_LIM: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to a limitation of resources at the SMF/UPF.
+                  - MAX_NR_QoS_FLOW: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to the fact that the maximum number of QoS flows has been reached for the PDU session.
+                  - MISS_FLOW_INFO: Indicate that the PCC rule could not be successfully installed or enforced because neither the "flowInfos" attribute nor the "appId" attribute is specified within the PccRule data structure by the PCF during the first install request of the PCC rule.
+                  - RES_ALLO_FAIL: Indicate that the PCC rule could not be successfully installed or maintained since the QoS flow establishment/modification failed, or the QoS flow was released.
+                  - UNSUCC_QOS_VAL: indicate that the QoS validation has failed or when Guaranteed Bandwidth > Max-Requested-Bandwidth.
+                  - INCOR_FLOW_INFO: Indicate that the PCC rule could not be successfully installed or modified at the SMF because the provided flow information is not supported by the network (e.g. the provided IP address(es) or Ipv6 prefix(es) do not correspond to an IP version applicable for the PDU session).
+                  - PS_TO_CS_HAN: Indicate that the PCC rule could not be maintained because of PS to CS handover.
+                  - APP_ID_ERR: Indicate that the rule could not be successfully installed or enforced because the Application Identifier is invalid, unknown, or not applicable to the application required for detection.
+                  - NO_QOS_FLOW_BOUND: Indicate that there is no QoS flow which the SMF can bind the PCC rule(s) to.
+                  - FILTER_RES: Indicate that the Flow Information within the "flowInfos" attribute cannot be handled by the SMF because any of the restrictions defined in subclause 5.4.2 of 3GPP TS 29.212 was not met.
+                  - MISS_REDI_SER_ADDR: Indicate that the PCC rule could not be successfully installed or enforced at the SMF because there is no valid Redirect Server Address within the Traffic Control Data policy decision which the PCC rule refers to provided by the PCF and no preconfigured redirection address for this PCC rule at the SMF.
+                  - CM_END_USER_SER_DENIED: Indicate that the charging system denied the service request due to service restrictions (e.g. terminate rating group) or limitations related to the end-user, for example the end-user's account could not cover the requested service.
+                  - CM_CREDIT_CON_NOT_APP: Indicate that the charging system determined that the service can be granted to the end user but no further credit control is needed for the service (e.g. service is free of charge or is treated for offline charging).
+                  - CM_AUTH_REJ: Indicate that the charging system denied the service request in order to terminate the service for which credit is requested.
+                  - CM_USER_UNK: Indicate that the specified end user could not be found in the charging system.
+                  - CM_RAT_FAILED: Indicate that the charging system cannot rate the service request due to insufficient rating input, incorrect AVP combination or due to an attribute or an attribute value that is not recognized or supported in the rating.
+                  - UE_STA_SUSP: Indicates that the UE is in suspend state.
+            enum:
+                - UNK_RULE_ID
+                - RA_GR_ERR
+                - SER_ID_ERR
+                - NF_MAL
+                - RES_LIM
+                - MAX_NR_QoS_FLOW
+                - MISS_FLOW_INFO
+                - RES_ALLO_FAIL
+                - UNSUCC_QOS_VAL
+                - INCOR_FLOW_INFO
+                - PS_TO_CS_HAN
+                - APP_ID_ERR
+                - NO_QOS_FLOW_BOUND
+                - FILTER_RES
+                - MISS_REDI_SER_ADDR
+                - CM_END_USER_SER_DENIED
+                - CM_CREDIT_CON_NOT_APP
+                - CM_AUTH_REJ
+                - CM_USER_UNK
+                - CM_RAT_FAILED
+                - UE_STA_SUSP
+            type: string
+        pcf-NetworkAreaInfo:
+            additionalProperties: true
+            description: Describes a network area information in which the NF service consumer requests the number of UEs.
+            properties:
+                ecgis:
+                    description: Contains a list of E-UTRA cell identities.
+                    items:
+                        $ref: '#/components/schemas/Ecgi'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                gRanNodeIds:
+                    description: Contains a list of NG RAN nodes.
+                    items:
+                        $ref: '#/components/schemas/GlobalRanNodeId'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                ncgis:
+                    description: Contains a list of NR cell identities.
+                    items:
+                        $ref: '#/components/schemas/Ncgi'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                tais:
+                    description: Contains a list of tracking area identities.
+                    items:
+                        $ref: '#/components/schemas/Tai'
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+            type: object
+        smf-EpsBearerId:
+            maximum: 15
+            minimum: 0
+            type: integer
+        smf-IpAddress:
+            additionalProperties: true
+            properties:
+                ipv4Addr:
+                    $ref: '#/components/schemas/Ipv4Addr'
+                ipv6Addr:
+                    $ref: '#/components/schemas/Ipv6Addr'
+                ipv6Prefix:
+                    $ref: '#/components/schemas/Ipv6Prefix'
+            type: object
+        udm-DataSetName:
+            enum:
+                - AM
+                - SMF_SEL
+                - UEC_SMF
+                - UEC_SMSF
+                - SMS_SUB
+                - SM
+                - TRACE
+                - SMS_MNG
+                - LCS_PRIVACY
+                - LCS_MO
+                - UEC_AMF
+                - V2X
+            type: string
+        udm-DatasetNames:
+            items:
+                $ref: '#/components/schemas/udm-DataSetName'
+            minItems: 2
+            type: array
+            uniqueItems: true
+            x-go-type-skip-optional-pointer: true
+        udm-EE-ReferenceId:
+            type: integer
+        udm-EcRestrictionDataWb:
+            additionalProperties: true
+            properties:
+                ecModeARestricted:
+                    type: boolean
+                ecModeBRestricted:
+                    type: boolean
+            type: object
+        udm-LocationArea:
+            additionalProperties: true
+            properties:
+                civicAddresses:
+                    description: Identifies a list of civic addresses of the user where the UE is located.
+                    items:
+                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+                        x-go-type-skip-optional-pointer: true
+                    minItems: 0
+                    type: array
+                geographicAreas:
+                    description: Identifies a list of geographic area of the user where the UE is located.
+                    items:
+                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+                        x-go-type-skip-optional-pointer: true
+                    minItems: 0
+                    type: array
+                nwAreaInfo:
+                    $ref: '#/components/schemas/NetworkAreaInfo'
+            type: object
+        udm-PP-ReferenceId:
+            type: integer
 externalDocs:
     description: 3GPP TS 29.571 Common Data Types for Service Based Interfaces, version 16.14.0
     url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.571/

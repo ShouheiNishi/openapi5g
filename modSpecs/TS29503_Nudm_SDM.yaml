@@ -34,7 +34,7 @@ paths:
                   name: dataset-names
                   required: true
                   schema:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UDM-DatasetNames
+                    $ref: TS29571_CommonData.yaml#/components/schemas/udm-DatasetNames
                   style: form
                 - content:
                     application/json:

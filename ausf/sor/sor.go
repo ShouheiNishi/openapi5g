@@ -24,7 +24,7 @@ const (
 )
 
 // PostSupiUeSorJSONRequestBody defines body for PostSupiUeSor for application/json ContentType.
-type PostSupiUeSorJSONRequestBody = externalRef0.AUSFSorInfo
+type PostSupiUeSorJSONRequestBody = externalRef0.AusfSorInfo
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error

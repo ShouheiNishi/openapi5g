@@ -262,7 +262,7 @@ paths:
                 - content:
                     application/json:
                         schema:
-                            $ref: TS29571_CommonData.yaml#/components/schemas/NRF-PfdData
+                            $ref: TS29571_CommonData.yaml#/components/schemas/nrf-PfdData
                   description: PFD data
                   in: query
                   name: pfd-data

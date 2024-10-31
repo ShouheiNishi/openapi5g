@@ -141,7 +141,7 @@ paths:
                     content:
                         application/problem+json:
                             schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/BSF-ExtProblemDetails
+                                $ref: TS29571_CommonData.yaml#/components/schemas/bsf-ExtProblemDetails
                     description: The existing PCF binding information stored in the BSF for the indicated combination is returned.
                 "404":
                     $ref: TS29571_CommonData.yaml#/components/responses/404

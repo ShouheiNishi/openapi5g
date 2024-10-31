@@ -309,21 +309,21 @@ func (s *GeneratorState) MoveSchemas() error {
 			// AUSF
 			case "AuthType", "RgAuthCtx":
 				if refInfo.schema.spec == "TS29509_Nausf_UEAuthentication.yaml" {
-					newName = "AUSF-" + newName
+					newName = "ausf-" + newName
 				}
 			case "SecuredPacket", "SorInfo", "SteeringContainer":
 				if refInfo.schema.spec == "TS29509_Nausf_SoRProtection.yaml" {
-					newName = "AUSF-" + newName
+					newName = "ausf-" + newName
 				}
 			case "UpuData", "UpuInfo":
 				if refInfo.schema.spec == "TS29509_Nausf_UPUProtection.yaml" {
-					newName = "AUSF-" + newName
+					newName = "ausf-" + newName
 				}
 
 			// BSF
 			case "ExtProblemDetails":
 				if refInfo.schema.spec == "TS29521_Nbsf_Management.yaml" {
-					newName = "BSF-" + newName
+					newName = "bsf-" + newName
 				}
 
 			// NRF
@@ -336,21 +336,21 @@ func (s *GeneratorState) MoveSchemas() error {
 				}
 			case "NFService", "PfdData", "SubscriptionData", "TransportProtocol":
 				if refInfo.schema.spec == "TS29510_Nnrf_NFManagement.yaml" {
-					newName = "NRF-" + newName
+					newName = "nrf-" + newName
 				}
 
 			// PCF
 			case "AtsssCapability":
 				if refInfo.schema.spec == "TS29512_Npcf_SMPolicyControl.yaml" {
-					newName = "PCF-" + newName
+					newName = "pcf-" + newName
 				}
 			case "BdtPolicyData", "BdtPolicyDataPatch", "NetworkAreaInfo":
 				if refInfo.schema.spec == "TS29554_Npcf_BDTPolicyControl.yaml" {
-					newName = "PCF-" + newName
+					newName = "pcf-" + newName
 				}
 			case "FailureCode":
 				if refInfo.schema.spec == "TS29512_Npcf_SMPolicyControl.yaml" {
-					newName = "PCF-" + newName
+					newName = "pcf-" + newName
 				}
 			case "PolicyAssociation",
 				"PolicyAssociationReleaseCause",
@@ -383,24 +383,24 @@ func (s *GeneratorState) MoveSchemas() error {
 			// SMF
 			case "EpsBearerId", "IpAddress":
 				if refInfo.schema.spec == "TS29502_Nsmf_PDUSession.yaml" {
-					newName = "SMF-" + newName
+					newName = "smf-" + newName
 				}
 
 			// UDM
 			case "DataSetName", "DatasetNames", "EcRestrictionDataWb":
 				if refInfo.schema.spec == "TS29503_Nudm_SDM.yaml" {
-					newName = "UDM-" + newName
+					newName = "udm-" + newName
 				}
 			case "LocationArea":
 				if refInfo.schema.spec == "TS29503_Nudm_PP.yaml" {
-					newName = "UDM-" + newName
+					newName = "udm-" + newName
 				}
 			case "ReferenceId":
 				if refInfo.schema.spec == "TS29503_Nudm_EE.yaml" {
-					newName = "UDM-EE-" + newName
+					newName = "udm-EE-" + newName
 				}
 				if refInfo.schema.spec == "TS29503_Nudm_PP.yaml" {
-					newName = "UDM-PP-" + newName
+					newName = "udm-PP-" + newName
 				}
 			}
 			if dupInfo := newNames[newName]; dupInfo != nil {

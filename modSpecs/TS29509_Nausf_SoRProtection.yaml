@@ -34,7 +34,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: TS29571_CommonData.yaml#/components/schemas/AUSF-SorInfo
+                            $ref: TS29571_CommonData.yaml#/components/schemas/ausf-SorInfo
                 required: true
             responses:
                 "200":

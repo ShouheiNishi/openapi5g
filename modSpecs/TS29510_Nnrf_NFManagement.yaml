@@ -633,14 +633,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: TS29571_CommonData.yaml#/components/schemas/NRF-SubscriptionData
+                            $ref: TS29571_CommonData.yaml#/components/schemas/nrf-SubscriptionData
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/NRF-SubscriptionData
+                                $ref: TS29571_CommonData.yaml#/components/schemas/nrf-SubscriptionData
                     description: Expected response to a valid request
                     headers:
                         Accept-Encoding:
@@ -807,7 +807,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/NRF-SubscriptionData
+                                $ref: TS29571_CommonData.yaml#/components/schemas/nrf-SubscriptionData
                     description: Expected response to a valid request
                     headers:
                         Accept-Encoding:

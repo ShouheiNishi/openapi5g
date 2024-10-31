@@ -41,13 +41,6 @@ const (
 	AMPolicyRequestTriggerUEAMBRCH       AMPolicyRequestTrigger = "UE_AMBR_CH"
 )
 
-// Defines values for AUSFAuthType.
-const (
-	AUSFAuthTypeEAPAKAPRIME AUSFAuthType = "EAP_AKA_PRIME"
-	AUSFAuthTypeEAPTLS      AUSFAuthType = "EAP_TLS"
-	AUSFAuthTypeN5GAKA      AUSFAuthType = "5G_AKA"
-)
-
 // Defines values for AccessNetworkId.
 const (
 	AccessNetworkIdETHERNET AccessNetworkId = "ETHERNET"
@@ -578,11 +571,11 @@ const (
 
 // Defines values for HssAvType.
 const (
-	HssAvTypeEAPAKA  HssAvType = "EAP_AKA"
-	HssAvTypeEPSAKA  HssAvType = "EPS_AKA"
-	HssAvTypeGBAAKA  HssAvType = "GBA_AKA"
-	HssAvTypeIMSAKA  HssAvType = "IMS_AKA"
-	HssAvTypeUMTSAKA HssAvType = "UMTS_AKA"
+	EAPAKA  HssAvType = "EAP_AKA"
+	EPSAKA  HssAvType = "EPS_AKA"
+	GBAAKA  HssAvType = "GBA_AKA"
+	IMSAKA  HssAvType = "IMS_AKA"
+	UMTSAKA HssAvType = "UMTS_AKA"
 )
 
 // Defines values for ImsVoPs.
@@ -1003,11 +996,6 @@ const (
 	NFTypeUPF    NFType = "UPF"
 )
 
-// Defines values for NRFTransportProtocol.
-const (
-	NRFTransportProtocolTCP NRFTransportProtocol = "TCP"
-)
-
 // Defines values for NefCondConditionType.
 const (
 	NEFCOND NefCondConditionType = "NEF_COND"
@@ -1147,40 +1135,6 @@ const (
 	Number  OperatorSpecificDataContainerDataType = "number"
 	Object  OperatorSpecificDataContainerDataType = "object"
 	String  OperatorSpecificDataContainerDataType = "string"
-)
-
-// Defines values for PCFAtsssCapability.
-const (
-	PCFAtsssCapabilityATSSSLL                            PCFAtsssCapability = "ATSSS_LL"
-	PCFAtsssCapabilityMPTCPATSSSLL                       PCFAtsssCapability = "MPTCP_ATSSS_LL"
-	PCFAtsssCapabilityMPTCPATSSSLLWITHASMODEDLUL         PCFAtsssCapability = "MPTCP_ATSSS_LL_WITH_ASMODE_DLUL"
-	PCFAtsssCapabilityMPTCPATSSSLLWITHASMODEUL           PCFAtsssCapability = "MPTCP_ATSSS_LL_WITH_ASMODE_UL"
-	PCFAtsssCapabilityMPTCPATSSSLLWITHEXSDMODEDLASMODEUL PCFAtsssCapability = "MPTCP_ATSSS_LL_WITH_EXSDMODE_DL_ASMODE_UL"
-)
-
-// Defines values for PCFFailureCode.
-const (
-	PCFFailureCodeAPPIDERR           PCFFailureCode = "APP_ID_ERR"
-	PCFFailureCodeCMAUTHREJ          PCFFailureCode = "CM_AUTH_REJ"
-	PCFFailureCodeCMCREDITCONNOTAPP  PCFFailureCode = "CM_CREDIT_CON_NOT_APP"
-	PCFFailureCodeCMENDUSERSERDENIED PCFFailureCode = "CM_END_USER_SER_DENIED"
-	PCFFailureCodeCMRATFAILED        PCFFailureCode = "CM_RAT_FAILED"
-	PCFFailureCodeCMUSERUNK          PCFFailureCode = "CM_USER_UNK"
-	PCFFailureCodeFILTERRES          PCFFailureCode = "FILTER_RES"
-	PCFFailureCodeINCORFLOWINFO      PCFFailureCode = "INCOR_FLOW_INFO"
-	PCFFailureCodeMAXNRQoSFLOW       PCFFailureCode = "MAX_NR_QoS_FLOW"
-	PCFFailureCodeMISSFLOWINFO       PCFFailureCode = "MISS_FLOW_INFO"
-	PCFFailureCodeMISSREDISERADDR    PCFFailureCode = "MISS_REDI_SER_ADDR"
-	PCFFailureCodeNFMAL              PCFFailureCode = "NF_MAL"
-	PCFFailureCodeNOQOSFLOWBOUND     PCFFailureCode = "NO_QOS_FLOW_BOUND"
-	PCFFailureCodePSTOCSHAN          PCFFailureCode = "PS_TO_CS_HAN"
-	PCFFailureCodeRAGRERR            PCFFailureCode = "RA_GR_ERR"
-	PCFFailureCodeRESALLOFAIL        PCFFailureCode = "RES_ALLO_FAIL"
-	PCFFailureCodeRESLIM             PCFFailureCode = "RES_LIM"
-	PCFFailureCodeSERIDERR           PCFFailureCode = "SER_ID_ERR"
-	PCFFailureCodeUESTASUSP          PCFFailureCode = "UE_STA_SUSP"
-	PCFFailureCodeUNKRULEID          PCFFailureCode = "UNK_RULE_ID"
-	PCFFailureCodeUNSUCCQOSVAL       PCFFailureCode = "UNSUCC_QOS_VAL"
 )
 
 // Defines values for PatchOperation.
@@ -2004,22 +1958,6 @@ const (
 	TransportProtocolUDP TransportProtocol = "UDP"
 )
 
-// Defines values for UDMDataSetName.
-const (
-	UDMDataSetNameAM         UDMDataSetName = "AM"
-	UDMDataSetNameLCSMO      UDMDataSetName = "LCS_MO"
-	UDMDataSetNameLCSPRIVACY UDMDataSetName = "LCS_PRIVACY"
-	UDMDataSetNameSM         UDMDataSetName = "SM"
-	UDMDataSetNameSMFSEL     UDMDataSetName = "SMF_SEL"
-	UDMDataSetNameSMSMNG     UDMDataSetName = "SMS_MNG"
-	UDMDataSetNameSMSSUB     UDMDataSetName = "SMS_SUB"
-	UDMDataSetNameTRACE      UDMDataSetName = "TRACE"
-	UDMDataSetNameUECAMF     UDMDataSetName = "UEC_AMF"
-	UDMDataSetNameUECSMF     UDMDataSetName = "UEC_SMF"
-	UDMDataSetNameUECSMSF    UDMDataSetName = "UEC_SMSF"
-	UDMDataSetNameV2X        UDMDataSetName = "V2X"
-)
-
 // Defines values for UEPolicyPolicyAssociationReleaseCause.
 const (
 	UEPolicyPolicyAssociationReleaseCauseINSUFFICIENTRES UEPolicyPolicyAssociationReleaseCause = "INSUFFICIENT_RES"
@@ -2123,6 +2061,68 @@ const (
 	SESSIONLEVEL UsageMonLevel = "SESSION_LEVEL"
 )
 
+// Defines values for AusfAuthType.
+const (
+	EAPAKAPRIME AusfAuthType = "EAP_AKA_PRIME"
+	EAPTLS      AusfAuthType = "EAP_TLS"
+	N5GAKA      AusfAuthType = "5G_AKA"
+)
+
+// Defines values for NrfTransportProtocol.
+const (
+	NrfTransportProtocolTCP NrfTransportProtocol = "TCP"
+)
+
+// Defines values for PcfAtsssCapability.
+const (
+	PcfAtsssCapabilityATSSSLL                            PcfAtsssCapability = "ATSSS_LL"
+	PcfAtsssCapabilityMPTCPATSSSLL                       PcfAtsssCapability = "MPTCP_ATSSS_LL"
+	PcfAtsssCapabilityMPTCPATSSSLLWITHASMODEDLUL         PcfAtsssCapability = "MPTCP_ATSSS_LL_WITH_ASMODE_DLUL"
+	PcfAtsssCapabilityMPTCPATSSSLLWITHASMODEUL           PcfAtsssCapability = "MPTCP_ATSSS_LL_WITH_ASMODE_UL"
+	PcfAtsssCapabilityMPTCPATSSSLLWITHEXSDMODEDLASMODEUL PcfAtsssCapability = "MPTCP_ATSSS_LL_WITH_EXSDMODE_DL_ASMODE_UL"
+)
+
+// Defines values for PcfFailureCode.
+const (
+	PcfFailureCodeAPPIDERR           PcfFailureCode = "APP_ID_ERR"
+	PcfFailureCodeCMAUTHREJ          PcfFailureCode = "CM_AUTH_REJ"
+	PcfFailureCodeCMCREDITCONNOTAPP  PcfFailureCode = "CM_CREDIT_CON_NOT_APP"
+	PcfFailureCodeCMENDUSERSERDENIED PcfFailureCode = "CM_END_USER_SER_DENIED"
+	PcfFailureCodeCMRATFAILED        PcfFailureCode = "CM_RAT_FAILED"
+	PcfFailureCodeCMUSERUNK          PcfFailureCode = "CM_USER_UNK"
+	PcfFailureCodeFILTERRES          PcfFailureCode = "FILTER_RES"
+	PcfFailureCodeINCORFLOWINFO      PcfFailureCode = "INCOR_FLOW_INFO"
+	PcfFailureCodeMAXNRQoSFLOW       PcfFailureCode = "MAX_NR_QoS_FLOW"
+	PcfFailureCodeMISSFLOWINFO       PcfFailureCode = "MISS_FLOW_INFO"
+	PcfFailureCodeMISSREDISERADDR    PcfFailureCode = "MISS_REDI_SER_ADDR"
+	PcfFailureCodeNFMAL              PcfFailureCode = "NF_MAL"
+	PcfFailureCodeNOQOSFLOWBOUND     PcfFailureCode = "NO_QOS_FLOW_BOUND"
+	PcfFailureCodePSTOCSHAN          PcfFailureCode = "PS_TO_CS_HAN"
+	PcfFailureCodeRAGRERR            PcfFailureCode = "RA_GR_ERR"
+	PcfFailureCodeRESALLOFAIL        PcfFailureCode = "RES_ALLO_FAIL"
+	PcfFailureCodeRESLIM             PcfFailureCode = "RES_LIM"
+	PcfFailureCodeSERIDERR           PcfFailureCode = "SER_ID_ERR"
+	PcfFailureCodeUESTASUSP          PcfFailureCode = "UE_STA_SUSP"
+	PcfFailureCodeUNKRULEID          PcfFailureCode = "UNK_RULE_ID"
+	PcfFailureCodeUNSUCCQOSVAL       PcfFailureCode = "UNSUCC_QOS_VAL"
+)
+
+// Defines values for UdmDataSetName.
+const (
+	UdmDataSetNameAM         UdmDataSetName = "AM"
+	UdmDataSetNameLCSMO      UdmDataSetName = "LCS_MO"
+	UdmDataSetNameLCSPRIVACY UdmDataSetName = "LCS_PRIVACY"
+	UdmDataSetNameSM         UdmDataSetName = "SM"
+	UdmDataSetNameSMFSEL     UdmDataSetName = "SMF_SEL"
+	UdmDataSetNameSMSMNG     UdmDataSetName = "SMS_MNG"
+	UdmDataSetNameSMSSUB     UdmDataSetName = "SMS_SUB"
+	UdmDataSetNameTRACE      UdmDataSetName = "TRACE"
+	UdmDataSetNameUECAMF     UdmDataSetName = "UEC_AMF"
+	UdmDataSetNameUECSMF     UdmDataSetName = "UEC_SMF"
+	UdmDataSetNameUECSMSF    UdmDataSetName = "UEC_SMSF"
+	UdmDataSetNameV2X        UdmDataSetName = "V2X"
+)
+
 // N3GppChargingCharacteristics defines model for 3GppChargingCharacteristics.
 type N3GppChargingCharacteristics = string
 
@@ -2150,7 +2150,7 @@ type N5GVnGroupConfiguration struct {
 	InternalGroupIdentifier GroupId                 `json:"internalGroupIdentifier,omitempty"`
 	Members                 []Gpsi                  `json:"members,omitempty"`
 	MtcProviderInformation  *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId             *UDMPPReferenceId       `json:"referenceId,omitempty"`
+	ReferenceId             *UdmPPReferenceId       `json:"referenceId,omitempty"`
 	AdditionalProperties    map[string]interface{}  `json:"-"`
 }
 
@@ -2317,55 +2317,6 @@ type AMPolicyTerminationNotification struct {
 	AdditionalProperties map[string]interface{}                `json:"-"`
 }
 
-// AUSFAuthType defines model for AUSF-AuthType.
-type AUSFAuthType string
-
-// AUSFRgAuthCtx defines model for AUSF-RgAuthCtx.
-type AUSFRgAuthCtx struct {
-	AuthInd              *bool                  `json:"authInd,omitempty"`
-	AuthResult           AuthResult             `json:"authResult"`
-	Supi                 Supi                   `json:"supi,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AUSFSecuredPacket defines model for AUSF-SecuredPacket.
-type AUSFSecuredPacket = string
-
-// AUSFSorInfo defines model for AUSF-SorInfo.
-type AUSFSorInfo struct {
-	AckInd               AckInd                 `json:"ackInd"`
-	SteeringContainer    *AUSFSteeringContainer `json:"steeringContainer,omitempty"`
-	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AUSFSteeringContainer defines model for AUSF-SteeringContainer.
-type AUSFSteeringContainer struct {
-	union json.RawMessage
-}
-
-// AUSFSteeringContainer0 defines model for .
-type AUSFSteeringContainer0 = []SteeringInfo
-
-// AUSFUpuData defines model for AUSF-UpuData.
-type AUSFUpuData struct {
-	DefaultConfNssai []Snssai `json:"defaultConfNssai,omitempty"`
-
-	// RoutingId Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-	RoutingId            *string                `json:"routingId,omitempty"`
-	SecPacket            *AUSFSecuredPacket     `json:"secPacket,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AUSFUpuInfo defines model for AUSF-UpuInfo.
-type AUSFUpuInfo struct {
-	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UpuAckInd            UpuAckInd              `json:"upuAckInd"`
-	UpuDataList          []AUSFUpuData          `json:"upuDataList"`
-	UpuHeader            UpuHeader              `json:"upuHeader,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // AccNetChId defines model for AccNetChId.
 type AccNetChId struct {
 	AccNetChaIdValue ChargingId `json:"accNetChaIdValue"`
@@ -2427,7 +2378,7 @@ type AccessAndMobilitySubscriptionData struct {
 	CagData                        *CagData                        `json:"cagData,omitempty"`
 	CoreNetworkTypeRestrictions    *[]CoreNetworkType              `json:"coreNetworkTypeRestrictions,omitempty"`
 	EcRestrictionDataNb            *bool                           `json:"ecRestrictionDataNb,omitempty"`
-	EcRestrictionDataWb            *UDMEcRestrictionDataWb         `json:"ecRestrictionDataWb,omitempty"`
+	EcRestrictionDataWb            *UdmEcRestrictionDataWb         `json:"ecRestrictionDataWb,omitempty"`
 	EdrxParametersList             []EdrxParameters                `json:"edrxParametersList,omitempty"`
 	ExpectedUeBehaviourList        *ExpectedUeBehaviourData        `json:"expectedUeBehaviourList,omitempty"`
 	ForbiddenAreas                 *[]Area                         `json:"forbiddenAreas,omitempty"`
@@ -2891,7 +2842,7 @@ type AmfEvent struct {
 	MaxResponseTime        *DurationSec           `json:"maxResponseTime,omitempty"`
 	NextPeriodicReportTime *DateTime              `json:"nextPeriodicReportTime,omitempty"`
 	ReachabilityFilter     *ReachabilityFilter    `json:"reachabilityFilter,omitempty"`
-	RefId                  *UDMEEReferenceId      `json:"refId,omitempty"`
+	RefId                  *UdmEEReferenceId      `json:"refId,omitempty"`
 	ReportUeReachable      *bool                  `json:"reportUeReachable,omitempty"`
 	TrafficDescriptorList  []TrafficDescriptor    `json:"trafficDescriptorList,omitempty"`
 	Type                   AmfEventType           `json:"type"`
@@ -2943,7 +2894,7 @@ type AmfEventReport struct {
 	NumberOfUes          *int                      `json:"numberOfUes,omitempty"`
 	Pei                  Pei                       `json:"pei,omitempty"`
 	Reachability         *UeReachability           `json:"reachability,omitempty"`
-	RefId                *UDMEEReferenceId         `json:"refId,omitempty"`
+	RefId                *UdmEEReferenceId         `json:"refId,omitempty"`
 	RegistrationNumber   *int                      `json:"registrationNumber,omitempty"`
 	RmInfoList           []RmInfo                  `json:"rmInfoList,omitempty"`
 	State                AmfEventState             `json:"state"`
@@ -3007,7 +2958,7 @@ type AmfEventSubscriptionAddInfo struct {
 type AmfEventSubscriptionInfo struct {
 	NotifyCorrelationId  *string                `json:"notifyCorrelationId,omitempty"`
 	OldSubId             *Uri                   `json:"oldSubId,omitempty"`
-	RefIdList            []UDMEEReferenceId     `json:"refIdList"`
+	RefIdList            []UdmEEReferenceId     `json:"refIdList"`
 	SubId                Uri                    `json:"subId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -3674,31 +3625,6 @@ type AverWindowRm = int
 // BDTPolicyControlAspId Contains an identity of an application service provider.
 type BDTPolicyControlAspId = string
 
-// BSFExtProblemDetails defines model for BSF-ExtProblemDetails.
-type BSFExtProblemDetails struct {
-	// AccessTokenError Error returned in the access token response message
-	AccessTokenError *AccessTokenErr `json:"accessTokenError,omitempty"`
-
-	// AccessTokenRequest Contains information related to the access token request
-	AccessTokenRequest *AccessTokenReq `json:"accessTokenRequest,omitempty"`
-	Cause              *string         `json:"cause,omitempty"`
-	Detail             *string         `json:"detail,omitempty"`
-	Instance           *Uri            `json:"instance,omitempty"`
-	InvalidParams      []InvalidParam  `json:"invalidParams,omitempty"`
-	NrfId              *string         `json:"nrfId,omitempty"`
-
-	// PcfSmFqdn Fully Qualified Domain Name
-	PcfSmFqdn *Fqdn `json:"pcfSmFqdn,omitempty"`
-
-	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-	PcfSmIpEndPoints     []IpEndPoint           `json:"pcfSmIpEndPoints,omitempty"`
-	Status               int                    `json:"status,omitempty"`
-	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	Title                *string                `json:"title,omitempty"`
-	Type                 *Uri                   `json:"type,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // BackupAmfInfo defines model for BackupAmfInfo.
 type BackupAmfInfo struct {
 	BackupAmf            AmfName                `json:"backupAmf"`
@@ -3735,7 +3661,7 @@ type BdtData struct {
 	NumOfUes   *Uinteger        `json:"numOfUes,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo *PCFNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
+	NwAreaInfo *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	Snssai     *Snssai             `json:"snssai,omitempty"`
 	SuppFeat   *SupportedFeatures  `json:"suppFeat,omitempty"`
 
@@ -3761,7 +3687,7 @@ type BdtDataPatch struct {
 // BdtPolicy Represents an Individual BDT policy resource.
 type BdtPolicy struct {
 	// BdtPolData Describes the authorization data of an Individual BDT policy resource.
-	BdtPolData *PCFBdtPolicyData `json:"bdtPolData,omitempty"`
+	BdtPolData *PcfBdtPolicyData `json:"bdtPolData,omitempty"`
 
 	// BdtReqData Contains service requirements for creation a new Individual BDT policy resource.
 	BdtReqData           *BdtReqData            `json:"bdtReqData,omitempty"`
@@ -3809,7 +3735,7 @@ type BdtReqData struct {
 	NumOfUes int `json:"numOfUes"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo *PCFNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
+	NwAreaInfo *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	Snssai     *Snssai             `json:"snssai,omitempty"`
 	SuppFeat   *SupportedFeatures  `json:"suppFeat,omitempty"`
 
@@ -4519,7 +4445,7 @@ type EapSession struct {
 // EbiArpMapping defines model for EbiArpMapping.
 type EbiArpMapping struct {
 	Arp                  Arp                    `json:"arp"`
-	EpsBearerId          SMFEpsBearerId         `json:"epsBearerId"`
+	EpsBearerId          SmfEpsBearerId         `json:"epsBearerId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -4528,7 +4454,7 @@ type EcRestriction struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
 	PlmnEcInfos            []PlmnEcInfo            `json:"plmnEcInfos,omitempty"`
-	ReferenceId            UDMPPReferenceId        `json:"referenceId"`
+	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
 	AdditionalProperties   map[string]interface{}  `json:"-"`
 }
 
@@ -4632,7 +4558,7 @@ type EpsBearerId = int
 // EpsBearerInfo defines model for EpsBearerInfo.
 type EpsBearerInfo struct {
 	BearerLevelQoS       Bytes                  `json:"bearerLevelQoS"`
-	Ebi                  SMFEpsBearerId         `json:"ebi"`
+	Ebi                  SmfEpsBearerId         `json:"ebi"`
 	PgwS8uFteid          Bytes                  `json:"pgwS8uFteid"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -4672,7 +4598,7 @@ type EpsPdnCnxContainer = string
 
 // EpsPdnCnxInfo defines model for EpsPdnCnxInfo.
 type EpsPdnCnxInfo struct {
-	LinkedBearerId       *SMFEpsBearerId        `json:"linkedBearerId,omitempty"`
+	LinkedBearerId       *SmfEpsBearerId        `json:"linkedBearerId,omitempty"`
 	PgwNodeName          *Bytes                 `json:"pgwNodeName,omitempty"`
 	PgwS8cFteid          Bytes                  `json:"pgwS8cFteid"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -4903,10 +4829,10 @@ type ExpectedUeBehaviour struct {
 	CommunicationDurationTime *DurationSecRm       `json:"communicationDurationTime"`
 
 	// ExpectedUmts Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
-	ExpectedUmts               *[]UDMLocationArea            `json:"expectedUmts"`
+	ExpectedUmts               *[]UdmLocationArea            `json:"expectedUmts"`
 	MtcProviderInformation     *MtcProviderInformation       `json:"mtcProviderInformation,omitempty"`
 	PeriodicTime               *DurationSecRm                `json:"periodicTime"`
-	ReferenceId                UDMPPReferenceId              `json:"referenceId"`
+	ReferenceId                UdmPPReferenceId              `json:"referenceId"`
 	ScheduledCommunicationTime *ScheduledCommunicationTimeRm `json:"scheduledCommunicationTime,omitempty"`
 	ScheduledCommunicationType *ScheduledCommunicationTypeRm `json:"scheduledCommunicationType,omitempty"`
 
@@ -4925,7 +4851,7 @@ type ExpectedUeBehaviourData struct {
 	CommunicationDurationTime *DurationSec       `json:"communicationDurationTime,omitempty"`
 
 	// ExpectedUmts Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
-	ExpectedUmts               []UDMLocationArea           `json:"expectedUmts,omitempty"`
+	ExpectedUmts               []UdmLocationArea           `json:"expectedUmts,omitempty"`
 	PeriodicTime               *DurationSec                `json:"periodicTime,omitempty"`
 	ScheduledCommunicationTime *ScheduledCommunicationTime `json:"scheduledCommunicationTime,omitempty"`
 	ScheduledCommunicationType *ScheduledCommunicationType `json:"scheduledCommunicationType,omitempty"`
@@ -5262,7 +5188,7 @@ type HsmfUpdateData struct {
 	Cause                *Cause            `json:"cause,omitempty"`
 	DlServingPlmnRateCtl *int              `json:"dlServingPlmnRateCtl"`
 	DnaiList             []Dnai            `json:"dnaiList,omitempty"`
-	EpsBearerId          *[]SMFEpsBearerId `json:"epsBearerId,omitempty"`
+	EpsBearerId          *[]SmfEpsBearerId `json:"epsBearerId,omitempty"`
 
 	// EpsInterworkingInd Possible values are - NONE - WITH_N26 - WITHOUT_N26 - IWK_NON_3GPP
 	EpsInterworkingInd      *EpsInterworkingIndication `json:"epsInterworkingInd,omitempty"`
@@ -5306,7 +5232,7 @@ type HsmfUpdateData struct {
 
 	// RequestIndication Possible values are - UE_REQ_PDU_SES_MOD - UE_REQ_PDU_SES_REL - PDU_SES_MOB - NW_REQ_PDU_SES_AUTH - NW_REQ_PDU_SES_MOD - NW_REQ_PDU_SES_REL - EBI_ASSIGNMENT_REQ - REL_DUE_TO_5G_AN_REQUEST
 	RequestIndication RequestIndication `json:"requestIndication"`
-	RevokeEbiList     []SMFEpsBearerId  `json:"revokeEbiList,omitempty"`
+	RevokeEbiList     []SmfEpsBearerId  `json:"revokeEbiList,omitempty"`
 
 	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
 	RoamingChargingProfile  interface{}               `json:"roamingChargingProfile,omitempty"`
@@ -5586,7 +5512,7 @@ type IpEndPoint struct {
 	Port        *int      `json:"port,omitempty"`
 
 	// Transport Types of transport protocol used in a given IP endpoint of an NF Service Instance
-	Transport            *NRFTransportProtocol  `json:"transport,omitempty"`
+	Transport            *NrfTransportProtocol  `json:"transport,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -5746,7 +5672,7 @@ type LcsPrivacy struct {
 	AfInstanceId           *string                 `json:"afInstanceId,omitempty"`
 	Lpi                    *Lpi                    `json:"lpi,omitempty"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            *UDMPPReferenceId       `json:"referenceId,omitempty"`
+	ReferenceId            *UdmPPReferenceId       `json:"referenceId,omitempty"`
 	AdditionalProperties   map[string]interface{}  `json:"-"`
 }
 
@@ -5830,7 +5756,7 @@ type LocationArea5G struct {
 	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo           *PCFNetworkAreaInfo    `json:"nwAreaInfo,omitempty"`
+	NwAreaInfo           *PcfNetworkAreaInfo    `json:"nwAreaInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -6293,7 +6219,7 @@ type MonitoringReport struct {
 	EventType                EventType                 `json:"eventType"`
 	Gpsi                     Gpsi                      `json:"gpsi,omitempty"`
 	ReachabilityForSmsReport *ReachabilityForSmsReport `json:"reachabilityForSmsReport,omitempty"`
-	ReferenceId              UDMEEReferenceId          `json:"referenceId"`
+	ReferenceId              UdmEEReferenceId          `json:"referenceId"`
 	Report                   *Report                   `json:"report,omitempty"`
 	TimeStamp                DateTime                  `json:"timeStamp"`
 	AdditionalProperties     map[string]interface{}    `json:"-"`
@@ -6712,10 +6638,10 @@ type NFManagementNFProfile struct {
 	NfInstanceName             *string                  `json:"nfInstanceName,omitempty"`
 	NfProfileChangesInd        *bool                    `json:"nfProfileChangesInd,omitempty"`
 	NfProfileChangesSupportInd *bool                    `json:"nfProfileChangesSupportInd,omitempty"`
-	NfServiceList              *map[string]NRFNFService `json:"nfServiceList,omitempty"`
+	NfServiceList              *map[string]NrfNFService `json:"nfServiceList,omitempty"`
 	NfServicePersistence       *bool                    `json:"nfServicePersistence,omitempty"`
 	// Deprecated:
-	NfServices            []NRFNFService       `json:"nfServices,omitempty"`
+	NfServices            []NrfNFService       `json:"nfServices,omitempty"`
 	NfSetIdList           []NfSetId            `json:"nfSetIdList,omitempty"`
 	NfSetRecoveryTimeList *map[string]DateTime `json:"nfSetRecoveryTimeList,omitempty"`
 
@@ -6825,94 +6751,6 @@ type NFStatus string
 // NFType NF types known to NRF
 type NFType string
 
-// NRFNFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance
-type NRFNFService struct {
-	AllowedNfDomains                 []string                          `json:"allowedNfDomains,omitempty"`
-	AllowedNfTypes                   []NFType                          `json:"allowedNfTypes,omitempty"`
-	AllowedNssais                    []ExtSnssai                       `json:"allowedNssais,omitempty"`
-	AllowedOperationsPerNfInstance   *map[string][]string              `json:"allowedOperationsPerNfInstance,omitempty"`
-	AllowedOperationsPerNfType       *map[string][]string              `json:"allowedOperationsPerNfType,omitempty"`
-	AllowedPlmns                     []PlmnId                          `json:"allowedPlmns,omitempty"`
-	AllowedSnpns                     []PlmnIdNid                       `json:"allowedSnpns,omitempty"`
-	ApiPrefix                        *string                           `json:"apiPrefix,omitempty"`
-	Capacity                         *int                              `json:"capacity,omitempty"`
-	DefaultNotificationSubscriptions []DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
-
-	// Fqdn Fully Qualified Domain Name
-	Fqdn *Fqdn `json:"fqdn,omitempty"`
-
-	// InterPlmnFqdn Fully Qualified Domain Name
-	InterPlmnFqdn      *Fqdn            `json:"interPlmnFqdn,omitempty"`
-	IpEndPoints        []IpEndPoint     `json:"ipEndPoints,omitempty"`
-	Load               *int             `json:"load,omitempty"`
-	LoadTimeStamp      *DateTime        `json:"loadTimeStamp,omitempty"`
-	NfServiceSetIdList []NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
-
-	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF
-	NfServiceStatus   NFServiceStatus `json:"nfServiceStatus"`
-	Oauth2Required    *bool           `json:"oauth2Required,omitempty"`
-	PerPlmnSnssaiList []PlmnSnssai    `json:"perPlmnSnssaiList,omitempty"`
-	Priority          *int            `json:"priority,omitempty"`
-	RecoveryTime      *DateTime       `json:"recoveryTime,omitempty"`
-	SNssais           []ExtSnssai     `json:"sNssais,omitempty"`
-	Scheme            UriScheme       `json:"scheme"`
-	ServiceInstanceId string          `json:"serviceInstanceId"`
-
-	// ServiceName Service names known to NRF
-	ServiceName                     ServiceName                         `json:"serviceName"`
-	SupportedFeatures               *SupportedFeatures                  `json:"supportedFeatures,omitempty"`
-	SupportedVendorSpecificFeatures *map[string][]VendorSpecificFeature `json:"supportedVendorSpecificFeatures,omitempty"`
-
-	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
-	VendorId             VendorId               `json:"vendorId,omitempty"`
-	Versions             []NFServiceVersion     `json:"versions"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// NRFPfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
-type NRFPfdData struct {
-	AfIds                []string               `json:"afIds,omitempty"`
-	AppIds               []string               `json:"appIds,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// NRFSubscriptionData Information of a subscription to notifications to NRF events, included in subscription requests and responses
-type NRFSubscriptionData struct {
-	NfStatusNotificationUri string `json:"nfStatusNotificationUri"`
-	Nid                     Nid    `json:"nid,omitempty"`
-
-	// NotifCondition Condition (list of attributes in the NF Profile) to determine whether a notification must be sent by NRF
-	NotifCondition       *NotifCondition    `json:"notifCondition,omitempty"`
-	NrfSupportedFeatures *SupportedFeatures `json:"nrfSupportedFeatures,omitempty"`
-	PlmnId               *PlmnId            `json:"plmnId,omitempty"`
-
-	// ReqNfFqdn Fully Qualified Domain Name
-	ReqNfFqdn       *Fqdn         `json:"reqNfFqdn,omitempty"`
-	ReqNfInstanceId *NfInstanceId `json:"reqNfInstanceId,omitempty"`
-
-	// ReqNfType NF types known to NRF
-	ReqNfType            *NFType                         `json:"reqNfType,omitempty"`
-	ReqNotifEvents       []NotificationEventType         `json:"reqNotifEvents,omitempty"`
-	ReqPerPlmnSnssais    []PlmnSnssai                    `json:"reqPerPlmnSnssais,omitempty"`
-	ReqPlmnList          []PlmnId                        `json:"reqPlmnList,omitempty"`
-	ReqSnpnList          []PlmnIdNid                     `json:"reqSnpnList,omitempty"`
-	ReqSnssais           []Snssai                        `json:"reqSnssais,omitempty"`
-	RequesterFeatures    *SupportedFeatures              `json:"requesterFeatures,omitempty"`
-	ServingScope         []string                        `json:"servingScope,omitempty"`
-	SubscrCond           *NRFSubscriptionData_SubscrCond `json:"subscrCond,omitempty"`
-	SubscriptionId       string                          `json:"subscriptionId,omitempty"`
-	ValidityTime         *DateTime                       `json:"validityTime,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// NRFSubscriptionData_SubscrCond defines model for NRFSubscriptionData.SubscrCond.
-type NRFSubscriptionData_SubscrCond struct {
-	union json.RawMessage
-}
-
-// NRFTransportProtocol Types of transport protocol used in a given IP endpoint of an NF Service Instance
-type NRFTransportProtocol string
-
 // NasCount defines model for NasCount.
 type NasCount = Uinteger
 
@@ -6942,7 +6780,7 @@ type NefCond struct {
 	GpsiRanges                     []IdentityRange      `json:"gpsiRanges,omitempty"`
 
 	// PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
-	PfdData              *NRFPfdData            `json:"pfdData,omitempty"`
+	PfdData              *NrfPfdData            `json:"pfdData,omitempty"`
 	ServedFqdnList       []string               `json:"servedFqdnList,omitempty"`
 	SnssaiList           []Snssai               `json:"snssaiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -6965,7 +6803,7 @@ type NefInfo struct {
 	NefId *NefId `json:"nefId,omitempty"`
 
 	// PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
-	PfdData              *NRFPfdData            `json:"pfdData,omitempty"`
+	PfdData              *NrfPfdData            `json:"pfdData,omitempty"`
 	ServedFqdnList       []string               `json:"servedFqdnList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -7172,7 +7010,7 @@ type Notification struct {
 	CandPolicies []TransferPolicy `json:"candPolicies,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo           *PCFNetworkAreaInfo    `json:"nwAreaInfo,omitempty"`
+	NwAreaInfo           *PcfNetworkAreaInfo    `json:"nwAreaInfo,omitempty"`
 	TimeWindow           *TimeWindow            `json:"timeWindow,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -7252,9 +7090,9 @@ type NotificationData_NfProfile struct {
 	NfInstanceName             *string                  `json:"nfInstanceName,omitempty"`
 	NfProfileChangesInd        *bool                    `json:"nfProfileChangesInd,omitempty"`
 	NfProfileChangesSupportInd *bool                    `json:"nfProfileChangesSupportInd,omitempty"`
-	NfServiceList              *map[string]NRFNFService `json:"nfServiceList,omitempty"`
+	NfServiceList              *map[string]NrfNFService `json:"nfServiceList,omitempty"`
 	NfServicePersistence       *bool                    `json:"nfServicePersistence,omitempty"`
-	NfServices                 *[]NRFNFService          `json:"nfServices,omitempty"`
+	NfServices                 *[]NrfNFService          `json:"nfServices,omitempty"`
 	NfSetIdList                []NfSetId                `json:"nfSetIdList,omitempty"`
 	NfSetRecoveryTimeList      *map[string]DateTime     `json:"nfSetRecoveryTimeList,omitempty"`
 
@@ -7684,70 +7522,6 @@ type OutOfCreditInformation struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PCFAtsssCapability defines model for PCF-AtsssCapability.
-type PCFAtsssCapability string
-
-// PCFBdtPolicyData Describes the authorization data of an Individual BDT policy resource.
-type PCFBdtPolicyData struct {
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
-	BdtRefId BdtReferenceId `json:"bdtRefId"`
-
-	// SelTransPolicyId Contains an identity of the selected transfer policy.
-	SelTransPolicyId *int               `json:"selTransPolicyId,omitempty"`
-	SuppFeat         *SupportedFeatures `json:"suppFeat,omitempty"`
-
-	// TransfPolicies Contains transfer policies.
-	TransfPolicies       []TransferPolicy       `json:"transfPolicies"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PCFBdtPolicyDataPatch A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure.
-type PCFBdtPolicyDataPatch struct {
-	// SelTransPolicyId Contains an identity (i.e. transPolicyId value) of the selected transfer policy. If the BdtNotification_5G feature is supported value 0 indicates that no transfer policy is selected.
-	SelTransPolicyId     int                    `json:"selTransPolicyId"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PCFFailureCode Possible values are
-//   - UNK_RULE_ID: Indicates that the pre-provisioned PCC rule could not be successfully activated because the PCC rule identifier is unknown to the SMF.
-//   - RA_GR_ERR: Indicate that the PCC rule could not be successfully installed or enforced because the Rating Group specified within the Charging Data policy decision which the PCC rule refers to is unknown or, invalid.
-//   - SER_ID_ERR: Indicate that the PCC rule could not be successfully installed or enforced because the Service Identifier specified within the Charging Data policy decision which the PCC rule refers to is invalid, unknown, or not applicable to the service being charged.
-//   - NF_MAL: Indicate that the PCC rule could not be successfully installed (for those provisioned from the PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to SMF/UPF malfunction.
-//   - RES_LIM: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to a limitation of resources at the SMF/UPF.
-//   - MAX_NR_QoS_FLOW: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to the fact that the maximum number of QoS flows has been reached for the PDU session.
-//   - MISS_FLOW_INFO: Indicate that the PCC rule could not be successfully installed or enforced because neither the "flowInfos" attribute nor the "appId" attribute is specified within the PccRule data structure by the PCF during the first install request of the PCC rule.
-//   - RES_ALLO_FAIL: Indicate that the PCC rule could not be successfully installed or maintained since the QoS flow establishment/modification failed, or the QoS flow was released.
-//   - UNSUCC_QOS_VAL: indicate that the QoS validation has failed or when Guaranteed Bandwidth > Max-Requested-Bandwidth.
-//   - INCOR_FLOW_INFO: Indicate that the PCC rule could not be successfully installed or modified at the SMF because the provided flow information is not supported by the network (e.g. the provided IP address(es) or Ipv6 prefix(es) do not correspond to an IP version applicable for the PDU session).
-//   - PS_TO_CS_HAN: Indicate that the PCC rule could not be maintained because of PS to CS handover.
-//   - APP_ID_ERR: Indicate that the rule could not be successfully installed or enforced because the Application Identifier is invalid, unknown, or not applicable to the application required for detection.
-//   - NO_QOS_FLOW_BOUND: Indicate that there is no QoS flow which the SMF can bind the PCC rule(s) to.
-//   - FILTER_RES: Indicate that the Flow Information within the "flowInfos" attribute cannot be handled by the SMF because any of the restrictions defined in subclause 5.4.2 of 3GPP TS 29.212 was not met.
-//   - MISS_REDI_SER_ADDR: Indicate that the PCC rule could not be successfully installed or enforced at the SMF because there is no valid Redirect Server Address within the Traffic Control Data policy decision which the PCC rule refers to provided by the PCF and no preconfigured redirection address for this PCC rule at the SMF.
-//   - CM_END_USER_SER_DENIED: Indicate that the charging system denied the service request due to service restrictions (e.g. terminate rating group) or limitations related to the end-user, for example the end-user's account could not cover the requested service.
-//   - CM_CREDIT_CON_NOT_APP: Indicate that the charging system determined that the service can be granted to the end user but no further credit control is needed for the service (e.g. service is free of charge or is treated for offline charging).
-//   - CM_AUTH_REJ: Indicate that the charging system denied the service request in order to terminate the service for which credit is requested.
-//   - CM_USER_UNK: Indicate that the specified end user could not be found in the charging system.
-//   - CM_RAT_FAILED: Indicate that the charging system cannot rate the service request due to insufficient rating input, incorrect AVP combination or due to an attribute or an attribute value that is not recognized or supported in the rating.
-//   - UE_STA_SUSP: Indicates that the UE is in suspend state.
-type PCFFailureCode string
-
-// PCFNetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-type PCFNetworkAreaInfo struct {
-	// Ecgis Contains a list of E-UTRA cell identities.
-	Ecgis []Ecgi `json:"ecgis,omitempty"`
-
-	// GRanNodeIds Contains a list of NG RAN nodes.
-	GRanNodeIds []GlobalRanNodeId `json:"gRanNodeIds,omitempty"`
-
-	// Ncgis Contains a list of NR cell identities.
-	Ncgis []Ncgi `json:"ncgis,omitempty"`
-
-	// Tais Contains a list of tracking area identities.
-	Tais                 []Tai                  `json:"tais,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // PWSErrorData defines model for PWSErrorData.
 type PWSErrorData struct {
 	NamfCause            int                    `json:"namfCause"`
@@ -7830,7 +7604,7 @@ type PartialSuccessReport struct {
 // PatchBdtPolicy Describes the updates in authorization data of an Individual BDT Policy created by the PCF.
 type PatchBdtPolicy struct {
 	// BdtPolData A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure.
-	BdtPolData *PCFBdtPolicyDataPatch `json:"bdtPolData,omitempty"`
+	BdtPolData *PcfBdtPolicyDataPatch `json:"bdtPolData,omitempty"`
 
 	// BdtReqData A JSON Merge Patch body schema containing modification instruction to be performed on the bdtReqData attribute of the BdtPolicy data structure to indicate whether the BDT warning notification is enabled or disabled. Modifies warnNotifReq from BdtReqData data structure.
 	BdtReqData           *BdtReqDataPatch       `json:"bdtReqData,omitempty"`
@@ -8172,7 +7946,7 @@ type PduSessionCreateData struct {
 	DnaiList               []Dnai                 `json:"dnaiList,omitempty"`
 	Dnn                    Dnn                    `json:"dnn"`
 	EpsBearerCtxStatus     EpsBearerContextStatus `json:"epsBearerCtxStatus,omitempty"`
-	EpsBearerId            []SMFEpsBearerId       `json:"epsBearerId,omitempty"`
+	EpsBearerId            []SmfEpsBearerId       `json:"epsBearerId,omitempty"`
 
 	// EpsInterworkingInd Possible values are - NONE - WITH_N26 - WITHOUT_N26 - IWK_NON_3GPP
 	EpsInterworkingInd      *EpsInterworkingIndication `json:"epsInterworkingInd,omitempty"`
@@ -8258,7 +8032,7 @@ type PduSessionCreatedData struct {
 	AdditionalCnTunnelInfo *TunnelInfo     `json:"additionalCnTunnelInfo,omitempty"`
 	AlwaysOnGranted        *bool           `json:"alwaysOnGranted,omitempty"`
 	CnTunnelInfo           *TunnelInfo     `json:"cnTunnelInfo,omitempty"`
-	DnAaaAddress           *SMFIpAddress   `json:"dnAaaAddress,omitempty"`
+	DnAaaAddress           *SmfIpAddress   `json:"dnAaaAddress,omitempty"`
 	DnaiList               []Dnai          `json:"dnaiList,omitempty"`
 	EnablePauseCharging    *bool           `json:"enablePauseCharging,omitempty"`
 	EpsBearerInfo          []EpsBearerInfo `json:"epsBearerInfo,omitempty"`
@@ -8549,7 +8323,7 @@ type PlmnAssiUeRadioCapId = Bytes
 // PlmnEcInfo defines model for PlmnEcInfo.
 type PlmnEcInfo struct {
 	EcRestrictionDataNb  *bool                   `json:"ecRestrictionDataNb,omitempty"`
-	EcRestrictionDataWb  *UDMEcRestrictionDataWb `json:"ecRestrictionDataWb,omitempty"`
+	EcRestrictionDataWb  *UdmEcRestrictionDataWb `json:"ecRestrictionDataWb,omitempty"`
 	PlmnId               PlmnId                  `json:"plmnId"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
@@ -8698,7 +8472,7 @@ type PpActiveTime struct {
 	ActiveTime             DurationSec             `json:"activeTime"`
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UDMPPReferenceId        `json:"referenceId"`
+	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
 	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
 	AdditionalProperties   map[string]interface{}  `json:"-"`
 }
@@ -8723,7 +8497,7 @@ type PpDlPacketCount = int
 type PpDlPacketCountExt struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UDMPPReferenceId        `json:"referenceId"`
+	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
 	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
 	AdditionalProperties   map[string]interface{}  `json:"-"`
 }
@@ -8733,7 +8507,7 @@ type PpMaximumLatency struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MaximumLatency         DurationSec             `json:"maximumLatency"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UDMPPReferenceId        `json:"referenceId"`
+	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
 	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
 	AdditionalProperties   map[string]interface{}  `json:"-"`
 }
@@ -8743,7 +8517,7 @@ type PpMaximumResponseTime struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MaximumResponseTime    DurationSec             `json:"maximumResponseTime"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UDMPPReferenceId        `json:"referenceId"`
+	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
 	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
 	AdditionalProperties   map[string]interface{}  `json:"-"`
 }
@@ -8760,7 +8534,7 @@ type PpProfileData struct {
 type PpSubsRegTimer struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UDMPPReferenceId        `json:"referenceId"`
+	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
 	SubsRegTimer           DurationSec             `json:"subsRegTimer"`
 	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
 	AdditionalProperties   map[string]interface{}  `json:"-"`
@@ -9066,7 +8840,7 @@ type QosFlowAddModifyRequestItem struct {
 	//   - NON_3GPP
 	//   - 3GPP_AND_NON_3GPP
 	AssociatedAnType     *QosFlowAccessType     `json:"associatedAnType,omitempty"`
-	Ebi                  *SMFEpsBearerId        `json:"ebi,omitempty"`
+	Ebi                  *SmfEpsBearerId        `json:"ebi,omitempty"`
 	Qfi                  Qfi                    `json:"qfi"`
 	QosFlowDescription   *Bytes                 `json:"qosFlowDescription,omitempty"`
 	QosFlowProfile       *QosFlowProfile        `json:"qosFlowProfile,omitempty"`
@@ -9131,7 +8905,7 @@ type QosFlowSetupItem struct {
 	//   - 3GPP_AND_NON_3GPP
 	AssociatedAnType     *QosFlowAccessType     `json:"associatedAnType,omitempty"`
 	DefaultQosRuleInd    *bool                  `json:"defaultQosRuleInd,omitempty"`
-	Ebi                  *SMFEpsBearerId        `json:"ebi,omitempty"`
+	Ebi                  *SmfEpsBearerId        `json:"ebi,omitempty"`
 	Qfi                  Qfi                    `json:"qfi"`
 	QosFlowDescription   *Bytes                 `json:"qosFlowDescription,omitempty"`
 	QosFlowProfile       *QosFlowProfile        `json:"qosFlowProfile,omitempty"`
@@ -9724,7 +9498,7 @@ type RuleReport struct {
 	//   - CM_USER_UNK: Indicate that the specified end user could not be found in the charging system.
 	//   - CM_RAT_FAILED: Indicate that the charging system cannot rate the service request due to insufficient rating input, incorrect AVP combination or due to an attribute or an attribute value that is not recognized or supported in the rating.
 	//   - UE_STA_SUSP: Indicates that the UE is in suspend state.
-	FailureCode *PCFFailureCode `json:"failureCode,omitempty"`
+	FailureCode *PcfFailureCode `json:"failureCode,omitempty"`
 
 	// FinUnitAct Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
 	FinUnitAct *string `json:"finUnitAct,omitempty"`
@@ -9745,17 +9519,6 @@ type RuleStatus string
 
 // S1UeNetworkCapability defines model for S1UeNetworkCapability.
 type S1UeNetworkCapability = Bytes
-
-// SMFEpsBearerId defines model for SMF-EpsBearerId.
-type SMFEpsBearerId = int
-
-// SMFIpAddress defines model for SMF-IpAddress.
-type SMFIpAddress struct {
-	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
-	Ipv6Addr             *Ipv6Addr              `json:"ipv6Addr,omitempty"`
-	Ipv6Prefix           *Ipv6Prefix            `json:"ipv6Prefix,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
 
 // SMPolicyFlowDescription Defines a packet filter for an IP flow.
 type SMPolicyFlowDescription = string
@@ -10201,7 +9964,7 @@ type SmContext struct {
 	ChargingId            string               `json:"chargingId,omitempty"`
 	ChargingInfo          *ChargingInformation `json:"chargingInfo,omitempty"`
 	DlsetSupportInd       *bool                `json:"dlsetSupportInd,omitempty"`
-	DnAaaAddress          *SMFIpAddress        `json:"dnAaaAddress,omitempty"`
+	DnAaaAddress          *SmfIpAddress        `json:"dnAaaAddress,omitempty"`
 	Dnn                   Dnn                  `json:"dnn"`
 	EnablePauseCharging   *bool                `json:"enablePauseCharging,omitempty"`
 	EpsBearerInfo         []EpsBearerInfo      `json:"epsBearerInfo,omitempty"`
@@ -10435,7 +10198,7 @@ type SmContextReleasedData struct {
 
 // SmContextRetrieveData defines model for SmContextRetrieveData.
 type SmContextRetrieveData struct {
-	NotToTransferEbiList []SMFEpsBearerId `json:"notToTransferEbiList,omitempty"`
+	NotToTransferEbiList []SmfEpsBearerId `json:"notToTransferEbiList,omitempty"`
 	RanUnchangedInd      *bool            `json:"ranUnchangedInd,omitempty"`
 	ServingNetwork       *PlmnId          `json:"servingNetwork,omitempty"`
 
@@ -10531,7 +10294,7 @@ type SmContextUpdateData struct {
 	PresenceInLadn            *PresenceState                     `json:"presenceInLadn,omitempty"`
 	RatType                   *RatType                           `json:"ratType,omitempty"`
 	Release                   *bool                              `json:"release,omitempty"`
-	RevokeEbiList             []SMFEpsBearerId                   `json:"revokeEbiList,omitempty"`
+	RevokeEbiList             []SmfEpsBearerId                   `json:"revokeEbiList,omitempty"`
 	SNssai                    *Snssai                            `json:"sNssai,omitempty"`
 	ServingNetwork            *PlmnIdNid                         `json:"servingNetwork,omitempty"`
 	ServingNfId               *NfInstanceId                      `json:"servingNfId,omitempty"`
@@ -10588,7 +10351,7 @@ type SmContextUpdatedData struct {
 	N2SmInfoType          *N2SmInfoType                      `json:"n2SmInfoType,omitempty"`
 	N3DlForwardingTnlList []IndirectDataForwardingTunnelInfo `json:"n3DlForwardingTnlList,omitempty"`
 	N3UlForwardingTnlList []IndirectDataForwardingTunnelInfo `json:"n3UlForwardingTnlList,omitempty"`
-	ReleaseEbiList        []SMFEpsBearerId                   `json:"releaseEbiList,omitempty"`
+	ReleaseEbiList        []SmfEpsBearerId                   `json:"releaseEbiList,omitempty"`
 	SelectedOldSmfId      *NfInstanceId                      `json:"selectedOldSmfId,omitempty"`
 	SelectedSmfId         *NfInstanceId                      `json:"selectedSmfId,omitempty"`
 	SupportedFeatures     *SupportedFeatures                 `json:"supportedFeatures,omitempty"`
@@ -10608,7 +10371,7 @@ type SmPolicyContextData struct {
 	AccNetChId           *AccNetChId           `json:"accNetChId,omitempty"`
 	AccessType           AccessType            `json:"accessType,omitempty"`
 	AddAccessInfo        *AdditionalAccessInfo `json:"addAccessInfo,omitempty"`
-	AtsssCapab           *PCFAtsssCapability   `json:"atsssCapab,omitempty"`
+	AtsssCapab           *PcfAtsssCapability   `json:"atsssCapab,omitempty"`
 
 	// AuthProfIndex Indicates the DN-AAA authorization profile index
 	AuthProfIndex *string `json:"authProfIndex,omitempty"`
@@ -10845,7 +10608,7 @@ type SmPolicyUpdateContextData struct {
 
 	// AppDetectionInfos Report the start/stop of the application traffic and detected SDF descriptions if applicable.
 	AppDetectionInfos []AppDetectionInfo  `json:"appDetectionInfos,omitempty"`
-	AtsssCapab        *PCFAtsssCapability `json:"atsssCapab,omitempty"`
+	AtsssCapab        *PcfAtsssCapability `json:"atsssCapab,omitempty"`
 
 	// AuthProfIndex Indicates the DN-AAA authorization profile index
 	AuthProfIndex      *string                 `json:"authProfIndex,omitempty"`
@@ -11731,7 +11494,7 @@ type TrafficInfluData struct {
 	InterGroupId      GroupId              `json:"interGroupId,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo        *PCFNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
+	NwAreaInfo        *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	ResUri            *Uri                `json:"resUri,omitempty"`
 	Snssai            *Snssai             `json:"snssai,omitempty"`
 	SubscribedEvents  []SubscribedEvent   `json:"subscribedEvents,omitempty"`
@@ -11778,7 +11541,7 @@ type TrafficInfluDataPatch struct {
 	InternalGroupId   GroupId              `json:"internalGroupId,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo *PCFNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
+	NwAreaInfo *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	Snssai     *Snssai             `json:"snssai,omitempty"`
 	Supi       Supi                `json:"supi,omitempty"`
 
@@ -11982,43 +11745,11 @@ type TwifInfo struct {
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// UDMDataSetName defines model for UDM-DataSetName.
-type UDMDataSetName string
-
-// UDMDatasetNames defines model for UDM-DatasetNames.
-type UDMDatasetNames = []UDMDataSetName
-
-// UDMEEReferenceId defines model for UDM-EE-ReferenceId.
-type UDMEEReferenceId = int
-
-// UDMEcRestrictionDataWb defines model for UDM-EcRestrictionDataWb.
-type UDMEcRestrictionDataWb struct {
-	EcModeARestricted    *bool                  `json:"ecModeARestricted,omitempty"`
-	EcModeBRestricted    *bool                  `json:"ecModeBRestricted,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// UDMLocationArea defines model for UDM-LocationArea.
-type UDMLocationArea struct {
-	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
-	CivicAddresses *[]interface{} `json:"civicAddresses,omitempty"`
-
-	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
-	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
-
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo           *NetworkAreaInfo       `json:"nwAreaInfo,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// UDMPPReferenceId defines model for UDM-PP-ReferenceId.
-type UDMPPReferenceId = int
-
 // UEAuthenticationCtx defines model for UEAuthenticationCtx.
 type UEAuthenticationCtx struct {
 	N5gAuthData          UEAuthenticationCtx_5gAuthData `json:"5gAuthData"`
 	Links                map[string]LinksValueSchema    `json:"_links"`
-	AuthType             AUSFAuthType                   `json:"authType"`
+	AuthType             AusfAuthType                   `json:"authType"`
 	ServingNetworkName   ServingNetworkName             `json:"servingNetworkName,omitempty"`
 	AdditionalProperties map[string]interface{}         `json:"-"`
 }
@@ -12690,7 +12421,7 @@ type UpuInfo struct {
 	CounterUpu           CounterUpu             `json:"counterUpu,omitempty"`
 	ProvisioningTime     DateTime               `json:"provisioningTime"`
 	UpuAckInd            UpuAckInd              `json:"upuAckInd"`
-	UpuDataList          []AUSFUpuData          `json:"upuDataList"`
+	UpuDataList          []AusfUpuData          `json:"upuDataList"`
 	UpuMacIausf          UpuMac                 `json:"upuMacIausf,omitempty"`
 	UpuRegInd            UpuRegInd              `json:"upuRegInd"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -12987,7 +12718,7 @@ type VsmfUpdateData struct {
 
 	// RequestIndication Possible values are - UE_REQ_PDU_SES_MOD - UE_REQ_PDU_SES_REL - PDU_SES_MOB - NW_REQ_PDU_SES_AUTH - NW_REQ_PDU_SES_MOD - NW_REQ_PDU_SES_REL - EBI_ASSIGNMENT_REQ - REL_DUE_TO_5G_AN_REQUEST
 	RequestIndication           RequestIndication      `json:"requestIndication"`
-	RevokeEbiList               []SMFEpsBearerId       `json:"revokeEbiList,omitempty"`
+	RevokeEbiList               []SmfEpsBearerId       `json:"revokeEbiList,omitempty"`
 	SessionAmbr                 *Ambr                  `json:"sessionAmbr,omitempty"`
 	SmallDataRateControlEnabled *bool                  `json:"smallDataRateControlEnabled,omitempty"`
 	SupportedFeatures           *SupportedFeatures     `json:"supportedFeatures,omitempty"`
@@ -13024,7 +12755,7 @@ type VsmfUpdatedData struct {
 	QosFlowsFailedtoAddModList []QosFlowItem             `json:"qosFlowsFailedtoAddModList,omitempty"`
 	QosFlowsFailedtoRelList    []QosFlowItem             `json:"qosFlowsFailedtoRelList,omitempty"`
 	QosFlowsRelList            []QosFlowItem             `json:"qosFlowsRelList,omitempty"`
-	ReleasedEbiList            []SMFEpsBearerId          `json:"releasedEbiList,omitempty"`
+	ReleasedEbiList            []SmfEpsBearerId          `json:"releasedEbiList,omitempty"`
 	SecondaryRatUsageInfo      []SecondaryRatUsageInfo   `json:"secondaryRatUsageInfo,omitempty"`
 	SecondaryRatUsageReport    []SecondaryRatUsageReport `json:"secondaryRatUsageReport,omitempty"`
 	UeLocation                 *UserLocation             `json:"ueLocation,omitempty"`
@@ -13079,6 +12810,275 @@ type Xres = string
 
 // XresStar defines model for XresStar.
 type XresStar = string
+
+// AusfAuthType defines model for ausf-AuthType.
+type AusfAuthType string
+
+// AusfRgAuthCtx defines model for ausf-RgAuthCtx.
+type AusfRgAuthCtx struct {
+	AuthInd              *bool                  `json:"authInd,omitempty"`
+	AuthResult           AuthResult             `json:"authResult"`
+	Supi                 Supi                   `json:"supi,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// AusfSecuredPacket defines model for ausf-SecuredPacket.
+type AusfSecuredPacket = string
+
+// AusfSorInfo defines model for ausf-SorInfo.
+type AusfSorInfo struct {
+	AckInd               AckInd                 `json:"ackInd"`
+	SteeringContainer    *AusfSteeringContainer `json:"steeringContainer,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// AusfSteeringContainer defines model for ausf-SteeringContainer.
+type AusfSteeringContainer struct {
+	union json.RawMessage
+}
+
+// AusfSteeringContainer0 defines model for .
+type AusfSteeringContainer0 = []SteeringInfo
+
+// AusfUpuData defines model for ausf-UpuData.
+type AusfUpuData struct {
+	DefaultConfNssai []Snssai `json:"defaultConfNssai,omitempty"`
+
+	// RoutingId Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
+	RoutingId            *string                `json:"routingId,omitempty"`
+	SecPacket            *AusfSecuredPacket     `json:"secPacket,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// AusfUpuInfo defines model for ausf-UpuInfo.
+type AusfUpuInfo struct {
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	UpuAckInd            UpuAckInd              `json:"upuAckInd"`
+	UpuDataList          []AusfUpuData          `json:"upuDataList"`
+	UpuHeader            UpuHeader              `json:"upuHeader,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// BsfExtProblemDetails defines model for bsf-ExtProblemDetails.
+type BsfExtProblemDetails struct {
+	// AccessTokenError Error returned in the access token response message
+	AccessTokenError *AccessTokenErr `json:"accessTokenError,omitempty"`
+
+	// AccessTokenRequest Contains information related to the access token request
+	AccessTokenRequest *AccessTokenReq `json:"accessTokenRequest,omitempty"`
+	Cause              *string         `json:"cause,omitempty"`
+	Detail             *string         `json:"detail,omitempty"`
+	Instance           *Uri            `json:"instance,omitempty"`
+	InvalidParams      []InvalidParam  `json:"invalidParams,omitempty"`
+	NrfId              *string         `json:"nrfId,omitempty"`
+
+	// PcfSmFqdn Fully Qualified Domain Name
+	PcfSmFqdn *Fqdn `json:"pcfSmFqdn,omitempty"`
+
+	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
+	PcfSmIpEndPoints     []IpEndPoint           `json:"pcfSmIpEndPoints,omitempty"`
+	Status               int                    `json:"status,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	Title                *string                `json:"title,omitempty"`
+	Type                 *Uri                   `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// NrfNFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance
+type NrfNFService struct {
+	AllowedNfDomains                 []string                          `json:"allowedNfDomains,omitempty"`
+	AllowedNfTypes                   []NFType                          `json:"allowedNfTypes,omitempty"`
+	AllowedNssais                    []ExtSnssai                       `json:"allowedNssais,omitempty"`
+	AllowedOperationsPerNfInstance   *map[string][]string              `json:"allowedOperationsPerNfInstance,omitempty"`
+	AllowedOperationsPerNfType       *map[string][]string              `json:"allowedOperationsPerNfType,omitempty"`
+	AllowedPlmns                     []PlmnId                          `json:"allowedPlmns,omitempty"`
+	AllowedSnpns                     []PlmnIdNid                       `json:"allowedSnpns,omitempty"`
+	ApiPrefix                        *string                           `json:"apiPrefix,omitempty"`
+	Capacity                         *int                              `json:"capacity,omitempty"`
+	DefaultNotificationSubscriptions []DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
+
+	// Fqdn Fully Qualified Domain Name
+	Fqdn *Fqdn `json:"fqdn,omitempty"`
+
+	// InterPlmnFqdn Fully Qualified Domain Name
+	InterPlmnFqdn      *Fqdn            `json:"interPlmnFqdn,omitempty"`
+	IpEndPoints        []IpEndPoint     `json:"ipEndPoints,omitempty"`
+	Load               *int             `json:"load,omitempty"`
+	LoadTimeStamp      *DateTime        `json:"loadTimeStamp,omitempty"`
+	NfServiceSetIdList []NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
+
+	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF
+	NfServiceStatus   NFServiceStatus `json:"nfServiceStatus"`
+	Oauth2Required    *bool           `json:"oauth2Required,omitempty"`
+	PerPlmnSnssaiList []PlmnSnssai    `json:"perPlmnSnssaiList,omitempty"`
+	Priority          *int            `json:"priority,omitempty"`
+	RecoveryTime      *DateTime       `json:"recoveryTime,omitempty"`
+	SNssais           []ExtSnssai     `json:"sNssais,omitempty"`
+	Scheme            UriScheme       `json:"scheme"`
+	ServiceInstanceId string          `json:"serviceInstanceId"`
+
+	// ServiceName Service names known to NRF
+	ServiceName                     ServiceName                         `json:"serviceName"`
+	SupportedFeatures               *SupportedFeatures                  `json:"supportedFeatures,omitempty"`
+	SupportedVendorSpecificFeatures *map[string][]VendorSpecificFeature `json:"supportedVendorSpecificFeatures,omitempty"`
+
+	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
+	VendorId             VendorId               `json:"vendorId,omitempty"`
+	Versions             []NFServiceVersion     `json:"versions"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// NrfPfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
+type NrfPfdData struct {
+	AfIds                []string               `json:"afIds,omitempty"`
+	AppIds               []string               `json:"appIds,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// NrfSubscriptionData Information of a subscription to notifications to NRF events, included in subscription requests and responses
+type NrfSubscriptionData struct {
+	NfStatusNotificationUri string `json:"nfStatusNotificationUri"`
+	Nid                     Nid    `json:"nid,omitempty"`
+
+	// NotifCondition Condition (list of attributes in the NF Profile) to determine whether a notification must be sent by NRF
+	NotifCondition       *NotifCondition    `json:"notifCondition,omitempty"`
+	NrfSupportedFeatures *SupportedFeatures `json:"nrfSupportedFeatures,omitempty"`
+	PlmnId               *PlmnId            `json:"plmnId,omitempty"`
+
+	// ReqNfFqdn Fully Qualified Domain Name
+	ReqNfFqdn       *Fqdn         `json:"reqNfFqdn,omitempty"`
+	ReqNfInstanceId *NfInstanceId `json:"reqNfInstanceId,omitempty"`
+
+	// ReqNfType NF types known to NRF
+	ReqNfType            *NFType                         `json:"reqNfType,omitempty"`
+	ReqNotifEvents       []NotificationEventType         `json:"reqNotifEvents,omitempty"`
+	ReqPerPlmnSnssais    []PlmnSnssai                    `json:"reqPerPlmnSnssais,omitempty"`
+	ReqPlmnList          []PlmnId                        `json:"reqPlmnList,omitempty"`
+	ReqSnpnList          []PlmnIdNid                     `json:"reqSnpnList,omitempty"`
+	ReqSnssais           []Snssai                        `json:"reqSnssais,omitempty"`
+	RequesterFeatures    *SupportedFeatures              `json:"requesterFeatures,omitempty"`
+	ServingScope         []string                        `json:"servingScope,omitempty"`
+	SubscrCond           *NrfSubscriptionData_SubscrCond `json:"subscrCond,omitempty"`
+	SubscriptionId       string                          `json:"subscriptionId,omitempty"`
+	ValidityTime         *DateTime                       `json:"validityTime,omitempty"`
+	AdditionalProperties map[string]interface{}          `json:"-"`
+}
+
+// NrfSubscriptionData_SubscrCond defines model for NrfSubscriptionData.SubscrCond.
+type NrfSubscriptionData_SubscrCond struct {
+	union json.RawMessage
+}
+
+// NrfTransportProtocol Types of transport protocol used in a given IP endpoint of an NF Service Instance
+type NrfTransportProtocol string
+
+// PcfAtsssCapability defines model for pcf-AtsssCapability.
+type PcfAtsssCapability string
+
+// PcfBdtPolicyData Describes the authorization data of an Individual BDT policy resource.
+type PcfBdtPolicyData struct {
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+	BdtRefId BdtReferenceId `json:"bdtRefId"`
+
+	// SelTransPolicyId Contains an identity of the selected transfer policy.
+	SelTransPolicyId *int               `json:"selTransPolicyId,omitempty"`
+	SuppFeat         *SupportedFeatures `json:"suppFeat,omitempty"`
+
+	// TransfPolicies Contains transfer policies.
+	TransfPolicies       []TransferPolicy       `json:"transfPolicies"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// PcfBdtPolicyDataPatch A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure.
+type PcfBdtPolicyDataPatch struct {
+	// SelTransPolicyId Contains an identity (i.e. transPolicyId value) of the selected transfer policy. If the BdtNotification_5G feature is supported value 0 indicates that no transfer policy is selected.
+	SelTransPolicyId     int                    `json:"selTransPolicyId"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// PcfFailureCode Possible values are
+//   - UNK_RULE_ID: Indicates that the pre-provisioned PCC rule could not be successfully activated because the PCC rule identifier is unknown to the SMF.
+//   - RA_GR_ERR: Indicate that the PCC rule could not be successfully installed or enforced because the Rating Group specified within the Charging Data policy decision which the PCC rule refers to is unknown or, invalid.
+//   - SER_ID_ERR: Indicate that the PCC rule could not be successfully installed or enforced because the Service Identifier specified within the Charging Data policy decision which the PCC rule refers to is invalid, unknown, or not applicable to the service being charged.
+//   - NF_MAL: Indicate that the PCC rule could not be successfully installed (for those provisioned from the PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to SMF/UPF malfunction.
+//   - RES_LIM: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to a limitation of resources at the SMF/UPF.
+//   - MAX_NR_QoS_FLOW: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to the fact that the maximum number of QoS flows has been reached for the PDU session.
+//   - MISS_FLOW_INFO: Indicate that the PCC rule could not be successfully installed or enforced because neither the "flowInfos" attribute nor the "appId" attribute is specified within the PccRule data structure by the PCF during the first install request of the PCC rule.
+//   - RES_ALLO_FAIL: Indicate that the PCC rule could not be successfully installed or maintained since the QoS flow establishment/modification failed, or the QoS flow was released.
+//   - UNSUCC_QOS_VAL: indicate that the QoS validation has failed or when Guaranteed Bandwidth > Max-Requested-Bandwidth.
+//   - INCOR_FLOW_INFO: Indicate that the PCC rule could not be successfully installed or modified at the SMF because the provided flow information is not supported by the network (e.g. the provided IP address(es) or Ipv6 prefix(es) do not correspond to an IP version applicable for the PDU session).
+//   - PS_TO_CS_HAN: Indicate that the PCC rule could not be maintained because of PS to CS handover.
+//   - APP_ID_ERR: Indicate that the rule could not be successfully installed or enforced because the Application Identifier is invalid, unknown, or not applicable to the application required for detection.
+//   - NO_QOS_FLOW_BOUND: Indicate that there is no QoS flow which the SMF can bind the PCC rule(s) to.
+//   - FILTER_RES: Indicate that the Flow Information within the "flowInfos" attribute cannot be handled by the SMF because any of the restrictions defined in subclause 5.4.2 of 3GPP TS 29.212 was not met.
+//   - MISS_REDI_SER_ADDR: Indicate that the PCC rule could not be successfully installed or enforced at the SMF because there is no valid Redirect Server Address within the Traffic Control Data policy decision which the PCC rule refers to provided by the PCF and no preconfigured redirection address for this PCC rule at the SMF.
+//   - CM_END_USER_SER_DENIED: Indicate that the charging system denied the service request due to service restrictions (e.g. terminate rating group) or limitations related to the end-user, for example the end-user's account could not cover the requested service.
+//   - CM_CREDIT_CON_NOT_APP: Indicate that the charging system determined that the service can be granted to the end user but no further credit control is needed for the service (e.g. service is free of charge or is treated for offline charging).
+//   - CM_AUTH_REJ: Indicate that the charging system denied the service request in order to terminate the service for which credit is requested.
+//   - CM_USER_UNK: Indicate that the specified end user could not be found in the charging system.
+//   - CM_RAT_FAILED: Indicate that the charging system cannot rate the service request due to insufficient rating input, incorrect AVP combination or due to an attribute or an attribute value that is not recognized or supported in the rating.
+//   - UE_STA_SUSP: Indicates that the UE is in suspend state.
+type PcfFailureCode string
+
+// PcfNetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+type PcfNetworkAreaInfo struct {
+	// Ecgis Contains a list of E-UTRA cell identities.
+	Ecgis []Ecgi `json:"ecgis,omitempty"`
+
+	// GRanNodeIds Contains a list of NG RAN nodes.
+	GRanNodeIds []GlobalRanNodeId `json:"gRanNodeIds,omitempty"`
+
+	// Ncgis Contains a list of NR cell identities.
+	Ncgis []Ncgi `json:"ncgis,omitempty"`
+
+	// Tais Contains a list of tracking area identities.
+	Tais                 []Tai                  `json:"tais,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SmfEpsBearerId defines model for smf-EpsBearerId.
+type SmfEpsBearerId = int
+
+// SmfIpAddress defines model for smf-IpAddress.
+type SmfIpAddress struct {
+	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
+	Ipv6Addr             *Ipv6Addr              `json:"ipv6Addr,omitempty"`
+	Ipv6Prefix           *Ipv6Prefix            `json:"ipv6Prefix,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// UdmDataSetName defines model for udm-DataSetName.
+type UdmDataSetName string
+
+// UdmDatasetNames defines model for udm-DatasetNames.
+type UdmDatasetNames = []UdmDataSetName
+
+// UdmEEReferenceId defines model for udm-EE-ReferenceId.
+type UdmEEReferenceId = int
+
+// UdmEcRestrictionDataWb defines model for udm-EcRestrictionDataWb.
+type UdmEcRestrictionDataWb struct {
+	EcModeARestricted    *bool                  `json:"ecModeARestricted,omitempty"`
+	EcModeBRestricted    *bool                  `json:"ecModeBRestricted,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// UdmLocationArea defines model for udm-LocationArea.
+type UdmLocationArea struct {
+	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
+	CivicAddresses *[]interface{} `json:"civicAddresses,omitempty"`
+
+	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
+	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
+
+	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+	NwAreaInfo           *NetworkAreaInfo       `json:"nwAreaInfo,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// UdmPPReferenceId defines model for udm-PP-ReferenceId.
+type UdmPPReferenceId = int
 
 // N307 defines model for 307.
 type N307 = RedirectResponse
@@ -14783,405 +14783,6 @@ func (a AMPolicyTerminationNotification) MarshalJSON() ([]byte, error) {
 	object["resourceUri"], err = json.Marshal(a.ResourceUri)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'resourceUri': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AUSFRgAuthCtx. Returns the specified
-// element and whether it was found
-func (a AUSFRgAuthCtx) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AUSFRgAuthCtx
-func (a *AUSFRgAuthCtx) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AUSFRgAuthCtx to handle AdditionalProperties
-func (a *AUSFRgAuthCtx) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authInd"]; found {
-		err = json.Unmarshal(raw, &a.AuthInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'authInd': %w", err)
-		}
-		delete(object, "authInd")
-	}
-
-	if raw, found := object["authResult"]; found {
-		err = json.Unmarshal(raw, &a.AuthResult)
-		if err != nil {
-			return fmt.Errorf("error reading 'authResult': %w", err)
-		}
-		delete(object, "authResult")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AUSFRgAuthCtx to handle AdditionalProperties
-func (a AUSFRgAuthCtx) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AuthInd != nil {
-		object["authInd"], err = json.Marshal(a.AuthInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'authInd': %w", err)
-		}
-	}
-
-	object["authResult"], err = json.Marshal(a.AuthResult)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authResult': %w", err)
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AUSFSorInfo. Returns the specified
-// element and whether it was found
-func (a AUSFSorInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AUSFSorInfo
-func (a *AUSFSorInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AUSFSorInfo to handle AdditionalProperties
-func (a *AUSFSorInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ackInd"]; found {
-		err = json.Unmarshal(raw, &a.AckInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'ackInd': %w", err)
-		}
-		delete(object, "ackInd")
-	}
-
-	if raw, found := object["steeringContainer"]; found {
-		err = json.Unmarshal(raw, &a.SteeringContainer)
-		if err != nil {
-			return fmt.Errorf("error reading 'steeringContainer': %w", err)
-		}
-		delete(object, "steeringContainer")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AUSFSorInfo to handle AdditionalProperties
-func (a AUSFSorInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ackInd"], err = json.Marshal(a.AckInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ackInd': %w", err)
-	}
-
-	if a.SteeringContainer != nil {
-		object["steeringContainer"], err = json.Marshal(a.SteeringContainer)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'steeringContainer': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AUSFUpuData. Returns the specified
-// element and whether it was found
-func (a AUSFUpuData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AUSFUpuData
-func (a *AUSFUpuData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AUSFUpuData to handle AdditionalProperties
-func (a *AUSFUpuData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["defaultConfNssai"]; found {
-		err = json.Unmarshal(raw, &a.DefaultConfNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'defaultConfNssai': %w", err)
-		}
-		delete(object, "defaultConfNssai")
-	}
-
-	if raw, found := object["routingId"]; found {
-		err = json.Unmarshal(raw, &a.RoutingId)
-		if err != nil {
-			return fmt.Errorf("error reading 'routingId': %w", err)
-		}
-		delete(object, "routingId")
-	}
-
-	if raw, found := object["secPacket"]; found {
-		err = json.Unmarshal(raw, &a.SecPacket)
-		if err != nil {
-			return fmt.Errorf("error reading 'secPacket': %w", err)
-		}
-		delete(object, "secPacket")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AUSFUpuData to handle AdditionalProperties
-func (a AUSFUpuData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.DefaultConfNssai) != 0 {
-		object["defaultConfNssai"], err = json.Marshal(a.DefaultConfNssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'defaultConfNssai': %w", err)
-		}
-	}
-
-	if a.RoutingId != nil {
-		object["routingId"], err = json.Marshal(a.RoutingId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'routingId': %w", err)
-		}
-	}
-
-	if a.SecPacket != nil {
-		object["secPacket"], err = json.Marshal(a.SecPacket)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'secPacket': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AUSFUpuInfo. Returns the specified
-// element and whether it was found
-func (a AUSFUpuInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AUSFUpuInfo
-func (a *AUSFUpuInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AUSFUpuInfo to handle AdditionalProperties
-func (a *AUSFUpuInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["upuAckInd"]; found {
-		err = json.Unmarshal(raw, &a.UpuAckInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuAckInd': %w", err)
-		}
-		delete(object, "upuAckInd")
-	}
-
-	if raw, found := object["upuDataList"]; found {
-		err = json.Unmarshal(raw, &a.UpuDataList)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuDataList': %w", err)
-		}
-		delete(object, "upuDataList")
-	}
-
-	if raw, found := object["upuHeader"]; found {
-		err = json.Unmarshal(raw, &a.UpuHeader)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuHeader': %w", err)
-		}
-		delete(object, "upuHeader")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AUSFUpuInfo to handle AdditionalProperties
-func (a AUSFUpuInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["upuAckInd"], err = json.Marshal(a.UpuAckInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'upuAckInd': %w", err)
-	}
-
-	object["upuDataList"], err = json.Marshal(a.UpuDataList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'upuDataList': %w", err)
-	}
-
-	if len(a.UpuHeader) != 0 {
-		object["upuHeader"], err = json.Marshal(a.UpuHeader)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upuHeader': %w", err)
-		}
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -28506,254 +28107,6 @@ func (a AvImsGbaEapAka) MarshalJSON() ([]byte, error) {
 	object["xres"], err = json.Marshal(a.Xres)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'xres': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for BSFExtProblemDetails. Returns the specified
-// element and whether it was found
-func (a BSFExtProblemDetails) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for BSFExtProblemDetails
-func (a *BSFExtProblemDetails) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for BSFExtProblemDetails to handle AdditionalProperties
-func (a *BSFExtProblemDetails) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessTokenError"]; found {
-		err = json.Unmarshal(raw, &a.AccessTokenError)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessTokenError': %w", err)
-		}
-		delete(object, "accessTokenError")
-	}
-
-	if raw, found := object["accessTokenRequest"]; found {
-		err = json.Unmarshal(raw, &a.AccessTokenRequest)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessTokenRequest': %w", err)
-		}
-		delete(object, "accessTokenRequest")
-	}
-
-	if raw, found := object["cause"]; found {
-		err = json.Unmarshal(raw, &a.Cause)
-		if err != nil {
-			return fmt.Errorf("error reading 'cause': %w", err)
-		}
-		delete(object, "cause")
-	}
-
-	if raw, found := object["detail"]; found {
-		err = json.Unmarshal(raw, &a.Detail)
-		if err != nil {
-			return fmt.Errorf("error reading 'detail': %w", err)
-		}
-		delete(object, "detail")
-	}
-
-	if raw, found := object["instance"]; found {
-		err = json.Unmarshal(raw, &a.Instance)
-		if err != nil {
-			return fmt.Errorf("error reading 'instance': %w", err)
-		}
-		delete(object, "instance")
-	}
-
-	if raw, found := object["invalidParams"]; found {
-		err = json.Unmarshal(raw, &a.InvalidParams)
-		if err != nil {
-			return fmt.Errorf("error reading 'invalidParams': %w", err)
-		}
-		delete(object, "invalidParams")
-	}
-
-	if raw, found := object["nrfId"]; found {
-		err = json.Unmarshal(raw, &a.NrfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrfId': %w", err)
-		}
-		delete(object, "nrfId")
-	}
-
-	if raw, found := object["pcfSmFqdn"]; found {
-		err = json.Unmarshal(raw, &a.PcfSmFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSmFqdn': %w", err)
-		}
-		delete(object, "pcfSmFqdn")
-	}
-
-	if raw, found := object["pcfSmIpEndPoints"]; found {
-		err = json.Unmarshal(raw, &a.PcfSmIpEndPoints)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSmIpEndPoints': %w", err)
-		}
-		delete(object, "pcfSmIpEndPoints")
-	}
-
-	if raw, found := object["status"]; found {
-		err = json.Unmarshal(raw, &a.Status)
-		if err != nil {
-			return fmt.Errorf("error reading 'status': %w", err)
-		}
-		delete(object, "status")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["title"]; found {
-		err = json.Unmarshal(raw, &a.Title)
-		if err != nil {
-			return fmt.Errorf("error reading 'title': %w", err)
-		}
-		delete(object, "title")
-	}
-
-	if raw, found := object["type"]; found {
-		err = json.Unmarshal(raw, &a.Type)
-		if err != nil {
-			return fmt.Errorf("error reading 'type': %w", err)
-		}
-		delete(object, "type")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for BSFExtProblemDetails to handle AdditionalProperties
-func (a BSFExtProblemDetails) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AccessTokenError != nil {
-		object["accessTokenError"], err = json.Marshal(a.AccessTokenError)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessTokenError': %w", err)
-		}
-	}
-
-	if a.AccessTokenRequest != nil {
-		object["accessTokenRequest"], err = json.Marshal(a.AccessTokenRequest)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessTokenRequest': %w", err)
-		}
-	}
-
-	if a.Cause != nil {
-		object["cause"], err = json.Marshal(a.Cause)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cause': %w", err)
-		}
-	}
-
-	if a.Detail != nil {
-		object["detail"], err = json.Marshal(a.Detail)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'detail': %w", err)
-		}
-	}
-
-	if a.Instance != nil {
-		object["instance"], err = json.Marshal(a.Instance)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'instance': %w", err)
-		}
-	}
-
-	if len(a.InvalidParams) != 0 {
-		object["invalidParams"], err = json.Marshal(a.InvalidParams)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)
-		}
-	}
-
-	if a.NrfId != nil {
-		object["nrfId"], err = json.Marshal(a.NrfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nrfId': %w", err)
-		}
-	}
-
-	if a.PcfSmFqdn != nil {
-		object["pcfSmFqdn"], err = json.Marshal(a.PcfSmFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSmFqdn': %w", err)
-		}
-	}
-
-	if len(a.PcfSmIpEndPoints) != 0 {
-		object["pcfSmIpEndPoints"], err = json.Marshal(a.PcfSmIpEndPoints)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSmIpEndPoints': %w", err)
-		}
-	}
-
-	if a.Status != 0 {
-		object["status"], err = json.Marshal(a.Status)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'status': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.Title != nil {
-		object["title"], err = json.Marshal(a.Title)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'title': %w", err)
-		}
-	}
-
-	if a.Type != nil {
-		object["type"], err = json.Marshal(a.Type)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'type': %w", err)
-		}
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -57127,888 +56480,6 @@ func (a NFServiceVersion) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
-// Getter for additional properties for NRFNFService. Returns the specified
-// element and whether it was found
-func (a NRFNFService) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NRFNFService
-func (a *NRFNFService) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NRFNFService to handle AdditionalProperties
-func (a *NRFNFService) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["allowedNfDomains"]; found {
-		err = json.Unmarshal(raw, &a.AllowedNfDomains)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedNfDomains': %w", err)
-		}
-		delete(object, "allowedNfDomains")
-	}
-
-	if raw, found := object["allowedNfTypes"]; found {
-		err = json.Unmarshal(raw, &a.AllowedNfTypes)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedNfTypes': %w", err)
-		}
-		delete(object, "allowedNfTypes")
-	}
-
-	if raw, found := object["allowedNssais"]; found {
-		err = json.Unmarshal(raw, &a.AllowedNssais)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedNssais': %w", err)
-		}
-		delete(object, "allowedNssais")
-	}
-
-	if raw, found := object["allowedOperationsPerNfInstance"]; found {
-		err = json.Unmarshal(raw, &a.AllowedOperationsPerNfInstance)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedOperationsPerNfInstance': %w", err)
-		}
-		delete(object, "allowedOperationsPerNfInstance")
-	}
-
-	if raw, found := object["allowedOperationsPerNfType"]; found {
-		err = json.Unmarshal(raw, &a.AllowedOperationsPerNfType)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedOperationsPerNfType': %w", err)
-		}
-		delete(object, "allowedOperationsPerNfType")
-	}
-
-	if raw, found := object["allowedPlmns"]; found {
-		err = json.Unmarshal(raw, &a.AllowedPlmns)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedPlmns': %w", err)
-		}
-		delete(object, "allowedPlmns")
-	}
-
-	if raw, found := object["allowedSnpns"]; found {
-		err = json.Unmarshal(raw, &a.AllowedSnpns)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedSnpns': %w", err)
-		}
-		delete(object, "allowedSnpns")
-	}
-
-	if raw, found := object["apiPrefix"]; found {
-		err = json.Unmarshal(raw, &a.ApiPrefix)
-		if err != nil {
-			return fmt.Errorf("error reading 'apiPrefix': %w", err)
-		}
-		delete(object, "apiPrefix")
-	}
-
-	if raw, found := object["capacity"]; found {
-		err = json.Unmarshal(raw, &a.Capacity)
-		if err != nil {
-			return fmt.Errorf("error reading 'capacity': %w", err)
-		}
-		delete(object, "capacity")
-	}
-
-	if raw, found := object["defaultNotificationSubscriptions"]; found {
-		err = json.Unmarshal(raw, &a.DefaultNotificationSubscriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'defaultNotificationSubscriptions': %w", err)
-		}
-		delete(object, "defaultNotificationSubscriptions")
-	}
-
-	if raw, found := object["fqdn"]; found {
-		err = json.Unmarshal(raw, &a.Fqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'fqdn': %w", err)
-		}
-		delete(object, "fqdn")
-	}
-
-	if raw, found := object["interPlmnFqdn"]; found {
-		err = json.Unmarshal(raw, &a.InterPlmnFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'interPlmnFqdn': %w", err)
-		}
-		delete(object, "interPlmnFqdn")
-	}
-
-	if raw, found := object["ipEndPoints"]; found {
-		err = json.Unmarshal(raw, &a.IpEndPoints)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipEndPoints': %w", err)
-		}
-		delete(object, "ipEndPoints")
-	}
-
-	if raw, found := object["load"]; found {
-		err = json.Unmarshal(raw, &a.Load)
-		if err != nil {
-			return fmt.Errorf("error reading 'load': %w", err)
-		}
-		delete(object, "load")
-	}
-
-	if raw, found := object["loadTimeStamp"]; found {
-		err = json.Unmarshal(raw, &a.LoadTimeStamp)
-		if err != nil {
-			return fmt.Errorf("error reading 'loadTimeStamp': %w", err)
-		}
-		delete(object, "loadTimeStamp")
-	}
-
-	if raw, found := object["nfServiceSetIdList"]; found {
-		err = json.Unmarshal(raw, &a.NfServiceSetIdList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfServiceSetIdList': %w", err)
-		}
-		delete(object, "nfServiceSetIdList")
-	}
-
-	if raw, found := object["nfServiceStatus"]; found {
-		err = json.Unmarshal(raw, &a.NfServiceStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfServiceStatus': %w", err)
-		}
-		delete(object, "nfServiceStatus")
-	}
-
-	if raw, found := object["oauth2Required"]; found {
-		err = json.Unmarshal(raw, &a.Oauth2Required)
-		if err != nil {
-			return fmt.Errorf("error reading 'oauth2Required': %w", err)
-		}
-		delete(object, "oauth2Required")
-	}
-
-	if raw, found := object["perPlmnSnssaiList"]; found {
-		err = json.Unmarshal(raw, &a.PerPlmnSnssaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'perPlmnSnssaiList': %w", err)
-		}
-		delete(object, "perPlmnSnssaiList")
-	}
-
-	if raw, found := object["priority"]; found {
-		err = json.Unmarshal(raw, &a.Priority)
-		if err != nil {
-			return fmt.Errorf("error reading 'priority': %w", err)
-		}
-		delete(object, "priority")
-	}
-
-	if raw, found := object["recoveryTime"]; found {
-		err = json.Unmarshal(raw, &a.RecoveryTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'recoveryTime': %w", err)
-		}
-		delete(object, "recoveryTime")
-	}
-
-	if raw, found := object["sNssais"]; found {
-		err = json.Unmarshal(raw, &a.SNssais)
-		if err != nil {
-			return fmt.Errorf("error reading 'sNssais': %w", err)
-		}
-		delete(object, "sNssais")
-	}
-
-	if raw, found := object["scheme"]; found {
-		err = json.Unmarshal(raw, &a.Scheme)
-		if err != nil {
-			return fmt.Errorf("error reading 'scheme': %w", err)
-		}
-		delete(object, "scheme")
-	}
-
-	if raw, found := object["serviceInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.ServiceInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceInstanceId': %w", err)
-		}
-		delete(object, "serviceInstanceId")
-	}
-
-	if raw, found := object["serviceName"]; found {
-		err = json.Unmarshal(raw, &a.ServiceName)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceName': %w", err)
-		}
-		delete(object, "serviceName")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["supportedVendorSpecificFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedVendorSpecificFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedVendorSpecificFeatures': %w", err)
-		}
-		delete(object, "supportedVendorSpecificFeatures")
-	}
-
-	if raw, found := object["vendorId"]; found {
-		err = json.Unmarshal(raw, &a.VendorId)
-		if err != nil {
-			return fmt.Errorf("error reading 'vendorId': %w", err)
-		}
-		delete(object, "vendorId")
-	}
-
-	if raw, found := object["versions"]; found {
-		err = json.Unmarshal(raw, &a.Versions)
-		if err != nil {
-			return fmt.Errorf("error reading 'versions': %w", err)
-		}
-		delete(object, "versions")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NRFNFService to handle AdditionalProperties
-func (a NRFNFService) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AllowedNfDomains) != 0 {
-		object["allowedNfDomains"], err = json.Marshal(a.AllowedNfDomains)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedNfDomains': %w", err)
-		}
-	}
-
-	if len(a.AllowedNfTypes) != 0 {
-		object["allowedNfTypes"], err = json.Marshal(a.AllowedNfTypes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedNfTypes': %w", err)
-		}
-	}
-
-	if len(a.AllowedNssais) != 0 {
-		object["allowedNssais"], err = json.Marshal(a.AllowedNssais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedNssais': %w", err)
-		}
-	}
-
-	if a.AllowedOperationsPerNfInstance != nil {
-		object["allowedOperationsPerNfInstance"], err = json.Marshal(a.AllowedOperationsPerNfInstance)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedOperationsPerNfInstance': %w", err)
-		}
-	}
-
-	if a.AllowedOperationsPerNfType != nil {
-		object["allowedOperationsPerNfType"], err = json.Marshal(a.AllowedOperationsPerNfType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedOperationsPerNfType': %w", err)
-		}
-	}
-
-	if len(a.AllowedPlmns) != 0 {
-		object["allowedPlmns"], err = json.Marshal(a.AllowedPlmns)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedPlmns': %w", err)
-		}
-	}
-
-	if len(a.AllowedSnpns) != 0 {
-		object["allowedSnpns"], err = json.Marshal(a.AllowedSnpns)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedSnpns': %w", err)
-		}
-	}
-
-	if a.ApiPrefix != nil {
-		object["apiPrefix"], err = json.Marshal(a.ApiPrefix)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'apiPrefix': %w", err)
-		}
-	}
-
-	if a.Capacity != nil {
-		object["capacity"], err = json.Marshal(a.Capacity)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'capacity': %w", err)
-		}
-	}
-
-	if len(a.DefaultNotificationSubscriptions) != 0 {
-		object["defaultNotificationSubscriptions"], err = json.Marshal(a.DefaultNotificationSubscriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'defaultNotificationSubscriptions': %w", err)
-		}
-	}
-
-	if a.Fqdn != nil {
-		object["fqdn"], err = json.Marshal(a.Fqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'fqdn': %w", err)
-		}
-	}
-
-	if a.InterPlmnFqdn != nil {
-		object["interPlmnFqdn"], err = json.Marshal(a.InterPlmnFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'interPlmnFqdn': %w", err)
-		}
-	}
-
-	if len(a.IpEndPoints) != 0 {
-		object["ipEndPoints"], err = json.Marshal(a.IpEndPoints)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipEndPoints': %w", err)
-		}
-	}
-
-	if a.Load != nil {
-		object["load"], err = json.Marshal(a.Load)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'load': %w", err)
-		}
-	}
-
-	if a.LoadTimeStamp != nil {
-		object["loadTimeStamp"], err = json.Marshal(a.LoadTimeStamp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'loadTimeStamp': %w", err)
-		}
-	}
-
-	if len(a.NfServiceSetIdList) != 0 {
-		object["nfServiceSetIdList"], err = json.Marshal(a.NfServiceSetIdList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfServiceSetIdList': %w", err)
-		}
-	}
-
-	object["nfServiceStatus"], err = json.Marshal(a.NfServiceStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfServiceStatus': %w", err)
-	}
-
-	if a.Oauth2Required != nil {
-		object["oauth2Required"], err = json.Marshal(a.Oauth2Required)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oauth2Required': %w", err)
-		}
-	}
-
-	if len(a.PerPlmnSnssaiList) != 0 {
-		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
-		}
-	}
-
-	if a.Priority != nil {
-		object["priority"], err = json.Marshal(a.Priority)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'priority': %w", err)
-		}
-	}
-
-	if a.RecoveryTime != nil {
-		object["recoveryTime"], err = json.Marshal(a.RecoveryTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'recoveryTime': %w", err)
-		}
-	}
-
-	if len(a.SNssais) != 0 {
-		object["sNssais"], err = json.Marshal(a.SNssais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
-		}
-	}
-
-	object["scheme"], err = json.Marshal(a.Scheme)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'scheme': %w", err)
-	}
-
-	object["serviceInstanceId"], err = json.Marshal(a.ServiceInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'serviceInstanceId': %w", err)
-	}
-
-	object["serviceName"], err = json.Marshal(a.ServiceName)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'serviceName': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.SupportedVendorSpecificFeatures != nil {
-		object["supportedVendorSpecificFeatures"], err = json.Marshal(a.SupportedVendorSpecificFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedVendorSpecificFeatures': %w", err)
-		}
-	}
-
-	if len(a.VendorId) != 0 {
-		object["vendorId"], err = json.Marshal(a.VendorId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vendorId': %w", err)
-		}
-	}
-
-	object["versions"], err = json.Marshal(a.Versions)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'versions': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NRFPfdData. Returns the specified
-// element and whether it was found
-func (a NRFPfdData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NRFPfdData
-func (a *NRFPfdData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NRFPfdData to handle AdditionalProperties
-func (a *NRFPfdData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afIds"]; found {
-		err = json.Unmarshal(raw, &a.AfIds)
-		if err != nil {
-			return fmt.Errorf("error reading 'afIds': %w", err)
-		}
-		delete(object, "afIds")
-	}
-
-	if raw, found := object["appIds"]; found {
-		err = json.Unmarshal(raw, &a.AppIds)
-		if err != nil {
-			return fmt.Errorf("error reading 'appIds': %w", err)
-		}
-		delete(object, "appIds")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NRFPfdData to handle AdditionalProperties
-func (a NRFPfdData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AfIds) != 0 {
-		object["afIds"], err = json.Marshal(a.AfIds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afIds': %w", err)
-		}
-	}
-
-	if len(a.AppIds) != 0 {
-		object["appIds"], err = json.Marshal(a.AppIds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'appIds': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NRFSubscriptionData. Returns the specified
-// element and whether it was found
-func (a NRFSubscriptionData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NRFSubscriptionData
-func (a *NRFSubscriptionData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NRFSubscriptionData to handle AdditionalProperties
-func (a *NRFSubscriptionData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["nfStatusNotificationUri"]; found {
-		err = json.Unmarshal(raw, &a.NfStatusNotificationUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfStatusNotificationUri': %w", err)
-		}
-		delete(object, "nfStatusNotificationUri")
-	}
-
-	if raw, found := object["nid"]; found {
-		err = json.Unmarshal(raw, &a.Nid)
-		if err != nil {
-			return fmt.Errorf("error reading 'nid': %w", err)
-		}
-		delete(object, "nid")
-	}
-
-	if raw, found := object["notifCondition"]; found {
-		err = json.Unmarshal(raw, &a.NotifCondition)
-		if err != nil {
-			return fmt.Errorf("error reading 'notifCondition': %w", err)
-		}
-		delete(object, "notifCondition")
-	}
-
-	if raw, found := object["nrfSupportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.NrfSupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrfSupportedFeatures': %w", err)
-		}
-		delete(object, "nrfSupportedFeatures")
-	}
-
-	if raw, found := object["plmnId"]; found {
-		err = json.Unmarshal(raw, &a.PlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnId': %w", err)
-		}
-		delete(object, "plmnId")
-	}
-
-	if raw, found := object["reqNfFqdn"]; found {
-		err = json.Unmarshal(raw, &a.ReqNfFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqNfFqdn': %w", err)
-		}
-		delete(object, "reqNfFqdn")
-	}
-
-	if raw, found := object["reqNfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.ReqNfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqNfInstanceId': %w", err)
-		}
-		delete(object, "reqNfInstanceId")
-	}
-
-	if raw, found := object["reqNfType"]; found {
-		err = json.Unmarshal(raw, &a.ReqNfType)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqNfType': %w", err)
-		}
-		delete(object, "reqNfType")
-	}
-
-	if raw, found := object["reqNotifEvents"]; found {
-		err = json.Unmarshal(raw, &a.ReqNotifEvents)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqNotifEvents': %w", err)
-		}
-		delete(object, "reqNotifEvents")
-	}
-
-	if raw, found := object["reqPerPlmnSnssais"]; found {
-		err = json.Unmarshal(raw, &a.ReqPerPlmnSnssais)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqPerPlmnSnssais': %w", err)
-		}
-		delete(object, "reqPerPlmnSnssais")
-	}
-
-	if raw, found := object["reqPlmnList"]; found {
-		err = json.Unmarshal(raw, &a.ReqPlmnList)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqPlmnList': %w", err)
-		}
-		delete(object, "reqPlmnList")
-	}
-
-	if raw, found := object["reqSnpnList"]; found {
-		err = json.Unmarshal(raw, &a.ReqSnpnList)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqSnpnList': %w", err)
-		}
-		delete(object, "reqSnpnList")
-	}
-
-	if raw, found := object["reqSnssais"]; found {
-		err = json.Unmarshal(raw, &a.ReqSnssais)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqSnssais': %w", err)
-		}
-		delete(object, "reqSnssais")
-	}
-
-	if raw, found := object["requesterFeatures"]; found {
-		err = json.Unmarshal(raw, &a.RequesterFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'requesterFeatures': %w", err)
-		}
-		delete(object, "requesterFeatures")
-	}
-
-	if raw, found := object["servingScope"]; found {
-		err = json.Unmarshal(raw, &a.ServingScope)
-		if err != nil {
-			return fmt.Errorf("error reading 'servingScope': %w", err)
-		}
-		delete(object, "servingScope")
-	}
-
-	if raw, found := object["subscrCond"]; found {
-		err = json.Unmarshal(raw, &a.SubscrCond)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscrCond': %w", err)
-		}
-		delete(object, "subscrCond")
-	}
-
-	if raw, found := object["subscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionId': %w", err)
-		}
-		delete(object, "subscriptionId")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NRFSubscriptionData to handle AdditionalProperties
-func (a NRFSubscriptionData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["nfStatusNotificationUri"], err = json.Marshal(a.NfStatusNotificationUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfStatusNotificationUri': %w", err)
-	}
-
-	if len(a.Nid) != 0 {
-		object["nid"], err = json.Marshal(a.Nid)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
-		}
-	}
-
-	if a.NotifCondition != nil {
-		object["notifCondition"], err = json.Marshal(a.NotifCondition)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'notifCondition': %w", err)
-		}
-	}
-
-	if a.NrfSupportedFeatures != nil {
-		object["nrfSupportedFeatures"], err = json.Marshal(a.NrfSupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nrfSupportedFeatures': %w", err)
-		}
-	}
-
-	if a.PlmnId != nil {
-		object["plmnId"], err = json.Marshal(a.PlmnId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
-		}
-	}
-
-	if a.ReqNfFqdn != nil {
-		object["reqNfFqdn"], err = json.Marshal(a.ReqNfFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqNfFqdn': %w", err)
-		}
-	}
-
-	if a.ReqNfInstanceId != nil {
-		object["reqNfInstanceId"], err = json.Marshal(a.ReqNfInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqNfInstanceId': %w", err)
-		}
-	}
-
-	if a.ReqNfType != nil {
-		object["reqNfType"], err = json.Marshal(a.ReqNfType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqNfType': %w", err)
-		}
-	}
-
-	if len(a.ReqNotifEvents) != 0 {
-		object["reqNotifEvents"], err = json.Marshal(a.ReqNotifEvents)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqNotifEvents': %w", err)
-		}
-	}
-
-	if len(a.ReqPerPlmnSnssais) != 0 {
-		object["reqPerPlmnSnssais"], err = json.Marshal(a.ReqPerPlmnSnssais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqPerPlmnSnssais': %w", err)
-		}
-	}
-
-	if len(a.ReqPlmnList) != 0 {
-		object["reqPlmnList"], err = json.Marshal(a.ReqPlmnList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqPlmnList': %w", err)
-		}
-	}
-
-	if len(a.ReqSnpnList) != 0 {
-		object["reqSnpnList"], err = json.Marshal(a.ReqSnpnList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqSnpnList': %w", err)
-		}
-	}
-
-	if len(a.ReqSnssais) != 0 {
-		object["reqSnssais"], err = json.Marshal(a.ReqSnssais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqSnssais': %w", err)
-		}
-	}
-
-	if a.RequesterFeatures != nil {
-		object["requesterFeatures"], err = json.Marshal(a.RequesterFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'requesterFeatures': %w", err)
-		}
-	}
-
-	if len(a.ServingScope) != 0 {
-		object["servingScope"], err = json.Marshal(a.ServingScope)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'servingScope': %w", err)
-		}
-	}
-
-	if a.SubscrCond != nil {
-		object["subscrCond"], err = json.Marshal(a.SubscrCond)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscrCond': %w", err)
-		}
-	}
-
-	if len(a.SubscriptionId) != 0 {
-		object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
-		}
-	}
-
-	if a.ValidityTime != nil {
-		object["validityTime"], err = json.Marshal(a.ValidityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
 // Getter for additional properties for NasSecurityMode. Returns the specified
 // element and whether it was found
 func (a NasSecurityMode) Get(fieldName string) (value interface{}, found bool) {
@@ -64911,294 +63382,6 @@ func (a OutOfCreditInformation) MarshalJSON() ([]byte, error) {
 		object["flows"], err = json.Marshal(a.Flows)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'flows': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PCFBdtPolicyData. Returns the specified
-// element and whether it was found
-func (a PCFBdtPolicyData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PCFBdtPolicyData
-func (a *PCFBdtPolicyData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PCFBdtPolicyData to handle AdditionalProperties
-func (a *PCFBdtPolicyData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["bdtRefId"]; found {
-		err = json.Unmarshal(raw, &a.BdtRefId)
-		if err != nil {
-			return fmt.Errorf("error reading 'bdtRefId': %w", err)
-		}
-		delete(object, "bdtRefId")
-	}
-
-	if raw, found := object["selTransPolicyId"]; found {
-		err = json.Unmarshal(raw, &a.SelTransPolicyId)
-		if err != nil {
-			return fmt.Errorf("error reading 'selTransPolicyId': %w", err)
-		}
-		delete(object, "selTransPolicyId")
-	}
-
-	if raw, found := object["suppFeat"]; found {
-		err = json.Unmarshal(raw, &a.SuppFeat)
-		if err != nil {
-			return fmt.Errorf("error reading 'suppFeat': %w", err)
-		}
-		delete(object, "suppFeat")
-	}
-
-	if raw, found := object["transfPolicies"]; found {
-		err = json.Unmarshal(raw, &a.TransfPolicies)
-		if err != nil {
-			return fmt.Errorf("error reading 'transfPolicies': %w", err)
-		}
-		delete(object, "transfPolicies")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PCFBdtPolicyData to handle AdditionalProperties
-func (a PCFBdtPolicyData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["bdtRefId"], err = json.Marshal(a.BdtRefId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'bdtRefId': %w", err)
-	}
-
-	if a.SelTransPolicyId != nil {
-		object["selTransPolicyId"], err = json.Marshal(a.SelTransPolicyId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'selTransPolicyId': %w", err)
-		}
-	}
-
-	if a.SuppFeat != nil {
-		object["suppFeat"], err = json.Marshal(a.SuppFeat)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'suppFeat': %w", err)
-		}
-	}
-
-	object["transfPolicies"], err = json.Marshal(a.TransfPolicies)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'transfPolicies': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PCFBdtPolicyDataPatch. Returns the specified
-// element and whether it was found
-func (a PCFBdtPolicyDataPatch) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PCFBdtPolicyDataPatch
-func (a *PCFBdtPolicyDataPatch) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PCFBdtPolicyDataPatch to handle AdditionalProperties
-func (a *PCFBdtPolicyDataPatch) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["selTransPolicyId"]; found {
-		err = json.Unmarshal(raw, &a.SelTransPolicyId)
-		if err != nil {
-			return fmt.Errorf("error reading 'selTransPolicyId': %w", err)
-		}
-		delete(object, "selTransPolicyId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PCFBdtPolicyDataPatch to handle AdditionalProperties
-func (a PCFBdtPolicyDataPatch) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["selTransPolicyId"], err = json.Marshal(a.SelTransPolicyId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'selTransPolicyId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PCFNetworkAreaInfo. Returns the specified
-// element and whether it was found
-func (a PCFNetworkAreaInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PCFNetworkAreaInfo
-func (a *PCFNetworkAreaInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PCFNetworkAreaInfo to handle AdditionalProperties
-func (a *PCFNetworkAreaInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ecgis"]; found {
-		err = json.Unmarshal(raw, &a.Ecgis)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecgis': %w", err)
-		}
-		delete(object, "ecgis")
-	}
-
-	if raw, found := object["gRanNodeIds"]; found {
-		err = json.Unmarshal(raw, &a.GRanNodeIds)
-		if err != nil {
-			return fmt.Errorf("error reading 'gRanNodeIds': %w", err)
-		}
-		delete(object, "gRanNodeIds")
-	}
-
-	if raw, found := object["ncgis"]; found {
-		err = json.Unmarshal(raw, &a.Ncgis)
-		if err != nil {
-			return fmt.Errorf("error reading 'ncgis': %w", err)
-		}
-		delete(object, "ncgis")
-	}
-
-	if raw, found := object["tais"]; found {
-		err = json.Unmarshal(raw, &a.Tais)
-		if err != nil {
-			return fmt.Errorf("error reading 'tais': %w", err)
-		}
-		delete(object, "tais")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PCFNetworkAreaInfo to handle AdditionalProperties
-func (a PCFNetworkAreaInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.Ecgis) != 0 {
-		object["ecgis"], err = json.Marshal(a.Ecgis)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecgis': %w", err)
-		}
-	}
-
-	if len(a.GRanNodeIds) != 0 {
-		object["gRanNodeIds"], err = json.Marshal(a.GRanNodeIds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gRanNodeIds': %w", err)
-		}
-	}
-
-	if len(a.Ncgis) != 0 {
-		object["ncgis"], err = json.Marshal(a.Ncgis)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ncgis': %w", err)
-		}
-	}
-
-	if len(a.Tais) != 0 {
-		object["tais"], err = json.Marshal(a.Tais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'tais': %w", err)
 		}
 	}
 
@@ -82831,104 +81014,6 @@ func (a RuleReport) MarshalJSON() ([]byte, error) {
 	object["ruleStatus"], err = json.Marshal(a.RuleStatus)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'ruleStatus': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SMFIpAddress. Returns the specified
-// element and whether it was found
-func (a SMFIpAddress) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SMFIpAddress
-func (a *SMFIpAddress) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SMFIpAddress to handle AdditionalProperties
-func (a *SMFIpAddress) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ipv4Addr"]; found {
-		err = json.Unmarshal(raw, &a.Ipv4Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv4Addr': %w", err)
-		}
-		delete(object, "ipv4Addr")
-	}
-
-	if raw, found := object["ipv6Addr"]; found {
-		err = json.Unmarshal(raw, &a.Ipv6Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv6Addr': %w", err)
-		}
-		delete(object, "ipv6Addr")
-	}
-
-	if raw, found := object["ipv6Prefix"]; found {
-		err = json.Unmarshal(raw, &a.Ipv6Prefix)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv6Prefix': %w", err)
-		}
-		delete(object, "ipv6Prefix")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SMFIpAddress to handle AdditionalProperties
-func (a SMFIpAddress) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.Ipv4Addr) != 0 {
-		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
-		}
-	}
-
-	if a.Ipv6Addr != nil {
-		object["ipv6Addr"], err = json.Marshal(a.Ipv6Addr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv6Addr': %w", err)
-		}
-	}
-
-	if a.Ipv6Prefix != nil {
-		object["ipv6Prefix"], err = json.Marshal(a.Ipv6Prefix)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv6Prefix': %w", err)
-		}
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -103657,187 +101742,6 @@ func (a TwifInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
-// Getter for additional properties for UDMEcRestrictionDataWb. Returns the specified
-// element and whether it was found
-func (a UDMEcRestrictionDataWb) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UDMEcRestrictionDataWb
-func (a *UDMEcRestrictionDataWb) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UDMEcRestrictionDataWb to handle AdditionalProperties
-func (a *UDMEcRestrictionDataWb) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ecModeARestricted"]; found {
-		err = json.Unmarshal(raw, &a.EcModeARestricted)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecModeARestricted': %w", err)
-		}
-		delete(object, "ecModeARestricted")
-	}
-
-	if raw, found := object["ecModeBRestricted"]; found {
-		err = json.Unmarshal(raw, &a.EcModeBRestricted)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecModeBRestricted': %w", err)
-		}
-		delete(object, "ecModeBRestricted")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UDMEcRestrictionDataWb to handle AdditionalProperties
-func (a UDMEcRestrictionDataWb) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.EcModeARestricted != nil {
-		object["ecModeARestricted"], err = json.Marshal(a.EcModeARestricted)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecModeARestricted': %w", err)
-		}
-	}
-
-	if a.EcModeBRestricted != nil {
-		object["ecModeBRestricted"], err = json.Marshal(a.EcModeBRestricted)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecModeBRestricted': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UDMLocationArea. Returns the specified
-// element and whether it was found
-func (a UDMLocationArea) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UDMLocationArea
-func (a *UDMLocationArea) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UDMLocationArea to handle AdditionalProperties
-func (a *UDMLocationArea) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["civicAddresses"]; found {
-		err = json.Unmarshal(raw, &a.CivicAddresses)
-		if err != nil {
-			return fmt.Errorf("error reading 'civicAddresses': %w", err)
-		}
-		delete(object, "civicAddresses")
-	}
-
-	if raw, found := object["geographicAreas"]; found {
-		err = json.Unmarshal(raw, &a.GeographicAreas)
-		if err != nil {
-			return fmt.Errorf("error reading 'geographicAreas': %w", err)
-		}
-		delete(object, "geographicAreas")
-	}
-
-	if raw, found := object["nwAreaInfo"]; found {
-		err = json.Unmarshal(raw, &a.NwAreaInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'nwAreaInfo': %w", err)
-		}
-		delete(object, "nwAreaInfo")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UDMLocationArea to handle AdditionalProperties
-func (a UDMLocationArea) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.CivicAddresses != nil {
-		object["civicAddresses"], err = json.Marshal(a.CivicAddresses)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'civicAddresses': %w", err)
-		}
-	}
-
-	if a.GeographicAreas != nil {
-		object["geographicAreas"], err = json.Marshal(a.GeographicAreas)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'geographicAreas': %w", err)
-		}
-	}
-
-	if a.NwAreaInfo != nil {
-		object["nwAreaInfo"], err = json.Marshal(a.NwAreaInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nwAreaInfo': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
 // Getter for additional properties for UEAuthenticationCtx. Returns the specified
 // element and whether it was found
 func (a UEAuthenticationCtx) Get(fieldName string) (value interface{}, found bool) {
@@ -114404,66 +112308,2100 @@ func (a WirelineServiceAreaRestriction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
-// AsAUSFSteeringContainer0 returns the union data inside the AUSFSteeringContainer as a AUSFSteeringContainer0
-func (t AUSFSteeringContainer) AsAUSFSteeringContainer0() (AUSFSteeringContainer0, error) {
-	var body AUSFSteeringContainer0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
+// Getter for additional properties for AusfRgAuthCtx. Returns the specified
+// element and whether it was found
+func (a AusfRgAuthCtx) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
 }
 
-// FromAUSFSteeringContainer0 overwrites any union data inside the AUSFSteeringContainer as the provided AUSFSteeringContainer0
-func (t *AUSFSteeringContainer) FromAUSFSteeringContainer0(v AUSFSteeringContainer0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
+// Setter for additional properties for AusfRgAuthCtx
+func (a *AusfRgAuthCtx) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
 }
 
-// MergeAUSFSteeringContainer0 performs a merge with any union data inside the AUSFSteeringContainer, using the provided AUSFSteeringContainer0
-func (t *AUSFSteeringContainer) MergeAUSFSteeringContainer0(v AUSFSteeringContainer0) error {
-	b, err := json.Marshal(v)
+// Override default JSON handling for AusfRgAuthCtx to handle AdditionalProperties
+func (a *AusfRgAuthCtx) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
 	if err != nil {
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
+	if raw, found := object["authInd"]; found {
+		err = json.Unmarshal(raw, &a.AuthInd)
+		if err != nil {
+			return fmt.Errorf("error reading 'authInd': %w", err)
+		}
+		delete(object, "authInd")
+	}
+
+	if raw, found := object["authResult"]; found {
+		err = json.Unmarshal(raw, &a.AuthResult)
+		if err != nil {
+			return fmt.Errorf("error reading 'authResult': %w", err)
+		}
+		delete(object, "authResult")
+	}
+
+	if raw, found := object["supi"]; found {
+		err = json.Unmarshal(raw, &a.Supi)
+		if err != nil {
+			return fmt.Errorf("error reading 'supi': %w", err)
+		}
+		delete(object, "supi")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
 }
 
-// AsAUSFSecuredPacket returns the union data inside the AUSFSteeringContainer as a AUSFSecuredPacket
-func (t AUSFSteeringContainer) AsAUSFSecuredPacket() (AUSFSecuredPacket, error) {
-	var body AUSFSecuredPacket
-	err := json.Unmarshal(t.union, &body)
-	return body, err
+// Override default JSON handling for AusfRgAuthCtx to handle AdditionalProperties
+func (a AusfRgAuthCtx) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.AuthInd != nil {
+		object["authInd"], err = json.Marshal(a.AuthInd)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'authInd': %w", err)
+		}
+	}
+
+	object["authResult"], err = json.Marshal(a.AuthResult)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'authResult': %w", err)
+	}
+
+	if len(a.Supi) != 0 {
+		object["supi"], err = json.Marshal(a.Supi)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
 }
 
-// FromAUSFSecuredPacket overwrites any union data inside the AUSFSteeringContainer as the provided AUSFSecuredPacket
-func (t *AUSFSteeringContainer) FromAUSFSecuredPacket(v AUSFSecuredPacket) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
+// Getter for additional properties for AusfSorInfo. Returns the specified
+// element and whether it was found
+func (a AusfSorInfo) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
 }
 
-// MergeAUSFSecuredPacket performs a merge with any union data inside the AUSFSteeringContainer, using the provided AUSFSecuredPacket
-func (t *AUSFSteeringContainer) MergeAUSFSecuredPacket(v AUSFSecuredPacket) error {
-	b, err := json.Marshal(v)
+// Setter for additional properties for AusfSorInfo
+func (a *AusfSorInfo) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for AusfSorInfo to handle AdditionalProperties
+func (a *AusfSorInfo) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
 	if err != nil {
 		return err
 	}
 
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
+	if raw, found := object["ackInd"]; found {
+		err = json.Unmarshal(raw, &a.AckInd)
+		if err != nil {
+			return fmt.Errorf("error reading 'ackInd': %w", err)
+		}
+		delete(object, "ackInd")
+	}
+
+	if raw, found := object["steeringContainer"]; found {
+		err = json.Unmarshal(raw, &a.SteeringContainer)
+		if err != nil {
+			return fmt.Errorf("error reading 'steeringContainer': %w", err)
+		}
+		delete(object, "steeringContainer")
+	}
+
+	if raw, found := object["supportedFeatures"]; found {
+		err = json.Unmarshal(raw, &a.SupportedFeatures)
+		if err != nil {
+			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
+		}
+		delete(object, "supportedFeatures")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
 }
 
-func (t AUSFSteeringContainer) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
+// Override default JSON handling for AusfSorInfo to handle AdditionalProperties
+func (a AusfSorInfo) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["ackInd"], err = json.Marshal(a.AckInd)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ackInd': %w", err)
+	}
+
+	if a.SteeringContainer != nil {
+		object["steeringContainer"], err = json.Marshal(a.SteeringContainer)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'steeringContainer': %w", err)
+		}
+	}
+
+	if a.SupportedFeatures != nil {
+		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
 }
 
-func (t *AUSFSteeringContainer) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
+// Getter for additional properties for AusfUpuData. Returns the specified
+// element and whether it was found
+func (a AusfUpuData) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for AusfUpuData
+func (a *AusfUpuData) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for AusfUpuData to handle AdditionalProperties
+func (a *AusfUpuData) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["defaultConfNssai"]; found {
+		err = json.Unmarshal(raw, &a.DefaultConfNssai)
+		if err != nil {
+			return fmt.Errorf("error reading 'defaultConfNssai': %w", err)
+		}
+		delete(object, "defaultConfNssai")
+	}
+
+	if raw, found := object["routingId"]; found {
+		err = json.Unmarshal(raw, &a.RoutingId)
+		if err != nil {
+			return fmt.Errorf("error reading 'routingId': %w", err)
+		}
+		delete(object, "routingId")
+	}
+
+	if raw, found := object["secPacket"]; found {
+		err = json.Unmarshal(raw, &a.SecPacket)
+		if err != nil {
+			return fmt.Errorf("error reading 'secPacket': %w", err)
+		}
+		delete(object, "secPacket")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for AusfUpuData to handle AdditionalProperties
+func (a AusfUpuData) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.DefaultConfNssai) != 0 {
+		object["defaultConfNssai"], err = json.Marshal(a.DefaultConfNssai)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'defaultConfNssai': %w", err)
+		}
+	}
+
+	if a.RoutingId != nil {
+		object["routingId"], err = json.Marshal(a.RoutingId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'routingId': %w", err)
+		}
+	}
+
+	if a.SecPacket != nil {
+		object["secPacket"], err = json.Marshal(a.SecPacket)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'secPacket': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for AusfUpuInfo. Returns the specified
+// element and whether it was found
+func (a AusfUpuInfo) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for AusfUpuInfo
+func (a *AusfUpuInfo) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for AusfUpuInfo to handle AdditionalProperties
+func (a *AusfUpuInfo) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["supportedFeatures"]; found {
+		err = json.Unmarshal(raw, &a.SupportedFeatures)
+		if err != nil {
+			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
+		}
+		delete(object, "supportedFeatures")
+	}
+
+	if raw, found := object["upuAckInd"]; found {
+		err = json.Unmarshal(raw, &a.UpuAckInd)
+		if err != nil {
+			return fmt.Errorf("error reading 'upuAckInd': %w", err)
+		}
+		delete(object, "upuAckInd")
+	}
+
+	if raw, found := object["upuDataList"]; found {
+		err = json.Unmarshal(raw, &a.UpuDataList)
+		if err != nil {
+			return fmt.Errorf("error reading 'upuDataList': %w", err)
+		}
+		delete(object, "upuDataList")
+	}
+
+	if raw, found := object["upuHeader"]; found {
+		err = json.Unmarshal(raw, &a.UpuHeader)
+		if err != nil {
+			return fmt.Errorf("error reading 'upuHeader': %w", err)
+		}
+		delete(object, "upuHeader")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for AusfUpuInfo to handle AdditionalProperties
+func (a AusfUpuInfo) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.SupportedFeatures != nil {
+		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
+		}
+	}
+
+	object["upuAckInd"], err = json.Marshal(a.UpuAckInd)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'upuAckInd': %w", err)
+	}
+
+	object["upuDataList"], err = json.Marshal(a.UpuDataList)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'upuDataList': %w", err)
+	}
+
+	if len(a.UpuHeader) != 0 {
+		object["upuHeader"], err = json.Marshal(a.UpuHeader)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'upuHeader': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for BsfExtProblemDetails. Returns the specified
+// element and whether it was found
+func (a BsfExtProblemDetails) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for BsfExtProblemDetails
+func (a *BsfExtProblemDetails) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for BsfExtProblemDetails to handle AdditionalProperties
+func (a *BsfExtProblemDetails) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["accessTokenError"]; found {
+		err = json.Unmarshal(raw, &a.AccessTokenError)
+		if err != nil {
+			return fmt.Errorf("error reading 'accessTokenError': %w", err)
+		}
+		delete(object, "accessTokenError")
+	}
+
+	if raw, found := object["accessTokenRequest"]; found {
+		err = json.Unmarshal(raw, &a.AccessTokenRequest)
+		if err != nil {
+			return fmt.Errorf("error reading 'accessTokenRequest': %w", err)
+		}
+		delete(object, "accessTokenRequest")
+	}
+
+	if raw, found := object["cause"]; found {
+		err = json.Unmarshal(raw, &a.Cause)
+		if err != nil {
+			return fmt.Errorf("error reading 'cause': %w", err)
+		}
+		delete(object, "cause")
+	}
+
+	if raw, found := object["detail"]; found {
+		err = json.Unmarshal(raw, &a.Detail)
+		if err != nil {
+			return fmt.Errorf("error reading 'detail': %w", err)
+		}
+		delete(object, "detail")
+	}
+
+	if raw, found := object["instance"]; found {
+		err = json.Unmarshal(raw, &a.Instance)
+		if err != nil {
+			return fmt.Errorf("error reading 'instance': %w", err)
+		}
+		delete(object, "instance")
+	}
+
+	if raw, found := object["invalidParams"]; found {
+		err = json.Unmarshal(raw, &a.InvalidParams)
+		if err != nil {
+			return fmt.Errorf("error reading 'invalidParams': %w", err)
+		}
+		delete(object, "invalidParams")
+	}
+
+	if raw, found := object["nrfId"]; found {
+		err = json.Unmarshal(raw, &a.NrfId)
+		if err != nil {
+			return fmt.Errorf("error reading 'nrfId': %w", err)
+		}
+		delete(object, "nrfId")
+	}
+
+	if raw, found := object["pcfSmFqdn"]; found {
+		err = json.Unmarshal(raw, &a.PcfSmFqdn)
+		if err != nil {
+			return fmt.Errorf("error reading 'pcfSmFqdn': %w", err)
+		}
+		delete(object, "pcfSmFqdn")
+	}
+
+	if raw, found := object["pcfSmIpEndPoints"]; found {
+		err = json.Unmarshal(raw, &a.PcfSmIpEndPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'pcfSmIpEndPoints': %w", err)
+		}
+		delete(object, "pcfSmIpEndPoints")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if raw, found := object["supportedFeatures"]; found {
+		err = json.Unmarshal(raw, &a.SupportedFeatures)
+		if err != nil {
+			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
+		}
+		delete(object, "supportedFeatures")
+	}
+
+	if raw, found := object["title"]; found {
+		err = json.Unmarshal(raw, &a.Title)
+		if err != nil {
+			return fmt.Errorf("error reading 'title': %w", err)
+		}
+		delete(object, "title")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for BsfExtProblemDetails to handle AdditionalProperties
+func (a BsfExtProblemDetails) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.AccessTokenError != nil {
+		object["accessTokenError"], err = json.Marshal(a.AccessTokenError)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'accessTokenError': %w", err)
+		}
+	}
+
+	if a.AccessTokenRequest != nil {
+		object["accessTokenRequest"], err = json.Marshal(a.AccessTokenRequest)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'accessTokenRequest': %w", err)
+		}
+	}
+
+	if a.Cause != nil {
+		object["cause"], err = json.Marshal(a.Cause)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'cause': %w", err)
+		}
+	}
+
+	if a.Detail != nil {
+		object["detail"], err = json.Marshal(a.Detail)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'detail': %w", err)
+		}
+	}
+
+	if a.Instance != nil {
+		object["instance"], err = json.Marshal(a.Instance)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'instance': %w", err)
+		}
+	}
+
+	if len(a.InvalidParams) != 0 {
+		object["invalidParams"], err = json.Marshal(a.InvalidParams)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)
+		}
+	}
+
+	if a.NrfId != nil {
+		object["nrfId"], err = json.Marshal(a.NrfId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'nrfId': %w", err)
+		}
+	}
+
+	if a.PcfSmFqdn != nil {
+		object["pcfSmFqdn"], err = json.Marshal(a.PcfSmFqdn)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'pcfSmFqdn': %w", err)
+		}
+	}
+
+	if len(a.PcfSmIpEndPoints) != 0 {
+		object["pcfSmIpEndPoints"], err = json.Marshal(a.PcfSmIpEndPoints)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'pcfSmIpEndPoints': %w", err)
+		}
+	}
+
+	if a.Status != 0 {
+		object["status"], err = json.Marshal(a.Status)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'status': %w", err)
+		}
+	}
+
+	if a.SupportedFeatures != nil {
+		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
+		}
+	}
+
+	if a.Title != nil {
+		object["title"], err = json.Marshal(a.Title)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'title': %w", err)
+		}
+	}
+
+	if a.Type != nil {
+		object["type"], err = json.Marshal(a.Type)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'type': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for NrfNFService. Returns the specified
+// element and whether it was found
+func (a NrfNFService) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for NrfNFService
+func (a *NrfNFService) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for NrfNFService to handle AdditionalProperties
+func (a *NrfNFService) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["allowedNfDomains"]; found {
+		err = json.Unmarshal(raw, &a.AllowedNfDomains)
+		if err != nil {
+			return fmt.Errorf("error reading 'allowedNfDomains': %w", err)
+		}
+		delete(object, "allowedNfDomains")
+	}
+
+	if raw, found := object["allowedNfTypes"]; found {
+		err = json.Unmarshal(raw, &a.AllowedNfTypes)
+		if err != nil {
+			return fmt.Errorf("error reading 'allowedNfTypes': %w", err)
+		}
+		delete(object, "allowedNfTypes")
+	}
+
+	if raw, found := object["allowedNssais"]; found {
+		err = json.Unmarshal(raw, &a.AllowedNssais)
+		if err != nil {
+			return fmt.Errorf("error reading 'allowedNssais': %w", err)
+		}
+		delete(object, "allowedNssais")
+	}
+
+	if raw, found := object["allowedOperationsPerNfInstance"]; found {
+		err = json.Unmarshal(raw, &a.AllowedOperationsPerNfInstance)
+		if err != nil {
+			return fmt.Errorf("error reading 'allowedOperationsPerNfInstance': %w", err)
+		}
+		delete(object, "allowedOperationsPerNfInstance")
+	}
+
+	if raw, found := object["allowedOperationsPerNfType"]; found {
+		err = json.Unmarshal(raw, &a.AllowedOperationsPerNfType)
+		if err != nil {
+			return fmt.Errorf("error reading 'allowedOperationsPerNfType': %w", err)
+		}
+		delete(object, "allowedOperationsPerNfType")
+	}
+
+	if raw, found := object["allowedPlmns"]; found {
+		err = json.Unmarshal(raw, &a.AllowedPlmns)
+		if err != nil {
+			return fmt.Errorf("error reading 'allowedPlmns': %w", err)
+		}
+		delete(object, "allowedPlmns")
+	}
+
+	if raw, found := object["allowedSnpns"]; found {
+		err = json.Unmarshal(raw, &a.AllowedSnpns)
+		if err != nil {
+			return fmt.Errorf("error reading 'allowedSnpns': %w", err)
+		}
+		delete(object, "allowedSnpns")
+	}
+
+	if raw, found := object["apiPrefix"]; found {
+		err = json.Unmarshal(raw, &a.ApiPrefix)
+		if err != nil {
+			return fmt.Errorf("error reading 'apiPrefix': %w", err)
+		}
+		delete(object, "apiPrefix")
+	}
+
+	if raw, found := object["capacity"]; found {
+		err = json.Unmarshal(raw, &a.Capacity)
+		if err != nil {
+			return fmt.Errorf("error reading 'capacity': %w", err)
+		}
+		delete(object, "capacity")
+	}
+
+	if raw, found := object["defaultNotificationSubscriptions"]; found {
+		err = json.Unmarshal(raw, &a.DefaultNotificationSubscriptions)
+		if err != nil {
+			return fmt.Errorf("error reading 'defaultNotificationSubscriptions': %w", err)
+		}
+		delete(object, "defaultNotificationSubscriptions")
+	}
+
+	if raw, found := object["fqdn"]; found {
+		err = json.Unmarshal(raw, &a.Fqdn)
+		if err != nil {
+			return fmt.Errorf("error reading 'fqdn': %w", err)
+		}
+		delete(object, "fqdn")
+	}
+
+	if raw, found := object["interPlmnFqdn"]; found {
+		err = json.Unmarshal(raw, &a.InterPlmnFqdn)
+		if err != nil {
+			return fmt.Errorf("error reading 'interPlmnFqdn': %w", err)
+		}
+		delete(object, "interPlmnFqdn")
+	}
+
+	if raw, found := object["ipEndPoints"]; found {
+		err = json.Unmarshal(raw, &a.IpEndPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'ipEndPoints': %w", err)
+		}
+		delete(object, "ipEndPoints")
+	}
+
+	if raw, found := object["load"]; found {
+		err = json.Unmarshal(raw, &a.Load)
+		if err != nil {
+			return fmt.Errorf("error reading 'load': %w", err)
+		}
+		delete(object, "load")
+	}
+
+	if raw, found := object["loadTimeStamp"]; found {
+		err = json.Unmarshal(raw, &a.LoadTimeStamp)
+		if err != nil {
+			return fmt.Errorf("error reading 'loadTimeStamp': %w", err)
+		}
+		delete(object, "loadTimeStamp")
+	}
+
+	if raw, found := object["nfServiceSetIdList"]; found {
+		err = json.Unmarshal(raw, &a.NfServiceSetIdList)
+		if err != nil {
+			return fmt.Errorf("error reading 'nfServiceSetIdList': %w", err)
+		}
+		delete(object, "nfServiceSetIdList")
+	}
+
+	if raw, found := object["nfServiceStatus"]; found {
+		err = json.Unmarshal(raw, &a.NfServiceStatus)
+		if err != nil {
+			return fmt.Errorf("error reading 'nfServiceStatus': %w", err)
+		}
+		delete(object, "nfServiceStatus")
+	}
+
+	if raw, found := object["oauth2Required"]; found {
+		err = json.Unmarshal(raw, &a.Oauth2Required)
+		if err != nil {
+			return fmt.Errorf("error reading 'oauth2Required': %w", err)
+		}
+		delete(object, "oauth2Required")
+	}
+
+	if raw, found := object["perPlmnSnssaiList"]; found {
+		err = json.Unmarshal(raw, &a.PerPlmnSnssaiList)
+		if err != nil {
+			return fmt.Errorf("error reading 'perPlmnSnssaiList': %w", err)
+		}
+		delete(object, "perPlmnSnssaiList")
+	}
+
+	if raw, found := object["priority"]; found {
+		err = json.Unmarshal(raw, &a.Priority)
+		if err != nil {
+			return fmt.Errorf("error reading 'priority': %w", err)
+		}
+		delete(object, "priority")
+	}
+
+	if raw, found := object["recoveryTime"]; found {
+		err = json.Unmarshal(raw, &a.RecoveryTime)
+		if err != nil {
+			return fmt.Errorf("error reading 'recoveryTime': %w", err)
+		}
+		delete(object, "recoveryTime")
+	}
+
+	if raw, found := object["sNssais"]; found {
+		err = json.Unmarshal(raw, &a.SNssais)
+		if err != nil {
+			return fmt.Errorf("error reading 'sNssais': %w", err)
+		}
+		delete(object, "sNssais")
+	}
+
+	if raw, found := object["scheme"]; found {
+		err = json.Unmarshal(raw, &a.Scheme)
+		if err != nil {
+			return fmt.Errorf("error reading 'scheme': %w", err)
+		}
+		delete(object, "scheme")
+	}
+
+	if raw, found := object["serviceInstanceId"]; found {
+		err = json.Unmarshal(raw, &a.ServiceInstanceId)
+		if err != nil {
+			return fmt.Errorf("error reading 'serviceInstanceId': %w", err)
+		}
+		delete(object, "serviceInstanceId")
+	}
+
+	if raw, found := object["serviceName"]; found {
+		err = json.Unmarshal(raw, &a.ServiceName)
+		if err != nil {
+			return fmt.Errorf("error reading 'serviceName': %w", err)
+		}
+		delete(object, "serviceName")
+	}
+
+	if raw, found := object["supportedFeatures"]; found {
+		err = json.Unmarshal(raw, &a.SupportedFeatures)
+		if err != nil {
+			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
+		}
+		delete(object, "supportedFeatures")
+	}
+
+	if raw, found := object["supportedVendorSpecificFeatures"]; found {
+		err = json.Unmarshal(raw, &a.SupportedVendorSpecificFeatures)
+		if err != nil {
+			return fmt.Errorf("error reading 'supportedVendorSpecificFeatures': %w", err)
+		}
+		delete(object, "supportedVendorSpecificFeatures")
+	}
+
+	if raw, found := object["vendorId"]; found {
+		err = json.Unmarshal(raw, &a.VendorId)
+		if err != nil {
+			return fmt.Errorf("error reading 'vendorId': %w", err)
+		}
+		delete(object, "vendorId")
+	}
+
+	if raw, found := object["versions"]; found {
+		err = json.Unmarshal(raw, &a.Versions)
+		if err != nil {
+			return fmt.Errorf("error reading 'versions': %w", err)
+		}
+		delete(object, "versions")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for NrfNFService to handle AdditionalProperties
+func (a NrfNFService) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.AllowedNfDomains) != 0 {
+		object["allowedNfDomains"], err = json.Marshal(a.AllowedNfDomains)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'allowedNfDomains': %w", err)
+		}
+	}
+
+	if len(a.AllowedNfTypes) != 0 {
+		object["allowedNfTypes"], err = json.Marshal(a.AllowedNfTypes)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'allowedNfTypes': %w", err)
+		}
+	}
+
+	if len(a.AllowedNssais) != 0 {
+		object["allowedNssais"], err = json.Marshal(a.AllowedNssais)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'allowedNssais': %w", err)
+		}
+	}
+
+	if a.AllowedOperationsPerNfInstance != nil {
+		object["allowedOperationsPerNfInstance"], err = json.Marshal(a.AllowedOperationsPerNfInstance)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'allowedOperationsPerNfInstance': %w", err)
+		}
+	}
+
+	if a.AllowedOperationsPerNfType != nil {
+		object["allowedOperationsPerNfType"], err = json.Marshal(a.AllowedOperationsPerNfType)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'allowedOperationsPerNfType': %w", err)
+		}
+	}
+
+	if len(a.AllowedPlmns) != 0 {
+		object["allowedPlmns"], err = json.Marshal(a.AllowedPlmns)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'allowedPlmns': %w", err)
+		}
+	}
+
+	if len(a.AllowedSnpns) != 0 {
+		object["allowedSnpns"], err = json.Marshal(a.AllowedSnpns)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'allowedSnpns': %w", err)
+		}
+	}
+
+	if a.ApiPrefix != nil {
+		object["apiPrefix"], err = json.Marshal(a.ApiPrefix)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'apiPrefix': %w", err)
+		}
+	}
+
+	if a.Capacity != nil {
+		object["capacity"], err = json.Marshal(a.Capacity)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'capacity': %w", err)
+		}
+	}
+
+	if len(a.DefaultNotificationSubscriptions) != 0 {
+		object["defaultNotificationSubscriptions"], err = json.Marshal(a.DefaultNotificationSubscriptions)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'defaultNotificationSubscriptions': %w", err)
+		}
+	}
+
+	if a.Fqdn != nil {
+		object["fqdn"], err = json.Marshal(a.Fqdn)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'fqdn': %w", err)
+		}
+	}
+
+	if a.InterPlmnFqdn != nil {
+		object["interPlmnFqdn"], err = json.Marshal(a.InterPlmnFqdn)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'interPlmnFqdn': %w", err)
+		}
+	}
+
+	if len(a.IpEndPoints) != 0 {
+		object["ipEndPoints"], err = json.Marshal(a.IpEndPoints)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ipEndPoints': %w", err)
+		}
+	}
+
+	if a.Load != nil {
+		object["load"], err = json.Marshal(a.Load)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'load': %w", err)
+		}
+	}
+
+	if a.LoadTimeStamp != nil {
+		object["loadTimeStamp"], err = json.Marshal(a.LoadTimeStamp)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'loadTimeStamp': %w", err)
+		}
+	}
+
+	if len(a.NfServiceSetIdList) != 0 {
+		object["nfServiceSetIdList"], err = json.Marshal(a.NfServiceSetIdList)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'nfServiceSetIdList': %w", err)
+		}
+	}
+
+	object["nfServiceStatus"], err = json.Marshal(a.NfServiceStatus)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'nfServiceStatus': %w", err)
+	}
+
+	if a.Oauth2Required != nil {
+		object["oauth2Required"], err = json.Marshal(a.Oauth2Required)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'oauth2Required': %w", err)
+		}
+	}
+
+	if len(a.PerPlmnSnssaiList) != 0 {
+		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
+		}
+	}
+
+	if a.Priority != nil {
+		object["priority"], err = json.Marshal(a.Priority)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'priority': %w", err)
+		}
+	}
+
+	if a.RecoveryTime != nil {
+		object["recoveryTime"], err = json.Marshal(a.RecoveryTime)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'recoveryTime': %w", err)
+		}
+	}
+
+	if len(a.SNssais) != 0 {
+		object["sNssais"], err = json.Marshal(a.SNssais)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
+		}
+	}
+
+	object["scheme"], err = json.Marshal(a.Scheme)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'scheme': %w", err)
+	}
+
+	object["serviceInstanceId"], err = json.Marshal(a.ServiceInstanceId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'serviceInstanceId': %w", err)
+	}
+
+	object["serviceName"], err = json.Marshal(a.ServiceName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'serviceName': %w", err)
+	}
+
+	if a.SupportedFeatures != nil {
+		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
+		}
+	}
+
+	if a.SupportedVendorSpecificFeatures != nil {
+		object["supportedVendorSpecificFeatures"], err = json.Marshal(a.SupportedVendorSpecificFeatures)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'supportedVendorSpecificFeatures': %w", err)
+		}
+	}
+
+	if len(a.VendorId) != 0 {
+		object["vendorId"], err = json.Marshal(a.VendorId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'vendorId': %w", err)
+		}
+	}
+
+	object["versions"], err = json.Marshal(a.Versions)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'versions': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for NrfPfdData. Returns the specified
+// element and whether it was found
+func (a NrfPfdData) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for NrfPfdData
+func (a *NrfPfdData) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for NrfPfdData to handle AdditionalProperties
+func (a *NrfPfdData) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["afIds"]; found {
+		err = json.Unmarshal(raw, &a.AfIds)
+		if err != nil {
+			return fmt.Errorf("error reading 'afIds': %w", err)
+		}
+		delete(object, "afIds")
+	}
+
+	if raw, found := object["appIds"]; found {
+		err = json.Unmarshal(raw, &a.AppIds)
+		if err != nil {
+			return fmt.Errorf("error reading 'appIds': %w", err)
+		}
+		delete(object, "appIds")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for NrfPfdData to handle AdditionalProperties
+func (a NrfPfdData) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.AfIds) != 0 {
+		object["afIds"], err = json.Marshal(a.AfIds)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'afIds': %w", err)
+		}
+	}
+
+	if len(a.AppIds) != 0 {
+		object["appIds"], err = json.Marshal(a.AppIds)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'appIds': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for NrfSubscriptionData. Returns the specified
+// element and whether it was found
+func (a NrfSubscriptionData) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for NrfSubscriptionData
+func (a *NrfSubscriptionData) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for NrfSubscriptionData to handle AdditionalProperties
+func (a *NrfSubscriptionData) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["nfStatusNotificationUri"]; found {
+		err = json.Unmarshal(raw, &a.NfStatusNotificationUri)
+		if err != nil {
+			return fmt.Errorf("error reading 'nfStatusNotificationUri': %w", err)
+		}
+		delete(object, "nfStatusNotificationUri")
+	}
+
+	if raw, found := object["nid"]; found {
+		err = json.Unmarshal(raw, &a.Nid)
+		if err != nil {
+			return fmt.Errorf("error reading 'nid': %w", err)
+		}
+		delete(object, "nid")
+	}
+
+	if raw, found := object["notifCondition"]; found {
+		err = json.Unmarshal(raw, &a.NotifCondition)
+		if err != nil {
+			return fmt.Errorf("error reading 'notifCondition': %w", err)
+		}
+		delete(object, "notifCondition")
+	}
+
+	if raw, found := object["nrfSupportedFeatures"]; found {
+		err = json.Unmarshal(raw, &a.NrfSupportedFeatures)
+		if err != nil {
+			return fmt.Errorf("error reading 'nrfSupportedFeatures': %w", err)
+		}
+		delete(object, "nrfSupportedFeatures")
+	}
+
+	if raw, found := object["plmnId"]; found {
+		err = json.Unmarshal(raw, &a.PlmnId)
+		if err != nil {
+			return fmt.Errorf("error reading 'plmnId': %w", err)
+		}
+		delete(object, "plmnId")
+	}
+
+	if raw, found := object["reqNfFqdn"]; found {
+		err = json.Unmarshal(raw, &a.ReqNfFqdn)
+		if err != nil {
+			return fmt.Errorf("error reading 'reqNfFqdn': %w", err)
+		}
+		delete(object, "reqNfFqdn")
+	}
+
+	if raw, found := object["reqNfInstanceId"]; found {
+		err = json.Unmarshal(raw, &a.ReqNfInstanceId)
+		if err != nil {
+			return fmt.Errorf("error reading 'reqNfInstanceId': %w", err)
+		}
+		delete(object, "reqNfInstanceId")
+	}
+
+	if raw, found := object["reqNfType"]; found {
+		err = json.Unmarshal(raw, &a.ReqNfType)
+		if err != nil {
+			return fmt.Errorf("error reading 'reqNfType': %w", err)
+		}
+		delete(object, "reqNfType")
+	}
+
+	if raw, found := object["reqNotifEvents"]; found {
+		err = json.Unmarshal(raw, &a.ReqNotifEvents)
+		if err != nil {
+			return fmt.Errorf("error reading 'reqNotifEvents': %w", err)
+		}
+		delete(object, "reqNotifEvents")
+	}
+
+	if raw, found := object["reqPerPlmnSnssais"]; found {
+		err = json.Unmarshal(raw, &a.ReqPerPlmnSnssais)
+		if err != nil {
+			return fmt.Errorf("error reading 'reqPerPlmnSnssais': %w", err)
+		}
+		delete(object, "reqPerPlmnSnssais")
+	}
+
+	if raw, found := object["reqPlmnList"]; found {
+		err = json.Unmarshal(raw, &a.ReqPlmnList)
+		if err != nil {
+			return fmt.Errorf("error reading 'reqPlmnList': %w", err)
+		}
+		delete(object, "reqPlmnList")
+	}
+
+	if raw, found := object["reqSnpnList"]; found {
+		err = json.Unmarshal(raw, &a.ReqSnpnList)
+		if err != nil {
+			return fmt.Errorf("error reading 'reqSnpnList': %w", err)
+		}
+		delete(object, "reqSnpnList")
+	}
+
+	if raw, found := object["reqSnssais"]; found {
+		err = json.Unmarshal(raw, &a.ReqSnssais)
+		if err != nil {
+			return fmt.Errorf("error reading 'reqSnssais': %w", err)
+		}
+		delete(object, "reqSnssais")
+	}
+
+	if raw, found := object["requesterFeatures"]; found {
+		err = json.Unmarshal(raw, &a.RequesterFeatures)
+		if err != nil {
+			return fmt.Errorf("error reading 'requesterFeatures': %w", err)
+		}
+		delete(object, "requesterFeatures")
+	}
+
+	if raw, found := object["servingScope"]; found {
+		err = json.Unmarshal(raw, &a.ServingScope)
+		if err != nil {
+			return fmt.Errorf("error reading 'servingScope': %w", err)
+		}
+		delete(object, "servingScope")
+	}
+
+	if raw, found := object["subscrCond"]; found {
+		err = json.Unmarshal(raw, &a.SubscrCond)
+		if err != nil {
+			return fmt.Errorf("error reading 'subscrCond': %w", err)
+		}
+		delete(object, "subscrCond")
+	}
+
+	if raw, found := object["subscriptionId"]; found {
+		err = json.Unmarshal(raw, &a.SubscriptionId)
+		if err != nil {
+			return fmt.Errorf("error reading 'subscriptionId': %w", err)
+		}
+		delete(object, "subscriptionId")
+	}
+
+	if raw, found := object["validityTime"]; found {
+		err = json.Unmarshal(raw, &a.ValidityTime)
+		if err != nil {
+			return fmt.Errorf("error reading 'validityTime': %w", err)
+		}
+		delete(object, "validityTime")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for NrfSubscriptionData to handle AdditionalProperties
+func (a NrfSubscriptionData) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["nfStatusNotificationUri"], err = json.Marshal(a.NfStatusNotificationUri)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'nfStatusNotificationUri': %w", err)
+	}
+
+	if len(a.Nid) != 0 {
+		object["nid"], err = json.Marshal(a.Nid)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'nid': %w", err)
+		}
+	}
+
+	if a.NotifCondition != nil {
+		object["notifCondition"], err = json.Marshal(a.NotifCondition)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'notifCondition': %w", err)
+		}
+	}
+
+	if a.NrfSupportedFeatures != nil {
+		object["nrfSupportedFeatures"], err = json.Marshal(a.NrfSupportedFeatures)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'nrfSupportedFeatures': %w", err)
+		}
+	}
+
+	if a.PlmnId != nil {
+		object["plmnId"], err = json.Marshal(a.PlmnId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
+		}
+	}
+
+	if a.ReqNfFqdn != nil {
+		object["reqNfFqdn"], err = json.Marshal(a.ReqNfFqdn)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reqNfFqdn': %w", err)
+		}
+	}
+
+	if a.ReqNfInstanceId != nil {
+		object["reqNfInstanceId"], err = json.Marshal(a.ReqNfInstanceId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reqNfInstanceId': %w", err)
+		}
+	}
+
+	if a.ReqNfType != nil {
+		object["reqNfType"], err = json.Marshal(a.ReqNfType)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reqNfType': %w", err)
+		}
+	}
+
+	if len(a.ReqNotifEvents) != 0 {
+		object["reqNotifEvents"], err = json.Marshal(a.ReqNotifEvents)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reqNotifEvents': %w", err)
+		}
+	}
+
+	if len(a.ReqPerPlmnSnssais) != 0 {
+		object["reqPerPlmnSnssais"], err = json.Marshal(a.ReqPerPlmnSnssais)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reqPerPlmnSnssais': %w", err)
+		}
+	}
+
+	if len(a.ReqPlmnList) != 0 {
+		object["reqPlmnList"], err = json.Marshal(a.ReqPlmnList)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reqPlmnList': %w", err)
+		}
+	}
+
+	if len(a.ReqSnpnList) != 0 {
+		object["reqSnpnList"], err = json.Marshal(a.ReqSnpnList)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reqSnpnList': %w", err)
+		}
+	}
+
+	if len(a.ReqSnssais) != 0 {
+		object["reqSnssais"], err = json.Marshal(a.ReqSnssais)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reqSnssais': %w", err)
+		}
+	}
+
+	if a.RequesterFeatures != nil {
+		object["requesterFeatures"], err = json.Marshal(a.RequesterFeatures)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'requesterFeatures': %w", err)
+		}
+	}
+
+	if len(a.ServingScope) != 0 {
+		object["servingScope"], err = json.Marshal(a.ServingScope)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'servingScope': %w", err)
+		}
+	}
+
+	if a.SubscrCond != nil {
+		object["subscrCond"], err = json.Marshal(a.SubscrCond)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'subscrCond': %w", err)
+		}
+	}
+
+	if len(a.SubscriptionId) != 0 {
+		object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
+		}
+	}
+
+	if a.ValidityTime != nil {
+		object["validityTime"], err = json.Marshal(a.ValidityTime)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PcfBdtPolicyData. Returns the specified
+// element and whether it was found
+func (a PcfBdtPolicyData) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PcfBdtPolicyData
+func (a *PcfBdtPolicyData) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PcfBdtPolicyData to handle AdditionalProperties
+func (a *PcfBdtPolicyData) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["bdtRefId"]; found {
+		err = json.Unmarshal(raw, &a.BdtRefId)
+		if err != nil {
+			return fmt.Errorf("error reading 'bdtRefId': %w", err)
+		}
+		delete(object, "bdtRefId")
+	}
+
+	if raw, found := object["selTransPolicyId"]; found {
+		err = json.Unmarshal(raw, &a.SelTransPolicyId)
+		if err != nil {
+			return fmt.Errorf("error reading 'selTransPolicyId': %w", err)
+		}
+		delete(object, "selTransPolicyId")
+	}
+
+	if raw, found := object["suppFeat"]; found {
+		err = json.Unmarshal(raw, &a.SuppFeat)
+		if err != nil {
+			return fmt.Errorf("error reading 'suppFeat': %w", err)
+		}
+		delete(object, "suppFeat")
+	}
+
+	if raw, found := object["transfPolicies"]; found {
+		err = json.Unmarshal(raw, &a.TransfPolicies)
+		if err != nil {
+			return fmt.Errorf("error reading 'transfPolicies': %w", err)
+		}
+		delete(object, "transfPolicies")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PcfBdtPolicyData to handle AdditionalProperties
+func (a PcfBdtPolicyData) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["bdtRefId"], err = json.Marshal(a.BdtRefId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'bdtRefId': %w", err)
+	}
+
+	if a.SelTransPolicyId != nil {
+		object["selTransPolicyId"], err = json.Marshal(a.SelTransPolicyId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'selTransPolicyId': %w", err)
+		}
+	}
+
+	if a.SuppFeat != nil {
+		object["suppFeat"], err = json.Marshal(a.SuppFeat)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'suppFeat': %w", err)
+		}
+	}
+
+	object["transfPolicies"], err = json.Marshal(a.TransfPolicies)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'transfPolicies': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PcfBdtPolicyDataPatch. Returns the specified
+// element and whether it was found
+func (a PcfBdtPolicyDataPatch) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PcfBdtPolicyDataPatch
+func (a *PcfBdtPolicyDataPatch) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PcfBdtPolicyDataPatch to handle AdditionalProperties
+func (a *PcfBdtPolicyDataPatch) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["selTransPolicyId"]; found {
+		err = json.Unmarshal(raw, &a.SelTransPolicyId)
+		if err != nil {
+			return fmt.Errorf("error reading 'selTransPolicyId': %w", err)
+		}
+		delete(object, "selTransPolicyId")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PcfBdtPolicyDataPatch to handle AdditionalProperties
+func (a PcfBdtPolicyDataPatch) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["selTransPolicyId"], err = json.Marshal(a.SelTransPolicyId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'selTransPolicyId': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PcfNetworkAreaInfo. Returns the specified
+// element and whether it was found
+func (a PcfNetworkAreaInfo) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PcfNetworkAreaInfo
+func (a *PcfNetworkAreaInfo) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PcfNetworkAreaInfo to handle AdditionalProperties
+func (a *PcfNetworkAreaInfo) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["ecgis"]; found {
+		err = json.Unmarshal(raw, &a.Ecgis)
+		if err != nil {
+			return fmt.Errorf("error reading 'ecgis': %w", err)
+		}
+		delete(object, "ecgis")
+	}
+
+	if raw, found := object["gRanNodeIds"]; found {
+		err = json.Unmarshal(raw, &a.GRanNodeIds)
+		if err != nil {
+			return fmt.Errorf("error reading 'gRanNodeIds': %w", err)
+		}
+		delete(object, "gRanNodeIds")
+	}
+
+	if raw, found := object["ncgis"]; found {
+		err = json.Unmarshal(raw, &a.Ncgis)
+		if err != nil {
+			return fmt.Errorf("error reading 'ncgis': %w", err)
+		}
+		delete(object, "ncgis")
+	}
+
+	if raw, found := object["tais"]; found {
+		err = json.Unmarshal(raw, &a.Tais)
+		if err != nil {
+			return fmt.Errorf("error reading 'tais': %w", err)
+		}
+		delete(object, "tais")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PcfNetworkAreaInfo to handle AdditionalProperties
+func (a PcfNetworkAreaInfo) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.Ecgis) != 0 {
+		object["ecgis"], err = json.Marshal(a.Ecgis)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ecgis': %w", err)
+		}
+	}
+
+	if len(a.GRanNodeIds) != 0 {
+		object["gRanNodeIds"], err = json.Marshal(a.GRanNodeIds)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'gRanNodeIds': %w", err)
+		}
+	}
+
+	if len(a.Ncgis) != 0 {
+		object["ncgis"], err = json.Marshal(a.Ncgis)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ncgis': %w", err)
+		}
+	}
+
+	if len(a.Tais) != 0 {
+		object["tais"], err = json.Marshal(a.Tais)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'tais': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SmfIpAddress. Returns the specified
+// element and whether it was found
+func (a SmfIpAddress) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SmfIpAddress
+func (a *SmfIpAddress) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SmfIpAddress to handle AdditionalProperties
+func (a *SmfIpAddress) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["ipv4Addr"]; found {
+		err = json.Unmarshal(raw, &a.Ipv4Addr)
+		if err != nil {
+			return fmt.Errorf("error reading 'ipv4Addr': %w", err)
+		}
+		delete(object, "ipv4Addr")
+	}
+
+	if raw, found := object["ipv6Addr"]; found {
+		err = json.Unmarshal(raw, &a.Ipv6Addr)
+		if err != nil {
+			return fmt.Errorf("error reading 'ipv6Addr': %w", err)
+		}
+		delete(object, "ipv6Addr")
+	}
+
+	if raw, found := object["ipv6Prefix"]; found {
+		err = json.Unmarshal(raw, &a.Ipv6Prefix)
+		if err != nil {
+			return fmt.Errorf("error reading 'ipv6Prefix': %w", err)
+		}
+		delete(object, "ipv6Prefix")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SmfIpAddress to handle AdditionalProperties
+func (a SmfIpAddress) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if len(a.Ipv4Addr) != 0 {
+		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
+		}
+	}
+
+	if a.Ipv6Addr != nil {
+		object["ipv6Addr"], err = json.Marshal(a.Ipv6Addr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ipv6Addr': %w", err)
+		}
+	}
+
+	if a.Ipv6Prefix != nil {
+		object["ipv6Prefix"], err = json.Marshal(a.Ipv6Prefix)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ipv6Prefix': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UdmEcRestrictionDataWb. Returns the specified
+// element and whether it was found
+func (a UdmEcRestrictionDataWb) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UdmEcRestrictionDataWb
+func (a *UdmEcRestrictionDataWb) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UdmEcRestrictionDataWb to handle AdditionalProperties
+func (a *UdmEcRestrictionDataWb) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["ecModeARestricted"]; found {
+		err = json.Unmarshal(raw, &a.EcModeARestricted)
+		if err != nil {
+			return fmt.Errorf("error reading 'ecModeARestricted': %w", err)
+		}
+		delete(object, "ecModeARestricted")
+	}
+
+	if raw, found := object["ecModeBRestricted"]; found {
+		err = json.Unmarshal(raw, &a.EcModeBRestricted)
+		if err != nil {
+			return fmt.Errorf("error reading 'ecModeBRestricted': %w", err)
+		}
+		delete(object, "ecModeBRestricted")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UdmEcRestrictionDataWb to handle AdditionalProperties
+func (a UdmEcRestrictionDataWb) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.EcModeARestricted != nil {
+		object["ecModeARestricted"], err = json.Marshal(a.EcModeARestricted)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ecModeARestricted': %w", err)
+		}
+	}
+
+	if a.EcModeBRestricted != nil {
+		object["ecModeBRestricted"], err = json.Marshal(a.EcModeBRestricted)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ecModeBRestricted': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UdmLocationArea. Returns the specified
+// element and whether it was found
+func (a UdmLocationArea) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UdmLocationArea
+func (a *UdmLocationArea) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UdmLocationArea to handle AdditionalProperties
+func (a *UdmLocationArea) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["civicAddresses"]; found {
+		err = json.Unmarshal(raw, &a.CivicAddresses)
+		if err != nil {
+			return fmt.Errorf("error reading 'civicAddresses': %w", err)
+		}
+		delete(object, "civicAddresses")
+	}
+
+	if raw, found := object["geographicAreas"]; found {
+		err = json.Unmarshal(raw, &a.GeographicAreas)
+		if err != nil {
+			return fmt.Errorf("error reading 'geographicAreas': %w", err)
+		}
+		delete(object, "geographicAreas")
+	}
+
+	if raw, found := object["nwAreaInfo"]; found {
+		err = json.Unmarshal(raw, &a.NwAreaInfo)
+		if err != nil {
+			return fmt.Errorf("error reading 'nwAreaInfo': %w", err)
+		}
+		delete(object, "nwAreaInfo")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UdmLocationArea to handle AdditionalProperties
+func (a UdmLocationArea) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.CivicAddresses != nil {
+		object["civicAddresses"], err = json.Marshal(a.CivicAddresses)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'civicAddresses': %w", err)
+		}
+	}
+
+	if a.GeographicAreas != nil {
+		object["geographicAreas"], err = json.Marshal(a.GeographicAreas)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'geographicAreas': %w", err)
+		}
+	}
+
+	if a.NwAreaInfo != nil {
+		object["nwAreaInfo"], err = json.Marshal(a.NwAreaInfo)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'nwAreaInfo': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
 }
 
 // AsAfSigProtocol0 returns the union data inside the AfSigProtocol as a AfSigProtocol0
@@ -115001,380 +114939,6 @@ func (t MeteringMethod) MarshalJSON() ([]byte, error) {
 }
 
 func (t *MeteringMethod) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsNfInstanceIdCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NfInstanceIdCond
-func (t NRFSubscriptionData_SubscrCond) AsNfInstanceIdCond() (NfInstanceIdCond, error) {
-	var body NfInstanceIdCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNfInstanceIdCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NfInstanceIdCond
-func (t *NRFSubscriptionData_SubscrCond) FromNfInstanceIdCond(v NfInstanceIdCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNfInstanceIdCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NfInstanceIdCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNfInstanceIdCond(v NfInstanceIdCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNfInstanceIdListCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NfInstanceIdListCond
-func (t NRFSubscriptionData_SubscrCond) AsNfInstanceIdListCond() (NfInstanceIdListCond, error) {
-	var body NfInstanceIdListCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNfInstanceIdListCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NfInstanceIdListCond
-func (t *NRFSubscriptionData_SubscrCond) FromNfInstanceIdListCond(v NfInstanceIdListCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNfInstanceIdListCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NfInstanceIdListCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNfInstanceIdListCond(v NfInstanceIdListCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNfTypeCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NfTypeCond
-func (t NRFSubscriptionData_SubscrCond) AsNfTypeCond() (NfTypeCond, error) {
-	var body NfTypeCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNfTypeCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NfTypeCond
-func (t *NRFSubscriptionData_SubscrCond) FromNfTypeCond(v NfTypeCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNfTypeCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NfTypeCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNfTypeCond(v NfTypeCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsServiceNameCond returns the union data inside the NRFSubscriptionData_SubscrCond as a ServiceNameCond
-func (t NRFSubscriptionData_SubscrCond) AsServiceNameCond() (ServiceNameCond, error) {
-	var body ServiceNameCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromServiceNameCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided ServiceNameCond
-func (t *NRFSubscriptionData_SubscrCond) FromServiceNameCond(v ServiceNameCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeServiceNameCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided ServiceNameCond
-func (t *NRFSubscriptionData_SubscrCond) MergeServiceNameCond(v ServiceNameCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsAmfCond returns the union data inside the NRFSubscriptionData_SubscrCond as a AmfCond
-func (t NRFSubscriptionData_SubscrCond) AsAmfCond() (AmfCond, error) {
-	var body AmfCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAmfCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided AmfCond
-func (t *NRFSubscriptionData_SubscrCond) FromAmfCond(v AmfCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAmfCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided AmfCond
-func (t *NRFSubscriptionData_SubscrCond) MergeAmfCond(v AmfCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsGuamiListCond returns the union data inside the NRFSubscriptionData_SubscrCond as a GuamiListCond
-func (t NRFSubscriptionData_SubscrCond) AsGuamiListCond() (GuamiListCond, error) {
-	var body GuamiListCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromGuamiListCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided GuamiListCond
-func (t *NRFSubscriptionData_SubscrCond) FromGuamiListCond(v GuamiListCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeGuamiListCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided GuamiListCond
-func (t *NRFSubscriptionData_SubscrCond) MergeGuamiListCond(v GuamiListCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNetworkSliceCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NetworkSliceCond
-func (t NRFSubscriptionData_SubscrCond) AsNetworkSliceCond() (NetworkSliceCond, error) {
-	var body NetworkSliceCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNetworkSliceCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NetworkSliceCond
-func (t *NRFSubscriptionData_SubscrCond) FromNetworkSliceCond(v NetworkSliceCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNetworkSliceCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NetworkSliceCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNetworkSliceCond(v NetworkSliceCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNfGroupCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NfGroupCond
-func (t NRFSubscriptionData_SubscrCond) AsNfGroupCond() (NfGroupCond, error) {
-	var body NfGroupCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNfGroupCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NfGroupCond
-func (t *NRFSubscriptionData_SubscrCond) FromNfGroupCond(v NfGroupCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNfGroupCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NfGroupCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNfGroupCond(v NfGroupCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNfSetCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NfSetCond
-func (t NRFSubscriptionData_SubscrCond) AsNfSetCond() (NfSetCond, error) {
-	var body NfSetCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNfSetCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NfSetCond
-func (t *NRFSubscriptionData_SubscrCond) FromNfSetCond(v NfSetCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNfSetCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NfSetCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNfSetCond(v NfSetCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNfServiceSetCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NfServiceSetCond
-func (t NRFSubscriptionData_SubscrCond) AsNfServiceSetCond() (NfServiceSetCond, error) {
-	var body NfServiceSetCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNfServiceSetCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NfServiceSetCond
-func (t *NRFSubscriptionData_SubscrCond) FromNfServiceSetCond(v NfServiceSetCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNfServiceSetCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NfServiceSetCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNfServiceSetCond(v NfServiceSetCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsUpfCond returns the union data inside the NRFSubscriptionData_SubscrCond as a UpfCond
-func (t NRFSubscriptionData_SubscrCond) AsUpfCond() (UpfCond, error) {
-	var body UpfCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromUpfCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided UpfCond
-func (t *NRFSubscriptionData_SubscrCond) FromUpfCond(v UpfCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeUpfCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided UpfCond
-func (t *NRFSubscriptionData_SubscrCond) MergeUpfCond(v UpfCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsScpDomainCond returns the union data inside the NRFSubscriptionData_SubscrCond as a ScpDomainCond
-func (t NRFSubscriptionData_SubscrCond) AsScpDomainCond() (ScpDomainCond, error) {
-	var body ScpDomainCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromScpDomainCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided ScpDomainCond
-func (t *NRFSubscriptionData_SubscrCond) FromScpDomainCond(v ScpDomainCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeScpDomainCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided ScpDomainCond
-func (t *NRFSubscriptionData_SubscrCond) MergeScpDomainCond(v ScpDomainCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNwdafCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NwdafCond
-func (t NRFSubscriptionData_SubscrCond) AsNwdafCond() (NwdafCond, error) {
-	var body NwdafCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNwdafCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NwdafCond
-func (t *NRFSubscriptionData_SubscrCond) FromNwdafCond(v NwdafCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNwdafCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NwdafCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNwdafCond(v NwdafCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsNefCond returns the union data inside the NRFSubscriptionData_SubscrCond as a NefCond
-func (t NRFSubscriptionData_SubscrCond) AsNefCond() (NefCond, error) {
-	var body NefCond
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromNefCond overwrites any union data inside the NRFSubscriptionData_SubscrCond as the provided NefCond
-func (t *NRFSubscriptionData_SubscrCond) FromNefCond(v NefCond) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeNefCond performs a merge with any union data inside the NRFSubscriptionData_SubscrCond, using the provided NefCond
-func (t *NRFSubscriptionData_SubscrCond) MergeNefCond(v NefCond) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t NRFSubscriptionData_SubscrCond) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *NRFSubscriptionData_SubscrCond) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -115919,6 +115483,442 @@ func (t UEAuthenticationCtx_5gAuthData) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UEAuthenticationCtx_5gAuthData) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAusfSteeringContainer0 returns the union data inside the AusfSteeringContainer as a AusfSteeringContainer0
+func (t AusfSteeringContainer) AsAusfSteeringContainer0() (AusfSteeringContainer0, error) {
+	var body AusfSteeringContainer0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAusfSteeringContainer0 overwrites any union data inside the AusfSteeringContainer as the provided AusfSteeringContainer0
+func (t *AusfSteeringContainer) FromAusfSteeringContainer0(v AusfSteeringContainer0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAusfSteeringContainer0 performs a merge with any union data inside the AusfSteeringContainer, using the provided AusfSteeringContainer0
+func (t *AusfSteeringContainer) MergeAusfSteeringContainer0(v AusfSteeringContainer0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAusfSecuredPacket returns the union data inside the AusfSteeringContainer as a AusfSecuredPacket
+func (t AusfSteeringContainer) AsAusfSecuredPacket() (AusfSecuredPacket, error) {
+	var body AusfSecuredPacket
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAusfSecuredPacket overwrites any union data inside the AusfSteeringContainer as the provided AusfSecuredPacket
+func (t *AusfSteeringContainer) FromAusfSecuredPacket(v AusfSecuredPacket) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAusfSecuredPacket performs a merge with any union data inside the AusfSteeringContainer, using the provided AusfSecuredPacket
+func (t *AusfSteeringContainer) MergeAusfSecuredPacket(v AusfSecuredPacket) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AusfSteeringContainer) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AusfSteeringContainer) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsNfInstanceIdCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NfInstanceIdCond
+func (t NrfSubscriptionData_SubscrCond) AsNfInstanceIdCond() (NfInstanceIdCond, error) {
+	var body NfInstanceIdCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNfInstanceIdCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NfInstanceIdCond
+func (t *NrfSubscriptionData_SubscrCond) FromNfInstanceIdCond(v NfInstanceIdCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNfInstanceIdCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NfInstanceIdCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNfInstanceIdCond(v NfInstanceIdCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNfInstanceIdListCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NfInstanceIdListCond
+func (t NrfSubscriptionData_SubscrCond) AsNfInstanceIdListCond() (NfInstanceIdListCond, error) {
+	var body NfInstanceIdListCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNfInstanceIdListCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NfInstanceIdListCond
+func (t *NrfSubscriptionData_SubscrCond) FromNfInstanceIdListCond(v NfInstanceIdListCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNfInstanceIdListCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NfInstanceIdListCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNfInstanceIdListCond(v NfInstanceIdListCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNfTypeCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NfTypeCond
+func (t NrfSubscriptionData_SubscrCond) AsNfTypeCond() (NfTypeCond, error) {
+	var body NfTypeCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNfTypeCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NfTypeCond
+func (t *NrfSubscriptionData_SubscrCond) FromNfTypeCond(v NfTypeCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNfTypeCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NfTypeCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNfTypeCond(v NfTypeCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsServiceNameCond returns the union data inside the NrfSubscriptionData_SubscrCond as a ServiceNameCond
+func (t NrfSubscriptionData_SubscrCond) AsServiceNameCond() (ServiceNameCond, error) {
+	var body ServiceNameCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromServiceNameCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided ServiceNameCond
+func (t *NrfSubscriptionData_SubscrCond) FromServiceNameCond(v ServiceNameCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeServiceNameCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided ServiceNameCond
+func (t *NrfSubscriptionData_SubscrCond) MergeServiceNameCond(v ServiceNameCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAmfCond returns the union data inside the NrfSubscriptionData_SubscrCond as a AmfCond
+func (t NrfSubscriptionData_SubscrCond) AsAmfCond() (AmfCond, error) {
+	var body AmfCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAmfCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided AmfCond
+func (t *NrfSubscriptionData_SubscrCond) FromAmfCond(v AmfCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAmfCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided AmfCond
+func (t *NrfSubscriptionData_SubscrCond) MergeAmfCond(v AmfCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGuamiListCond returns the union data inside the NrfSubscriptionData_SubscrCond as a GuamiListCond
+func (t NrfSubscriptionData_SubscrCond) AsGuamiListCond() (GuamiListCond, error) {
+	var body GuamiListCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGuamiListCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided GuamiListCond
+func (t *NrfSubscriptionData_SubscrCond) FromGuamiListCond(v GuamiListCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGuamiListCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided GuamiListCond
+func (t *NrfSubscriptionData_SubscrCond) MergeGuamiListCond(v GuamiListCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNetworkSliceCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NetworkSliceCond
+func (t NrfSubscriptionData_SubscrCond) AsNetworkSliceCond() (NetworkSliceCond, error) {
+	var body NetworkSliceCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNetworkSliceCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NetworkSliceCond
+func (t *NrfSubscriptionData_SubscrCond) FromNetworkSliceCond(v NetworkSliceCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNetworkSliceCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NetworkSliceCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNetworkSliceCond(v NetworkSliceCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNfGroupCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NfGroupCond
+func (t NrfSubscriptionData_SubscrCond) AsNfGroupCond() (NfGroupCond, error) {
+	var body NfGroupCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNfGroupCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NfGroupCond
+func (t *NrfSubscriptionData_SubscrCond) FromNfGroupCond(v NfGroupCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNfGroupCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NfGroupCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNfGroupCond(v NfGroupCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNfSetCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NfSetCond
+func (t NrfSubscriptionData_SubscrCond) AsNfSetCond() (NfSetCond, error) {
+	var body NfSetCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNfSetCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NfSetCond
+func (t *NrfSubscriptionData_SubscrCond) FromNfSetCond(v NfSetCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNfSetCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NfSetCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNfSetCond(v NfSetCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNfServiceSetCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NfServiceSetCond
+func (t NrfSubscriptionData_SubscrCond) AsNfServiceSetCond() (NfServiceSetCond, error) {
+	var body NfServiceSetCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNfServiceSetCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NfServiceSetCond
+func (t *NrfSubscriptionData_SubscrCond) FromNfServiceSetCond(v NfServiceSetCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNfServiceSetCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NfServiceSetCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNfServiceSetCond(v NfServiceSetCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUpfCond returns the union data inside the NrfSubscriptionData_SubscrCond as a UpfCond
+func (t NrfSubscriptionData_SubscrCond) AsUpfCond() (UpfCond, error) {
+	var body UpfCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUpfCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided UpfCond
+func (t *NrfSubscriptionData_SubscrCond) FromUpfCond(v UpfCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUpfCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided UpfCond
+func (t *NrfSubscriptionData_SubscrCond) MergeUpfCond(v UpfCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsScpDomainCond returns the union data inside the NrfSubscriptionData_SubscrCond as a ScpDomainCond
+func (t NrfSubscriptionData_SubscrCond) AsScpDomainCond() (ScpDomainCond, error) {
+	var body ScpDomainCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromScpDomainCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided ScpDomainCond
+func (t *NrfSubscriptionData_SubscrCond) FromScpDomainCond(v ScpDomainCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeScpDomainCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided ScpDomainCond
+func (t *NrfSubscriptionData_SubscrCond) MergeScpDomainCond(v ScpDomainCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNwdafCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NwdafCond
+func (t NrfSubscriptionData_SubscrCond) AsNwdafCond() (NwdafCond, error) {
+	var body NwdafCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNwdafCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NwdafCond
+func (t *NrfSubscriptionData_SubscrCond) FromNwdafCond(v NwdafCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNwdafCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NwdafCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNwdafCond(v NwdafCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNefCond returns the union data inside the NrfSubscriptionData_SubscrCond as a NefCond
+func (t NrfSubscriptionData_SubscrCond) AsNefCond() (NefCond, error) {
+	var body NefCond
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNefCond overwrites any union data inside the NrfSubscriptionData_SubscrCond as the provided NefCond
+func (t *NrfSubscriptionData_SubscrCond) FromNefCond(v NefCond) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNefCond performs a merge with any union data inside the NrfSubscriptionData_SubscrCond, using the provided NefCond
+func (t *NrfSubscriptionData_SubscrCond) MergeNefCond(v NefCond) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t NrfSubscriptionData_SubscrCond) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *NrfSubscriptionData_SubscrCond) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }

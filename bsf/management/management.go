@@ -610,7 +610,7 @@ type CreatePCFBindingResponse struct {
 	JSON201                       *externalRef0.PcfBinding
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
-	ApplicationproblemJSON403     *externalRef0.BSFExtProblemDetails
+	ApplicationproblemJSON403     *externalRef0.BsfExtProblemDetails
 	ApplicationproblemJSON404     *externalRef0.N404
 	ApplicationproblemJSON411     *externalRef0.N411
 	ApplicationproblemJSON413     *externalRef0.N413
@@ -886,7 +886,7 @@ func ParseCreatePCFBindingResponse(rsp *http.Response) (*CreatePCFBindingRespons
 		response.ApplicationproblemJSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef0.BSFExtProblemDetails
+		var dest externalRef0.BsfExtProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1565,13 +1565,13 @@ func (response CreatePCFBinding401ApplicationProblemPlusJSONResponse) VisitCreat
 	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
-type CreatePCFBinding403ApplicationProblemPlusJSONResponse externalRef0.BSFExtProblemDetails
+type CreatePCFBinding403ApplicationProblemPlusJSONResponse externalRef0.BsfExtProblemDetails
 
 func (response CreatePCFBinding403ApplicationProblemPlusJSONResponse) VisitCreatePCFBindingResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef0.BSFExtProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.BsfExtProblemDetails(response))
 }
 
 type CreatePCFBinding404ApplicationProblemPlusJSONResponse struct {

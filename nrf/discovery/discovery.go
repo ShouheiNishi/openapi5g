@@ -119,7 +119,7 @@ type SearchNFInstancesParams struct {
 	InternalGroupIdentity *externalRef0.GroupId `form:"internal-group-identity,omitempty" json:"internal-group-identity,omitempty"`
 
 	// PfdData PFD data
-	PfdData *externalRef0.NRFPfdData `form:"pfd-data,omitempty" json:"pfd-data,omitempty"`
+	PfdData *externalRef0.NrfPfdData `form:"pfd-data,omitempty" json:"pfd-data,omitempty"`
 
 	// DataSet data set supported by the NF
 	DataSet *externalRef0.DataSetId `form:"data-set,omitempty" json:"data-set,omitempty"`
@@ -2627,7 +2627,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("pfd-data"); paramValue != "" {
 
-		var value externalRef0.NRFPfdData
+		var value externalRef0.NrfPfdData
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'pfd-data' as JSON: %w", err), http.StatusBadRequest)

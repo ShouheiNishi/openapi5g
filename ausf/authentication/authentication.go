@@ -647,7 +647,7 @@ type ClientWithResponsesInterface interface {
 type PostRgAuthenticationsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef0.AUSFRgAuthCtx
+	JSON201                       *externalRef0.AusfRgAuthCtx
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.ProblemDetails
@@ -817,7 +817,7 @@ type EapAuthMethodResponse struct {
 		// Links URI : /{eapSessionUri}
 		Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
-		// EapPayload contains an EAP packet
+		// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
 		EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
 		AdditionalProperties map[string]interface{}   `json:"-"`
 	}
@@ -963,7 +963,7 @@ func ParsePostRgAuthenticationsResponse(rsp *http.Response) (*PostRgAuthenticati
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef0.AUSFRgAuthCtx
+		var dest externalRef0.AusfRgAuthCtx
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1370,7 +1370,7 @@ func ParseEapAuthMethodResponse(rsp *http.Response) (*EapAuthMethodResponse, err
 			// Links URI : /{eapSessionUri}
 			Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
-			// EapPayload contains an EAP packet
+			// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
 			EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
 			AdditionalProperties map[string]interface{}   `json:"-"`
 		}
@@ -1658,7 +1658,7 @@ type PostRgAuthentications201ResponseHeaders struct {
 }
 
 type PostRgAuthentications201JSONResponse struct {
-	Body    externalRef0.AUSFRgAuthCtx
+	Body    externalRef0.AusfRgAuthCtx
 	Headers PostRgAuthentications201ResponseHeaders
 }
 
@@ -2191,7 +2191,7 @@ type EapAuthMethod200Application3gppHalPlusJSONResponse struct {
 	// Links URI : /{eapSessionUri}
 	Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
-	// EapPayload contains an EAP packet
+	// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
 	EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }

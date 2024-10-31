@@ -90,7 +90,7 @@ type UpdateNFInstanceApplicationJSONPatchPlusJSONRequestBody = UpdateNFInstanceA
 type RegisterNFInstanceJSONRequestBody = externalRef0.NFManagementNFProfile
 
 // CreateSubscriptionJSONRequestBody defines body for CreateSubscription for application/json ContentType.
-type CreateSubscriptionJSONRequestBody = externalRef0.NRFSubscriptionData
+type CreateSubscriptionJSONRequestBody = externalRef0.NrfSubscriptionData
 
 // UpdateSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for UpdateSubscription for application/json-patch+json ContentType.
 type UpdateSubscriptionApplicationJSONPatchPlusJSONRequestBody = UpdateSubscriptionApplicationJSONPatchPlusJSONBody
@@ -1170,7 +1170,7 @@ func (r RegisterNFInstanceResponse) StatusCode() int {
 type CreateSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef0.NRFSubscriptionData
+	JSON201                       *externalRef0.NrfSubscriptionData
 	JSON307                       *externalRef0.RedirectResponse
 	JSON308                       *externalRef0.RedirectResponse
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -1241,7 +1241,7 @@ func (r RemoveSubscriptionResponse) StatusCode() int {
 type UpdateSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef0.NRFSubscriptionData
+	JSON200                       *externalRef0.NrfSubscriptionData
 	JSON307                       *externalRef0.RedirectResponse
 	JSON308                       *externalRef0.RedirectResponse
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -2139,7 +2139,7 @@ func ParseCreateSubscriptionResponse(rsp *http.Response) (*CreateSubscriptionRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef0.NRFSubscriptionData
+		var dest externalRef0.NrfSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2383,7 +2383,7 @@ func ParseUpdateSubscriptionResponse(rsp *http.Response) (*UpdateSubscriptionRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef0.NRFSubscriptionData
+		var dest externalRef0.NrfSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4213,7 +4213,7 @@ type CreateSubscription201ResponseHeaders struct {
 }
 
 type CreateSubscription201JSONResponse struct {
-	Body    externalRef0.NRFSubscriptionData
+	Body    externalRef0.NrfSubscriptionData
 	Headers CreateSubscription201ResponseHeaders
 }
 
@@ -4597,7 +4597,7 @@ type UpdateSubscription200ResponseHeaders struct {
 }
 
 type UpdateSubscription200JSONResponse struct {
-	Body    externalRef0.NRFSubscriptionData
+	Body    externalRef0.NrfSubscriptionData
 	Headers UpdateSubscription200ResponseHeaders
 }
 

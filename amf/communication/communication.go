@@ -28,77 +28,89 @@ const (
 
 // NonUeN2MessageTransferMultipartBody defines parameters for NonUeN2MessageTransfer.
 type NonUeN2MessageTransferMultipartBody struct {
-	BinaryDataN2Information *openapi_types.File                        `json:"binaryDataN2Information,omitempty"`
-	JsonData                *externalRef0.N2InformationTransferReqData `json:"jsonData,omitempty"`
-	AdditionalProperties    map[string]interface{}                     `json:"-"`
+	BinaryDataN2Information *openapi_types.File `json:"binaryDataN2Information,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationTransferReqData
+	JsonData             *externalRef0.N2InformationTransferReqData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}                     `json:"-"`
 }
 
 // CreateUEContextMultipartBody defines parameters for CreateUEContext.
 type CreateUEContextMultipartBody struct {
-	BinaryDataN2Information      *openapi_types.File               `json:"binaryDataN2Information,omitempty"`
-	BinaryDataN2InformationExt1  *openapi_types.File               `json:"binaryDataN2InformationExt1,omitempty"`
-	BinaryDataN2InformationExt10 *openapi_types.File               `json:"binaryDataN2InformationExt10,omitempty"`
-	BinaryDataN2InformationExt11 *openapi_types.File               `json:"binaryDataN2InformationExt11,omitempty"`
-	BinaryDataN2InformationExt12 *openapi_types.File               `json:"binaryDataN2InformationExt12,omitempty"`
-	BinaryDataN2InformationExt13 *openapi_types.File               `json:"binaryDataN2InformationExt13,omitempty"`
-	BinaryDataN2InformationExt14 *openapi_types.File               `json:"binaryDataN2InformationExt14,omitempty"`
-	BinaryDataN2InformationExt15 *openapi_types.File               `json:"binaryDataN2InformationExt15,omitempty"`
-	BinaryDataN2InformationExt16 *openapi_types.File               `json:"binaryDataN2InformationExt16,omitempty"`
-	BinaryDataN2InformationExt2  *openapi_types.File               `json:"binaryDataN2InformationExt2,omitempty"`
-	BinaryDataN2InformationExt3  *openapi_types.File               `json:"binaryDataN2InformationExt3,omitempty"`
-	BinaryDataN2InformationExt4  *openapi_types.File               `json:"binaryDataN2InformationExt4,omitempty"`
-	BinaryDataN2InformationExt5  *openapi_types.File               `json:"binaryDataN2InformationExt5,omitempty"`
-	BinaryDataN2InformationExt6  *openapi_types.File               `json:"binaryDataN2InformationExt6,omitempty"`
-	BinaryDataN2InformationExt7  *openapi_types.File               `json:"binaryDataN2InformationExt7,omitempty"`
-	BinaryDataN2InformationExt8  *openapi_types.File               `json:"binaryDataN2InformationExt8,omitempty"`
-	BinaryDataN2InformationExt9  *openapi_types.File               `json:"binaryDataN2InformationExt9,omitempty"`
-	JsonData                     *externalRef0.UeContextCreateData `json:"jsonData,omitempty"`
-	AdditionalProperties         map[string]interface{}            `json:"-"`
+	BinaryDataN2Information      *openapi_types.File `json:"binaryDataN2Information,omitempty"`
+	BinaryDataN2InformationExt1  *openapi_types.File `json:"binaryDataN2InformationExt1,omitempty"`
+	BinaryDataN2InformationExt10 *openapi_types.File `json:"binaryDataN2InformationExt10,omitempty"`
+	BinaryDataN2InformationExt11 *openapi_types.File `json:"binaryDataN2InformationExt11,omitempty"`
+	BinaryDataN2InformationExt12 *openapi_types.File `json:"binaryDataN2InformationExt12,omitempty"`
+	BinaryDataN2InformationExt13 *openapi_types.File `json:"binaryDataN2InformationExt13,omitempty"`
+	BinaryDataN2InformationExt14 *openapi_types.File `json:"binaryDataN2InformationExt14,omitempty"`
+	BinaryDataN2InformationExt15 *openapi_types.File `json:"binaryDataN2InformationExt15,omitempty"`
+	BinaryDataN2InformationExt16 *openapi_types.File `json:"binaryDataN2InformationExt16,omitempty"`
+	BinaryDataN2InformationExt2  *openapi_types.File `json:"binaryDataN2InformationExt2,omitempty"`
+	BinaryDataN2InformationExt3  *openapi_types.File `json:"binaryDataN2InformationExt3,omitempty"`
+	BinaryDataN2InformationExt4  *openapi_types.File `json:"binaryDataN2InformationExt4,omitempty"`
+	BinaryDataN2InformationExt5  *openapi_types.File `json:"binaryDataN2InformationExt5,omitempty"`
+	BinaryDataN2InformationExt6  *openapi_types.File `json:"binaryDataN2InformationExt6,omitempty"`
+	BinaryDataN2InformationExt7  *openapi_types.File `json:"binaryDataN2InformationExt7,omitempty"`
+	BinaryDataN2InformationExt8  *openapi_types.File `json:"binaryDataN2InformationExt8,omitempty"`
+	BinaryDataN2InformationExt9  *openapi_types.File `json:"binaryDataN2InformationExt9,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextCreateData
+	JsonData             *externalRef0.UeContextCreateData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}            `json:"-"`
 }
 
 // CancelRelocateUEContextMultipartBody defines parameters for CancelRelocateUEContext.
 type CancelRelocateUEContextMultipartBody struct {
-	BinaryDataGtpcMessage *openapi_types.File                       `json:"binaryDataGtpcMessage,omitempty"`
-	JsonData              *externalRef0.UeContextCancelRelocateData `json:"jsonData,omitempty"`
-	AdditionalProperties  map[string]interface{}                    `json:"-"`
+	BinaryDataGtpcMessage *openapi_types.File `json:"binaryDataGtpcMessage,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextCancelRelocateData
+	JsonData             *externalRef0.UeContextCancelRelocateData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}                    `json:"-"`
 }
 
 // N1N2MessageTransferMultipartBody defines parameters for N1N2MessageTransfer.
 type N1N2MessageTransferMultipartBody struct {
-	BinaryDataN1Message     *openapi_types.File                      `json:"binaryDataN1Message,omitempty"`
-	BinaryDataN2Information *openapi_types.File                      `json:"binaryDataN2Information,omitempty"`
-	BinaryMtData            *openapi_types.File                      `json:"binaryMtData,omitempty"`
-	JsonData                *externalRef0.N1N2MessageTransferReqData `json:"jsonData,omitempty"`
-	AdditionalProperties    map[string]interface{}                   `json:"-"`
+	BinaryDataN1Message     *openapi_types.File `json:"binaryDataN1Message,omitempty"`
+	BinaryDataN2Information *openapi_types.File `json:"binaryDataN2Information,omitempty"`
+	BinaryMtData            *openapi_types.File `json:"binaryMtData,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferReqData
+	JsonData             *externalRef0.N1N2MessageTransferReqData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}                   `json:"-"`
 }
 
 // RelocateUEContextMultipartBody defines parameters for RelocateUEContext.
 type RelocateUEContextMultipartBody struct {
-	BinaryDataGtpcMessage        *openapi_types.File                 `json:"binaryDataGtpcMessage,omitempty"`
-	BinaryDataN2Information      *openapi_types.File                 `json:"binaryDataN2Information,omitempty"`
-	BinaryDataN2InformationExt1  *openapi_types.File                 `json:"binaryDataN2InformationExt1,omitempty"`
-	BinaryDataN2InformationExt10 *openapi_types.File                 `json:"binaryDataN2InformationExt10,omitempty"`
-	BinaryDataN2InformationExt11 *openapi_types.File                 `json:"binaryDataN2InformationExt11,omitempty"`
-	BinaryDataN2InformationExt12 *openapi_types.File                 `json:"binaryDataN2InformationExt12,omitempty"`
-	BinaryDataN2InformationExt13 *openapi_types.File                 `json:"binaryDataN2InformationExt13,omitempty"`
-	BinaryDataN2InformationExt14 *openapi_types.File                 `json:"binaryDataN2InformationExt14,omitempty"`
-	BinaryDataN2InformationExt15 *openapi_types.File                 `json:"binaryDataN2InformationExt15,omitempty"`
-	BinaryDataN2InformationExt16 *openapi_types.File                 `json:"binaryDataN2InformationExt16,omitempty"`
-	BinaryDataN2InformationExt2  *openapi_types.File                 `json:"binaryDataN2InformationExt2,omitempty"`
-	BinaryDataN2InformationExt3  *openapi_types.File                 `json:"binaryDataN2InformationExt3,omitempty"`
-	BinaryDataN2InformationExt4  *openapi_types.File                 `json:"binaryDataN2InformationExt4,omitempty"`
-	BinaryDataN2InformationExt5  *openapi_types.File                 `json:"binaryDataN2InformationExt5,omitempty"`
-	BinaryDataN2InformationExt6  *openapi_types.File                 `json:"binaryDataN2InformationExt6,omitempty"`
-	BinaryDataN2InformationExt7  *openapi_types.File                 `json:"binaryDataN2InformationExt7,omitempty"`
-	BinaryDataN2InformationExt8  *openapi_types.File                 `json:"binaryDataN2InformationExt8,omitempty"`
-	BinaryDataN2InformationExt9  *openapi_types.File                 `json:"binaryDataN2InformationExt9,omitempty"`
-	JsonData                     *externalRef0.UeContextRelocateData `json:"jsonData,omitempty"`
-	AdditionalProperties         map[string]interface{}              `json:"-"`
+	BinaryDataGtpcMessage        *openapi_types.File `json:"binaryDataGtpcMessage,omitempty"`
+	BinaryDataN2Information      *openapi_types.File `json:"binaryDataN2Information,omitempty"`
+	BinaryDataN2InformationExt1  *openapi_types.File `json:"binaryDataN2InformationExt1,omitempty"`
+	BinaryDataN2InformationExt10 *openapi_types.File `json:"binaryDataN2InformationExt10,omitempty"`
+	BinaryDataN2InformationExt11 *openapi_types.File `json:"binaryDataN2InformationExt11,omitempty"`
+	BinaryDataN2InformationExt12 *openapi_types.File `json:"binaryDataN2InformationExt12,omitempty"`
+	BinaryDataN2InformationExt13 *openapi_types.File `json:"binaryDataN2InformationExt13,omitempty"`
+	BinaryDataN2InformationExt14 *openapi_types.File `json:"binaryDataN2InformationExt14,omitempty"`
+	BinaryDataN2InformationExt15 *openapi_types.File `json:"binaryDataN2InformationExt15,omitempty"`
+	BinaryDataN2InformationExt16 *openapi_types.File `json:"binaryDataN2InformationExt16,omitempty"`
+	BinaryDataN2InformationExt2  *openapi_types.File `json:"binaryDataN2InformationExt2,omitempty"`
+	BinaryDataN2InformationExt3  *openapi_types.File `json:"binaryDataN2InformationExt3,omitempty"`
+	BinaryDataN2InformationExt4  *openapi_types.File `json:"binaryDataN2InformationExt4,omitempty"`
+	BinaryDataN2InformationExt5  *openapi_types.File `json:"binaryDataN2InformationExt5,omitempty"`
+	BinaryDataN2InformationExt6  *openapi_types.File `json:"binaryDataN2InformationExt6,omitempty"`
+	BinaryDataN2InformationExt7  *openapi_types.File `json:"binaryDataN2InformationExt7,omitempty"`
+	BinaryDataN2InformationExt8  *openapi_types.File `json:"binaryDataN2InformationExt8,omitempty"`
+	BinaryDataN2InformationExt9  *openapi_types.File `json:"binaryDataN2InformationExt9,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextRelocateData
+	JsonData             *externalRef0.UeContextRelocateData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}              `json:"-"`
 }
 
 // UEContextTransferMultipartBody defines parameters for UEContextTransfer.
 type UEContextTransferMultipartBody struct {
-	BinaryDataN1Message  *openapi_types.File                    `json:"binaryDataN1Message,omitempty"`
+	BinaryDataN1Message *openapi_types.File `json:"binaryDataN1Message,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextTransferReqData
 	JsonData             *externalRef0.UeContextTransferReqData `json:"jsonData,omitempty"`
 	AdditionalProperties map[string]interface{}                 `json:"-"`
 }

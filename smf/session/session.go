@@ -26,123 +26,139 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// N400 defines model for 400.
+// N400 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N400 = externalRef0.ExtProblemDetails
 
-// N401 defines model for 401.
+// N401 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N401 = externalRef0.ExtProblemDetails
 
-// N403 defines model for 403.
+// N403 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N403 = externalRef0.ExtProblemDetails
 
-// N404 defines model for 404.
+// N404 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N404 = externalRef0.ExtProblemDetails
 
-// N413 defines model for 413.
+// N413 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N413 = externalRef0.ExtProblemDetails
 
-// N415 defines model for 415.
+// N415 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N415 = externalRef0.ExtProblemDetails
 
-// N429 defines model for 429.
+// N429 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N429 = externalRef0.ExtProblemDetails
 
-// N500 defines model for 500.
+// N500 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N500 = externalRef0.ExtProblemDetails
 
-// N503 defines model for 503.
+// N503 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N503 = externalRef0.ExtProblemDetails
 
-// HsmfUpdateErrorApplicationJSON defines model for HsmfUpdateError.
+// HsmfUpdateErrorApplicationJSON Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdateError
 type HsmfUpdateErrorApplicationJSON = externalRef0.HsmfUpdateError
 
 // HsmfUpdateErrorApplicationProblemPlusJSON defines model for HsmfUpdateError.
 type HsmfUpdateErrorApplicationProblemPlusJSON = externalRef0.ProblemDetails
 
-// PduSessionCreateErrorApplicationJSON defines model for PduSessionCreateError.
+// PduSessionCreateErrorApplicationJSON Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PduSessionCreateError
 type PduSessionCreateErrorApplicationJSON = externalRef0.PduSessionCreateError
 
 // PduSessionCreateErrorApplicationProblemPlusJSON defines model for PduSessionCreateError.
 type PduSessionCreateErrorApplicationProblemPlusJSON = externalRef0.ProblemDetails
 
-// VsmfUpdateErrorApplicationJSON defines model for VsmfUpdateError.
+// VsmfUpdateErrorApplicationJSON Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VsmfUpdateError
 type VsmfUpdateErrorApplicationJSON = externalRef0.VsmfUpdateError
 
 // VsmfUpdateErrorApplicationProblemPlusJSON defines model for VsmfUpdateError.
 type VsmfUpdateErrorApplicationProblemPlusJSON = externalRef0.ProblemDetails
 
-// VsmfUpdateResponse200 defines model for VsmfUpdateResponse200.
+// VsmfUpdateResponse200 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VsmfUpdatedData
 type VsmfUpdateResponse200 = externalRef0.VsmfUpdatedData
 
-// NotifyStatusRequestBody defines model for NotifyStatusRequestBody.
+// NotifyStatusRequestBody Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/StatusNotification
 type NotifyStatusRequestBody = externalRef0.StatusNotification
 
-// VsmfUpdateRequestBody defines model for VsmfUpdateRequestBody.
+// VsmfUpdateRequestBody Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VsmfUpdateData
 type VsmfUpdateRequestBody = externalRef0.VsmfUpdateData
 
 // PostPduSessionsMultipartBody defines parameters for PostPduSessions.
 type PostPduSessionsMultipartBody struct {
-	BinaryDataN1SmInfoFromUe  *openapi_types.File                `json:"binaryDataN1SmInfoFromUe,omitempty"`
-	BinaryDataUnknownN1SmInfo *openapi_types.File                `json:"binaryDataUnknownN1SmInfo,omitempty"`
-	JsonData                  *externalRef0.PduSessionCreateData `json:"jsonData,omitempty"`
-	AdditionalProperties      map[string]interface{}             `json:"-"`
+	BinaryDataN1SmInfoFromUe  *openapi_types.File `json:"binaryDataN1SmInfoFromUe,omitempty"`
+	BinaryDataUnknownN1SmInfo *openapi_types.File `json:"binaryDataUnknownN1SmInfo,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PduSessionCreateData
+	JsonData             *externalRef0.PduSessionCreateData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
 }
 
 // UpdatePduSessionMultipartBody defines parameters for UpdatePduSession.
 type UpdatePduSessionMultipartBody struct {
-	BinaryDataN1SmInfoFromUe    *openapi_types.File          `json:"binaryDataN1SmInfoFromUe,omitempty"`
-	BinaryDataN4Information     *openapi_types.File          `json:"binaryDataN4Information,omitempty"`
-	BinaryDataN4InformationExt1 *openapi_types.File          `json:"binaryDataN4InformationExt1,omitempty"`
-	BinaryDataN4InformationExt2 *openapi_types.File          `json:"binaryDataN4InformationExt2,omitempty"`
-	BinaryDataUnknownN1SmInfo   *openapi_types.File          `json:"binaryDataUnknownN1SmInfo,omitempty"`
-	JsonData                    *externalRef0.HsmfUpdateData `json:"jsonData,omitempty"`
-	AdditionalProperties        map[string]interface{}       `json:"-"`
+	BinaryDataN1SmInfoFromUe    *openapi_types.File `json:"binaryDataN1SmInfoFromUe,omitempty"`
+	BinaryDataN4Information     *openapi_types.File `json:"binaryDataN4Information,omitempty"`
+	BinaryDataN4InformationExt1 *openapi_types.File `json:"binaryDataN4InformationExt1,omitempty"`
+	BinaryDataN4InformationExt2 *openapi_types.File `json:"binaryDataN4InformationExt2,omitempty"`
+	BinaryDataUnknownN1SmInfo   *openapi_types.File `json:"binaryDataUnknownN1SmInfo,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdateData
+	JsonData             *externalRef0.HsmfUpdateData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}       `json:"-"`
 }
 
 // ReleasePduSessionMultipartBody defines parameters for ReleasePduSession.
 type ReleasePduSessionMultipartBody struct {
-	BinaryDataN4Information     *openapi_types.File       `json:"binaryDataN4Information,omitempty"`
-	BinaryDataN4InformationExt1 *openapi_types.File       `json:"binaryDataN4InformationExt1,omitempty"`
-	BinaryDataN4InformationExt2 *openapi_types.File       `json:"binaryDataN4InformationExt2,omitempty"`
-	JsonData                    *externalRef0.ReleaseData `json:"jsonData,omitempty"`
-	AdditionalProperties        map[string]interface{}    `json:"-"`
+	BinaryDataN4Information     *openapi_types.File `json:"binaryDataN4Information,omitempty"`
+	BinaryDataN4InformationExt1 *openapi_types.File `json:"binaryDataN4InformationExt1,omitempty"`
+	BinaryDataN4InformationExt2 *openapi_types.File `json:"binaryDataN4InformationExt2,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ReleaseData
+	JsonData             *externalRef0.ReleaseData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // TransferMoDataMultipartBody defines parameters for TransferMoData.
 type TransferMoDataMultipartBody struct {
-	BinaryMoData         *openapi_types.File                 `json:"binaryMoData,omitempty"`
+	BinaryMoData *openapi_types.File `json:"binaryMoData,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TransferMoDataReqData
 	JsonData             *externalRef0.TransferMoDataReqData `json:"jsonData,omitempty"`
 	AdditionalProperties map[string]interface{}              `json:"-"`
 }
 
 // PostSmContextsMultipartBody defines parameters for PostSmContexts.
 type PostSmContextsMultipartBody struct {
-	BinaryDataN1SmMessage         *openapi_types.File               `json:"binaryDataN1SmMessage,omitempty"`
-	BinaryDataN2SmInformation     *openapi_types.File               `json:"binaryDataN2SmInformation,omitempty"`
-	BinaryDataN2SmInformationExt1 *openapi_types.File               `json:"binaryDataN2SmInformationExt1,omitempty"`
-	JsonData                      *externalRef0.SmContextCreateData `json:"jsonData,omitempty"`
-	AdditionalProperties          map[string]interface{}            `json:"-"`
+	BinaryDataN1SmMessage         *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmInformation     *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+	BinaryDataN2SmInformationExt1 *openapi_types.File `json:"binaryDataN2SmInformationExt1,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateData
+	JsonData             *externalRef0.SmContextCreateData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}            `json:"-"`
 }
 
 // UpdateSmContextMultipartBody defines parameters for UpdateSmContext.
 type UpdateSmContextMultipartBody struct {
-	BinaryDataN1SmMessage         *openapi_types.File               `json:"binaryDataN1SmMessage,omitempty"`
-	BinaryDataN2SmInformation     *openapi_types.File               `json:"binaryDataN2SmInformation,omitempty"`
-	BinaryDataN2SmInformationExt1 *openapi_types.File               `json:"binaryDataN2SmInformationExt1,omitempty"`
-	JsonData                      *externalRef0.SmContextUpdateData `json:"jsonData,omitempty"`
-	AdditionalProperties          map[string]interface{}            `json:"-"`
+	BinaryDataN1SmMessage         *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmInformation     *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+	BinaryDataN2SmInformationExt1 *openapi_types.File `json:"binaryDataN2SmInformationExt1,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdateData
+	JsonData             *externalRef0.SmContextUpdateData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}            `json:"-"`
 }
 
 // ReleaseSmContextMultipartBody defines parameters for ReleaseSmContext.
 type ReleaseSmContextMultipartBody struct {
-	BinaryDataN2SmInformation *openapi_types.File                `json:"binaryDataN2SmInformation,omitempty"`
-	JsonData                  *externalRef0.SmContextReleaseData `json:"jsonData,omitempty"`
-	AdditionalProperties      map[string]interface{}             `json:"-"`
+	BinaryDataN2SmInformation *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextReleaseData
+	JsonData             *externalRef0.SmContextReleaseData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
 }
 
 // SendMoDataMultipartBody defines parameters for SendMoData.
 type SendMoDataMultipartBody struct {
-	BinaryMoData         *openapi_types.File             `json:"binaryMoData,omitempty"`
+	BinaryMoData *openapi_types.File `json:"binaryMoData,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SendMoDataReqData
 	JsonData             *externalRef0.SendMoDataReqData `json:"jsonData,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }

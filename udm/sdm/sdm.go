@@ -80,7 +80,7 @@ type GetIndividualSharedDataParams struct {
 // GetDataSetsParams defines parameters for GetDataSets.
 type GetDataSetsParams struct {
 	// DatasetNames List of dataset names
-	DatasetNames externalRef0.UDMDatasetNames `form:"dataset-names" json:"dataset-names"`
+	DatasetNames externalRef0.UdmDatasetNames `form:"dataset-names" json:"dataset-names"`
 
 	// PlmnId serving PLMN ID
 	PlmnId *externalRef0.PlmnId `form:"plmn-id,omitempty" json:"plmn-id,omitempty"`

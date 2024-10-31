@@ -3576,6 +3576,7 @@ type AuthorizedNetworkSliceInfo struct {
 	AllowedNssaiList        []AllowedNssai         `json:"allowedNssaiList,omitempty"`
 	CandidateAmfList        []NfInstanceId         `json:"candidateAmfList,omitempty"`
 	ConfiguredNssai         []ConfiguredSnssai     `json:"configuredNssai,omitempty"`
+	MappingOfNssai          []MappingOfSnssai      `json:"mappingOfNssai,omitempty"`
 	NrfAmfSet               *Uri                   `json:"nrfAmfSet,omitempty"`
 	NrfAmfSetAccessTokenUri *Uri                   `json:"nrfAmfSetAccessTokenUri,omitempty"`
 	NrfAmfSetNfMgtUri       *Uri                   `json:"nrfAmfSetNfMgtUri,omitempty"`
@@ -11647,14 +11648,15 @@ type TosTrafficClassRm = string
 
 // TraceData defines model for TraceData.
 type TraceData struct {
-	CollectionEntityIpv4Addr Ipv4Addr               `json:"collectionEntityIpv4Addr,omitempty"`
-	CollectionEntityIpv6Addr *Ipv6Addr              `json:"collectionEntityIpv6Addr,omitempty"`
-	EventList                string                 `json:"eventList"`
-	InterfaceList            string                 `json:"interfaceList,omitempty"`
-	NeTypeList               string                 `json:"neTypeList"`
-	TraceDepth               TraceDepth             `json:"traceDepth"`
-	TraceRef                 string                 `json:"traceRef"`
-	AdditionalProperties     map[string]interface{} `json:"-"`
+	CollectionEntityIpv4Addr  Ipv4Addr               `json:"collectionEntityIpv4Addr,omitempty"`
+	CollectionEntityIpv6Addr  *Ipv6Addr              `json:"collectionEntityIpv6Addr,omitempty"`
+	EventList                 string                 `json:"eventList"`
+	InterfaceList             string                 `json:"interfaceList,omitempty"`
+	NeTypeList                string                 `json:"neTypeList"`
+	TraceDepth                TraceDepth             `json:"traceDepth"`
+	TraceRef                  string                 `json:"traceRef"`
+	TraceReportingConsumerUri *Uri                   `json:"traceReportingConsumerUri,omitempty"`
+	AdditionalProperties      map[string]interface{} `json:"-"`
 }
 
 // TraceDataResponse defines model for TraceDataResponse.
@@ -27521,6 +27523,14 @@ func (a *AuthorizedNetworkSliceInfo) UnmarshalJSON(b []byte) error {
 		delete(object, "configuredNssai")
 	}
 
+	if raw, found := object["mappingOfNssai"]; found {
+		err = json.Unmarshal(raw, &a.MappingOfNssai)
+		if err != nil {
+			return fmt.Errorf("error reading 'mappingOfNssai': %w", err)
+		}
+		delete(object, "mappingOfNssai")
+	}
+
 	if raw, found := object["nrfAmfSet"]; found {
 		err = json.Unmarshal(raw, &a.NrfAmfSet)
 		if err != nil {
@@ -27630,6 +27640,13 @@ func (a AuthorizedNetworkSliceInfo) MarshalJSON() ([]byte, error) {
 		object["configuredNssai"], err = json.Marshal(a.ConfiguredNssai)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'configuredNssai': %w", err)
+		}
+	}
+
+	if len(a.MappingOfNssai) != 0 {
+		object["mappingOfNssai"], err = json.Marshal(a.MappingOfNssai)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'mappingOfNssai': %w", err)
 		}
 	}
 
@@ -100648,6 +100665,14 @@ func (a *TraceData) UnmarshalJSON(b []byte) error {
 		delete(object, "traceRef")
 	}
 
+	if raw, found := object["traceReportingConsumerUri"]; found {
+		err = json.Unmarshal(raw, &a.TraceReportingConsumerUri)
+		if err != nil {
+			return fmt.Errorf("error reading 'traceReportingConsumerUri': %w", err)
+		}
+		delete(object, "traceReportingConsumerUri")
+	}
+
 	if len(object) != 0 {
 		a.AdditionalProperties = make(map[string]interface{})
 		for fieldName, fieldBuf := range object {
@@ -100706,6 +100731,13 @@ func (a TraceData) MarshalJSON() ([]byte, error) {
 	object["traceRef"], err = json.Marshal(a.TraceRef)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'traceRef': %w", err)
+	}
+
+	if a.TraceReportingConsumerUri != nil {
+		object["traceReportingConsumerUri"], err = json.Marshal(a.TraceReportingConsumerUri)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'traceReportingConsumerUri': %w", err)
+		}
 	}
 
 	for fieldName, field := range a.AdditionalProperties {

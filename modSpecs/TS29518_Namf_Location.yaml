@@ -1,294 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        CancelPosInfo:
-            additionalProperties: true
-            properties:
-                hgmlcCallBackURI:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                ldrReference:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    type: string
-                servingLMFIdentification:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    type: string
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - supi
-                - hgmlcCallBackURI
-                - ldrReference
-            type: object
-        LocationEvent:
-            enum:
-                - EMERGENCY_CALL_ORIGINATION
-                - EMERGENCY_CALL_RELEASE
-                - EMERGENCY_CALL_HANDOVER
-                - ACTIVATION_OF_DEFERRED_LOCATION
-                - UE_MOBILITY_FOR_DEFERRED_LOCATION
-                - CANCELLATION_OF_DEFERRED_LOCATION
-            type: string
-        LocationPrivacyVerResult:
-            enum:
-                - LOCATION_ALLOWED
-                - LOCATION_NOT_ALLOWED
-                - RESPONSE_TIME_OUT
-            type: string
-        LocationType:
-            enum:
-                - CURRENT_LOCATION
-                - CURRENT_OR_LAST_KNOWN_LOCATION
-                - NOTIFICATION_VERIFICATION_ONLY
-                - DEFERRED_LOCATION
-            type: string
-        NotifiedPosInfo:
-            additionalProperties: true
-            properties:
-                ageOfLocationEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-                    x-go-type-skip-optional-pointer: true
-                altitude:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
-                    x-go-type-skip-optional-pointer: true
-                barometricPressure:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
-                    x-go-type-skip-optional-pointer: true
-                civicAddress:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                    x-go-type-skip-optional-pointer: true
-                ecgi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
-                gnssPositioningDataList:
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
-                        x-go-type-skip-optional-pointer: true
-                    maxItems: 9
-                    minItems: 0
-                    type: array
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                hgmlcCallBackURI:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                ldrReference:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    type: string
-                locationEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                    x-go-type-skip-optional-pointer: true
-                locationEvent:
-                    $ref: '#/components/schemas/LocationEvent'
-                mscServerId:
-                    $ref: TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
-                ncgi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                positioningDataList:
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
-                        x-go-type-skip-optional-pointer: true
-                    maxItems: 9
-                    minItems: 0
-                    type: array
-                servingLMFIdentification:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    type: string
-                servingNode:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                targetMmeName:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                targetMmeRealm:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                terminationCause:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
-                    type: string
-                utranSrvccInd:
-                    type: boolean
-                velocityEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - locationEvent
-            type: object
-        ProvideLocInfo:
-            additionalProperties: true
-            properties:
-                additionalLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                currentLoc:
-                    type: boolean
-                geoInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                    x-go-type-skip-optional-pointer: true
-                location:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                locationAge:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-                    x-go-type-skip-optional-pointer: true
-                oldGuami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                timezone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-            type: object
-        ProvidePosInfo:
-            additionalProperties: true
-            properties:
-                accuracyFulfilmentIndicator:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
-                    type: string
-                ageOfLocationEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-                    x-go-type-skip-optional-pointer: true
-                altitude:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
-                    x-go-type-skip-optional-pointer: true
-                barometricPressure:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
-                    x-go-type-skip-optional-pointer: true
-                civicAddress:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                    x-go-type-skip-optional-pointer: true
-                ecgi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
-                gnssPositioningDataList:
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
-                        x-go-type-skip-optional-pointer: true
-                    maxItems: 9
-                    minItems: 0
-                    type: array
-                locationEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                    x-go-type-skip-optional-pointer: true
-                locationPrivacyVerResult:
-                    $ref: '#/components/schemas/LocationPrivacyVerResult'
-                ncgi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
-                positioningDataList:
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
-                        x-go-type-skip-optional-pointer: true
-                    maxItems: 9
-                    minItems: 0
-                    type: array
-                servingLMFIdentification:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    type: string
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                targetMmeName:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                targetMmeRealm:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                targetServingNode:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                utranSrvccInd:
-                    type: boolean
-                velocityEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        RequestLocInfo:
-            additionalProperties: true
-            properties:
-                req5gsLoc:
-                    default: false
-                    type: boolean
-                reqCurrentLoc:
-                    default: false
-                    type: boolean
-                reqRatType:
-                    default: false
-                    type: boolean
-                reqTimeZone:
-                    default: false
-                    type: boolean
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        RequestPosInfo:
-            additionalProperties: true
-            properties:
-                additionalLcsSuppGADShapes:
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                afID:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                areaEventInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
-                    x-go-type-skip-optional-pointer: true
-                codeWord:
-                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
-                    type: string
-                externalClientIdentification:
-                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
-                    type: string
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                hgmlcCallBackURI:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                lcsClientType:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-                    type: string
-                lcsLocation:
-                    $ref: '#/components/schemas/LocationType'
-                lcsQoS:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
-                    x-go-type-skip-optional-pointer: true
-                lcsServiceType:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
-                    x-go-type-skip-optional-pointer: true
-                lcsSupportedGADShapes:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-                    type: string
-                ldrReference:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    type: string
-                ldrType:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
-                    type: string
-                locationNotificationUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                motionEventInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
-                    x-go-type-skip-optional-pointer: true
-                oldGuami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                periodicEventInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
-                    x-go-type-skip-optional-pointer: true
-                priority:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
-                    type: string
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                uePrivacyRequirements:
-                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
-                    x-go-type-skip-optional-pointer: true
-                velocityRequested:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
-                    type: string
-            required:
-                - lcsClientType
-                - lcsLocation
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -325,7 +37,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CancelPosInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/CancelPosInfo
                 required: true
             responses:
                 "204":
@@ -377,14 +89,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/RequestLocInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/RequestLocInfo
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ProvideLocInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProvideLocInfo
                     description: Expected response to a valid request
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -427,7 +139,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/NotifiedPosInfo'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/NotifiedPosInfo
                                 description: UE Location Event Notification
                             responses:
                                 "204":
@@ -466,14 +178,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/RequestPosInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/RequestPosInfo
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ProvidePosInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProvidePosInfo
                     description: Expected response to a valid request
                 "204":
                     description: Successful accept of location request with no information returned.

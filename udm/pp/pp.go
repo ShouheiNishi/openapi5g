@@ -13,7 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -22,193 +22,6 @@ import (
 const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
-
-// N5GVnGroupConfiguration defines model for 5GVnGroupConfiguration.
-type N5GVnGroupConfiguration struct {
-	N5gVnGroupData          *N5GVnGroupData                      `json:"5gVnGroupData,omitempty"`
-	AfInstanceId            *string                              `json:"afInstanceId,omitempty"`
-	InternalGroupIdentifier externalRef0.GroupId                 `json:"internalGroupIdentifier,omitempty"`
-	Members                 []externalRef0.Gpsi                  `json:"members,omitempty"`
-	MtcProviderInformation  *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId             *ReferenceId                         `json:"referenceId,omitempty"`
-	AdditionalProperties    map[string]interface{}               `json:"-"`
-}
-
-// N5GVnGroupData defines model for 5GVnGroupData.
-type N5GVnGroupData struct {
-	AppDescriptors []interface{} `json:"appDescriptors,omitempty"`
-
-	// DnAaaAddress Original reference TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress
-	DnAaaAddress         interface{}                   `json:"dnAaaAddress,omitempty"`
-	Dnn                  externalRef0.Dnn              `json:"dnn"`
-	PduSessionTypes      []externalRef0.PduSessionType `json:"pduSessionTypes,omitempty"`
-	SNssai               externalRef0.Snssai           `json:"sNssai"`
-	SecondaryAuth        *bool                         `json:"secondaryAuth,omitempty"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
-}
-
-// CommunicationCharacteristics defines model for CommunicationCharacteristics.
-type CommunicationCharacteristics struct {
-	PpActiveTime          *PpActiveTime          `json:"ppActiveTime"`
-	PpDlPacketCount       *PpDlPacketCount       `json:"ppDlPacketCount"`
-	PpDlPacketCountExt    *PpDlPacketCountExt    `json:"ppDlPacketCountExt"`
-	PpMaximumLatency      *PpMaximumLatency      `json:"ppMaximumLatency"`
-	PpMaximumResponseTime *PpMaximumResponseTime `json:"ppMaximumResponseTime"`
-	PpSubsRegTimer        *PpSubsRegTimer        `json:"ppSubsRegTimer"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
-}
-
-// EcRestriction defines model for EcRestriction.
-type EcRestriction struct {
-	AfInstanceId           string                               `json:"afInstanceId"`
-	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	PlmnEcInfos            []PlmnEcInfo                         `json:"plmnEcInfos,omitempty"`
-	ReferenceId            ReferenceId                          `json:"referenceId"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// ExpectedUeBehaviour defines model for ExpectedUeBehaviour.
-type ExpectedUeBehaviour struct {
-	AfInstanceId              string                            `json:"afInstanceId"`
-	BatteryIndication         *externalRef0.BatteryIndicationRm `json:"batteryIndication,omitempty"`
-	CommunicationDurationTime *externalRef0.DurationSecRm       `json:"communicationDurationTime"`
-
-	// ExpectedUmts Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
-	ExpectedUmts               *[]LocationArea                            `json:"expectedUmts"`
-	MtcProviderInformation     *externalRef0.MtcProviderInformation       `json:"mtcProviderInformation,omitempty"`
-	PeriodicTime               *externalRef0.DurationSecRm                `json:"periodicTime"`
-	ReferenceId                ReferenceId                                `json:"referenceId"`
-	ScheduledCommunicationTime *externalRef0.ScheduledCommunicationTimeRm `json:"scheduledCommunicationTime,omitempty"`
-	ScheduledCommunicationType *externalRef0.ScheduledCommunicationTypeRm `json:"scheduledCommunicationType,omitempty"`
-
-	// StationaryIndication Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
-	StationaryIndication *externalRef0.StationaryIndicationRm `json:"stationaryIndication,omitempty"`
-
-	// TrafficProfile Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
-	TrafficProfile       *externalRef0.TrafficProfileRm `json:"trafficProfile,omitempty"`
-	ValidityTime         *externalRef0.DateTime         `json:"validityTime,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
-}
-
-// LcsPrivacy defines model for LcsPrivacy.
-type LcsPrivacy struct {
-	AfInstanceId *string `json:"afInstanceId,omitempty"`
-
-	// Lpi Original reference TS29503_Nudm_SDM.yaml#/components/schemas/Lpi
-	Lpi                    interface{}                          `json:"lpi,omitempty"`
-	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            *ReferenceId                         `json:"referenceId,omitempty"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// LocationArea defines model for LocationArea.
-type LocationArea struct {
-	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
-	CivicAddresses *[]interface{} `json:"civicAddresses,omitempty"`
-
-	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
-	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
-
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo           *NetworkAreaInfo       `json:"nwAreaInfo,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// NetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-type NetworkAreaInfo struct {
-	// Ecgis Contains a list of E-UTRA cell identities.
-	Ecgis []externalRef0.Ecgi `json:"ecgis,omitempty"`
-
-	// GRanNodeIds Contains a list of NG RAN nodes.
-	GRanNodeIds []externalRef0.GlobalRanNodeId `json:"gRanNodeIds,omitempty"`
-
-	// Ncgis Contains a list of NR cell identities.
-	Ncgis []externalRef0.Ncgi `json:"ncgis,omitempty"`
-
-	// Tais Contains a list of tracking area identities.
-	Tais                 []externalRef0.Tai     `json:"tais,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PlmnEcInfo defines model for PlmnEcInfo.
-type PlmnEcInfo struct {
-	EcRestrictionDataNb *bool `json:"ecRestrictionDataNb,omitempty"`
-
-	// EcRestrictionDataWb Original reference TS29503_Nudm_SDM.yaml#/components/schemas/EcRestrictionDataWb
-	EcRestrictionDataWb  interface{}            `json:"ecRestrictionDataWb,omitempty"`
-	PlmnId               externalRef0.PlmnId    `json:"plmnId"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PpActiveTime defines model for PpActiveTime.
-type PpActiveTime struct {
-	ActiveTime             externalRef0.DurationSec             `json:"activeTime"`
-	AfInstanceId           string                               `json:"afInstanceId"`
-	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            ReferenceId                          `json:"referenceId"`
-	ValidityTime           *externalRef0.DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// PpData defines model for PpData.
-type PpData struct {
-	AcsInfo                       *externalRef0.AcsInfoRm       `json:"acsInfo,omitempty"`
-	CommunicationCharacteristics  *CommunicationCharacteristics `json:"communicationCharacteristics,omitempty"`
-	EcRestriction                 *EcRestriction                `json:"ecRestriction,omitempty"`
-	ExpectedUeBehaviourParameters *ExpectedUeBehaviour          `json:"expectedUeBehaviourParameters,omitempty"`
-	LcsPrivacy                    *LcsPrivacy                   `json:"lcsPrivacy,omitempty"`
-
-	// SorInfo Original reference TS29503_Nudm_SDM.yaml#/components/schemas/SorInfo
-	SorInfo              interface{}                     `json:"sorInfo,omitempty"`
-	StnSr                *externalRef0.StnSrRm           `json:"stnSr"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// PpDlPacketCount defines model for PpDlPacketCount.
-type PpDlPacketCount = int
-
-// PpDlPacketCountExt defines model for PpDlPacketCountExt.
-type PpDlPacketCountExt struct {
-	AfInstanceId           string                               `json:"afInstanceId"`
-	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            ReferenceId                          `json:"referenceId"`
-	ValidityTime           *externalRef0.DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// PpMaximumLatency defines model for PpMaximumLatency.
-type PpMaximumLatency struct {
-	AfInstanceId           string                               `json:"afInstanceId"`
-	MaximumLatency         externalRef0.DurationSec             `json:"maximumLatency"`
-	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            ReferenceId                          `json:"referenceId"`
-	ValidityTime           *externalRef0.DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// PpMaximumResponseTime defines model for PpMaximumResponseTime.
-type PpMaximumResponseTime struct {
-	AfInstanceId           string                               `json:"afInstanceId"`
-	MaximumResponseTime    externalRef0.DurationSec             `json:"maximumResponseTime"`
-	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            ReferenceId                          `json:"referenceId"`
-	ValidityTime           *externalRef0.DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// PpSubsRegTimer defines model for PpSubsRegTimer.
-type PpSubsRegTimer struct {
-	AfInstanceId           string                               `json:"afInstanceId"`
-	MtcProviderInformation *externalRef0.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            ReferenceId                          `json:"referenceId"`
-	SubsRegTimer           externalRef0.DurationSec             `json:"subsRegTimer"`
-	ValidityTime           *externalRef0.DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// ReferenceId defines model for ReferenceId.
-type ReferenceId = int
 
 // Delete5GVNGroupParams defines parameters for Delete5GVNGroup.
 type Delete5GVNGroupParams struct {
@@ -232,1946 +45,13 @@ type UpdateParams struct {
 }
 
 // Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody defines body for Modify5GVNGroup for application/merge-patch+json ContentType.
-type Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody = N5GVnGroupConfiguration
+type Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody = externalRef0.N5GVnGroupConfiguration
 
 // Create5GVNGroupJSONRequestBody defines body for Create5GVNGroup for application/json ContentType.
-type Create5GVNGroupJSONRequestBody = N5GVnGroupConfiguration
+type Create5GVNGroupJSONRequestBody = externalRef0.N5GVnGroupConfiguration
 
 // UpdateApplicationMergePatchPlusJSONRequestBody defines body for Update for application/merge-patch+json ContentType.
-type UpdateApplicationMergePatchPlusJSONRequestBody = PpData
-
-// Getter for additional properties for N5GVnGroupConfiguration. Returns the specified
-// element and whether it was found
-func (a N5GVnGroupConfiguration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N5GVnGroupConfiguration
-func (a *N5GVnGroupConfiguration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N5GVnGroupConfiguration to handle AdditionalProperties
-func (a *N5GVnGroupConfiguration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["5gVnGroupData"]; found {
-		err = json.Unmarshal(raw, &a.N5gVnGroupData)
-		if err != nil {
-			return fmt.Errorf("error reading '5gVnGroupData': %w", err)
-		}
-		delete(object, "5gVnGroupData")
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["internalGroupIdentifier"]; found {
-		err = json.Unmarshal(raw, &a.InternalGroupIdentifier)
-		if err != nil {
-			return fmt.Errorf("error reading 'internalGroupIdentifier': %w", err)
-		}
-		delete(object, "internalGroupIdentifier")
-	}
-
-	if raw, found := object["members"]; found {
-		err = json.Unmarshal(raw, &a.Members)
-		if err != nil {
-			return fmt.Errorf("error reading 'members': %w", err)
-		}
-		delete(object, "members")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N5GVnGroupConfiguration to handle AdditionalProperties
-func (a N5GVnGroupConfiguration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.N5gVnGroupData != nil {
-		object["5gVnGroupData"], err = json.Marshal(a.N5gVnGroupData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '5gVnGroupData': %w", err)
-		}
-	}
-
-	if a.AfInstanceId != nil {
-		object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-		}
-	}
-
-	if len(a.InternalGroupIdentifier) != 0 {
-		object["internalGroupIdentifier"], err = json.Marshal(a.InternalGroupIdentifier)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'internalGroupIdentifier': %w", err)
-		}
-	}
-
-	if len(a.Members) != 0 {
-		object["members"], err = json.Marshal(a.Members)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'members': %w", err)
-		}
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	if a.ReferenceId != nil {
-		object["referenceId"], err = json.Marshal(a.ReferenceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N5GVnGroupData. Returns the specified
-// element and whether it was found
-func (a N5GVnGroupData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N5GVnGroupData
-func (a *N5GVnGroupData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N5GVnGroupData to handle AdditionalProperties
-func (a *N5GVnGroupData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["appDescriptors"]; found {
-		err = json.Unmarshal(raw, &a.AppDescriptors)
-		if err != nil {
-			return fmt.Errorf("error reading 'appDescriptors': %w", err)
-		}
-		delete(object, "appDescriptors")
-	}
-
-	if raw, found := object["dnAaaAddress"]; found {
-		err = json.Unmarshal(raw, &a.DnAaaAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnAaaAddress': %w", err)
-		}
-		delete(object, "dnAaaAddress")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["pduSessionTypes"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionTypes)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionTypes': %w", err)
-		}
-		delete(object, "pduSessionTypes")
-	}
-
-	if raw, found := object["sNssai"]; found {
-		err = json.Unmarshal(raw, &a.SNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'sNssai': %w", err)
-		}
-		delete(object, "sNssai")
-	}
-
-	if raw, found := object["secondaryAuth"]; found {
-		err = json.Unmarshal(raw, &a.SecondaryAuth)
-		if err != nil {
-			return fmt.Errorf("error reading 'secondaryAuth': %w", err)
-		}
-		delete(object, "secondaryAuth")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N5GVnGroupData to handle AdditionalProperties
-func (a N5GVnGroupData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AppDescriptors) != 0 {
-		object["appDescriptors"], err = json.Marshal(a.AppDescriptors)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'appDescriptors': %w", err)
-		}
-	}
-
-	if a.DnAaaAddress != nil {
-		object["dnAaaAddress"], err = json.Marshal(a.DnAaaAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnAaaAddress': %w", err)
-		}
-	}
-
-	object["dnn"], err = json.Marshal(a.Dnn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-	}
-
-	if len(a.PduSessionTypes) != 0 {
-		object["pduSessionTypes"], err = json.Marshal(a.PduSessionTypes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pduSessionTypes': %w", err)
-		}
-	}
-
-	object["sNssai"], err = json.Marshal(a.SNssai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'sNssai': %w", err)
-	}
-
-	if a.SecondaryAuth != nil {
-		object["secondaryAuth"], err = json.Marshal(a.SecondaryAuth)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'secondaryAuth': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for CommunicationCharacteristics. Returns the specified
-// element and whether it was found
-func (a CommunicationCharacteristics) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for CommunicationCharacteristics
-func (a *CommunicationCharacteristics) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for CommunicationCharacteristics to handle AdditionalProperties
-func (a *CommunicationCharacteristics) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ppActiveTime"]; found {
-		err = json.Unmarshal(raw, &a.PpActiveTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'ppActiveTime': %w", err)
-		}
-		delete(object, "ppActiveTime")
-	}
-
-	if raw, found := object["ppDlPacketCount"]; found {
-		err = json.Unmarshal(raw, &a.PpDlPacketCount)
-		if err != nil {
-			return fmt.Errorf("error reading 'ppDlPacketCount': %w", err)
-		}
-		delete(object, "ppDlPacketCount")
-	}
-
-	if raw, found := object["ppDlPacketCountExt"]; found {
-		err = json.Unmarshal(raw, &a.PpDlPacketCountExt)
-		if err != nil {
-			return fmt.Errorf("error reading 'ppDlPacketCountExt': %w", err)
-		}
-		delete(object, "ppDlPacketCountExt")
-	}
-
-	if raw, found := object["ppMaximumLatency"]; found {
-		err = json.Unmarshal(raw, &a.PpMaximumLatency)
-		if err != nil {
-			return fmt.Errorf("error reading 'ppMaximumLatency': %w", err)
-		}
-		delete(object, "ppMaximumLatency")
-	}
-
-	if raw, found := object["ppMaximumResponseTime"]; found {
-		err = json.Unmarshal(raw, &a.PpMaximumResponseTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'ppMaximumResponseTime': %w", err)
-		}
-		delete(object, "ppMaximumResponseTime")
-	}
-
-	if raw, found := object["ppSubsRegTimer"]; found {
-		err = json.Unmarshal(raw, &a.PpSubsRegTimer)
-		if err != nil {
-			return fmt.Errorf("error reading 'ppSubsRegTimer': %w", err)
-		}
-		delete(object, "ppSubsRegTimer")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for CommunicationCharacteristics to handle AdditionalProperties
-func (a CommunicationCharacteristics) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ppActiveTime"], err = json.Marshal(a.PpActiveTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ppActiveTime': %w", err)
-	}
-
-	object["ppDlPacketCount"], err = json.Marshal(a.PpDlPacketCount)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ppDlPacketCount': %w", err)
-	}
-
-	object["ppDlPacketCountExt"], err = json.Marshal(a.PpDlPacketCountExt)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ppDlPacketCountExt': %w", err)
-	}
-
-	object["ppMaximumLatency"], err = json.Marshal(a.PpMaximumLatency)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ppMaximumLatency': %w", err)
-	}
-
-	object["ppMaximumResponseTime"], err = json.Marshal(a.PpMaximumResponseTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ppMaximumResponseTime': %w", err)
-	}
-
-	object["ppSubsRegTimer"], err = json.Marshal(a.PpSubsRegTimer)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ppSubsRegTimer': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EcRestriction. Returns the specified
-// element and whether it was found
-func (a EcRestriction) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EcRestriction
-func (a *EcRestriction) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EcRestriction to handle AdditionalProperties
-func (a *EcRestriction) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["plmnEcInfos"]; found {
-		err = json.Unmarshal(raw, &a.PlmnEcInfos)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnEcInfos': %w", err)
-		}
-		delete(object, "plmnEcInfos")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EcRestriction to handle AdditionalProperties
-func (a EcRestriction) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	if len(a.PlmnEcInfos) != 0 {
-		object["plmnEcInfos"], err = json.Marshal(a.PlmnEcInfos)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'plmnEcInfos': %w", err)
-		}
-	}
-
-	object["referenceId"], err = json.Marshal(a.ReferenceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ExpectedUeBehaviour. Returns the specified
-// element and whether it was found
-func (a ExpectedUeBehaviour) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ExpectedUeBehaviour
-func (a *ExpectedUeBehaviour) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ExpectedUeBehaviour to handle AdditionalProperties
-func (a *ExpectedUeBehaviour) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["batteryIndication"]; found {
-		err = json.Unmarshal(raw, &a.BatteryIndication)
-		if err != nil {
-			return fmt.Errorf("error reading 'batteryIndication': %w", err)
-		}
-		delete(object, "batteryIndication")
-	}
-
-	if raw, found := object["communicationDurationTime"]; found {
-		err = json.Unmarshal(raw, &a.CommunicationDurationTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'communicationDurationTime': %w", err)
-		}
-		delete(object, "communicationDurationTime")
-	}
-
-	if raw, found := object["expectedUmts"]; found {
-		err = json.Unmarshal(raw, &a.ExpectedUmts)
-		if err != nil {
-			return fmt.Errorf("error reading 'expectedUmts': %w", err)
-		}
-		delete(object, "expectedUmts")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["periodicTime"]; found {
-		err = json.Unmarshal(raw, &a.PeriodicTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'periodicTime': %w", err)
-		}
-		delete(object, "periodicTime")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if raw, found := object["scheduledCommunicationTime"]; found {
-		err = json.Unmarshal(raw, &a.ScheduledCommunicationTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'scheduledCommunicationTime': %w", err)
-		}
-		delete(object, "scheduledCommunicationTime")
-	}
-
-	if raw, found := object["scheduledCommunicationType"]; found {
-		err = json.Unmarshal(raw, &a.ScheduledCommunicationType)
-		if err != nil {
-			return fmt.Errorf("error reading 'scheduledCommunicationType': %w", err)
-		}
-		delete(object, "scheduledCommunicationType")
-	}
-
-	if raw, found := object["stationaryIndication"]; found {
-		err = json.Unmarshal(raw, &a.StationaryIndication)
-		if err != nil {
-			return fmt.Errorf("error reading 'stationaryIndication': %w", err)
-		}
-		delete(object, "stationaryIndication")
-	}
-
-	if raw, found := object["trafficProfile"]; found {
-		err = json.Unmarshal(raw, &a.TrafficProfile)
-		if err != nil {
-			return fmt.Errorf("error reading 'trafficProfile': %w", err)
-		}
-		delete(object, "trafficProfile")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ExpectedUeBehaviour to handle AdditionalProperties
-func (a ExpectedUeBehaviour) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-	}
-
-	if a.BatteryIndication != nil {
-		object["batteryIndication"], err = json.Marshal(a.BatteryIndication)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'batteryIndication': %w", err)
-		}
-	}
-
-	object["communicationDurationTime"], err = json.Marshal(a.CommunicationDurationTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'communicationDurationTime': %w", err)
-	}
-
-	object["expectedUmts"], err = json.Marshal(a.ExpectedUmts)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'expectedUmts': %w", err)
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	object["periodicTime"], err = json.Marshal(a.PeriodicTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'periodicTime': %w", err)
-	}
-
-	object["referenceId"], err = json.Marshal(a.ReferenceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-	}
-
-	if a.ScheduledCommunicationTime != nil {
-		object["scheduledCommunicationTime"], err = json.Marshal(a.ScheduledCommunicationTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scheduledCommunicationTime': %w", err)
-		}
-	}
-
-	if a.ScheduledCommunicationType != nil {
-		object["scheduledCommunicationType"], err = json.Marshal(a.ScheduledCommunicationType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scheduledCommunicationType': %w", err)
-		}
-	}
-
-	if a.StationaryIndication != nil {
-		object["stationaryIndication"], err = json.Marshal(a.StationaryIndication)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'stationaryIndication': %w", err)
-		}
-	}
-
-	if a.TrafficProfile != nil {
-		object["trafficProfile"], err = json.Marshal(a.TrafficProfile)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'trafficProfile': %w", err)
-		}
-	}
-
-	if a.ValidityTime != nil {
-		object["validityTime"], err = json.Marshal(a.ValidityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LcsPrivacy. Returns the specified
-// element and whether it was found
-func (a LcsPrivacy) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LcsPrivacy
-func (a *LcsPrivacy) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LcsPrivacy to handle AdditionalProperties
-func (a *LcsPrivacy) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["lpi"]; found {
-		err = json.Unmarshal(raw, &a.Lpi)
-		if err != nil {
-			return fmt.Errorf("error reading 'lpi': %w", err)
-		}
-		delete(object, "lpi")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LcsPrivacy to handle AdditionalProperties
-func (a LcsPrivacy) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AfInstanceId != nil {
-		object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-		}
-	}
-
-	if a.Lpi != nil {
-		object["lpi"], err = json.Marshal(a.Lpi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lpi': %w", err)
-		}
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	if a.ReferenceId != nil {
-		object["referenceId"], err = json.Marshal(a.ReferenceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LocationArea. Returns the specified
-// element and whether it was found
-func (a LocationArea) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LocationArea
-func (a *LocationArea) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LocationArea to handle AdditionalProperties
-func (a *LocationArea) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["civicAddresses"]; found {
-		err = json.Unmarshal(raw, &a.CivicAddresses)
-		if err != nil {
-			return fmt.Errorf("error reading 'civicAddresses': %w", err)
-		}
-		delete(object, "civicAddresses")
-	}
-
-	if raw, found := object["geographicAreas"]; found {
-		err = json.Unmarshal(raw, &a.GeographicAreas)
-		if err != nil {
-			return fmt.Errorf("error reading 'geographicAreas': %w", err)
-		}
-		delete(object, "geographicAreas")
-	}
-
-	if raw, found := object["nwAreaInfo"]; found {
-		err = json.Unmarshal(raw, &a.NwAreaInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'nwAreaInfo': %w", err)
-		}
-		delete(object, "nwAreaInfo")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LocationArea to handle AdditionalProperties
-func (a LocationArea) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.CivicAddresses != nil {
-		object["civicAddresses"], err = json.Marshal(a.CivicAddresses)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'civicAddresses': %w", err)
-		}
-	}
-
-	if a.GeographicAreas != nil {
-		object["geographicAreas"], err = json.Marshal(a.GeographicAreas)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'geographicAreas': %w", err)
-		}
-	}
-
-	if a.NwAreaInfo != nil {
-		object["nwAreaInfo"], err = json.Marshal(a.NwAreaInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nwAreaInfo': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NetworkAreaInfo. Returns the specified
-// element and whether it was found
-func (a NetworkAreaInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NetworkAreaInfo
-func (a *NetworkAreaInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NetworkAreaInfo to handle AdditionalProperties
-func (a *NetworkAreaInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ecgis"]; found {
-		err = json.Unmarshal(raw, &a.Ecgis)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecgis': %w", err)
-		}
-		delete(object, "ecgis")
-	}
-
-	if raw, found := object["gRanNodeIds"]; found {
-		err = json.Unmarshal(raw, &a.GRanNodeIds)
-		if err != nil {
-			return fmt.Errorf("error reading 'gRanNodeIds': %w", err)
-		}
-		delete(object, "gRanNodeIds")
-	}
-
-	if raw, found := object["ncgis"]; found {
-		err = json.Unmarshal(raw, &a.Ncgis)
-		if err != nil {
-			return fmt.Errorf("error reading 'ncgis': %w", err)
-		}
-		delete(object, "ncgis")
-	}
-
-	if raw, found := object["tais"]; found {
-		err = json.Unmarshal(raw, &a.Tais)
-		if err != nil {
-			return fmt.Errorf("error reading 'tais': %w", err)
-		}
-		delete(object, "tais")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NetworkAreaInfo to handle AdditionalProperties
-func (a NetworkAreaInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.Ecgis) != 0 {
-		object["ecgis"], err = json.Marshal(a.Ecgis)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecgis': %w", err)
-		}
-	}
-
-	if len(a.GRanNodeIds) != 0 {
-		object["gRanNodeIds"], err = json.Marshal(a.GRanNodeIds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gRanNodeIds': %w", err)
-		}
-	}
-
-	if len(a.Ncgis) != 0 {
-		object["ncgis"], err = json.Marshal(a.Ncgis)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ncgis': %w", err)
-		}
-	}
-
-	if len(a.Tais) != 0 {
-		object["tais"], err = json.Marshal(a.Tais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'tais': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PlmnEcInfo. Returns the specified
-// element and whether it was found
-func (a PlmnEcInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PlmnEcInfo
-func (a *PlmnEcInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PlmnEcInfo to handle AdditionalProperties
-func (a *PlmnEcInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ecRestrictionDataNb"]; found {
-		err = json.Unmarshal(raw, &a.EcRestrictionDataNb)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecRestrictionDataNb': %w", err)
-		}
-		delete(object, "ecRestrictionDataNb")
-	}
-
-	if raw, found := object["ecRestrictionDataWb"]; found {
-		err = json.Unmarshal(raw, &a.EcRestrictionDataWb)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecRestrictionDataWb': %w", err)
-		}
-		delete(object, "ecRestrictionDataWb")
-	}
-
-	if raw, found := object["plmnId"]; found {
-		err = json.Unmarshal(raw, &a.PlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnId': %w", err)
-		}
-		delete(object, "plmnId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PlmnEcInfo to handle AdditionalProperties
-func (a PlmnEcInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.EcRestrictionDataNb != nil {
-		object["ecRestrictionDataNb"], err = json.Marshal(a.EcRestrictionDataNb)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecRestrictionDataNb': %w", err)
-		}
-	}
-
-	if a.EcRestrictionDataWb != nil {
-		object["ecRestrictionDataWb"], err = json.Marshal(a.EcRestrictionDataWb)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecRestrictionDataWb': %w", err)
-		}
-	}
-
-	object["plmnId"], err = json.Marshal(a.PlmnId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PpActiveTime. Returns the specified
-// element and whether it was found
-func (a PpActiveTime) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PpActiveTime
-func (a *PpActiveTime) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PpActiveTime to handle AdditionalProperties
-func (a *PpActiveTime) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["activeTime"]; found {
-		err = json.Unmarshal(raw, &a.ActiveTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'activeTime': %w", err)
-		}
-		delete(object, "activeTime")
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PpActiveTime to handle AdditionalProperties
-func (a PpActiveTime) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["activeTime"], err = json.Marshal(a.ActiveTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'activeTime': %w", err)
-	}
-
-	object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	object["referenceId"], err = json.Marshal(a.ReferenceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-	}
-
-	if a.ValidityTime != nil {
-		object["validityTime"], err = json.Marshal(a.ValidityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PpData. Returns the specified
-// element and whether it was found
-func (a PpData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PpData
-func (a *PpData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PpData to handle AdditionalProperties
-func (a *PpData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["acsInfo"]; found {
-		err = json.Unmarshal(raw, &a.AcsInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'acsInfo': %w", err)
-		}
-		delete(object, "acsInfo")
-	}
-
-	if raw, found := object["communicationCharacteristics"]; found {
-		err = json.Unmarshal(raw, &a.CommunicationCharacteristics)
-		if err != nil {
-			return fmt.Errorf("error reading 'communicationCharacteristics': %w", err)
-		}
-		delete(object, "communicationCharacteristics")
-	}
-
-	if raw, found := object["ecRestriction"]; found {
-		err = json.Unmarshal(raw, &a.EcRestriction)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecRestriction': %w", err)
-		}
-		delete(object, "ecRestriction")
-	}
-
-	if raw, found := object["expectedUeBehaviourParameters"]; found {
-		err = json.Unmarshal(raw, &a.ExpectedUeBehaviourParameters)
-		if err != nil {
-			return fmt.Errorf("error reading 'expectedUeBehaviourParameters': %w", err)
-		}
-		delete(object, "expectedUeBehaviourParameters")
-	}
-
-	if raw, found := object["lcsPrivacy"]; found {
-		err = json.Unmarshal(raw, &a.LcsPrivacy)
-		if err != nil {
-			return fmt.Errorf("error reading 'lcsPrivacy': %w", err)
-		}
-		delete(object, "lcsPrivacy")
-	}
-
-	if raw, found := object["sorInfo"]; found {
-		err = json.Unmarshal(raw, &a.SorInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'sorInfo': %w", err)
-		}
-		delete(object, "sorInfo")
-	}
-
-	if raw, found := object["stnSr"]; found {
-		err = json.Unmarshal(raw, &a.StnSr)
-		if err != nil {
-			return fmt.Errorf("error reading 'stnSr': %w", err)
-		}
-		delete(object, "stnSr")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PpData to handle AdditionalProperties
-func (a PpData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AcsInfo != nil {
-		object["acsInfo"], err = json.Marshal(a.AcsInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'acsInfo': %w", err)
-		}
-	}
-
-	if a.CommunicationCharacteristics != nil {
-		object["communicationCharacteristics"], err = json.Marshal(a.CommunicationCharacteristics)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'communicationCharacteristics': %w", err)
-		}
-	}
-
-	if a.EcRestriction != nil {
-		object["ecRestriction"], err = json.Marshal(a.EcRestriction)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecRestriction': %w", err)
-		}
-	}
-
-	if a.ExpectedUeBehaviourParameters != nil {
-		object["expectedUeBehaviourParameters"], err = json.Marshal(a.ExpectedUeBehaviourParameters)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'expectedUeBehaviourParameters': %w", err)
-		}
-	}
-
-	if a.LcsPrivacy != nil {
-		object["lcsPrivacy"], err = json.Marshal(a.LcsPrivacy)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lcsPrivacy': %w", err)
-		}
-	}
-
-	if a.SorInfo != nil {
-		object["sorInfo"], err = json.Marshal(a.SorInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sorInfo': %w", err)
-		}
-	}
-
-	object["stnSr"], err = json.Marshal(a.StnSr)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'stnSr': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PpDlPacketCountExt. Returns the specified
-// element and whether it was found
-func (a PpDlPacketCountExt) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PpDlPacketCountExt
-func (a *PpDlPacketCountExt) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PpDlPacketCountExt to handle AdditionalProperties
-func (a *PpDlPacketCountExt) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PpDlPacketCountExt to handle AdditionalProperties
-func (a PpDlPacketCountExt) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	object["referenceId"], err = json.Marshal(a.ReferenceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-	}
-
-	if a.ValidityTime != nil {
-		object["validityTime"], err = json.Marshal(a.ValidityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PpMaximumLatency. Returns the specified
-// element and whether it was found
-func (a PpMaximumLatency) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PpMaximumLatency
-func (a *PpMaximumLatency) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PpMaximumLatency to handle AdditionalProperties
-func (a *PpMaximumLatency) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["maximumLatency"]; found {
-		err = json.Unmarshal(raw, &a.MaximumLatency)
-		if err != nil {
-			return fmt.Errorf("error reading 'maximumLatency': %w", err)
-		}
-		delete(object, "maximumLatency")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PpMaximumLatency to handle AdditionalProperties
-func (a PpMaximumLatency) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-	}
-
-	object["maximumLatency"], err = json.Marshal(a.MaximumLatency)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'maximumLatency': %w", err)
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	object["referenceId"], err = json.Marshal(a.ReferenceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-	}
-
-	if a.ValidityTime != nil {
-		object["validityTime"], err = json.Marshal(a.ValidityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PpMaximumResponseTime. Returns the specified
-// element and whether it was found
-func (a PpMaximumResponseTime) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PpMaximumResponseTime
-func (a *PpMaximumResponseTime) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PpMaximumResponseTime to handle AdditionalProperties
-func (a *PpMaximumResponseTime) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["maximumResponseTime"]; found {
-		err = json.Unmarshal(raw, &a.MaximumResponseTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'maximumResponseTime': %w", err)
-		}
-		delete(object, "maximumResponseTime")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PpMaximumResponseTime to handle AdditionalProperties
-func (a PpMaximumResponseTime) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-	}
-
-	object["maximumResponseTime"], err = json.Marshal(a.MaximumResponseTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'maximumResponseTime': %w", err)
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	object["referenceId"], err = json.Marshal(a.ReferenceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-	}
-
-	if a.ValidityTime != nil {
-		object["validityTime"], err = json.Marshal(a.ValidityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PpSubsRegTimer. Returns the specified
-// element and whether it was found
-func (a PpSubsRegTimer) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PpSubsRegTimer
-func (a *PpSubsRegTimer) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PpSubsRegTimer to handle AdditionalProperties
-func (a *PpSubsRegTimer) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afInstanceId': %w", err)
-		}
-		delete(object, "afInstanceId")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if raw, found := object["subsRegTimer"]; found {
-		err = json.Unmarshal(raw, &a.SubsRegTimer)
-		if err != nil {
-			return fmt.Errorf("error reading 'subsRegTimer': %w", err)
-		}
-		delete(object, "subsRegTimer")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PpSubsRegTimer to handle AdditionalProperties
-func (a PpSubsRegTimer) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["afInstanceId"], err = json.Marshal(a.AfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'afInstanceId': %w", err)
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	object["referenceId"], err = json.Marshal(a.ReferenceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-	}
-
-	object["subsRegTimer"], err = json.Marshal(a.SubsRegTimer)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'subsRegTimer': %w", err)
-	}
-
-	if a.ValidityTime != nil {
-		object["validityTime"], err = json.Marshal(a.ValidityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type UpdateApplicationMergePatchPlusJSONRequestBody = externalRef0.PpData
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -2247,20 +127,20 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 // The interface specification for the client above.
 type ClientInterface interface {
 	// Delete5GVNGroup request
-	Delete5GVNGroup(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Delete5GVNGroup(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Get5GVNGroup request
-	Get5GVNGroup(ctx context.Context, extGroupId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Get5GVNGroup(ctx context.Context, extGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Modify5GVNGroupWithBody request with any body
-	Modify5GVNGroupWithBody(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Modify5GVNGroupWithBody(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Create5GVNGroupWithBody request with any body
-	Create5GVNGroupWithBody(ctx context.Context, extGroupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Create5GVNGroupWithBody(ctx context.Context, extGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Create5GVNGroup(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Create5GVNGroup(ctx context.Context, extGroupId externalRef0.ExtGroupId, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateWithBody request with any body
 	UpdateWithBody(ctx context.Context, ueId string, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2268,7 +148,7 @@ type ClientInterface interface {
 	UpdateWithApplicationMergePatchPlusJSONBody(ctx context.Context, ueId string, params *UpdateParams, body UpdateApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
-func (c *Client) Delete5GVNGroup(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Delete5GVNGroup(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDelete5GVNGroupRequest(c.Server, extGroupId, params)
 	if err != nil {
 		return nil, err
@@ -2280,7 +160,7 @@ func (c *Client) Delete5GVNGroup(ctx context.Context, extGroupId string, params 
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get5GVNGroup(ctx context.Context, extGroupId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Get5GVNGroup(ctx context.Context, extGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGet5GVNGroupRequest(c.Server, extGroupId)
 	if err != nil {
 		return nil, err
@@ -2292,7 +172,7 @@ func (c *Client) Get5GVNGroup(ctx context.Context, extGroupId string, reqEditors
 	return c.Client.Do(req)
 }
 
-func (c *Client) Modify5GVNGroupWithBody(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Modify5GVNGroupWithBody(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModify5GVNGroupRequestWithBody(c.Server, extGroupId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -2304,7 +184,7 @@ func (c *Client) Modify5GVNGroupWithBody(ctx context.Context, extGroupId string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody(c.Server, extGroupId, params, body)
 	if err != nil {
 		return nil, err
@@ -2316,7 +196,7 @@ func (c *Client) Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx contex
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create5GVNGroupWithBody(ctx context.Context, extGroupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Create5GVNGroupWithBody(ctx context.Context, extGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreate5GVNGroupRequestWithBody(c.Server, extGroupId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -2328,7 +208,7 @@ func (c *Client) Create5GVNGroupWithBody(ctx context.Context, extGroupId string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create5GVNGroup(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Create5GVNGroup(ctx context.Context, extGroupId externalRef0.ExtGroupId, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreate5GVNGroupRequest(c.Server, extGroupId, body)
 	if err != nil {
 		return nil, err
@@ -2365,7 +245,7 @@ func (c *Client) UpdateWithApplicationMergePatchPlusJSONBody(ctx context.Context
 }
 
 // NewDelete5GVNGroupRequest generates requests for Delete5GVNGroup
-func NewDelete5GVNGroupRequest(server string, extGroupId string, params *Delete5GVNGroupParams) (*http.Request, error) {
+func NewDelete5GVNGroupRequest(server string, extGroupId externalRef0.ExtGroupId, params *Delete5GVNGroupParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2437,7 +317,7 @@ func NewDelete5GVNGroupRequest(server string, extGroupId string, params *Delete5
 }
 
 // NewGet5GVNGroupRequest generates requests for Get5GVNGroup
-func NewGet5GVNGroupRequest(server string, extGroupId string) (*http.Request, error) {
+func NewGet5GVNGroupRequest(server string, extGroupId externalRef0.ExtGroupId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2471,7 +351,7 @@ func NewGet5GVNGroupRequest(server string, extGroupId string) (*http.Request, er
 }
 
 // NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody calls the generic Modify5GVNGroup builder with application/merge-patch+json body
-func NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody(server string, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody(server string, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -2482,7 +362,7 @@ func NewModify5GVNGroupRequestWithApplicationMergePatchPlusJSONBody(server strin
 }
 
 // NewModify5GVNGroupRequestWithBody generates requests for Modify5GVNGroup with any type of body
-func NewModify5GVNGroupRequestWithBody(server string, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModify5GVNGroupRequestWithBody(server string, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2540,7 +420,7 @@ func NewModify5GVNGroupRequestWithBody(server string, extGroupId string, params 
 }
 
 // NewCreate5GVNGroupRequest calls the generic Create5GVNGroup builder with application/json body
-func NewCreate5GVNGroupRequest(server string, extGroupId string, body Create5GVNGroupJSONRequestBody) (*http.Request, error) {
+func NewCreate5GVNGroupRequest(server string, extGroupId externalRef0.ExtGroupId, body Create5GVNGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -2551,7 +431,7 @@ func NewCreate5GVNGroupRequest(server string, extGroupId string, body Create5GVN
 }
 
 // NewCreate5GVNGroupRequestWithBody generates requests for Create5GVNGroup with any type of body
-func NewCreate5GVNGroupRequestWithBody(server string, extGroupId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreate5GVNGroupRequestWithBody(server string, extGroupId externalRef0.ExtGroupId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2699,20 +579,20 @@ func WithBaseURL(baseURL string) ClientOption {
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
 	// Delete5GVNGroupWithResponse request
-	Delete5GVNGroupWithResponse(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*Delete5GVNGroupResponse, error)
+	Delete5GVNGroupWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*Delete5GVNGroupResponse, error)
 
 	// Get5GVNGroupWithResponse request
-	Get5GVNGroupWithResponse(ctx context.Context, extGroupId string, reqEditors ...RequestEditorFn) (*Get5GVNGroupResponse, error)
+	Get5GVNGroupWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVNGroupResponse, error)
 
 	// Modify5GVNGroupWithBodyWithResponse request with any body
-	Modify5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error)
+	Modify5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error)
 
-	Modify5GVNGroupWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error)
+	Modify5GVNGroupWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error)
 
 	// Create5GVNGroupWithBodyWithResponse request with any body
-	Create5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
+	Create5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
 
-	Create5GVNGroupWithResponse(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
+	Create5GVNGroupWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error)
 
 	// UpdateWithBodyWithResponse request with any body
 	UpdateWithBodyWithResponse(ctx context.Context, ueId string, params *UpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateResponse, error)
@@ -2750,7 +630,7 @@ func (r Delete5GVNGroupResponse) StatusCode() int {
 type Get5GVNGroupResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *N5GVnGroupConfiguration
+	JSON200                       *externalRef0.N5GVnGroupConfiguration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -2859,7 +739,7 @@ func (r UpdateResponse) StatusCode() int {
 }
 
 // Delete5GVNGroupWithResponse request returning *Delete5GVNGroupResponse
-func (c *ClientWithResponses) Delete5GVNGroupWithResponse(ctx context.Context, extGroupId string, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*Delete5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Delete5GVNGroupWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Delete5GVNGroupParams, reqEditors ...RequestEditorFn) (*Delete5GVNGroupResponse, error) {
 	rsp, err := c.Delete5GVNGroup(ctx, extGroupId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2868,7 +748,7 @@ func (c *ClientWithResponses) Delete5GVNGroupWithResponse(ctx context.Context, e
 }
 
 // Get5GVNGroupWithResponse request returning *Get5GVNGroupResponse
-func (c *ClientWithResponses) Get5GVNGroupWithResponse(ctx context.Context, extGroupId string, reqEditors ...RequestEditorFn) (*Get5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Get5GVNGroupWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVNGroupResponse, error) {
 	rsp, err := c.Get5GVNGroup(ctx, extGroupId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2877,7 +757,7 @@ func (c *ClientWithResponses) Get5GVNGroupWithResponse(ctx context.Context, extG
 }
 
 // Modify5GVNGroupWithBodyWithResponse request with arbitrary body returning *Modify5GVNGroupResponse
-func (c *ClientWithResponses) Modify5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Modify5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error) {
 	rsp, err := c.Modify5GVNGroupWithBody(ctx, extGroupId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2885,7 +765,7 @@ func (c *ClientWithResponses) Modify5GVNGroupWithBodyWithResponse(ctx context.Co
 	return ParseModify5GVNGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Modify5GVNGroupWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, extGroupId string, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Modify5GVNGroupWithApplicationMergePatchPlusJSONBodyWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, params *Modify5GVNGroupParams, body Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVNGroupResponse, error) {
 	rsp, err := c.Modify5GVNGroupWithApplicationMergePatchPlusJSONBody(ctx, extGroupId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2894,7 +774,7 @@ func (c *ClientWithResponses) Modify5GVNGroupWithApplicationMergePatchPlusJSONBo
 }
 
 // Create5GVNGroupWithBodyWithResponse request with arbitrary body returning *Create5GVNGroupResponse
-func (c *ClientWithResponses) Create5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Create5GVNGroupWithBodyWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error) {
 	rsp, err := c.Create5GVNGroupWithBody(ctx, extGroupId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2902,7 +782,7 @@ func (c *ClientWithResponses) Create5GVNGroupWithBodyWithResponse(ctx context.Co
 	return ParseCreate5GVNGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Create5GVNGroupWithResponse(ctx context.Context, extGroupId string, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error) {
+func (c *ClientWithResponses) Create5GVNGroupWithResponse(ctx context.Context, extGroupId externalRef0.ExtGroupId, body Create5GVNGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVNGroupResponse, error) {
 	rsp, err := c.Create5GVNGroup(ctx, extGroupId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -3006,7 +886,7 @@ func ParseGet5GVNGroupResponse(rsp *http.Response) (*Get5GVNGroupResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest N5GVnGroupConfiguration
+		var dest externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -3269,16 +1149,16 @@ func ParseUpdateResponse(rsp *http.Response) (*UpdateResponse, error) {
 type ServerInterface interface {
 	// delete a 5G VN Group
 	// (DELETE /5g-vn-groups/{extGroupId})
-	Delete5GVNGroup(c *gin.Context, extGroupId string, params Delete5GVNGroupParams)
+	Delete5GVNGroup(c *gin.Context, extGroupId externalRef0.ExtGroupId, params Delete5GVNGroupParams)
 	// get 5G VN Group
 	// (GET /5g-vn-groups/{extGroupId})
-	Get5GVNGroup(c *gin.Context, extGroupId string)
+	Get5GVNGroup(c *gin.Context, extGroupId externalRef0.ExtGroupId)
 	// modify a 5G VN Group
 	// (PATCH /5g-vn-groups/{extGroupId})
-	Modify5GVNGroup(c *gin.Context, extGroupId string, params Modify5GVNGroupParams)
+	Modify5GVNGroup(c *gin.Context, extGroupId externalRef0.ExtGroupId, params Modify5GVNGroupParams)
 	// create a 5G VN Group
 	// (PUT /5g-vn-groups/{extGroupId})
-	Create5GVNGroup(c *gin.Context, extGroupId string)
+	Create5GVNGroup(c *gin.Context, extGroupId externalRef0.ExtGroupId)
 	// provision parameters
 	// (PATCH /{ueId}/pp-data)
 	Update(c *gin.Context, ueId string, params UpdateParams)
@@ -3299,7 +1179,7 @@ func (siw *ServerInterfaceWrapper) Delete5GVNGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "extGroupId" -------------
-	var extGroupId string
+	var extGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "extGroupId", c.Param("extGroupId"), &extGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -3344,7 +1224,7 @@ func (siw *ServerInterfaceWrapper) Get5GVNGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "extGroupId" -------------
-	var extGroupId string
+	var extGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "extGroupId", c.Param("extGroupId"), &extGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -3370,7 +1250,7 @@ func (siw *ServerInterfaceWrapper) Modify5GVNGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "extGroupId" -------------
-	var extGroupId string
+	var extGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "extGroupId", c.Param("extGroupId"), &extGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -3407,7 +1287,7 @@ func (siw *ServerInterfaceWrapper) Create5GVNGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "extGroupId" -------------
-	var extGroupId string
+	var extGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "extGroupId", c.Param("extGroupId"), &extGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -3499,7 +1379,7 @@ func RegisterHandlersWithOptions(router gin.IRouter, si ServerInterface, options
 }
 
 type Delete5GVNGroupRequestObject struct {
-	ExtGroupId string `json:"extGroupId"`
+	ExtGroupId externalRef0.ExtGroupId `json:"extGroupId"`
 	Params     Delete5GVNGroupParams
 }
 
@@ -3583,20 +1463,20 @@ func (response Delete5GVNGroupdefaultApplicationProblemPlusJSONResponse) VisitDe
 }
 
 type Get5GVNGroupRequestObject struct {
-	ExtGroupId string `json:"extGroupId"`
+	ExtGroupId externalRef0.ExtGroupId `json:"extGroupId"`
 }
 
 type Get5GVNGroupResponseObject interface {
 	VisitGet5GVNGroupResponse(w http.ResponseWriter) error
 }
 
-type Get5GVNGroup200JSONResponse N5GVnGroupConfiguration
+type Get5GVNGroup200JSONResponse externalRef0.N5GVnGroupConfiguration
 
 func (response Get5GVNGroup200JSONResponse) VisitGet5GVNGroupResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(N5GVnGroupConfiguration(response))
+	return json.NewEncoder(w).Encode(externalRef0.N5GVnGroupConfiguration(response))
 }
 
 type Get5GVNGroup400ApplicationProblemPlusJSONResponse struct {
@@ -3667,7 +1547,7 @@ func (response Get5GVNGroupdefaultApplicationProblemPlusJSONResponse) VisitGet5G
 }
 
 type Modify5GVNGroupRequestObject struct {
-	ExtGroupId string `json:"extGroupId"`
+	ExtGroupId externalRef0.ExtGroupId `json:"extGroupId"`
 	Params     Modify5GVNGroupParams
 	Body       *Modify5GVNGroupApplicationMergePatchPlusJSONRequestBody
 }
@@ -3761,7 +1641,7 @@ func (response Modify5GVNGroupdefaultApplicationProblemPlusJSONResponse) VisitMo
 }
 
 type Create5GVNGroupRequestObject struct {
-	ExtGroupId string `json:"extGroupId"`
+	ExtGroupId externalRef0.ExtGroupId `json:"extGroupId"`
 	Body       *Create5GVNGroupJSONRequestBody
 }
 
@@ -3970,7 +1850,7 @@ type strictHandler struct {
 }
 
 // Delete5GVNGroup operation middleware
-func (sh *strictHandler) Delete5GVNGroup(ctx *gin.Context, extGroupId string, params Delete5GVNGroupParams) {
+func (sh *strictHandler) Delete5GVNGroup(ctx *gin.Context, extGroupId externalRef0.ExtGroupId, params Delete5GVNGroupParams) {
 	var request Delete5GVNGroupRequestObject
 
 	request.ExtGroupId = extGroupId
@@ -3998,7 +1878,7 @@ func (sh *strictHandler) Delete5GVNGroup(ctx *gin.Context, extGroupId string, pa
 }
 
 // Get5GVNGroup operation middleware
-func (sh *strictHandler) Get5GVNGroup(ctx *gin.Context, extGroupId string) {
+func (sh *strictHandler) Get5GVNGroup(ctx *gin.Context, extGroupId externalRef0.ExtGroupId) {
 	var request Get5GVNGroupRequestObject
 
 	request.ExtGroupId = extGroupId
@@ -4025,7 +1905,7 @@ func (sh *strictHandler) Get5GVNGroup(ctx *gin.Context, extGroupId string) {
 }
 
 // Modify5GVNGroup operation middleware
-func (sh *strictHandler) Modify5GVNGroup(ctx *gin.Context, extGroupId string, params Modify5GVNGroupParams) {
+func (sh *strictHandler) Modify5GVNGroup(ctx *gin.Context, extGroupId externalRef0.ExtGroupId, params Modify5GVNGroupParams) {
 	var request Modify5GVNGroupRequestObject
 
 	request.ExtGroupId = extGroupId
@@ -4061,7 +1941,7 @@ func (sh *strictHandler) Modify5GVNGroup(ctx *gin.Context, extGroupId string, pa
 }
 
 // Create5GVNGroup operation middleware
-func (sh *strictHandler) Create5GVNGroup(ctx *gin.Context, extGroupId string) {
+func (sh *strictHandler) Create5GVNGroup(ctx *gin.Context, extGroupId externalRef0.ExtGroupId) {
 	var request Create5GVNGroupRequestObject
 
 	request.ExtGroupId = extGroupId

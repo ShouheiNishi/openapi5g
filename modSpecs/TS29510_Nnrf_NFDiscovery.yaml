@@ -14,7 +14,7 @@ components:
             content:
                 application/json:
                     schema:
-                        $ref: '#/components/schemas/StoredSearchResult'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/StoredSearchResult
             description: Expected response to a valid request
             headers:
                 Cache-Control:
@@ -29,392 +29,6 @@ components:
                     description: Entity Tag containing a strong validator, described in IETF RFC 7232, 2.3
                     schema:
                         type: string
-    schemas:
-        NFProfile:
-            additionalProperties: true
-            description: Information of an NF Instance discovered by the NRF
-            properties:
-                amfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/AmfInfo
-                amfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/AmfInfo
-                    minProperties: 1
-                    type: object
-                ausfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/AusfInfo
-                ausfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/AusfInfo
-                    minProperties: 1
-                    type: object
-                bsfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/BsfInfo
-                bsfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/BsfInfo
-                    minProperties: 1
-                    type: object
-                capacity:
-                    maximum: 65535
-                    minimum: 0
-                    type: integer
-                chfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ChfInfo
-                chfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ChfInfo
-                    minProperties: 1
-                    type: object
-                customInfo:
-                    type: object
-                defaultNotificationSubscriptions:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/DefaultNotificationSubscription
-                    type: array
-                fqdn:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                gmlcInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/GmlcInfo
-                hssInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/HssInfo
-                    minProperties: 1
-                    type: object
-                ipv4Addresses:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ipv6Addresses:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                lcHSupportInd:
-                    default: false
-                    type: boolean
-                lmfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/LmfInfo
-                load:
-                    maximum: 100
-                    minimum: 0
-                    type: integer
-                loadTimeStamp:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                locality:
-                    type: string
-                nefInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefInfo
-                nfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                nfInstanceName:
-                    type: string
-                nfServiceList:
-                    additionalProperties:
-                        $ref: '#/components/schemas/NFService'
-                    minProperties: 1
-                    type: object
-                nfServicePersistence:
-                    default: false
-                    type: boolean
-                nfServices:
-                    deprecated: true
-                    items:
-                        $ref: '#/components/schemas/NFService'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                nfSetIdList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                nfSetRecoveryTimeList:
-                    additionalProperties:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                    minProperties: 1
-                    type: object
-                nfStatus:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFStatus
-                nfType:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType
-                nsiList:
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                nwdafInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafInfo
-                olcHSupportInd:
-                    default: false
-                    type: boolean
-                pcfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PcfInfo
-                pcfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PcfInfo
-                    minProperties: 1
-                    type: object
-                pcscfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PcscfInfo
-                    minProperties: 1
-                    type: object
-                perPlmnSnssaiList:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                plmnList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                priority:
-                    maximum: 65535
-                    minimum: 0
-                    type: integer
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                sNssais:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                scpDomains:
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                scpInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ScpInfo
-                serviceSetRecoveryTimeList:
-                    additionalProperties:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                    minProperties: 1
-                    type: object
-                servingScope:
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                smfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/SmfInfo
-                smfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/SmfInfo
-                    minProperties: 1
-                    type: object
-                snpnList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                udmInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdmInfo
-                udmInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdmInfo
-                    minProperties: 1
-                    type: object
-                udrInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdrInfo
-                udrInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdrInfo
-                    minProperties: 1
-                    type: object
-                udsfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdsfInfo
-                udsfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdsfInfo
-                    minProperties: 1
-                    type: object
-                upfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UpfInfo
-                upfInfoList:
-                    additionalProperties:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/UpfInfo
-                    minProperties: 1
-                    type: object
-            required:
-                - nfInstanceId
-                - nfType
-                - nfStatus
-            type: object
-        NFService:
-            additionalProperties: true
-            description: Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance discovered by the NRF
-            properties:
-                allowedOperationsPerNfInstance:
-                    additionalProperties:
-                        items:
-                            type: string
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    minProperties: 1
-                    type: object
-                allowedOperationsPerNfType:
-                    additionalProperties:
-                        items:
-                            type: string
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    minProperties: 1
-                    type: object
-                apiPrefix:
-                    type: string
-                capacity:
-                    maximum: 65535
-                    minimum: 0
-                    type: integer
-                defaultNotificationSubscriptions:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/DefaultNotificationSubscription
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                fqdn:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                ipEndPoints:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                load:
-                    maximum: 100
-                    minimum: 0
-                    type: integer
-                loadTimeStamp:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                nfServiceSetIdList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/NfServiceSetId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                nfServiceStatus:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFServiceStatus
-                oauth2Required:
-                    type: boolean
-                perPlmnSnssaiList:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                priority:
-                    maximum: 65535
-                    minimum: 0
-                    type: integer
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                sNssais:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                scheme:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UriScheme
-                serviceInstanceId:
-                    type: string
-                serviceName:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                supportedVendorSpecificFeatures:
-                    additionalProperties:
-                        items:
-                            $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorSpecificFeature
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    minProperties: 1
-                    type: object
-                vendorId:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorId
-                versions:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFServiceVersion
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - serviceInstanceId
-                - serviceName
-                - versions
-                - scheme
-                - nfServiceStatus
-            type: object
-        PreferredSearch:
-            additionalProperties: true
-            description: Contains information on whether the returned NFProfiles match the preferred query parameters
-            properties:
-                otherApiVersionsInd:
-                    type: boolean
-                otherLocalityInd:
-                    default: false
-                    type: boolean
-                preferredApiVersionsMatchInd:
-                    type: boolean
-                preferredFullPlmnMatchInd:
-                    default: false
-                    type: boolean
-                preferredLocalityMatchInd:
-                    default: false
-                    type: boolean
-                preferredTaiMatchInd:
-                    default: false
-                    type: boolean
-            type: object
-        SearchResult:
-            additionalProperties: true
-            description: Contains the list of NF Profiles returned in a Discovery response
-            properties:
-                nfInstances:
-                    items:
-                        $ref: '#/components/schemas/NFProfile'
-                    type: array
-                nrfSupportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                numNfInstComplete:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uint32
-                preferredSearch:
-                    $ref: '#/components/schemas/PreferredSearch'
-                searchId:
-                    type: string
-                validityPeriod:
-                    type: integer
-            required:
-                - nfInstances
-            type: object
-        StoredSearchResult:
-            additionalProperties: true
-            description: Contains a complete search result (i.e. a number of discovered NF Instances), stored by NRF as a consequence of a prior search result
-            properties:
-                nfInstances:
-                    items:
-                        $ref: '#/components/schemas/NFProfile'
-                    type: array
-            required:
-                - nfInstances
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -446,13 +60,13 @@ paths:
                   name: target-nf-type
                   required: true
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NFType
                 - description: Type of the requester NF
                   in: query
                   name: requester-nf-type
                   required: true
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NFType
                 - description: NfInstanceId of the requester NF
                   in: query
                   name: requester-nf-instance-id
@@ -464,7 +78,7 @@ paths:
                   name: service-names
                   schema:
                     items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ServiceName
                     minItems: 1
                     type: array
                     uniqueItems: true
@@ -474,7 +88,7 @@ paths:
                   in: query
                   name: requester-nf-instance-fqdn
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Fqdn
                 - content:
                     application/json:
                         schema:
@@ -506,7 +120,7 @@ paths:
                   in: query
                   name: target-nf-fqdn
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Fqdn
                 - description: Uri of the home NRF
                   in: query
                   name: hnrf-uri
@@ -538,7 +152,7 @@ paths:
                     application/json:
                         schema:
                             items:
-                                $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PlmnSnssai
                             minItems: 1
                             type: array
                             x-go-type-skip-optional-pointer: true
@@ -549,7 +163,7 @@ paths:
                     application/json:
                         schema:
                             items:
-                                $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PlmnSnssai
                             minItems: 1
                             type: array
                             x-go-type-skip-optional-pointer: true
@@ -629,7 +243,7 @@ paths:
                   in: query
                   name: pgw
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Fqdn
                 - description: GPSI of the user
                   in: query
                   name: gpsi
@@ -639,7 +253,7 @@ paths:
                   in: query
                   name: external-group-identity
                   schema:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
                 - description: internal group identifier of the user
                   in: query
                   name: internal-group-identity
@@ -648,7 +262,7 @@ paths:
                 - content:
                     application/json:
                         schema:
-                            $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/PfdData
+                            $ref: TS29571_CommonData.yaml#/components/schemas/NRF-PfdData
                   description: PFD data
                   in: query
                   name: pfd-data
@@ -656,7 +270,7 @@ paths:
                   in: query
                   name: data-set
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/DataSetId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DataSetId
                 - description: routing indicator in SUCI
                   in: query
                   name: routing-indicator
@@ -824,7 +438,7 @@ paths:
                 - content:
                     application/json:
                         schema:
-                            $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/AnNodeType
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AnNodeType
                   description: Requested AN node type served by the NF
                   in: query
                   name: an-node-type
@@ -879,28 +493,28 @@ paths:
                 - content:
                     application/json:
                         schema:
-                            $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/AfEventExposureData
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AfEventExposureData
                   description: NEF exposured by the AF
                   in: query
                   name: af-ee-data
                 - content:
                     application/json:
                         schema:
-                            $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/WAgfInfo
+                            $ref: TS29571_CommonData.yaml#/components/schemas/WAgfInfo
                   description: UPF collocated with W-AGF
                   in: query
                   name: w-agf-info
                 - content:
                     application/json:
                         schema:
-                            $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TngfInfo
+                            $ref: TS29571_CommonData.yaml#/components/schemas/TngfInfo
                   description: UPF collocated with TNGF
                   in: query
                   name: tngf-info
                 - content:
                     application/json:
                         schema:
-                            $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TwifInfo
+                            $ref: TS29571_CommonData.yaml#/components/schemas/TwifInfo
                   description: UPF collocated with TWIF
                   in: query
                   name: twif-info
@@ -918,22 +532,22 @@ paths:
                   in: query
                   name: nef-id
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NefId
                 - description: Notification Type
                   in: query
                   name: notification-type
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NotificationType
+                    $ref: TS29571_CommonData.yaml#/components/schemas/NotificationType
                 - description: N1 Message Class
                   in: query
                   name: n1-msg-class
                   schema:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
+                    $ref: TS29571_CommonData.yaml#/components/schemas/N1MessageClass
                 - description: N2 Information Class
                   in: query
                   name: n2-info-class
                   schema:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
+                    $ref: TS29571_CommonData.yaml#/components/schemas/N2InformationClass
                 - description: areas that can be served by the target NF
                   explode: false
                   in: query
@@ -1010,7 +624,7 @@ paths:
                   in: query
                   name: address-domain
                   schema:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Fqdn
                 - description: IPv4 address reachable through the SCP
                   in: query
                   name: ipv4-addr
@@ -1075,7 +689,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SearchResult'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SearchResult
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:

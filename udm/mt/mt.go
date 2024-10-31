@@ -13,9 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/amf/event"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/amf/mt"
-	externalRef2 "github.com/ShouheiNishi/openapi5g/commondata"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -25,635 +23,17 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// N5GSrvccInfo defines model for 5GSrvccInfo.
-type N5GSrvccInfo struct {
-	CMsisdn              externalRef2.CMsisdn   `json:"cMsisdn,omitempty"`
-	StnSr                *externalRef2.StnSr    `json:"stnSr,omitempty"`
-	Ue5GSrvccCapability  bool                   `json:"ue5GSrvccCapability"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// LocationInfoRequest defines model for LocationInfoRequest.
-type LocationInfoRequest struct {
-	Req5gsLoc            *bool                           `json:"req5gsLoc,omitempty"`
-	ReqCurrentLoc        *bool                           `json:"reqCurrentLoc,omitempty"`
-	ReqRatType           *bool                           `json:"reqRatType,omitempty"`
-	ReqServingNode       *bool                           `json:"reqServingNode,omitempty"`
-	ReqTimeZone          *bool                           `json:"reqTimeZone,omitempty"`
-	SupportedFeatures    *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// LocationInfoResult defines model for LocationInfoResult.
-type LocationInfoResult struct {
-	AmfInstanceId *externalRef2.NfInstanceId `json:"amfInstanceId,omitempty"`
-	CurrentLoc    *bool                      `json:"currentLoc,omitempty"`
-	Ecgi          *externalRef2.Ecgi         `json:"ecgi,omitempty"`
-
-	// GeoInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	GeoInfo interface{} `json:"geoInfo,omitempty"`
-
-	// LocationAge Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	LocationAge          interface{}                     `json:"locationAge,omitempty"`
-	Ncgi                 *externalRef2.Ncgi              `json:"ncgi,omitempty"`
-	RatType              *externalRef2.RatType           `json:"ratType,omitempty"`
-	SmsfInstanceId       *externalRef2.NfInstanceId      `json:"smsfInstanceId,omitempty"`
-	SupportedFeatures    *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	Tai                  *externalRef2.Tai               `json:"tai,omitempty"`
-	Timezone             *externalRef2.TimeZone          `json:"timezone,omitempty"`
-	VPlmnId              *externalRef2.PlmnId            `json:"vPlmnId,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// UeInfo defines model for UeInfo.
-type UeInfo struct {
-	N5gSrvccInfo         *N5GSrvccInfo               `json:"5gSrvccInfo,omitempty"`
-	TadsInfo             *externalRef1.UeContextInfo `json:"tadsInfo,omitempty"`
-	UserState            *externalRef0.N5GsUserState `json:"userState,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
 // QueryUeInfoParams defines parameters for QueryUeInfo.
 type QueryUeInfoParams struct {
 	// Fields attributes to be retrieved
 	Fields []string `form:"fields" json:"fields"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ProvideLocationInfoJSONRequestBody defines body for ProvideLocationInfo for application/json ContentType.
-type ProvideLocationInfoJSONRequestBody = LocationInfoRequest
-
-// Getter for additional properties for N5GSrvccInfo. Returns the specified
-// element and whether it was found
-func (a N5GSrvccInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N5GSrvccInfo
-func (a *N5GSrvccInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N5GSrvccInfo to handle AdditionalProperties
-func (a *N5GSrvccInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["cMsisdn"]; found {
-		err = json.Unmarshal(raw, &a.CMsisdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'cMsisdn': %w", err)
-		}
-		delete(object, "cMsisdn")
-	}
-
-	if raw, found := object["stnSr"]; found {
-		err = json.Unmarshal(raw, &a.StnSr)
-		if err != nil {
-			return fmt.Errorf("error reading 'stnSr': %w", err)
-		}
-		delete(object, "stnSr")
-	}
-
-	if raw, found := object["ue5GSrvccCapability"]; found {
-		err = json.Unmarshal(raw, &a.Ue5GSrvccCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 'ue5GSrvccCapability': %w", err)
-		}
-		delete(object, "ue5GSrvccCapability")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N5GSrvccInfo to handle AdditionalProperties
-func (a N5GSrvccInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.CMsisdn) != 0 {
-		object["cMsisdn"], err = json.Marshal(a.CMsisdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cMsisdn': %w", err)
-		}
-	}
-
-	if a.StnSr != nil {
-		object["stnSr"], err = json.Marshal(a.StnSr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'stnSr': %w", err)
-		}
-	}
-
-	object["ue5GSrvccCapability"], err = json.Marshal(a.Ue5GSrvccCapability)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ue5GSrvccCapability': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LocationInfoRequest. Returns the specified
-// element and whether it was found
-func (a LocationInfoRequest) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LocationInfoRequest
-func (a *LocationInfoRequest) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LocationInfoRequest to handle AdditionalProperties
-func (a *LocationInfoRequest) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["req5gsLoc"]; found {
-		err = json.Unmarshal(raw, &a.Req5gsLoc)
-		if err != nil {
-			return fmt.Errorf("error reading 'req5gsLoc': %w", err)
-		}
-		delete(object, "req5gsLoc")
-	}
-
-	if raw, found := object["reqCurrentLoc"]; found {
-		err = json.Unmarshal(raw, &a.ReqCurrentLoc)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqCurrentLoc': %w", err)
-		}
-		delete(object, "reqCurrentLoc")
-	}
-
-	if raw, found := object["reqRatType"]; found {
-		err = json.Unmarshal(raw, &a.ReqRatType)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqRatType': %w", err)
-		}
-		delete(object, "reqRatType")
-	}
-
-	if raw, found := object["reqServingNode"]; found {
-		err = json.Unmarshal(raw, &a.ReqServingNode)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqServingNode': %w", err)
-		}
-		delete(object, "reqServingNode")
-	}
-
-	if raw, found := object["reqTimeZone"]; found {
-		err = json.Unmarshal(raw, &a.ReqTimeZone)
-		if err != nil {
-			return fmt.Errorf("error reading 'reqTimeZone': %w", err)
-		}
-		delete(object, "reqTimeZone")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LocationInfoRequest to handle AdditionalProperties
-func (a LocationInfoRequest) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Req5gsLoc != nil {
-		object["req5gsLoc"], err = json.Marshal(a.Req5gsLoc)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'req5gsLoc': %w", err)
-		}
-	}
-
-	if a.ReqCurrentLoc != nil {
-		object["reqCurrentLoc"], err = json.Marshal(a.ReqCurrentLoc)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqCurrentLoc': %w", err)
-		}
-	}
-
-	if a.ReqRatType != nil {
-		object["reqRatType"], err = json.Marshal(a.ReqRatType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqRatType': %w", err)
-		}
-	}
-
-	if a.ReqServingNode != nil {
-		object["reqServingNode"], err = json.Marshal(a.ReqServingNode)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqServingNode': %w", err)
-		}
-	}
-
-	if a.ReqTimeZone != nil {
-		object["reqTimeZone"], err = json.Marshal(a.ReqTimeZone)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reqTimeZone': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LocationInfoResult. Returns the specified
-// element and whether it was found
-func (a LocationInfoResult) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LocationInfoResult
-func (a *LocationInfoResult) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LocationInfoResult to handle AdditionalProperties
-func (a *LocationInfoResult) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfInstanceId': %w", err)
-		}
-		delete(object, "amfInstanceId")
-	}
-
-	if raw, found := object["currentLoc"]; found {
-		err = json.Unmarshal(raw, &a.CurrentLoc)
-		if err != nil {
-			return fmt.Errorf("error reading 'currentLoc': %w", err)
-		}
-		delete(object, "currentLoc")
-	}
-
-	if raw, found := object["ecgi"]; found {
-		err = json.Unmarshal(raw, &a.Ecgi)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecgi': %w", err)
-		}
-		delete(object, "ecgi")
-	}
-
-	if raw, found := object["geoInfo"]; found {
-		err = json.Unmarshal(raw, &a.GeoInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'geoInfo': %w", err)
-		}
-		delete(object, "geoInfo")
-	}
-
-	if raw, found := object["locationAge"]; found {
-		err = json.Unmarshal(raw, &a.LocationAge)
-		if err != nil {
-			return fmt.Errorf("error reading 'locationAge': %w", err)
-		}
-		delete(object, "locationAge")
-	}
-
-	if raw, found := object["ncgi"]; found {
-		err = json.Unmarshal(raw, &a.Ncgi)
-		if err != nil {
-			return fmt.Errorf("error reading 'ncgi': %w", err)
-		}
-		delete(object, "ncgi")
-	}
-
-	if raw, found := object["ratType"]; found {
-		err = json.Unmarshal(raw, &a.RatType)
-		if err != nil {
-			return fmt.Errorf("error reading 'ratType': %w", err)
-		}
-		delete(object, "ratType")
-	}
-
-	if raw, found := object["smsfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.SmsfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfInstanceId': %w", err)
-		}
-		delete(object, "smsfInstanceId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["tai"]; found {
-		err = json.Unmarshal(raw, &a.Tai)
-		if err != nil {
-			return fmt.Errorf("error reading 'tai': %w", err)
-		}
-		delete(object, "tai")
-	}
-
-	if raw, found := object["timezone"]; found {
-		err = json.Unmarshal(raw, &a.Timezone)
-		if err != nil {
-			return fmt.Errorf("error reading 'timezone': %w", err)
-		}
-		delete(object, "timezone")
-	}
-
-	if raw, found := object["vPlmnId"]; found {
-		err = json.Unmarshal(raw, &a.VPlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'vPlmnId': %w", err)
-		}
-		delete(object, "vPlmnId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LocationInfoResult to handle AdditionalProperties
-func (a LocationInfoResult) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AmfInstanceId != nil {
-		object["amfInstanceId"], err = json.Marshal(a.AmfInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfInstanceId': %w", err)
-		}
-	}
-
-	if a.CurrentLoc != nil {
-		object["currentLoc"], err = json.Marshal(a.CurrentLoc)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'currentLoc': %w", err)
-		}
-	}
-
-	if a.Ecgi != nil {
-		object["ecgi"], err = json.Marshal(a.Ecgi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecgi': %w", err)
-		}
-	}
-
-	if a.GeoInfo != nil {
-		object["geoInfo"], err = json.Marshal(a.GeoInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'geoInfo': %w", err)
-		}
-	}
-
-	if a.LocationAge != nil {
-		object["locationAge"], err = json.Marshal(a.LocationAge)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'locationAge': %w", err)
-		}
-	}
-
-	if a.Ncgi != nil {
-		object["ncgi"], err = json.Marshal(a.Ncgi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ncgi': %w", err)
-		}
-	}
-
-	if a.RatType != nil {
-		object["ratType"], err = json.Marshal(a.RatType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ratType': %w", err)
-		}
-	}
-
-	if a.SmsfInstanceId != nil {
-		object["smsfInstanceId"], err = json.Marshal(a.SmsfInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfInstanceId': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.Tai != nil {
-		object["tai"], err = json.Marshal(a.Tai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'tai': %w", err)
-		}
-	}
-
-	if a.Timezone != nil {
-		object["timezone"], err = json.Marshal(a.Timezone)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'timezone': %w", err)
-		}
-	}
-
-	if a.VPlmnId != nil {
-		object["vPlmnId"], err = json.Marshal(a.VPlmnId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vPlmnId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeInfo. Returns the specified
-// element and whether it was found
-func (a UeInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeInfo
-func (a *UeInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeInfo to handle AdditionalProperties
-func (a *UeInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["5gSrvccInfo"]; found {
-		err = json.Unmarshal(raw, &a.N5gSrvccInfo)
-		if err != nil {
-			return fmt.Errorf("error reading '5gSrvccInfo': %w", err)
-		}
-		delete(object, "5gSrvccInfo")
-	}
-
-	if raw, found := object["tadsInfo"]; found {
-		err = json.Unmarshal(raw, &a.TadsInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'tadsInfo': %w", err)
-		}
-		delete(object, "tadsInfo")
-	}
-
-	if raw, found := object["userState"]; found {
-		err = json.Unmarshal(raw, &a.UserState)
-		if err != nil {
-			return fmt.Errorf("error reading 'userState': %w", err)
-		}
-		delete(object, "userState")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeInfo to handle AdditionalProperties
-func (a UeInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.N5gSrvccInfo != nil {
-		object["5gSrvccInfo"], err = json.Marshal(a.N5gSrvccInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '5gSrvccInfo': %w", err)
-		}
-	}
-
-	if a.TadsInfo != nil {
-		object["tadsInfo"], err = json.Marshal(a.TadsInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'tadsInfo': %w", err)
-		}
-	}
-
-	if a.UserState != nil {
-		object["userState"], err = json.Marshal(a.UserState)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'userState': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type ProvideLocationInfoJSONRequestBody = externalRef0.LocationInfoRequest
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -729,15 +109,15 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 // The interface specification for the client above.
 type ClientInterface interface {
 	// QueryUeInfo request
-	QueryUeInfo(ctx context.Context, supi externalRef2.Supi, params *QueryUeInfoParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryUeInfo(ctx context.Context, supi externalRef0.Supi, params *QueryUeInfoParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProvideLocationInfoWithBody request with any body
-	ProvideLocationInfoWithBody(ctx context.Context, supi externalRef2.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProvideLocationInfoWithBody(ctx context.Context, supi externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ProvideLocationInfo(ctx context.Context, supi externalRef2.Supi, body ProvideLocationInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProvideLocationInfo(ctx context.Context, supi externalRef0.Supi, body ProvideLocationInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
-func (c *Client) QueryUeInfo(ctx context.Context, supi externalRef2.Supi, params *QueryUeInfoParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryUeInfo(ctx context.Context, supi externalRef0.Supi, params *QueryUeInfoParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryUeInfoRequest(c.Server, supi, params)
 	if err != nil {
 		return nil, err
@@ -749,7 +129,7 @@ func (c *Client) QueryUeInfo(ctx context.Context, supi externalRef2.Supi, params
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProvideLocationInfoWithBody(ctx context.Context, supi externalRef2.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ProvideLocationInfoWithBody(ctx context.Context, supi externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProvideLocationInfoRequestWithBody(c.Server, supi, contentType, body)
 	if err != nil {
 		return nil, err
@@ -761,7 +141,7 @@ func (c *Client) ProvideLocationInfoWithBody(ctx context.Context, supi externalR
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProvideLocationInfo(ctx context.Context, supi externalRef2.Supi, body ProvideLocationInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ProvideLocationInfo(ctx context.Context, supi externalRef0.Supi, body ProvideLocationInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProvideLocationInfoRequest(c.Server, supi, body)
 	if err != nil {
 		return nil, err
@@ -774,7 +154,7 @@ func (c *Client) ProvideLocationInfo(ctx context.Context, supi externalRef2.Supi
 }
 
 // NewQueryUeInfoRequest generates requests for QueryUeInfo
-func NewQueryUeInfoRequest(server string, supi externalRef2.Supi, params *QueryUeInfoParams) (*http.Request, error) {
+func NewQueryUeInfoRequest(server string, supi externalRef0.Supi, params *QueryUeInfoParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -842,7 +222,7 @@ func NewQueryUeInfoRequest(server string, supi externalRef2.Supi, params *QueryU
 }
 
 // NewProvideLocationInfoRequest calls the generic ProvideLocationInfo builder with application/json body
-func NewProvideLocationInfoRequest(server string, supi externalRef2.Supi, body ProvideLocationInfoJSONRequestBody) (*http.Request, error) {
+func NewProvideLocationInfoRequest(server string, supi externalRef0.Supi, body ProvideLocationInfoJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -853,7 +233,7 @@ func NewProvideLocationInfoRequest(server string, supi externalRef2.Supi, body P
 }
 
 // NewProvideLocationInfoRequestWithBody generates requests for ProvideLocationInfo with any type of body
-func NewProvideLocationInfoRequestWithBody(server string, supi externalRef2.Supi, contentType string, body io.Reader) (*http.Request, error) {
+func NewProvideLocationInfoRequestWithBody(server string, supi externalRef0.Supi, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -932,24 +312,24 @@ func WithBaseURL(baseURL string) ClientOption {
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
 	// QueryUeInfoWithResponse request
-	QueryUeInfoWithResponse(ctx context.Context, supi externalRef2.Supi, params *QueryUeInfoParams, reqEditors ...RequestEditorFn) (*QueryUeInfoResponse, error)
+	QueryUeInfoWithResponse(ctx context.Context, supi externalRef0.Supi, params *QueryUeInfoParams, reqEditors ...RequestEditorFn) (*QueryUeInfoResponse, error)
 
 	// ProvideLocationInfoWithBodyWithResponse request with any body
-	ProvideLocationInfoWithBodyWithResponse(ctx context.Context, supi externalRef2.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProvideLocationInfoResponse, error)
+	ProvideLocationInfoWithBodyWithResponse(ctx context.Context, supi externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProvideLocationInfoResponse, error)
 
-	ProvideLocationInfoWithResponse(ctx context.Context, supi externalRef2.Supi, body ProvideLocationInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*ProvideLocationInfoResponse, error)
+	ProvideLocationInfoWithResponse(ctx context.Context, supi externalRef0.Supi, body ProvideLocationInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*ProvideLocationInfoResponse, error)
 }
 
 type QueryUeInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *UeInfo
-	ApplicationproblemJSON400     *externalRef2.N400
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSON500     *externalRef2.N500
-	ApplicationproblemJSON501     *externalRef2.N501
-	ApplicationproblemJSON503     *externalRef2.N503
-	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
+	JSON200                       *externalRef0.UeInfo
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -971,13 +351,13 @@ func (r QueryUeInfoResponse) StatusCode() int {
 type ProvideLocationInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *LocationInfoResult
-	ApplicationproblemJSON400     *externalRef2.N400
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSON500     *externalRef2.N500
-	ApplicationproblemJSON501     *externalRef2.N501
-	ApplicationproblemJSON503     *externalRef2.N503
-	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
+	JSON200                       *externalRef0.LocationInfoResult
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -997,7 +377,7 @@ func (r ProvideLocationInfoResponse) StatusCode() int {
 }
 
 // QueryUeInfoWithResponse request returning *QueryUeInfoResponse
-func (c *ClientWithResponses) QueryUeInfoWithResponse(ctx context.Context, supi externalRef2.Supi, params *QueryUeInfoParams, reqEditors ...RequestEditorFn) (*QueryUeInfoResponse, error) {
+func (c *ClientWithResponses) QueryUeInfoWithResponse(ctx context.Context, supi externalRef0.Supi, params *QueryUeInfoParams, reqEditors ...RequestEditorFn) (*QueryUeInfoResponse, error) {
 	rsp, err := c.QueryUeInfo(ctx, supi, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -1006,7 +386,7 @@ func (c *ClientWithResponses) QueryUeInfoWithResponse(ctx context.Context, supi 
 }
 
 // ProvideLocationInfoWithBodyWithResponse request with arbitrary body returning *ProvideLocationInfoResponse
-func (c *ClientWithResponses) ProvideLocationInfoWithBodyWithResponse(ctx context.Context, supi externalRef2.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProvideLocationInfoResponse, error) {
+func (c *ClientWithResponses) ProvideLocationInfoWithBodyWithResponse(ctx context.Context, supi externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProvideLocationInfoResponse, error) {
 	rsp, err := c.ProvideLocationInfoWithBody(ctx, supi, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -1014,7 +394,7 @@ func (c *ClientWithResponses) ProvideLocationInfoWithBodyWithResponse(ctx contex
 	return ParseProvideLocationInfoResponse(rsp)
 }
 
-func (c *ClientWithResponses) ProvideLocationInfoWithResponse(ctx context.Context, supi externalRef2.Supi, body ProvideLocationInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*ProvideLocationInfoResponse, error) {
+func (c *ClientWithResponses) ProvideLocationInfoWithResponse(ctx context.Context, supi externalRef0.Supi, body ProvideLocationInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*ProvideLocationInfoResponse, error) {
 	rsp, err := c.ProvideLocationInfo(ctx, supi, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -1037,49 +417,49 @@ func ParseQueryUeInfoResponse(rsp *http.Response) (*QueryUeInfoResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UeInfo
+		var dest externalRef0.UeInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef2.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef2.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 501:
-		var dest externalRef2.N501
+		var dest externalRef0.N501
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON501 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef2.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1105,49 +485,49 @@ func ParseProvideLocationInfoResponse(rsp *http.Response) (*ProvideLocationInfoR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LocationInfoResult
+		var dest externalRef0.LocationInfoResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef2.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef2.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 501:
-		var dest externalRef2.N501
+		var dest externalRef0.N501
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON501 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef2.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1162,10 +542,10 @@ func ParseProvideLocationInfoResponse(rsp *http.Response) (*ProvideLocationInfoR
 type ServerInterface interface {
 	// Query Information for the UE
 	// (GET /{supi})
-	QueryUeInfo(c *gin.Context, supi externalRef2.Supi, params QueryUeInfoParams)
+	QueryUeInfo(c *gin.Context, supi externalRef0.Supi, params QueryUeInfoParams)
 	// Provides the UE's 5GS location information
 	// (POST /{supi}/loc-info/provide-loc-info)
-	ProvideLocationInfo(c *gin.Context, supi externalRef2.Supi)
+	ProvideLocationInfo(c *gin.Context, supi externalRef0.Supi)
 }
 
 // ServerInterfaceWrapper converts contexts to parameters.
@@ -1183,7 +563,7 @@ func (siw *ServerInterfaceWrapper) QueryUeInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "supi" -------------
-	var supi externalRef2.Supi
+	var supi externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "supi", c.Param("supi"), &supi, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -1235,7 +615,7 @@ func (siw *ServerInterfaceWrapper) ProvideLocationInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "supi" -------------
-	var supi externalRef2.Supi
+	var supi externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "supi", c.Param("supi"), &supi, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -1287,7 +667,7 @@ func RegisterHandlersWithOptions(router gin.IRouter, si ServerInterface, options
 }
 
 type QueryUeInfoRequestObject struct {
-	Supi   externalRef2.Supi `json:"supi"`
+	Supi   externalRef0.Supi `json:"supi"`
 	Params QueryUeInfoParams
 }
 
@@ -1295,72 +675,72 @@ type QueryUeInfoResponseObject interface {
 	VisitQueryUeInfoResponse(w http.ResponseWriter) error
 }
 
-type QueryUeInfo200JSONResponse UeInfo
+type QueryUeInfo200JSONResponse externalRef0.UeInfo
 
 func (response QueryUeInfo200JSONResponse) VisitQueryUeInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(UeInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.UeInfo(response))
 }
 
 type QueryUeInfo400ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response QueryUeInfo400ApplicationProblemPlusJSONResponse) VisitQueryUeInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type QueryUeInfo404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response QueryUeInfo404ApplicationProblemPlusJSONResponse) VisitQueryUeInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type QueryUeInfo500ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response QueryUeInfo500ApplicationProblemPlusJSONResponse) VisitQueryUeInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type QueryUeInfo501ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N501ApplicationProblemPlusJSONResponse
+	externalRef0.N501ApplicationProblemPlusJSONResponse
 }
 
 func (response QueryUeInfo501ApplicationProblemPlusJSONResponse) VisitQueryUeInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type QueryUeInfo503ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response QueryUeInfo503ApplicationProblemPlusJSONResponse) VisitQueryUeInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type QueryUeInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -1372,7 +752,7 @@ func (response QueryUeInfodefaultApplicationProblemPlusJSONResponse) VisitQueryU
 }
 
 type ProvideLocationInfoRequestObject struct {
-	Supi externalRef2.Supi `json:"supi"`
+	Supi externalRef0.Supi `json:"supi"`
 	Body *ProvideLocationInfoJSONRequestBody
 }
 
@@ -1380,72 +760,72 @@ type ProvideLocationInfoResponseObject interface {
 	VisitProvideLocationInfoResponse(w http.ResponseWriter) error
 }
 
-type ProvideLocationInfo200JSONResponse LocationInfoResult
+type ProvideLocationInfo200JSONResponse externalRef0.LocationInfoResult
 
 func (response ProvideLocationInfo200JSONResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(LocationInfoResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.LocationInfoResult(response))
 }
 
 type ProvideLocationInfo400ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideLocationInfo400ApplicationProblemPlusJSONResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideLocationInfo404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideLocationInfo404ApplicationProblemPlusJSONResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideLocationInfo500ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideLocationInfo500ApplicationProblemPlusJSONResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideLocationInfo501ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N501ApplicationProblemPlusJSONResponse
+	externalRef0.N501ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideLocationInfo501ApplicationProblemPlusJSONResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideLocationInfo503ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideLocationInfo503ApplicationProblemPlusJSONResponse) VisitProvideLocationInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideLocationInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -1479,7 +859,7 @@ type strictHandler struct {
 }
 
 // QueryUeInfo operation middleware
-func (sh *strictHandler) QueryUeInfo(ctx *gin.Context, supi externalRef2.Supi, params QueryUeInfoParams) {
+func (sh *strictHandler) QueryUeInfo(ctx *gin.Context, supi externalRef0.Supi, params QueryUeInfoParams) {
 	var request QueryUeInfoRequestObject
 
 	request.Supi = supi
@@ -1507,7 +887,7 @@ func (sh *strictHandler) QueryUeInfo(ctx *gin.Context, supi externalRef2.Supi, p
 }
 
 // ProvideLocationInfo operation middleware
-func (sh *strictHandler) ProvideLocationInfo(ctx *gin.Context, supi externalRef2.Supi) {
+func (sh *strictHandler) ProvideLocationInfo(ctx *gin.Context, supi externalRef0.Supi) {
 	var request ProvideLocationInfoRequestObject
 
 	request.Supi = supi

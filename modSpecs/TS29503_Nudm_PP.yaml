@@ -1,325 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        5GVnGroupConfiguration:
-            additionalProperties: true
-            properties:
-                5gVnGroupData:
-                    $ref: '#/components/schemas/5GVnGroupData'
-                afInstanceId:
-                    type: string
-                internalGroupIdentifier:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
-                members:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-            type: object
-        5GVnGroupData:
-            additionalProperties: true
-            properties:
-                appDescriptors:
-                    items:
-                        description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/AppDescriptor
-                        x-go-type-skip-optional-pointer: true
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                dnAaaAddress:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress
-                    x-go-type-skip-optional-pointer: true
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                pduSessionTypes:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                sNssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                secondaryAuth:
-                    type: boolean
-            required:
-                - dnn
-                - sNssai
-            type: object
-        CommunicationCharacteristics:
-            additionalProperties: true
-            properties:
-                ppActiveTime:
-                    $ref: '#/components/schemas/PpActiveTime'
-                ppDlPacketCount:
-                    $ref: '#/components/schemas/PpDlPacketCount'
-                ppDlPacketCountExt:
-                    $ref: '#/components/schemas/PpDlPacketCountExt'
-                ppMaximumLatency:
-                    $ref: '#/components/schemas/PpMaximumLatency'
-                ppMaximumResponseTime:
-                    $ref: '#/components/schemas/PpMaximumResponseTime'
-                ppSubsRegTimer:
-                    $ref: '#/components/schemas/PpSubsRegTimer'
-            type: object
-        EcRestriction:
-            additionalProperties: true
-            properties:
-                afInstanceId:
-                    type: string
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                plmnEcInfos:
-                    items:
-                        $ref: '#/components/schemas/PlmnEcInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-            required:
-                - afInstanceId
-                - referenceId
-            type: object
-        ExpectedUeBehaviour:
-            additionalProperties: true
-            properties:
-                afInstanceId:
-                    type: string
-                batteryIndication:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BatteryIndicationRm
-                communicationDurationTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSecRm
-                expectedUmts:
-                    description: Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
-                    items:
-                        $ref: '#/components/schemas/LocationArea'
-                    minItems: 1
-                    nullable: true
-                    type: array
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                periodicTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSecRm
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-                scheduledCommunicationTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ScheduledCommunicationTimeRm
-                scheduledCommunicationType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ScheduledCommunicationTypeRm
-                stationaryIndication:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/StationaryIndicationRm
-                trafficProfile:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TrafficProfileRm
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - afInstanceId
-                - referenceId
-            type: object
-        LcsPrivacy:
-            additionalProperties: true
-            properties:
-                afInstanceId:
-                    type: string
-                lpi:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/Lpi
-                    x-go-type-skip-optional-pointer: true
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-            type: object
-        LocationArea:
-            additionalProperties: true
-            properties:
-                civicAddresses:
-                    description: Identifies a list of civic addresses of the user where the UE is located.
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                        x-go-type-skip-optional-pointer: true
-                    minItems: 0
-                    type: array
-                geographicAreas:
-                    description: Identifies a list of geographic area of the user where the UE is located.
-                    items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
-                    minItems: 0
-                    type: array
-                nwAreaInfo:
-                    $ref: '#/components/schemas/NetworkAreaInfo'
-            type: object
-        NetworkAreaInfo:
-            additionalProperties: true
-            description: Describes a network area information in which the NF service consumer requests the number of UEs.
-            properties:
-                ecgis:
-                    description: Contains a list of E-UTRA cell identities.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                gRanNodeIds:
-                    description: Contains a list of NG RAN nodes.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/GlobalRanNodeId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ncgis:
-                    description: Contains a list of NR cell identities.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                tais:
-                    description: Contains a list of tracking area identities.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Tai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        PlmnEcInfo:
-            additionalProperties: true
-            properties:
-                ecRestrictionDataNb:
-                    default: false
-                    type: boolean
-                ecRestrictionDataWb:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/EcRestrictionDataWb
-                    x-go-type-skip-optional-pointer: true
-                plmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-            required:
-                - plmnId
-            type: object
-        PpActiveTime:
-            additionalProperties: true
-            nullable: true
-            properties:
-                activeTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                afInstanceId:
-                    type: string
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - activeTime
-                - afInstanceId
-                - referenceId
-            type: object
-        PpData:
-            additionalProperties: true
-            properties:
-                acsInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AcsInfoRm
-                communicationCharacteristics:
-                    $ref: '#/components/schemas/CommunicationCharacteristics'
-                ecRestriction:
-                    $ref: '#/components/schemas/EcRestriction'
-                expectedUeBehaviourParameters:
-                    $ref: '#/components/schemas/ExpectedUeBehaviour'
-                lcsPrivacy:
-                    $ref: '#/components/schemas/LcsPrivacy'
-                sorInfo:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/SorInfo
-                    x-go-type-skip-optional-pointer: true
-                stnSr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/StnSrRm
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        PpDlPacketCount:
-            nullable: true
-            type: integer
-        PpDlPacketCountExt:
-            additionalProperties: true
-            nullable: true
-            properties:
-                afInstanceId:
-                    type: string
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - afInstanceId
-                - referenceId
-            type: object
-        PpMaximumLatency:
-            additionalProperties: true
-            nullable: true
-            properties:
-                afInstanceId:
-                    type: string
-                maximumLatency:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - maximumLatency
-                - afInstanceId
-                - referenceId
-            type: object
-        PpMaximumResponseTime:
-            additionalProperties: true
-            nullable: true
-            properties:
-                afInstanceId:
-                    type: string
-                maximumResponseTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - maximumResponseTime
-                - afInstanceId
-                - referenceId
-            type: object
-        PpSubsRegTimer:
-            additionalProperties: true
-            nullable: true
-            properties:
-                afInstanceId:
-                    type: string
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                referenceId:
-                    $ref: '#/components/schemas/ReferenceId'
-                subsRegTimer:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - subsRegTimer
-                - afInstanceId
-                - referenceId
-            type: object
-        ReferenceId:
-            type: integer
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -352,8 +33,9 @@ paths:
                     description: |-
                         Merged type of
                           string in TS29571_CommonData.yaml#/components/schemas/VarUeId
-                          Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                          string in TS29571_CommonData.yaml#/components/schemas/ExtGroupId
                     type: string
+                    x-go-type-skip-optional-pointer: true
                 - description: Features required to be supported by the target NF
                   in: query
                   name: supported-features
@@ -363,7 +45,7 @@ paths:
                 content:
                     application/merge-patch+json:
                         schema:
-                            $ref: '#/components/schemas/PpData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PpData
                 required: true
             responses:
                 "200":
@@ -402,14 +84,13 @@ paths:
                   name: extGroupId
                   required: true
                   schema:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    type: string
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/5GVnGroupConfiguration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/5GVnGroupConfiguration
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -438,13 +119,12 @@ paths:
                   name: extGroupId
                   required: true
                   schema:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    type: string
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/5GVnGroupConfiguration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/5GVnGroupConfiguration
                 required: true
             responses:
                 "201":
@@ -476,8 +156,7 @@ paths:
                   name: extGroupId
                   required: true
                   schema:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    type: string
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
                 - description: MTC Provider Information that originated the service operation
                   in: query
                   name: mtc-provider-info
@@ -518,8 +197,7 @@ paths:
                   name: extGroupId
                   required: true
                   schema:
-                    description: Original reference TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
-                    type: string
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
                 - description: Features required to be supported by the target NF
                   in: query
                   name: supported-features
@@ -529,7 +207,7 @@ paths:
                 content:
                     application/merge-patch+json:
                         schema:
-                            $ref: '#/components/schemas/5GVnGroupConfiguration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/5GVnGroupConfiguration
                 required: true
             responses:
                 "200":

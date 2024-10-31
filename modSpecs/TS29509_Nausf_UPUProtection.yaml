@@ -1,68 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        CounterUpu:
-            pattern: ^[A-Fa-f0-9]{4}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        UpuAckInd:
-            type: boolean
-        UpuData:
-            additionalProperties: true
-            properties:
-                defaultConfNssai:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                routingId:
-                    description: Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-                    type: string
-                secPacket:
-                    $ref: TS29509_Nausf_SoRProtection.yaml#/components/schemas/SecuredPacket
-            type: object
-        UpuHeader:
-            pattern: ^[A-Fa-f0-9]{2}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        UpuInfo:
-            additionalProperties: true
-            properties:
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                upuAckInd:
-                    $ref: '#/components/schemas/UpuAckInd'
-                upuDataList:
-                    items:
-                        $ref: '#/components/schemas/UpuData'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                upuHeader:
-                    $ref: '#/components/schemas/UpuHeader'
-            required:
-                - upuDataList
-                - upuAckInd
-            type: object
-        UpuMac:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        UpuSecurityInfo:
-            additionalProperties: true
-            properties:
-                counterUpu:
-                    $ref: '#/components/schemas/CounterUpu'
-                upuMacIausf:
-                    $ref: '#/components/schemas/UpuMac'
-                upuXmacIue:
-                    $ref: '#/components/schemas/UpuMac'
-            required:
-                - upuMacIausf
-                - counterUpu
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -96,14 +34,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpuInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AUSF-UpuInfo
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/UpuSecurityInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/UpuSecurityInfo
                     description: UpuSecurityInfo
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307

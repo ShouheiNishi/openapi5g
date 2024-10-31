@@ -1,28 +1,6 @@
 # This is generated file.
 
-components:
-    schemas:
-        BootstrappingInfo:
-            additionalProperties: true
-            description: Information returned by NRF in the bootstrapping response message
-            properties:
-                _links:
-                    additionalProperties:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/LinksValueSchema
-                    description: Map of link objects where the keys are the link relations defined in 3GPP TS 29.510 clause 6.4.6.3.3
-                    minProperties: 1
-                    type: object
-                status:
-                    $ref: '#/components/schemas/Status'
-            required:
-                - _links
-            type: object
-        Status:
-            description: Overal status of the NRF
-            enum:
-                - OPERATIVE
-                - NON_OPERATIVE
-            type: string
+components: {}
 externalDocs:
     description: 3GPP TS 29.510 V16.8.0; 5G System; Network Function Repository Services; Stage 3
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.510/
@@ -43,7 +21,7 @@ paths:
                     content:
                         application/3gppHal+json:
                             schema:
-                                $ref: '#/components/schemas/BootstrappingInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/BootstrappingInfo
                     description: Successful Bootstrapping Request
                 "307":
                     content:

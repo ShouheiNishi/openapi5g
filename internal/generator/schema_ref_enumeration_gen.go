@@ -5,31 +5,27 @@ package generator
 import (
 	"sort"
 
-	"gopkg.in/yaml.v3"
-
 	"github.com/ShouheiNishi/openapi5g/internal/generator/openapi"
 )
 
-type scanRefType struct {
-	visited map[interface{}]struct{}
-	doc     *openapi.Document
-	refs    map[string]struct{}
-	cutRefs map[string]struct{}
+type walkSchemaRefEnumerationType struct {
+	visited     map[interface{}]struct{}
+	doc         *openapi.Document
+	schemasRefs map[openapi.Reference]struct{}
 }
 
-func scanRef(d *openapi.Document, refs map[string]struct{}, cutRefs map[string]struct{}) error {
-	s := &scanRefType{
+func walkSchemaRefEnumeration(d *openapi.Document, schemasRefs map[openapi.Reference]struct{}) error {
+	s := &walkSchemaRefEnumerationType{
 		visited: make(map[interface{}]struct{}),
 		doc:     d,
 	}
 
-	s.refs = refs
-	s.cutRefs = cutRefs
+	s.schemasRefs = schemasRefs
 
 	return s.walkDocument(s.doc)
 }
 
-func (s *scanRefType) walkAdditionalProperties(v *openapi.AdditionalProperties) error {
+func (s *walkSchemaRefEnumerationType) walkAdditionalProperties(v *openapi.AdditionalProperties) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -44,27 +40,19 @@ func (s *scanRefType) walkAdditionalProperties(v *openapi.AdditionalProperties) 
 	return nil
 }
 
-func (s *scanRefType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
+func (s *walkSchemaRefEnumerationType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
-	}
-
 	if v.Value != nil {
-		k1s5 := make([]string, 0, len(*v.Value))
+		k1s4 := make([]string, 0, len(*v.Value))
 		for k1 := range *v.Value {
-			k1s5 = append(k1s5, k1)
+			k1s4 = append(k1s4, k1)
 		}
-		sort.Strings(k1s5)
-		for _, k1 := range k1s5 {
+		sort.Strings(k1s4)
+		for _, k1 := range k1s4 {
 			if (*v.Value)[k1] != nil {
 				if err := s.walkPathItemBaseRef((*v.Value)[k1]); err != nil {
 					return err
@@ -76,11 +64,13 @@ func (s *scanRefType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	return nil
 }
 
-func (s *scanRefType) walkComponents(v *openapi.Components) error {
+func (s *walkSchemaRefEnumerationType) walkComponents(v *openapi.Components) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
+
+	return nil
 
 	k0s0 := make([]string, 0, len(v.Callbacks))
 	for k0 := range v.Callbacks {
@@ -95,19 +85,6 @@ func (s *scanRefType) walkComponents(v *openapi.Components) error {
 		}
 	}
 
-	k0s1 := make([]string, 0, len(v.Examples))
-	for k0 := range v.Examples {
-		k0s1 = append(k0s1, k0)
-	}
-	sort.Strings(k0s1)
-	for _, k0 := range k0s1 {
-		if v.Examples[k0] != nil {
-			if err := s.walkExampleRef(v.Examples[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	k0s2 := make([]string, 0, len(v.Headers))
 	for k0 := range v.Headers {
 		k0s2 = append(k0s2, k0)
@@ -116,19 +93,6 @@ func (s *scanRefType) walkComponents(v *openapi.Components) error {
 	for _, k0 := range k0s2 {
 		if v.Headers[k0] != nil {
 			if err := s.walkHeaderRef(v.Headers[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
-	k0s3 := make([]string, 0, len(v.Links))
-	for k0 := range v.Links {
-		k0s3 = append(k0s3, k0)
-	}
-	sort.Strings(k0s3)
-	for _, k0 := range k0s3 {
-		if v.Links[k0] != nil {
-			if err := s.walkLinkRef(v.Links[k0]); err != nil {
 				return err
 			}
 		}
@@ -186,23 +150,10 @@ func (s *scanRefType) walkComponents(v *openapi.Components) error {
 		}
 	}
 
-	k0s8 := make([]string, 0, len(v.SecuritySchemes))
-	for k0 := range v.SecuritySchemes {
-		k0s8 = append(k0s8, k0)
-	}
-	sort.Strings(k0s8)
-	for _, k0 := range k0s8 {
-		if v.SecuritySchemes[k0] != nil {
-			if err := s.walkNodeRef(v.SecuritySchemes[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	return nil
 }
 
-func (s *scanRefType) walkDocument(v *openapi.Document) error {
+func (s *walkSchemaRefEnumerationType) walkDocument(v *openapi.Document) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -230,7 +181,7 @@ func (s *scanRefType) walkDocument(v *openapi.Document) error {
 	return nil
 }
 
-func (s *scanRefType) walkEncoding(v *openapi.Encoding) error {
+func (s *walkSchemaRefEnumerationType) walkEncoding(v *openapi.Encoding) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -252,24 +203,7 @@ func (s *scanRefType) walkEncoding(v *openapi.Encoding) error {
 	return nil
 }
 
-func (s *scanRefType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
-	if _, exist := s.visited[v]; exist {
-		return nil
-	}
-	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
-	}
-
-	return nil
-}
-
-func (s *scanRefType) walkHeader(v *openapi.Header) error {
+func (s *walkSchemaRefEnumerationType) walkHeader(v *openapi.Header) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -288,19 +222,6 @@ func (s *scanRefType) walkHeader(v *openapi.Header) error {
 		}
 	}
 
-	k0s6 := make([]string, 0, len(v.Examples))
-	for k0 := range v.Examples {
-		k0s6 = append(k0s6, k0)
-	}
-	sort.Strings(k0s6)
-	for _, k0 := range k0s6 {
-		if v.Examples[k0] != nil {
-			if err := s.walkExampleRef(v.Examples[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	if err := s.walkSchemaRef(&v.Schema); err != nil {
 		return err
 	}
@@ -308,19 +229,11 @@ func (s *scanRefType) walkHeader(v *openapi.Header) error {
 	return nil
 }
 
-func (s *scanRefType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
+func (s *walkSchemaRefEnumerationType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkHeader(v.Value); err != nil {
@@ -331,24 +244,7 @@ func (s *scanRefType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	return nil
 }
 
-func (s *scanRefType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
-	if _, exist := s.visited[v]; exist {
-		return nil
-	}
-	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
-	}
-
-	return nil
-}
-
-func (s *scanRefType) walkMediaType(v *openapi.MediaType) error {
+func (s *walkSchemaRefEnumerationType) walkMediaType(v *openapi.MediaType) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -367,19 +263,6 @@ func (s *scanRefType) walkMediaType(v *openapi.MediaType) error {
 		}
 	}
 
-	k0s2 := make([]string, 0, len(v.Examples))
-	for k0 := range v.Examples {
-		k0s2 = append(k0s2, k0)
-	}
-	sort.Strings(k0s2)
-	for _, k0 := range k0s2 {
-		if v.Examples[k0] != nil {
-			if err := s.walkExampleRef(v.Examples[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	if err := s.walkSchemaRef(&v.Schema); err != nil {
 		return err
 	}
@@ -387,24 +270,7 @@ func (s *scanRefType) walkMediaType(v *openapi.MediaType) error {
 	return nil
 }
 
-func (s *scanRefType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
-	if _, exist := s.visited[v]; exist {
-		return nil
-	}
-	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
-	}
-
-	return nil
-}
-
-func (s *scanRefType) walkOperation(v *openapi.Operation) error {
+func (s *walkSchemaRefEnumerationType) walkOperation(v *openapi.Operation) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -449,7 +315,7 @@ func (s *scanRefType) walkOperation(v *openapi.Operation) error {
 	return nil
 }
 
-func (s *scanRefType) walkParameter(v *openapi.Parameter) error {
+func (s *walkSchemaRefEnumerationType) walkParameter(v *openapi.Parameter) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -468,19 +334,6 @@ func (s *scanRefType) walkParameter(v *openapi.Parameter) error {
 		}
 	}
 
-	k0s6 := make([]string, 0, len(v.Examples))
-	for k0 := range v.Examples {
-		k0s6 = append(k0s6, k0)
-	}
-	sort.Strings(k0s6)
-	for _, k0 := range k0s6 {
-		if v.Examples[k0] != nil {
-			if err := s.walkExampleRef(v.Examples[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	if err := s.walkSchemaRef(&v.Schema); err != nil {
 		return err
 	}
@@ -488,19 +341,11 @@ func (s *scanRefType) walkParameter(v *openapi.Parameter) error {
 	return nil
 }
 
-func (s *scanRefType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error {
+func (s *walkSchemaRefEnumerationType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkParameter(v.Value); err != nil {
@@ -511,7 +356,7 @@ func (s *scanRefType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error 
 	return nil
 }
 
-func (s *scanRefType) walkPathItemBase(v *openapi.PathItemBase) error {
+func (s *walkSchemaRefEnumerationType) walkPathItemBase(v *openapi.PathItemBase) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -574,7 +419,7 @@ func (s *scanRefType) walkPathItemBase(v *openapi.PathItemBase) error {
 	return nil
 }
 
-func (s *scanRefType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) error {
+func (s *walkSchemaRefEnumerationType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -589,7 +434,7 @@ func (s *scanRefType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) 
 	return nil
 }
 
-func (s *scanRefType) walkRequestBody(v *openapi.RequestBody) error {
+func (s *walkSchemaRefEnumerationType) walkRequestBody(v *openapi.RequestBody) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -611,19 +456,11 @@ func (s *scanRefType) walkRequestBody(v *openapi.RequestBody) error {
 	return nil
 }
 
-func (s *scanRefType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) error {
+func (s *walkSchemaRefEnumerationType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkRequestBody(v.Value); err != nil {
@@ -634,7 +471,7 @@ func (s *scanRefType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) er
 	return nil
 }
 
-func (s *scanRefType) walkResponse(v *openapi.Response) error {
+func (s *walkSchemaRefEnumerationType) walkResponse(v *openapi.Response) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -666,35 +503,14 @@ func (s *scanRefType) walkResponse(v *openapi.Response) error {
 		}
 	}
 
-	k0s3 := make([]string, 0, len(v.Links))
-	for k0 := range v.Links {
-		k0s3 = append(k0s3, k0)
-	}
-	sort.Strings(k0s3)
-	for _, k0 := range k0s3 {
-		if v.Links[k0] != nil {
-			if err := s.walkLinkRef(v.Links[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	return nil
 }
 
-func (s *scanRefType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
+func (s *walkSchemaRefEnumerationType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkResponse(v.Value); err != nil {
@@ -705,7 +521,7 @@ func (s *scanRefType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	return nil
 }
 
-func (s *scanRefType) walkSchema(v *openapi.Schema) error {
+func (s *walkSchemaRefEnumerationType) walkSchema(v *openapi.Schema) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -754,57 +570,17 @@ func (s *scanRefType) walkSchema(v *openapi.Schema) error {
 		}
 	}
 
-	if err := fixSkipOptionalPointer(v); err != nil {
-		return err
-	}
-
-	if err := fixIntegerFormat(v); err != nil {
-		return err
-	}
-
-	if err := fixAnyOfEnum(v); err != nil {
-		return err
-	}
-
-	if err := fixAnyOfString(v); err != nil {
-		return err
-	}
-
-	if err := fixNullable(v); err != nil {
-		return err
-	}
-
-	if err := fixImplicitArray(v); err != nil {
-		return err
-	}
-
-	if err := fixEliminateCheckerUnion(v); err != nil {
-		return err
-	}
-
-	if err := fixAdditionalProperties(v); err != nil {
-		return err
-	}
-
 	return nil
 }
 
-func (s *scanRefType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
+func (s *walkSchemaRefEnumerationType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.RefFile]; exist {
-			if err := fixCutSchemaRef(v); err != nil {
-				return err
-			}
-			return nil
-		} else {
-			s.refs[v.RefFile] = struct{}{}
-			return nil
-		}
+		s.schemasRefs[v.Ref] = struct{}{}
 	}
 
 	if v.Value != nil {

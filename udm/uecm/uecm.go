@@ -13,9 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/nrf/management"
-	externalRef2 "github.com/ShouheiNishi/openapi5g/udm/sdm"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -25,292 +23,14 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// Defines values for DeregistrationReason.
-const (
-	DeregistrationReasonN5GSTOEPSMOBILITY                      DeregistrationReason = "5GS_TO_EPS_MOBILITY"
-	DeregistrationReasonN5GSTOEPSMOBILITYUEINITIALREGISTRATION DeregistrationReason = "5GS_TO_EPS_MOBILITY_UE_INITIAL_REGISTRATION"
-	DeregistrationReasonREREGISTRATIONREQUIRED                 DeregistrationReason = "REREGISTRATION_REQUIRED"
-	DeregistrationReasonSMFCONTEXTTRANSFERRED                  DeregistrationReason = "SMF_CONTEXT_TRANSFERRED"
-	DeregistrationReasonSUBSCRIPTIONWITHDRAWN                  DeregistrationReason = "SUBSCRIPTION_WITHDRAWN"
-	DeregistrationReasonUEINITIALREGISTRATION                  DeregistrationReason = "UE_INITIAL_REGISTRATION"
-	DeregistrationReasonUEREGISTRATIONAREACHANGE               DeregistrationReason = "UE_REGISTRATION_AREA_CHANGE"
-)
-
-// Defines values for ImsVoPs.
-const (
-	HOMOGENEOUSNONSUPPORT   ImsVoPs = "HOMOGENEOUS_NON_SUPPORT"
-	HOMOGENEOUSSUPPORT      ImsVoPs = "HOMOGENEOUS_SUPPORT"
-	NONHOMOGENEOUSORUNKNOWN ImsVoPs = "NON_HOMOGENEOUS_OR_UNKNOWN"
-)
-
-// Defines values for RegistrationDataSetName.
-const (
-	AMF3GPP        RegistrationDataSetName = "AMF_3GPP"
-	AMFNON3GPP     RegistrationDataSetName = "AMF_NON_3GPP"
-	SMFPDUSESSIONS RegistrationDataSetName = "SMF_PDU_SESSIONS"
-	SMSF3GPP       RegistrationDataSetName = "SMSF_3GPP"
-	SMSFNON3GPP    RegistrationDataSetName = "SMSF_NON_3GPP"
-)
-
-// Defines values for RegistrationReason.
-const (
-	RegistrationReasonSMFCONTEXTTRANSFERRED RegistrationReason = "SMF_CONTEXT_TRANSFERRED"
-)
-
-// Amf3GppAccessRegistration defines model for Amf3GppAccessRegistration.
-type Amf3GppAccessRegistration struct {
-	AmfEeSubscriptionId *externalRef0.Uri         `json:"amfEeSubscriptionId,omitempty"`
-	AmfInstanceId       externalRef0.NfInstanceId `json:"amfInstanceId"`
-
-	// AmfServiceNameDereg Service names known to NRF
-	AmfServiceNameDereg *externalRef1.ServiceName `json:"amfServiceNameDereg,omitempty"`
-
-	// AmfServiceNamePcscfRest Service names known to NRF
-	AmfServiceNamePcscfRest     *externalRef1.ServiceName       `json:"amfServiceNamePcscfRest,omitempty"`
-	BackupAmfInfo               []externalRef0.BackupAmfInfo    `json:"backupAmfInfo,omitempty"`
-	ContextInfo                 *externalRef2.ContextInfo       `json:"contextInfo,omitempty"`
-	DeregCallbackUri            externalRef0.Uri                `json:"deregCallbackUri"`
-	DrFlag                      *DualRegistrationFlag           `json:"drFlag,omitempty"`
-	EpsInterworkingInfo         *EpsInterworkingInfo            `json:"epsInterworkingInfo,omitempty"`
-	Guami                       externalRef0.Guami              `json:"guami"`
-	ImsVoPs                     *ImsVoPs                        `json:"imsVoPs,omitempty"`
-	InitialRegistrationInd      *bool                           `json:"initialRegistrationInd,omitempty"`
-	NoEeSubscriptionInd         *bool                           `json:"noEeSubscriptionInd,omitempty"`
-	PcscfRestorationCallbackUri *externalRef0.Uri               `json:"pcscfRestorationCallbackUri,omitempty"`
-	Pei                         externalRef0.Pei                `json:"pei,omitempty"`
-	PurgeFlag                   *PurgeFlag                      `json:"purgeFlag,omitempty"`
-	RatType                     externalRef0.RatType            `json:"ratType"`
-	RegistrationTime            *externalRef0.DateTime          `json:"registrationTime,omitempty"`
-	Supi                        externalRef0.Supi               `json:"supi,omitempty"`
-	SupportedFeatures           *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	UeSrvccCapability           *bool                           `json:"ueSrvccCapability,omitempty"`
-	UrrpIndicator               *bool                           `json:"urrpIndicator,omitempty"`
-	VgmlcAddress                *VgmlcAddress                   `json:"vgmlcAddress,omitempty"`
-	AdditionalProperties        map[string]interface{}          `json:"-"`
-}
-
-// Amf3GppAccessRegistrationModification defines model for Amf3GppAccessRegistrationModification.
-type Amf3GppAccessRegistrationModification struct {
-	BackupAmfInfo        *[]externalRef0.BackupAmfInfo `json:"backupAmfInfo,omitempty"`
-	EpsInterworkingInfo  *EpsInterworkingInfo          `json:"epsInterworkingInfo,omitempty"`
-	Guami                externalRef0.Guami            `json:"guami"`
-	ImsVoPs              *ImsVoPs                      `json:"imsVoPs,omitempty"`
-	Pei                  externalRef0.Pei              `json:"pei,omitempty"`
-	PurgeFlag            *PurgeFlag                    `json:"purgeFlag,omitempty"`
-	UeSrvccCapability    *bool                         `json:"ueSrvccCapability"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
-}
-
-// AmfDeregInfo defines model for AmfDeregInfo.
-type AmfDeregInfo struct {
-	DeregReason          DeregistrationReason   `json:"deregReason"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AmfNon3GppAccessRegistration defines model for AmfNon3GppAccessRegistration.
-type AmfNon3GppAccessRegistration struct {
-	AmfEeSubscriptionId *externalRef0.Uri         `json:"amfEeSubscriptionId,omitempty"`
-	AmfInstanceId       externalRef0.NfInstanceId `json:"amfInstanceId"`
-
-	// AmfServiceNameDereg Service names known to NRF
-	AmfServiceNameDereg *externalRef1.ServiceName `json:"amfServiceNameDereg,omitempty"`
-
-	// AmfServiceNamePcscfRest Service names known to NRF
-	AmfServiceNamePcscfRest     *externalRef1.ServiceName       `json:"amfServiceNamePcscfRest,omitempty"`
-	BackupAmfInfo               []externalRef0.BackupAmfInfo    `json:"backupAmfInfo,omitempty"`
-	ContextInfo                 *externalRef2.ContextInfo       `json:"contextInfo,omitempty"`
-	DeregCallbackUri            externalRef0.Uri                `json:"deregCallbackUri"`
-	Guami                       externalRef0.Guami              `json:"guami"`
-	ImsVoPs                     ImsVoPs                         `json:"imsVoPs"`
-	NoEeSubscriptionInd         *bool                           `json:"noEeSubscriptionInd,omitempty"`
-	PcscfRestorationCallbackUri *externalRef0.Uri               `json:"pcscfRestorationCallbackUri,omitempty"`
-	Pei                         externalRef0.Pei                `json:"pei,omitempty"`
-	PurgeFlag                   *PurgeFlag                      `json:"purgeFlag,omitempty"`
-	RatType                     externalRef0.RatType            `json:"ratType"`
-	RegistrationTime            *externalRef0.DateTime          `json:"registrationTime,omitempty"`
-	Supi                        externalRef0.Supi               `json:"supi,omitempty"`
-	SupportedFeatures           *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	UrrpIndicator               *bool                           `json:"urrpIndicator,omitempty"`
-	VgmlcAddress                *VgmlcAddress                   `json:"vgmlcAddress,omitempty"`
-	AdditionalProperties        map[string]interface{}          `json:"-"`
-}
-
-// AmfNon3GppAccessRegistrationModification defines model for AmfNon3GppAccessRegistrationModification.
-type AmfNon3GppAccessRegistrationModification struct {
-	BackupAmfInfo        *[]externalRef0.BackupAmfInfo `json:"backupAmfInfo,omitempty"`
-	Guami                externalRef0.Guami            `json:"guami"`
-	ImsVoPs              *ImsVoPs                      `json:"imsVoPs,omitempty"`
-	Pei                  externalRef0.Pei              `json:"pei,omitempty"`
-	PurgeFlag            *PurgeFlag                    `json:"purgeFlag,omitempty"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
-}
-
-// DeregistrationData defines model for DeregistrationData.
-type DeregistrationData struct {
-	AccessType           externalRef0.AccessType    `json:"accessType,omitempty"`
-	DeregReason          DeregistrationReason       `json:"deregReason"`
-	NewSmfInstanceId     *externalRef0.NfInstanceId `json:"newSmfInstanceId,omitempty"`
-	PduSessionId         *externalRef0.PduSessionId `json:"pduSessionId,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
-}
-
-// DeregistrationReason defines model for DeregistrationReason.
-type DeregistrationReason string
-
-// DualRegistrationFlag defines model for DualRegistrationFlag.
-type DualRegistrationFlag = bool
-
-// E164Number defines model for E164Number.
-type E164Number = string
-
-// EpsInterworkingInfo defines model for EpsInterworkingInfo.
-type EpsInterworkingInfo struct {
-	// EpsIwkPgws A map (list of key-value pairs where Dnn serves as key) of EpsIwkPgws
-	EpsIwkPgws           *map[string]EpsIwkPgw  `json:"epsIwkPgws,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// EpsIwkPgw defines model for EpsIwkPgw.
-type EpsIwkPgw struct {
-	PgwFqdn              string                    `json:"pgwFqdn"`
-	SmfInstanceId        externalRef0.NfInstanceId `json:"smfInstanceId"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// ImsVoPs defines model for ImsVoPs.
-type ImsVoPs string
-
-// IpSmGwRegistration defines model for IpSmGwRegistration.
-type IpSmGwRegistration struct {
-	IpSmGwDiameterAddress *NetworkNodeDiameterAddress `json:"ipSmGwDiameterAddress,omitempty"`
-	IpSmGwMapAddress      E164Number                  `json:"ipSmGwMapAddress,omitempty"`
-	UnriIndicator         *bool                       `json:"unriIndicator,omitempty"`
-	AdditionalProperties  map[string]interface{}      `json:"-"`
-}
-
-// LocationInfo defines model for LocationInfo.
-type LocationInfo struct {
-	Gpsi                         externalRef0.Gpsi               `json:"gpsi,omitempty"`
-	RegistrationLocationInfoList []RegistrationLocationInfo      `json:"registrationLocationInfoList"`
-	Supi                         externalRef0.Supi               `json:"supi,omitempty"`
-	SupportedFeatures            *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties         map[string]interface{}          `json:"-"`
-}
-
-// NetworkNodeDiameterAddress defines model for NetworkNodeDiameterAddress.
-type NetworkNodeDiameterAddress struct {
-	Name                 externalRef0.DiameterIdentity `json:"name"`
-	Realm                externalRef0.DiameterIdentity `json:"realm"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
-}
-
-// PcscfRestorationNotification defines model for PcscfRestorationNotification.
-type PcscfRestorationNotification struct {
-	Supi                 externalRef0.Supi      `json:"supi"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PeiUpdateInfo defines model for PeiUpdateInfo.
-type PeiUpdateInfo struct {
-	Pei                  externalRef0.Pei       `json:"pei"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PurgeFlag defines model for PurgeFlag.
-type PurgeFlag = bool
-
-// RegistrationDataSetName defines model for RegistrationDataSetName.
-type RegistrationDataSetName string
-
-// RegistrationDataSets defines model for RegistrationDataSets.
-type RegistrationDataSets struct {
-	Amf3Gpp              *Amf3GppAccessRegistration    `json:"amf3Gpp,omitempty"`
-	AmfNon3Gpp           *AmfNon3GppAccessRegistration `json:"amfNon3Gpp,omitempty"`
-	SmfRegistration      *SmfRegistrationInfo          `json:"smfRegistration,omitempty"`
-	Smsf3Gpp             *SmsfRegistration             `json:"smsf3Gpp,omitempty"`
-	SmsfNon3Gpp          *SmsfRegistration             `json:"smsfNon3Gpp,omitempty"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
-}
-
-// RegistrationDatasetNames defines model for RegistrationDatasetNames.
-type RegistrationDatasetNames = []RegistrationDataSetName
-
-// RegistrationLocationInfo defines model for RegistrationLocationInfo.
-type RegistrationLocationInfo struct {
-	AccessTypeList       []externalRef0.AccessType `json:"accessTypeList"`
-	AmfInstanceId        externalRef0.NfInstanceId `json:"amfInstanceId"`
-	Guami                *externalRef0.Guami       `json:"guami,omitempty"`
-	PlmnId               *externalRef0.PlmnId      `json:"plmnId,omitempty"`
-	VgmlcAddress         *VgmlcAddress             `json:"vgmlcAddress,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// RegistrationReason defines model for RegistrationReason.
-type RegistrationReason string
-
-// SmfRegistration defines model for SmfRegistration.
-type SmfRegistration struct {
-	ContextInfo                 *externalRef2.ContextInfo       `json:"contextInfo,omitempty"`
-	DeregCallbackUri            *externalRef0.Uri               `json:"deregCallbackUri,omitempty"`
-	Dnn                         *externalRef0.Dnn               `json:"dnn,omitempty"`
-	EmergencyServices           *bool                           `json:"emergencyServices,omitempty"`
-	EpdgInd                     *bool                           `json:"epdgInd,omitempty"`
-	PcscfRestorationCallbackUri *externalRef0.Uri               `json:"pcscfRestorationCallbackUri,omitempty"`
-	PduSessionId                externalRef0.PduSessionId       `json:"pduSessionId"`
-	PgwFqdn                     *string                         `json:"pgwFqdn,omitempty"`
-	PlmnId                      externalRef0.PlmnId             `json:"plmnId"`
-	RegistrationReason          *RegistrationReason             `json:"registrationReason,omitempty"`
-	RegistrationTime            *externalRef0.DateTime          `json:"registrationTime,omitempty"`
-	SingleNssai                 externalRef0.Snssai             `json:"singleNssai"`
-	SmfInstanceId               externalRef0.NfInstanceId       `json:"smfInstanceId"`
-	SmfSetId                    *externalRef0.NfSetId           `json:"smfSetId,omitempty"`
-	SupportedFeatures           *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties        map[string]interface{}          `json:"-"`
-}
-
-// SmfRegistrationInfo defines model for SmfRegistrationInfo.
-type SmfRegistrationInfo struct {
-	SmfRegistrationList  []SmfRegistration      `json:"smfRegistrationList"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// SmsfRegistration defines model for SmsfRegistration.
-type SmsfRegistration struct {
-	ContextInfo          *externalRef2.ContextInfo       `json:"contextInfo,omitempty"`
-	PlmnId               externalRef0.PlmnId             `json:"plmnId"`
-	RegistrationTime     *externalRef0.DateTime          `json:"registrationTime,omitempty"`
-	SmsfDiameterAddress  *NetworkNodeDiameterAddress     `json:"smsfDiameterAddress,omitempty"`
-	SmsfInstanceId       externalRef0.NfInstanceId       `json:"smsfInstanceId"`
-	SmsfMAPAddress       E164Number                      `json:"smsfMAPAddress,omitempty"`
-	SmsfSetId            *externalRef0.NfSetId           `json:"smsfSetId,omitempty"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// TriggerRequest defines model for TriggerRequest.
-type TriggerRequest struct {
-	Supi                 externalRef0.Supi      `json:"supi"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// VgmlcAddress defines model for VgmlcAddress.
-type VgmlcAddress struct {
-	VgmlcAddressIpv4 externalRef0.Ipv4Addr  `json:"vgmlcAddressIpv4,omitempty"`
-	VgmlcAddressIpv6 *externalRef0.Ipv6Addr `json:"vgmlcAddressIpv6,omitempty"`
-
-	// VgmlcFqdn Fully Qualified Domain Name
-	VgmlcFqdn            *externalRef1.Fqdn     `json:"vgmlcFqdn,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // GetRegistrationsParams defines parameters for GetRegistrations.
 type GetRegistrationsParams struct {
 	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// RegistrationDatasetNames List of UECM registration dataset names
-	RegistrationDatasetNames RegistrationDatasetNames `form:"registration-dataset-names" json:"registration-dataset-names"`
-	SingleNssai              *externalRef0.Snssai     `form:"single-nssai,omitempty" json:"single-nssai,omitempty"`
-	Dnn                      *externalRef0.Dnn        `form:"dnn,omitempty" json:"dnn,omitempty"`
+	RegistrationDatasetNames externalRef0.RegistrationDatasetNames `form:"registration-dataset-names" json:"registration-dataset-names"`
+	SingleNssai              *externalRef0.Snssai                  `form:"single-nssai,omitempty" json:"single-nssai,omitempty"`
+	Dnn                      *externalRef0.Dnn                     `form:"dnn,omitempty" json:"dnn,omitempty"`
 }
 
 // Get3GppRegistrationParams defines parameters for Get3GppRegistration.
@@ -374,2700 +94,37 @@ type GetNon3GppSmsfRegistrationParams struct {
 }
 
 // TriggerPCSCFRestorationJSONRequestBody defines body for TriggerPCSCFRestoration for application/json ContentType.
-type TriggerPCSCFRestorationJSONRequestBody = TriggerRequest
+type TriggerPCSCFRestorationJSONRequestBody = externalRef0.TriggerRequest
 
 // Update3GppRegistrationApplicationMergePatchPlusJSONRequestBody defines body for Update3GppRegistration for application/merge-patch+json ContentType.
-type Update3GppRegistrationApplicationMergePatchPlusJSONRequestBody = Amf3GppAccessRegistrationModification
+type Update3GppRegistrationApplicationMergePatchPlusJSONRequestBody = externalRef0.Amf3GppAccessRegistrationModification
 
 // N3GppRegistrationJSONRequestBody defines body for N3GppRegistration for application/json ContentType.
-type N3GppRegistrationJSONRequestBody = Amf3GppAccessRegistration
+type N3GppRegistrationJSONRequestBody = externalRef0.Amf3GppAccessRegistration
 
 // DeregAMFJSONRequestBody defines body for DeregAMF for application/json ContentType.
-type DeregAMFJSONRequestBody = AmfDeregInfo
+type DeregAMFJSONRequestBody = externalRef0.AmfDeregInfo
 
 // PeiUpdateJSONRequestBody defines body for PeiUpdate for application/json ContentType.
-type PeiUpdateJSONRequestBody = PeiUpdateInfo
+type PeiUpdateJSONRequestBody = externalRef0.PeiUpdateInfo
 
 // UpdateNon3GppRegistrationApplicationMergePatchPlusJSONRequestBody defines body for UpdateNon3GppRegistration for application/merge-patch+json ContentType.
-type UpdateNon3GppRegistrationApplicationMergePatchPlusJSONRequestBody = AmfNon3GppAccessRegistrationModification
+type UpdateNon3GppRegistrationApplicationMergePatchPlusJSONRequestBody = externalRef0.AmfNon3GppAccessRegistrationModification
 
 // Non3GppRegistrationJSONRequestBody defines body for Non3GppRegistration for application/json ContentType.
-type Non3GppRegistrationJSONRequestBody = AmfNon3GppAccessRegistration
+type Non3GppRegistrationJSONRequestBody = externalRef0.AmfNon3GppAccessRegistration
 
 // IpSmGwRegistrationJSONRequestBody defines body for IpSmGwRegistration for application/json ContentType.
-type IpSmGwRegistrationJSONRequestBody = IpSmGwRegistration
+type IpSmGwRegistrationJSONRequestBody = externalRef0.IpSmGwRegistration
 
 // RegistrationJSONRequestBody defines body for Registration for application/json ContentType.
-type RegistrationJSONRequestBody = SmfRegistration
+type RegistrationJSONRequestBody = externalRef0.SmfRegistration
 
 // N3GppSmsfRegistrationJSONRequestBody defines body for N3GppSmsfRegistration for application/json ContentType.
-type N3GppSmsfRegistrationJSONRequestBody = SmsfRegistration
+type N3GppSmsfRegistrationJSONRequestBody = externalRef0.SmsfRegistration
 
 // Non3GppSmsfRegistrationJSONRequestBody defines body for Non3GppSmsfRegistration for application/json ContentType.
-type Non3GppSmsfRegistrationJSONRequestBody = SmsfRegistration
-
-// Getter for additional properties for Amf3GppAccessRegistration. Returns the specified
-// element and whether it was found
-func (a Amf3GppAccessRegistration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for Amf3GppAccessRegistration
-func (a *Amf3GppAccessRegistration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for Amf3GppAccessRegistration to handle AdditionalProperties
-func (a *Amf3GppAccessRegistration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfEeSubscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.AmfEeSubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfEeSubscriptionId': %w", err)
-		}
-		delete(object, "amfEeSubscriptionId")
-	}
-
-	if raw, found := object["amfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfInstanceId': %w", err)
-		}
-		delete(object, "amfInstanceId")
-	}
-
-	if raw, found := object["amfServiceNameDereg"]; found {
-		err = json.Unmarshal(raw, &a.AmfServiceNameDereg)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfServiceNameDereg': %w", err)
-		}
-		delete(object, "amfServiceNameDereg")
-	}
-
-	if raw, found := object["amfServiceNamePcscfRest"]; found {
-		err = json.Unmarshal(raw, &a.AmfServiceNamePcscfRest)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfServiceNamePcscfRest': %w", err)
-		}
-		delete(object, "amfServiceNamePcscfRest")
-	}
-
-	if raw, found := object["backupAmfInfo"]; found {
-		err = json.Unmarshal(raw, &a.BackupAmfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'backupAmfInfo': %w", err)
-		}
-		delete(object, "backupAmfInfo")
-	}
-
-	if raw, found := object["contextInfo"]; found {
-		err = json.Unmarshal(raw, &a.ContextInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'contextInfo': %w", err)
-		}
-		delete(object, "contextInfo")
-	}
-
-	if raw, found := object["deregCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.DeregCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'deregCallbackUri': %w", err)
-		}
-		delete(object, "deregCallbackUri")
-	}
-
-	if raw, found := object["drFlag"]; found {
-		err = json.Unmarshal(raw, &a.DrFlag)
-		if err != nil {
-			return fmt.Errorf("error reading 'drFlag': %w", err)
-		}
-		delete(object, "drFlag")
-	}
-
-	if raw, found := object["epsInterworkingInfo"]; found {
-		err = json.Unmarshal(raw, &a.EpsInterworkingInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'epsInterworkingInfo': %w", err)
-		}
-		delete(object, "epsInterworkingInfo")
-	}
-
-	if raw, found := object["guami"]; found {
-		err = json.Unmarshal(raw, &a.Guami)
-		if err != nil {
-			return fmt.Errorf("error reading 'guami': %w", err)
-		}
-		delete(object, "guami")
-	}
-
-	if raw, found := object["imsVoPs"]; found {
-		err = json.Unmarshal(raw, &a.ImsVoPs)
-		if err != nil {
-			return fmt.Errorf("error reading 'imsVoPs': %w", err)
-		}
-		delete(object, "imsVoPs")
-	}
-
-	if raw, found := object["initialRegistrationInd"]; found {
-		err = json.Unmarshal(raw, &a.InitialRegistrationInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'initialRegistrationInd': %w", err)
-		}
-		delete(object, "initialRegistrationInd")
-	}
-
-	if raw, found := object["noEeSubscriptionInd"]; found {
-		err = json.Unmarshal(raw, &a.NoEeSubscriptionInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'noEeSubscriptionInd': %w", err)
-		}
-		delete(object, "noEeSubscriptionInd")
-	}
-
-	if raw, found := object["pcscfRestorationCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.PcscfRestorationCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcscfRestorationCallbackUri': %w", err)
-		}
-		delete(object, "pcscfRestorationCallbackUri")
-	}
-
-	if raw, found := object["pei"]; found {
-		err = json.Unmarshal(raw, &a.Pei)
-		if err != nil {
-			return fmt.Errorf("error reading 'pei': %w", err)
-		}
-		delete(object, "pei")
-	}
-
-	if raw, found := object["purgeFlag"]; found {
-		err = json.Unmarshal(raw, &a.PurgeFlag)
-		if err != nil {
-			return fmt.Errorf("error reading 'purgeFlag': %w", err)
-		}
-		delete(object, "purgeFlag")
-	}
-
-	if raw, found := object["ratType"]; found {
-		err = json.Unmarshal(raw, &a.RatType)
-		if err != nil {
-			return fmt.Errorf("error reading 'ratType': %w", err)
-		}
-		delete(object, "ratType")
-	}
-
-	if raw, found := object["registrationTime"]; found {
-		err = json.Unmarshal(raw, &a.RegistrationTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'registrationTime': %w", err)
-		}
-		delete(object, "registrationTime")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["ueSrvccCapability"]; found {
-		err = json.Unmarshal(raw, &a.UeSrvccCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueSrvccCapability': %w", err)
-		}
-		delete(object, "ueSrvccCapability")
-	}
-
-	if raw, found := object["urrpIndicator"]; found {
-		err = json.Unmarshal(raw, &a.UrrpIndicator)
-		if err != nil {
-			return fmt.Errorf("error reading 'urrpIndicator': %w", err)
-		}
-		delete(object, "urrpIndicator")
-	}
-
-	if raw, found := object["vgmlcAddress"]; found {
-		err = json.Unmarshal(raw, &a.VgmlcAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'vgmlcAddress': %w", err)
-		}
-		delete(object, "vgmlcAddress")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for Amf3GppAccessRegistration to handle AdditionalProperties
-func (a Amf3GppAccessRegistration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AmfEeSubscriptionId != nil {
-		object["amfEeSubscriptionId"], err = json.Marshal(a.AmfEeSubscriptionId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfEeSubscriptionId': %w", err)
-		}
-	}
-
-	object["amfInstanceId"], err = json.Marshal(a.AmfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'amfInstanceId': %w", err)
-	}
-
-	if a.AmfServiceNameDereg != nil {
-		object["amfServiceNameDereg"], err = json.Marshal(a.AmfServiceNameDereg)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfServiceNameDereg': %w", err)
-		}
-	}
-
-	if a.AmfServiceNamePcscfRest != nil {
-		object["amfServiceNamePcscfRest"], err = json.Marshal(a.AmfServiceNamePcscfRest)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfServiceNamePcscfRest': %w", err)
-		}
-	}
-
-	if len(a.BackupAmfInfo) != 0 {
-		object["backupAmfInfo"], err = json.Marshal(a.BackupAmfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'backupAmfInfo': %w", err)
-		}
-	}
-
-	if a.ContextInfo != nil {
-		object["contextInfo"], err = json.Marshal(a.ContextInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'contextInfo': %w", err)
-		}
-	}
-
-	object["deregCallbackUri"], err = json.Marshal(a.DeregCallbackUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'deregCallbackUri': %w", err)
-	}
-
-	if a.DrFlag != nil {
-		object["drFlag"], err = json.Marshal(a.DrFlag)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'drFlag': %w", err)
-		}
-	}
-
-	if a.EpsInterworkingInfo != nil {
-		object["epsInterworkingInfo"], err = json.Marshal(a.EpsInterworkingInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'epsInterworkingInfo': %w", err)
-		}
-	}
-
-	object["guami"], err = json.Marshal(a.Guami)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'guami': %w", err)
-	}
-
-	if a.ImsVoPs != nil {
-		object["imsVoPs"], err = json.Marshal(a.ImsVoPs)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'imsVoPs': %w", err)
-		}
-	}
-
-	if a.InitialRegistrationInd != nil {
-		object["initialRegistrationInd"], err = json.Marshal(a.InitialRegistrationInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'initialRegistrationInd': %w", err)
-		}
-	}
-
-	if a.NoEeSubscriptionInd != nil {
-		object["noEeSubscriptionInd"], err = json.Marshal(a.NoEeSubscriptionInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'noEeSubscriptionInd': %w", err)
-		}
-	}
-
-	if a.PcscfRestorationCallbackUri != nil {
-		object["pcscfRestorationCallbackUri"], err = json.Marshal(a.PcscfRestorationCallbackUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcscfRestorationCallbackUri': %w", err)
-		}
-	}
-
-	if len(a.Pei) != 0 {
-		object["pei"], err = json.Marshal(a.Pei)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
-		}
-	}
-
-	if a.PurgeFlag != nil {
-		object["purgeFlag"], err = json.Marshal(a.PurgeFlag)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'purgeFlag': %w", err)
-		}
-	}
-
-	object["ratType"], err = json.Marshal(a.RatType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ratType': %w", err)
-	}
-
-	if a.RegistrationTime != nil {
-		object["registrationTime"], err = json.Marshal(a.RegistrationTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'registrationTime': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.UeSrvccCapability != nil {
-		object["ueSrvccCapability"], err = json.Marshal(a.UeSrvccCapability)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueSrvccCapability': %w", err)
-		}
-	}
-
-	if a.UrrpIndicator != nil {
-		object["urrpIndicator"], err = json.Marshal(a.UrrpIndicator)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'urrpIndicator': %w", err)
-		}
-	}
-
-	if a.VgmlcAddress != nil {
-		object["vgmlcAddress"], err = json.Marshal(a.VgmlcAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vgmlcAddress': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for Amf3GppAccessRegistrationModification. Returns the specified
-// element and whether it was found
-func (a Amf3GppAccessRegistrationModification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for Amf3GppAccessRegistrationModification
-func (a *Amf3GppAccessRegistrationModification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for Amf3GppAccessRegistrationModification to handle AdditionalProperties
-func (a *Amf3GppAccessRegistrationModification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["backupAmfInfo"]; found {
-		err = json.Unmarshal(raw, &a.BackupAmfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'backupAmfInfo': %w", err)
-		}
-		delete(object, "backupAmfInfo")
-	}
-
-	if raw, found := object["epsInterworkingInfo"]; found {
-		err = json.Unmarshal(raw, &a.EpsInterworkingInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'epsInterworkingInfo': %w", err)
-		}
-		delete(object, "epsInterworkingInfo")
-	}
-
-	if raw, found := object["guami"]; found {
-		err = json.Unmarshal(raw, &a.Guami)
-		if err != nil {
-			return fmt.Errorf("error reading 'guami': %w", err)
-		}
-		delete(object, "guami")
-	}
-
-	if raw, found := object["imsVoPs"]; found {
-		err = json.Unmarshal(raw, &a.ImsVoPs)
-		if err != nil {
-			return fmt.Errorf("error reading 'imsVoPs': %w", err)
-		}
-		delete(object, "imsVoPs")
-	}
-
-	if raw, found := object["pei"]; found {
-		err = json.Unmarshal(raw, &a.Pei)
-		if err != nil {
-			return fmt.Errorf("error reading 'pei': %w", err)
-		}
-		delete(object, "pei")
-	}
-
-	if raw, found := object["purgeFlag"]; found {
-		err = json.Unmarshal(raw, &a.PurgeFlag)
-		if err != nil {
-			return fmt.Errorf("error reading 'purgeFlag': %w", err)
-		}
-		delete(object, "purgeFlag")
-	}
-
-	if raw, found := object["ueSrvccCapability"]; found {
-		err = json.Unmarshal(raw, &a.UeSrvccCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueSrvccCapability': %w", err)
-		}
-		delete(object, "ueSrvccCapability")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for Amf3GppAccessRegistrationModification to handle AdditionalProperties
-func (a Amf3GppAccessRegistrationModification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.BackupAmfInfo != nil {
-		object["backupAmfInfo"], err = json.Marshal(a.BackupAmfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'backupAmfInfo': %w", err)
-		}
-	}
-
-	if a.EpsInterworkingInfo != nil {
-		object["epsInterworkingInfo"], err = json.Marshal(a.EpsInterworkingInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'epsInterworkingInfo': %w", err)
-		}
-	}
-
-	object["guami"], err = json.Marshal(a.Guami)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'guami': %w", err)
-	}
-
-	if a.ImsVoPs != nil {
-		object["imsVoPs"], err = json.Marshal(a.ImsVoPs)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'imsVoPs': %w", err)
-		}
-	}
-
-	if len(a.Pei) != 0 {
-		object["pei"], err = json.Marshal(a.Pei)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
-		}
-	}
-
-	if a.PurgeFlag != nil {
-		object["purgeFlag"], err = json.Marshal(a.PurgeFlag)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'purgeFlag': %w", err)
-		}
-	}
-
-	object["ueSrvccCapability"], err = json.Marshal(a.UeSrvccCapability)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueSrvccCapability': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AmfDeregInfo. Returns the specified
-// element and whether it was found
-func (a AmfDeregInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AmfDeregInfo
-func (a *AmfDeregInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AmfDeregInfo to handle AdditionalProperties
-func (a *AmfDeregInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["deregReason"]; found {
-		err = json.Unmarshal(raw, &a.DeregReason)
-		if err != nil {
-			return fmt.Errorf("error reading 'deregReason': %w", err)
-		}
-		delete(object, "deregReason")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AmfDeregInfo to handle AdditionalProperties
-func (a AmfDeregInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["deregReason"], err = json.Marshal(a.DeregReason)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'deregReason': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AmfNon3GppAccessRegistration. Returns the specified
-// element and whether it was found
-func (a AmfNon3GppAccessRegistration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AmfNon3GppAccessRegistration
-func (a *AmfNon3GppAccessRegistration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AmfNon3GppAccessRegistration to handle AdditionalProperties
-func (a *AmfNon3GppAccessRegistration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfEeSubscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.AmfEeSubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfEeSubscriptionId': %w", err)
-		}
-		delete(object, "amfEeSubscriptionId")
-	}
-
-	if raw, found := object["amfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfInstanceId': %w", err)
-		}
-		delete(object, "amfInstanceId")
-	}
-
-	if raw, found := object["amfServiceNameDereg"]; found {
-		err = json.Unmarshal(raw, &a.AmfServiceNameDereg)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfServiceNameDereg': %w", err)
-		}
-		delete(object, "amfServiceNameDereg")
-	}
-
-	if raw, found := object["amfServiceNamePcscfRest"]; found {
-		err = json.Unmarshal(raw, &a.AmfServiceNamePcscfRest)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfServiceNamePcscfRest': %w", err)
-		}
-		delete(object, "amfServiceNamePcscfRest")
-	}
-
-	if raw, found := object["backupAmfInfo"]; found {
-		err = json.Unmarshal(raw, &a.BackupAmfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'backupAmfInfo': %w", err)
-		}
-		delete(object, "backupAmfInfo")
-	}
-
-	if raw, found := object["contextInfo"]; found {
-		err = json.Unmarshal(raw, &a.ContextInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'contextInfo': %w", err)
-		}
-		delete(object, "contextInfo")
-	}
-
-	if raw, found := object["deregCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.DeregCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'deregCallbackUri': %w", err)
-		}
-		delete(object, "deregCallbackUri")
-	}
-
-	if raw, found := object["guami"]; found {
-		err = json.Unmarshal(raw, &a.Guami)
-		if err != nil {
-			return fmt.Errorf("error reading 'guami': %w", err)
-		}
-		delete(object, "guami")
-	}
-
-	if raw, found := object["imsVoPs"]; found {
-		err = json.Unmarshal(raw, &a.ImsVoPs)
-		if err != nil {
-			return fmt.Errorf("error reading 'imsVoPs': %w", err)
-		}
-		delete(object, "imsVoPs")
-	}
-
-	if raw, found := object["noEeSubscriptionInd"]; found {
-		err = json.Unmarshal(raw, &a.NoEeSubscriptionInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'noEeSubscriptionInd': %w", err)
-		}
-		delete(object, "noEeSubscriptionInd")
-	}
-
-	if raw, found := object["pcscfRestorationCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.PcscfRestorationCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcscfRestorationCallbackUri': %w", err)
-		}
-		delete(object, "pcscfRestorationCallbackUri")
-	}
-
-	if raw, found := object["pei"]; found {
-		err = json.Unmarshal(raw, &a.Pei)
-		if err != nil {
-			return fmt.Errorf("error reading 'pei': %w", err)
-		}
-		delete(object, "pei")
-	}
-
-	if raw, found := object["purgeFlag"]; found {
-		err = json.Unmarshal(raw, &a.PurgeFlag)
-		if err != nil {
-			return fmt.Errorf("error reading 'purgeFlag': %w", err)
-		}
-		delete(object, "purgeFlag")
-	}
-
-	if raw, found := object["ratType"]; found {
-		err = json.Unmarshal(raw, &a.RatType)
-		if err != nil {
-			return fmt.Errorf("error reading 'ratType': %w", err)
-		}
-		delete(object, "ratType")
-	}
-
-	if raw, found := object["registrationTime"]; found {
-		err = json.Unmarshal(raw, &a.RegistrationTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'registrationTime': %w", err)
-		}
-		delete(object, "registrationTime")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["urrpIndicator"]; found {
-		err = json.Unmarshal(raw, &a.UrrpIndicator)
-		if err != nil {
-			return fmt.Errorf("error reading 'urrpIndicator': %w", err)
-		}
-		delete(object, "urrpIndicator")
-	}
-
-	if raw, found := object["vgmlcAddress"]; found {
-		err = json.Unmarshal(raw, &a.VgmlcAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'vgmlcAddress': %w", err)
-		}
-		delete(object, "vgmlcAddress")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AmfNon3GppAccessRegistration to handle AdditionalProperties
-func (a AmfNon3GppAccessRegistration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AmfEeSubscriptionId != nil {
-		object["amfEeSubscriptionId"], err = json.Marshal(a.AmfEeSubscriptionId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfEeSubscriptionId': %w", err)
-		}
-	}
-
-	object["amfInstanceId"], err = json.Marshal(a.AmfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'amfInstanceId': %w", err)
-	}
-
-	if a.AmfServiceNameDereg != nil {
-		object["amfServiceNameDereg"], err = json.Marshal(a.AmfServiceNameDereg)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfServiceNameDereg': %w", err)
-		}
-	}
-
-	if a.AmfServiceNamePcscfRest != nil {
-		object["amfServiceNamePcscfRest"], err = json.Marshal(a.AmfServiceNamePcscfRest)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfServiceNamePcscfRest': %w", err)
-		}
-	}
-
-	if len(a.BackupAmfInfo) != 0 {
-		object["backupAmfInfo"], err = json.Marshal(a.BackupAmfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'backupAmfInfo': %w", err)
-		}
-	}
-
-	if a.ContextInfo != nil {
-		object["contextInfo"], err = json.Marshal(a.ContextInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'contextInfo': %w", err)
-		}
-	}
-
-	object["deregCallbackUri"], err = json.Marshal(a.DeregCallbackUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'deregCallbackUri': %w", err)
-	}
-
-	object["guami"], err = json.Marshal(a.Guami)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'guami': %w", err)
-	}
-
-	object["imsVoPs"], err = json.Marshal(a.ImsVoPs)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'imsVoPs': %w", err)
-	}
-
-	if a.NoEeSubscriptionInd != nil {
-		object["noEeSubscriptionInd"], err = json.Marshal(a.NoEeSubscriptionInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'noEeSubscriptionInd': %w", err)
-		}
-	}
-
-	if a.PcscfRestorationCallbackUri != nil {
-		object["pcscfRestorationCallbackUri"], err = json.Marshal(a.PcscfRestorationCallbackUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcscfRestorationCallbackUri': %w", err)
-		}
-	}
-
-	if len(a.Pei) != 0 {
-		object["pei"], err = json.Marshal(a.Pei)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
-		}
-	}
-
-	if a.PurgeFlag != nil {
-		object["purgeFlag"], err = json.Marshal(a.PurgeFlag)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'purgeFlag': %w", err)
-		}
-	}
-
-	object["ratType"], err = json.Marshal(a.RatType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ratType': %w", err)
-	}
-
-	if a.RegistrationTime != nil {
-		object["registrationTime"], err = json.Marshal(a.RegistrationTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'registrationTime': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.UrrpIndicator != nil {
-		object["urrpIndicator"], err = json.Marshal(a.UrrpIndicator)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'urrpIndicator': %w", err)
-		}
-	}
-
-	if a.VgmlcAddress != nil {
-		object["vgmlcAddress"], err = json.Marshal(a.VgmlcAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vgmlcAddress': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AmfNon3GppAccessRegistrationModification. Returns the specified
-// element and whether it was found
-func (a AmfNon3GppAccessRegistrationModification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AmfNon3GppAccessRegistrationModification
-func (a *AmfNon3GppAccessRegistrationModification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AmfNon3GppAccessRegistrationModification to handle AdditionalProperties
-func (a *AmfNon3GppAccessRegistrationModification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["backupAmfInfo"]; found {
-		err = json.Unmarshal(raw, &a.BackupAmfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'backupAmfInfo': %w", err)
-		}
-		delete(object, "backupAmfInfo")
-	}
-
-	if raw, found := object["guami"]; found {
-		err = json.Unmarshal(raw, &a.Guami)
-		if err != nil {
-			return fmt.Errorf("error reading 'guami': %w", err)
-		}
-		delete(object, "guami")
-	}
-
-	if raw, found := object["imsVoPs"]; found {
-		err = json.Unmarshal(raw, &a.ImsVoPs)
-		if err != nil {
-			return fmt.Errorf("error reading 'imsVoPs': %w", err)
-		}
-		delete(object, "imsVoPs")
-	}
-
-	if raw, found := object["pei"]; found {
-		err = json.Unmarshal(raw, &a.Pei)
-		if err != nil {
-			return fmt.Errorf("error reading 'pei': %w", err)
-		}
-		delete(object, "pei")
-	}
-
-	if raw, found := object["purgeFlag"]; found {
-		err = json.Unmarshal(raw, &a.PurgeFlag)
-		if err != nil {
-			return fmt.Errorf("error reading 'purgeFlag': %w", err)
-		}
-		delete(object, "purgeFlag")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AmfNon3GppAccessRegistrationModification to handle AdditionalProperties
-func (a AmfNon3GppAccessRegistrationModification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.BackupAmfInfo != nil {
-		object["backupAmfInfo"], err = json.Marshal(a.BackupAmfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'backupAmfInfo': %w", err)
-		}
-	}
-
-	object["guami"], err = json.Marshal(a.Guami)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'guami': %w", err)
-	}
-
-	if a.ImsVoPs != nil {
-		object["imsVoPs"], err = json.Marshal(a.ImsVoPs)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'imsVoPs': %w", err)
-		}
-	}
-
-	if len(a.Pei) != 0 {
-		object["pei"], err = json.Marshal(a.Pei)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
-		}
-	}
-
-	if a.PurgeFlag != nil {
-		object["purgeFlag"], err = json.Marshal(a.PurgeFlag)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'purgeFlag': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for DeregistrationData. Returns the specified
-// element and whether it was found
-func (a DeregistrationData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for DeregistrationData
-func (a *DeregistrationData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for DeregistrationData to handle AdditionalProperties
-func (a *DeregistrationData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessType"]; found {
-		err = json.Unmarshal(raw, &a.AccessType)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessType': %w", err)
-		}
-		delete(object, "accessType")
-	}
-
-	if raw, found := object["deregReason"]; found {
-		err = json.Unmarshal(raw, &a.DeregReason)
-		if err != nil {
-			return fmt.Errorf("error reading 'deregReason': %w", err)
-		}
-		delete(object, "deregReason")
-	}
-
-	if raw, found := object["newSmfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.NewSmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'newSmfInstanceId': %w", err)
-		}
-		delete(object, "newSmfInstanceId")
-	}
-
-	if raw, found := object["pduSessionId"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionId': %w", err)
-		}
-		delete(object, "pduSessionId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for DeregistrationData to handle AdditionalProperties
-func (a DeregistrationData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AccessType) != 0 {
-		object["accessType"], err = json.Marshal(a.AccessType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
-		}
-	}
-
-	object["deregReason"], err = json.Marshal(a.DeregReason)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'deregReason': %w", err)
-	}
-
-	if a.NewSmfInstanceId != nil {
-		object["newSmfInstanceId"], err = json.Marshal(a.NewSmfInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'newSmfInstanceId': %w", err)
-		}
-	}
-
-	if a.PduSessionId != nil {
-		object["pduSessionId"], err = json.Marshal(a.PduSessionId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EpsInterworkingInfo. Returns the specified
-// element and whether it was found
-func (a EpsInterworkingInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EpsInterworkingInfo
-func (a *EpsInterworkingInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EpsInterworkingInfo to handle AdditionalProperties
-func (a *EpsInterworkingInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["epsIwkPgws"]; found {
-		err = json.Unmarshal(raw, &a.EpsIwkPgws)
-		if err != nil {
-			return fmt.Errorf("error reading 'epsIwkPgws': %w", err)
-		}
-		delete(object, "epsIwkPgws")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EpsInterworkingInfo to handle AdditionalProperties
-func (a EpsInterworkingInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.EpsIwkPgws != nil {
-		object["epsIwkPgws"], err = json.Marshal(a.EpsIwkPgws)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'epsIwkPgws': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EpsIwkPgw. Returns the specified
-// element and whether it was found
-func (a EpsIwkPgw) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EpsIwkPgw
-func (a *EpsIwkPgw) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EpsIwkPgw to handle AdditionalProperties
-func (a *EpsIwkPgw) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["pgwFqdn"]; found {
-		err = json.Unmarshal(raw, &a.PgwFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'pgwFqdn': %w", err)
-		}
-		delete(object, "pgwFqdn")
-	}
-
-	if raw, found := object["smfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.SmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfInstanceId': %w", err)
-		}
-		delete(object, "smfInstanceId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EpsIwkPgw to handle AdditionalProperties
-func (a EpsIwkPgw) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["pgwFqdn"], err = json.Marshal(a.PgwFqdn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pgwFqdn': %w", err)
-	}
-
-	object["smfInstanceId"], err = json.Marshal(a.SmfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smfInstanceId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for IpSmGwRegistration. Returns the specified
-// element and whether it was found
-func (a IpSmGwRegistration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for IpSmGwRegistration
-func (a *IpSmGwRegistration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for IpSmGwRegistration to handle AdditionalProperties
-func (a *IpSmGwRegistration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ipSmGwDiameterAddress"]; found {
-		err = json.Unmarshal(raw, &a.IpSmGwDiameterAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipSmGwDiameterAddress': %w", err)
-		}
-		delete(object, "ipSmGwDiameterAddress")
-	}
-
-	if raw, found := object["ipSmGwMapAddress"]; found {
-		err = json.Unmarshal(raw, &a.IpSmGwMapAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipSmGwMapAddress': %w", err)
-		}
-		delete(object, "ipSmGwMapAddress")
-	}
-
-	if raw, found := object["unriIndicator"]; found {
-		err = json.Unmarshal(raw, &a.UnriIndicator)
-		if err != nil {
-			return fmt.Errorf("error reading 'unriIndicator': %w", err)
-		}
-		delete(object, "unriIndicator")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for IpSmGwRegistration to handle AdditionalProperties
-func (a IpSmGwRegistration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.IpSmGwDiameterAddress != nil {
-		object["ipSmGwDiameterAddress"], err = json.Marshal(a.IpSmGwDiameterAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipSmGwDiameterAddress': %w", err)
-		}
-	}
-
-	if len(a.IpSmGwMapAddress) != 0 {
-		object["ipSmGwMapAddress"], err = json.Marshal(a.IpSmGwMapAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipSmGwMapAddress': %w", err)
-		}
-	}
-
-	if a.UnriIndicator != nil {
-		object["unriIndicator"], err = json.Marshal(a.UnriIndicator)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'unriIndicator': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LocationInfo. Returns the specified
-// element and whether it was found
-func (a LocationInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LocationInfo
-func (a *LocationInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LocationInfo to handle AdditionalProperties
-func (a *LocationInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["gpsi"]; found {
-		err = json.Unmarshal(raw, &a.Gpsi)
-		if err != nil {
-			return fmt.Errorf("error reading 'gpsi': %w", err)
-		}
-		delete(object, "gpsi")
-	}
-
-	if raw, found := object["registrationLocationInfoList"]; found {
-		err = json.Unmarshal(raw, &a.RegistrationLocationInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'registrationLocationInfoList': %w", err)
-		}
-		delete(object, "registrationLocationInfoList")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LocationInfo to handle AdditionalProperties
-func (a LocationInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.Gpsi) != 0 {
-		object["gpsi"], err = json.Marshal(a.Gpsi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
-		}
-	}
-
-	object["registrationLocationInfoList"], err = json.Marshal(a.RegistrationLocationInfoList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'registrationLocationInfoList': %w", err)
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NetworkNodeDiameterAddress. Returns the specified
-// element and whether it was found
-func (a NetworkNodeDiameterAddress) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NetworkNodeDiameterAddress
-func (a *NetworkNodeDiameterAddress) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NetworkNodeDiameterAddress to handle AdditionalProperties
-func (a *NetworkNodeDiameterAddress) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["name"]; found {
-		err = json.Unmarshal(raw, &a.Name)
-		if err != nil {
-			return fmt.Errorf("error reading 'name': %w", err)
-		}
-		delete(object, "name")
-	}
-
-	if raw, found := object["realm"]; found {
-		err = json.Unmarshal(raw, &a.Realm)
-		if err != nil {
-			return fmt.Errorf("error reading 'realm': %w", err)
-		}
-		delete(object, "realm")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NetworkNodeDiameterAddress to handle AdditionalProperties
-func (a NetworkNodeDiameterAddress) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["name"], err = json.Marshal(a.Name)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'name': %w", err)
-	}
-
-	object["realm"], err = json.Marshal(a.Realm)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'realm': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PcscfRestorationNotification. Returns the specified
-// element and whether it was found
-func (a PcscfRestorationNotification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PcscfRestorationNotification
-func (a *PcscfRestorationNotification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PcscfRestorationNotification to handle AdditionalProperties
-func (a *PcscfRestorationNotification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PcscfRestorationNotification to handle AdditionalProperties
-func (a PcscfRestorationNotification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["supi"], err = json.Marshal(a.Supi)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PeiUpdateInfo. Returns the specified
-// element and whether it was found
-func (a PeiUpdateInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PeiUpdateInfo
-func (a *PeiUpdateInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PeiUpdateInfo to handle AdditionalProperties
-func (a *PeiUpdateInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["pei"]; found {
-		err = json.Unmarshal(raw, &a.Pei)
-		if err != nil {
-			return fmt.Errorf("error reading 'pei': %w", err)
-		}
-		delete(object, "pei")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PeiUpdateInfo to handle AdditionalProperties
-func (a PeiUpdateInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["pei"], err = json.Marshal(a.Pei)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pei': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for RegistrationDataSets. Returns the specified
-// element and whether it was found
-func (a RegistrationDataSets) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for RegistrationDataSets
-func (a *RegistrationDataSets) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for RegistrationDataSets to handle AdditionalProperties
-func (a *RegistrationDataSets) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amf3Gpp"]; found {
-		err = json.Unmarshal(raw, &a.Amf3Gpp)
-		if err != nil {
-			return fmt.Errorf("error reading 'amf3Gpp': %w", err)
-		}
-		delete(object, "amf3Gpp")
-	}
-
-	if raw, found := object["amfNon3Gpp"]; found {
-		err = json.Unmarshal(raw, &a.AmfNon3Gpp)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfNon3Gpp': %w", err)
-		}
-		delete(object, "amfNon3Gpp")
-	}
-
-	if raw, found := object["smfRegistration"]; found {
-		err = json.Unmarshal(raw, &a.SmfRegistration)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfRegistration': %w", err)
-		}
-		delete(object, "smfRegistration")
-	}
-
-	if raw, found := object["smsf3Gpp"]; found {
-		err = json.Unmarshal(raw, &a.Smsf3Gpp)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsf3Gpp': %w", err)
-		}
-		delete(object, "smsf3Gpp")
-	}
-
-	if raw, found := object["smsfNon3Gpp"]; found {
-		err = json.Unmarshal(raw, &a.SmsfNon3Gpp)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfNon3Gpp': %w", err)
-		}
-		delete(object, "smsfNon3Gpp")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for RegistrationDataSets to handle AdditionalProperties
-func (a RegistrationDataSets) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Amf3Gpp != nil {
-		object["amf3Gpp"], err = json.Marshal(a.Amf3Gpp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amf3Gpp': %w", err)
-		}
-	}
-
-	if a.AmfNon3Gpp != nil {
-		object["amfNon3Gpp"], err = json.Marshal(a.AmfNon3Gpp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfNon3Gpp': %w", err)
-		}
-	}
-
-	if a.SmfRegistration != nil {
-		object["smfRegistration"], err = json.Marshal(a.SmfRegistration)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfRegistration': %w", err)
-		}
-	}
-
-	if a.Smsf3Gpp != nil {
-		object["smsf3Gpp"], err = json.Marshal(a.Smsf3Gpp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsf3Gpp': %w", err)
-		}
-	}
-
-	if a.SmsfNon3Gpp != nil {
-		object["smsfNon3Gpp"], err = json.Marshal(a.SmsfNon3Gpp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfNon3Gpp': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for RegistrationLocationInfo. Returns the specified
-// element and whether it was found
-func (a RegistrationLocationInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for RegistrationLocationInfo
-func (a *RegistrationLocationInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for RegistrationLocationInfo to handle AdditionalProperties
-func (a *RegistrationLocationInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessTypeList"]; found {
-		err = json.Unmarshal(raw, &a.AccessTypeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessTypeList': %w", err)
-		}
-		delete(object, "accessTypeList")
-	}
-
-	if raw, found := object["amfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfInstanceId': %w", err)
-		}
-		delete(object, "amfInstanceId")
-	}
-
-	if raw, found := object["guami"]; found {
-		err = json.Unmarshal(raw, &a.Guami)
-		if err != nil {
-			return fmt.Errorf("error reading 'guami': %w", err)
-		}
-		delete(object, "guami")
-	}
-
-	if raw, found := object["plmnId"]; found {
-		err = json.Unmarshal(raw, &a.PlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnId': %w", err)
-		}
-		delete(object, "plmnId")
-	}
-
-	if raw, found := object["vgmlcAddress"]; found {
-		err = json.Unmarshal(raw, &a.VgmlcAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'vgmlcAddress': %w", err)
-		}
-		delete(object, "vgmlcAddress")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for RegistrationLocationInfo to handle AdditionalProperties
-func (a RegistrationLocationInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["accessTypeList"], err = json.Marshal(a.AccessTypeList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'accessTypeList': %w", err)
-	}
-
-	object["amfInstanceId"], err = json.Marshal(a.AmfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'amfInstanceId': %w", err)
-	}
-
-	if a.Guami != nil {
-		object["guami"], err = json.Marshal(a.Guami)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'guami': %w", err)
-		}
-	}
-
-	if a.PlmnId != nil {
-		object["plmnId"], err = json.Marshal(a.PlmnId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
-		}
-	}
-
-	if a.VgmlcAddress != nil {
-		object["vgmlcAddress"], err = json.Marshal(a.VgmlcAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vgmlcAddress': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SmfRegistration. Returns the specified
-// element and whether it was found
-func (a SmfRegistration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SmfRegistration
-func (a *SmfRegistration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SmfRegistration to handle AdditionalProperties
-func (a *SmfRegistration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["contextInfo"]; found {
-		err = json.Unmarshal(raw, &a.ContextInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'contextInfo': %w", err)
-		}
-		delete(object, "contextInfo")
-	}
-
-	if raw, found := object["deregCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.DeregCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'deregCallbackUri': %w", err)
-		}
-		delete(object, "deregCallbackUri")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["emergencyServices"]; found {
-		err = json.Unmarshal(raw, &a.EmergencyServices)
-		if err != nil {
-			return fmt.Errorf("error reading 'emergencyServices': %w", err)
-		}
-		delete(object, "emergencyServices")
-	}
-
-	if raw, found := object["epdgInd"]; found {
-		err = json.Unmarshal(raw, &a.EpdgInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'epdgInd': %w", err)
-		}
-		delete(object, "epdgInd")
-	}
-
-	if raw, found := object["pcscfRestorationCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.PcscfRestorationCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcscfRestorationCallbackUri': %w", err)
-		}
-		delete(object, "pcscfRestorationCallbackUri")
-	}
-
-	if raw, found := object["pduSessionId"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionId': %w", err)
-		}
-		delete(object, "pduSessionId")
-	}
-
-	if raw, found := object["pgwFqdn"]; found {
-		err = json.Unmarshal(raw, &a.PgwFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'pgwFqdn': %w", err)
-		}
-		delete(object, "pgwFqdn")
-	}
-
-	if raw, found := object["plmnId"]; found {
-		err = json.Unmarshal(raw, &a.PlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnId': %w", err)
-		}
-		delete(object, "plmnId")
-	}
-
-	if raw, found := object["registrationReason"]; found {
-		err = json.Unmarshal(raw, &a.RegistrationReason)
-		if err != nil {
-			return fmt.Errorf("error reading 'registrationReason': %w", err)
-		}
-		delete(object, "registrationReason")
-	}
-
-	if raw, found := object["registrationTime"]; found {
-		err = json.Unmarshal(raw, &a.RegistrationTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'registrationTime': %w", err)
-		}
-		delete(object, "registrationTime")
-	}
-
-	if raw, found := object["singleNssai"]; found {
-		err = json.Unmarshal(raw, &a.SingleNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'singleNssai': %w", err)
-		}
-		delete(object, "singleNssai")
-	}
-
-	if raw, found := object["smfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.SmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfInstanceId': %w", err)
-		}
-		delete(object, "smfInstanceId")
-	}
-
-	if raw, found := object["smfSetId"]; found {
-		err = json.Unmarshal(raw, &a.SmfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfSetId': %w", err)
-		}
-		delete(object, "smfSetId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SmfRegistration to handle AdditionalProperties
-func (a SmfRegistration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.ContextInfo != nil {
-		object["contextInfo"], err = json.Marshal(a.ContextInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'contextInfo': %w", err)
-		}
-	}
-
-	if a.DeregCallbackUri != nil {
-		object["deregCallbackUri"], err = json.Marshal(a.DeregCallbackUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'deregCallbackUri': %w", err)
-		}
-	}
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if a.EmergencyServices != nil {
-		object["emergencyServices"], err = json.Marshal(a.EmergencyServices)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'emergencyServices': %w", err)
-		}
-	}
-
-	if a.EpdgInd != nil {
-		object["epdgInd"], err = json.Marshal(a.EpdgInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'epdgInd': %w", err)
-		}
-	}
-
-	if a.PcscfRestorationCallbackUri != nil {
-		object["pcscfRestorationCallbackUri"], err = json.Marshal(a.PcscfRestorationCallbackUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcscfRestorationCallbackUri': %w", err)
-		}
-	}
-
-	object["pduSessionId"], err = json.Marshal(a.PduSessionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
-	}
-
-	if a.PgwFqdn != nil {
-		object["pgwFqdn"], err = json.Marshal(a.PgwFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pgwFqdn': %w", err)
-		}
-	}
-
-	object["plmnId"], err = json.Marshal(a.PlmnId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
-	}
-
-	if a.RegistrationReason != nil {
-		object["registrationReason"], err = json.Marshal(a.RegistrationReason)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'registrationReason': %w", err)
-		}
-	}
-
-	if a.RegistrationTime != nil {
-		object["registrationTime"], err = json.Marshal(a.RegistrationTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'registrationTime': %w", err)
-		}
-	}
-
-	object["singleNssai"], err = json.Marshal(a.SingleNssai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'singleNssai': %w", err)
-	}
-
-	object["smfInstanceId"], err = json.Marshal(a.SmfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smfInstanceId': %w", err)
-	}
-
-	if a.SmfSetId != nil {
-		object["smfSetId"], err = json.Marshal(a.SmfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfSetId': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SmfRegistrationInfo. Returns the specified
-// element and whether it was found
-func (a SmfRegistrationInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SmfRegistrationInfo
-func (a *SmfRegistrationInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SmfRegistrationInfo to handle AdditionalProperties
-func (a *SmfRegistrationInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["smfRegistrationList"]; found {
-		err = json.Unmarshal(raw, &a.SmfRegistrationList)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfRegistrationList': %w", err)
-		}
-		delete(object, "smfRegistrationList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SmfRegistrationInfo to handle AdditionalProperties
-func (a SmfRegistrationInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["smfRegistrationList"], err = json.Marshal(a.SmfRegistrationList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smfRegistrationList': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SmsfRegistration. Returns the specified
-// element and whether it was found
-func (a SmsfRegistration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SmsfRegistration
-func (a *SmsfRegistration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SmsfRegistration to handle AdditionalProperties
-func (a *SmsfRegistration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["contextInfo"]; found {
-		err = json.Unmarshal(raw, &a.ContextInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'contextInfo': %w", err)
-		}
-		delete(object, "contextInfo")
-	}
-
-	if raw, found := object["plmnId"]; found {
-		err = json.Unmarshal(raw, &a.PlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnId': %w", err)
-		}
-		delete(object, "plmnId")
-	}
-
-	if raw, found := object["registrationTime"]; found {
-		err = json.Unmarshal(raw, &a.RegistrationTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'registrationTime': %w", err)
-		}
-		delete(object, "registrationTime")
-	}
-
-	if raw, found := object["smsfDiameterAddress"]; found {
-		err = json.Unmarshal(raw, &a.SmsfDiameterAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfDiameterAddress': %w", err)
-		}
-		delete(object, "smsfDiameterAddress")
-	}
-
-	if raw, found := object["smsfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.SmsfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfInstanceId': %w", err)
-		}
-		delete(object, "smsfInstanceId")
-	}
-
-	if raw, found := object["smsfMAPAddress"]; found {
-		err = json.Unmarshal(raw, &a.SmsfMAPAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfMAPAddress': %w", err)
-		}
-		delete(object, "smsfMAPAddress")
-	}
-
-	if raw, found := object["smsfSetId"]; found {
-		err = json.Unmarshal(raw, &a.SmsfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfSetId': %w", err)
-		}
-		delete(object, "smsfSetId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SmsfRegistration to handle AdditionalProperties
-func (a SmsfRegistration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.ContextInfo != nil {
-		object["contextInfo"], err = json.Marshal(a.ContextInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'contextInfo': %w", err)
-		}
-	}
-
-	object["plmnId"], err = json.Marshal(a.PlmnId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
-	}
-
-	if a.RegistrationTime != nil {
-		object["registrationTime"], err = json.Marshal(a.RegistrationTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'registrationTime': %w", err)
-		}
-	}
-
-	if a.SmsfDiameterAddress != nil {
-		object["smsfDiameterAddress"], err = json.Marshal(a.SmsfDiameterAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfDiameterAddress': %w", err)
-		}
-	}
-
-	object["smsfInstanceId"], err = json.Marshal(a.SmsfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smsfInstanceId': %w", err)
-	}
-
-	if len(a.SmsfMAPAddress) != 0 {
-		object["smsfMAPAddress"], err = json.Marshal(a.SmsfMAPAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfMAPAddress': %w", err)
-		}
-	}
-
-	if a.SmsfSetId != nil {
-		object["smsfSetId"], err = json.Marshal(a.SmsfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfSetId': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for TriggerRequest. Returns the specified
-// element and whether it was found
-func (a TriggerRequest) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for TriggerRequest
-func (a *TriggerRequest) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for TriggerRequest to handle AdditionalProperties
-func (a *TriggerRequest) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for TriggerRequest to handle AdditionalProperties
-func (a TriggerRequest) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["supi"], err = json.Marshal(a.Supi)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for VgmlcAddress. Returns the specified
-// element and whether it was found
-func (a VgmlcAddress) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for VgmlcAddress
-func (a *VgmlcAddress) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for VgmlcAddress to handle AdditionalProperties
-func (a *VgmlcAddress) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["vgmlcAddressIpv4"]; found {
-		err = json.Unmarshal(raw, &a.VgmlcAddressIpv4)
-		if err != nil {
-			return fmt.Errorf("error reading 'vgmlcAddressIpv4': %w", err)
-		}
-		delete(object, "vgmlcAddressIpv4")
-	}
-
-	if raw, found := object["vgmlcAddressIpv6"]; found {
-		err = json.Unmarshal(raw, &a.VgmlcAddressIpv6)
-		if err != nil {
-			return fmt.Errorf("error reading 'vgmlcAddressIpv6': %w", err)
-		}
-		delete(object, "vgmlcAddressIpv6")
-	}
-
-	if raw, found := object["vgmlcFqdn"]; found {
-		err = json.Unmarshal(raw, &a.VgmlcFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'vgmlcFqdn': %w", err)
-		}
-		delete(object, "vgmlcFqdn")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for VgmlcAddress to handle AdditionalProperties
-func (a VgmlcAddress) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.VgmlcAddressIpv4) != 0 {
-		object["vgmlcAddressIpv4"], err = json.Marshal(a.VgmlcAddressIpv4)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vgmlcAddressIpv4': %w", err)
-		}
-	}
-
-	if a.VgmlcAddressIpv6 != nil {
-		object["vgmlcAddressIpv6"], err = json.Marshal(a.VgmlcAddressIpv6)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vgmlcAddressIpv6': %w", err)
-		}
-	}
-
-	if a.VgmlcFqdn != nil {
-		object["vgmlcFqdn"], err = json.Marshal(a.VgmlcFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vgmlcFqdn': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type Non3GppSmsfRegistrationJSONRequestBody = externalRef0.SmsfRegistration
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -5143,7 +2200,7 @@ func (r TriggerPCSCFRestorationResponse) StatusCode() int {
 type GetRegistrationsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *RegistrationDataSets
+	JSON200                       *externalRef0.RegistrationDataSets
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5171,7 +2228,7 @@ func (r GetRegistrationsResponse) StatusCode() int {
 type Get3GppRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *Amf3GppAccessRegistration
+	JSON200                       *externalRef0.Amf3GppAccessRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5228,8 +2285,8 @@ func (r Update3GppRegistrationResponse) StatusCode() int {
 type N3GppRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *Amf3GppAccessRegistration
-	JSON201                       *Amf3GppAccessRegistration
+	JSON200                       *externalRef0.Amf3GppAccessRegistration
+	JSON201                       *externalRef0.Amf3GppAccessRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5311,7 +2368,7 @@ func (r PeiUpdateResponse) StatusCode() int {
 type GetNon3GppRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AmfNon3GppAccessRegistration
+	JSON200                       *externalRef0.AmfNon3GppAccessRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5368,8 +2425,8 @@ func (r UpdateNon3GppRegistrationResponse) StatusCode() int {
 type Non3GppRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AmfNon3GppAccessRegistration
-	JSON201                       *AmfNon3GppAccessRegistration
+	JSON200                       *externalRef0.AmfNon3GppAccessRegistration
+	JSON201                       *externalRef0.AmfNon3GppAccessRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5423,7 +2480,7 @@ func (r IpSmGwDeregistrationResponse) StatusCode() int {
 type GetIpSmGwRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *IpSmGwRegistration
+	JSON200                       *externalRef0.IpSmGwRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5451,8 +2508,8 @@ func (r GetIpSmGwRegistrationResponse) StatusCode() int {
 type IpSmGwRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *IpSmGwRegistration
-	JSON201                       *IpSmGwRegistration
+	JSON200                       *externalRef0.IpSmGwRegistration
+	JSON201                       *externalRef0.IpSmGwRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5480,7 +2537,7 @@ func (r IpSmGwRegistrationResponse) StatusCode() int {
 type GetLocationInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *LocationInfo
+	JSON200                       *externalRef0.LocationInfo
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5508,7 +2565,7 @@ func (r GetLocationInfoResponse) StatusCode() int {
 type GetSmfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfRegistrationInfo
+	JSON200                       *externalRef0.SmfRegistrationInfo
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5563,7 +2620,7 @@ func (r SmfDeregistrationResponse) StatusCode() int {
 type RetrieveSmfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfRegistration
+	JSON200                       *externalRef0.SmfRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5591,8 +2648,8 @@ func (r RetrieveSmfRegistrationResponse) StatusCode() int {
 type RegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfRegistration
-	JSON201                       *SmfRegistration
+	JSON200                       *externalRef0.SmfRegistration
+	JSON201                       *externalRef0.SmfRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5647,7 +2704,7 @@ func (r N3GppSmsfDeregistrationResponse) StatusCode() int {
 type Get3GppSmsfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmsfRegistration
+	JSON200                       *externalRef0.SmsfRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5675,8 +2732,8 @@ func (r Get3GppSmsfRegistrationResponse) StatusCode() int {
 type N3GppSmsfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmsfRegistration
-	JSON201                       *SmsfRegistration
+	JSON200                       *externalRef0.SmsfRegistration
+	JSON201                       *externalRef0.SmsfRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5731,7 +2788,7 @@ func (r Non3GppSmsfDeregistrationResponse) StatusCode() int {
 type GetNon3GppSmsfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmsfRegistration
+	JSON200                       *externalRef0.SmsfRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -5759,8 +2816,8 @@ func (r GetNon3GppSmsfRegistrationResponse) StatusCode() int {
 type Non3GppSmsfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmsfRegistration
-	JSON201                       *SmsfRegistration
+	JSON200                       *externalRef0.SmsfRegistration
+	JSON201                       *externalRef0.SmsfRegistration
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -6175,7 +3232,7 @@ func ParseGetRegistrationsResponse(rsp *http.Response) (*GetRegistrationsRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RegistrationDataSets
+		var dest externalRef0.RegistrationDataSets
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6243,7 +3300,7 @@ func ParseGet3GppRegistrationResponse(rsp *http.Response) (*Get3GppRegistrationR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6389,14 +3446,14 @@ func ParseN3GppRegistrationResponse(rsp *http.Response) (*N3GppRegistrationRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6595,7 +3652,7 @@ func ParseGetNon3GppRegistrationResponse(rsp *http.Response) (*GetNon3GppRegistr
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AmfNon3GppAccessRegistration
+		var dest externalRef0.AmfNon3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6741,14 +3798,14 @@ func ParseNon3GppRegistrationResponse(rsp *http.Response) (*Non3GppRegistrationR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AmfNon3GppAccessRegistration
+		var dest externalRef0.AmfNon3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest AmfNon3GppAccessRegistration
+		var dest externalRef0.AmfNon3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6876,7 +3933,7 @@ func ParseGetIpSmGwRegistrationResponse(rsp *http.Response) (*GetIpSmGwRegistrat
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IpSmGwRegistration
+		var dest externalRef0.IpSmGwRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6944,14 +4001,14 @@ func ParseIpSmGwRegistrationResponse(rsp *http.Response) (*IpSmGwRegistrationRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IpSmGwRegistration
+		var dest externalRef0.IpSmGwRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest IpSmGwRegistration
+		var dest externalRef0.IpSmGwRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7022,7 +4079,7 @@ func ParseGetLocationInfoResponse(rsp *http.Response) (*GetLocationInfoResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LocationInfo
+		var dest externalRef0.LocationInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7090,7 +4147,7 @@ func ParseGetSmfRegistrationResponse(rsp *http.Response) (*GetSmfRegistrationRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfRegistrationInfo
+		var dest externalRef0.SmfRegistrationInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7222,7 +4279,7 @@ func ParseRetrieveSmfRegistrationResponse(rsp *http.Response) (*RetrieveSmfRegis
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfRegistration
+		var dest externalRef0.SmfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7290,14 +4347,14 @@ func ParseRegistrationResponse(rsp *http.Response) (*RegistrationResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfRegistration
+		var dest externalRef0.SmfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SmfRegistration
+		var dest externalRef0.SmfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7432,7 +4489,7 @@ func ParseGet3GppSmsfRegistrationResponse(rsp *http.Response) (*Get3GppSmsfRegis
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7500,14 +4557,14 @@ func ParseN3GppSmsfRegistrationResponse(rsp *http.Response) (*N3GppSmsfRegistrat
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7642,7 +4699,7 @@ func ParseGetNon3GppSmsfRegistrationResponse(rsp *http.Response) (*GetNon3GppSms
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7710,14 +4767,14 @@ func ParseNon3GppSmsfRegistrationResponse(rsp *http.Response) (*Non3GppSmsfRegis
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8855,13 +5912,13 @@ type GetRegistrationsResponseObject interface {
 	VisitGetRegistrationsResponse(w http.ResponseWriter) error
 }
 
-type GetRegistrations200JSONResponse RegistrationDataSets
+type GetRegistrations200JSONResponse externalRef0.RegistrationDataSets
 
 func (response GetRegistrations200JSONResponse) VisitGetRegistrationsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(RegistrationDataSets(response))
+	return json.NewEncoder(w).Encode(externalRef0.RegistrationDataSets(response))
 }
 
 type GetRegistrations400ApplicationProblemPlusJSONResponse struct {
@@ -8940,13 +5997,13 @@ type Get3GppRegistrationResponseObject interface {
 	VisitGet3GppRegistrationResponse(w http.ResponseWriter) error
 }
 
-type Get3GppRegistration200JSONResponse Amf3GppAccessRegistration
+type Get3GppRegistration200JSONResponse externalRef0.Amf3GppAccessRegistration
 
 func (response Get3GppRegistration200JSONResponse) VisitGet3GppRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(Amf3GppAccessRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.Amf3GppAccessRegistration(response))
 }
 
 type Get3GppRegistration400ApplicationProblemPlusJSONResponse struct {
@@ -9128,13 +6185,13 @@ type N3GppRegistrationResponseObject interface {
 	VisitN3GppRegistrationResponse(w http.ResponseWriter) error
 }
 
-type N3GppRegistration200JSONResponse Amf3GppAccessRegistration
+type N3GppRegistration200JSONResponse externalRef0.Amf3GppAccessRegistration
 
 func (response N3GppRegistration200JSONResponse) VisitN3GppRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(Amf3GppAccessRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.Amf3GppAccessRegistration(response))
 }
 
 type N3GppRegistration201ResponseHeaders struct {
@@ -9142,7 +6199,7 @@ type N3GppRegistration201ResponseHeaders struct {
 }
 
 type N3GppRegistration201JSONResponse struct {
-	Body    Amf3GppAccessRegistration
+	Body    externalRef0.Amf3GppAccessRegistration
 	Headers N3GppRegistration201ResponseHeaders
 }
 
@@ -9406,13 +6463,13 @@ type GetNon3GppRegistrationResponseObject interface {
 	VisitGetNon3GppRegistrationResponse(w http.ResponseWriter) error
 }
 
-type GetNon3GppRegistration200JSONResponse AmfNon3GppAccessRegistration
+type GetNon3GppRegistration200JSONResponse externalRef0.AmfNon3GppAccessRegistration
 
 func (response GetNon3GppRegistration200JSONResponse) VisitGetNon3GppRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(AmfNon3GppAccessRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.AmfNon3GppAccessRegistration(response))
 }
 
 type GetNon3GppRegistration400ApplicationProblemPlusJSONResponse struct {
@@ -9594,13 +6651,13 @@ type Non3GppRegistrationResponseObject interface {
 	VisitNon3GppRegistrationResponse(w http.ResponseWriter) error
 }
 
-type Non3GppRegistration200JSONResponse AmfNon3GppAccessRegistration
+type Non3GppRegistration200JSONResponse externalRef0.AmfNon3GppAccessRegistration
 
 func (response Non3GppRegistration200JSONResponse) VisitNon3GppRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(AmfNon3GppAccessRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.AmfNon3GppAccessRegistration(response))
 }
 
 type Non3GppRegistration201ResponseHeaders struct {
@@ -9608,7 +6665,7 @@ type Non3GppRegistration201ResponseHeaders struct {
 }
 
 type Non3GppRegistration201JSONResponse struct {
-	Body    AmfNon3GppAccessRegistration
+	Body    externalRef0.AmfNon3GppAccessRegistration
 	Headers Non3GppRegistration201ResponseHeaders
 }
 
@@ -9775,13 +6832,13 @@ type GetIpSmGwRegistrationResponseObject interface {
 	VisitGetIpSmGwRegistrationResponse(w http.ResponseWriter) error
 }
 
-type GetIpSmGwRegistration200JSONResponse IpSmGwRegistration
+type GetIpSmGwRegistration200JSONResponse externalRef0.IpSmGwRegistration
 
 func (response GetIpSmGwRegistration200JSONResponse) VisitGetIpSmGwRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(IpSmGwRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.IpSmGwRegistration(response))
 }
 
 type GetIpSmGwRegistration400ApplicationProblemPlusJSONResponse struct {
@@ -9860,13 +6917,13 @@ type IpSmGwRegistrationResponseObject interface {
 	VisitIpSmGwRegistrationResponse(w http.ResponseWriter) error
 }
 
-type IpSmGwRegistration200JSONResponse IpSmGwRegistration
+type IpSmGwRegistration200JSONResponse externalRef0.IpSmGwRegistration
 
 func (response IpSmGwRegistration200JSONResponse) VisitIpSmGwRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(IpSmGwRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.IpSmGwRegistration(response))
 }
 
 type IpSmGwRegistration201ResponseHeaders struct {
@@ -9874,7 +6931,7 @@ type IpSmGwRegistration201ResponseHeaders struct {
 }
 
 type IpSmGwRegistration201JSONResponse struct {
-	Body    IpSmGwRegistration
+	Body    externalRef0.IpSmGwRegistration
 	Headers IpSmGwRegistration201ResponseHeaders
 }
 
@@ -9970,13 +7027,13 @@ type GetLocationInfoResponseObject interface {
 	VisitGetLocationInfoResponse(w http.ResponseWriter) error
 }
 
-type GetLocationInfo200JSONResponse LocationInfo
+type GetLocationInfo200JSONResponse externalRef0.LocationInfo
 
 func (response GetLocationInfo200JSONResponse) VisitGetLocationInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(LocationInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.LocationInfo(response))
 }
 
 type GetLocationInfo400ApplicationProblemPlusJSONResponse struct {
@@ -10055,13 +7112,13 @@ type GetSmfRegistrationResponseObject interface {
 	VisitGetSmfRegistrationResponse(w http.ResponseWriter) error
 }
 
-type GetSmfRegistration200JSONResponse SmfRegistrationInfo
+type GetSmfRegistration200JSONResponse externalRef0.SmfRegistrationInfo
 
 func (response GetSmfRegistration200JSONResponse) VisitGetSmfRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmfRegistrationInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfRegistrationInfo(response))
 }
 
 type GetSmfRegistration400ApplicationProblemPlusJSONResponse struct {
@@ -10223,13 +7280,13 @@ type RetrieveSmfRegistrationResponseObject interface {
 	VisitRetrieveSmfRegistrationResponse(w http.ResponseWriter) error
 }
 
-type RetrieveSmfRegistration200JSONResponse SmfRegistration
+type RetrieveSmfRegistration200JSONResponse externalRef0.SmfRegistration
 
 func (response RetrieveSmfRegistration200JSONResponse) VisitRetrieveSmfRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfRegistration(response))
 }
 
 type RetrieveSmfRegistration400ApplicationProblemPlusJSONResponse struct {
@@ -10309,13 +7366,13 @@ type RegistrationResponseObject interface {
 	VisitRegistrationResponse(w http.ResponseWriter) error
 }
 
-type Registration200JSONResponse SmfRegistration
+type Registration200JSONResponse externalRef0.SmfRegistration
 
 func (response Registration200JSONResponse) VisitRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfRegistration(response))
 }
 
 type Registration201ResponseHeaders struct {
@@ -10323,7 +7380,7 @@ type Registration201ResponseHeaders struct {
 }
 
 type Registration201JSONResponse struct {
-	Body    SmfRegistration
+	Body    externalRef0.SmfRegistration
 	Headers Registration201ResponseHeaders
 }
 
@@ -10501,13 +7558,13 @@ type Get3GppSmsfRegistrationResponseObject interface {
 	VisitGet3GppSmsfRegistrationResponse(w http.ResponseWriter) error
 }
 
-type Get3GppSmsfRegistration200JSONResponse SmsfRegistration
+type Get3GppSmsfRegistration200JSONResponse externalRef0.SmsfRegistration
 
 func (response Get3GppSmsfRegistration200JSONResponse) VisitGet3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmsfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmsfRegistration(response))
 }
 
 type Get3GppSmsfRegistration400ApplicationProblemPlusJSONResponse struct {
@@ -10586,13 +7643,13 @@ type N3GppSmsfRegistrationResponseObject interface {
 	VisitN3GppSmsfRegistrationResponse(w http.ResponseWriter) error
 }
 
-type N3GppSmsfRegistration200JSONResponse SmsfRegistration
+type N3GppSmsfRegistration200JSONResponse externalRef0.SmsfRegistration
 
 func (response N3GppSmsfRegistration200JSONResponse) VisitN3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmsfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmsfRegistration(response))
 }
 
 type N3GppSmsfRegistration201ResponseHeaders struct {
@@ -10600,7 +7657,7 @@ type N3GppSmsfRegistration201ResponseHeaders struct {
 }
 
 type N3GppSmsfRegistration201JSONResponse struct {
-	Body    SmsfRegistration
+	Body    externalRef0.SmsfRegistration
 	Headers N3GppSmsfRegistration201ResponseHeaders
 }
 
@@ -10778,13 +7835,13 @@ type GetNon3GppSmsfRegistrationResponseObject interface {
 	VisitGetNon3GppSmsfRegistrationResponse(w http.ResponseWriter) error
 }
 
-type GetNon3GppSmsfRegistration200JSONResponse SmsfRegistration
+type GetNon3GppSmsfRegistration200JSONResponse externalRef0.SmsfRegistration
 
 func (response GetNon3GppSmsfRegistration200JSONResponse) VisitGetNon3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmsfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmsfRegistration(response))
 }
 
 type GetNon3GppSmsfRegistration400ApplicationProblemPlusJSONResponse struct {
@@ -10863,13 +7920,13 @@ type Non3GppSmsfRegistrationResponseObject interface {
 	VisitNon3GppSmsfRegistrationResponse(w http.ResponseWriter) error
 }
 
-type Non3GppSmsfRegistration200JSONResponse SmsfRegistration
+type Non3GppSmsfRegistration200JSONResponse externalRef0.SmsfRegistration
 
 func (response Non3GppSmsfRegistration200JSONResponse) VisitNon3GppSmsfRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmsfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmsfRegistration(response))
 }
 
 type Non3GppSmsfRegistration201ResponseHeaders struct {
@@ -10877,7 +7934,7 @@ type Non3GppSmsfRegistration201ResponseHeaders struct {
 }
 
 type Non3GppSmsfRegistration201JSONResponse struct {
-	Body    SmsfRegistration
+	Body    externalRef0.SmsfRegistration
 	Headers Non3GppSmsfRegistration201ResponseHeaders
 }
 

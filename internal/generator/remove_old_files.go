@@ -54,11 +54,11 @@ func (s *GeneratorState) RemoveOldFiles() error {
 			return nil
 		}
 
-		if path == filepath.Join(s.RootDir, "commondata/problemdetails.go") {
+		if path == filepath.Join(s.RootDir, "models/problemdetails.go") {
 			return nil
 		}
 
-		if path == filepath.Join(s.RootDir, "commondata/problemdetails_test.go") {
+		if path == filepath.Join(s.RootDir, "models/problemdetails_test.go") {
 			return nil
 		}
 

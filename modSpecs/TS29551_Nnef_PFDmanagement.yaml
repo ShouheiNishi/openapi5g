@@ -1,108 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        PfdChangeNotification:
-            additionalProperties: true
-            properties:
-                applicationId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
-                partialFlag:
-                    default: false
-                    type: boolean
-                pfds:
-                    items:
-                        $ref: '#/components/schemas/PfdContent'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                removalFlag:
-                    default: false
-                    type: boolean
-            required:
-                - applicationId
-            type: object
-        PfdChangeReport:
-            additionalProperties: true
-            properties:
-                applicationId:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                pfdError:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-            required:
-                - pfdError
-                - applicationId
-            type: object
-        PfdContent:
-            additionalProperties: true
-            properties:
-                dnProtocol:
-                    $ref: TS29122_PfdManagement.yaml#/components/schemas/DomainNameProtocol
-                domainNames:
-                    description: Indicates an FQDN or a regular expression as a domain name matching criteria.
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                flowDescriptions:
-                    description: Represents a 3-tuple with protocol, server ip and server port for UL/DL application traffic.
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                pfdId:
-                    description: Identifies a PDF of an application identifier.
-                    type: string
-                urls:
-                    description: Indicates a URL or a regular expression which is used to match the significant parts of the URL.
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        PfdDataForApp:
-            additionalProperties: true
-            properties:
-                applicationId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
-                cachingTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                pfds:
-                    items:
-                        $ref: '#/components/schemas/PfdContent'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - applicationId
-                - pfds
-            type: object
-        PfdSubscription:
-            additionalProperties: true
-            properties:
-                applicationIds:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                notifyUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - notifyUri
-                - supportedFeatures
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -148,7 +46,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/PfdDataForApp'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/PfdDataForApp
                                 minItems: 0
                                 type: array
                     description: The PFDs for one or more application identifier(s) in the request URI are returned.
@@ -199,7 +97,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PfdDataForApp'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PfdDataForApp
                     description: A representation of PFDs for an application in the request URI is returned.
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -244,7 +142,7 @@ paths:
                                     application/json:
                                         schema:
                                             items:
-                                                $ref: '#/components/schemas/PfdChangeNotification'
+                                                $ref: TS29571_CommonData.yaml#/components/schemas/PfdChangeNotification
                                             minItems: 1
                                             type: array
                                             x-go-type-skip-optional-pointer: true
@@ -255,7 +153,7 @@ paths:
                                         application/json:
                                             schema:
                                                 items:
-                                                    $ref: '#/components/schemas/PfdChangeReport'
+                                                    $ref: TS29571_CommonData.yaml#/components/schemas/PfdChangeReport
                                                 minItems: 1
                                                 type: array
                                                 x-go-type-skip-optional-pointer: true
@@ -294,7 +192,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PfdSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PfdSubscription
                 description: a PfdSubscription resource to be created.
                 required: true
             responses:
@@ -302,7 +200,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PfdSubscription'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PfdSubscription
                     description: The creation of a PfdSubscription resource is confirmed and a representation of that resource is returned.
                     headers:
                         Location:
@@ -353,7 +251,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PfdSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PfdSubscription
                 description: Parameters to update/replace the existing subscription
                 required: true
             responses:
@@ -361,7 +259,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PfdSubscription'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PfdSubscription
                     description: OK (Successful update of the subscription)
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307

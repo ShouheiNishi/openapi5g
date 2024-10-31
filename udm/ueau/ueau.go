@@ -7,14 +7,13 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -24,264 +23,10 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// Defines values for AccessNetworkId.
-const (
-	ETHERNET AccessNetworkId = "ETHERNET"
-	HRPD     AccessNetworkId = "HRPD"
-	WIMAX    AccessNetworkId = "WIMAX"
-	WLAN     AccessNetworkId = "WLAN"
-)
-
-// Defines values for AuthType.
-const (
-	AuthTypeEAPAKAPRIME AuthType = "EAP_AKA_PRIME"
-	AuthTypeEAPTLS      AuthType = "EAP_TLS"
-	AuthTypeN5GAKA      AuthType = "5G_AKA"
-)
-
-// Defines values for AvType.
-const (
-	AvTypeEAPAKAPRIME AvType = "EAP_AKA_PRIME"
-	AvTypeN5GHEAKA    AvType = "5G_HE_AKA"
-)
-
-// Defines values for HssAuthType.
-const (
-	HssAuthTypeEAPAKA      HssAuthType = "EAP_AKA"
-	HssAuthTypeEAPAKAPRIME HssAuthType = "EAP_AKA_PRIME"
-	HssAuthTypeEPSAKA      HssAuthType = "EPS_AKA"
-	HssAuthTypeGBAAKA      HssAuthType = "GBA_AKA"
-	HssAuthTypeIMSAKA      HssAuthType = "IMS_AKA"
-	HssAuthTypeUMTSAKA     HssAuthType = "UMTS_AKA"
-)
-
-// Defines values for HssAuthTypeInUri.
-const (
-	EapAka      HssAuthTypeInUri = "eap-aka"
-	EapAkaPrime HssAuthTypeInUri = "eap-aka-prime"
-	EpsAka      HssAuthTypeInUri = "eps-aka"
-	GbaAka      HssAuthTypeInUri = "gba-aka"
-	ImsAka      HssAuthTypeInUri = "ims-aka"
-)
-
-// Defines values for HssAvType.
-const (
-	HssAvTypeEAPAKA  HssAvType = "EAP_AKA"
-	HssAvTypeEPSAKA  HssAvType = "EPS_AKA"
-	HssAvTypeGBAAKA  HssAvType = "GBA_AKA"
-	HssAvTypeIMSAKA  HssAvType = "IMS_AKA"
-	HssAvTypeUMTSAKA HssAvType = "UMTS_AKA"
-)
-
-// Defines values for NodeType.
-const (
-	AUSF          NodeType = "AUSF"
-	BSF           NodeType = "BSF"
-	GANAAASERVER  NodeType = "GAN_AAA_SERVER"
-	MME           NodeType = "MME"
-	SCSCF         NodeType = "S_CSCF"
-	SGSN          NodeType = "SGSN"
-	VLR           NodeType = "VLR"
-	WLANAAASERVER NodeType = "WLAN_AAA_SERVER"
-)
-
-// AccessNetworkId defines model for AccessNetworkId.
-type AccessNetworkId string
-
-// AuthEvent defines model for AuthEvent.
-type AuthEvent struct {
-	AuthRemovalInd       *bool                     `json:"authRemovalInd,omitempty"`
-	AuthType             AuthType                  `json:"authType"`
-	NfInstanceId         externalRef0.NfInstanceId `json:"nfInstanceId"`
-	NfSetId              *externalRef0.NfSetId     `json:"nfSetId,omitempty"`
-	ServingNetworkName   ServingNetworkName        `json:"servingNetworkName"`
-	Success              Success                   `json:"success"`
-	TimeStamp            externalRef0.DateTime     `json:"timeStamp"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// AuthType defines model for AuthType.
-type AuthType string
-
-// AuthenticatedInd defines model for AuthenticatedInd.
-type AuthenticatedInd = bool
-
-// AuthenticationInfoRequest defines model for AuthenticationInfoRequest.
-type AuthenticationInfoRequest struct {
-	AusfInstanceId        externalRef0.NfInstanceId       `json:"ausfInstanceId"`
-	CellCagInfo           []externalRef0.CagId            `json:"cellCagInfo,omitempty"`
-	N5gcInd               *bool                           `json:"n5gcInd,omitempty"`
-	ResynchronizationInfo *ResynchronizationInfo          `json:"resynchronizationInfo,omitempty"`
-	ServingNetworkName    ServingNetworkName              `json:"servingNetworkName"`
-	SupportedFeatures     *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties  map[string]interface{}          `json:"-"`
-}
-
-// AuthenticationInfoResult defines model for AuthenticationInfoResult.
-type AuthenticationInfoResult struct {
-	AuthType             AuthType                        `json:"authType"`
-	AuthenticationVector *AuthenticationVector           `json:"authenticationVector,omitempty"`
-	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// AuthenticationVector defines model for AuthenticationVector.
-type AuthenticationVector struct {
-	union json.RawMessage
-}
-
-// Autn defines model for Autn.
-type Autn = string
-
-// Auts defines model for Auts.
-type Auts = string
-
-// Av5GHeAka defines model for Av5GHeAka.
-type Av5GHeAka struct {
-	Autn                 Autn                   `json:"autn"`
-	AvType               AvType                 `json:"avType"`
-	Kausf                Kausf                  `json:"kausf"`
-	Rand                 Rand                   `json:"rand"`
-	XresStar             XresStar               `json:"xresStar"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AvEapAkaPrime defines model for AvEapAkaPrime.
-type AvEapAkaPrime struct {
-	Autn                 Autn                   `json:"autn"`
-	AvType               AvType                 `json:"avType"`
-	CkPrime              CkPrime                `json:"ckPrime"`
-	IkPrime              IkPrime                `json:"ikPrime"`
-	Rand                 Rand                   `json:"rand"`
-	Xres                 Xres                   `json:"xres"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AvEpsAka defines model for AvEpsAka.
-type AvEpsAka struct {
-	Autn                 Autn                   `json:"autn"`
-	AvType               HssAvType              `json:"avType"`
-	Kasme                Kasme                  `json:"kasme"`
-	Rand                 Rand                   `json:"rand"`
-	Xres                 Xres                   `json:"xres"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AvImsGbaEapAka defines model for AvImsGbaEapAka.
-type AvImsGbaEapAka struct {
-	Autn                 Autn                   `json:"autn"`
-	AvType               HssAvType              `json:"avType"`
-	Ck                   ConfidentialityKey     `json:"ck"`
-	Ik                   IntegrityKey           `json:"ik"`
-	Rand                 Rand                   `json:"rand"`
-	Xres                 Xres                   `json:"xres"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AvType defines model for AvType.
-type AvType string
-
-// CkPrime defines model for CkPrime.
-type CkPrime = string
-
-// ConfidentialityKey defines model for ConfidentialityKey.
-type ConfidentialityKey = string
-
-// HssAuthType defines model for HssAuthType.
-type HssAuthType string
-
-// HssAuthTypeInUri defines model for HssAuthTypeInUri.
-type HssAuthTypeInUri string
-
-// HssAuthenticationInfoRequest defines model for HssAuthenticationInfoRequest.
-type HssAuthenticationInfoRequest struct {
-	AnId                  *AccessNetworkId                `json:"anId,omitempty"`
-	HssAuthType           HssAuthType                     `json:"hssAuthType"`
-	NumOfRequestedVectors NumOfRequestedVectors           `json:"numOfRequestedVectors"`
-	RequestingNodeType    *NodeType                       `json:"requestingNodeType,omitempty"`
-	ResynchronizationInfo *ResynchronizationInfo          `json:"resynchronizationInfo,omitempty"`
-	ServingNetworkId      *externalRef0.PlmnId            `json:"servingNetworkId,omitempty"`
-	SupportedFeatures     *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties  map[string]interface{}          `json:"-"`
-}
-
-// HssAuthenticationInfoResult defines model for HssAuthenticationInfoResult.
-type HssAuthenticationInfoResult struct {
-	HssAuthenticationVectors HssAuthenticationVectors        `json:"hssAuthenticationVectors"`
-	SupportedFeatures        *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties     map[string]interface{}          `json:"-"`
-}
-
-// HssAuthenticationVectors defines model for HssAuthenticationVectors.
-type HssAuthenticationVectors struct {
-	union json.RawMessage
-}
-
-// HssAuthenticationVectors0 defines model for .
-type HssAuthenticationVectors0 = []AvEpsAka
-
-// HssAuthenticationVectors1 defines model for .
-type HssAuthenticationVectors1 = []AvImsGbaEapAka
-
-// HssAuthenticationVectors2 defines model for .
-type HssAuthenticationVectors2 = []AvEapAkaPrime
-
-// HssAvType defines model for HssAvType.
-type HssAvType string
-
-// IkPrime defines model for IkPrime.
-type IkPrime = string
-
-// IntegrityKey defines model for IntegrityKey.
-type IntegrityKey = string
-
-// Kasme defines model for Kasme.
-type Kasme = string
-
-// Kausf defines model for Kausf.
-type Kausf = string
-
-// NodeType defines model for NodeType.
-type NodeType string
-
-// NumOfRequestedVectors defines model for NumOfRequestedVectors.
-type NumOfRequestedVectors = int
-
-// Rand defines model for Rand.
-type Rand = string
-
-// ResynchronizationInfo defines model for ResynchronizationInfo.
-type ResynchronizationInfo struct {
-	Auts                 Auts                   `json:"auts"`
-	Rand                 Rand                   `json:"rand"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// RgAuthCtx defines model for RgAuthCtx.
-type RgAuthCtx struct {
-	AuthInd              bool                            `json:"authInd"`
-	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// ServingNetworkName defines model for ServingNetworkName.
-type ServingNetworkName = string
-
-// Success defines model for Success.
-type Success = bool
-
-// Xres defines model for Xres.
-type Xres = string
-
-// XresStar defines model for XresStar.
-type XresStar = string
-
 // GetRgAuthDataParams defines parameters for GetRgAuthData.
 type GetRgAuthDataParams struct {
 	// AuthenticatedInd Authenticated indication
-	AuthenticatedInd AuthenticatedInd `form:"authenticated-ind" json:"authenticated-ind"`
+	AuthenticatedInd externalRef0.AuthenticatedInd `form:"authenticated-ind" json:"authenticated-ind"`
 
 	// SupportedFeatures Supported Features
 	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
@@ -297,1499 +42,16 @@ type GetRgAuthDataParams struct {
 }
 
 // GenerateAuthDataJSONRequestBody defines body for GenerateAuthData for application/json ContentType.
-type GenerateAuthDataJSONRequestBody = AuthenticationInfoRequest
+type GenerateAuthDataJSONRequestBody = externalRef0.AuthenticationInfoRequest
 
 // ConfirmAuthJSONRequestBody defines body for ConfirmAuth for application/json ContentType.
-type ConfirmAuthJSONRequestBody = AuthEvent
+type ConfirmAuthJSONRequestBody = externalRef0.AuthEvent
 
 // DeleteAuthJSONRequestBody defines body for DeleteAuth for application/json ContentType.
-type DeleteAuthJSONRequestBody = AuthEvent
+type DeleteAuthJSONRequestBody = externalRef0.AuthEvent
 
 // GenerateAvJSONRequestBody defines body for GenerateAv for application/json ContentType.
-type GenerateAvJSONRequestBody = HssAuthenticationInfoRequest
-
-// Getter for additional properties for AuthEvent. Returns the specified
-// element and whether it was found
-func (a AuthEvent) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AuthEvent
-func (a *AuthEvent) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AuthEvent to handle AdditionalProperties
-func (a *AuthEvent) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authRemovalInd"]; found {
-		err = json.Unmarshal(raw, &a.AuthRemovalInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'authRemovalInd': %w", err)
-		}
-		delete(object, "authRemovalInd")
-	}
-
-	if raw, found := object["authType"]; found {
-		err = json.Unmarshal(raw, &a.AuthType)
-		if err != nil {
-			return fmt.Errorf("error reading 'authType': %w", err)
-		}
-		delete(object, "authType")
-	}
-
-	if raw, found := object["nfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.NfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfInstanceId': %w", err)
-		}
-		delete(object, "nfInstanceId")
-	}
-
-	if raw, found := object["nfSetId"]; found {
-		err = json.Unmarshal(raw, &a.NfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfSetId': %w", err)
-		}
-		delete(object, "nfSetId")
-	}
-
-	if raw, found := object["servingNetworkName"]; found {
-		err = json.Unmarshal(raw, &a.ServingNetworkName)
-		if err != nil {
-			return fmt.Errorf("error reading 'servingNetworkName': %w", err)
-		}
-		delete(object, "servingNetworkName")
-	}
-
-	if raw, found := object["success"]; found {
-		err = json.Unmarshal(raw, &a.Success)
-		if err != nil {
-			return fmt.Errorf("error reading 'success': %w", err)
-		}
-		delete(object, "success")
-	}
-
-	if raw, found := object["timeStamp"]; found {
-		err = json.Unmarshal(raw, &a.TimeStamp)
-		if err != nil {
-			return fmt.Errorf("error reading 'timeStamp': %w", err)
-		}
-		delete(object, "timeStamp")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AuthEvent to handle AdditionalProperties
-func (a AuthEvent) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AuthRemovalInd != nil {
-		object["authRemovalInd"], err = json.Marshal(a.AuthRemovalInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'authRemovalInd': %w", err)
-		}
-	}
-
-	object["authType"], err = json.Marshal(a.AuthType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authType': %w", err)
-	}
-
-	object["nfInstanceId"], err = json.Marshal(a.NfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfInstanceId': %w", err)
-	}
-
-	if a.NfSetId != nil {
-		object["nfSetId"], err = json.Marshal(a.NfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfSetId': %w", err)
-		}
-	}
-
-	object["servingNetworkName"], err = json.Marshal(a.ServingNetworkName)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'servingNetworkName': %w", err)
-	}
-
-	object["success"], err = json.Marshal(a.Success)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'success': %w", err)
-	}
-
-	object["timeStamp"], err = json.Marshal(a.TimeStamp)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'timeStamp': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AuthenticationInfoRequest. Returns the specified
-// element and whether it was found
-func (a AuthenticationInfoRequest) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AuthenticationInfoRequest
-func (a *AuthenticationInfoRequest) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AuthenticationInfoRequest to handle AdditionalProperties
-func (a *AuthenticationInfoRequest) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ausfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AusfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ausfInstanceId': %w", err)
-		}
-		delete(object, "ausfInstanceId")
-	}
-
-	if raw, found := object["cellCagInfo"]; found {
-		err = json.Unmarshal(raw, &a.CellCagInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'cellCagInfo': %w", err)
-		}
-		delete(object, "cellCagInfo")
-	}
-
-	if raw, found := object["n5gcInd"]; found {
-		err = json.Unmarshal(raw, &a.N5gcInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'n5gcInd': %w", err)
-		}
-		delete(object, "n5gcInd")
-	}
-
-	if raw, found := object["resynchronizationInfo"]; found {
-		err = json.Unmarshal(raw, &a.ResynchronizationInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'resynchronizationInfo': %w", err)
-		}
-		delete(object, "resynchronizationInfo")
-	}
-
-	if raw, found := object["servingNetworkName"]; found {
-		err = json.Unmarshal(raw, &a.ServingNetworkName)
-		if err != nil {
-			return fmt.Errorf("error reading 'servingNetworkName': %w", err)
-		}
-		delete(object, "servingNetworkName")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AuthenticationInfoRequest to handle AdditionalProperties
-func (a AuthenticationInfoRequest) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ausfInstanceId"], err = json.Marshal(a.AusfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ausfInstanceId': %w", err)
-	}
-
-	if len(a.CellCagInfo) != 0 {
-		object["cellCagInfo"], err = json.Marshal(a.CellCagInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cellCagInfo': %w", err)
-		}
-	}
-
-	if a.N5gcInd != nil {
-		object["n5gcInd"], err = json.Marshal(a.N5gcInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n5gcInd': %w", err)
-		}
-	}
-
-	if a.ResynchronizationInfo != nil {
-		object["resynchronizationInfo"], err = json.Marshal(a.ResynchronizationInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'resynchronizationInfo': %w", err)
-		}
-	}
-
-	object["servingNetworkName"], err = json.Marshal(a.ServingNetworkName)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'servingNetworkName': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AuthenticationInfoResult. Returns the specified
-// element and whether it was found
-func (a AuthenticationInfoResult) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AuthenticationInfoResult
-func (a *AuthenticationInfoResult) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AuthenticationInfoResult to handle AdditionalProperties
-func (a *AuthenticationInfoResult) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authType"]; found {
-		err = json.Unmarshal(raw, &a.AuthType)
-		if err != nil {
-			return fmt.Errorf("error reading 'authType': %w", err)
-		}
-		delete(object, "authType")
-	}
-
-	if raw, found := object["authenticationVector"]; found {
-		err = json.Unmarshal(raw, &a.AuthenticationVector)
-		if err != nil {
-			return fmt.Errorf("error reading 'authenticationVector': %w", err)
-		}
-		delete(object, "authenticationVector")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AuthenticationInfoResult to handle AdditionalProperties
-func (a AuthenticationInfoResult) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["authType"], err = json.Marshal(a.AuthType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authType': %w", err)
-	}
-
-	if a.AuthenticationVector != nil {
-		object["authenticationVector"], err = json.Marshal(a.AuthenticationVector)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'authenticationVector': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for Av5GHeAka. Returns the specified
-// element and whether it was found
-func (a Av5GHeAka) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for Av5GHeAka
-func (a *Av5GHeAka) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for Av5GHeAka to handle AdditionalProperties
-func (a *Av5GHeAka) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["autn"]; found {
-		err = json.Unmarshal(raw, &a.Autn)
-		if err != nil {
-			return fmt.Errorf("error reading 'autn': %w", err)
-		}
-		delete(object, "autn")
-	}
-
-	if raw, found := object["avType"]; found {
-		err = json.Unmarshal(raw, &a.AvType)
-		if err != nil {
-			return fmt.Errorf("error reading 'avType': %w", err)
-		}
-		delete(object, "avType")
-	}
-
-	if raw, found := object["kausf"]; found {
-		err = json.Unmarshal(raw, &a.Kausf)
-		if err != nil {
-			return fmt.Errorf("error reading 'kausf': %w", err)
-		}
-		delete(object, "kausf")
-	}
-
-	if raw, found := object["rand"]; found {
-		err = json.Unmarshal(raw, &a.Rand)
-		if err != nil {
-			return fmt.Errorf("error reading 'rand': %w", err)
-		}
-		delete(object, "rand")
-	}
-
-	if raw, found := object["xresStar"]; found {
-		err = json.Unmarshal(raw, &a.XresStar)
-		if err != nil {
-			return fmt.Errorf("error reading 'xresStar': %w", err)
-		}
-		delete(object, "xresStar")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for Av5GHeAka to handle AdditionalProperties
-func (a Av5GHeAka) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["autn"], err = json.Marshal(a.Autn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'autn': %w", err)
-	}
-
-	object["avType"], err = json.Marshal(a.AvType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'avType': %w", err)
-	}
-
-	object["kausf"], err = json.Marshal(a.Kausf)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'kausf': %w", err)
-	}
-
-	object["rand"], err = json.Marshal(a.Rand)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'rand': %w", err)
-	}
-
-	object["xresStar"], err = json.Marshal(a.XresStar)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'xresStar': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AvEapAkaPrime. Returns the specified
-// element and whether it was found
-func (a AvEapAkaPrime) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AvEapAkaPrime
-func (a *AvEapAkaPrime) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AvEapAkaPrime to handle AdditionalProperties
-func (a *AvEapAkaPrime) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["autn"]; found {
-		err = json.Unmarshal(raw, &a.Autn)
-		if err != nil {
-			return fmt.Errorf("error reading 'autn': %w", err)
-		}
-		delete(object, "autn")
-	}
-
-	if raw, found := object["avType"]; found {
-		err = json.Unmarshal(raw, &a.AvType)
-		if err != nil {
-			return fmt.Errorf("error reading 'avType': %w", err)
-		}
-		delete(object, "avType")
-	}
-
-	if raw, found := object["ckPrime"]; found {
-		err = json.Unmarshal(raw, &a.CkPrime)
-		if err != nil {
-			return fmt.Errorf("error reading 'ckPrime': %w", err)
-		}
-		delete(object, "ckPrime")
-	}
-
-	if raw, found := object["ikPrime"]; found {
-		err = json.Unmarshal(raw, &a.IkPrime)
-		if err != nil {
-			return fmt.Errorf("error reading 'ikPrime': %w", err)
-		}
-		delete(object, "ikPrime")
-	}
-
-	if raw, found := object["rand"]; found {
-		err = json.Unmarshal(raw, &a.Rand)
-		if err != nil {
-			return fmt.Errorf("error reading 'rand': %w", err)
-		}
-		delete(object, "rand")
-	}
-
-	if raw, found := object["xres"]; found {
-		err = json.Unmarshal(raw, &a.Xres)
-		if err != nil {
-			return fmt.Errorf("error reading 'xres': %w", err)
-		}
-		delete(object, "xres")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AvEapAkaPrime to handle AdditionalProperties
-func (a AvEapAkaPrime) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["autn"], err = json.Marshal(a.Autn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'autn': %w", err)
-	}
-
-	object["avType"], err = json.Marshal(a.AvType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'avType': %w", err)
-	}
-
-	object["ckPrime"], err = json.Marshal(a.CkPrime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ckPrime': %w", err)
-	}
-
-	object["ikPrime"], err = json.Marshal(a.IkPrime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ikPrime': %w", err)
-	}
-
-	object["rand"], err = json.Marshal(a.Rand)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'rand': %w", err)
-	}
-
-	object["xres"], err = json.Marshal(a.Xres)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'xres': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AvEpsAka. Returns the specified
-// element and whether it was found
-func (a AvEpsAka) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AvEpsAka
-func (a *AvEpsAka) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AvEpsAka to handle AdditionalProperties
-func (a *AvEpsAka) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["autn"]; found {
-		err = json.Unmarshal(raw, &a.Autn)
-		if err != nil {
-			return fmt.Errorf("error reading 'autn': %w", err)
-		}
-		delete(object, "autn")
-	}
-
-	if raw, found := object["avType"]; found {
-		err = json.Unmarshal(raw, &a.AvType)
-		if err != nil {
-			return fmt.Errorf("error reading 'avType': %w", err)
-		}
-		delete(object, "avType")
-	}
-
-	if raw, found := object["kasme"]; found {
-		err = json.Unmarshal(raw, &a.Kasme)
-		if err != nil {
-			return fmt.Errorf("error reading 'kasme': %w", err)
-		}
-		delete(object, "kasme")
-	}
-
-	if raw, found := object["rand"]; found {
-		err = json.Unmarshal(raw, &a.Rand)
-		if err != nil {
-			return fmt.Errorf("error reading 'rand': %w", err)
-		}
-		delete(object, "rand")
-	}
-
-	if raw, found := object["xres"]; found {
-		err = json.Unmarshal(raw, &a.Xres)
-		if err != nil {
-			return fmt.Errorf("error reading 'xres': %w", err)
-		}
-		delete(object, "xres")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AvEpsAka to handle AdditionalProperties
-func (a AvEpsAka) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["autn"], err = json.Marshal(a.Autn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'autn': %w", err)
-	}
-
-	object["avType"], err = json.Marshal(a.AvType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'avType': %w", err)
-	}
-
-	object["kasme"], err = json.Marshal(a.Kasme)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'kasme': %w", err)
-	}
-
-	object["rand"], err = json.Marshal(a.Rand)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'rand': %w", err)
-	}
-
-	object["xres"], err = json.Marshal(a.Xres)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'xres': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AvImsGbaEapAka. Returns the specified
-// element and whether it was found
-func (a AvImsGbaEapAka) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AvImsGbaEapAka
-func (a *AvImsGbaEapAka) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AvImsGbaEapAka to handle AdditionalProperties
-func (a *AvImsGbaEapAka) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["autn"]; found {
-		err = json.Unmarshal(raw, &a.Autn)
-		if err != nil {
-			return fmt.Errorf("error reading 'autn': %w", err)
-		}
-		delete(object, "autn")
-	}
-
-	if raw, found := object["avType"]; found {
-		err = json.Unmarshal(raw, &a.AvType)
-		if err != nil {
-			return fmt.Errorf("error reading 'avType': %w", err)
-		}
-		delete(object, "avType")
-	}
-
-	if raw, found := object["ck"]; found {
-		err = json.Unmarshal(raw, &a.Ck)
-		if err != nil {
-			return fmt.Errorf("error reading 'ck': %w", err)
-		}
-		delete(object, "ck")
-	}
-
-	if raw, found := object["ik"]; found {
-		err = json.Unmarshal(raw, &a.Ik)
-		if err != nil {
-			return fmt.Errorf("error reading 'ik': %w", err)
-		}
-		delete(object, "ik")
-	}
-
-	if raw, found := object["rand"]; found {
-		err = json.Unmarshal(raw, &a.Rand)
-		if err != nil {
-			return fmt.Errorf("error reading 'rand': %w", err)
-		}
-		delete(object, "rand")
-	}
-
-	if raw, found := object["xres"]; found {
-		err = json.Unmarshal(raw, &a.Xres)
-		if err != nil {
-			return fmt.Errorf("error reading 'xres': %w", err)
-		}
-		delete(object, "xres")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AvImsGbaEapAka to handle AdditionalProperties
-func (a AvImsGbaEapAka) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["autn"], err = json.Marshal(a.Autn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'autn': %w", err)
-	}
-
-	object["avType"], err = json.Marshal(a.AvType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'avType': %w", err)
-	}
-
-	object["ck"], err = json.Marshal(a.Ck)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ck': %w", err)
-	}
-
-	object["ik"], err = json.Marshal(a.Ik)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ik': %w", err)
-	}
-
-	object["rand"], err = json.Marshal(a.Rand)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'rand': %w", err)
-	}
-
-	object["xres"], err = json.Marshal(a.Xres)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'xres': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for HssAuthenticationInfoRequest. Returns the specified
-// element and whether it was found
-func (a HssAuthenticationInfoRequest) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for HssAuthenticationInfoRequest
-func (a *HssAuthenticationInfoRequest) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for HssAuthenticationInfoRequest to handle AdditionalProperties
-func (a *HssAuthenticationInfoRequest) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["anId"]; found {
-		err = json.Unmarshal(raw, &a.AnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'anId': %w", err)
-		}
-		delete(object, "anId")
-	}
-
-	if raw, found := object["hssAuthType"]; found {
-		err = json.Unmarshal(raw, &a.HssAuthType)
-		if err != nil {
-			return fmt.Errorf("error reading 'hssAuthType': %w", err)
-		}
-		delete(object, "hssAuthType")
-	}
-
-	if raw, found := object["numOfRequestedVectors"]; found {
-		err = json.Unmarshal(raw, &a.NumOfRequestedVectors)
-		if err != nil {
-			return fmt.Errorf("error reading 'numOfRequestedVectors': %w", err)
-		}
-		delete(object, "numOfRequestedVectors")
-	}
-
-	if raw, found := object["requestingNodeType"]; found {
-		err = json.Unmarshal(raw, &a.RequestingNodeType)
-		if err != nil {
-			return fmt.Errorf("error reading 'requestingNodeType': %w", err)
-		}
-		delete(object, "requestingNodeType")
-	}
-
-	if raw, found := object["resynchronizationInfo"]; found {
-		err = json.Unmarshal(raw, &a.ResynchronizationInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'resynchronizationInfo': %w", err)
-		}
-		delete(object, "resynchronizationInfo")
-	}
-
-	if raw, found := object["servingNetworkId"]; found {
-		err = json.Unmarshal(raw, &a.ServingNetworkId)
-		if err != nil {
-			return fmt.Errorf("error reading 'servingNetworkId': %w", err)
-		}
-		delete(object, "servingNetworkId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for HssAuthenticationInfoRequest to handle AdditionalProperties
-func (a HssAuthenticationInfoRequest) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AnId != nil {
-		object["anId"], err = json.Marshal(a.AnId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anId': %w", err)
-		}
-	}
-
-	object["hssAuthType"], err = json.Marshal(a.HssAuthType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'hssAuthType': %w", err)
-	}
-
-	object["numOfRequestedVectors"], err = json.Marshal(a.NumOfRequestedVectors)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'numOfRequestedVectors': %w", err)
-	}
-
-	if a.RequestingNodeType != nil {
-		object["requestingNodeType"], err = json.Marshal(a.RequestingNodeType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'requestingNodeType': %w", err)
-		}
-	}
-
-	if a.ResynchronizationInfo != nil {
-		object["resynchronizationInfo"], err = json.Marshal(a.ResynchronizationInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'resynchronizationInfo': %w", err)
-		}
-	}
-
-	if a.ServingNetworkId != nil {
-		object["servingNetworkId"], err = json.Marshal(a.ServingNetworkId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'servingNetworkId': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for HssAuthenticationInfoResult. Returns the specified
-// element and whether it was found
-func (a HssAuthenticationInfoResult) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for HssAuthenticationInfoResult
-func (a *HssAuthenticationInfoResult) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for HssAuthenticationInfoResult to handle AdditionalProperties
-func (a *HssAuthenticationInfoResult) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["hssAuthenticationVectors"]; found {
-		err = json.Unmarshal(raw, &a.HssAuthenticationVectors)
-		if err != nil {
-			return fmt.Errorf("error reading 'hssAuthenticationVectors': %w", err)
-		}
-		delete(object, "hssAuthenticationVectors")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for HssAuthenticationInfoResult to handle AdditionalProperties
-func (a HssAuthenticationInfoResult) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["hssAuthenticationVectors"], err = json.Marshal(a.HssAuthenticationVectors)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'hssAuthenticationVectors': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ResynchronizationInfo. Returns the specified
-// element and whether it was found
-func (a ResynchronizationInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ResynchronizationInfo
-func (a *ResynchronizationInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ResynchronizationInfo to handle AdditionalProperties
-func (a *ResynchronizationInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["auts"]; found {
-		err = json.Unmarshal(raw, &a.Auts)
-		if err != nil {
-			return fmt.Errorf("error reading 'auts': %w", err)
-		}
-		delete(object, "auts")
-	}
-
-	if raw, found := object["rand"]; found {
-		err = json.Unmarshal(raw, &a.Rand)
-		if err != nil {
-			return fmt.Errorf("error reading 'rand': %w", err)
-		}
-		delete(object, "rand")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ResynchronizationInfo to handle AdditionalProperties
-func (a ResynchronizationInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["auts"], err = json.Marshal(a.Auts)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'auts': %w", err)
-	}
-
-	object["rand"], err = json.Marshal(a.Rand)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'rand': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for RgAuthCtx. Returns the specified
-// element and whether it was found
-func (a RgAuthCtx) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for RgAuthCtx
-func (a *RgAuthCtx) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for RgAuthCtx to handle AdditionalProperties
-func (a *RgAuthCtx) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authInd"]; found {
-		err = json.Unmarshal(raw, &a.AuthInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'authInd': %w", err)
-		}
-		delete(object, "authInd")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for RgAuthCtx to handle AdditionalProperties
-func (a RgAuthCtx) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["authInd"], err = json.Marshal(a.AuthInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authInd': %w", err)
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// AsAvEapAkaPrime returns the union data inside the AuthenticationVector as a AvEapAkaPrime
-func (t AuthenticationVector) AsAvEapAkaPrime() (AvEapAkaPrime, error) {
-	var body AvEapAkaPrime
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAvEapAkaPrime overwrites any union data inside the AuthenticationVector as the provided AvEapAkaPrime
-func (t *AuthenticationVector) FromAvEapAkaPrime(v AvEapAkaPrime) error {
-	v.AvType = "EAP_AKA_PRIME"
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAvEapAkaPrime performs a merge with any union data inside the AuthenticationVector, using the provided AvEapAkaPrime
-func (t *AuthenticationVector) MergeAvEapAkaPrime(v AvEapAkaPrime) error {
-	v.AvType = "EAP_AKA_PRIME"
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsAv5GHeAka returns the union data inside the AuthenticationVector as a Av5GHeAka
-func (t AuthenticationVector) AsAv5GHeAka() (Av5GHeAka, error) {
-	var body Av5GHeAka
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAv5GHeAka overwrites any union data inside the AuthenticationVector as the provided Av5GHeAka
-func (t *AuthenticationVector) FromAv5GHeAka(v Av5GHeAka) error {
-	v.AvType = "5G_HE_AKA"
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAv5GHeAka performs a merge with any union data inside the AuthenticationVector, using the provided Av5GHeAka
-func (t *AuthenticationVector) MergeAv5GHeAka(v Av5GHeAka) error {
-	v.AvType = "5G_HE_AKA"
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t AuthenticationVector) Discriminator() (string, error) {
-	var discriminator struct {
-		Discriminator string `json:"avType"`
-	}
-	err := json.Unmarshal(t.union, &discriminator)
-	return discriminator.Discriminator, err
-}
-
-func (t AuthenticationVector) ValueByDiscriminator() (interface{}, error) {
-	discriminator, err := t.Discriminator()
-	if err != nil {
-		return nil, err
-	}
-	switch discriminator {
-	case "5G_HE_AKA":
-		return t.AsAv5GHeAka()
-	case "EAP_AKA_PRIME":
-		return t.AsAvEapAkaPrime()
-	default:
-		return nil, errors.New("unknown discriminator value: " + discriminator)
-	}
-}
-
-func (t AuthenticationVector) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *AuthenticationVector) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsHssAuthenticationVectors0 returns the union data inside the HssAuthenticationVectors as a HssAuthenticationVectors0
-func (t HssAuthenticationVectors) AsHssAuthenticationVectors0() (HssAuthenticationVectors0, error) {
-	var body HssAuthenticationVectors0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromHssAuthenticationVectors0 overwrites any union data inside the HssAuthenticationVectors as the provided HssAuthenticationVectors0
-func (t *HssAuthenticationVectors) FromHssAuthenticationVectors0(v HssAuthenticationVectors0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeHssAuthenticationVectors0 performs a merge with any union data inside the HssAuthenticationVectors, using the provided HssAuthenticationVectors0
-func (t *HssAuthenticationVectors) MergeHssAuthenticationVectors0(v HssAuthenticationVectors0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsHssAuthenticationVectors1 returns the union data inside the HssAuthenticationVectors as a HssAuthenticationVectors1
-func (t HssAuthenticationVectors) AsHssAuthenticationVectors1() (HssAuthenticationVectors1, error) {
-	var body HssAuthenticationVectors1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromHssAuthenticationVectors1 overwrites any union data inside the HssAuthenticationVectors as the provided HssAuthenticationVectors1
-func (t *HssAuthenticationVectors) FromHssAuthenticationVectors1(v HssAuthenticationVectors1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeHssAuthenticationVectors1 performs a merge with any union data inside the HssAuthenticationVectors, using the provided HssAuthenticationVectors1
-func (t *HssAuthenticationVectors) MergeHssAuthenticationVectors1(v HssAuthenticationVectors1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsHssAuthenticationVectors2 returns the union data inside the HssAuthenticationVectors as a HssAuthenticationVectors2
-func (t HssAuthenticationVectors) AsHssAuthenticationVectors2() (HssAuthenticationVectors2, error) {
-	var body HssAuthenticationVectors2
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromHssAuthenticationVectors2 overwrites any union data inside the HssAuthenticationVectors as the provided HssAuthenticationVectors2
-func (t *HssAuthenticationVectors) FromHssAuthenticationVectors2(v HssAuthenticationVectors2) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeHssAuthenticationVectors2 performs a merge with any union data inside the HssAuthenticationVectors, using the provided HssAuthenticationVectors2
-func (t *HssAuthenticationVectors) MergeHssAuthenticationVectors2(v HssAuthenticationVectors2) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t HssAuthenticationVectors) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *HssAuthenticationVectors) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
+type GenerateAvJSONRequestBody = externalRef0.HssAuthenticationInfoRequest
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1883,9 +145,9 @@ type ClientInterface interface {
 	DeleteAuth(ctx context.Context, supi externalRef0.Supi, authEventId string, body DeleteAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GenerateAvWithBody request with any body
-	GenerateAvWithBody(ctx context.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GenerateAvWithBody(ctx context.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	GenerateAv(ctx context.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, body GenerateAvJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GenerateAv(ctx context.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, body GenerateAvJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) GetRgAuthData(ctx context.Context, supiOrSuci externalRef0.SupiOrSuci, params *GetRgAuthDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -1972,7 +234,7 @@ func (c *Client) DeleteAuth(ctx context.Context, supi externalRef0.Supi, authEve
 	return c.Client.Do(req)
 }
 
-func (c *Client) GenerateAvWithBody(ctx context.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GenerateAvWithBody(ctx context.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGenerateAvRequestWithBody(c.Server, supi, hssAuthType, contentType, body)
 	if err != nil {
 		return nil, err
@@ -1984,7 +246,7 @@ func (c *Client) GenerateAvWithBody(ctx context.Context, supi externalRef0.Supi,
 	return c.Client.Do(req)
 }
 
-func (c *Client) GenerateAv(ctx context.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, body GenerateAvJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GenerateAv(ctx context.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, body GenerateAvJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGenerateAvRequest(c.Server, supi, hssAuthType, body)
 	if err != nil {
 		return nil, err
@@ -2249,7 +511,7 @@ func NewDeleteAuthRequestWithBody(server string, supi externalRef0.Supi, authEve
 }
 
 // NewGenerateAvRequest calls the generic GenerateAv builder with application/json body
-func NewGenerateAvRequest(server string, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, body GenerateAvJSONRequestBody) (*http.Request, error) {
+func NewGenerateAvRequest(server string, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, body GenerateAvJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -2260,7 +522,7 @@ func NewGenerateAvRequest(server string, supi externalRef0.Supi, hssAuthType Hss
 }
 
 // NewGenerateAvRequestWithBody generates requests for GenerateAv with any type of body
-func NewGenerateAvRequestWithBody(server string, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, contentType string, body io.Reader) (*http.Request, error) {
+func NewGenerateAvRequestWithBody(server string, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -2364,15 +626,15 @@ type ClientWithResponsesInterface interface {
 	DeleteAuthWithResponse(ctx context.Context, supi externalRef0.Supi, authEventId string, body DeleteAuthJSONRequestBody, reqEditors ...RequestEditorFn) (*DeleteAuthResponse, error)
 
 	// GenerateAvWithBodyWithResponse request with any body
-	GenerateAvWithBodyWithResponse(ctx context.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GenerateAvResponse, error)
+	GenerateAvWithBodyWithResponse(ctx context.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GenerateAvResponse, error)
 
-	GenerateAvWithResponse(ctx context.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, body GenerateAvJSONRequestBody, reqEditors ...RequestEditorFn) (*GenerateAvResponse, error)
+	GenerateAvWithResponse(ctx context.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, body GenerateAvJSONRequestBody, reqEditors ...RequestEditorFn) (*GenerateAvResponse, error)
 }
 
 type GetRgAuthDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *RgAuthCtx
+	JSON200                       *externalRef0.RgAuthCtx
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -2400,7 +662,7 @@ func (r GetRgAuthDataResponse) StatusCode() int {
 type GenerateAuthDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AuthenticationInfoResult
+	JSON200                       *externalRef0.AuthenticationInfoResult
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -2429,7 +691,7 @@ func (r GenerateAuthDataResponse) StatusCode() int {
 type ConfirmAuthResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *AuthEvent
+	JSON201                       *externalRef0.AuthEvent
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON404     *externalRef0.N404
 	ApplicationproblemJSON500     *externalRef0.N500
@@ -2482,7 +744,7 @@ func (r DeleteAuthResponse) StatusCode() int {
 type GenerateAvResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *HssAuthenticationInfoResult
+	JSON200                       *externalRef0.HssAuthenticationInfoResult
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -2569,7 +831,7 @@ func (c *ClientWithResponses) DeleteAuthWithResponse(ctx context.Context, supi e
 }
 
 // GenerateAvWithBodyWithResponse request with arbitrary body returning *GenerateAvResponse
-func (c *ClientWithResponses) GenerateAvWithBodyWithResponse(ctx context.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GenerateAvResponse, error) {
+func (c *ClientWithResponses) GenerateAvWithBodyWithResponse(ctx context.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GenerateAvResponse, error) {
 	rsp, err := c.GenerateAvWithBody(ctx, supi, hssAuthType, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2577,7 +839,7 @@ func (c *ClientWithResponses) GenerateAvWithBodyWithResponse(ctx context.Context
 	return ParseGenerateAvResponse(rsp)
 }
 
-func (c *ClientWithResponses) GenerateAvWithResponse(ctx context.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri, body GenerateAvJSONRequestBody, reqEditors ...RequestEditorFn) (*GenerateAvResponse, error) {
+func (c *ClientWithResponses) GenerateAvWithResponse(ctx context.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri, body GenerateAvJSONRequestBody, reqEditors ...RequestEditorFn) (*GenerateAvResponse, error) {
 	rsp, err := c.GenerateAv(ctx, supi, hssAuthType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -2600,7 +862,7 @@ func ParseGetRgAuthDataResponse(rsp *http.Response) (*GetRgAuthDataResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RgAuthCtx
+		var dest externalRef0.RgAuthCtx
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2668,7 +930,7 @@ func ParseGenerateAuthDataResponse(rsp *http.Response) (*GenerateAuthDataRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthenticationInfoResult
+		var dest externalRef0.AuthenticationInfoResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2743,7 +1005,7 @@ func ParseConfirmAuthResponse(rsp *http.Response) (*ConfirmAuthResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest AuthEvent
+		var dest externalRef0.AuthEvent
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2861,7 +1123,7 @@ func ParseGenerateAvResponse(rsp *http.Response) (*GenerateAvResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest HssAuthenticationInfoResult
+		var dest externalRef0.HssAuthenticationInfoResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2937,7 +1199,7 @@ type ServerInterface interface {
 	DeleteAuth(c *gin.Context, supi externalRef0.Supi, authEventId string)
 	// Generate authentication data for the UE in EPS or IMS domain
 	// (POST /{supi}/hss-security-information/{hssAuthType}/generate-av)
-	GenerateAv(c *gin.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri)
+	GenerateAv(c *gin.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri)
 }
 
 // ServerInterfaceWrapper converts contexts to parameters.
@@ -3158,7 +1420,7 @@ func (siw *ServerInterfaceWrapper) GenerateAv(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "hssAuthType" -------------
-	var hssAuthType HssAuthTypeInUri
+	var hssAuthType externalRef0.HssAuthTypeInUri
 
 	err = runtime.BindStyledParameterWithOptions("simple", "hssAuthType", c.Param("hssAuthType"), &hssAuthType, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -3221,13 +1483,13 @@ type GetRgAuthDataResponseObject interface {
 	VisitGetRgAuthDataResponse(w http.ResponseWriter) error
 }
 
-type GetRgAuthData200JSONResponse RgAuthCtx
+type GetRgAuthData200JSONResponse externalRef0.RgAuthCtx
 
 func (response GetRgAuthData200JSONResponse) VisitGetRgAuthDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(RgAuthCtx(response))
+	return json.NewEncoder(w).Encode(externalRef0.RgAuthCtx(response))
 }
 
 type GetRgAuthData400ApplicationProblemPlusJSONResponse struct {
@@ -3306,13 +1568,13 @@ type GenerateAuthDataResponseObject interface {
 	VisitGenerateAuthDataResponse(w http.ResponseWriter) error
 }
 
-type GenerateAuthData200JSONResponse AuthenticationInfoResult
+type GenerateAuthData200JSONResponse externalRef0.AuthenticationInfoResult
 
 func (response GenerateAuthData200JSONResponse) VisitGenerateAuthDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(AuthenticationInfoResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.AuthenticationInfoResult(response))
 }
 
 type GenerateAuthData400ApplicationProblemPlusJSONResponse struct {
@@ -3407,7 +1669,7 @@ type ConfirmAuth201ResponseHeaders struct {
 }
 
 type ConfirmAuth201JSONResponse struct {
-	Body    AuthEvent
+	Body    externalRef0.AuthEvent
 	Headers ConfirmAuth201ResponseHeaders
 }
 
@@ -3550,8 +1812,8 @@ func (response DeleteAuthdefaultApplicationProblemPlusJSONResponse) VisitDeleteA
 }
 
 type GenerateAvRequestObject struct {
-	Supi        externalRef0.Supi `json:"supi"`
-	HssAuthType HssAuthTypeInUri  `json:"hssAuthType"`
+	Supi        externalRef0.Supi             `json:"supi"`
+	HssAuthType externalRef0.HssAuthTypeInUri `json:"hssAuthType"`
 	Body        *GenerateAvJSONRequestBody
 }
 
@@ -3559,13 +1821,13 @@ type GenerateAvResponseObject interface {
 	VisitGenerateAvResponse(w http.ResponseWriter) error
 }
 
-type GenerateAv200JSONResponse HssAuthenticationInfoResult
+type GenerateAv200JSONResponse externalRef0.HssAuthenticationInfoResult
 
 func (response GenerateAv200JSONResponse) VisitGenerateAvResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(HssAuthenticationInfoResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.HssAuthenticationInfoResult(response))
 }
 
 type GenerateAv400ApplicationProblemPlusJSONResponse struct {
@@ -3812,7 +2074,7 @@ func (sh *strictHandler) DeleteAuth(ctx *gin.Context, supi externalRef0.Supi, au
 }
 
 // GenerateAv operation middleware
-func (sh *strictHandler) GenerateAv(ctx *gin.Context, supi externalRef0.Supi, hssAuthType HssAuthTypeInUri) {
+func (sh *strictHandler) GenerateAv(ctx *gin.Context, supi externalRef0.Supi, hssAuthType externalRef0.HssAuthTypeInUri) {
 	var request GenerateAvRequestObject
 
 	request.Supi = supi

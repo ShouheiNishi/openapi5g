@@ -1,288 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        AckOfNotify:
-            additionalProperties: true
-            properties:
-                ackResult:
-                    $ref: TS29522_TrafficInfluence.yaml#/components/schemas/AfResultInfo
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                notifId:
-                    type: string
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-            required:
-                - notifId
-                - ackResult
-            type: object
-        EventNotification:
-            additionalProperties: true
-            properties:
-                accType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                adIpv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                adIpv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                appId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
-                commFailure:
-                    $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/CommunicationFailure
-                dddStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
-                dddTraDescriptor:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
-                dlDelays:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                dnaiChgType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DnaiChangeType
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                ethfDescs:
-                    items:
-                        $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription
-                    maxItems: 2
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                event:
-                    $ref: '#/components/schemas/SmfEvent'
-                fDescs:
-                    items:
-                        $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowDescription
-                    maxItems: 2
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                ipv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ipv6Addrs:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ipv6Prefixes:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                maxWaitTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                pduSeId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                pduSessType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
-                plmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                qfi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Qfi
-                reIpv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                reIpv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                rtDelays:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                snssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                sourceDnai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                sourceTraRouting:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
-                sourceUeIpv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                sourceUeIpv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                targetDnai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                targetTraRouting:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
-                targetUeIpv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                targetUeIpv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                timeStamp:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                ueMac:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
-                ulDelays:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - event
-                - timeStamp
-            type: object
-        EventSubscription:
-            additionalProperties: true
-            properties:
-                appIds:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/ApplicationId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                dddStati:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/DlDataDeliveryStatus
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                dddTraDescriptors:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                dnaiChgType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DnaiChangeType
-                event:
-                    $ref: '#/components/schemas/SmfEvent'
-            required:
-                - event
-            type: object
-        NotificationMethod:
-            description: |
-                Possible values are - PERIODIC - ONE_TIME - ON_EVENT_DETECTION
-            enum:
-                - PERIODIC
-                - ONE_TIME
-                - ON_EVENT_DETECTION
-            type: string
-        NsmfEventExposure:
-            additionalProperties: true
-            description: Represents an Individual SMF Notification Subscription resource. The serviveName property corresponds to the serviceName in the main body of the specification.
-            properties:
-                ImmeRep:
-                    type: boolean
-                altNotifFqdns:
-                    description: Alternate or backup FQDN(s) where to send Notifications.
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                altNotifIpv4Addrs:
-                    description: Alternate or backup IPv4 address(es) where to send Notifications.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                altNotifIpv6Addrs:
-                    description: Alternate or backup IPv6 address(es) where to send Notifications.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                anyUeInd:
-                    description: Any UE indication. This IE shall be present if the event subscription is applicable to any UE. Default value "false" is used, if not present.
-                    type: boolean
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                eventSubs:
-                    description: Subscribed events
-                    items:
-                        $ref: '#/components/schemas/EventSubscription'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                expiry:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                groupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
-                grpRepTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                maxReportNbr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
-                notifId:
-                    description: Notification Correlation ID assigned by the NF service consumer.
-                    type: string
-                notifMethod:
-                    $ref: '#/components/schemas/NotificationMethod'
-                notifUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                pduSeId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                repPeriod:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                sampRatio:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SamplingRatio
-                serviveName:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
-                snssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                subId:
-                    $ref: '#/components/schemas/SubId'
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - notifId
-                - notifUri
-                - eventSubs
-            type: object
-        NsmfEventExposureNotification:
-            additionalProperties: true
-            properties:
-                ackUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                eventNotifs:
-                    description: Notifications about Individual Events
-                    items:
-                        $ref: '#/components/schemas/EventNotification'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                notifId:
-                    description: Notification correlation ID
-                    type: string
-            required:
-                - notifId
-                - eventNotifs
-            type: object
-        SmfEvent:
-            description: |
-                Possible values are - AC_TY_CH: Access Type Change - UP_PATH_CH: UP Path Change - PDU_SES_REL: PDU Session Release - PLMN_CH: PLMN Change - UE_IP_CH: UE IP address change - DDDS: Downlink data delivery status - COMM_FAIL: Communication Failure - PDU_SES_EST: PDU Session Establishment - QFI_ALLOC: QFI allocation - QOS_MON: QoS Monitoring
-            enum:
-                - AC_TY_CH
-                - UP_PATH_CH
-                - PDU_SES_REL
-                - PLMN_CH
-                - UE_IP_CH
-                - DDDS
-                - COMM_FAIL
-                - PDU_SES_EST
-                - QFI_ALLOC
-                - QOS_MON
-            type: string
-        SubId:
-            description: Identifies an Individual SMF Notification Subscription. To enable that the value is used as part of a URI, the string shall only contain characters allowed according to the "lower-with-hyphen" naming convention defined in 3GPP TS 29.501. In an OpenAPI schema, the format shall be designated as "SubId".
-            format: SubId
-            type: string
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -317,7 +35,7 @@ paths:
                                                 content:
                                                     application/json:
                                                         schema:
-                                                            $ref: '#/components/schemas/AckOfNotify'
+                                                            $ref: TS29571_CommonData.yaml#/components/schemas/AckOfNotify
                                                 required: true
                                             responses:
                                                 "204":
@@ -352,7 +70,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/NsmfEventExposureNotification'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/NsmfEventExposureNotification
                                 required: true
                             responses:
                                 "204":
@@ -388,14 +106,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/NsmfEventExposure'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/NsmfEventExposure
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/NsmfEventExposure'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/NsmfEventExposure
                     description: Created.
                     headers:
                         Location:
@@ -443,7 +161,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/NsmfEventExposure'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/NsmfEventExposure
                     description: OK. Resource representation is returned
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -483,14 +201,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/NsmfEventExposure'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/NsmfEventExposure
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/NsmfEventExposure'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/NsmfEventExposure
                     description: OK. Resource was successfully modified and representation is returned
                 "204":
                     description: No Content. Resource was successfully modified

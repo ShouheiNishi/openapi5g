@@ -13,8 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/nrf/management"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -23,123 +22,6 @@ import (
 const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
-
-// Defines values for BindingLevel.
-const (
-	NFINSTANCE BindingLevel = "NF_INSTANCE"
-	NFSET      BindingLevel = "NF_SET"
-)
-
-// BindingLevel Possible values are - "NF_SET" - "NF_INSTANCE"
-type BindingLevel string
-
-// BindingResp defines model for BindingResp.
-type BindingResp struct {
-	// PcfSmFqdn Fully Qualified Domain Name
-	PcfSmFqdn *externalRef1.Fqdn `json:"pcfSmFqdn,omitempty"`
-
-	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-	PcfSmIpEndPoints     []externalRef1.IpEndPoint `json:"pcfSmIpEndPoints,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// ExtProblemDetails defines model for ExtProblemDetails.
-type ExtProblemDetails struct {
-	// AccessTokenError Error returned in the access token response message (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
-	AccessTokenError interface{} `json:"accessTokenError,omitempty"`
-
-	// AccessTokenRequest Contains information related to the access token request (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
-	AccessTokenRequest interface{}                 `json:"accessTokenRequest,omitempty"`
-	Cause              *string                     `json:"cause,omitempty"`
-	Detail             *string                     `json:"detail,omitempty"`
-	Instance           *externalRef0.Uri           `json:"instance,omitempty"`
-	InvalidParams      []externalRef0.InvalidParam `json:"invalidParams,omitempty"`
-	NrfId              *string                     `json:"nrfId,omitempty"`
-
-	// PcfSmFqdn Fully Qualified Domain Name
-	PcfSmFqdn *externalRef1.Fqdn `json:"pcfSmFqdn,omitempty"`
-
-	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-	PcfSmIpEndPoints     []externalRef1.IpEndPoint       `json:"pcfSmIpEndPoints,omitempty"`
-	Status               int                             `json:"status,omitempty"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	Title                *string                         `json:"title,omitempty"`
-	Type                 *externalRef0.Uri               `json:"type,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// ParameterCombination defines model for ParameterCombination.
-type ParameterCombination struct {
-	Dnn                  *externalRef0.Dnn      `json:"dnn,omitempty"`
-	Snssai               *externalRef0.Snssai   `json:"snssai,omitempty"`
-	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PcfBinding defines model for PcfBinding.
-type PcfBinding struct {
-	// AddIpv6Prefixes The additional IPv6 Address Prefixes of the served UE.
-	AddIpv6Prefixes []externalRef0.Ipv6Prefix `json:"addIpv6Prefixes,omitempty"`
-
-	// AddMacAddrs The additional MAC Addresses of the served UE.
-	AddMacAddrs []externalRef0.MacAddr48 `json:"addMacAddrs,omitempty"`
-
-	// BindLevel Possible values are - "NF_SET" - "NF_INSTANCE"
-	BindLevel          *BindingLevel                 `json:"bindLevel,omitempty"`
-	Dnn                externalRef0.Dnn              `json:"dnn"`
-	Gpsi               externalRef0.Gpsi             `json:"gpsi,omitempty"`
-	IpDomain           *string                       `json:"ipDomain,omitempty"`
-	Ipv4Addr           externalRef0.Ipv4Addr         `json:"ipv4Addr,omitempty"`
-	Ipv4FrameRouteList []externalRef0.Ipv4AddrMask   `json:"ipv4FrameRouteList,omitempty"`
-	Ipv6FrameRouteList []externalRef0.Ipv6Prefix     `json:"ipv6FrameRouteList,omitempty"`
-	Ipv6Prefix         *externalRef0.Ipv6Prefix      `json:"ipv6Prefix,omitempty"`
-	MacAddr48          externalRef0.MacAddr48        `json:"macAddr48,omitempty"`
-	ParaCom            *ParameterCombination         `json:"paraCom,omitempty"`
-	PcfDiamHost        externalRef0.DiameterIdentity `json:"pcfDiamHost,omitempty"`
-	PcfDiamRealm       externalRef0.DiameterIdentity `json:"pcfDiamRealm,omitempty"`
-
-	// PcfFqdn Fully Qualified Domain Name
-	PcfFqdn *externalRef1.Fqdn         `json:"pcfFqdn,omitempty"`
-	PcfId   *externalRef0.NfInstanceId `json:"pcfId,omitempty"`
-
-	// PcfIpEndPoints IP end points of the PCF hosting the Npcf_PolicyAuthorization service.
-	PcfIpEndPoints []externalRef1.IpEndPoint `json:"pcfIpEndPoints,omitempty"`
-	PcfSetId       *externalRef0.NfSetId     `json:"pcfSetId,omitempty"`
-
-	// PcfSmFqdn Fully Qualified Domain Name
-	PcfSmFqdn *externalRef1.Fqdn `json:"pcfSmFqdn,omitempty"`
-
-	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-	PcfSmIpEndPoints     []externalRef1.IpEndPoint       `json:"pcfSmIpEndPoints,omitempty"`
-	RecoveryTime         *externalRef0.DateTime          `json:"recoveryTime,omitempty"`
-	Snssai               externalRef0.Snssai             `json:"snssai"`
-	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
-	SuppFeat             *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// PcfBindingPatch defines model for PcfBindingPatch.
-type PcfBindingPatch struct {
-	// AddIpv6Prefixes The additional IPv6 Address Prefixes of the served UE.
-	AddIpv6Prefixes *[]externalRef0.Ipv6Prefix `json:"addIpv6Prefixes"`
-
-	// AddMacAddrs The additional MAC Addresses of the served UE.
-	AddMacAddrs  *[]externalRef0.MacAddr48     `json:"addMacAddrs"`
-	IpDomain     *string                       `json:"ipDomain"`
-	Ipv4Addr     *externalRef0.Ipv4AddrRm      `json:"ipv4Addr"`
-	Ipv6Prefix   *externalRef0.Ipv6PrefixRm    `json:"ipv6Prefix"`
-	MacAddr48    *externalRef0.MacAddr48Rm     `json:"macAddr48"`
-	PcfDiamHost  externalRef0.DiameterIdentity `json:"pcfDiamHost,omitempty"`
-	PcfDiamRealm externalRef0.DiameterIdentity `json:"pcfDiamRealm,omitempty"`
-
-	// PcfFqdn Fully Qualified Domain Name
-	PcfFqdn *externalRef1.Fqdn         `json:"pcfFqdn,omitempty"`
-	PcfId   *externalRef0.NfInstanceId `json:"pcfId,omitempty"`
-
-	// PcfIpEndPoints IP end points of the PCF hosting the Npcf_PolicyAuthorization service.
-	PcfIpEndPoints       []externalRef1.IpEndPoint `json:"pcfIpEndPoints,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
 
 // GetPCFBindingsParams defines parameters for GetPCFBindings.
 type GetPCFBindingsParams struct {
@@ -172,1054 +54,10 @@ type GetPCFBindingsParams struct {
 }
 
 // CreatePCFBindingJSONRequestBody defines body for CreatePCFBinding for application/json ContentType.
-type CreatePCFBindingJSONRequestBody = PcfBinding
+type CreatePCFBindingJSONRequestBody = externalRef0.PcfBinding
 
 // UpdateIndPCFBindingApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndPCFBinding for application/merge-patch+json ContentType.
-type UpdateIndPCFBindingApplicationMergePatchPlusJSONRequestBody = PcfBindingPatch
-
-// Getter for additional properties for BindingResp. Returns the specified
-// element and whether it was found
-func (a BindingResp) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for BindingResp
-func (a *BindingResp) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for BindingResp to handle AdditionalProperties
-func (a *BindingResp) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["pcfSmFqdn"]; found {
-		err = json.Unmarshal(raw, &a.PcfSmFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSmFqdn': %w", err)
-		}
-		delete(object, "pcfSmFqdn")
-	}
-
-	if raw, found := object["pcfSmIpEndPoints"]; found {
-		err = json.Unmarshal(raw, &a.PcfSmIpEndPoints)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSmIpEndPoints': %w", err)
-		}
-		delete(object, "pcfSmIpEndPoints")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for BindingResp to handle AdditionalProperties
-func (a BindingResp) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.PcfSmFqdn != nil {
-		object["pcfSmFqdn"], err = json.Marshal(a.PcfSmFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSmFqdn': %w", err)
-		}
-	}
-
-	if len(a.PcfSmIpEndPoints) != 0 {
-		object["pcfSmIpEndPoints"], err = json.Marshal(a.PcfSmIpEndPoints)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSmIpEndPoints': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ExtProblemDetails. Returns the specified
-// element and whether it was found
-func (a ExtProblemDetails) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ExtProblemDetails
-func (a *ExtProblemDetails) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ExtProblemDetails to handle AdditionalProperties
-func (a *ExtProblemDetails) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessTokenError"]; found {
-		err = json.Unmarshal(raw, &a.AccessTokenError)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessTokenError': %w", err)
-		}
-		delete(object, "accessTokenError")
-	}
-
-	if raw, found := object["accessTokenRequest"]; found {
-		err = json.Unmarshal(raw, &a.AccessTokenRequest)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessTokenRequest': %w", err)
-		}
-		delete(object, "accessTokenRequest")
-	}
-
-	if raw, found := object["cause"]; found {
-		err = json.Unmarshal(raw, &a.Cause)
-		if err != nil {
-			return fmt.Errorf("error reading 'cause': %w", err)
-		}
-		delete(object, "cause")
-	}
-
-	if raw, found := object["detail"]; found {
-		err = json.Unmarshal(raw, &a.Detail)
-		if err != nil {
-			return fmt.Errorf("error reading 'detail': %w", err)
-		}
-		delete(object, "detail")
-	}
-
-	if raw, found := object["instance"]; found {
-		err = json.Unmarshal(raw, &a.Instance)
-		if err != nil {
-			return fmt.Errorf("error reading 'instance': %w", err)
-		}
-		delete(object, "instance")
-	}
-
-	if raw, found := object["invalidParams"]; found {
-		err = json.Unmarshal(raw, &a.InvalidParams)
-		if err != nil {
-			return fmt.Errorf("error reading 'invalidParams': %w", err)
-		}
-		delete(object, "invalidParams")
-	}
-
-	if raw, found := object["nrfId"]; found {
-		err = json.Unmarshal(raw, &a.NrfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrfId': %w", err)
-		}
-		delete(object, "nrfId")
-	}
-
-	if raw, found := object["pcfSmFqdn"]; found {
-		err = json.Unmarshal(raw, &a.PcfSmFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSmFqdn': %w", err)
-		}
-		delete(object, "pcfSmFqdn")
-	}
-
-	if raw, found := object["pcfSmIpEndPoints"]; found {
-		err = json.Unmarshal(raw, &a.PcfSmIpEndPoints)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSmIpEndPoints': %w", err)
-		}
-		delete(object, "pcfSmIpEndPoints")
-	}
-
-	if raw, found := object["status"]; found {
-		err = json.Unmarshal(raw, &a.Status)
-		if err != nil {
-			return fmt.Errorf("error reading 'status': %w", err)
-		}
-		delete(object, "status")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["title"]; found {
-		err = json.Unmarshal(raw, &a.Title)
-		if err != nil {
-			return fmt.Errorf("error reading 'title': %w", err)
-		}
-		delete(object, "title")
-	}
-
-	if raw, found := object["type"]; found {
-		err = json.Unmarshal(raw, &a.Type)
-		if err != nil {
-			return fmt.Errorf("error reading 'type': %w", err)
-		}
-		delete(object, "type")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ExtProblemDetails to handle AdditionalProperties
-func (a ExtProblemDetails) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AccessTokenError != nil {
-		object["accessTokenError"], err = json.Marshal(a.AccessTokenError)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessTokenError': %w", err)
-		}
-	}
-
-	if a.AccessTokenRequest != nil {
-		object["accessTokenRequest"], err = json.Marshal(a.AccessTokenRequest)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessTokenRequest': %w", err)
-		}
-	}
-
-	if a.Cause != nil {
-		object["cause"], err = json.Marshal(a.Cause)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cause': %w", err)
-		}
-	}
-
-	if a.Detail != nil {
-		object["detail"], err = json.Marshal(a.Detail)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'detail': %w", err)
-		}
-	}
-
-	if a.Instance != nil {
-		object["instance"], err = json.Marshal(a.Instance)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'instance': %w", err)
-		}
-	}
-
-	if len(a.InvalidParams) != 0 {
-		object["invalidParams"], err = json.Marshal(a.InvalidParams)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)
-		}
-	}
-
-	if a.NrfId != nil {
-		object["nrfId"], err = json.Marshal(a.NrfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nrfId': %w", err)
-		}
-	}
-
-	if a.PcfSmFqdn != nil {
-		object["pcfSmFqdn"], err = json.Marshal(a.PcfSmFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSmFqdn': %w", err)
-		}
-	}
-
-	if len(a.PcfSmIpEndPoints) != 0 {
-		object["pcfSmIpEndPoints"], err = json.Marshal(a.PcfSmIpEndPoints)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSmIpEndPoints': %w", err)
-		}
-	}
-
-	if a.Status != 0 {
-		object["status"], err = json.Marshal(a.Status)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'status': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.Title != nil {
-		object["title"], err = json.Marshal(a.Title)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'title': %w", err)
-		}
-	}
-
-	if a.Type != nil {
-		object["type"], err = json.Marshal(a.Type)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'type': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ParameterCombination. Returns the specified
-// element and whether it was found
-func (a ParameterCombination) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ParameterCombination
-func (a *ParameterCombination) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ParameterCombination to handle AdditionalProperties
-func (a *ParameterCombination) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["snssai"]; found {
-		err = json.Unmarshal(raw, &a.Snssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssai': %w", err)
-		}
-		delete(object, "snssai")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ParameterCombination to handle AdditionalProperties
-func (a ParameterCombination) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if a.Snssai != nil {
-		object["snssai"], err = json.Marshal(a.Snssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PcfBinding. Returns the specified
-// element and whether it was found
-func (a PcfBinding) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PcfBinding
-func (a *PcfBinding) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PcfBinding to handle AdditionalProperties
-func (a *PcfBinding) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["addIpv6Prefixes"]; found {
-		err = json.Unmarshal(raw, &a.AddIpv6Prefixes)
-		if err != nil {
-			return fmt.Errorf("error reading 'addIpv6Prefixes': %w", err)
-		}
-		delete(object, "addIpv6Prefixes")
-	}
-
-	if raw, found := object["addMacAddrs"]; found {
-		err = json.Unmarshal(raw, &a.AddMacAddrs)
-		if err != nil {
-			return fmt.Errorf("error reading 'addMacAddrs': %w", err)
-		}
-		delete(object, "addMacAddrs")
-	}
-
-	if raw, found := object["bindLevel"]; found {
-		err = json.Unmarshal(raw, &a.BindLevel)
-		if err != nil {
-			return fmt.Errorf("error reading 'bindLevel': %w", err)
-		}
-		delete(object, "bindLevel")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["gpsi"]; found {
-		err = json.Unmarshal(raw, &a.Gpsi)
-		if err != nil {
-			return fmt.Errorf("error reading 'gpsi': %w", err)
-		}
-		delete(object, "gpsi")
-	}
-
-	if raw, found := object["ipDomain"]; found {
-		err = json.Unmarshal(raw, &a.IpDomain)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipDomain': %w", err)
-		}
-		delete(object, "ipDomain")
-	}
-
-	if raw, found := object["ipv4Addr"]; found {
-		err = json.Unmarshal(raw, &a.Ipv4Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv4Addr': %w", err)
-		}
-		delete(object, "ipv4Addr")
-	}
-
-	if raw, found := object["ipv4FrameRouteList"]; found {
-		err = json.Unmarshal(raw, &a.Ipv4FrameRouteList)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv4FrameRouteList': %w", err)
-		}
-		delete(object, "ipv4FrameRouteList")
-	}
-
-	if raw, found := object["ipv6FrameRouteList"]; found {
-		err = json.Unmarshal(raw, &a.Ipv6FrameRouteList)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv6FrameRouteList': %w", err)
-		}
-		delete(object, "ipv6FrameRouteList")
-	}
-
-	if raw, found := object["ipv6Prefix"]; found {
-		err = json.Unmarshal(raw, &a.Ipv6Prefix)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv6Prefix': %w", err)
-		}
-		delete(object, "ipv6Prefix")
-	}
-
-	if raw, found := object["macAddr48"]; found {
-		err = json.Unmarshal(raw, &a.MacAddr48)
-		if err != nil {
-			return fmt.Errorf("error reading 'macAddr48': %w", err)
-		}
-		delete(object, "macAddr48")
-	}
-
-	if raw, found := object["paraCom"]; found {
-		err = json.Unmarshal(raw, &a.ParaCom)
-		if err != nil {
-			return fmt.Errorf("error reading 'paraCom': %w", err)
-		}
-		delete(object, "paraCom")
-	}
-
-	if raw, found := object["pcfDiamHost"]; found {
-		err = json.Unmarshal(raw, &a.PcfDiamHost)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfDiamHost': %w", err)
-		}
-		delete(object, "pcfDiamHost")
-	}
-
-	if raw, found := object["pcfDiamRealm"]; found {
-		err = json.Unmarshal(raw, &a.PcfDiamRealm)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfDiamRealm': %w", err)
-		}
-		delete(object, "pcfDiamRealm")
-	}
-
-	if raw, found := object["pcfFqdn"]; found {
-		err = json.Unmarshal(raw, &a.PcfFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfFqdn': %w", err)
-		}
-		delete(object, "pcfFqdn")
-	}
-
-	if raw, found := object["pcfId"]; found {
-		err = json.Unmarshal(raw, &a.PcfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfId': %w", err)
-		}
-		delete(object, "pcfId")
-	}
-
-	if raw, found := object["pcfIpEndPoints"]; found {
-		err = json.Unmarshal(raw, &a.PcfIpEndPoints)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfIpEndPoints': %w", err)
-		}
-		delete(object, "pcfIpEndPoints")
-	}
-
-	if raw, found := object["pcfSetId"]; found {
-		err = json.Unmarshal(raw, &a.PcfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSetId': %w", err)
-		}
-		delete(object, "pcfSetId")
-	}
-
-	if raw, found := object["pcfSmFqdn"]; found {
-		err = json.Unmarshal(raw, &a.PcfSmFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSmFqdn': %w", err)
-		}
-		delete(object, "pcfSmFqdn")
-	}
-
-	if raw, found := object["pcfSmIpEndPoints"]; found {
-		err = json.Unmarshal(raw, &a.PcfSmIpEndPoints)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSmIpEndPoints': %w", err)
-		}
-		delete(object, "pcfSmIpEndPoints")
-	}
-
-	if raw, found := object["recoveryTime"]; found {
-		err = json.Unmarshal(raw, &a.RecoveryTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'recoveryTime': %w", err)
-		}
-		delete(object, "recoveryTime")
-	}
-
-	if raw, found := object["snssai"]; found {
-		err = json.Unmarshal(raw, &a.Snssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssai': %w", err)
-		}
-		delete(object, "snssai")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["suppFeat"]; found {
-		err = json.Unmarshal(raw, &a.SuppFeat)
-		if err != nil {
-			return fmt.Errorf("error reading 'suppFeat': %w", err)
-		}
-		delete(object, "suppFeat")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PcfBinding to handle AdditionalProperties
-func (a PcfBinding) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AddIpv6Prefixes) != 0 {
-		object["addIpv6Prefixes"], err = json.Marshal(a.AddIpv6Prefixes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'addIpv6Prefixes': %w", err)
-		}
-	}
-
-	if len(a.AddMacAddrs) != 0 {
-		object["addMacAddrs"], err = json.Marshal(a.AddMacAddrs)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'addMacAddrs': %w", err)
-		}
-	}
-
-	if a.BindLevel != nil {
-		object["bindLevel"], err = json.Marshal(a.BindLevel)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'bindLevel': %w", err)
-		}
-	}
-
-	object["dnn"], err = json.Marshal(a.Dnn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-	}
-
-	if len(a.Gpsi) != 0 {
-		object["gpsi"], err = json.Marshal(a.Gpsi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
-		}
-	}
-
-	if a.IpDomain != nil {
-		object["ipDomain"], err = json.Marshal(a.IpDomain)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipDomain': %w", err)
-		}
-	}
-
-	if len(a.Ipv4Addr) != 0 {
-		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
-		}
-	}
-
-	if len(a.Ipv4FrameRouteList) != 0 {
-		object["ipv4FrameRouteList"], err = json.Marshal(a.Ipv4FrameRouteList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv4FrameRouteList': %w", err)
-		}
-	}
-
-	if len(a.Ipv6FrameRouteList) != 0 {
-		object["ipv6FrameRouteList"], err = json.Marshal(a.Ipv6FrameRouteList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv6FrameRouteList': %w", err)
-		}
-	}
-
-	if a.Ipv6Prefix != nil {
-		object["ipv6Prefix"], err = json.Marshal(a.Ipv6Prefix)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv6Prefix': %w", err)
-		}
-	}
-
-	if len(a.MacAddr48) != 0 {
-		object["macAddr48"], err = json.Marshal(a.MacAddr48)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'macAddr48': %w", err)
-		}
-	}
-
-	if a.ParaCom != nil {
-		object["paraCom"], err = json.Marshal(a.ParaCom)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'paraCom': %w", err)
-		}
-	}
-
-	if len(a.PcfDiamHost) != 0 {
-		object["pcfDiamHost"], err = json.Marshal(a.PcfDiamHost)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfDiamHost': %w", err)
-		}
-	}
-
-	if len(a.PcfDiamRealm) != 0 {
-		object["pcfDiamRealm"], err = json.Marshal(a.PcfDiamRealm)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfDiamRealm': %w", err)
-		}
-	}
-
-	if a.PcfFqdn != nil {
-		object["pcfFqdn"], err = json.Marshal(a.PcfFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfFqdn': %w", err)
-		}
-	}
-
-	if a.PcfId != nil {
-		object["pcfId"], err = json.Marshal(a.PcfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfId': %w", err)
-		}
-	}
-
-	if len(a.PcfIpEndPoints) != 0 {
-		object["pcfIpEndPoints"], err = json.Marshal(a.PcfIpEndPoints)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfIpEndPoints': %w", err)
-		}
-	}
-
-	if a.PcfSetId != nil {
-		object["pcfSetId"], err = json.Marshal(a.PcfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSetId': %w", err)
-		}
-	}
-
-	if a.PcfSmFqdn != nil {
-		object["pcfSmFqdn"], err = json.Marshal(a.PcfSmFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSmFqdn': %w", err)
-		}
-	}
-
-	if len(a.PcfSmIpEndPoints) != 0 {
-		object["pcfSmIpEndPoints"], err = json.Marshal(a.PcfSmIpEndPoints)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSmIpEndPoints': %w", err)
-		}
-	}
-
-	if a.RecoveryTime != nil {
-		object["recoveryTime"], err = json.Marshal(a.RecoveryTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'recoveryTime': %w", err)
-		}
-	}
-
-	object["snssai"], err = json.Marshal(a.Snssai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SuppFeat != nil {
-		object["suppFeat"], err = json.Marshal(a.SuppFeat)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'suppFeat': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PcfBindingPatch. Returns the specified
-// element and whether it was found
-func (a PcfBindingPatch) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PcfBindingPatch
-func (a *PcfBindingPatch) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PcfBindingPatch to handle AdditionalProperties
-func (a *PcfBindingPatch) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["addIpv6Prefixes"]; found {
-		err = json.Unmarshal(raw, &a.AddIpv6Prefixes)
-		if err != nil {
-			return fmt.Errorf("error reading 'addIpv6Prefixes': %w", err)
-		}
-		delete(object, "addIpv6Prefixes")
-	}
-
-	if raw, found := object["addMacAddrs"]; found {
-		err = json.Unmarshal(raw, &a.AddMacAddrs)
-		if err != nil {
-			return fmt.Errorf("error reading 'addMacAddrs': %w", err)
-		}
-		delete(object, "addMacAddrs")
-	}
-
-	if raw, found := object["ipDomain"]; found {
-		err = json.Unmarshal(raw, &a.IpDomain)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipDomain': %w", err)
-		}
-		delete(object, "ipDomain")
-	}
-
-	if raw, found := object["ipv4Addr"]; found {
-		err = json.Unmarshal(raw, &a.Ipv4Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv4Addr': %w", err)
-		}
-		delete(object, "ipv4Addr")
-	}
-
-	if raw, found := object["ipv6Prefix"]; found {
-		err = json.Unmarshal(raw, &a.Ipv6Prefix)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv6Prefix': %w", err)
-		}
-		delete(object, "ipv6Prefix")
-	}
-
-	if raw, found := object["macAddr48"]; found {
-		err = json.Unmarshal(raw, &a.MacAddr48)
-		if err != nil {
-			return fmt.Errorf("error reading 'macAddr48': %w", err)
-		}
-		delete(object, "macAddr48")
-	}
-
-	if raw, found := object["pcfDiamHost"]; found {
-		err = json.Unmarshal(raw, &a.PcfDiamHost)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfDiamHost': %w", err)
-		}
-		delete(object, "pcfDiamHost")
-	}
-
-	if raw, found := object["pcfDiamRealm"]; found {
-		err = json.Unmarshal(raw, &a.PcfDiamRealm)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfDiamRealm': %w", err)
-		}
-		delete(object, "pcfDiamRealm")
-	}
-
-	if raw, found := object["pcfFqdn"]; found {
-		err = json.Unmarshal(raw, &a.PcfFqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfFqdn': %w", err)
-		}
-		delete(object, "pcfFqdn")
-	}
-
-	if raw, found := object["pcfId"]; found {
-		err = json.Unmarshal(raw, &a.PcfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfId': %w", err)
-		}
-		delete(object, "pcfId")
-	}
-
-	if raw, found := object["pcfIpEndPoints"]; found {
-		err = json.Unmarshal(raw, &a.PcfIpEndPoints)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfIpEndPoints': %w", err)
-		}
-		delete(object, "pcfIpEndPoints")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PcfBindingPatch to handle AdditionalProperties
-func (a PcfBindingPatch) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["addIpv6Prefixes"], err = json.Marshal(a.AddIpv6Prefixes)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'addIpv6Prefixes': %w", err)
-	}
-
-	object["addMacAddrs"], err = json.Marshal(a.AddMacAddrs)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'addMacAddrs': %w", err)
-	}
-
-	object["ipDomain"], err = json.Marshal(a.IpDomain)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ipDomain': %w", err)
-	}
-
-	object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
-	}
-
-	object["ipv6Prefix"], err = json.Marshal(a.Ipv6Prefix)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ipv6Prefix': %w", err)
-	}
-
-	object["macAddr48"], err = json.Marshal(a.MacAddr48)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'macAddr48': %w", err)
-	}
-
-	if len(a.PcfDiamHost) != 0 {
-		object["pcfDiamHost"], err = json.Marshal(a.PcfDiamHost)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfDiamHost': %w", err)
-		}
-	}
-
-	if len(a.PcfDiamRealm) != 0 {
-		object["pcfDiamRealm"], err = json.Marshal(a.PcfDiamRealm)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfDiamRealm': %w", err)
-		}
-	}
-
-	if a.PcfFqdn != nil {
-		object["pcfFqdn"], err = json.Marshal(a.PcfFqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfFqdn': %w", err)
-		}
-	}
-
-	if a.PcfId != nil {
-		object["pcfId"], err = json.Marshal(a.PcfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfId': %w", err)
-		}
-	}
-
-	if len(a.PcfIpEndPoints) != 0 {
-		object["pcfIpEndPoints"], err = json.Marshal(a.PcfIpEndPoints)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfIpEndPoints': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type UpdateIndPCFBindingApplicationMergePatchPlusJSONRequestBody = externalRef0.PcfBindingPatch
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1738,7 +576,7 @@ type ClientWithResponsesInterface interface {
 type GetPCFBindingsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *PcfBinding
+	JSON200                       *externalRef0.PcfBinding
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -1769,10 +607,10 @@ func (r GetPCFBindingsResponse) StatusCode() int {
 type CreatePCFBindingResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *PcfBinding
+	JSON201                       *externalRef0.PcfBinding
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
-	ApplicationproblemJSON403     *ExtProblemDetails
+	ApplicationproblemJSON403     *externalRef0.BSFExtProblemDetails
 	ApplicationproblemJSON404     *externalRef0.N404
 	ApplicationproblemJSON411     *externalRef0.N411
 	ApplicationproblemJSON413     *externalRef0.N413
@@ -1833,7 +671,7 @@ func (r DeleteIndPCFBindingResponse) StatusCode() int {
 type UpdateIndPCFBindingResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *PcfBinding
+	JSON200                       *externalRef0.PcfBinding
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -1932,7 +770,7 @@ func ParseGetPCFBindingsResponse(rsp *http.Response) (*GetPCFBindingsResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PcfBinding
+		var dest externalRef0.PcfBinding
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2027,7 +865,7 @@ func ParseCreatePCFBindingResponse(rsp *http.Response) (*CreatePCFBindingRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest PcfBinding
+		var dest externalRef0.PcfBinding
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2048,7 +886,7 @@ func ParseCreatePCFBindingResponse(rsp *http.Response) (*CreatePCFBindingRespons
 		response.ApplicationproblemJSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest ExtProblemDetails
+		var dest externalRef0.BSFExtProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2222,7 +1060,7 @@ func ParseUpdateIndPCFBindingResponse(rsp *http.Response) (*UpdateIndPCFBindingR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PcfBinding
+		var dest externalRef0.PcfBinding
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2556,13 +1394,13 @@ type GetPCFBindingsResponseObject interface {
 	VisitGetPCFBindingsResponse(w http.ResponseWriter) error
 }
 
-type GetPCFBindings200JSONResponse PcfBinding
+type GetPCFBindings200JSONResponse externalRef0.PcfBinding
 
 func (response GetPCFBindings200JSONResponse) VisitGetPCFBindingsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(PcfBinding(response))
+	return json.NewEncoder(w).Encode(externalRef0.PcfBinding(response))
 }
 
 type GetPCFBindings204Response struct {
@@ -2693,7 +1531,7 @@ type CreatePCFBinding201ResponseHeaders struct {
 }
 
 type CreatePCFBinding201JSONResponse struct {
-	Body    PcfBinding
+	Body    externalRef0.PcfBinding
 	Headers CreatePCFBinding201ResponseHeaders
 }
 
@@ -2727,13 +1565,13 @@ func (response CreatePCFBinding401ApplicationProblemPlusJSONResponse) VisitCreat
 	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
-type CreatePCFBinding403ApplicationProblemPlusJSONResponse ExtProblemDetails
+type CreatePCFBinding403ApplicationProblemPlusJSONResponse externalRef0.BSFExtProblemDetails
 
 func (response CreatePCFBinding403ApplicationProblemPlusJSONResponse) VisitCreatePCFBindingResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(ExtProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.BSFExtProblemDetails(response))
 }
 
 type CreatePCFBinding404ApplicationProblemPlusJSONResponse struct {
@@ -2965,13 +1803,13 @@ type UpdateIndPCFBindingResponseObject interface {
 	VisitUpdateIndPCFBindingResponse(w http.ResponseWriter) error
 }
 
-type UpdateIndPCFBinding200JSONResponse PcfBinding
+type UpdateIndPCFBinding200JSONResponse externalRef0.PcfBinding
 
 func (response UpdateIndPCFBinding200JSONResponse) VisitUpdateIndPCFBindingResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(PcfBinding(response))
+	return json.NewEncoder(w).Encode(externalRef0.PcfBinding(response))
 }
 
 type UpdateIndPCFBinding307JSONResponse struct{ externalRef0.N307JSONResponse }

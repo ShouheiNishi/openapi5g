@@ -12,110 +12,10 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
 )
-
-// Defines values for Status.
-const (
-	NONOPERATIVE Status = "NON_OPERATIVE"
-	OPERATIVE    Status = "OPERATIVE"
-)
-
-// BootstrappingInfo Information returned by NRF in the bootstrapping response message
-type BootstrappingInfo struct {
-	// Links Map of link objects where the keys are the link relations defined in 3GPP TS 29.510 clause 6.4.6.3.3
-	Links map[string]externalRef0.LinksValueSchema `json:"_links"`
-
-	// Status Overal status of the NRF
-	Status               *Status                `json:"status,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// Status Overal status of the NRF
-type Status string
-
-// Getter for additional properties for BootstrappingInfo. Returns the specified
-// element and whether it was found
-func (a BootstrappingInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for BootstrappingInfo
-func (a *BootstrappingInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for BootstrappingInfo to handle AdditionalProperties
-func (a *BootstrappingInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["_links"]; found {
-		err = json.Unmarshal(raw, &a.Links)
-		if err != nil {
-			return fmt.Errorf("error reading '_links': %w", err)
-		}
-		delete(object, "_links")
-	}
-
-	if raw, found := object["status"]; found {
-		err = json.Unmarshal(raw, &a.Status)
-		if err != nil {
-			return fmt.Errorf("error reading 'status': %w", err)
-		}
-		delete(object, "status")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for BootstrappingInfo to handle AdditionalProperties
-func (a BootstrappingInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["_links"], err = json.Marshal(a.Links)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling '_links': %w", err)
-	}
-
-	if a.Status != nil {
-		object["status"], err = json.Marshal(a.Status)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'status': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -283,7 +183,7 @@ type ClientWithResponsesInterface interface {
 type BootstrappingInfoRequestResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	Application3gppHalJSON200     *BootstrappingInfo
+	Application3gppHalJSON200     *externalRef0.BootstrappingInfo
 	JSON307                       *externalRef0.RedirectResponse
 	JSON308                       *externalRef0.RedirectResponse
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -331,7 +231,7 @@ func ParseBootstrappingInfoRequestResponse(rsp *http.Response) (*BootstrappingIn
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest BootstrappingInfo
+		var dest externalRef0.BootstrappingInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -443,13 +343,13 @@ type BootstrappingInfoRequestResponseObject interface {
 	VisitBootstrappingInfoRequestResponse(w http.ResponseWriter) error
 }
 
-type BootstrappingInfoRequest200Application3gppHalPlusJSONResponse BootstrappingInfo
+type BootstrappingInfoRequest200Application3gppHalPlusJSONResponse externalRef0.BootstrappingInfo
 
 func (response BootstrappingInfoRequest200Application3gppHalPlusJSONResponse) VisitBootstrappingInfoRequestResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/3gppHal+json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(BootstrappingInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.BootstrappingInfo(response))
 }
 
 type BootstrappingInfoRequest307ResponseHeaders struct {

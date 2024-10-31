@@ -7,5 +7,5 @@ generate:
 output-options:
   skip-prune: true
 import-mapping:
-  ../../../modSpecs/TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+  ../../../modSpecs/TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/models
 output: middleware.gen_test.go

@@ -1229,6 +1229,25 @@ func (s *PathItemBase) GetFromJsonPointerSub(p jsonPointer) (any, error) {
 	}
 }
 
+func (s *Reference) GetFromJsonPointerSub(p jsonPointer) (any, error) {
+	switch p[0] {
+	case "Path":
+		if len(p) == 1 {
+			return s.Path, nil
+		} else {
+			return nil, errors.New("cannot traverse type string")
+		}
+	case "Pointer":
+		if len(p) == 1 {
+			return s.Pointer, nil
+		} else {
+			return nil, errors.New("cannot traverse type string")
+		}
+	default:
+		return nil, fmt.Errorf("unknown entry %s", p[0])
+	}
+}
+
 func (s *RequestBody) GetFromJsonPointerSub(p jsonPointer) (any, error) {
 	switch p[0] {
 	case "content":
@@ -1720,7 +1739,7 @@ func (s *baseRef) GetFromJsonPointerSub(p jsonPointer) (any, error) {
 		if len(p) == 1 {
 			return s.Ref, nil
 		} else {
-			return nil, errors.New("cannot traverse type string")
+			return s.Ref.GetFromJsonPointerSub(p[1:])
 		}
 	case "description":
 		if len(p) == 1 {

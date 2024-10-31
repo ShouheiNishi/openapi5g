@@ -1,16 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        NfGroupIdMapResult:
-            additionalProperties:
-                $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
-            minProperties: 1
-            type: object
-        SubscriberId:
-            pattern: ^(imsi-[0-9]{5,15}|nai-.+|msisdn-[0-9]{5,15}|extid-[^@]+@[^@]+|impi-.+|impu-.+|.+)$
-            type: string
-            x-go-type-skip-optional-pointer: true
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -42,7 +32,7 @@ paths:
                   required: true
                   schema:
                     items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType
+                        $ref: TS29571_CommonData.yaml#/components/schemas/NFType
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -52,13 +42,13 @@ paths:
                   name: subscriberId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/SubscriberId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SubscriberId
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/NfGroupIdMapResult'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupIdMapResult
                     description: Expected response to a valid request
                 "404":
                     $ref: TS29571_CommonData.yaml#/components/responses/404

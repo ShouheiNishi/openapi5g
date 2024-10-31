@@ -13,15 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/ausf/sor"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/ausf/upu"
-	externalRef2 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef3 "github.com/ShouheiNishi/openapi5g/udm/ee"
-	externalRef4 "github.com/ShouheiNishi/openapi5g/udm/niddau"
-	externalRef5 "github.com/ShouheiNishi/openapi5g/udm/pp"
-	externalRef6 "github.com/ShouheiNishi/openapi5g/udm/sdm"
-	externalRef7 "github.com/ShouheiNishi/openapi5g/udm/ueau"
-	externalRef8 "github.com/ShouheiNishi/openapi5g/udm/uecm"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -31,505 +23,79 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// Defines values for AuthMethod.
-const (
-	EAPAKAPRIME AuthMethod = "EAP_AKA_PRIME"
-	EAPTLS      AuthMethod = "EAP_TLS"
-	N5GAKA      AuthMethod = "5G_AKA"
-)
-
-// Defines values for ContextDataSetName.
-const (
-	AMF3GPP          ContextDataSetName = "AMF_3GPP"
-	AMFNON3GPP       ContextDataSetName = "AMF_NON_3GPP"
-	EESUBSCRIPTIONS  ContextDataSetName = "EE_SUBSCRIPTIONS"
-	IPSMGW           ContextDataSetName = "IP_SM_GW"
-	SDMSUBSCRIPTIONS ContextDataSetName = "SDM_SUBSCRIPTIONS"
-	SMFREG           ContextDataSetName = "SMF_REG"
-	SMSF3GPP         ContextDataSetName = "SMSF_3GPP"
-	SMSFNON3GPP      ContextDataSetName = "SMSF_NON_3GPP"
-	SUBSTONOTIFY     ContextDataSetName = "SUBS_TO_NOTIFY"
-)
-
-// Defines values for DataSetName.
-const (
-	DataSetNameAM         DataSetName = "AM"
-	DataSetNameLCSBCA     DataSetName = "LCS_BCA"
-	DataSetNameLCSMO      DataSetName = "LCS_MO"
-	DataSetNameLCSPRIVACY DataSetName = "LCS_PRIVACY"
-	DataSetNameSM         DataSetName = "SM"
-	DataSetNameSMFSEL     DataSetName = "SMF_SEL"
-	DataSetNameSMSMNG     DataSetName = "SMS_MNG"
-	DataSetNameSMSSUB     DataSetName = "SMS_SUB"
-	DataSetNameTRACE      DataSetName = "TRACE"
-	DataSetNameV2X        DataSetName = "V2X"
-)
-
-// Defines values for OperatorSpecificDataContainerDataType.
-const (
-	Boolean OperatorSpecificDataContainerDataType = "boolean"
-	Integer OperatorSpecificDataContainerDataType = "integer"
-	Number  OperatorSpecificDataContainerDataType = "number"
-	Object  OperatorSpecificDataContainerDataType = "object"
-	String  OperatorSpecificDataContainerDataType = "string"
-)
-
-// Defines values for PpDataType.
-const (
-	PpDataTypeACSINFO                      PpDataType = "ACS_INFO"
-	PpDataTypeCOMMUNICATIONCHARACTERISTICS PpDataType = "COMMUNICATION_CHARACTERISTICS"
-	PpDataTypeECRESTRICTION                PpDataType = "EC_RESTRICTION"
-	PpDataTypeEXPECTEDUEBEHAVIOUR          PpDataType = "EXPECTED_UE_BEHAVIOUR"
-	PpDataTypeLCSPRIVACY                   PpDataType = "LCS_PRIVACY"
-	PpDataTypeSORINFO                      PpDataType = "SOR_INFO"
-	PpDataTypeSTNSR                        PpDataType = "STN_SR"
-	PpDataTypeTRACE                        PpDataType = "TRACE"
-)
-
-// Defines values for Sign.
-const (
-	NEGATIVE Sign = "NEGATIVE"
-	POSITIVE Sign = "POSITIVE"
-)
-
-// Defines values for SqnScheme.
-const (
-	GENERAL      SqnScheme = "GENERAL"
-	NONTIMEBASED SqnScheme = "NON_TIME_BASED"
-	TIMEBASED    SqnScheme = "TIME_BASED"
-)
-
-// Defines values for UeUpdateStatus.
-const (
-	ACKRECEIVED         UeUpdateStatus = "ACK_RECEIVED"
-	NEGATIVEACKRECEIVED UeUpdateStatus = "NEGATIVE_ACK_RECEIVED"
-	NOTSENT             UeUpdateStatus = "NOT_SENT"
-	SENTNOACKREQUIRED   UeUpdateStatus = "SENT_NO_ACK_REQUIRED"
-	WAITINGFORACK       UeUpdateStatus = "WAITING_FOR_ACK"
-)
-
-// AccessAndMobilitySubscriptionData defines model for AccessAndMobilitySubscriptionData.
-type AccessAndMobilitySubscriptionData = externalRef6.AccessAndMobilitySubscriptionData
-
-// AllowedMtcProviderInfo defines model for AllowedMtcProviderInfo.
-type AllowedMtcProviderInfo struct {
-	AfId                   *string                              `json:"afId,omitempty"`
-	MtcProviderInformation *externalRef2.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// Amf3GppAccessRegistration defines model for Amf3GppAccessRegistration.
-type Amf3GppAccessRegistration = externalRef8.Amf3GppAccessRegistration
-
-// AmfNon3GppAccessRegistration defines model for AmfNon3GppAccessRegistration.
-type AmfNon3GppAccessRegistration = externalRef8.AmfNon3GppAccessRegistration
-
-// AmfSubscriptionInfo defines model for AmfSubscriptionInfo.
-type AmfSubscriptionInfo struct {
-	AmfInstanceId                 externalRef2.NfInstanceId `json:"amfInstanceId"`
-	SubsChangeNotifyCorrelationId *string                   `json:"subsChangeNotifyCorrelationId,omitempty"`
-	SubscriptionId                externalRef2.Uri          `json:"subscriptionId"`
-	AdditionalProperties          map[string]interface{}    `json:"-"`
-}
-
-// AuthMethod defines model for AuthMethod.
-type AuthMethod string
-
-// AuthenticationSubscription defines model for AuthenticationSubscription.
-type AuthenticationSubscription struct {
-	AlgorithmId                   *string                `json:"algorithmId,omitempty"`
-	AuthenticationManagementField string                 `json:"authenticationManagementField,omitempty"`
-	AuthenticationMethod          AuthMethod             `json:"authenticationMethod"`
-	EncOpcKey                     *string                `json:"encOpcKey,omitempty"`
-	EncPermanentKey               *string                `json:"encPermanentKey,omitempty"`
-	EncTopcKey                    *string                `json:"encTopcKey,omitempty"`
-	N5gcAuthMethod                *AuthMethod            `json:"n5gcAuthMethod,omitempty"`
-	ProtectionParameterId         *string                `json:"protectionParameterId,omitempty"`
-	RgAuthenticationInd           *bool                  `json:"rgAuthenticationInd,omitempty"`
-	SequenceNumber                *SequenceNumber        `json:"sequenceNumber,omitempty"`
-	Supi                          externalRef2.Supi      `json:"supi,omitempty"`
-	VectorGenerationInHss         *bool                  `json:"vectorGenerationInHss,omitempty"`
-	AdditionalProperties          map[string]interface{} `json:"-"`
-}
-
-// AuthorizationData defines model for AuthorizationData.
-type AuthorizationData = externalRef4.AuthorizationData
-
-// CagAckData defines model for CagAckData.
-type CagAckData struct {
-	ProvisioningTime     externalRef2.DateTime  `json:"provisioningTime"`
-	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// ContextDataSetName defines model for ContextDataSetName.
-type ContextDataSetName string
-
-// ContextDataSets defines model for ContextDataSets.
-type ContextDataSets struct {
-	Amf3Gpp                       *Amf3GppAccessRegistration      `json:"amf3Gpp,omitempty"`
-	AmfNon3Gpp                    *AmfNon3GppAccessRegistration   `json:"amfNon3Gpp,omitempty"`
-	EeSubscriptions               []EeSubscription                `json:"eeSubscriptions,omitempty"`
-	IpSmGw                        *IpSmGwRegistration             `json:"ipSmGw,omitempty"`
-	SdmSubscriptions              []SdmSubscription               `json:"sdmSubscriptions,omitempty"`
-	SmfRegistrations              *SmfRegList                     `json:"smfRegistrations,omitempty"`
-	Smsf3GppAccess                *SmsfRegistration               `json:"smsf3GppAccess,omitempty"`
-	SmsfNon3GppAccess             *SmsfRegistration               `json:"smsfNon3GppAccess,omitempty"`
-	SubscriptionDataSubscriptions []SubscriptionDataSubscriptions `json:"subscriptionDataSubscriptions,omitempty"`
-	AdditionalProperties          map[string]interface{}          `json:"-"`
-}
-
-// ContextDatasetNames defines model for ContextDatasetNames.
-type ContextDatasetNames = []ContextDataSetName
-
-// DataChangeNotify defines model for DataChangeNotify.
-type DataChangeNotify struct {
-	AdditionalSdmSubscriptions    []externalRef6.SdmSubscription   `json:"additionalSdmSubscriptions,omitempty"`
-	NotifyItems                   []externalRef2.NotifyItem        `json:"notifyItems,omitempty"`
-	OriginalCallbackReference     []externalRef2.Uri               `json:"originalCallbackReference,omitempty"`
-	SdmSubscription               *externalRef6.SdmSubscription    `json:"sdmSubscription,omitempty"`
-	SubscriptionDataSubscriptions *[]SubscriptionDataSubscriptions `json:"subscriptionDataSubscriptions,omitempty"`
-	UeId                          externalRef2.VarUeId             `json:"ueId,omitempty"`
-	AdditionalProperties          map[string]interface{}           `json:"-"`
-}
-
-// DataSetName defines model for DataSetName.
-type DataSetName string
-
-// DatasetNames defines model for DatasetNames.
-type DatasetNames = []DataSetName
-
-// Dnn defines model for Dnn.
-type Dnn = externalRef2.Dnn
-
-// EeGroupProfileData defines model for EeGroupProfileData.
-type EeGroupProfileData struct {
-	// AllowedMtcProvider A map (list of key-value pairs where EventType serves as key) of MTC provider lists. In addition to defined EventTypes, the key value "ALL" may be used to identify a map entry which contains a list of MtcProviders that are allowed monitoring all Event Types.
-	AllowedMtcProvider   *map[string][]MtcProvider       `json:"allowedMtcProvider,omitempty"`
-	RestrictedEventTypes *[]externalRef3.EventType       `json:"restrictedEventTypes,omitempty"`
-	SupportedFeatures    *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// EeProfileData defines model for EeProfileData.
-type EeProfileData struct {
-	// AllowedMtcProvider A map (list of key-value pairs where EventType serves as key) of MTC provider lists. In addition to defined EventTypes, the key value "ALL" may be used to identify a map entry which contains a list of MtcProviders that are allowed monitoring all Event Types.
-	AllowedMtcProvider   *map[string][]MtcProvider       `json:"allowedMtcProvider,omitempty"`
-	RestrictedEventTypes *[]externalRef3.EventType       `json:"restrictedEventTypes,omitempty"`
-	SupportedFeatures    *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// EeSubscription defines model for EeSubscription.
-type EeSubscription = externalRef3.EeSubscription
-
-// EnhancedCoverageRestrictionData defines model for EnhancedCoverageRestrictionData.
-type EnhancedCoverageRestrictionData = externalRef6.EnhancedCoverageRestrictionData
-
-// HssSubscriptionInfo Information related to active subscriptions at the HSS(s)
-type HssSubscriptionInfo struct {
-	HssSubscriptionList  []HssSubscriptionItem  `json:"hssSubscriptionList"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// HssSubscriptionItem Contains info about a single HSS event subscription
-type HssSubscriptionItem struct {
-	HssInstanceId        externalRef2.NfInstanceId `json:"hssInstanceId"`
-	SubscriptionId       externalRef2.Uri          `json:"subscriptionId"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// IdentityData defines model for IdentityData.
-type IdentityData struct {
-	GpsiList             []externalRef2.Gpsi    `json:"gpsiList,omitempty"`
-	SupiList             []externalRef2.Supi    `json:"supiList,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// IpSmGwRegistration defines model for IpSmGwRegistration.
-type IpSmGwRegistration = externalRef8.IpSmGwRegistration
-
-// LcsBroadcastAssistanceTypesData defines model for LcsBroadcastAssistanceTypesData.
-type LcsBroadcastAssistanceTypesData = externalRef6.LcsBroadcastAssistanceTypesData
-
-// LcsMoData defines model for LcsMoData.
-type LcsMoData = externalRef6.LcsMoData
-
-// LcsPrivacyData defines model for LcsPrivacyData.
-type LcsPrivacyData = externalRef6.LcsPrivacyData
-
-// LocationInfo defines model for LocationInfo.
-type LocationInfo = externalRef8.LocationInfo
-
-// MessageWaitingData defines model for MessageWaitingData.
-type MessageWaitingData struct {
-	MwdList              []SmscData             `json:"mwdList,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// MtcProvider defines model for MtcProvider.
-type MtcProvider struct {
-	AfId                   *string                              `json:"afId,omitempty"`
-	MtcProviderInformation *externalRef2.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	AdditionalProperties   map[string]interface{}               `json:"-"`
-}
-
-// NssaiAckData defines model for NssaiAckData.
-type NssaiAckData struct {
-	ProvisioningTime     externalRef2.DateTime  `json:"provisioningTime"`
-	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// OperatorSpecificDataContainer defines model for OperatorSpecificDataContainer.
-type OperatorSpecificDataContainer struct {
-	DataType             OperatorSpecificDataContainerDataType `json:"dataType"`
-	DataTypeDefinition   *string                               `json:"dataTypeDefinition,omitempty"`
-	SupportedFeatures    *externalRef2.SupportedFeatures       `json:"supportedFeatures,omitempty"`
-	Value                OperatorSpecificDataContainer_Value   `json:"value"`
-	AdditionalProperties map[string]interface{}                `json:"-"`
-}
-
-// OperatorSpecificDataContainerDataType defines model for OperatorSpecificDataContainer.DataType.
-type OperatorSpecificDataContainerDataType string
-
-// OperatorSpecificDataContainerValue0 defines model for .
-type OperatorSpecificDataContainerValue0 = string
-
-// OperatorSpecificDataContainerValue1 defines model for .
-type OperatorSpecificDataContainerValue1 = int
-
-// OperatorSpecificDataContainerValue2 defines model for .
-type OperatorSpecificDataContainerValue2 = float32
-
-// OperatorSpecificDataContainerValue3 defines model for .
-type OperatorSpecificDataContainerValue3 = bool
-
-// OperatorSpecificDataContainerValue4 defines model for .
-type OperatorSpecificDataContainerValue4 = map[string]interface{}
-
-// OperatorSpecificDataContainer_Value defines model for OperatorSpecificDataContainer.Value.
-type OperatorSpecificDataContainer_Value struct {
-	union json.RawMessage
-}
-
-// Pp5gVnGroupProfileData defines model for Pp5gVnGroupProfileData.
-type Pp5gVnGroupProfileData struct {
-	// AllowedMtcProviders A map (list of key-value pairs where external VN group identifier serves as key) of AllowedMtcProviderInfo lists. In addition to defined external VN group identifier, the key value "ALL" may be used to identify a map entry which contains a list of AllowedMtcProviderInfo that are allowed operating all the external group identifiers.
-	AllowedMtcProviders  *map[string][]AllowedMtcProviderInfo `json:"allowedMtcProviders,omitempty"`
-	SupportedFeatures    *externalRef2.SupportedFeatures      `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}               `json:"-"`
-}
-
-// PpData defines model for PpData.
-type PpData = externalRef5.PpData
-
-// PpDataType defines model for PpDataType.
-type PpDataType string
-
-// PpProfileData defines model for PpProfileData.
-type PpProfileData struct {
-	// AllowedMtcProviders A map (list of key-value pairs where PpDataType serves as key) of AllowedMtcProviderInfo lists. In addition to defined PpDataType, the key value "ALL" may be used to identify a map entry which contains a list of AllowedMtcProviderInfo that are allowed to provision all types of the PP data for the user using UDM ParameterProvision service.
-	AllowedMtcProviders  *map[string][]AllowedMtcProviderInfo `json:"allowedMtcProviders,omitempty"`
-	SupportedFeatures    *externalRef2.SupportedFeatures      `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}               `json:"-"`
-}
-
-// ProvisionedDataSets defines model for ProvisionedDataSets.
-type ProvisionedDataSets struct {
-	AmData               *AccessAndMobilitySubscriptionData   `json:"amData,omitempty"`
-	LcsBcaData           *LcsBroadcastAssistanceTypesData     `json:"lcsBcaData,omitempty"`
-	LcsMoData            *LcsMoData                           `json:"lcsMoData,omitempty"`
-	LcsPrivacyData       *LcsPrivacyData                      `json:"lcsPrivacyData,omitempty"`
-	SmData               *[]SessionManagementSubscriptionData `json:"smData,omitempty"`
-	SmfSelData           *SmfSelectionSubscriptionData        `json:"smfSelData,omitempty"`
-	SmsMngData           *SmsManagementSubscriptionData       `json:"smsMngData,omitempty"`
-	SmsSubsData          *SmsSubscriptionData                 `json:"smsSubsData,omitempty"`
-	TraceData            *externalRef2.TraceData              `json:"traceData"`
-	V2xData              *V2xSubscriptionData                 `json:"v2xData,omitempty"`
-	AdditionalProperties map[string]interface{}               `json:"-"`
-}
-
-// SdmSubscription defines model for SdmSubscription.
-type SdmSubscription = externalRef6.SdmSubscription
-
-// SequenceNumber defines model for SequenceNumber.
-type SequenceNumber struct {
-	DifSign              Sign                   `json:"difSign,omitempty"`
-	IndLength            *int                   `json:"indLength,omitempty"`
-	LastIndexes          *map[string]int        `json:"lastIndexes,omitempty"`
-	Sqn                  string                 `json:"sqn,omitempty"`
-	SqnScheme            *SqnScheme             `json:"sqnScheme,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// SessionManagementSubscriptionData defines model for SessionManagementSubscriptionData.
-type SessionManagementSubscriptionData = externalRef6.SessionManagementSubscriptionData
-
-// Sign defines model for Sign.
-type Sign string
-
-// SmfRegList defines model for SmfRegList.
-type SmfRegList = []SmfRegistration
-
-// SmfRegistration defines model for SmfRegistration.
-type SmfRegistration = externalRef8.SmfRegistration
-
-// SmfSelectionSubscriptionData defines model for SmfSelectionSubscriptionData.
-type SmfSelectionSubscriptionData = externalRef6.SmfSelectionSubscriptionData
-
-// SmfSubscriptionInfo Information related to active subscriptions at the SMF(s)
-type SmfSubscriptionInfo struct {
-	SmfSubscriptionList  []SmfSubscriptionItem  `json:"smfSubscriptionList"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// SmfSubscriptionItem Contains info about a single SMF event subscription
-type SmfSubscriptionItem struct {
-	SmfInstanceId        externalRef2.NfInstanceId `json:"smfInstanceId"`
-	SubscriptionId       externalRef2.Uri          `json:"subscriptionId"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// SmsManagementSubscriptionData defines model for SmsManagementSubscriptionData.
-type SmsManagementSubscriptionData = externalRef6.SmsManagementSubscriptionData
-
-// SmsSubscriptionData defines model for SmsSubscriptionData.
-type SmsSubscriptionData = externalRef6.SmsSubscriptionData
-
-// SmscData defines model for SmscData.
-type SmscData struct {
-	SmscDiameterAddress  *externalRef8.NetworkNodeDiameterAddress `json:"smscDiameterAddress,omitempty"`
-	SmscMapAddress       externalRef8.E164Number                  `json:"smscMapAddress,omitempty"`
-	AdditionalProperties map[string]interface{}                   `json:"-"`
-}
-
-// SmsfRegistration defines model for SmsfRegistration.
-type SmsfRegistration = externalRef8.SmsfRegistration
-
-// SorData defines model for SorData.
-type SorData struct {
-	ProvisioningTime     externalRef2.DateTime  `json:"provisioningTime"`
-	SorMacIue            externalRef0.SorMac    `json:"sorMacIue,omitempty"`
-	SorXmacIue           externalRef0.SorMac    `json:"sorXmacIue,omitempty"`
-	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// SqnScheme defines model for SqnScheme.
-type SqnScheme string
-
-// SubscriptionDataSubscriptions defines model for SubscriptionDataSubscriptions.
-type SubscriptionDataSubscriptions struct {
-	CallbackReference         externalRef2.Uri                `json:"callbackReference"`
-	Expiry                    *externalRef2.DateTime          `json:"expiry,omitempty"`
-	MonitoredResourceUris     []externalRef2.Uri              `json:"monitoredResourceUris"`
-	OriginalCallbackReference *externalRef2.Uri               `json:"originalCallbackReference,omitempty"`
-	SdmSubscription           *externalRef6.SdmSubscription   `json:"sdmSubscription,omitempty"`
-	SubscriptionId            *string                         `json:"subscriptionId,omitempty"`
-	SupportedFeatures         *externalRef2.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	UeId                      externalRef2.VarUeId            `json:"ueId,omitempty"`
-	UniqueSubscription        *bool                           `json:"uniqueSubscription,omitempty"`
-	AdditionalProperties      map[string]interface{}          `json:"-"`
-}
-
-// UeUpdateStatus defines model for UeUpdateStatus.
-type UeUpdateStatus string
-
-// UpuData defines model for UpuData.
-type UpuData struct {
-	ProvisioningTime     externalRef2.DateTime  `json:"provisioningTime"`
-	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
-	UpuMacIue            externalRef1.UpuMac    `json:"upuMacIue,omitempty"`
-	UpuXmacIue           externalRef1.UpuMac    `json:"upuXmacIue,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// V2xSubscriptionData defines model for V2xSubscriptionData.
-type V2xSubscriptionData = externalRef6.V2xSubscriptionData
-
-// VarPlmnId defines model for VarPlmnId.
-type VarPlmnId = string
-
-// VarSnssai defines model for VarSnssai.
-type VarSnssai = externalRef2.Snssai
-
-// VarUeGroupId defines model for VarUeGroupId.
-type VarUeGroupId = string
-
 // Query5GVnGroupParams defines parameters for Query5GVnGroup.
 type Query5GVnGroupParams struct {
 	// Gpsis List of GPSIs
-	Gpsis *[]externalRef2.Gpsi `form:"gpsis,omitempty" json:"gpsis,omitempty"`
+	Gpsis *[]externalRef0.Gpsi `form:"gpsis,omitempty" json:"gpsis,omitempty"`
 }
 
 // Query5GVnGroupInternalParams defines parameters for Query5GVnGroupInternal.
 type Query5GVnGroupInternalParams struct {
 	// InternalGroupIds List of Internal Group IDs
-	InternalGroupIds []externalRef2.GroupId `form:"internal-group-ids" json:"internal-group-ids"`
+	InternalGroupIds []externalRef0.GroupId `form:"internal-group-ids" json:"internal-group-ids"`
 }
 
 // Query5GVNGroupPPDataParams defines parameters for Query5GVNGroupPPData.
 type Query5GVNGroupPPDataParams struct {
 	// ExtGroupIds List of external VN group identifiers
-	ExtGroupIds *[]externalRef6.ExtGroupId `form:"ext-group-ids,omitempty" json:"ext-group-ids,omitempty"`
+	ExtGroupIds *[]externalRef0.ExtGroupId `form:"ext-group-ids,omitempty" json:"ext-group-ids,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // Modify5GVnGroupApplicationJSONPatchPlusJSONBody defines parameters for Modify5GVnGroup.
-type Modify5GVnGroupApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type Modify5GVnGroupApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // Modify5GVnGroupParams defines parameters for Modify5GVnGroup.
 type Modify5GVnGroupParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // GetGroupIdentifiersParams defines parameters for GetGroupIdentifiers.
 type GetGroupIdentifiersParams struct {
 	// ExtGroupId External Group Identifier
-	ExtGroupId *externalRef6.ExtGroupId `form:"ext-group-id,omitempty" json:"ext-group-id,omitempty"`
+	ExtGroupId *externalRef0.ExtGroupId `form:"ext-group-id,omitempty" json:"ext-group-id,omitempty"`
 
 	// IntGroupId Internal Group Identifier
-	IntGroupId *externalRef2.GroupId `form:"int-group-id,omitempty" json:"int-group-id,omitempty"`
+	IntGroupId *externalRef0.GroupId `form:"int-group-id,omitempty" json:"int-group-id,omitempty"`
 
 	// UeIdInd Indication whether UE identifiers are required or not
 	UeIdInd *bool `form:"ue-id-ind,omitempty" json:"ue-id-ind,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryGroupEEDataParams defines parameters for QueryGroupEEData.
 type QueryGroupEEDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryEeGroupSubscriptionsParams defines parameters for QueryEeGroupSubscriptions.
 type QueryEeGroupSubscriptionsParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONBody defines parameters for ModifyEeGroupSubscription.
-type ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifyEeGroupSubscriptionParams defines parameters for ModifyEeGroupSubscription.
 type ModifyEeGroupSubscriptionParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // GetSharedDataParams defines parameters for GetSharedData.
 type GetSharedDataParams struct {
 	// SharedDataIds List of shared data ids
-	SharedDataIds externalRef6.SharedDataIds `form:"shared-data-ids" json:"shared-data-ids"`
+	SharedDataIds externalRef0.SharedDataIds `form:"shared-data-ids" json:"shared-data-ids"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // GetIndividualSharedDataParams defines parameters for GetIndividualSharedData.
@@ -544,10 +110,10 @@ type GetIndividualSharedDataParams struct {
 // RemoveMultipleSubscriptionDataSubscriptionsParams defines parameters for RemoveMultipleSubscriptionDataSubscriptions.
 type RemoveMultipleSubscriptionDataSubscriptionsParams struct {
 	// UeId UE ID
-	UeId externalRef2.VarUeId `form:"ue-id" json:"ue-id"`
+	UeId externalRef0.VarUeId `form:"ue-id" json:"ue-id"`
 
 	// NfInstanceId NF Instance ID
-	NfInstanceId *externalRef2.NfInstanceId `form:"nf-instance-id,omitempty" json:"nf-instance-id,omitempty"`
+	NfInstanceId *externalRef0.NfInstanceId `form:"nf-instance-id,omitempty" json:"nf-instance-id,omitempty"`
 
 	// DeleteAllNfs Flag to delete subscriptions from all NFs
 	DeleteAllNfs *bool `form:"delete-all-nfs,omitempty" json:"delete-all-nfs,omitempty"`
@@ -559,19 +125,19 @@ type RemoveMultipleSubscriptionDataSubscriptionsParams struct {
 // QuerySubsToNotifyParams defines parameters for QuerySubsToNotify.
 type QuerySubsToNotifyParams struct {
 	// UeId UE id
-	UeId externalRef2.VarUeId `form:"ue-id" json:"ue-id"`
+	UeId externalRef0.VarUeId `form:"ue-id" json:"ue-id"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONBody defines parameters for ModifysubscriptionDataSubscription.
-type ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifysubscriptionDataSubscriptionParams defines parameters for ModifysubscriptionDataSubscription.
 type ModifysubscriptionDataSubscriptionParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryAuthenticationStatusParams defines parameters for QueryAuthenticationStatus.
@@ -580,7 +146,7 @@ type QueryAuthenticationStatusParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryIndividualAuthenticationStatusParams defines parameters for QueryIndividualAuthenticationStatus.
@@ -589,28 +155,28 @@ type QueryIndividualAuthenticationStatusParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryAuthSubsDataParams defines parameters for QueryAuthSubsData.
 type QueryAuthSubsDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONBody defines parameters for ModifyAuthenticationSubscription.
-type ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifyAuthenticationSubscriptionParams defines parameters for ModifyAuthenticationSubscription.
 type ModifyAuthenticationSubscriptionParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryContextDataParams defines parameters for QueryContextData.
 type QueryContextDataParams struct {
 	// ContextDatasetNames List of context dataset names
-	ContextDatasetNames ContextDatasetNames `form:"context-dataset-names" json:"context-dataset-names"`
+	ContextDatasetNames externalRef0.ContextDatasetNames `form:"context-dataset-names" json:"context-dataset-names"`
 }
 
 // QueryAmfContext3gppParams defines parameters for QueryAmfContext3gpp.
@@ -619,16 +185,16 @@ type QueryAmfContext3gppParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // AmfContext3gppApplicationJSONPatchPlusJSONBody defines parameters for AmfContext3gpp.
-type AmfContext3gppApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type AmfContext3gppApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // AmfContext3gppParams defines parameters for AmfContext3gpp.
 type AmfContext3gppParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryAmfContextNon3gppParams defines parameters for QueryAmfContextNon3gpp.
@@ -637,61 +203,61 @@ type QueryAmfContextNon3gppParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // AmfContextNon3gppApplicationJSONPatchPlusJSONBody defines parameters for AmfContextNon3gpp.
-type AmfContextNon3gppApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type AmfContextNon3gppApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // AmfContextNon3gppParams defines parameters for AmfContextNon3gpp.
 type AmfContextNon3gppParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryeesubscriptionsParams defines parameters for Queryeesubscriptions.
 type QueryeesubscriptionsParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifyEesubscriptionApplicationJSONPatchPlusJSONBody defines parameters for ModifyEesubscription.
-type ModifyEesubscriptionApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyEesubscriptionApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifyEesubscriptionParams defines parameters for ModifyEesubscription.
 type ModifyEesubscriptionParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONBody defines parameters for ModifyAmfSubscriptionInfo.
-type ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifyAmfSubscriptionInfoParams defines parameters for ModifyAmfSubscriptionInfo.
 type ModifyAmfSubscriptionInfoParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // CreateAMFSubscriptionsJSONBody defines parameters for CreateAMFSubscriptions.
-type CreateAMFSubscriptionsJSONBody = []AmfSubscriptionInfo
+type CreateAMFSubscriptionsJSONBody = []externalRef0.AmfSubscriptionInfo
 
 // ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONBody defines parameters for ModifyHssSubscriptionInfo.
-type ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifyHssSubscriptionInfoParams defines parameters for ModifyHssSubscriptionInfo.
 type ModifyHssSubscriptionInfoParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONBody defines parameters for ModifySmfSubscriptionInfo.
-type ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifySmfSubscriptionInfoParams defines parameters for ModifySmfSubscriptionInfo.
 type ModifySmfSubscriptionInfoParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryIpSmGwContextParams defines parameters for QueryIpSmGwContext.
@@ -700,16 +266,16 @@ type QueryIpSmGwContextParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifyIpSmGwContextApplicationJSONPatchPlusJSONBody defines parameters for ModifyIpSmGwContext.
-type ModifyIpSmGwContextApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyIpSmGwContextApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // QueryUeLocationParams defines parameters for QueryUeLocation.
 type QueryUeLocationParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryMessageWaitingDataParams defines parameters for QueryMessageWaitingData.
@@ -718,40 +284,40 @@ type QueryMessageWaitingDataParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifyMessageWaitingDataApplicationJSONPatchPlusJSONBody defines parameters for ModifyMessageWaitingData.
-type ModifyMessageWaitingDataApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyMessageWaitingDataApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // QuerysdmsubscriptionsParams defines parameters for Querysdmsubscriptions.
 type QuerysdmsubscriptionsParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifysdmSubscriptionApplicationJSONPatchPlusJSONBody defines parameters for ModifysdmSubscription.
-type ModifysdmSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifysdmSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifysdmSubscriptionParams defines parameters for ModifysdmSubscription.
 type ModifysdmSubscriptionParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONBody defines parameters for ModifyHssSDMSubscriptionInfo.
-type ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifyHssSDMSubscriptionInfoParams defines parameters for ModifyHssSDMSubscriptionInfo.
 type ModifyHssSDMSubscriptionInfoParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QuerySmfRegListParams defines parameters for QuerySmfRegList.
 type QuerySmfRegListParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QuerySmfRegistrationParams defines parameters for QuerySmfRegistration.
@@ -760,7 +326,7 @@ type QuerySmfRegistrationParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QuerySmsfContext3gppParams defines parameters for QuerySmsfContext3gpp.
@@ -769,7 +335,7 @@ type QuerySmsfContext3gppParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QuerySmsfContextNon3gppParams defines parameters for QuerySmsfContextNon3gpp.
@@ -778,13 +344,13 @@ type QuerySmsfContextNon3gppParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryCoverageRestrictionDataParams defines parameters for QueryCoverageRestrictionData.
 type QueryCoverageRestrictionDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -799,13 +365,13 @@ type QueryEEDataParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // GetIdentityDataParams defines parameters for GetIdentityData.
 type GetIdentityDataParams struct {
 	// AppPortId Application port identifier
-	AppPortId *externalRef6.AppPortId `form:"app-port-id,omitempty" json:"app-port-id,omitempty"`
+	AppPortId *externalRef0.AppPortId `form:"app-port-id,omitempty" json:"app-port-id,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -820,7 +386,7 @@ type QueryLcsMoDataParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -835,7 +401,7 @@ type QueryLcsPrivacyDataParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -847,13 +413,13 @@ type QueryLcsPrivacyDataParams struct {
 // GetNiddAuDataParams defines parameters for GetNiddAuData.
 type GetNiddAuDataParams struct {
 	// SingleNssai single NSSAI
-	SingleNssai VarSnssai `form:"single-nssai" json:"single-nssai"`
+	SingleNssai externalRef0.VarSnssai `form:"single-nssai" json:"single-nssai"`
 
 	// Dnn DNN
-	Dnn Dnn `form:"dnn" json:"dnn"`
+	Dnn externalRef0.Dnn `form:"dnn" json:"dnn"`
 
 	// MtcProviderInformation MTC Provider Information
-	MtcProviderInformation externalRef2.MtcProviderInformation `form:"mtc-provider-information" json:"mtc-provider-information"`
+	MtcProviderInformation externalRef0.MtcProviderInformation `form:"mtc-provider-information" json:"mtc-provider-information"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -868,7 +434,7 @@ type QueryOperSpecDataParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -878,18 +444,18 @@ type QueryOperSpecDataParams struct {
 }
 
 // ModifyOperSpecDataApplicationJSONPatchPlusJSONBody defines parameters for ModifyOperSpecData.
-type ModifyOperSpecDataApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyOperSpecDataApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifyOperSpecDataParams defines parameters for ModifyOperSpecData.
 type ModifyOperSpecDataParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // GetppDataParams defines parameters for GetppData.
 type GetppDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -899,72 +465,72 @@ type GetppDataParams struct {
 }
 
 // ModifyPpDataApplicationJSONPatchPlusJSONBody defines parameters for ModifyPpData.
-type ModifyPpDataApplicationJSONPatchPlusJSONBody = []externalRef2.PatchItem
+type ModifyPpDataApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ModifyPpDataParams defines parameters for ModifyPpData.
 type ModifyPpDataParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryPPDataParams defines parameters for QueryPPData.
 type QueryPPDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryAuthSoRParams defines parameters for QueryAuthSoR.
 type QueryAuthSoRParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // CreateAuthenticationSoRParams defines parameters for CreateAuthenticationSoR.
 type CreateAuthenticationSoRParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryCagAckParams defines parameters for QueryCagAck.
 type QueryCagAckParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // CreateCagUpdateAckParams defines parameters for CreateCagUpdateAck.
 type CreateCagUpdateAckParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryNssaiAckParams defines parameters for QueryNssaiAck.
 type QueryNssaiAckParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // CreateOrUpdateNssaiAckParams defines parameters for CreateOrUpdateNssaiAck.
 type CreateOrUpdateNssaiAckParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryAuthUPUParams defines parameters for QueryAuthUPU.
 type QueryAuthUPUParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // CreateAuthenticationUPUParams defines parameters for CreateAuthenticationUPU.
 type CreateAuthenticationUPUParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // QueryV2xDataParams defines parameters for QueryV2xData.
 type QueryV2xDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -976,7 +542,7 @@ type QueryV2xDataParams struct {
 // QueryProvisionedDataParams defines parameters for QueryProvisionedData.
 type QueryProvisionedDataParams struct {
 	// DatasetNames List of dataset names
-	DatasetNames *DatasetNames `form:"dataset-names,omitempty" json:"dataset-names,omitempty"`
+	DatasetNames *externalRef0.DatasetNames `form:"dataset-names,omitempty" json:"dataset-names,omitempty"`
 }
 
 // QueryAmDataParams defines parameters for QueryAmData.
@@ -985,7 +551,7 @@ type QueryAmDataParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -997,7 +563,7 @@ type QueryAmDataParams struct {
 // QueryLcsBcaDataParams defines parameters for QueryLcsBcaData.
 type QueryLcsBcaDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -1009,16 +575,16 @@ type QueryLcsBcaDataParams struct {
 // QuerySmDataParams defines parameters for QuerySmData.
 type QuerySmDataParams struct {
 	// SingleNssai single NSSAI
-	SingleNssai *VarSnssai `form:"single-nssai,omitempty" json:"single-nssai,omitempty"`
+	SingleNssai *externalRef0.VarSnssai `form:"single-nssai,omitempty" json:"single-nssai,omitempty"`
 
 	// Dnn DNN
-	Dnn *Dnn `form:"dnn,omitempty" json:"dnn,omitempty"`
+	Dnn *externalRef0.Dnn `form:"dnn,omitempty" json:"dnn,omitempty"`
 
 	// Fields attributes to be retrieved
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -1033,7 +599,7 @@ type QuerySmfSelectDataParams struct {
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -1045,7 +611,7 @@ type QuerySmfSelectDataParams struct {
 // QuerySmsDataParams defines parameters for QuerySmsData.
 type QuerySmsDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -1057,7 +623,7 @@ type QuerySmsDataParams struct {
 // QuerySmsMngDataParams defines parameters for QuerySmsMngData.
 type QuerySmsMngDataParams struct {
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef2.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -1079,28 +645,28 @@ type QueryTraceDataParams struct {
 type Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody = Modify5GVnGroupApplicationJSONPatchPlusJSONBody
 
 // Create5GVnGroupJSONRequestBody defines body for Create5GVnGroup for application/json ContentType.
-type Create5GVnGroupJSONRequestBody = externalRef5.N5GVnGroupConfiguration
+type Create5GVnGroupJSONRequestBody = externalRef0.N5GVnGroupConfiguration
 
 // CreateEeGroupSubscriptionsJSONRequestBody defines body for CreateEeGroupSubscriptions for application/json ContentType.
-type CreateEeGroupSubscriptionsJSONRequestBody = EeSubscription
+type CreateEeGroupSubscriptionsJSONRequestBody = externalRef0.EeSubscription
 
 // ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifyEeGroupSubscription for application/json-patch+json ContentType.
 type ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONBody
 
 // UpdateEeGroupSubscriptionsJSONRequestBody defines body for UpdateEeGroupSubscriptions for application/json ContentType.
-type UpdateEeGroupSubscriptionsJSONRequestBody = EeSubscription
+type UpdateEeGroupSubscriptionsJSONRequestBody = externalRef0.EeSubscription
 
 // SubscriptionDataSubscriptionsJSONRequestBody defines body for SubscriptionDataSubscriptions for application/json ContentType.
-type SubscriptionDataSubscriptionsJSONRequestBody = SubscriptionDataSubscriptions
+type SubscriptionDataSubscriptionsJSONRequestBody = externalRef0.SubscriptionDataSubscriptions
 
 // ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifysubscriptionDataSubscription for application/json-patch+json ContentType.
 type ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONBody
 
 // CreateAuthenticationStatusJSONRequestBody defines body for CreateAuthenticationStatus for application/json ContentType.
-type CreateAuthenticationStatusJSONRequestBody = externalRef7.AuthEvent
+type CreateAuthenticationStatusJSONRequestBody = externalRef0.AuthEvent
 
 // CreateIndividualAuthenticationStatusJSONRequestBody defines body for CreateIndividualAuthenticationStatus for application/json ContentType.
-type CreateIndividualAuthenticationStatusJSONRequestBody = externalRef7.AuthEvent
+type CreateIndividualAuthenticationStatusJSONRequestBody = externalRef0.AuthEvent
 
 // ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifyAuthenticationSubscription for application/json-patch+json ContentType.
 type ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONBody
@@ -1109,22 +675,22 @@ type ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody = M
 type AmfContext3gppApplicationJSONPatchPlusJSONRequestBody = AmfContext3gppApplicationJSONPatchPlusJSONBody
 
 // CreateAmfContext3gppJSONRequestBody defines body for CreateAmfContext3gpp for application/json ContentType.
-type CreateAmfContext3gppJSONRequestBody = Amf3GppAccessRegistration
+type CreateAmfContext3gppJSONRequestBody = externalRef0.Amf3GppAccessRegistration
 
 // AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody defines body for AmfContextNon3gpp for application/json-patch+json ContentType.
 type AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody = AmfContextNon3gppApplicationJSONPatchPlusJSONBody
 
 // CreateAmfContextNon3gppJSONRequestBody defines body for CreateAmfContextNon3gpp for application/json ContentType.
-type CreateAmfContextNon3gppJSONRequestBody = AmfNon3GppAccessRegistration
+type CreateAmfContextNon3gppJSONRequestBody = externalRef0.AmfNon3GppAccessRegistration
 
 // CreateEeSubscriptionsJSONRequestBody defines body for CreateEeSubscriptions for application/json ContentType.
-type CreateEeSubscriptionsJSONRequestBody = EeSubscription
+type CreateEeSubscriptionsJSONRequestBody = externalRef0.EeSubscription
 
 // ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifyEesubscription for application/json-patch+json ContentType.
 type ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifyEesubscriptionApplicationJSONPatchPlusJSONBody
 
 // UpdateEesubscriptionsJSONRequestBody defines body for UpdateEesubscriptions for application/json ContentType.
-type UpdateEesubscriptionsJSONRequestBody = EeSubscription
+type UpdateEesubscriptionsJSONRequestBody = externalRef0.EeSubscription
 
 // ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody defines body for ModifyAmfSubscriptionInfo for application/json-patch+json ContentType.
 type ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody = ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONBody
@@ -1136,49 +702,49 @@ type CreateAMFSubscriptionsJSONRequestBody = CreateAMFSubscriptionsJSONBody
 type ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody = ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONBody
 
 // CreateHSSSubscriptionsJSONRequestBody defines body for CreateHSSSubscriptions for application/json ContentType.
-type CreateHSSSubscriptionsJSONRequestBody = HssSubscriptionInfo
+type CreateHSSSubscriptionsJSONRequestBody = externalRef0.HssSubscriptionInfo
 
 // ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody defines body for ModifySmfSubscriptionInfo for application/json-patch+json ContentType.
 type ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody = ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONBody
 
 // CreateSMFSubscriptionsJSONRequestBody defines body for CreateSMFSubscriptions for application/json ContentType.
-type CreateSMFSubscriptionsJSONRequestBody = SmfSubscriptionInfo
+type CreateSMFSubscriptionsJSONRequestBody = externalRef0.SmfSubscriptionInfo
 
 // ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody defines body for ModifyIpSmGwContext for application/json-patch+json ContentType.
 type ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody = ModifyIpSmGwContextApplicationJSONPatchPlusJSONBody
 
 // CreateIpSmGwContextJSONRequestBody defines body for CreateIpSmGwContext for application/json ContentType.
-type CreateIpSmGwContextJSONRequestBody = IpSmGwRegistration
+type CreateIpSmGwContextJSONRequestBody = externalRef0.IpSmGwRegistration
 
 // ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody defines body for ModifyMessageWaitingData for application/json-patch+json ContentType.
 type ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody = ModifyMessageWaitingDataApplicationJSONPatchPlusJSONBody
 
 // CreateMessageWaitingDataJSONRequestBody defines body for CreateMessageWaitingData for application/json ContentType.
-type CreateMessageWaitingDataJSONRequestBody = MessageWaitingData
+type CreateMessageWaitingDataJSONRequestBody = externalRef0.MessageWaitingData
 
 // CreateSdmSubscriptionsJSONRequestBody defines body for CreateSdmSubscriptions for application/json ContentType.
-type CreateSdmSubscriptionsJSONRequestBody = SdmSubscription
+type CreateSdmSubscriptionsJSONRequestBody = externalRef0.SdmSubscription
 
 // ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifysdmSubscription for application/json-patch+json ContentType.
 type ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifysdmSubscriptionApplicationJSONPatchPlusJSONBody
 
 // UpdatesdmsubscriptionsJSONRequestBody defines body for Updatesdmsubscriptions for application/json ContentType.
-type UpdatesdmsubscriptionsJSONRequestBody = SdmSubscription
+type UpdatesdmsubscriptionsJSONRequestBody = externalRef0.SdmSubscription
 
 // ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody defines body for ModifyHssSDMSubscriptionInfo for application/json-patch+json ContentType.
 type ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody = ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONBody
 
 // CreateHSSSDMSubscriptionsJSONRequestBody defines body for CreateHSSSDMSubscriptions for application/json ContentType.
-type CreateHSSSDMSubscriptionsJSONRequestBody = HssSubscriptionInfo
+type CreateHSSSDMSubscriptionsJSONRequestBody = externalRef0.HssSubscriptionInfo
 
 // CreateOrUpdateSmfRegistrationJSONRequestBody defines body for CreateOrUpdateSmfRegistration for application/json ContentType.
-type CreateOrUpdateSmfRegistrationJSONRequestBody = SmfRegistration
+type CreateOrUpdateSmfRegistrationJSONRequestBody = externalRef0.SmfRegistration
 
 // CreateSmsfContext3gppJSONRequestBody defines body for CreateSmsfContext3gpp for application/json ContentType.
-type CreateSmsfContext3gppJSONRequestBody = SmsfRegistration
+type CreateSmsfContext3gppJSONRequestBody = externalRef0.SmsfRegistration
 
 // CreateSmsfContextNon3gppJSONRequestBody defines body for CreateSmsfContextNon3gpp for application/json ContentType.
-type CreateSmsfContextNon3gppJSONRequestBody = SmsfRegistration
+type CreateSmsfContextNon3gppJSONRequestBody = externalRef0.SmsfRegistration
 
 // ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody defines body for ModifyOperSpecData for application/json-patch+json ContentType.
 type ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody = ModifyOperSpecDataApplicationJSONPatchPlusJSONBody
@@ -1187,2862 +753,16 @@ type ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody = ModifyOperSpecD
 type ModifyPpDataApplicationJSONPatchPlusJSONRequestBody = ModifyPpDataApplicationJSONPatchPlusJSONBody
 
 // CreateAuthenticationSoRJSONRequestBody defines body for CreateAuthenticationSoR for application/json ContentType.
-type CreateAuthenticationSoRJSONRequestBody = SorData
+type CreateAuthenticationSoRJSONRequestBody = externalRef0.SorData
 
 // CreateCagUpdateAckJSONRequestBody defines body for CreateCagUpdateAck for application/json ContentType.
-type CreateCagUpdateAckJSONRequestBody = CagAckData
+type CreateCagUpdateAckJSONRequestBody = externalRef0.CagAckData
 
 // CreateOrUpdateNssaiAckJSONRequestBody defines body for CreateOrUpdateNssaiAck for application/json ContentType.
-type CreateOrUpdateNssaiAckJSONRequestBody = NssaiAckData
+type CreateOrUpdateNssaiAckJSONRequestBody = externalRef0.NssaiAckData
 
 // CreateAuthenticationUPUJSONRequestBody defines body for CreateAuthenticationUPU for application/json ContentType.
-type CreateAuthenticationUPUJSONRequestBody = UpuData
-
-// Getter for additional properties for AllowedMtcProviderInfo. Returns the specified
-// element and whether it was found
-func (a AllowedMtcProviderInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AllowedMtcProviderInfo
-func (a *AllowedMtcProviderInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AllowedMtcProviderInfo to handle AdditionalProperties
-func (a *AllowedMtcProviderInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afId"]; found {
-		err = json.Unmarshal(raw, &a.AfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afId': %w", err)
-		}
-		delete(object, "afId")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AllowedMtcProviderInfo to handle AdditionalProperties
-func (a AllowedMtcProviderInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AfId != nil {
-		object["afId"], err = json.Marshal(a.AfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afId': %w", err)
-		}
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AmfSubscriptionInfo. Returns the specified
-// element and whether it was found
-func (a AmfSubscriptionInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AmfSubscriptionInfo
-func (a *AmfSubscriptionInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AmfSubscriptionInfo to handle AdditionalProperties
-func (a *AmfSubscriptionInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.AmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfInstanceId': %w", err)
-		}
-		delete(object, "amfInstanceId")
-	}
-
-	if raw, found := object["subsChangeNotifyCorrelationId"]; found {
-		err = json.Unmarshal(raw, &a.SubsChangeNotifyCorrelationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subsChangeNotifyCorrelationId': %w", err)
-		}
-		delete(object, "subsChangeNotifyCorrelationId")
-	}
-
-	if raw, found := object["subscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionId': %w", err)
-		}
-		delete(object, "subscriptionId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AmfSubscriptionInfo to handle AdditionalProperties
-func (a AmfSubscriptionInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["amfInstanceId"], err = json.Marshal(a.AmfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'amfInstanceId': %w", err)
-	}
-
-	if a.SubsChangeNotifyCorrelationId != nil {
-		object["subsChangeNotifyCorrelationId"], err = json.Marshal(a.SubsChangeNotifyCorrelationId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subsChangeNotifyCorrelationId': %w", err)
-		}
-	}
-
-	object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AuthenticationSubscription. Returns the specified
-// element and whether it was found
-func (a AuthenticationSubscription) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AuthenticationSubscription
-func (a *AuthenticationSubscription) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AuthenticationSubscription to handle AdditionalProperties
-func (a *AuthenticationSubscription) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["algorithmId"]; found {
-		err = json.Unmarshal(raw, &a.AlgorithmId)
-		if err != nil {
-			return fmt.Errorf("error reading 'algorithmId': %w", err)
-		}
-		delete(object, "algorithmId")
-	}
-
-	if raw, found := object["authenticationManagementField"]; found {
-		err = json.Unmarshal(raw, &a.AuthenticationManagementField)
-		if err != nil {
-			return fmt.Errorf("error reading 'authenticationManagementField': %w", err)
-		}
-		delete(object, "authenticationManagementField")
-	}
-
-	if raw, found := object["authenticationMethod"]; found {
-		err = json.Unmarshal(raw, &a.AuthenticationMethod)
-		if err != nil {
-			return fmt.Errorf("error reading 'authenticationMethod': %w", err)
-		}
-		delete(object, "authenticationMethod")
-	}
-
-	if raw, found := object["encOpcKey"]; found {
-		err = json.Unmarshal(raw, &a.EncOpcKey)
-		if err != nil {
-			return fmt.Errorf("error reading 'encOpcKey': %w", err)
-		}
-		delete(object, "encOpcKey")
-	}
-
-	if raw, found := object["encPermanentKey"]; found {
-		err = json.Unmarshal(raw, &a.EncPermanentKey)
-		if err != nil {
-			return fmt.Errorf("error reading 'encPermanentKey': %w", err)
-		}
-		delete(object, "encPermanentKey")
-	}
-
-	if raw, found := object["encTopcKey"]; found {
-		err = json.Unmarshal(raw, &a.EncTopcKey)
-		if err != nil {
-			return fmt.Errorf("error reading 'encTopcKey': %w", err)
-		}
-		delete(object, "encTopcKey")
-	}
-
-	if raw, found := object["n5gcAuthMethod"]; found {
-		err = json.Unmarshal(raw, &a.N5gcAuthMethod)
-		if err != nil {
-			return fmt.Errorf("error reading 'n5gcAuthMethod': %w", err)
-		}
-		delete(object, "n5gcAuthMethod")
-	}
-
-	if raw, found := object["protectionParameterId"]; found {
-		err = json.Unmarshal(raw, &a.ProtectionParameterId)
-		if err != nil {
-			return fmt.Errorf("error reading 'protectionParameterId': %w", err)
-		}
-		delete(object, "protectionParameterId")
-	}
-
-	if raw, found := object["rgAuthenticationInd"]; found {
-		err = json.Unmarshal(raw, &a.RgAuthenticationInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'rgAuthenticationInd': %w", err)
-		}
-		delete(object, "rgAuthenticationInd")
-	}
-
-	if raw, found := object["sequenceNumber"]; found {
-		err = json.Unmarshal(raw, &a.SequenceNumber)
-		if err != nil {
-			return fmt.Errorf("error reading 'sequenceNumber': %w", err)
-		}
-		delete(object, "sequenceNumber")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["vectorGenerationInHss"]; found {
-		err = json.Unmarshal(raw, &a.VectorGenerationInHss)
-		if err != nil {
-			return fmt.Errorf("error reading 'vectorGenerationInHss': %w", err)
-		}
-		delete(object, "vectorGenerationInHss")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AuthenticationSubscription to handle AdditionalProperties
-func (a AuthenticationSubscription) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AlgorithmId != nil {
-		object["algorithmId"], err = json.Marshal(a.AlgorithmId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'algorithmId': %w", err)
-		}
-	}
-
-	if len(a.AuthenticationManagementField) != 0 {
-		object["authenticationManagementField"], err = json.Marshal(a.AuthenticationManagementField)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'authenticationManagementField': %w", err)
-		}
-	}
-
-	object["authenticationMethod"], err = json.Marshal(a.AuthenticationMethod)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authenticationMethod': %w", err)
-	}
-
-	if a.EncOpcKey != nil {
-		object["encOpcKey"], err = json.Marshal(a.EncOpcKey)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'encOpcKey': %w", err)
-		}
-	}
-
-	if a.EncPermanentKey != nil {
-		object["encPermanentKey"], err = json.Marshal(a.EncPermanentKey)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'encPermanentKey': %w", err)
-		}
-	}
-
-	if a.EncTopcKey != nil {
-		object["encTopcKey"], err = json.Marshal(a.EncTopcKey)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'encTopcKey': %w", err)
-		}
-	}
-
-	if a.N5gcAuthMethod != nil {
-		object["n5gcAuthMethod"], err = json.Marshal(a.N5gcAuthMethod)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n5gcAuthMethod': %w", err)
-		}
-	}
-
-	if a.ProtectionParameterId != nil {
-		object["protectionParameterId"], err = json.Marshal(a.ProtectionParameterId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'protectionParameterId': %w", err)
-		}
-	}
-
-	if a.RgAuthenticationInd != nil {
-		object["rgAuthenticationInd"], err = json.Marshal(a.RgAuthenticationInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'rgAuthenticationInd': %w", err)
-		}
-	}
-
-	if a.SequenceNumber != nil {
-		object["sequenceNumber"], err = json.Marshal(a.SequenceNumber)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sequenceNumber': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.VectorGenerationInHss != nil {
-		object["vectorGenerationInHss"], err = json.Marshal(a.VectorGenerationInHss)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vectorGenerationInHss': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for CagAckData. Returns the specified
-// element and whether it was found
-func (a CagAckData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for CagAckData
-func (a *CagAckData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for CagAckData to handle AdditionalProperties
-func (a *CagAckData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["provisioningTime"]; found {
-		err = json.Unmarshal(raw, &a.ProvisioningTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'provisioningTime': %w", err)
-		}
-		delete(object, "provisioningTime")
-	}
-
-	if raw, found := object["ueUpdateStatus"]; found {
-		err = json.Unmarshal(raw, &a.UeUpdateStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueUpdateStatus': %w", err)
-		}
-		delete(object, "ueUpdateStatus")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for CagAckData to handle AdditionalProperties
-func (a CagAckData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["provisioningTime"], err = json.Marshal(a.ProvisioningTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'provisioningTime': %w", err)
-	}
-
-	object["ueUpdateStatus"], err = json.Marshal(a.UeUpdateStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueUpdateStatus': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ContextDataSets. Returns the specified
-// element and whether it was found
-func (a ContextDataSets) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ContextDataSets
-func (a *ContextDataSets) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ContextDataSets to handle AdditionalProperties
-func (a *ContextDataSets) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amf3Gpp"]; found {
-		err = json.Unmarshal(raw, &a.Amf3Gpp)
-		if err != nil {
-			return fmt.Errorf("error reading 'amf3Gpp': %w", err)
-		}
-		delete(object, "amf3Gpp")
-	}
-
-	if raw, found := object["amfNon3Gpp"]; found {
-		err = json.Unmarshal(raw, &a.AmfNon3Gpp)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfNon3Gpp': %w", err)
-		}
-		delete(object, "amfNon3Gpp")
-	}
-
-	if raw, found := object["eeSubscriptions"]; found {
-		err = json.Unmarshal(raw, &a.EeSubscriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'eeSubscriptions': %w", err)
-		}
-		delete(object, "eeSubscriptions")
-	}
-
-	if raw, found := object["ipSmGw"]; found {
-		err = json.Unmarshal(raw, &a.IpSmGw)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipSmGw': %w", err)
-		}
-		delete(object, "ipSmGw")
-	}
-
-	if raw, found := object["sdmSubscriptions"]; found {
-		err = json.Unmarshal(raw, &a.SdmSubscriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'sdmSubscriptions': %w", err)
-		}
-		delete(object, "sdmSubscriptions")
-	}
-
-	if raw, found := object["smfRegistrations"]; found {
-		err = json.Unmarshal(raw, &a.SmfRegistrations)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfRegistrations': %w", err)
-		}
-		delete(object, "smfRegistrations")
-	}
-
-	if raw, found := object["smsf3GppAccess"]; found {
-		err = json.Unmarshal(raw, &a.Smsf3GppAccess)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsf3GppAccess': %w", err)
-		}
-		delete(object, "smsf3GppAccess")
-	}
-
-	if raw, found := object["smsfNon3GppAccess"]; found {
-		err = json.Unmarshal(raw, &a.SmsfNon3GppAccess)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfNon3GppAccess': %w", err)
-		}
-		delete(object, "smsfNon3GppAccess")
-	}
-
-	if raw, found := object["subscriptionDataSubscriptions"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionDataSubscriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionDataSubscriptions': %w", err)
-		}
-		delete(object, "subscriptionDataSubscriptions")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ContextDataSets to handle AdditionalProperties
-func (a ContextDataSets) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Amf3Gpp != nil {
-		object["amf3Gpp"], err = json.Marshal(a.Amf3Gpp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amf3Gpp': %w", err)
-		}
-	}
-
-	if a.AmfNon3Gpp != nil {
-		object["amfNon3Gpp"], err = json.Marshal(a.AmfNon3Gpp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfNon3Gpp': %w", err)
-		}
-	}
-
-	if len(a.EeSubscriptions) != 0 {
-		object["eeSubscriptions"], err = json.Marshal(a.EeSubscriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eeSubscriptions': %w", err)
-		}
-	}
-
-	if a.IpSmGw != nil {
-		object["ipSmGw"], err = json.Marshal(a.IpSmGw)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipSmGw': %w", err)
-		}
-	}
-
-	if len(a.SdmSubscriptions) != 0 {
-		object["sdmSubscriptions"], err = json.Marshal(a.SdmSubscriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sdmSubscriptions': %w", err)
-		}
-	}
-
-	if a.SmfRegistrations != nil {
-		object["smfRegistrations"], err = json.Marshal(a.SmfRegistrations)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfRegistrations': %w", err)
-		}
-	}
-
-	if a.Smsf3GppAccess != nil {
-		object["smsf3GppAccess"], err = json.Marshal(a.Smsf3GppAccess)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsf3GppAccess': %w", err)
-		}
-	}
-
-	if a.SmsfNon3GppAccess != nil {
-		object["smsfNon3GppAccess"], err = json.Marshal(a.SmsfNon3GppAccess)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfNon3GppAccess': %w", err)
-		}
-	}
-
-	if len(a.SubscriptionDataSubscriptions) != 0 {
-		object["subscriptionDataSubscriptions"], err = json.Marshal(a.SubscriptionDataSubscriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscriptionDataSubscriptions': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for DataChangeNotify. Returns the specified
-// element and whether it was found
-func (a DataChangeNotify) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for DataChangeNotify
-func (a *DataChangeNotify) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for DataChangeNotify to handle AdditionalProperties
-func (a *DataChangeNotify) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["additionalSdmSubscriptions"]; found {
-		err = json.Unmarshal(raw, &a.AdditionalSdmSubscriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'additionalSdmSubscriptions': %w", err)
-		}
-		delete(object, "additionalSdmSubscriptions")
-	}
-
-	if raw, found := object["notifyItems"]; found {
-		err = json.Unmarshal(raw, &a.NotifyItems)
-		if err != nil {
-			return fmt.Errorf("error reading 'notifyItems': %w", err)
-		}
-		delete(object, "notifyItems")
-	}
-
-	if raw, found := object["originalCallbackReference"]; found {
-		err = json.Unmarshal(raw, &a.OriginalCallbackReference)
-		if err != nil {
-			return fmt.Errorf("error reading 'originalCallbackReference': %w", err)
-		}
-		delete(object, "originalCallbackReference")
-	}
-
-	if raw, found := object["sdmSubscription"]; found {
-		err = json.Unmarshal(raw, &a.SdmSubscription)
-		if err != nil {
-			return fmt.Errorf("error reading 'sdmSubscription': %w", err)
-		}
-		delete(object, "sdmSubscription")
-	}
-
-	if raw, found := object["subscriptionDataSubscriptions"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionDataSubscriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionDataSubscriptions': %w", err)
-		}
-		delete(object, "subscriptionDataSubscriptions")
-	}
-
-	if raw, found := object["ueId"]; found {
-		err = json.Unmarshal(raw, &a.UeId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueId': %w", err)
-		}
-		delete(object, "ueId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for DataChangeNotify to handle AdditionalProperties
-func (a DataChangeNotify) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AdditionalSdmSubscriptions) != 0 {
-		object["additionalSdmSubscriptions"], err = json.Marshal(a.AdditionalSdmSubscriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'additionalSdmSubscriptions': %w", err)
-		}
-	}
-
-	if len(a.NotifyItems) != 0 {
-		object["notifyItems"], err = json.Marshal(a.NotifyItems)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'notifyItems': %w", err)
-		}
-	}
-
-	if len(a.OriginalCallbackReference) != 0 {
-		object["originalCallbackReference"], err = json.Marshal(a.OriginalCallbackReference)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'originalCallbackReference': %w", err)
-		}
-	}
-
-	if a.SdmSubscription != nil {
-		object["sdmSubscription"], err = json.Marshal(a.SdmSubscription)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sdmSubscription': %w", err)
-		}
-	}
-
-	if a.SubscriptionDataSubscriptions != nil {
-		object["subscriptionDataSubscriptions"], err = json.Marshal(a.SubscriptionDataSubscriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscriptionDataSubscriptions': %w", err)
-		}
-	}
-
-	if len(a.UeId) != 0 {
-		object["ueId"], err = json.Marshal(a.UeId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EeGroupProfileData. Returns the specified
-// element and whether it was found
-func (a EeGroupProfileData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EeGroupProfileData
-func (a *EeGroupProfileData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EeGroupProfileData to handle AdditionalProperties
-func (a *EeGroupProfileData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["allowedMtcProvider"]; found {
-		err = json.Unmarshal(raw, &a.AllowedMtcProvider)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedMtcProvider': %w", err)
-		}
-		delete(object, "allowedMtcProvider")
-	}
-
-	if raw, found := object["restrictedEventTypes"]; found {
-		err = json.Unmarshal(raw, &a.RestrictedEventTypes)
-		if err != nil {
-			return fmt.Errorf("error reading 'restrictedEventTypes': %w", err)
-		}
-		delete(object, "restrictedEventTypes")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EeGroupProfileData to handle AdditionalProperties
-func (a EeGroupProfileData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AllowedMtcProvider != nil {
-		object["allowedMtcProvider"], err = json.Marshal(a.AllowedMtcProvider)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedMtcProvider': %w", err)
-		}
-	}
-
-	if a.RestrictedEventTypes != nil {
-		object["restrictedEventTypes"], err = json.Marshal(a.RestrictedEventTypes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'restrictedEventTypes': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EeProfileData. Returns the specified
-// element and whether it was found
-func (a EeProfileData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EeProfileData
-func (a *EeProfileData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EeProfileData to handle AdditionalProperties
-func (a *EeProfileData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["allowedMtcProvider"]; found {
-		err = json.Unmarshal(raw, &a.AllowedMtcProvider)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedMtcProvider': %w", err)
-		}
-		delete(object, "allowedMtcProvider")
-	}
-
-	if raw, found := object["restrictedEventTypes"]; found {
-		err = json.Unmarshal(raw, &a.RestrictedEventTypes)
-		if err != nil {
-			return fmt.Errorf("error reading 'restrictedEventTypes': %w", err)
-		}
-		delete(object, "restrictedEventTypes")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EeProfileData to handle AdditionalProperties
-func (a EeProfileData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AllowedMtcProvider != nil {
-		object["allowedMtcProvider"], err = json.Marshal(a.AllowedMtcProvider)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedMtcProvider': %w", err)
-		}
-	}
-
-	if a.RestrictedEventTypes != nil {
-		object["restrictedEventTypes"], err = json.Marshal(a.RestrictedEventTypes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'restrictedEventTypes': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for HssSubscriptionInfo. Returns the specified
-// element and whether it was found
-func (a HssSubscriptionInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for HssSubscriptionInfo
-func (a *HssSubscriptionInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for HssSubscriptionInfo to handle AdditionalProperties
-func (a *HssSubscriptionInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["hssSubscriptionList"]; found {
-		err = json.Unmarshal(raw, &a.HssSubscriptionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'hssSubscriptionList': %w", err)
-		}
-		delete(object, "hssSubscriptionList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for HssSubscriptionInfo to handle AdditionalProperties
-func (a HssSubscriptionInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["hssSubscriptionList"], err = json.Marshal(a.HssSubscriptionList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'hssSubscriptionList': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for HssSubscriptionItem. Returns the specified
-// element and whether it was found
-func (a HssSubscriptionItem) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for HssSubscriptionItem
-func (a *HssSubscriptionItem) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for HssSubscriptionItem to handle AdditionalProperties
-func (a *HssSubscriptionItem) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["hssInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.HssInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'hssInstanceId': %w", err)
-		}
-		delete(object, "hssInstanceId")
-	}
-
-	if raw, found := object["subscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionId': %w", err)
-		}
-		delete(object, "subscriptionId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for HssSubscriptionItem to handle AdditionalProperties
-func (a HssSubscriptionItem) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["hssInstanceId"], err = json.Marshal(a.HssInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'hssInstanceId': %w", err)
-	}
-
-	object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for IdentityData. Returns the specified
-// element and whether it was found
-func (a IdentityData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for IdentityData
-func (a *IdentityData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for IdentityData to handle AdditionalProperties
-func (a *IdentityData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["gpsiList"]; found {
-		err = json.Unmarshal(raw, &a.GpsiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'gpsiList': %w", err)
-		}
-		delete(object, "gpsiList")
-	}
-
-	if raw, found := object["supiList"]; found {
-		err = json.Unmarshal(raw, &a.SupiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'supiList': %w", err)
-		}
-		delete(object, "supiList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for IdentityData to handle AdditionalProperties
-func (a IdentityData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.GpsiList) != 0 {
-		object["gpsiList"], err = json.Marshal(a.GpsiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gpsiList': %w", err)
-		}
-	}
-
-	if len(a.SupiList) != 0 {
-		object["supiList"], err = json.Marshal(a.SupiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supiList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for MessageWaitingData. Returns the specified
-// element and whether it was found
-func (a MessageWaitingData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for MessageWaitingData
-func (a *MessageWaitingData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for MessageWaitingData to handle AdditionalProperties
-func (a *MessageWaitingData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["mwdList"]; found {
-		err = json.Unmarshal(raw, &a.MwdList)
-		if err != nil {
-			return fmt.Errorf("error reading 'mwdList': %w", err)
-		}
-		delete(object, "mwdList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for MessageWaitingData to handle AdditionalProperties
-func (a MessageWaitingData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.MwdList) != 0 {
-		object["mwdList"], err = json.Marshal(a.MwdList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mwdList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for MtcProvider. Returns the specified
-// element and whether it was found
-func (a MtcProvider) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for MtcProvider
-func (a *MtcProvider) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for MtcProvider to handle AdditionalProperties
-func (a *MtcProvider) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afId"]; found {
-		err = json.Unmarshal(raw, &a.AfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afId': %w", err)
-		}
-		delete(object, "afId")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for MtcProvider to handle AdditionalProperties
-func (a MtcProvider) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AfId != nil {
-		object["afId"], err = json.Marshal(a.AfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afId': %w", err)
-		}
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NssaiAckData. Returns the specified
-// element and whether it was found
-func (a NssaiAckData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NssaiAckData
-func (a *NssaiAckData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NssaiAckData to handle AdditionalProperties
-func (a *NssaiAckData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["provisioningTime"]; found {
-		err = json.Unmarshal(raw, &a.ProvisioningTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'provisioningTime': %w", err)
-		}
-		delete(object, "provisioningTime")
-	}
-
-	if raw, found := object["ueUpdateStatus"]; found {
-		err = json.Unmarshal(raw, &a.UeUpdateStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueUpdateStatus': %w", err)
-		}
-		delete(object, "ueUpdateStatus")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NssaiAckData to handle AdditionalProperties
-func (a NssaiAckData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["provisioningTime"], err = json.Marshal(a.ProvisioningTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'provisioningTime': %w", err)
-	}
-
-	object["ueUpdateStatus"], err = json.Marshal(a.UeUpdateStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueUpdateStatus': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for OperatorSpecificDataContainer. Returns the specified
-// element and whether it was found
-func (a OperatorSpecificDataContainer) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for OperatorSpecificDataContainer
-func (a *OperatorSpecificDataContainer) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for OperatorSpecificDataContainer to handle AdditionalProperties
-func (a *OperatorSpecificDataContainer) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["dataType"]; found {
-		err = json.Unmarshal(raw, &a.DataType)
-		if err != nil {
-			return fmt.Errorf("error reading 'dataType': %w", err)
-		}
-		delete(object, "dataType")
-	}
-
-	if raw, found := object["dataTypeDefinition"]; found {
-		err = json.Unmarshal(raw, &a.DataTypeDefinition)
-		if err != nil {
-			return fmt.Errorf("error reading 'dataTypeDefinition': %w", err)
-		}
-		delete(object, "dataTypeDefinition")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["value"]; found {
-		err = json.Unmarshal(raw, &a.Value)
-		if err != nil {
-			return fmt.Errorf("error reading 'value': %w", err)
-		}
-		delete(object, "value")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for OperatorSpecificDataContainer to handle AdditionalProperties
-func (a OperatorSpecificDataContainer) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["dataType"], err = json.Marshal(a.DataType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'dataType': %w", err)
-	}
-
-	if a.DataTypeDefinition != nil {
-		object["dataTypeDefinition"], err = json.Marshal(a.DataTypeDefinition)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dataTypeDefinition': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["value"], err = json.Marshal(a.Value)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'value': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for Pp5gVnGroupProfileData. Returns the specified
-// element and whether it was found
-func (a Pp5gVnGroupProfileData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for Pp5gVnGroupProfileData
-func (a *Pp5gVnGroupProfileData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for Pp5gVnGroupProfileData to handle AdditionalProperties
-func (a *Pp5gVnGroupProfileData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["allowedMtcProviders"]; found {
-		err = json.Unmarshal(raw, &a.AllowedMtcProviders)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedMtcProviders': %w", err)
-		}
-		delete(object, "allowedMtcProviders")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for Pp5gVnGroupProfileData to handle AdditionalProperties
-func (a Pp5gVnGroupProfileData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AllowedMtcProviders != nil {
-		object["allowedMtcProviders"], err = json.Marshal(a.AllowedMtcProviders)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedMtcProviders': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PpProfileData. Returns the specified
-// element and whether it was found
-func (a PpProfileData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PpProfileData
-func (a *PpProfileData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PpProfileData to handle AdditionalProperties
-func (a *PpProfileData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["allowedMtcProviders"]; found {
-		err = json.Unmarshal(raw, &a.AllowedMtcProviders)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedMtcProviders': %w", err)
-		}
-		delete(object, "allowedMtcProviders")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PpProfileData to handle AdditionalProperties
-func (a PpProfileData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AllowedMtcProviders != nil {
-		object["allowedMtcProviders"], err = json.Marshal(a.AllowedMtcProviders)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedMtcProviders': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ProvisionedDataSets. Returns the specified
-// element and whether it was found
-func (a ProvisionedDataSets) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ProvisionedDataSets
-func (a *ProvisionedDataSets) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ProvisionedDataSets to handle AdditionalProperties
-func (a *ProvisionedDataSets) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amData"]; found {
-		err = json.Unmarshal(raw, &a.AmData)
-		if err != nil {
-			return fmt.Errorf("error reading 'amData': %w", err)
-		}
-		delete(object, "amData")
-	}
-
-	if raw, found := object["lcsBcaData"]; found {
-		err = json.Unmarshal(raw, &a.LcsBcaData)
-		if err != nil {
-			return fmt.Errorf("error reading 'lcsBcaData': %w", err)
-		}
-		delete(object, "lcsBcaData")
-	}
-
-	if raw, found := object["lcsMoData"]; found {
-		err = json.Unmarshal(raw, &a.LcsMoData)
-		if err != nil {
-			return fmt.Errorf("error reading 'lcsMoData': %w", err)
-		}
-		delete(object, "lcsMoData")
-	}
-
-	if raw, found := object["lcsPrivacyData"]; found {
-		err = json.Unmarshal(raw, &a.LcsPrivacyData)
-		if err != nil {
-			return fmt.Errorf("error reading 'lcsPrivacyData': %w", err)
-		}
-		delete(object, "lcsPrivacyData")
-	}
-
-	if raw, found := object["smData"]; found {
-		err = json.Unmarshal(raw, &a.SmData)
-		if err != nil {
-			return fmt.Errorf("error reading 'smData': %w", err)
-		}
-		delete(object, "smData")
-	}
-
-	if raw, found := object["smfSelData"]; found {
-		err = json.Unmarshal(raw, &a.SmfSelData)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfSelData': %w", err)
-		}
-		delete(object, "smfSelData")
-	}
-
-	if raw, found := object["smsMngData"]; found {
-		err = json.Unmarshal(raw, &a.SmsMngData)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsMngData': %w", err)
-		}
-		delete(object, "smsMngData")
-	}
-
-	if raw, found := object["smsSubsData"]; found {
-		err = json.Unmarshal(raw, &a.SmsSubsData)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsSubsData': %w", err)
-		}
-		delete(object, "smsSubsData")
-	}
-
-	if raw, found := object["traceData"]; found {
-		err = json.Unmarshal(raw, &a.TraceData)
-		if err != nil {
-			return fmt.Errorf("error reading 'traceData': %w", err)
-		}
-		delete(object, "traceData")
-	}
-
-	if raw, found := object["v2xData"]; found {
-		err = json.Unmarshal(raw, &a.V2xData)
-		if err != nil {
-			return fmt.Errorf("error reading 'v2xData': %w", err)
-		}
-		delete(object, "v2xData")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ProvisionedDataSets to handle AdditionalProperties
-func (a ProvisionedDataSets) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AmData != nil {
-		object["amData"], err = json.Marshal(a.AmData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amData': %w", err)
-		}
-	}
-
-	if a.LcsBcaData != nil {
-		object["lcsBcaData"], err = json.Marshal(a.LcsBcaData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lcsBcaData': %w", err)
-		}
-	}
-
-	if a.LcsMoData != nil {
-		object["lcsMoData"], err = json.Marshal(a.LcsMoData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lcsMoData': %w", err)
-		}
-	}
-
-	if a.LcsPrivacyData != nil {
-		object["lcsPrivacyData"], err = json.Marshal(a.LcsPrivacyData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lcsPrivacyData': %w", err)
-		}
-	}
-
-	if a.SmData != nil {
-		object["smData"], err = json.Marshal(a.SmData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smData': %w", err)
-		}
-	}
-
-	if a.SmfSelData != nil {
-		object["smfSelData"], err = json.Marshal(a.SmfSelData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfSelData': %w", err)
-		}
-	}
-
-	if a.SmsMngData != nil {
-		object["smsMngData"], err = json.Marshal(a.SmsMngData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsMngData': %w", err)
-		}
-	}
-
-	if a.SmsSubsData != nil {
-		object["smsSubsData"], err = json.Marshal(a.SmsSubsData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsSubsData': %w", err)
-		}
-	}
-
-	object["traceData"], err = json.Marshal(a.TraceData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'traceData': %w", err)
-	}
-
-	if a.V2xData != nil {
-		object["v2xData"], err = json.Marshal(a.V2xData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'v2xData': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SequenceNumber. Returns the specified
-// element and whether it was found
-func (a SequenceNumber) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SequenceNumber
-func (a *SequenceNumber) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SequenceNumber to handle AdditionalProperties
-func (a *SequenceNumber) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["difSign"]; found {
-		err = json.Unmarshal(raw, &a.DifSign)
-		if err != nil {
-			return fmt.Errorf("error reading 'difSign': %w", err)
-		}
-		delete(object, "difSign")
-	}
-
-	if raw, found := object["indLength"]; found {
-		err = json.Unmarshal(raw, &a.IndLength)
-		if err != nil {
-			return fmt.Errorf("error reading 'indLength': %w", err)
-		}
-		delete(object, "indLength")
-	}
-
-	if raw, found := object["lastIndexes"]; found {
-		err = json.Unmarshal(raw, &a.LastIndexes)
-		if err != nil {
-			return fmt.Errorf("error reading 'lastIndexes': %w", err)
-		}
-		delete(object, "lastIndexes")
-	}
-
-	if raw, found := object["sqn"]; found {
-		err = json.Unmarshal(raw, &a.Sqn)
-		if err != nil {
-			return fmt.Errorf("error reading 'sqn': %w", err)
-		}
-		delete(object, "sqn")
-	}
-
-	if raw, found := object["sqnScheme"]; found {
-		err = json.Unmarshal(raw, &a.SqnScheme)
-		if err != nil {
-			return fmt.Errorf("error reading 'sqnScheme': %w", err)
-		}
-		delete(object, "sqnScheme")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SequenceNumber to handle AdditionalProperties
-func (a SequenceNumber) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.DifSign) != 0 {
-		object["difSign"], err = json.Marshal(a.DifSign)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'difSign': %w", err)
-		}
-	}
-
-	if a.IndLength != nil {
-		object["indLength"], err = json.Marshal(a.IndLength)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'indLength': %w", err)
-		}
-	}
-
-	if a.LastIndexes != nil {
-		object["lastIndexes"], err = json.Marshal(a.LastIndexes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lastIndexes': %w", err)
-		}
-	}
-
-	if len(a.Sqn) != 0 {
-		object["sqn"], err = json.Marshal(a.Sqn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sqn': %w", err)
-		}
-	}
-
-	if a.SqnScheme != nil {
-		object["sqnScheme"], err = json.Marshal(a.SqnScheme)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sqnScheme': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SmfSubscriptionInfo. Returns the specified
-// element and whether it was found
-func (a SmfSubscriptionInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SmfSubscriptionInfo
-func (a *SmfSubscriptionInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SmfSubscriptionInfo to handle AdditionalProperties
-func (a *SmfSubscriptionInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["smfSubscriptionList"]; found {
-		err = json.Unmarshal(raw, &a.SmfSubscriptionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfSubscriptionList': %w", err)
-		}
-		delete(object, "smfSubscriptionList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SmfSubscriptionInfo to handle AdditionalProperties
-func (a SmfSubscriptionInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["smfSubscriptionList"], err = json.Marshal(a.SmfSubscriptionList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smfSubscriptionList': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SmfSubscriptionItem. Returns the specified
-// element and whether it was found
-func (a SmfSubscriptionItem) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SmfSubscriptionItem
-func (a *SmfSubscriptionItem) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SmfSubscriptionItem to handle AdditionalProperties
-func (a *SmfSubscriptionItem) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["smfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.SmfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfInstanceId': %w", err)
-		}
-		delete(object, "smfInstanceId")
-	}
-
-	if raw, found := object["subscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionId': %w", err)
-		}
-		delete(object, "subscriptionId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SmfSubscriptionItem to handle AdditionalProperties
-func (a SmfSubscriptionItem) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["smfInstanceId"], err = json.Marshal(a.SmfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smfInstanceId': %w", err)
-	}
-
-	object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SmscData. Returns the specified
-// element and whether it was found
-func (a SmscData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SmscData
-func (a *SmscData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SmscData to handle AdditionalProperties
-func (a *SmscData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["smscDiameterAddress"]; found {
-		err = json.Unmarshal(raw, &a.SmscDiameterAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'smscDiameterAddress': %w", err)
-		}
-		delete(object, "smscDiameterAddress")
-	}
-
-	if raw, found := object["smscMapAddress"]; found {
-		err = json.Unmarshal(raw, &a.SmscMapAddress)
-		if err != nil {
-			return fmt.Errorf("error reading 'smscMapAddress': %w", err)
-		}
-		delete(object, "smscMapAddress")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SmscData to handle AdditionalProperties
-func (a SmscData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.SmscDiameterAddress != nil {
-		object["smscDiameterAddress"], err = json.Marshal(a.SmscDiameterAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smscDiameterAddress': %w", err)
-		}
-	}
-
-	if len(a.SmscMapAddress) != 0 {
-		object["smscMapAddress"], err = json.Marshal(a.SmscMapAddress)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smscMapAddress': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SorData. Returns the specified
-// element and whether it was found
-func (a SorData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SorData
-func (a *SorData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SorData to handle AdditionalProperties
-func (a *SorData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["provisioningTime"]; found {
-		err = json.Unmarshal(raw, &a.ProvisioningTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'provisioningTime': %w", err)
-		}
-		delete(object, "provisioningTime")
-	}
-
-	if raw, found := object["sorMacIue"]; found {
-		err = json.Unmarshal(raw, &a.SorMacIue)
-		if err != nil {
-			return fmt.Errorf("error reading 'sorMacIue': %w", err)
-		}
-		delete(object, "sorMacIue")
-	}
-
-	if raw, found := object["sorXmacIue"]; found {
-		err = json.Unmarshal(raw, &a.SorXmacIue)
-		if err != nil {
-			return fmt.Errorf("error reading 'sorXmacIue': %w", err)
-		}
-		delete(object, "sorXmacIue")
-	}
-
-	if raw, found := object["ueUpdateStatus"]; found {
-		err = json.Unmarshal(raw, &a.UeUpdateStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueUpdateStatus': %w", err)
-		}
-		delete(object, "ueUpdateStatus")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SorData to handle AdditionalProperties
-func (a SorData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["provisioningTime"], err = json.Marshal(a.ProvisioningTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'provisioningTime': %w", err)
-	}
-
-	if len(a.SorMacIue) != 0 {
-		object["sorMacIue"], err = json.Marshal(a.SorMacIue)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sorMacIue': %w", err)
-		}
-	}
-
-	if len(a.SorXmacIue) != 0 {
-		object["sorXmacIue"], err = json.Marshal(a.SorXmacIue)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sorXmacIue': %w", err)
-		}
-	}
-
-	object["ueUpdateStatus"], err = json.Marshal(a.UeUpdateStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueUpdateStatus': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SubscriptionDataSubscriptions. Returns the specified
-// element and whether it was found
-func (a SubscriptionDataSubscriptions) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SubscriptionDataSubscriptions
-func (a *SubscriptionDataSubscriptions) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SubscriptionDataSubscriptions to handle AdditionalProperties
-func (a *SubscriptionDataSubscriptions) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["callbackReference"]; found {
-		err = json.Unmarshal(raw, &a.CallbackReference)
-		if err != nil {
-			return fmt.Errorf("error reading 'callbackReference': %w", err)
-		}
-		delete(object, "callbackReference")
-	}
-
-	if raw, found := object["expiry"]; found {
-		err = json.Unmarshal(raw, &a.Expiry)
-		if err != nil {
-			return fmt.Errorf("error reading 'expiry': %w", err)
-		}
-		delete(object, "expiry")
-	}
-
-	if raw, found := object["monitoredResourceUris"]; found {
-		err = json.Unmarshal(raw, &a.MonitoredResourceUris)
-		if err != nil {
-			return fmt.Errorf("error reading 'monitoredResourceUris': %w", err)
-		}
-		delete(object, "monitoredResourceUris")
-	}
-
-	if raw, found := object["originalCallbackReference"]; found {
-		err = json.Unmarshal(raw, &a.OriginalCallbackReference)
-		if err != nil {
-			return fmt.Errorf("error reading 'originalCallbackReference': %w", err)
-		}
-		delete(object, "originalCallbackReference")
-	}
-
-	if raw, found := object["sdmSubscription"]; found {
-		err = json.Unmarshal(raw, &a.SdmSubscription)
-		if err != nil {
-			return fmt.Errorf("error reading 'sdmSubscription': %w", err)
-		}
-		delete(object, "sdmSubscription")
-	}
-
-	if raw, found := object["subscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionId': %w", err)
-		}
-		delete(object, "subscriptionId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["ueId"]; found {
-		err = json.Unmarshal(raw, &a.UeId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueId': %w", err)
-		}
-		delete(object, "ueId")
-	}
-
-	if raw, found := object["uniqueSubscription"]; found {
-		err = json.Unmarshal(raw, &a.UniqueSubscription)
-		if err != nil {
-			return fmt.Errorf("error reading 'uniqueSubscription': %w", err)
-		}
-		delete(object, "uniqueSubscription")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SubscriptionDataSubscriptions to handle AdditionalProperties
-func (a SubscriptionDataSubscriptions) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["callbackReference"], err = json.Marshal(a.CallbackReference)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'callbackReference': %w", err)
-	}
-
-	if a.Expiry != nil {
-		object["expiry"], err = json.Marshal(a.Expiry)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'expiry': %w", err)
-		}
-	}
-
-	object["monitoredResourceUris"], err = json.Marshal(a.MonitoredResourceUris)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'monitoredResourceUris': %w", err)
-	}
-
-	if a.OriginalCallbackReference != nil {
-		object["originalCallbackReference"], err = json.Marshal(a.OriginalCallbackReference)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'originalCallbackReference': %w", err)
-		}
-	}
-
-	if a.SdmSubscription != nil {
-		object["sdmSubscription"], err = json.Marshal(a.SdmSubscription)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sdmSubscription': %w", err)
-		}
-	}
-
-	if a.SubscriptionId != nil {
-		object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if len(a.UeId) != 0 {
-		object["ueId"], err = json.Marshal(a.UeId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueId': %w", err)
-		}
-	}
-
-	if a.UniqueSubscription != nil {
-		object["uniqueSubscription"], err = json.Marshal(a.UniqueSubscription)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'uniqueSubscription': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UpuData. Returns the specified
-// element and whether it was found
-func (a UpuData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UpuData
-func (a *UpuData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UpuData to handle AdditionalProperties
-func (a *UpuData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["provisioningTime"]; found {
-		err = json.Unmarshal(raw, &a.ProvisioningTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'provisioningTime': %w", err)
-		}
-		delete(object, "provisioningTime")
-	}
-
-	if raw, found := object["ueUpdateStatus"]; found {
-		err = json.Unmarshal(raw, &a.UeUpdateStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueUpdateStatus': %w", err)
-		}
-		delete(object, "ueUpdateStatus")
-	}
-
-	if raw, found := object["upuMacIue"]; found {
-		err = json.Unmarshal(raw, &a.UpuMacIue)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuMacIue': %w", err)
-		}
-		delete(object, "upuMacIue")
-	}
-
-	if raw, found := object["upuXmacIue"]; found {
-		err = json.Unmarshal(raw, &a.UpuXmacIue)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuXmacIue': %w", err)
-		}
-		delete(object, "upuXmacIue")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UpuData to handle AdditionalProperties
-func (a UpuData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["provisioningTime"], err = json.Marshal(a.ProvisioningTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'provisioningTime': %w", err)
-	}
-
-	object["ueUpdateStatus"], err = json.Marshal(a.UeUpdateStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueUpdateStatus': %w", err)
-	}
-
-	if len(a.UpuMacIue) != 0 {
-		object["upuMacIue"], err = json.Marshal(a.UpuMacIue)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upuMacIue': %w", err)
-		}
-	}
-
-	if len(a.UpuXmacIue) != 0 {
-		object["upuXmacIue"], err = json.Marshal(a.UpuXmacIue)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upuXmacIue': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// AsOperatorSpecificDataContainerValue0 returns the union data inside the OperatorSpecificDataContainer_Value as a OperatorSpecificDataContainerValue0
-func (t OperatorSpecificDataContainer_Value) AsOperatorSpecificDataContainerValue0() (OperatorSpecificDataContainerValue0, error) {
-	var body OperatorSpecificDataContainerValue0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOperatorSpecificDataContainerValue0 overwrites any union data inside the OperatorSpecificDataContainer_Value as the provided OperatorSpecificDataContainerValue0
-func (t *OperatorSpecificDataContainer_Value) FromOperatorSpecificDataContainerValue0(v OperatorSpecificDataContainerValue0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOperatorSpecificDataContainerValue0 performs a merge with any union data inside the OperatorSpecificDataContainer_Value, using the provided OperatorSpecificDataContainerValue0
-func (t *OperatorSpecificDataContainer_Value) MergeOperatorSpecificDataContainerValue0(v OperatorSpecificDataContainerValue0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOperatorSpecificDataContainerValue1 returns the union data inside the OperatorSpecificDataContainer_Value as a OperatorSpecificDataContainerValue1
-func (t OperatorSpecificDataContainer_Value) AsOperatorSpecificDataContainerValue1() (OperatorSpecificDataContainerValue1, error) {
-	var body OperatorSpecificDataContainerValue1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOperatorSpecificDataContainerValue1 overwrites any union data inside the OperatorSpecificDataContainer_Value as the provided OperatorSpecificDataContainerValue1
-func (t *OperatorSpecificDataContainer_Value) FromOperatorSpecificDataContainerValue1(v OperatorSpecificDataContainerValue1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOperatorSpecificDataContainerValue1 performs a merge with any union data inside the OperatorSpecificDataContainer_Value, using the provided OperatorSpecificDataContainerValue1
-func (t *OperatorSpecificDataContainer_Value) MergeOperatorSpecificDataContainerValue1(v OperatorSpecificDataContainerValue1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOperatorSpecificDataContainerValue2 returns the union data inside the OperatorSpecificDataContainer_Value as a OperatorSpecificDataContainerValue2
-func (t OperatorSpecificDataContainer_Value) AsOperatorSpecificDataContainerValue2() (OperatorSpecificDataContainerValue2, error) {
-	var body OperatorSpecificDataContainerValue2
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOperatorSpecificDataContainerValue2 overwrites any union data inside the OperatorSpecificDataContainer_Value as the provided OperatorSpecificDataContainerValue2
-func (t *OperatorSpecificDataContainer_Value) FromOperatorSpecificDataContainerValue2(v OperatorSpecificDataContainerValue2) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOperatorSpecificDataContainerValue2 performs a merge with any union data inside the OperatorSpecificDataContainer_Value, using the provided OperatorSpecificDataContainerValue2
-func (t *OperatorSpecificDataContainer_Value) MergeOperatorSpecificDataContainerValue2(v OperatorSpecificDataContainerValue2) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOperatorSpecificDataContainerValue3 returns the union data inside the OperatorSpecificDataContainer_Value as a OperatorSpecificDataContainerValue3
-func (t OperatorSpecificDataContainer_Value) AsOperatorSpecificDataContainerValue3() (OperatorSpecificDataContainerValue3, error) {
-	var body OperatorSpecificDataContainerValue3
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOperatorSpecificDataContainerValue3 overwrites any union data inside the OperatorSpecificDataContainer_Value as the provided OperatorSpecificDataContainerValue3
-func (t *OperatorSpecificDataContainer_Value) FromOperatorSpecificDataContainerValue3(v OperatorSpecificDataContainerValue3) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOperatorSpecificDataContainerValue3 performs a merge with any union data inside the OperatorSpecificDataContainer_Value, using the provided OperatorSpecificDataContainerValue3
-func (t *OperatorSpecificDataContainer_Value) MergeOperatorSpecificDataContainerValue3(v OperatorSpecificDataContainerValue3) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOperatorSpecificDataContainerValue4 returns the union data inside the OperatorSpecificDataContainer_Value as a OperatorSpecificDataContainerValue4
-func (t OperatorSpecificDataContainer_Value) AsOperatorSpecificDataContainerValue4() (OperatorSpecificDataContainerValue4, error) {
-	var body OperatorSpecificDataContainerValue4
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOperatorSpecificDataContainerValue4 overwrites any union data inside the OperatorSpecificDataContainer_Value as the provided OperatorSpecificDataContainerValue4
-func (t *OperatorSpecificDataContainer_Value) FromOperatorSpecificDataContainerValue4(v OperatorSpecificDataContainerValue4) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOperatorSpecificDataContainerValue4 performs a merge with any union data inside the OperatorSpecificDataContainer_Value, using the provided OperatorSpecificDataContainerValue4
-func (t *OperatorSpecificDataContainer_Value) MergeOperatorSpecificDataContainerValue4(v OperatorSpecificDataContainerValue4) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OperatorSpecificDataContainer_Value) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OperatorSpecificDataContainer_Value) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
+type CreateAuthenticationUPUJSONRequestBody = externalRef0.UpuData
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -4127,56 +847,56 @@ type ClientInterface interface {
 	Query5GVNGroupPPData(ctx context.Context, params *Query5GVNGroupPPDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Delete5GVnGroup request
-	Delete5GVnGroup(ctx context.Context, externalGroupId externalRef6.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Delete5GVnGroup(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Get5GVnGroupConfiguration request
-	Get5GVnGroupConfiguration(ctx context.Context, externalGroupId externalRef6.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Get5GVnGroupConfiguration(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Modify5GVnGroupWithBody request with any body
-	Modify5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Modify5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context.Context, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Create5GVnGroupWithBody request with any body
-	Create5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef6.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Create5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Create5GVnGroup(ctx context.Context, externalGroupId externalRef6.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Create5GVnGroup(ctx context.Context, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetGroupIdentifiers request
 	GetGroupIdentifiers(ctx context.Context, params *GetGroupIdentifiersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryGroupEEData request
-	QueryGroupEEData(ctx context.Context, ueGroupId VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryGroupEEData(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryEeGroupSubscriptions request
-	QueryEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateEeGroupSubscriptionsWithBody request with any body
-	CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveEeGroupSubscriptions request
-	RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryEeGroupSubscription request
-	QueryEeGroupSubscription(ctx context.Context, ueGroupId VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryEeGroupSubscription(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyEeGroupSubscriptionWithBody request with any body
-	ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateEeGroupSubscriptionsWithBody request with any body
-	UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSharedData request
 	GetSharedData(ctx context.Context, params *GetSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetIndividualSharedData request
-	GetIndividualSharedData(ctx context.Context, sharedDataId externalRef6.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetIndividualSharedData(ctx context.Context, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveMultipleSubscriptionDataSubscriptions request
 	RemoveMultipleSubscriptionDataSubscriptions(ctx context.Context, params *RemoveMultipleSubscriptionDataSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4201,345 +921,345 @@ type ClientInterface interface {
 	ModifysubscriptionDataSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, subsId string, params *ModifysubscriptionDataSubscriptionParams, body ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteAuthenticationStatus request
-	DeleteAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAuthenticationStatus request
-	QueryAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateAuthenticationStatusWithBody request with any body
-	CreateAuthenticationStatusWithBody(ctx context.Context, ueId externalRef2.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAuthenticationStatusWithBody(ctx context.Context, ueId externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteIndividualAuthenticationStatus request
-	DeleteIndividualAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryIndividualAuthenticationStatus request
-	QueryIndividualAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateIndividualAuthenticationStatusWithBody request with any body
-	CreateIndividualAuthenticationStatusWithBody(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateIndividualAuthenticationStatusWithBody(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateIndividualAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAuthSubsData request
-	QueryAuthSubsData(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryAuthSubsData(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyAuthenticationSubscriptionWithBody request with any body
-	ModifyAuthenticationSubscriptionWithBody(ctx context.Context, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyAuthenticationSubscriptionWithBody(ctx context.Context, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryContextData request
-	QueryContextData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryContextDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryContextData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryContextDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAmfContext3gpp request
-	QueryAmfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, params *QueryAmfContext3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryAmfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, params *QueryAmfContext3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AmfContext3gppWithBody request with any body
-	AmfContext3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AmfContext3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AmfContext3gppWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AmfContext3gppWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateAmfContext3gppWithBody request with any body
-	CreateAmfContext3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAmfContext3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateAmfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, body CreateAmfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAmfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, body CreateAmfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAmfContextNon3gpp request
-	QueryAmfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, params *QueryAmfContextNon3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryAmfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, params *QueryAmfContextNon3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AmfContextNon3gppWithBody request with any body
-	AmfContextNon3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AmfContextNon3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	AmfContextNon3gppWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AmfContextNon3gppWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateAmfContextNon3gppWithBody request with any body
-	CreateAmfContextNon3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAmfContextNon3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateAmfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, body CreateAmfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAmfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, body CreateAmfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Queryeesubscriptions request
-	Queryeesubscriptions(ctx context.Context, ueId externalRef2.VarUeId, params *QueryeesubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Queryeesubscriptions(ctx context.Context, ueId externalRef0.VarUeId, params *QueryeesubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateEeSubscriptionsWithBody request with any body
-	CreateEeSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateEeSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateEeSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, body CreateEeSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateEeSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, body CreateEeSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveeeSubscriptions request
-	RemoveeeSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RemoveeeSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryeeSubscription request
-	QueryeeSubscription(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryeeSubscription(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyEesubscriptionWithBody request with any body
-	ModifyEesubscriptionWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyEesubscriptionWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateEesubscriptionsWithBody request with any body
-	UpdateEesubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEesubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateEesubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEesubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveAmfSubscriptionsInfo request
-	RemoveAmfSubscriptionsInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RemoveAmfSubscriptionsInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAmfSubscriptionInfo request
-	GetAmfSubscriptionInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetAmfSubscriptionInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyAmfSubscriptionInfoWithBody request with any body
-	ModifyAmfSubscriptionInfoWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyAmfSubscriptionInfoWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateAMFSubscriptionsWithBody request with any body
-	CreateAMFSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAMFSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateAMFSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAMFSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveHssSubscriptionsInfo request
-	RemoveHssSubscriptionsInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RemoveHssSubscriptionsInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetHssSubscriptionInfo request
-	GetHssSubscriptionInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetHssSubscriptionInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyHssSubscriptionInfoWithBody request with any body
-	ModifyHssSubscriptionInfoWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyHssSubscriptionInfoWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateHSSSubscriptionsWithBody request with any body
-	CreateHSSSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateHSSSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateHSSSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateHSSSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveSmfSubscriptionsInfo request
-	RemoveSmfSubscriptionsInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RemoveSmfSubscriptionsInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSmfSubscriptionInfo request
-	GetSmfSubscriptionInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetSmfSubscriptionInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifySmfSubscriptionInfoWithBody request with any body
-	ModifySmfSubscriptionInfoWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifySmfSubscriptionInfoWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateSMFSubscriptionsWithBody request with any body
-	CreateSMFSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateSMFSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateSMFSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateSMFSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteIpSmGwContext request
-	DeleteIpSmGwContext(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteIpSmGwContext(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryIpSmGwContext request
-	QueryIpSmGwContext(ctx context.Context, ueId externalRef2.VarUeId, params *QueryIpSmGwContextParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryIpSmGwContext(ctx context.Context, ueId externalRef0.VarUeId, params *QueryIpSmGwContextParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyIpSmGwContextWithBody request with any body
-	ModifyIpSmGwContextWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyIpSmGwContextWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateIpSmGwContextWithBody request with any body
-	CreateIpSmGwContextWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateIpSmGwContextWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateIpSmGwContext(ctx context.Context, ueId externalRef2.VarUeId, body CreateIpSmGwContextJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateIpSmGwContext(ctx context.Context, ueId externalRef0.VarUeId, body CreateIpSmGwContextJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryUeLocation request
-	QueryUeLocation(ctx context.Context, ueId externalRef2.VarUeId, params *QueryUeLocationParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryUeLocation(ctx context.Context, ueId externalRef0.VarUeId, params *QueryUeLocationParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteMessageWaitingData request
-	DeleteMessageWaitingData(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteMessageWaitingData(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryMessageWaitingData request
-	QueryMessageWaitingData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryMessageWaitingDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryMessageWaitingData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryMessageWaitingDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyMessageWaitingDataWithBody request with any body
-	ModifyMessageWaitingDataWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyMessageWaitingDataWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateMessageWaitingDataWithBody request with any body
-	CreateMessageWaitingDataWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateMessageWaitingDataWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateMessageWaitingData(ctx context.Context, ueId externalRef2.VarUeId, body CreateMessageWaitingDataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateMessageWaitingData(ctx context.Context, ueId externalRef0.VarUeId, body CreateMessageWaitingDataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Querysdmsubscriptions request
-	Querysdmsubscriptions(ctx context.Context, ueId externalRef2.VarUeId, params *QuerysdmsubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Querysdmsubscriptions(ctx context.Context, ueId externalRef0.VarUeId, params *QuerysdmsubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateSdmSubscriptionsWithBody request with any body
-	CreateSdmSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateSdmSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateSdmSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, body CreateSdmSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateSdmSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, body CreateSdmSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemovesdmSubscriptions request
-	RemovesdmSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RemovesdmSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerysdmSubscription request
-	QuerysdmSubscription(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerysdmSubscription(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifysdmSubscriptionWithBody request with any body
-	ModifysdmSubscriptionWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifysdmSubscriptionWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdatesdmsubscriptionsWithBody request with any body
-	UpdatesdmsubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdatesdmsubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Updatesdmsubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Updatesdmsubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveHssSDMSubscriptionsInfo request
-	RemoveHssSDMSubscriptionsInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RemoveHssSDMSubscriptionsInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetHssSDMSubscriptionInfo request
-	GetHssSDMSubscriptionInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetHssSDMSubscriptionInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyHssSDMSubscriptionInfoWithBody request with any body
-	ModifyHssSDMSubscriptionInfoWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyHssSDMSubscriptionInfoWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateHSSSDMSubscriptionsWithBody request with any body
-	CreateHSSSDMSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateHSSSDMSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateHSSSDMSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateHSSSDMSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmfRegList request
-	QuerySmfRegList(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmfRegListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmfRegList(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmfRegListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteSmfRegistration request
-	DeleteSmfRegistration(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteSmfRegistration(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmfRegistration request
-	QuerySmfRegistration(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, params *QuerySmfRegistrationParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmfRegistration(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, params *QuerySmfRegistrationParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateOrUpdateSmfRegistrationWithBody request with any body
-	CreateOrUpdateSmfRegistrationWithBody(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateOrUpdateSmfRegistrationWithBody(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateOrUpdateSmfRegistration(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateOrUpdateSmfRegistration(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteSmsfContext3gpp request
-	DeleteSmsfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteSmsfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmsfContext3gpp request
-	QuerySmsfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmsfContext3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmsfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmsfContext3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateSmsfContext3gppWithBody request with any body
-	CreateSmsfContext3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateSmsfContext3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateSmsfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, body CreateSmsfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateSmsfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, body CreateSmsfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteSmsfContextNon3gpp request
-	DeleteSmsfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteSmsfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmsfContextNon3gpp request
-	QuerySmsfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmsfContextNon3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmsfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmsfContextNon3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateSmsfContextNon3gppWithBody request with any body
-	CreateSmsfContextNon3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateSmsfContextNon3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateSmsfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateSmsfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryCoverageRestrictionData request
-	QueryCoverageRestrictionData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryCoverageRestrictionDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryCoverageRestrictionData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryCoverageRestrictionDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryEEData request
-	QueryEEData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryEEData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetIdentityData request
-	GetIdentityData(ctx context.Context, ueId externalRef2.VarUeId, params *GetIdentityDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetIdentityData(ctx context.Context, ueId externalRef0.VarUeId, params *GetIdentityDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryLcsMoData request
-	QueryLcsMoData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryLcsMoDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryLcsMoData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryLcsMoDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryLcsPrivacyData request
-	QueryLcsPrivacyData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryLcsPrivacyDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryLcsPrivacyData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryLcsPrivacyDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetNiddAuData request
 	GetNiddAuData(ctx context.Context, ueId string, params *GetNiddAuDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetOdbData request
-	GetOdbData(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetOdbData(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryOperSpecData request
-	QueryOperSpecData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryOperSpecDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryOperSpecData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryOperSpecDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyOperSpecDataWithBody request with any body
-	ModifyOperSpecDataWithBody(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyOperSpecDataWithBody(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetppData request
-	GetppData(ctx context.Context, ueId externalRef2.VarUeId, params *GetppDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetppData(ctx context.Context, ueId externalRef0.VarUeId, params *GetppDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyPpDataWithBody request with any body
-	ModifyPpDataWithBody(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyPpDataWithBody(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyPpDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyPpDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryPPData request
-	QueryPPData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryPPDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryPPData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryPPDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAuthSoR request
-	QueryAuthSoR(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthSoRParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryAuthSoR(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSoRParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateAuthenticationSoRWithBody request with any body
-	CreateAuthenticationSoRWithBody(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAuthenticationSoRWithBody(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateAuthenticationSoR(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAuthenticationSoR(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryCagAck request
-	QueryCagAck(ctx context.Context, ueId externalRef2.Supi, params *QueryCagAckParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryCagAck(ctx context.Context, ueId externalRef0.Supi, params *QueryCagAckParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateCagUpdateAckWithBody request with any body
-	CreateCagUpdateAckWithBody(ctx context.Context, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateCagUpdateAckWithBody(ctx context.Context, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateCagUpdateAck(ctx context.Context, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateCagUpdateAck(ctx context.Context, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryNssaiAck request
-	QueryNssaiAck(ctx context.Context, ueId externalRef2.Supi, params *QueryNssaiAckParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryNssaiAck(ctx context.Context, ueId externalRef0.Supi, params *QueryNssaiAckParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateOrUpdateNssaiAckWithBody request with any body
-	CreateOrUpdateNssaiAckWithBody(ctx context.Context, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateOrUpdateNssaiAckWithBody(ctx context.Context, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateOrUpdateNssaiAck(ctx context.Context, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateOrUpdateNssaiAck(ctx context.Context, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAuthUPU request
-	QueryAuthUPU(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthUPUParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryAuthUPU(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthUPUParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateAuthenticationUPUWithBody request with any body
-	CreateAuthenticationUPUWithBody(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAuthenticationUPUWithBody(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateAuthenticationUPU(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateAuthenticationUPU(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryV2xData request
-	QueryV2xData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryV2xData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryProvisionedData request
-	QueryProvisionedData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryProvisionedData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAmData request
-	QueryAmData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryAmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryLcsBcaData request
-	QueryLcsBcaData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryLcsBcaData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmData request
-	QuerySmData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmfSelectData request
-	QuerySmfSelectData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmfSelectData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmsData request
-	QuerySmsData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmsData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmsMngData request
-	QuerySmsMngData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmsMngData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryTraceData request
-	QueryTraceData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryTraceData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) Query5GVnGroup(ctx context.Context, params *Query5GVnGroupParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -4578,7 +1298,7 @@ func (c *Client) Query5GVNGroupPPData(ctx context.Context, params *Query5GVNGrou
 	return c.Client.Do(req)
 }
 
-func (c *Client) Delete5GVnGroup(ctx context.Context, externalGroupId externalRef6.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Delete5GVnGroup(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDelete5GVnGroupRequest(c.Server, externalGroupId)
 	if err != nil {
 		return nil, err
@@ -4590,7 +1310,7 @@ func (c *Client) Delete5GVnGroup(ctx context.Context, externalGroupId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get5GVnGroupConfiguration(ctx context.Context, externalGroupId externalRef6.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Get5GVnGroupConfiguration(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGet5GVnGroupConfigurationRequest(c.Server, externalGroupId)
 	if err != nil {
 		return nil, err
@@ -4602,7 +1322,7 @@ func (c *Client) Get5GVnGroupConfiguration(ctx context.Context, externalGroupId 
 	return c.Client.Do(req)
 }
 
-func (c *Client) Modify5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Modify5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModify5GVnGroupRequestWithBody(c.Server, externalGroupId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -4614,7 +1334,7 @@ func (c *Client) Modify5GVnGroupWithBody(ctx context.Context, externalGroupId ex
 	return c.Client.Do(req)
 }
 
-func (c *Client) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context.Context, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody(c.Server, externalGroupId, params, body)
 	if err != nil {
 		return nil, err
@@ -4626,7 +1346,7 @@ func (c *Client) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef6.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Create5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreate5GVnGroupRequestWithBody(c.Server, externalGroupId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -4638,7 +1358,7 @@ func (c *Client) Create5GVnGroupWithBody(ctx context.Context, externalGroupId ex
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create5GVnGroup(ctx context.Context, externalGroupId externalRef6.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Create5GVnGroup(ctx context.Context, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreate5GVnGroupRequest(c.Server, externalGroupId, body)
 	if err != nil {
 		return nil, err
@@ -4662,7 +1382,7 @@ func (c *Client) GetGroupIdentifiers(ctx context.Context, params *GetGroupIdenti
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryGroupEEData(ctx context.Context, ueGroupId VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryGroupEEData(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryGroupEEDataRequest(c.Server, ueGroupId, params)
 	if err != nil {
 		return nil, err
@@ -4674,7 +1394,7 @@ func (c *Client) QueryGroupEEData(ctx context.Context, ueGroupId VarUeGroupId, p
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryEeGroupSubscriptionsRequest(c.Server, ueGroupId, params)
 	if err != nil {
 		return nil, err
@@ -4686,7 +1406,7 @@ func (c *Client) QueryEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeG
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateEeGroupSubscriptionsRequestWithBody(c.Server, ueGroupId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -4698,7 +1418,7 @@ func (c *Client) CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroup
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateEeGroupSubscriptionsRequest(c.Server, ueGroupId, body)
 	if err != nil {
 		return nil, err
@@ -4710,7 +1430,7 @@ func (c *Client) CreateEeGroupSubscriptions(ctx context.Context, ueGroupId VarUe
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoveEeGroupSubscriptionsRequest(c.Server, ueGroupId, subsId)
 	if err != nil {
 		return nil, err
@@ -4722,7 +1442,7 @@ func (c *Client) RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId VarUe
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryEeGroupSubscription(ctx context.Context, ueGroupId VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryEeGroupSubscription(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryEeGroupSubscriptionRequest(c.Server, ueGroupId, subsId)
 	if err != nil {
 		return nil, err
@@ -4734,7 +1454,7 @@ func (c *Client) QueryEeGroupSubscription(ctx context.Context, ueGroupId VarUeGr
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyEeGroupSubscriptionRequestWithBody(c.Server, ueGroupId, subsId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -4746,7 +1466,7 @@ func (c *Client) ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupI
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueGroupId, subsId, params, body)
 	if err != nil {
 		return nil, err
@@ -4758,7 +1478,7 @@ func (c *Client) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(c
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateEeGroupSubscriptionsRequestWithBody(c.Server, ueGroupId, subsId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -4770,7 +1490,7 @@ func (c *Client) UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroup
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateEeGroupSubscriptions(ctx context.Context, ueGroupId VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateEeGroupSubscriptionsRequest(c.Server, ueGroupId, subsId, body)
 	if err != nil {
 		return nil, err
@@ -4794,7 +1514,7 @@ func (c *Client) GetSharedData(ctx context.Context, params *GetSharedDataParams,
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetIndividualSharedData(ctx context.Context, sharedDataId externalRef6.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetIndividualSharedData(ctx context.Context, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetIndividualSharedDataRequest(c.Server, sharedDataId, params)
 	if err != nil {
 		return nil, err
@@ -4902,7 +1622,7 @@ func (c *Client) ModifysubscriptionDataSubscriptionWithApplicationJSONPatchPlusJ
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteAuthenticationStatusRequest(c.Server, ueId)
 	if err != nil {
 		return nil, err
@@ -4914,7 +1634,7 @@ func (c *Client) DeleteAuthenticationStatus(ctx context.Context, ueId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryAuthenticationStatusRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -4926,7 +1646,7 @@ func (c *Client) QueryAuthenticationStatus(ctx context.Context, ueId externalRef
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAuthenticationStatusWithBody(ctx context.Context, ueId externalRef2.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAuthenticationStatusWithBody(ctx context.Context, ueId externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAuthenticationStatusRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -4938,7 +1658,7 @@ func (c *Client) CreateAuthenticationStatusWithBody(ctx context.Context, ueId ex
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAuthenticationStatusRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -4950,7 +1670,7 @@ func (c *Client) CreateAuthenticationStatus(ctx context.Context, ueId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteIndividualAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteIndividualAuthenticationStatusRequest(c.Server, ueId, servingNetworkName)
 	if err != nil {
 		return nil, err
@@ -4962,7 +1682,7 @@ func (c *Client) DeleteIndividualAuthenticationStatus(ctx context.Context, ueId 
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryIndividualAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryIndividualAuthenticationStatusRequest(c.Server, ueId, servingNetworkName, params)
 	if err != nil {
 		return nil, err
@@ -4974,7 +1694,7 @@ func (c *Client) QueryIndividualAuthenticationStatus(ctx context.Context, ueId e
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateIndividualAuthenticationStatusWithBody(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateIndividualAuthenticationStatusWithBody(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateIndividualAuthenticationStatusRequestWithBody(c.Server, ueId, servingNetworkName, contentType, body)
 	if err != nil {
 		return nil, err
@@ -4986,7 +1706,7 @@ func (c *Client) CreateIndividualAuthenticationStatusWithBody(ctx context.Contex
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateIndividualAuthenticationStatus(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateIndividualAuthenticationStatusRequest(c.Server, ueId, servingNetworkName, body)
 	if err != nil {
 		return nil, err
@@ -4998,7 +1718,7 @@ func (c *Client) CreateIndividualAuthenticationStatus(ctx context.Context, ueId 
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryAuthSubsData(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryAuthSubsData(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryAuthSubsDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5010,7 +1730,7 @@ func (c *Client) QueryAuthSubsData(ctx context.Context, ueId externalRef2.Supi, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyAuthenticationSubscriptionWithBody(ctx context.Context, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyAuthenticationSubscriptionWithBody(ctx context.Context, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyAuthenticationSubscriptionRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5022,7 +1742,7 @@ func (c *Client) ModifyAuthenticationSubscriptionWithBody(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyAuthenticationSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -5034,7 +1754,7 @@ func (c *Client) ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSO
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryContextData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryContextDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryContextData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryContextDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryContextDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5046,7 +1766,7 @@ func (c *Client) QueryContextData(ctx context.Context, ueId externalRef2.VarUeId
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryAmfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, params *QueryAmfContext3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryAmfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, params *QueryAmfContext3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryAmfContext3gppRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5058,7 +1778,7 @@ func (c *Client) QueryAmfContext3gpp(ctx context.Context, ueId externalRef2.VarU
 	return c.Client.Do(req)
 }
 
-func (c *Client) AmfContext3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) AmfContext3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAmfContext3gppRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5070,7 +1790,7 @@ func (c *Client) AmfContext3gppWithBody(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) AmfContext3gppWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) AmfContext3gppWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAmfContext3gppRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -5082,7 +1802,7 @@ func (c *Client) AmfContext3gppWithApplicationJSONPatchPlusJSONBody(ctx context.
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAmfContext3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAmfContext3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAmfContext3gppRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5094,7 +1814,7 @@ func (c *Client) CreateAmfContext3gppWithBody(ctx context.Context, ueId external
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAmfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, body CreateAmfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAmfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, body CreateAmfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAmfContext3gppRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5106,7 +1826,7 @@ func (c *Client) CreateAmfContext3gpp(ctx context.Context, ueId externalRef2.Var
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryAmfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, params *QueryAmfContextNon3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryAmfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, params *QueryAmfContextNon3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryAmfContextNon3gppRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5118,7 +1838,7 @@ func (c *Client) QueryAmfContextNon3gpp(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) AmfContextNon3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) AmfContextNon3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAmfContextNon3gppRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5130,7 +1850,7 @@ func (c *Client) AmfContextNon3gppWithBody(ctx context.Context, ueId externalRef
 	return c.Client.Do(req)
 }
 
-func (c *Client) AmfContextNon3gppWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) AmfContextNon3gppWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAmfContextNon3gppRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -5142,7 +1862,7 @@ func (c *Client) AmfContextNon3gppWithApplicationJSONPatchPlusJSONBody(ctx conte
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAmfContextNon3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAmfContextNon3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAmfContextNon3gppRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5154,7 +1874,7 @@ func (c *Client) CreateAmfContextNon3gppWithBody(ctx context.Context, ueId exter
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAmfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, body CreateAmfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAmfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, body CreateAmfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAmfContextNon3gppRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5166,7 +1886,7 @@ func (c *Client) CreateAmfContextNon3gpp(ctx context.Context, ueId externalRef2.
 	return c.Client.Do(req)
 }
 
-func (c *Client) Queryeesubscriptions(ctx context.Context, ueId externalRef2.VarUeId, params *QueryeesubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Queryeesubscriptions(ctx context.Context, ueId externalRef0.VarUeId, params *QueryeesubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryeesubscriptionsRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5178,7 +1898,7 @@ func (c *Client) Queryeesubscriptions(ctx context.Context, ueId externalRef2.Var
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateEeSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateEeSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateEeSubscriptionsRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5190,7 +1910,7 @@ func (c *Client) CreateEeSubscriptionsWithBody(ctx context.Context, ueId externa
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateEeSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, body CreateEeSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateEeSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, body CreateEeSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateEeSubscriptionsRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5202,7 +1922,7 @@ func (c *Client) CreateEeSubscriptions(ctx context.Context, ueId externalRef2.Va
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveeeSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) RemoveeeSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoveeeSubscriptionsRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5214,7 +1934,7 @@ func (c *Client) RemoveeeSubscriptions(ctx context.Context, ueId externalRef2.Va
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryeeSubscription(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryeeSubscription(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryeeSubscriptionRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5226,7 +1946,7 @@ func (c *Client) QueryeeSubscription(ctx context.Context, ueId externalRef2.VarU
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyEesubscriptionWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyEesubscriptionWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyEesubscriptionRequestWithBody(c.Server, ueId, subsId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5238,7 +1958,7 @@ func (c *Client) ModifyEesubscriptionWithBody(ctx context.Context, ueId external
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyEesubscriptionRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, subsId, params, body)
 	if err != nil {
 		return nil, err
@@ -5250,7 +1970,7 @@ func (c *Client) ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBody(ctx co
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateEesubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateEesubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateEesubscriptionsRequestWithBody(c.Server, ueId, subsId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5262,7 +1982,7 @@ func (c *Client) UpdateEesubscriptionsWithBody(ctx context.Context, ueId externa
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateEesubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateEesubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateEesubscriptionsRequest(c.Server, ueId, subsId, body)
 	if err != nil {
 		return nil, err
@@ -5274,7 +1994,7 @@ func (c *Client) UpdateEesubscriptions(ctx context.Context, ueId externalRef2.Va
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveAmfSubscriptionsInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) RemoveAmfSubscriptionsInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoveAmfSubscriptionsInfoRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5286,7 +2006,7 @@ func (c *Client) RemoveAmfSubscriptionsInfo(ctx context.Context, ueId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetAmfSubscriptionInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetAmfSubscriptionInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetAmfSubscriptionInfoRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5298,7 +2018,7 @@ func (c *Client) GetAmfSubscriptionInfo(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyAmfSubscriptionInfoWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyAmfSubscriptionInfoWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyAmfSubscriptionInfoRequestWithBody(c.Server, ueId, subsId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5310,7 +2030,7 @@ func (c *Client) ModifyAmfSubscriptionInfoWithBody(ctx context.Context, ueId ext
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyAmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, subsId, params, body)
 	if err != nil {
 		return nil, err
@@ -5322,7 +2042,7 @@ func (c *Client) ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(c
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAMFSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAMFSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAMFSubscriptionsRequestWithBody(c.Server, ueId, subsId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5334,7 +2054,7 @@ func (c *Client) CreateAMFSubscriptionsWithBody(ctx context.Context, ueId extern
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAMFSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAMFSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAMFSubscriptionsRequest(c.Server, ueId, subsId, body)
 	if err != nil {
 		return nil, err
@@ -5346,7 +2066,7 @@ func (c *Client) CreateAMFSubscriptions(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveHssSubscriptionsInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) RemoveHssSubscriptionsInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoveHssSubscriptionsInfoRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5358,7 +2078,7 @@ func (c *Client) RemoveHssSubscriptionsInfo(ctx context.Context, ueId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetHssSubscriptionInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetHssSubscriptionInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetHssSubscriptionInfoRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5370,7 +2090,7 @@ func (c *Client) GetHssSubscriptionInfo(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyHssSubscriptionInfoWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyHssSubscriptionInfoWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyHssSubscriptionInfoRequestWithBody(c.Server, ueId, subsId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5382,7 +2102,7 @@ func (c *Client) ModifyHssSubscriptionInfoWithBody(ctx context.Context, ueId ext
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyHssSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, subsId, params, body)
 	if err != nil {
 		return nil, err
@@ -5394,7 +2114,7 @@ func (c *Client) ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(c
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateHSSSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateHSSSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateHSSSubscriptionsRequestWithBody(c.Server, ueId, subsId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5406,7 +2126,7 @@ func (c *Client) CreateHSSSubscriptionsWithBody(ctx context.Context, ueId extern
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateHSSSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateHSSSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateHSSSubscriptionsRequest(c.Server, ueId, subsId, body)
 	if err != nil {
 		return nil, err
@@ -5418,7 +2138,7 @@ func (c *Client) CreateHSSSubscriptions(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveSmfSubscriptionsInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) RemoveSmfSubscriptionsInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoveSmfSubscriptionsInfoRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5430,7 +2150,7 @@ func (c *Client) RemoveSmfSubscriptionsInfo(ctx context.Context, ueId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetSmfSubscriptionInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetSmfSubscriptionInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetSmfSubscriptionInfoRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5442,7 +2162,7 @@ func (c *Client) GetSmfSubscriptionInfo(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifySmfSubscriptionInfoWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifySmfSubscriptionInfoWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifySmfSubscriptionInfoRequestWithBody(c.Server, ueId, subsId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5454,7 +2174,7 @@ func (c *Client) ModifySmfSubscriptionInfoWithBody(ctx context.Context, ueId ext
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifySmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, subsId, params, body)
 	if err != nil {
 		return nil, err
@@ -5466,7 +2186,7 @@ func (c *Client) ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(c
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateSMFSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateSMFSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateSMFSubscriptionsRequestWithBody(c.Server, ueId, subsId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5478,7 +2198,7 @@ func (c *Client) CreateSMFSubscriptionsWithBody(ctx context.Context, ueId extern
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateSMFSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateSMFSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateSMFSubscriptionsRequest(c.Server, ueId, subsId, body)
 	if err != nil {
 		return nil, err
@@ -5490,7 +2210,7 @@ func (c *Client) CreateSMFSubscriptions(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteIpSmGwContext(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteIpSmGwContext(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteIpSmGwContextRequest(c.Server, ueId)
 	if err != nil {
 		return nil, err
@@ -5502,7 +2222,7 @@ func (c *Client) DeleteIpSmGwContext(ctx context.Context, ueId externalRef2.VarU
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryIpSmGwContext(ctx context.Context, ueId externalRef2.VarUeId, params *QueryIpSmGwContextParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryIpSmGwContext(ctx context.Context, ueId externalRef0.VarUeId, params *QueryIpSmGwContextParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryIpSmGwContextRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5514,7 +2234,7 @@ func (c *Client) QueryIpSmGwContext(ctx context.Context, ueId externalRef2.VarUe
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyIpSmGwContextWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyIpSmGwContextWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyIpSmGwContextRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5526,7 +2246,7 @@ func (c *Client) ModifyIpSmGwContextWithBody(ctx context.Context, ueId externalR
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyIpSmGwContextRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5538,7 +2258,7 @@ func (c *Client) ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBody(ctx con
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateIpSmGwContextWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateIpSmGwContextWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateIpSmGwContextRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5550,7 +2270,7 @@ func (c *Client) CreateIpSmGwContextWithBody(ctx context.Context, ueId externalR
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateIpSmGwContext(ctx context.Context, ueId externalRef2.VarUeId, body CreateIpSmGwContextJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateIpSmGwContext(ctx context.Context, ueId externalRef0.VarUeId, body CreateIpSmGwContextJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateIpSmGwContextRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5562,7 +2282,7 @@ func (c *Client) CreateIpSmGwContext(ctx context.Context, ueId externalRef2.VarU
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryUeLocation(ctx context.Context, ueId externalRef2.VarUeId, params *QueryUeLocationParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryUeLocation(ctx context.Context, ueId externalRef0.VarUeId, params *QueryUeLocationParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryUeLocationRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5574,7 +2294,7 @@ func (c *Client) QueryUeLocation(ctx context.Context, ueId externalRef2.VarUeId,
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteMessageWaitingData(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteMessageWaitingData(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteMessageWaitingDataRequest(c.Server, ueId)
 	if err != nil {
 		return nil, err
@@ -5586,7 +2306,7 @@ func (c *Client) DeleteMessageWaitingData(ctx context.Context, ueId externalRef2
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryMessageWaitingData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryMessageWaitingDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryMessageWaitingData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryMessageWaitingDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryMessageWaitingDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5598,7 +2318,7 @@ func (c *Client) QueryMessageWaitingData(ctx context.Context, ueId externalRef2.
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyMessageWaitingDataWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyMessageWaitingDataWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyMessageWaitingDataRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5610,7 +2330,7 @@ func (c *Client) ModifyMessageWaitingDataWithBody(ctx context.Context, ueId exte
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyMessageWaitingDataRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5622,7 +2342,7 @@ func (c *Client) ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBody(ct
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateMessageWaitingDataWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateMessageWaitingDataWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateMessageWaitingDataRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5634,7 +2354,7 @@ func (c *Client) CreateMessageWaitingDataWithBody(ctx context.Context, ueId exte
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateMessageWaitingData(ctx context.Context, ueId externalRef2.VarUeId, body CreateMessageWaitingDataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateMessageWaitingData(ctx context.Context, ueId externalRef0.VarUeId, body CreateMessageWaitingDataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateMessageWaitingDataRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5646,7 +2366,7 @@ func (c *Client) CreateMessageWaitingData(ctx context.Context, ueId externalRef2
 	return c.Client.Do(req)
 }
 
-func (c *Client) Querysdmsubscriptions(ctx context.Context, ueId externalRef2.VarUeId, params *QuerysdmsubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Querysdmsubscriptions(ctx context.Context, ueId externalRef0.VarUeId, params *QuerysdmsubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerysdmsubscriptionsRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5658,7 +2378,7 @@ func (c *Client) Querysdmsubscriptions(ctx context.Context, ueId externalRef2.Va
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateSdmSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateSdmSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateSdmSubscriptionsRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5670,7 +2390,7 @@ func (c *Client) CreateSdmSubscriptionsWithBody(ctx context.Context, ueId extern
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateSdmSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, body CreateSdmSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateSdmSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, body CreateSdmSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateSdmSubscriptionsRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5682,7 +2402,7 @@ func (c *Client) CreateSdmSubscriptions(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemovesdmSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) RemovesdmSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemovesdmSubscriptionsRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5694,7 +2414,7 @@ func (c *Client) RemovesdmSubscriptions(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerysdmSubscription(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerysdmSubscription(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerysdmSubscriptionRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5706,7 +2426,7 @@ func (c *Client) QuerysdmSubscription(ctx context.Context, ueId externalRef2.Var
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifysdmSubscriptionWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifysdmSubscriptionWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifysdmSubscriptionRequestWithBody(c.Server, ueId, subsId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5718,7 +2438,7 @@ func (c *Client) ModifysdmSubscriptionWithBody(ctx context.Context, ueId externa
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifysdmSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, subsId, params, body)
 	if err != nil {
 		return nil, err
@@ -5730,7 +2450,7 @@ func (c *Client) ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx c
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdatesdmsubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdatesdmsubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdatesdmsubscriptionsRequestWithBody(c.Server, ueId, subsId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5742,7 +2462,7 @@ func (c *Client) UpdatesdmsubscriptionsWithBody(ctx context.Context, ueId extern
 	return c.Client.Do(req)
 }
 
-func (c *Client) Updatesdmsubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Updatesdmsubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdatesdmsubscriptionsRequest(c.Server, ueId, subsId, body)
 	if err != nil {
 		return nil, err
@@ -5754,7 +2474,7 @@ func (c *Client) Updatesdmsubscriptions(ctx context.Context, ueId externalRef2.V
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveHssSDMSubscriptionsInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) RemoveHssSDMSubscriptionsInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoveHssSDMSubscriptionsInfoRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5766,7 +2486,7 @@ func (c *Client) RemoveHssSDMSubscriptionsInfo(ctx context.Context, ueId externa
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetHssSDMSubscriptionInfo(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetHssSDMSubscriptionInfo(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetHssSDMSubscriptionInfoRequest(c.Server, ueId, subsId)
 	if err != nil {
 		return nil, err
@@ -5778,7 +2498,7 @@ func (c *Client) GetHssSDMSubscriptionInfo(ctx context.Context, ueId externalRef
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyHssSDMSubscriptionInfoWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyHssSDMSubscriptionInfoWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyHssSDMSubscriptionInfoRequestWithBody(c.Server, ueId, subsId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5790,7 +2510,7 @@ func (c *Client) ModifyHssSDMSubscriptionInfoWithBody(ctx context.Context, ueId 
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyHssSDMSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, subsId, params, body)
 	if err != nil {
 		return nil, err
@@ -5802,7 +2522,7 @@ func (c *Client) ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBod
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateHSSSDMSubscriptionsWithBody(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateHSSSDMSubscriptionsWithBody(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateHSSSDMSubscriptionsRequestWithBody(c.Server, ueId, subsId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5814,7 +2534,7 @@ func (c *Client) CreateHSSSDMSubscriptionsWithBody(ctx context.Context, ueId ext
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateHSSSDMSubscriptions(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateHSSSDMSubscriptions(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateHSSSDMSubscriptionsRequest(c.Server, ueId, subsId, body)
 	if err != nil {
 		return nil, err
@@ -5826,7 +2546,7 @@ func (c *Client) CreateHSSSDMSubscriptions(ctx context.Context, ueId externalRef
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmfRegList(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmfRegListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmfRegList(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmfRegListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmfRegListRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5838,7 +2558,7 @@ func (c *Client) QuerySmfRegList(ctx context.Context, ueId externalRef2.VarUeId,
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteSmfRegistration(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteSmfRegistration(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteSmfRegistrationRequest(c.Server, ueId, pduSessionId)
 	if err != nil {
 		return nil, err
@@ -5850,7 +2570,7 @@ func (c *Client) DeleteSmfRegistration(ctx context.Context, ueId externalRef2.Va
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmfRegistration(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, params *QuerySmfRegistrationParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmfRegistration(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, params *QuerySmfRegistrationParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmfRegistrationRequest(c.Server, ueId, pduSessionId, params)
 	if err != nil {
 		return nil, err
@@ -5862,7 +2582,7 @@ func (c *Client) QuerySmfRegistration(ctx context.Context, ueId externalRef2.Var
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateOrUpdateSmfRegistrationWithBody(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateOrUpdateSmfRegistrationWithBody(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateOrUpdateSmfRegistrationRequestWithBody(c.Server, ueId, pduSessionId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5874,7 +2594,7 @@ func (c *Client) CreateOrUpdateSmfRegistrationWithBody(ctx context.Context, ueId
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateOrUpdateSmfRegistration(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateOrUpdateSmfRegistration(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateOrUpdateSmfRegistrationRequest(c.Server, ueId, pduSessionId, body)
 	if err != nil {
 		return nil, err
@@ -5886,7 +2606,7 @@ func (c *Client) CreateOrUpdateSmfRegistration(ctx context.Context, ueId externa
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteSmsfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteSmsfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteSmsfContext3gppRequest(c.Server, ueId)
 	if err != nil {
 		return nil, err
@@ -5898,7 +2618,7 @@ func (c *Client) DeleteSmsfContext3gpp(ctx context.Context, ueId externalRef2.Va
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmsfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmsfContext3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmsfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmsfContext3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmsfContext3gppRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5910,7 +2630,7 @@ func (c *Client) QuerySmsfContext3gpp(ctx context.Context, ueId externalRef2.Var
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateSmsfContext3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateSmsfContext3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateSmsfContext3gppRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5922,7 +2642,7 @@ func (c *Client) CreateSmsfContext3gppWithBody(ctx context.Context, ueId externa
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateSmsfContext3gpp(ctx context.Context, ueId externalRef2.VarUeId, body CreateSmsfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateSmsfContext3gpp(ctx context.Context, ueId externalRef0.VarUeId, body CreateSmsfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateSmsfContext3gppRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5934,7 +2654,7 @@ func (c *Client) CreateSmsfContext3gpp(ctx context.Context, ueId externalRef2.Va
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteSmsfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteSmsfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteSmsfContextNon3gppRequest(c.Server, ueId)
 	if err != nil {
 		return nil, err
@@ -5946,7 +2666,7 @@ func (c *Client) DeleteSmsfContextNon3gpp(ctx context.Context, ueId externalRef2
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmsfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmsfContextNon3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmsfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmsfContextNon3gppParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmsfContextNon3gppRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5958,7 +2678,7 @@ func (c *Client) QuerySmsfContextNon3gpp(ctx context.Context, ueId externalRef2.
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateSmsfContextNon3gppWithBody(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateSmsfContextNon3gppWithBody(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateSmsfContextNon3gppRequestWithBody(c.Server, ueId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -5970,7 +2690,7 @@ func (c *Client) CreateSmsfContextNon3gppWithBody(ctx context.Context, ueId exte
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateSmsfContextNon3gpp(ctx context.Context, ueId externalRef2.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateSmsfContextNon3gpp(ctx context.Context, ueId externalRef0.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateSmsfContextNon3gppRequest(c.Server, ueId, body)
 	if err != nil {
 		return nil, err
@@ -5982,7 +2702,7 @@ func (c *Client) CreateSmsfContextNon3gpp(ctx context.Context, ueId externalRef2
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryCoverageRestrictionData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryCoverageRestrictionDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryCoverageRestrictionData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryCoverageRestrictionDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryCoverageRestrictionDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -5994,7 +2714,7 @@ func (c *Client) QueryCoverageRestrictionData(ctx context.Context, ueId external
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryEEData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryEEData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryEEDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6006,7 +2726,7 @@ func (c *Client) QueryEEData(ctx context.Context, ueId externalRef2.VarUeId, par
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetIdentityData(ctx context.Context, ueId externalRef2.VarUeId, params *GetIdentityDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetIdentityData(ctx context.Context, ueId externalRef0.VarUeId, params *GetIdentityDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetIdentityDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6018,7 +2738,7 @@ func (c *Client) GetIdentityData(ctx context.Context, ueId externalRef2.VarUeId,
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryLcsMoData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryLcsMoDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryLcsMoData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryLcsMoDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryLcsMoDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6030,7 +2750,7 @@ func (c *Client) QueryLcsMoData(ctx context.Context, ueId externalRef2.VarUeId, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryLcsPrivacyData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryLcsPrivacyDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryLcsPrivacyData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryLcsPrivacyDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryLcsPrivacyDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6054,7 +2774,7 @@ func (c *Client) GetNiddAuData(ctx context.Context, ueId string, params *GetNidd
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetOdbData(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetOdbData(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetOdbDataRequest(c.Server, ueId)
 	if err != nil {
 		return nil, err
@@ -6066,7 +2786,7 @@ func (c *Client) GetOdbData(ctx context.Context, ueId externalRef2.VarUeId, reqE
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryOperSpecData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryOperSpecDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryOperSpecData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryOperSpecDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryOperSpecDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6078,7 +2798,7 @@ func (c *Client) QueryOperSpecData(ctx context.Context, ueId externalRef2.VarUeI
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyOperSpecDataWithBody(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyOperSpecDataWithBody(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyOperSpecDataRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -6090,7 +2810,7 @@ func (c *Client) ModifyOperSpecDataWithBody(ctx context.Context, ueId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyOperSpecDataRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -6102,7 +2822,7 @@ func (c *Client) ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBody(ctx cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetppData(ctx context.Context, ueId externalRef2.VarUeId, params *GetppDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetppData(ctx context.Context, ueId externalRef0.VarUeId, params *GetppDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetppDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6114,7 +2834,7 @@ func (c *Client) GetppData(ctx context.Context, ueId externalRef2.VarUeId, param
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyPpDataWithBody(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyPpDataWithBody(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyPpDataRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -6126,7 +2846,7 @@ func (c *Client) ModifyPpDataWithBody(ctx context.Context, ueId externalRef2.Var
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyPpDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyPpDataWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyPpDataRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -6138,7 +2858,7 @@ func (c *Client) ModifyPpDataWithApplicationJSONPatchPlusJSONBody(ctx context.Co
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryPPData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryPPDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryPPData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryPPDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryPPDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6150,7 +2870,7 @@ func (c *Client) QueryPPData(ctx context.Context, ueId externalRef2.VarUeId, par
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryAuthSoR(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthSoRParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryAuthSoR(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSoRParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryAuthSoRRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6162,7 +2882,7 @@ func (c *Client) QueryAuthSoR(ctx context.Context, ueId externalRef2.Supi, param
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAuthenticationSoRWithBody(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAuthenticationSoRWithBody(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAuthenticationSoRRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -6174,7 +2894,7 @@ func (c *Client) CreateAuthenticationSoRWithBody(ctx context.Context, ueId exter
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAuthenticationSoR(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAuthenticationSoR(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAuthenticationSoRRequest(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -6186,7 +2906,7 @@ func (c *Client) CreateAuthenticationSoR(ctx context.Context, ueId externalRef2.
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryCagAck(ctx context.Context, ueId externalRef2.Supi, params *QueryCagAckParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryCagAck(ctx context.Context, ueId externalRef0.Supi, params *QueryCagAckParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryCagAckRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6198,7 +2918,7 @@ func (c *Client) QueryCagAck(ctx context.Context, ueId externalRef2.Supi, params
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateCagUpdateAckWithBody(ctx context.Context, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateCagUpdateAckWithBody(ctx context.Context, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateCagUpdateAckRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -6210,7 +2930,7 @@ func (c *Client) CreateCagUpdateAckWithBody(ctx context.Context, ueId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateCagUpdateAck(ctx context.Context, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateCagUpdateAck(ctx context.Context, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateCagUpdateAckRequest(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -6222,7 +2942,7 @@ func (c *Client) CreateCagUpdateAck(ctx context.Context, ueId externalRef2.Supi,
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryNssaiAck(ctx context.Context, ueId externalRef2.Supi, params *QueryNssaiAckParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryNssaiAck(ctx context.Context, ueId externalRef0.Supi, params *QueryNssaiAckParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryNssaiAckRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6234,7 +2954,7 @@ func (c *Client) QueryNssaiAck(ctx context.Context, ueId externalRef2.Supi, para
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateOrUpdateNssaiAckWithBody(ctx context.Context, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateOrUpdateNssaiAckWithBody(ctx context.Context, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateOrUpdateNssaiAckRequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -6246,7 +2966,7 @@ func (c *Client) CreateOrUpdateNssaiAckWithBody(ctx context.Context, ueId extern
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateOrUpdateNssaiAck(ctx context.Context, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateOrUpdateNssaiAck(ctx context.Context, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateOrUpdateNssaiAckRequest(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -6258,7 +2978,7 @@ func (c *Client) CreateOrUpdateNssaiAck(ctx context.Context, ueId externalRef2.S
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryAuthUPU(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthUPUParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryAuthUPU(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthUPUParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryAuthUPURequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6270,7 +2990,7 @@ func (c *Client) QueryAuthUPU(ctx context.Context, ueId externalRef2.Supi, param
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAuthenticationUPUWithBody(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAuthenticationUPUWithBody(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAuthenticationUPURequestWithBody(c.Server, ueId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -6282,7 +3002,7 @@ func (c *Client) CreateAuthenticationUPUWithBody(ctx context.Context, ueId exter
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateAuthenticationUPU(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateAuthenticationUPU(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateAuthenticationUPURequest(c.Server, ueId, params, body)
 	if err != nil {
 		return nil, err
@@ -6294,7 +3014,7 @@ func (c *Client) CreateAuthenticationUPU(ctx context.Context, ueId externalRef2.
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryV2xData(ctx context.Context, ueId externalRef2.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryV2xData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryV2xDataRequest(c.Server, ueId, params)
 	if err != nil {
 		return nil, err
@@ -6306,7 +3026,7 @@ func (c *Client) QueryV2xData(ctx context.Context, ueId externalRef2.VarUeId, pa
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryProvisionedData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryProvisionedData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryProvisionedDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -6318,7 +3038,7 @@ func (c *Client) QueryProvisionedData(ctx context.Context, ueId externalRef2.Var
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryAmData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryAmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryAmDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -6330,7 +3050,7 @@ func (c *Client) QueryAmData(ctx context.Context, ueId externalRef2.VarUeId, ser
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryLcsBcaData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryLcsBcaData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryLcsBcaDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -6342,7 +3062,7 @@ func (c *Client) QueryLcsBcaData(ctx context.Context, ueId externalRef2.VarUeId,
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -6354,7 +3074,7 @@ func (c *Client) QuerySmData(ctx context.Context, ueId externalRef2.VarUeId, ser
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmfSelectData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmfSelectData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmfSelectDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -6366,7 +3086,7 @@ func (c *Client) QuerySmfSelectData(ctx context.Context, ueId externalRef2.VarUe
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmsData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmsData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmsDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -6378,7 +3098,7 @@ func (c *Client) QuerySmsData(ctx context.Context, ueId externalRef2.VarUeId, se
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmsMngData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmsMngData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmsMngDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -6390,7 +3110,7 @@ func (c *Client) QuerySmsMngData(ctx context.Context, ueId externalRef2.VarUeId,
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryTraceData(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryTraceData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryTraceDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -6562,7 +3282,7 @@ func NewQuery5GVNGroupPPDataRequest(server string, params *Query5GVNGroupPPDataP
 }
 
 // NewDelete5GVnGroupRequest generates requests for Delete5GVnGroup
-func NewDelete5GVnGroupRequest(server string, externalGroupId externalRef6.ExtGroupId) (*http.Request, error) {
+func NewDelete5GVnGroupRequest(server string, externalGroupId externalRef0.ExtGroupId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6596,7 +3316,7 @@ func NewDelete5GVnGroupRequest(server string, externalGroupId externalRef6.ExtGr
 }
 
 // NewGet5GVnGroupConfigurationRequest generates requests for Get5GVnGroupConfiguration
-func NewGet5GVnGroupConfigurationRequest(server string, externalGroupId externalRef6.ExtGroupId) (*http.Request, error) {
+func NewGet5GVnGroupConfigurationRequest(server string, externalGroupId externalRef0.ExtGroupId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6630,7 +3350,7 @@ func NewGet5GVnGroupConfigurationRequest(server string, externalGroupId external
 }
 
 // NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody calls the generic Modify5GVnGroup builder with application/json-patch+json body
-func NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody(server string, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody(server string, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -6641,7 +3361,7 @@ func NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody(server string
 }
 
 // NewModify5GVnGroupRequestWithBody generates requests for Modify5GVnGroup with any type of body
-func NewModify5GVnGroupRequestWithBody(server string, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModify5GVnGroupRequestWithBody(server string, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6699,7 +3419,7 @@ func NewModify5GVnGroupRequestWithBody(server string, externalGroupId externalRe
 }
 
 // NewCreate5GVnGroupRequest calls the generic Create5GVnGroup builder with application/json body
-func NewCreate5GVnGroupRequest(server string, externalGroupId externalRef6.ExtGroupId, body Create5GVnGroupJSONRequestBody) (*http.Request, error) {
+func NewCreate5GVnGroupRequest(server string, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -6710,7 +3430,7 @@ func NewCreate5GVnGroupRequest(server string, externalGroupId externalRef6.ExtGr
 }
 
 // NewCreate5GVnGroupRequestWithBody generates requests for Create5GVnGroup with any type of body
-func NewCreate5GVnGroupRequestWithBody(server string, externalGroupId externalRef6.ExtGroupId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreate5GVnGroupRequestWithBody(server string, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6843,7 +3563,7 @@ func NewGetGroupIdentifiersRequest(server string, params *GetGroupIdentifiersPar
 }
 
 // NewQueryGroupEEDataRequest generates requests for QueryGroupEEData
-func NewQueryGroupEEDataRequest(server string, ueGroupId VarUeGroupId, params *QueryGroupEEDataParams) (*http.Request, error) {
+func NewQueryGroupEEDataRequest(server string, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6899,7 +3619,7 @@ func NewQueryGroupEEDataRequest(server string, ueGroupId VarUeGroupId, params *Q
 }
 
 // NewQueryEeGroupSubscriptionsRequest generates requests for QueryEeGroupSubscriptions
-func NewQueryEeGroupSubscriptionsRequest(server string, ueGroupId VarUeGroupId, params *QueryEeGroupSubscriptionsParams) (*http.Request, error) {
+func NewQueryEeGroupSubscriptionsRequest(server string, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6955,7 +3675,7 @@ func NewQueryEeGroupSubscriptionsRequest(server string, ueGroupId VarUeGroupId, 
 }
 
 // NewCreateEeGroupSubscriptionsRequest calls the generic CreateEeGroupSubscriptions builder with application/json body
-func NewCreateEeGroupSubscriptionsRequest(server string, ueGroupId VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewCreateEeGroupSubscriptionsRequest(server string, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -6966,7 +3686,7 @@ func NewCreateEeGroupSubscriptionsRequest(server string, ueGroupId VarUeGroupId,
 }
 
 // NewCreateEeGroupSubscriptionsRequestWithBody generates requests for CreateEeGroupSubscriptions with any type of body
-func NewCreateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId VarUeGroupId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7002,7 +3722,7 @@ func NewCreateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId VarUe
 }
 
 // NewRemoveEeGroupSubscriptionsRequest generates requests for RemoveEeGroupSubscriptions
-func NewRemoveEeGroupSubscriptionsRequest(server string, ueGroupId VarUeGroupId, subsId string) (*http.Request, error) {
+func NewRemoveEeGroupSubscriptionsRequest(server string, ueGroupId externalRef0.VarUeGroupId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7043,7 +3763,7 @@ func NewRemoveEeGroupSubscriptionsRequest(server string, ueGroupId VarUeGroupId,
 }
 
 // NewQueryEeGroupSubscriptionRequest generates requests for QueryEeGroupSubscription
-func NewQueryEeGroupSubscriptionRequest(server string, ueGroupId VarUeGroupId, subsId string) (*http.Request, error) {
+func NewQueryEeGroupSubscriptionRequest(server string, ueGroupId externalRef0.VarUeGroupId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7084,7 +3804,7 @@ func NewQueryEeGroupSubscriptionRequest(server string, ueGroupId VarUeGroupId, s
 }
 
 // NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyEeGroupSubscription builder with application/json-patch+json body
-func NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -7095,7 +3815,7 @@ func NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(ser
 }
 
 // NewModifyEeGroupSubscriptionRequestWithBody generates requests for ModifyEeGroupSubscription with any type of body
-func NewModifyEeGroupSubscriptionRequestWithBody(server string, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyEeGroupSubscriptionRequestWithBody(server string, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7160,7 +3880,7 @@ func NewModifyEeGroupSubscriptionRequestWithBody(server string, ueGroupId VarUeG
 }
 
 // NewUpdateEeGroupSubscriptionsRequest calls the generic UpdateEeGroupSubscriptions builder with application/json body
-func NewUpdateEeGroupSubscriptionsRequest(server string, ueGroupId VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewUpdateEeGroupSubscriptionsRequest(server string, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -7171,7 +3891,7 @@ func NewUpdateEeGroupSubscriptionsRequest(server string, ueGroupId VarUeGroupId,
 }
 
 // NewUpdateEeGroupSubscriptionsRequestWithBody generates requests for UpdateEeGroupSubscriptions with any type of body
-func NewUpdateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId VarUeGroupId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7275,7 +3995,7 @@ func NewGetSharedDataRequest(server string, params *GetSharedDataParams) (*http.
 }
 
 // NewGetIndividualSharedDataRequest generates requests for GetIndividualSharedData
-func NewGetIndividualSharedDataRequest(server string, sharedDataId externalRef6.SharedDataId, params *GetIndividualSharedDataParams) (*http.Request, error) {
+func NewGetIndividualSharedDataRequest(server string, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7666,7 +4386,7 @@ func NewModifysubscriptionDataSubscriptionRequestWithBody(server string, subsId 
 }
 
 // NewDeleteAuthenticationStatusRequest generates requests for DeleteAuthenticationStatus
-func NewDeleteAuthenticationStatusRequest(server string, ueId externalRef2.Supi) (*http.Request, error) {
+func NewDeleteAuthenticationStatusRequest(server string, ueId externalRef0.Supi) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7700,7 +4420,7 @@ func NewDeleteAuthenticationStatusRequest(server string, ueId externalRef2.Supi)
 }
 
 // NewQueryAuthenticationStatusRequest generates requests for QueryAuthenticationStatus
-func NewQueryAuthenticationStatusRequest(server string, ueId externalRef2.Supi, params *QueryAuthenticationStatusParams) (*http.Request, error) {
+func NewQueryAuthenticationStatusRequest(server string, ueId externalRef0.Supi, params *QueryAuthenticationStatusParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7772,7 +4492,7 @@ func NewQueryAuthenticationStatusRequest(server string, ueId externalRef2.Supi, 
 }
 
 // NewCreateAuthenticationStatusRequest calls the generic CreateAuthenticationStatus builder with application/json body
-func NewCreateAuthenticationStatusRequest(server string, ueId externalRef2.Supi, body CreateAuthenticationStatusJSONRequestBody) (*http.Request, error) {
+func NewCreateAuthenticationStatusRequest(server string, ueId externalRef0.Supi, body CreateAuthenticationStatusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -7783,7 +4503,7 @@ func NewCreateAuthenticationStatusRequest(server string, ueId externalRef2.Supi,
 }
 
 // NewCreateAuthenticationStatusRequestWithBody generates requests for CreateAuthenticationStatus with any type of body
-func NewCreateAuthenticationStatusRequestWithBody(server string, ueId externalRef2.Supi, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateAuthenticationStatusRequestWithBody(server string, ueId externalRef0.Supi, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7819,7 +4539,7 @@ func NewCreateAuthenticationStatusRequestWithBody(server string, ueId externalRe
 }
 
 // NewDeleteIndividualAuthenticationStatusRequest generates requests for DeleteIndividualAuthenticationStatus
-func NewDeleteIndividualAuthenticationStatusRequest(server string, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName) (*http.Request, error) {
+func NewDeleteIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7860,7 +4580,7 @@ func NewDeleteIndividualAuthenticationStatusRequest(server string, ueId external
 }
 
 // NewQueryIndividualAuthenticationStatusRequest generates requests for QueryIndividualAuthenticationStatus
-func NewQueryIndividualAuthenticationStatusRequest(server string, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams) (*http.Request, error) {
+func NewQueryIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7939,7 +4659,7 @@ func NewQueryIndividualAuthenticationStatusRequest(server string, ueId externalR
 }
 
 // NewCreateIndividualAuthenticationStatusRequest calls the generic CreateIndividualAuthenticationStatus builder with application/json body
-func NewCreateIndividualAuthenticationStatusRequest(server string, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody) (*http.Request, error) {
+func NewCreateIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -7950,7 +4670,7 @@ func NewCreateIndividualAuthenticationStatusRequest(server string, ueId external
 }
 
 // NewCreateIndividualAuthenticationStatusRequestWithBody generates requests for CreateIndividualAuthenticationStatus with any type of body
-func NewCreateIndividualAuthenticationStatusRequestWithBody(server string, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateIndividualAuthenticationStatusRequestWithBody(server string, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7993,7 +4713,7 @@ func NewCreateIndividualAuthenticationStatusRequestWithBody(server string, ueId 
 }
 
 // NewQueryAuthSubsDataRequest generates requests for QueryAuthSubsData
-func NewQueryAuthSubsDataRequest(server string, ueId externalRef2.Supi, params *QueryAuthSubsDataParams) (*http.Request, error) {
+func NewQueryAuthSubsDataRequest(server string, ueId externalRef0.Supi, params *QueryAuthSubsDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8049,7 +4769,7 @@ func NewQueryAuthSubsDataRequest(server string, ueId externalRef2.Supi, params *
 }
 
 // NewModifyAuthenticationSubscriptionRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyAuthenticationSubscription builder with application/json-patch+json body
-func NewModifyAuthenticationSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyAuthenticationSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8060,7 +4780,7 @@ func NewModifyAuthenticationSubscriptionRequestWithApplicationJSONPatchPlusJSONB
 }
 
 // NewModifyAuthenticationSubscriptionRequestWithBody generates requests for ModifyAuthenticationSubscription with any type of body
-func NewModifyAuthenticationSubscriptionRequestWithBody(server string, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyAuthenticationSubscriptionRequestWithBody(server string, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8118,7 +4838,7 @@ func NewModifyAuthenticationSubscriptionRequestWithBody(server string, ueId exte
 }
 
 // NewQueryContextDataRequest generates requests for QueryContextData
-func NewQueryContextDataRequest(server string, ueId externalRef2.VarUeId, params *QueryContextDataParams) (*http.Request, error) {
+func NewQueryContextDataRequest(server string, ueId externalRef0.VarUeId, params *QueryContextDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8170,7 +4890,7 @@ func NewQueryContextDataRequest(server string, ueId externalRef2.VarUeId, params
 }
 
 // NewQueryAmfContext3gppRequest generates requests for QueryAmfContext3gpp
-func NewQueryAmfContext3gppRequest(server string, ueId externalRef2.VarUeId, params *QueryAmfContext3gppParams) (*http.Request, error) {
+func NewQueryAmfContext3gppRequest(server string, ueId externalRef0.VarUeId, params *QueryAmfContext3gppParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8242,7 +4962,7 @@ func NewQueryAmfContext3gppRequest(server string, ueId externalRef2.VarUeId, par
 }
 
 // NewAmfContext3gppRequestWithApplicationJSONPatchPlusJSONBody calls the generic AmfContext3gpp builder with application/json-patch+json body
-func NewAmfContext3gppRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewAmfContext3gppRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8253,7 +4973,7 @@ func NewAmfContext3gppRequestWithApplicationJSONPatchPlusJSONBody(server string,
 }
 
 // NewAmfContext3gppRequestWithBody generates requests for AmfContext3gpp with any type of body
-func NewAmfContext3gppRequestWithBody(server string, ueId externalRef2.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewAmfContext3gppRequestWithBody(server string, ueId externalRef0.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8311,7 +5031,7 @@ func NewAmfContext3gppRequestWithBody(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewCreateAmfContext3gppRequest calls the generic CreateAmfContext3gpp builder with application/json body
-func NewCreateAmfContext3gppRequest(server string, ueId externalRef2.VarUeId, body CreateAmfContext3gppJSONRequestBody) (*http.Request, error) {
+func NewCreateAmfContext3gppRequest(server string, ueId externalRef0.VarUeId, body CreateAmfContext3gppJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8322,7 +5042,7 @@ func NewCreateAmfContext3gppRequest(server string, ueId externalRef2.VarUeId, bo
 }
 
 // NewCreateAmfContext3gppRequestWithBody generates requests for CreateAmfContext3gpp with any type of body
-func NewCreateAmfContext3gppRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateAmfContext3gppRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8358,7 +5078,7 @@ func NewCreateAmfContext3gppRequestWithBody(server string, ueId externalRef2.Var
 }
 
 // NewQueryAmfContextNon3gppRequest generates requests for QueryAmfContextNon3gpp
-func NewQueryAmfContextNon3gppRequest(server string, ueId externalRef2.VarUeId, params *QueryAmfContextNon3gppParams) (*http.Request, error) {
+func NewQueryAmfContextNon3gppRequest(server string, ueId externalRef0.VarUeId, params *QueryAmfContextNon3gppParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8430,7 +5150,7 @@ func NewQueryAmfContextNon3gppRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewAmfContextNon3gppRequestWithApplicationJSONPatchPlusJSONBody calls the generic AmfContextNon3gpp builder with application/json-patch+json body
-func NewAmfContextNon3gppRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewAmfContextNon3gppRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8441,7 +5161,7 @@ func NewAmfContextNon3gppRequestWithApplicationJSONPatchPlusJSONBody(server stri
 }
 
 // NewAmfContextNon3gppRequestWithBody generates requests for AmfContextNon3gpp with any type of body
-func NewAmfContextNon3gppRequestWithBody(server string, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewAmfContextNon3gppRequestWithBody(server string, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8499,7 +5219,7 @@ func NewAmfContextNon3gppRequestWithBody(server string, ueId externalRef2.VarUeI
 }
 
 // NewCreateAmfContextNon3gppRequest calls the generic CreateAmfContextNon3gpp builder with application/json body
-func NewCreateAmfContextNon3gppRequest(server string, ueId externalRef2.VarUeId, body CreateAmfContextNon3gppJSONRequestBody) (*http.Request, error) {
+func NewCreateAmfContextNon3gppRequest(server string, ueId externalRef0.VarUeId, body CreateAmfContextNon3gppJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8510,7 +5230,7 @@ func NewCreateAmfContextNon3gppRequest(server string, ueId externalRef2.VarUeId,
 }
 
 // NewCreateAmfContextNon3gppRequestWithBody generates requests for CreateAmfContextNon3gpp with any type of body
-func NewCreateAmfContextNon3gppRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateAmfContextNon3gppRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8546,7 +5266,7 @@ func NewCreateAmfContextNon3gppRequestWithBody(server string, ueId externalRef2.
 }
 
 // NewQueryeesubscriptionsRequest generates requests for Queryeesubscriptions
-func NewQueryeesubscriptionsRequest(server string, ueId externalRef2.VarUeId, params *QueryeesubscriptionsParams) (*http.Request, error) {
+func NewQueryeesubscriptionsRequest(server string, ueId externalRef0.VarUeId, params *QueryeesubscriptionsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8602,7 +5322,7 @@ func NewQueryeesubscriptionsRequest(server string, ueId externalRef2.VarUeId, pa
 }
 
 // NewCreateEeSubscriptionsRequest calls the generic CreateEeSubscriptions builder with application/json body
-func NewCreateEeSubscriptionsRequest(server string, ueId externalRef2.VarUeId, body CreateEeSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewCreateEeSubscriptionsRequest(server string, ueId externalRef0.VarUeId, body CreateEeSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8613,7 +5333,7 @@ func NewCreateEeSubscriptionsRequest(server string, ueId externalRef2.VarUeId, b
 }
 
 // NewCreateEeSubscriptionsRequestWithBody generates requests for CreateEeSubscriptions with any type of body
-func NewCreateEeSubscriptionsRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateEeSubscriptionsRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8649,7 +5369,7 @@ func NewCreateEeSubscriptionsRequestWithBody(server string, ueId externalRef2.Va
 }
 
 // NewRemoveeeSubscriptionsRequest generates requests for RemoveeeSubscriptions
-func NewRemoveeeSubscriptionsRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewRemoveeeSubscriptionsRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8690,7 +5410,7 @@ func NewRemoveeeSubscriptionsRequest(server string, ueId externalRef2.VarUeId, s
 }
 
 // NewQueryeeSubscriptionRequest generates requests for QueryeeSubscription
-func NewQueryeeSubscriptionRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewQueryeeSubscriptionRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8731,7 +5451,7 @@ func NewQueryeeSubscriptionRequest(server string, ueId externalRef2.VarUeId, sub
 }
 
 // NewModifyEesubscriptionRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyEesubscription builder with application/json-patch+json body
-func NewModifyEesubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyEesubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8742,7 +5462,7 @@ func NewModifyEesubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server s
 }
 
 // NewModifyEesubscriptionRequestWithBody generates requests for ModifyEesubscription with any type of body
-func NewModifyEesubscriptionRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyEesubscriptionRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8807,7 +5527,7 @@ func NewModifyEesubscriptionRequestWithBody(server string, ueId externalRef2.Var
 }
 
 // NewUpdateEesubscriptionsRequest calls the generic UpdateEesubscriptions builder with application/json body
-func NewUpdateEesubscriptionsRequest(server string, ueId externalRef2.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewUpdateEesubscriptionsRequest(server string, ueId externalRef0.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8818,7 +5538,7 @@ func NewUpdateEesubscriptionsRequest(server string, ueId externalRef2.VarUeId, s
 }
 
 // NewUpdateEesubscriptionsRequestWithBody generates requests for UpdateEesubscriptions with any type of body
-func NewUpdateEesubscriptionsRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateEesubscriptionsRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8861,7 +5581,7 @@ func NewUpdateEesubscriptionsRequestWithBody(server string, ueId externalRef2.Va
 }
 
 // NewRemoveAmfSubscriptionsInfoRequest generates requests for RemoveAmfSubscriptionsInfo
-func NewRemoveAmfSubscriptionsInfoRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewRemoveAmfSubscriptionsInfoRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8902,7 +5622,7 @@ func NewRemoveAmfSubscriptionsInfoRequest(server string, ueId externalRef2.VarUe
 }
 
 // NewGetAmfSubscriptionInfoRequest generates requests for GetAmfSubscriptionInfo
-func NewGetAmfSubscriptionInfoRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewGetAmfSubscriptionInfoRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8943,7 +5663,7 @@ func NewGetAmfSubscriptionInfoRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewModifyAmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyAmfSubscriptionInfo builder with application/json-patch+json body
-func NewModifyAmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyAmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8954,7 +5674,7 @@ func NewModifyAmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(ser
 }
 
 // NewModifyAmfSubscriptionInfoRequestWithBody generates requests for ModifyAmfSubscriptionInfo with any type of body
-func NewModifyAmfSubscriptionInfoRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyAmfSubscriptionInfoRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9019,7 +5739,7 @@ func NewModifyAmfSubscriptionInfoRequestWithBody(server string, ueId externalRef
 }
 
 // NewCreateAMFSubscriptionsRequest calls the generic CreateAMFSubscriptions builder with application/json body
-func NewCreateAMFSubscriptionsRequest(server string, ueId externalRef2.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewCreateAMFSubscriptionsRequest(server string, ueId externalRef0.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9030,7 +5750,7 @@ func NewCreateAMFSubscriptionsRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewCreateAMFSubscriptionsRequestWithBody generates requests for CreateAMFSubscriptions with any type of body
-func NewCreateAMFSubscriptionsRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateAMFSubscriptionsRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9073,7 +5793,7 @@ func NewCreateAMFSubscriptionsRequestWithBody(server string, ueId externalRef2.V
 }
 
 // NewRemoveHssSubscriptionsInfoRequest generates requests for RemoveHssSubscriptionsInfo
-func NewRemoveHssSubscriptionsInfoRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewRemoveHssSubscriptionsInfoRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9114,7 +5834,7 @@ func NewRemoveHssSubscriptionsInfoRequest(server string, ueId externalRef2.VarUe
 }
 
 // NewGetHssSubscriptionInfoRequest generates requests for GetHssSubscriptionInfo
-func NewGetHssSubscriptionInfoRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewGetHssSubscriptionInfoRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9155,7 +5875,7 @@ func NewGetHssSubscriptionInfoRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewModifyHssSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyHssSubscriptionInfo builder with application/json-patch+json body
-func NewModifyHssSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyHssSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9166,7 +5886,7 @@ func NewModifyHssSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(ser
 }
 
 // NewModifyHssSubscriptionInfoRequestWithBody generates requests for ModifyHssSubscriptionInfo with any type of body
-func NewModifyHssSubscriptionInfoRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyHssSubscriptionInfoRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9231,7 +5951,7 @@ func NewModifyHssSubscriptionInfoRequestWithBody(server string, ueId externalRef
 }
 
 // NewCreateHSSSubscriptionsRequest calls the generic CreateHSSSubscriptions builder with application/json body
-func NewCreateHSSSubscriptionsRequest(server string, ueId externalRef2.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewCreateHSSSubscriptionsRequest(server string, ueId externalRef0.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9242,7 +5962,7 @@ func NewCreateHSSSubscriptionsRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewCreateHSSSubscriptionsRequestWithBody generates requests for CreateHSSSubscriptions with any type of body
-func NewCreateHSSSubscriptionsRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateHSSSubscriptionsRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9285,7 +6005,7 @@ func NewCreateHSSSubscriptionsRequestWithBody(server string, ueId externalRef2.V
 }
 
 // NewRemoveSmfSubscriptionsInfoRequest generates requests for RemoveSmfSubscriptionsInfo
-func NewRemoveSmfSubscriptionsInfoRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewRemoveSmfSubscriptionsInfoRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9326,7 +6046,7 @@ func NewRemoveSmfSubscriptionsInfoRequest(server string, ueId externalRef2.VarUe
 }
 
 // NewGetSmfSubscriptionInfoRequest generates requests for GetSmfSubscriptionInfo
-func NewGetSmfSubscriptionInfoRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewGetSmfSubscriptionInfoRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9367,7 +6087,7 @@ func NewGetSmfSubscriptionInfoRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewModifySmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifySmfSubscriptionInfo builder with application/json-patch+json body
-func NewModifySmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifySmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9378,7 +6098,7 @@ func NewModifySmfSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(ser
 }
 
 // NewModifySmfSubscriptionInfoRequestWithBody generates requests for ModifySmfSubscriptionInfo with any type of body
-func NewModifySmfSubscriptionInfoRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifySmfSubscriptionInfoRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9443,7 +6163,7 @@ func NewModifySmfSubscriptionInfoRequestWithBody(server string, ueId externalRef
 }
 
 // NewCreateSMFSubscriptionsRequest calls the generic CreateSMFSubscriptions builder with application/json body
-func NewCreateSMFSubscriptionsRequest(server string, ueId externalRef2.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewCreateSMFSubscriptionsRequest(server string, ueId externalRef0.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9454,7 +6174,7 @@ func NewCreateSMFSubscriptionsRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewCreateSMFSubscriptionsRequestWithBody generates requests for CreateSMFSubscriptions with any type of body
-func NewCreateSMFSubscriptionsRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateSMFSubscriptionsRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9497,7 +6217,7 @@ func NewCreateSMFSubscriptionsRequestWithBody(server string, ueId externalRef2.V
 }
 
 // NewDeleteIpSmGwContextRequest generates requests for DeleteIpSmGwContext
-func NewDeleteIpSmGwContextRequest(server string, ueId externalRef2.VarUeId) (*http.Request, error) {
+func NewDeleteIpSmGwContextRequest(server string, ueId externalRef0.VarUeId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9531,7 +6251,7 @@ func NewDeleteIpSmGwContextRequest(server string, ueId externalRef2.VarUeId) (*h
 }
 
 // NewQueryIpSmGwContextRequest generates requests for QueryIpSmGwContext
-func NewQueryIpSmGwContextRequest(server string, ueId externalRef2.VarUeId, params *QueryIpSmGwContextParams) (*http.Request, error) {
+func NewQueryIpSmGwContextRequest(server string, ueId externalRef0.VarUeId, params *QueryIpSmGwContextParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9603,7 +6323,7 @@ func NewQueryIpSmGwContextRequest(server string, ueId externalRef2.VarUeId, para
 }
 
 // NewModifyIpSmGwContextRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyIpSmGwContext builder with application/json-patch+json body
-func NewModifyIpSmGwContextRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyIpSmGwContextRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9614,7 +6334,7 @@ func NewModifyIpSmGwContextRequestWithApplicationJSONPatchPlusJSONBody(server st
 }
 
 // NewModifyIpSmGwContextRequestWithBody generates requests for ModifyIpSmGwContext with any type of body
-func NewModifyIpSmGwContextRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyIpSmGwContextRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9650,7 +6370,7 @@ func NewModifyIpSmGwContextRequestWithBody(server string, ueId externalRef2.VarU
 }
 
 // NewCreateIpSmGwContextRequest calls the generic CreateIpSmGwContext builder with application/json body
-func NewCreateIpSmGwContextRequest(server string, ueId externalRef2.VarUeId, body CreateIpSmGwContextJSONRequestBody) (*http.Request, error) {
+func NewCreateIpSmGwContextRequest(server string, ueId externalRef0.VarUeId, body CreateIpSmGwContextJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9661,7 +6381,7 @@ func NewCreateIpSmGwContextRequest(server string, ueId externalRef2.VarUeId, bod
 }
 
 // NewCreateIpSmGwContextRequestWithBody generates requests for CreateIpSmGwContext with any type of body
-func NewCreateIpSmGwContextRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateIpSmGwContextRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9697,7 +6417,7 @@ func NewCreateIpSmGwContextRequestWithBody(server string, ueId externalRef2.VarU
 }
 
 // NewQueryUeLocationRequest generates requests for QueryUeLocation
-func NewQueryUeLocationRequest(server string, ueId externalRef2.VarUeId, params *QueryUeLocationParams) (*http.Request, error) {
+func NewQueryUeLocationRequest(server string, ueId externalRef0.VarUeId, params *QueryUeLocationParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9753,7 +6473,7 @@ func NewQueryUeLocationRequest(server string, ueId externalRef2.VarUeId, params 
 }
 
 // NewDeleteMessageWaitingDataRequest generates requests for DeleteMessageWaitingData
-func NewDeleteMessageWaitingDataRequest(server string, ueId externalRef2.VarUeId) (*http.Request, error) {
+func NewDeleteMessageWaitingDataRequest(server string, ueId externalRef0.VarUeId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9787,7 +6507,7 @@ func NewDeleteMessageWaitingDataRequest(server string, ueId externalRef2.VarUeId
 }
 
 // NewQueryMessageWaitingDataRequest generates requests for QueryMessageWaitingData
-func NewQueryMessageWaitingDataRequest(server string, ueId externalRef2.VarUeId, params *QueryMessageWaitingDataParams) (*http.Request, error) {
+func NewQueryMessageWaitingDataRequest(server string, ueId externalRef0.VarUeId, params *QueryMessageWaitingDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9859,7 +6579,7 @@ func NewQueryMessageWaitingDataRequest(server string, ueId externalRef2.VarUeId,
 }
 
 // NewModifyMessageWaitingDataRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyMessageWaitingData builder with application/json-patch+json body
-func NewModifyMessageWaitingDataRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyMessageWaitingDataRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9870,7 +6590,7 @@ func NewModifyMessageWaitingDataRequestWithApplicationJSONPatchPlusJSONBody(serv
 }
 
 // NewModifyMessageWaitingDataRequestWithBody generates requests for ModifyMessageWaitingData with any type of body
-func NewModifyMessageWaitingDataRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyMessageWaitingDataRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9906,7 +6626,7 @@ func NewModifyMessageWaitingDataRequestWithBody(server string, ueId externalRef2
 }
 
 // NewCreateMessageWaitingDataRequest calls the generic CreateMessageWaitingData builder with application/json body
-func NewCreateMessageWaitingDataRequest(server string, ueId externalRef2.VarUeId, body CreateMessageWaitingDataJSONRequestBody) (*http.Request, error) {
+func NewCreateMessageWaitingDataRequest(server string, ueId externalRef0.VarUeId, body CreateMessageWaitingDataJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9917,7 +6637,7 @@ func NewCreateMessageWaitingDataRequest(server string, ueId externalRef2.VarUeId
 }
 
 // NewCreateMessageWaitingDataRequestWithBody generates requests for CreateMessageWaitingData with any type of body
-func NewCreateMessageWaitingDataRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateMessageWaitingDataRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9953,7 +6673,7 @@ func NewCreateMessageWaitingDataRequestWithBody(server string, ueId externalRef2
 }
 
 // NewQuerysdmsubscriptionsRequest generates requests for Querysdmsubscriptions
-func NewQuerysdmsubscriptionsRequest(server string, ueId externalRef2.VarUeId, params *QuerysdmsubscriptionsParams) (*http.Request, error) {
+func NewQuerysdmsubscriptionsRequest(server string, ueId externalRef0.VarUeId, params *QuerysdmsubscriptionsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10009,7 +6729,7 @@ func NewQuerysdmsubscriptionsRequest(server string, ueId externalRef2.VarUeId, p
 }
 
 // NewCreateSdmSubscriptionsRequest calls the generic CreateSdmSubscriptions builder with application/json body
-func NewCreateSdmSubscriptionsRequest(server string, ueId externalRef2.VarUeId, body CreateSdmSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewCreateSdmSubscriptionsRequest(server string, ueId externalRef0.VarUeId, body CreateSdmSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -10020,7 +6740,7 @@ func NewCreateSdmSubscriptionsRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewCreateSdmSubscriptionsRequestWithBody generates requests for CreateSdmSubscriptions with any type of body
-func NewCreateSdmSubscriptionsRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateSdmSubscriptionsRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10056,7 +6776,7 @@ func NewCreateSdmSubscriptionsRequestWithBody(server string, ueId externalRef2.V
 }
 
 // NewRemovesdmSubscriptionsRequest generates requests for RemovesdmSubscriptions
-func NewRemovesdmSubscriptionsRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewRemovesdmSubscriptionsRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10097,7 +6817,7 @@ func NewRemovesdmSubscriptionsRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewQuerysdmSubscriptionRequest generates requests for QuerysdmSubscription
-func NewQuerysdmSubscriptionRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewQuerysdmSubscriptionRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10138,7 +6858,7 @@ func NewQuerysdmSubscriptionRequest(server string, ueId externalRef2.VarUeId, su
 }
 
 // NewModifysdmSubscriptionRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifysdmSubscription builder with application/json-patch+json body
-func NewModifysdmSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifysdmSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -10149,7 +6869,7 @@ func NewModifysdmSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server 
 }
 
 // NewModifysdmSubscriptionRequestWithBody generates requests for ModifysdmSubscription with any type of body
-func NewModifysdmSubscriptionRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifysdmSubscriptionRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10214,7 +6934,7 @@ func NewModifysdmSubscriptionRequestWithBody(server string, ueId externalRef2.Va
 }
 
 // NewUpdatesdmsubscriptionsRequest calls the generic Updatesdmsubscriptions builder with application/json body
-func NewUpdatesdmsubscriptionsRequest(server string, ueId externalRef2.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewUpdatesdmsubscriptionsRequest(server string, ueId externalRef0.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -10225,7 +6945,7 @@ func NewUpdatesdmsubscriptionsRequest(server string, ueId externalRef2.VarUeId, 
 }
 
 // NewUpdatesdmsubscriptionsRequestWithBody generates requests for Updatesdmsubscriptions with any type of body
-func NewUpdatesdmsubscriptionsRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdatesdmsubscriptionsRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10268,7 +6988,7 @@ func NewUpdatesdmsubscriptionsRequestWithBody(server string, ueId externalRef2.V
 }
 
 // NewRemoveHssSDMSubscriptionsInfoRequest generates requests for RemoveHssSDMSubscriptionsInfo
-func NewRemoveHssSDMSubscriptionsInfoRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewRemoveHssSDMSubscriptionsInfoRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10309,7 +7029,7 @@ func NewRemoveHssSDMSubscriptionsInfoRequest(server string, ueId externalRef2.Va
 }
 
 // NewGetHssSDMSubscriptionInfoRequest generates requests for GetHssSDMSubscriptionInfo
-func NewGetHssSDMSubscriptionInfoRequest(server string, ueId externalRef2.VarUeId, subsId string) (*http.Request, error) {
+func NewGetHssSDMSubscriptionInfoRequest(server string, ueId externalRef0.VarUeId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10350,7 +7070,7 @@ func NewGetHssSDMSubscriptionInfoRequest(server string, ueId externalRef2.VarUeI
 }
 
 // NewModifyHssSDMSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyHssSDMSubscriptionInfo builder with application/json-patch+json body
-func NewModifyHssSDMSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyHssSDMSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -10361,7 +7081,7 @@ func NewModifyHssSDMSubscriptionInfoRequestWithApplicationJSONPatchPlusJSONBody(
 }
 
 // NewModifyHssSDMSubscriptionInfoRequestWithBody generates requests for ModifyHssSDMSubscriptionInfo with any type of body
-func NewModifyHssSDMSubscriptionInfoRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyHssSDMSubscriptionInfoRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10426,7 +7146,7 @@ func NewModifyHssSDMSubscriptionInfoRequestWithBody(server string, ueId external
 }
 
 // NewCreateHSSSDMSubscriptionsRequest calls the generic CreateHSSSDMSubscriptions builder with application/json body
-func NewCreateHSSSDMSubscriptionsRequest(server string, ueId externalRef2.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewCreateHSSSDMSubscriptionsRequest(server string, ueId externalRef0.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -10437,7 +7157,7 @@ func NewCreateHSSSDMSubscriptionsRequest(server string, ueId externalRef2.VarUeI
 }
 
 // NewCreateHSSSDMSubscriptionsRequestWithBody generates requests for CreateHSSSDMSubscriptions with any type of body
-func NewCreateHSSSDMSubscriptionsRequestWithBody(server string, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateHSSSDMSubscriptionsRequestWithBody(server string, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10480,7 +7200,7 @@ func NewCreateHSSSDMSubscriptionsRequestWithBody(server string, ueId externalRef
 }
 
 // NewQuerySmfRegListRequest generates requests for QuerySmfRegList
-func NewQuerySmfRegListRequest(server string, ueId externalRef2.VarUeId, params *QuerySmfRegListParams) (*http.Request, error) {
+func NewQuerySmfRegListRequest(server string, ueId externalRef0.VarUeId, params *QuerySmfRegListParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10536,7 +7256,7 @@ func NewQuerySmfRegListRequest(server string, ueId externalRef2.VarUeId, params 
 }
 
 // NewDeleteSmfRegistrationRequest generates requests for DeleteSmfRegistration
-func NewDeleteSmfRegistrationRequest(server string, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId) (*http.Request, error) {
+func NewDeleteSmfRegistrationRequest(server string, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10577,7 +7297,7 @@ func NewDeleteSmfRegistrationRequest(server string, ueId externalRef2.VarUeId, p
 }
 
 // NewQuerySmfRegistrationRequest generates requests for QuerySmfRegistration
-func NewQuerySmfRegistrationRequest(server string, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, params *QuerySmfRegistrationParams) (*http.Request, error) {
+func NewQuerySmfRegistrationRequest(server string, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, params *QuerySmfRegistrationParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10656,7 +7376,7 @@ func NewQuerySmfRegistrationRequest(server string, ueId externalRef2.VarUeId, pd
 }
 
 // NewCreateOrUpdateSmfRegistrationRequest calls the generic CreateOrUpdateSmfRegistration builder with application/json body
-func NewCreateOrUpdateSmfRegistrationRequest(server string, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody) (*http.Request, error) {
+func NewCreateOrUpdateSmfRegistrationRequest(server string, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -10667,7 +7387,7 @@ func NewCreateOrUpdateSmfRegistrationRequest(server string, ueId externalRef2.Va
 }
 
 // NewCreateOrUpdateSmfRegistrationRequestWithBody generates requests for CreateOrUpdateSmfRegistration with any type of body
-func NewCreateOrUpdateSmfRegistrationRequestWithBody(server string, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateOrUpdateSmfRegistrationRequestWithBody(server string, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10710,7 +7430,7 @@ func NewCreateOrUpdateSmfRegistrationRequestWithBody(server string, ueId externa
 }
 
 // NewDeleteSmsfContext3gppRequest generates requests for DeleteSmsfContext3gpp
-func NewDeleteSmsfContext3gppRequest(server string, ueId externalRef2.VarUeId) (*http.Request, error) {
+func NewDeleteSmsfContext3gppRequest(server string, ueId externalRef0.VarUeId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10744,7 +7464,7 @@ func NewDeleteSmsfContext3gppRequest(server string, ueId externalRef2.VarUeId) (
 }
 
 // NewQuerySmsfContext3gppRequest generates requests for QuerySmsfContext3gpp
-func NewQuerySmsfContext3gppRequest(server string, ueId externalRef2.VarUeId, params *QuerySmsfContext3gppParams) (*http.Request, error) {
+func NewQuerySmsfContext3gppRequest(server string, ueId externalRef0.VarUeId, params *QuerySmsfContext3gppParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10816,7 +7536,7 @@ func NewQuerySmsfContext3gppRequest(server string, ueId externalRef2.VarUeId, pa
 }
 
 // NewCreateSmsfContext3gppRequest calls the generic CreateSmsfContext3gpp builder with application/json body
-func NewCreateSmsfContext3gppRequest(server string, ueId externalRef2.VarUeId, body CreateSmsfContext3gppJSONRequestBody) (*http.Request, error) {
+func NewCreateSmsfContext3gppRequest(server string, ueId externalRef0.VarUeId, body CreateSmsfContext3gppJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -10827,7 +7547,7 @@ func NewCreateSmsfContext3gppRequest(server string, ueId externalRef2.VarUeId, b
 }
 
 // NewCreateSmsfContext3gppRequestWithBody generates requests for CreateSmsfContext3gpp with any type of body
-func NewCreateSmsfContext3gppRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateSmsfContext3gppRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10863,7 +7583,7 @@ func NewCreateSmsfContext3gppRequestWithBody(server string, ueId externalRef2.Va
 }
 
 // NewDeleteSmsfContextNon3gppRequest generates requests for DeleteSmsfContextNon3gpp
-func NewDeleteSmsfContextNon3gppRequest(server string, ueId externalRef2.VarUeId) (*http.Request, error) {
+func NewDeleteSmsfContextNon3gppRequest(server string, ueId externalRef0.VarUeId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10897,7 +7617,7 @@ func NewDeleteSmsfContextNon3gppRequest(server string, ueId externalRef2.VarUeId
 }
 
 // NewQuerySmsfContextNon3gppRequest generates requests for QuerySmsfContextNon3gpp
-func NewQuerySmsfContextNon3gppRequest(server string, ueId externalRef2.VarUeId, params *QuerySmsfContextNon3gppParams) (*http.Request, error) {
+func NewQuerySmsfContextNon3gppRequest(server string, ueId externalRef0.VarUeId, params *QuerySmsfContextNon3gppParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10969,7 +7689,7 @@ func NewQuerySmsfContextNon3gppRequest(server string, ueId externalRef2.VarUeId,
 }
 
 // NewCreateSmsfContextNon3gppRequest calls the generic CreateSmsfContextNon3gpp builder with application/json body
-func NewCreateSmsfContextNon3gppRequest(server string, ueId externalRef2.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody) (*http.Request, error) {
+func NewCreateSmsfContextNon3gppRequest(server string, ueId externalRef0.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -10980,7 +7700,7 @@ func NewCreateSmsfContextNon3gppRequest(server string, ueId externalRef2.VarUeId
 }
 
 // NewCreateSmsfContextNon3gppRequestWithBody generates requests for CreateSmsfContextNon3gpp with any type of body
-func NewCreateSmsfContextNon3gppRequestWithBody(server string, ueId externalRef2.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateSmsfContextNon3gppRequestWithBody(server string, ueId externalRef0.VarUeId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11016,7 +7736,7 @@ func NewCreateSmsfContextNon3gppRequestWithBody(server string, ueId externalRef2
 }
 
 // NewQueryCoverageRestrictionDataRequest generates requests for QueryCoverageRestrictionData
-func NewQueryCoverageRestrictionDataRequest(server string, ueId externalRef2.VarUeId, params *QueryCoverageRestrictionDataParams) (*http.Request, error) {
+func NewQueryCoverageRestrictionDataRequest(server string, ueId externalRef0.VarUeId, params *QueryCoverageRestrictionDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11098,7 +7818,7 @@ func NewQueryCoverageRestrictionDataRequest(server string, ueId externalRef2.Var
 }
 
 // NewQueryEEDataRequest generates requests for QueryEEData
-func NewQueryEEDataRequest(server string, ueId externalRef2.VarUeId, params *QueryEEDataParams) (*http.Request, error) {
+func NewQueryEEDataRequest(server string, ueId externalRef0.VarUeId, params *QueryEEDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11170,7 +7890,7 @@ func NewQueryEEDataRequest(server string, ueId externalRef2.VarUeId, params *Que
 }
 
 // NewGetIdentityDataRequest generates requests for GetIdentityData
-func NewGetIdentityDataRequest(server string, ueId externalRef2.VarUeId, params *GetIdentityDataParams) (*http.Request, error) {
+func NewGetIdentityDataRequest(server string, ueId externalRef0.VarUeId, params *GetIdentityDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11246,7 +7966,7 @@ func NewGetIdentityDataRequest(server string, ueId externalRef2.VarUeId, params 
 }
 
 // NewQueryLcsMoDataRequest generates requests for QueryLcsMoData
-func NewQueryLcsMoDataRequest(server string, ueId externalRef2.VarUeId, params *QueryLcsMoDataParams) (*http.Request, error) {
+func NewQueryLcsMoDataRequest(server string, ueId externalRef0.VarUeId, params *QueryLcsMoDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11344,7 +8064,7 @@ func NewQueryLcsMoDataRequest(server string, ueId externalRef2.VarUeId, params *
 }
 
 // NewQueryLcsPrivacyDataRequest generates requests for QueryLcsPrivacyData
-func NewQueryLcsPrivacyDataRequest(server string, ueId externalRef2.VarUeId, params *QueryLcsPrivacyDataParams) (*http.Request, error) {
+func NewQueryLcsPrivacyDataRequest(server string, ueId externalRef0.VarUeId, params *QueryLcsPrivacyDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11538,7 +8258,7 @@ func NewGetNiddAuDataRequest(server string, ueId string, params *GetNiddAuDataPa
 }
 
 // NewGetOdbDataRequest generates requests for GetOdbData
-func NewGetOdbDataRequest(server string, ueId externalRef2.VarUeId) (*http.Request, error) {
+func NewGetOdbDataRequest(server string, ueId externalRef0.VarUeId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11572,7 +8292,7 @@ func NewGetOdbDataRequest(server string, ueId externalRef2.VarUeId) (*http.Reque
 }
 
 // NewQueryOperSpecDataRequest generates requests for QueryOperSpecData
-func NewQueryOperSpecDataRequest(server string, ueId externalRef2.VarUeId, params *QueryOperSpecDataParams) (*http.Request, error) {
+func NewQueryOperSpecDataRequest(server string, ueId externalRef0.VarUeId, params *QueryOperSpecDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11670,7 +8390,7 @@ func NewQueryOperSpecDataRequest(server string, ueId externalRef2.VarUeId, param
 }
 
 // NewModifyOperSpecDataRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyOperSpecData builder with application/json-patch+json body
-func NewModifyOperSpecDataRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyOperSpecDataRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -11681,7 +8401,7 @@ func NewModifyOperSpecDataRequestWithApplicationJSONPatchPlusJSONBody(server str
 }
 
 // NewModifyOperSpecDataRequestWithBody generates requests for ModifyOperSpecData with any type of body
-func NewModifyOperSpecDataRequestWithBody(server string, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyOperSpecDataRequestWithBody(server string, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11739,7 +8459,7 @@ func NewModifyOperSpecDataRequestWithBody(server string, ueId externalRef2.VarUe
 }
 
 // NewGetppDataRequest generates requests for GetppData
-func NewGetppDataRequest(server string, ueId externalRef2.VarUeId, params *GetppDataParams) (*http.Request, error) {
+func NewGetppDataRequest(server string, ueId externalRef0.VarUeId, params *GetppDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11821,7 +8541,7 @@ func NewGetppDataRequest(server string, ueId externalRef2.VarUeId, params *Getpp
 }
 
 // NewModifyPpDataRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyPpData builder with application/json-patch+json body
-func NewModifyPpDataRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef2.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyPpDataRequestWithApplicationJSONPatchPlusJSONBody(server string, ueId externalRef0.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -11832,7 +8552,7 @@ func NewModifyPpDataRequestWithApplicationJSONPatchPlusJSONBody(server string, u
 }
 
 // NewModifyPpDataRequestWithBody generates requests for ModifyPpData with any type of body
-func NewModifyPpDataRequestWithBody(server string, ueId externalRef2.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyPpDataRequestWithBody(server string, ueId externalRef0.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11890,7 +8610,7 @@ func NewModifyPpDataRequestWithBody(server string, ueId externalRef2.VarUeId, pa
 }
 
 // NewQueryPPDataRequest generates requests for QueryPPData
-func NewQueryPPDataRequest(server string, ueId externalRef2.VarUeId, params *QueryPPDataParams) (*http.Request, error) {
+func NewQueryPPDataRequest(server string, ueId externalRef0.VarUeId, params *QueryPPDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11946,7 +8666,7 @@ func NewQueryPPDataRequest(server string, ueId externalRef2.VarUeId, params *Que
 }
 
 // NewQueryAuthSoRRequest generates requests for QueryAuthSoR
-func NewQueryAuthSoRRequest(server string, ueId externalRef2.Supi, params *QueryAuthSoRParams) (*http.Request, error) {
+func NewQueryAuthSoRRequest(server string, ueId externalRef0.Supi, params *QueryAuthSoRParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12002,7 +8722,7 @@ func NewQueryAuthSoRRequest(server string, ueId externalRef2.Supi, params *Query
 }
 
 // NewCreateAuthenticationSoRRequest calls the generic CreateAuthenticationSoR builder with application/json body
-func NewCreateAuthenticationSoRRequest(server string, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody) (*http.Request, error) {
+func NewCreateAuthenticationSoRRequest(server string, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -12013,7 +8733,7 @@ func NewCreateAuthenticationSoRRequest(server string, ueId externalRef2.Supi, pa
 }
 
 // NewCreateAuthenticationSoRRequestWithBody generates requests for CreateAuthenticationSoR with any type of body
-func NewCreateAuthenticationSoRRequestWithBody(server string, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateAuthenticationSoRRequestWithBody(server string, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12071,7 +8791,7 @@ func NewCreateAuthenticationSoRRequestWithBody(server string, ueId externalRef2.
 }
 
 // NewQueryCagAckRequest generates requests for QueryCagAck
-func NewQueryCagAckRequest(server string, ueId externalRef2.Supi, params *QueryCagAckParams) (*http.Request, error) {
+func NewQueryCagAckRequest(server string, ueId externalRef0.Supi, params *QueryCagAckParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12127,7 +8847,7 @@ func NewQueryCagAckRequest(server string, ueId externalRef2.Supi, params *QueryC
 }
 
 // NewCreateCagUpdateAckRequest calls the generic CreateCagUpdateAck builder with application/json body
-func NewCreateCagUpdateAckRequest(server string, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody) (*http.Request, error) {
+func NewCreateCagUpdateAckRequest(server string, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -12138,7 +8858,7 @@ func NewCreateCagUpdateAckRequest(server string, ueId externalRef2.Supi, params 
 }
 
 // NewCreateCagUpdateAckRequestWithBody generates requests for CreateCagUpdateAck with any type of body
-func NewCreateCagUpdateAckRequestWithBody(server string, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateCagUpdateAckRequestWithBody(server string, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12196,7 +8916,7 @@ func NewCreateCagUpdateAckRequestWithBody(server string, ueId externalRef2.Supi,
 }
 
 // NewQueryNssaiAckRequest generates requests for QueryNssaiAck
-func NewQueryNssaiAckRequest(server string, ueId externalRef2.Supi, params *QueryNssaiAckParams) (*http.Request, error) {
+func NewQueryNssaiAckRequest(server string, ueId externalRef0.Supi, params *QueryNssaiAckParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12252,7 +8972,7 @@ func NewQueryNssaiAckRequest(server string, ueId externalRef2.Supi, params *Quer
 }
 
 // NewCreateOrUpdateNssaiAckRequest calls the generic CreateOrUpdateNssaiAck builder with application/json body
-func NewCreateOrUpdateNssaiAckRequest(server string, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody) (*http.Request, error) {
+func NewCreateOrUpdateNssaiAckRequest(server string, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -12263,7 +8983,7 @@ func NewCreateOrUpdateNssaiAckRequest(server string, ueId externalRef2.Supi, par
 }
 
 // NewCreateOrUpdateNssaiAckRequestWithBody generates requests for CreateOrUpdateNssaiAck with any type of body
-func NewCreateOrUpdateNssaiAckRequestWithBody(server string, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateOrUpdateNssaiAckRequestWithBody(server string, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12321,7 +9041,7 @@ func NewCreateOrUpdateNssaiAckRequestWithBody(server string, ueId externalRef2.S
 }
 
 // NewQueryAuthUPURequest generates requests for QueryAuthUPU
-func NewQueryAuthUPURequest(server string, ueId externalRef2.Supi, params *QueryAuthUPUParams) (*http.Request, error) {
+func NewQueryAuthUPURequest(server string, ueId externalRef0.Supi, params *QueryAuthUPUParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12377,7 +9097,7 @@ func NewQueryAuthUPURequest(server string, ueId externalRef2.Supi, params *Query
 }
 
 // NewCreateAuthenticationUPURequest calls the generic CreateAuthenticationUPU builder with application/json body
-func NewCreateAuthenticationUPURequest(server string, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody) (*http.Request, error) {
+func NewCreateAuthenticationUPURequest(server string, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -12388,7 +9108,7 @@ func NewCreateAuthenticationUPURequest(server string, ueId externalRef2.Supi, pa
 }
 
 // NewCreateAuthenticationUPURequestWithBody generates requests for CreateAuthenticationUPU with any type of body
-func NewCreateAuthenticationUPURequestWithBody(server string, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateAuthenticationUPURequestWithBody(server string, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12446,7 +9166,7 @@ func NewCreateAuthenticationUPURequestWithBody(server string, ueId externalRef2.
 }
 
 // NewQueryV2xDataRequest generates requests for QueryV2xData
-func NewQueryV2xDataRequest(server string, ueId externalRef2.VarUeId, params *QueryV2xDataParams) (*http.Request, error) {
+func NewQueryV2xDataRequest(server string, ueId externalRef0.VarUeId, params *QueryV2xDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12528,7 +9248,7 @@ func NewQueryV2xDataRequest(server string, ueId externalRef2.VarUeId, params *Qu
 }
 
 // NewQueryProvisionedDataRequest generates requests for QueryProvisionedData
-func NewQueryProvisionedDataRequest(server string, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryProvisionedDataParams) (*http.Request, error) {
+func NewQueryProvisionedDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12591,7 +9311,7 @@ func NewQueryProvisionedDataRequest(server string, ueId externalRef2.VarUeId, se
 }
 
 // NewQueryAmDataRequest generates requests for QueryAmData
-func NewQueryAmDataRequest(server string, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryAmDataParams) (*http.Request, error) {
+func NewQueryAmDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12696,7 +9416,7 @@ func NewQueryAmDataRequest(server string, ueId externalRef2.VarUeId, servingPlmn
 }
 
 // NewQueryLcsBcaDataRequest generates requests for QueryLcsBcaData
-func NewQueryLcsBcaDataRequest(server string, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryLcsBcaDataParams) (*http.Request, error) {
+func NewQueryLcsBcaDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12785,7 +9505,7 @@ func NewQueryLcsBcaDataRequest(server string, ueId externalRef2.VarUeId, serving
 }
 
 // NewQuerySmDataRequest generates requests for QuerySmData
-func NewQuerySmDataRequest(server string, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmDataParams) (*http.Request, error) {
+func NewQuerySmDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12916,7 +9636,7 @@ func NewQuerySmDataRequest(server string, ueId externalRef2.VarUeId, servingPlmn
 }
 
 // NewQuerySmfSelectDataRequest generates requests for QuerySmfSelectData
-func NewQuerySmfSelectDataRequest(server string, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmfSelectDataParams) (*http.Request, error) {
+func NewQuerySmfSelectDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -13021,7 +9741,7 @@ func NewQuerySmfSelectDataRequest(server string, ueId externalRef2.VarUeId, serv
 }
 
 // NewQuerySmsDataRequest generates requests for QuerySmsData
-func NewQuerySmsDataRequest(server string, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsDataParams) (*http.Request, error) {
+func NewQuerySmsDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -13110,7 +9830,7 @@ func NewQuerySmsDataRequest(server string, ueId externalRef2.VarUeId, servingPlm
 }
 
 // NewQuerySmsMngDataRequest generates requests for QuerySmsMngData
-func NewQuerySmsMngDataRequest(server string, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsMngDataParams) (*http.Request, error) {
+func NewQuerySmsMngDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -13199,7 +9919,7 @@ func NewQuerySmsMngDataRequest(server string, ueId externalRef2.VarUeId, serving
 }
 
 // NewQueryTraceDataRequest generates requests for QueryTraceData
-func NewQueryTraceDataRequest(server string, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryTraceDataParams) (*http.Request, error) {
+func NewQueryTraceDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -13318,56 +10038,56 @@ type ClientWithResponsesInterface interface {
 	Query5GVNGroupPPDataWithResponse(ctx context.Context, params *Query5GVNGroupPPDataParams, reqEditors ...RequestEditorFn) (*Query5GVNGroupPPDataResponse, error)
 
 	// Delete5GVnGroupWithResponse request
-	Delete5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, reqEditors ...RequestEditorFn) (*Delete5GVnGroupResponse, error)
+	Delete5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Delete5GVnGroupResponse, error)
 
 	// Get5GVnGroupConfigurationWithResponse request
-	Get5GVnGroupConfigurationWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVnGroupConfigurationResponse, error)
+	Get5GVnGroupConfigurationWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVnGroupConfigurationResponse, error)
 
 	// Modify5GVnGroupWithBodyWithResponse request with any body
-	Modify5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error)
+	Modify5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error)
 
-	Modify5GVnGroupWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error)
+	Modify5GVnGroupWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error)
 
 	// Create5GVnGroupWithBodyWithResponse request with any body
-	Create5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error)
+	Create5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error)
 
-	Create5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error)
+	Create5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error)
 
 	// GetGroupIdentifiersWithResponse request
 	GetGroupIdentifiersWithResponse(ctx context.Context, params *GetGroupIdentifiersParams, reqEditors ...RequestEditorFn) (*GetGroupIdentifiersResponse, error)
 
 	// QueryGroupEEDataWithResponse request
-	QueryGroupEEDataWithResponse(ctx context.Context, ueGroupId VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*QueryGroupEEDataResponse, error)
+	QueryGroupEEDataWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*QueryGroupEEDataResponse, error)
 
 	// QueryEeGroupSubscriptionsWithResponse request
-	QueryEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionsResponse, error)
+	QueryEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionsResponse, error)
 
 	// CreateEeGroupSubscriptionsWithBodyWithResponse request with any body
-	CreateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error)
+	CreateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error)
 
-	CreateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error)
+	CreateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error)
 
 	// RemoveEeGroupSubscriptionsWithResponse request
-	RemoveEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*RemoveEeGroupSubscriptionsResponse, error)
+	RemoveEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*RemoveEeGroupSubscriptionsResponse, error)
 
 	// QueryEeGroupSubscriptionWithResponse request
-	QueryEeGroupSubscriptionWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionResponse, error)
+	QueryEeGroupSubscriptionWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionResponse, error)
 
 	// ModifyEeGroupSubscriptionWithBodyWithResponse request with any body
-	ModifyEeGroupSubscriptionWithBodyWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error)
+	ModifyEeGroupSubscriptionWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error)
 
-	ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error)
+	ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error)
 
 	// UpdateEeGroupSubscriptionsWithBodyWithResponse request with any body
-	UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error)
+	UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error)
 
-	UpdateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error)
+	UpdateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error)
 
 	// GetSharedDataWithResponse request
 	GetSharedDataWithResponse(ctx context.Context, params *GetSharedDataParams, reqEditors ...RequestEditorFn) (*GetSharedDataResponse, error)
 
 	// GetIndividualSharedDataWithResponse request
-	GetIndividualSharedDataWithResponse(ctx context.Context, sharedDataId externalRef6.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*GetIndividualSharedDataResponse, error)
+	GetIndividualSharedDataWithResponse(ctx context.Context, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*GetIndividualSharedDataResponse, error)
 
 	// RemoveMultipleSubscriptionDataSubscriptionsWithResponse request
 	RemoveMultipleSubscriptionDataSubscriptionsWithResponse(ctx context.Context, params *RemoveMultipleSubscriptionDataSubscriptionsParams, reqEditors ...RequestEditorFn) (*RemoveMultipleSubscriptionDataSubscriptionsResponse, error)
@@ -13392,352 +10112,352 @@ type ClientWithResponsesInterface interface {
 	ModifysubscriptionDataSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, subsId string, params *ModifysubscriptionDataSubscriptionParams, body ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifysubscriptionDataSubscriptionResponse, error)
 
 	// DeleteAuthenticationStatusWithResponse request
-	DeleteAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, reqEditors ...RequestEditorFn) (*DeleteAuthenticationStatusResponse, error)
+	DeleteAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, reqEditors ...RequestEditorFn) (*DeleteAuthenticationStatusResponse, error)
 
 	// QueryAuthenticationStatusWithResponse request
-	QueryAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryAuthenticationStatusResponse, error)
+	QueryAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryAuthenticationStatusResponse, error)
 
 	// CreateAuthenticationStatusWithBodyWithResponse request with any body
-	CreateAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error)
+	CreateAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error)
 
-	CreateAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error)
+	CreateAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error)
 
 	// DeleteIndividualAuthenticationStatusWithResponse request
-	DeleteIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, reqEditors ...RequestEditorFn) (*DeleteIndividualAuthenticationStatusResponse, error)
+	DeleteIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, reqEditors ...RequestEditorFn) (*DeleteIndividualAuthenticationStatusResponse, error)
 
 	// QueryIndividualAuthenticationStatusWithResponse request
-	QueryIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryIndividualAuthenticationStatusResponse, error)
+	QueryIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryIndividualAuthenticationStatusResponse, error)
 
 	// CreateIndividualAuthenticationStatusWithBodyWithResponse request with any body
-	CreateIndividualAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error)
+	CreateIndividualAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error)
 
-	CreateIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error)
+	CreateIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error)
 
 	// QueryAuthSubsDataWithResponse request
-	QueryAuthSubsDataWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*QueryAuthSubsDataResponse, error)
+	QueryAuthSubsDataWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*QueryAuthSubsDataResponse, error)
 
 	// ModifyAuthenticationSubscriptionWithBodyWithResponse request with any body
-	ModifyAuthenticationSubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyAuthenticationSubscriptionResponse, error)
+	ModifyAuthenticationSubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyAuthenticationSubscriptionResponse, error)
 
-	ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyAuthenticationSubscriptionResponse, error)
+	ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyAuthenticationSubscriptionResponse, error)
 
 	// QueryContextDataWithResponse request
-	QueryContextDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryContextDataParams, reqEditors ...RequestEditorFn) (*QueryContextDataResponse, error)
+	QueryContextDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryContextDataParams, reqEditors ...RequestEditorFn) (*QueryContextDataResponse, error)
 
 	// QueryAmfContext3gppWithResponse request
-	QueryAmfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryAmfContext3gppParams, reqEditors ...RequestEditorFn) (*QueryAmfContext3gppResponse, error)
+	QueryAmfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryAmfContext3gppParams, reqEditors ...RequestEditorFn) (*QueryAmfContext3gppResponse, error)
 
 	// AmfContext3gppWithBodyWithResponse request with any body
-	AmfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AmfContext3gppResponse, error)
+	AmfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AmfContext3gppResponse, error)
 
-	AmfContext3gppWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*AmfContext3gppResponse, error)
+	AmfContext3gppWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*AmfContext3gppResponse, error)
 
 	// CreateAmfContext3gppWithBodyWithResponse request with any body
-	CreateAmfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAmfContext3gppResponse, error)
+	CreateAmfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAmfContext3gppResponse, error)
 
-	CreateAmfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateAmfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAmfContext3gppResponse, error)
+	CreateAmfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateAmfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAmfContext3gppResponse, error)
 
 	// QueryAmfContextNon3gppWithResponse request
-	QueryAmfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryAmfContextNon3gppParams, reqEditors ...RequestEditorFn) (*QueryAmfContextNon3gppResponse, error)
+	QueryAmfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryAmfContextNon3gppParams, reqEditors ...RequestEditorFn) (*QueryAmfContextNon3gppResponse, error)
 
 	// AmfContextNon3gppWithBodyWithResponse request with any body
-	AmfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AmfContextNon3gppResponse, error)
+	AmfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AmfContextNon3gppResponse, error)
 
-	AmfContextNon3gppWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*AmfContextNon3gppResponse, error)
+	AmfContextNon3gppWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*AmfContextNon3gppResponse, error)
 
 	// CreateAmfContextNon3gppWithBodyWithResponse request with any body
-	CreateAmfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAmfContextNon3gppResponse, error)
+	CreateAmfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAmfContextNon3gppResponse, error)
 
-	CreateAmfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateAmfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAmfContextNon3gppResponse, error)
+	CreateAmfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateAmfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAmfContextNon3gppResponse, error)
 
 	// QueryeesubscriptionsWithResponse request
-	QueryeesubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryeesubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryeesubscriptionsResponse, error)
+	QueryeesubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryeesubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryeesubscriptionsResponse, error)
 
 	// CreateEeSubscriptionsWithBodyWithResponse request with any body
-	CreateEeSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeSubscriptionsResponse, error)
+	CreateEeSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeSubscriptionsResponse, error)
 
-	CreateEeSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateEeSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeSubscriptionsResponse, error)
+	CreateEeSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateEeSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeSubscriptionsResponse, error)
 
 	// RemoveeeSubscriptionsWithResponse request
-	RemoveeeSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveeeSubscriptionsResponse, error)
+	RemoveeeSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveeeSubscriptionsResponse, error)
 
 	// QueryeeSubscriptionWithResponse request
-	QueryeeSubscriptionWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*QueryeeSubscriptionResponse, error)
+	QueryeeSubscriptionWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*QueryeeSubscriptionResponse, error)
 
 	// ModifyEesubscriptionWithBodyWithResponse request with any body
-	ModifyEesubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEesubscriptionResponse, error)
+	ModifyEesubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEesubscriptionResponse, error)
 
-	ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEesubscriptionResponse, error)
+	ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEesubscriptionResponse, error)
 
 	// UpdateEesubscriptionsWithBodyWithResponse request with any body
-	UpdateEesubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEesubscriptionsResponse, error)
+	UpdateEesubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEesubscriptionsResponse, error)
 
-	UpdateEesubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEesubscriptionsResponse, error)
+	UpdateEesubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEesubscriptionsResponse, error)
 
 	// RemoveAmfSubscriptionsInfoWithResponse request
-	RemoveAmfSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveAmfSubscriptionsInfoResponse, error)
+	RemoveAmfSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveAmfSubscriptionsInfoResponse, error)
 
 	// GetAmfSubscriptionInfoWithResponse request
-	GetAmfSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetAmfSubscriptionInfoResponse, error)
+	GetAmfSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetAmfSubscriptionInfoResponse, error)
 
 	// ModifyAmfSubscriptionInfoWithBodyWithResponse request with any body
-	ModifyAmfSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyAmfSubscriptionInfoResponse, error)
+	ModifyAmfSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyAmfSubscriptionInfoResponse, error)
 
-	ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyAmfSubscriptionInfoResponse, error)
+	ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyAmfSubscriptionInfoResponse, error)
 
 	// CreateAMFSubscriptionsWithBodyWithResponse request with any body
-	CreateAMFSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAMFSubscriptionsResponse, error)
+	CreateAMFSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAMFSubscriptionsResponse, error)
 
-	CreateAMFSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAMFSubscriptionsResponse, error)
+	CreateAMFSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAMFSubscriptionsResponse, error)
 
 	// RemoveHssSubscriptionsInfoWithResponse request
-	RemoveHssSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveHssSubscriptionsInfoResponse, error)
+	RemoveHssSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveHssSubscriptionsInfoResponse, error)
 
 	// GetHssSubscriptionInfoWithResponse request
-	GetHssSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetHssSubscriptionInfoResponse, error)
+	GetHssSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetHssSubscriptionInfoResponse, error)
 
 	// ModifyHssSubscriptionInfoWithBodyWithResponse request with any body
-	ModifyHssSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyHssSubscriptionInfoResponse, error)
+	ModifyHssSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyHssSubscriptionInfoResponse, error)
 
-	ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyHssSubscriptionInfoResponse, error)
+	ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyHssSubscriptionInfoResponse, error)
 
 	// CreateHSSSubscriptionsWithBodyWithResponse request with any body
-	CreateHSSSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHSSSubscriptionsResponse, error)
+	CreateHSSSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHSSSubscriptionsResponse, error)
 
-	CreateHSSSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHSSSubscriptionsResponse, error)
+	CreateHSSSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHSSSubscriptionsResponse, error)
 
 	// RemoveSmfSubscriptionsInfoWithResponse request
-	RemoveSmfSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveSmfSubscriptionsInfoResponse, error)
+	RemoveSmfSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveSmfSubscriptionsInfoResponse, error)
 
 	// GetSmfSubscriptionInfoWithResponse request
-	GetSmfSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetSmfSubscriptionInfoResponse, error)
+	GetSmfSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetSmfSubscriptionInfoResponse, error)
 
 	// ModifySmfSubscriptionInfoWithBodyWithResponse request with any body
-	ModifySmfSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifySmfSubscriptionInfoResponse, error)
+	ModifySmfSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifySmfSubscriptionInfoResponse, error)
 
-	ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifySmfSubscriptionInfoResponse, error)
+	ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifySmfSubscriptionInfoResponse, error)
 
 	// CreateSMFSubscriptionsWithBodyWithResponse request with any body
-	CreateSMFSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSMFSubscriptionsResponse, error)
+	CreateSMFSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSMFSubscriptionsResponse, error)
 
-	CreateSMFSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSMFSubscriptionsResponse, error)
+	CreateSMFSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSMFSubscriptionsResponse, error)
 
 	// DeleteIpSmGwContextWithResponse request
-	DeleteIpSmGwContextWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*DeleteIpSmGwContextResponse, error)
+	DeleteIpSmGwContextWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*DeleteIpSmGwContextResponse, error)
 
 	// QueryIpSmGwContextWithResponse request
-	QueryIpSmGwContextWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryIpSmGwContextParams, reqEditors ...RequestEditorFn) (*QueryIpSmGwContextResponse, error)
+	QueryIpSmGwContextWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryIpSmGwContextParams, reqEditors ...RequestEditorFn) (*QueryIpSmGwContextResponse, error)
 
 	// ModifyIpSmGwContextWithBodyWithResponse request with any body
-	ModifyIpSmGwContextWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyIpSmGwContextResponse, error)
+	ModifyIpSmGwContextWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyIpSmGwContextResponse, error)
 
-	ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyIpSmGwContextResponse, error)
+	ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyIpSmGwContextResponse, error)
 
 	// CreateIpSmGwContextWithBodyWithResponse request with any body
-	CreateIpSmGwContextWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIpSmGwContextResponse, error)
+	CreateIpSmGwContextWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIpSmGwContextResponse, error)
 
-	CreateIpSmGwContextWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateIpSmGwContextJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIpSmGwContextResponse, error)
+	CreateIpSmGwContextWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateIpSmGwContextJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIpSmGwContextResponse, error)
 
 	// QueryUeLocationWithResponse request
-	QueryUeLocationWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryUeLocationParams, reqEditors ...RequestEditorFn) (*QueryUeLocationResponse, error)
+	QueryUeLocationWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryUeLocationParams, reqEditors ...RequestEditorFn) (*QueryUeLocationResponse, error)
 
 	// DeleteMessageWaitingDataWithResponse request
-	DeleteMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*DeleteMessageWaitingDataResponse, error)
+	DeleteMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*DeleteMessageWaitingDataResponse, error)
 
 	// QueryMessageWaitingDataWithResponse request
-	QueryMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryMessageWaitingDataParams, reqEditors ...RequestEditorFn) (*QueryMessageWaitingDataResponse, error)
+	QueryMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryMessageWaitingDataParams, reqEditors ...RequestEditorFn) (*QueryMessageWaitingDataResponse, error)
 
 	// ModifyMessageWaitingDataWithBodyWithResponse request with any body
-	ModifyMessageWaitingDataWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyMessageWaitingDataResponse, error)
+	ModifyMessageWaitingDataWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyMessageWaitingDataResponse, error)
 
-	ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyMessageWaitingDataResponse, error)
+	ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyMessageWaitingDataResponse, error)
 
 	// CreateMessageWaitingDataWithBodyWithResponse request with any body
-	CreateMessageWaitingDataWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateMessageWaitingDataResponse, error)
+	CreateMessageWaitingDataWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateMessageWaitingDataResponse, error)
 
-	CreateMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateMessageWaitingDataJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateMessageWaitingDataResponse, error)
+	CreateMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateMessageWaitingDataJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateMessageWaitingDataResponse, error)
 
 	// QuerysdmsubscriptionsWithResponse request
-	QuerysdmsubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QuerysdmsubscriptionsParams, reqEditors ...RequestEditorFn) (*QuerysdmsubscriptionsResponse, error)
+	QuerysdmsubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QuerysdmsubscriptionsParams, reqEditors ...RequestEditorFn) (*QuerysdmsubscriptionsResponse, error)
 
 	// CreateSdmSubscriptionsWithBodyWithResponse request with any body
-	CreateSdmSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSdmSubscriptionsResponse, error)
+	CreateSdmSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSdmSubscriptionsResponse, error)
 
-	CreateSdmSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateSdmSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSdmSubscriptionsResponse, error)
+	CreateSdmSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateSdmSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSdmSubscriptionsResponse, error)
 
 	// RemovesdmSubscriptionsWithResponse request
-	RemovesdmSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemovesdmSubscriptionsResponse, error)
+	RemovesdmSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemovesdmSubscriptionsResponse, error)
 
 	// QuerysdmSubscriptionWithResponse request
-	QuerysdmSubscriptionWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*QuerysdmSubscriptionResponse, error)
+	QuerysdmSubscriptionWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*QuerysdmSubscriptionResponse, error)
 
 	// ModifysdmSubscriptionWithBodyWithResponse request with any body
-	ModifysdmSubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifysdmSubscriptionResponse, error)
+	ModifysdmSubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifysdmSubscriptionResponse, error)
 
-	ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifysdmSubscriptionResponse, error)
+	ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifysdmSubscriptionResponse, error)
 
 	// UpdatesdmsubscriptionsWithBodyWithResponse request with any body
-	UpdatesdmsubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatesdmsubscriptionsResponse, error)
+	UpdatesdmsubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatesdmsubscriptionsResponse, error)
 
-	UpdatesdmsubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatesdmsubscriptionsResponse, error)
+	UpdatesdmsubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatesdmsubscriptionsResponse, error)
 
 	// RemoveHssSDMSubscriptionsInfoWithResponse request
-	RemoveHssSDMSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveHssSDMSubscriptionsInfoResponse, error)
+	RemoveHssSDMSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveHssSDMSubscriptionsInfoResponse, error)
 
 	// GetHssSDMSubscriptionInfoWithResponse request
-	GetHssSDMSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetHssSDMSubscriptionInfoResponse, error)
+	GetHssSDMSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetHssSDMSubscriptionInfoResponse, error)
 
 	// ModifyHssSDMSubscriptionInfoWithBodyWithResponse request with any body
-	ModifyHssSDMSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyHssSDMSubscriptionInfoResponse, error)
+	ModifyHssSDMSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyHssSDMSubscriptionInfoResponse, error)
 
-	ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyHssSDMSubscriptionInfoResponse, error)
+	ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyHssSDMSubscriptionInfoResponse, error)
 
 	// CreateHSSSDMSubscriptionsWithBodyWithResponse request with any body
-	CreateHSSSDMSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHSSSDMSubscriptionsResponse, error)
+	CreateHSSSDMSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHSSSDMSubscriptionsResponse, error)
 
-	CreateHSSSDMSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHSSSDMSubscriptionsResponse, error)
+	CreateHSSSDMSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHSSSDMSubscriptionsResponse, error)
 
 	// QuerySmfRegListWithResponse request
-	QuerySmfRegListWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmfRegListParams, reqEditors ...RequestEditorFn) (*QuerySmfRegListResponse, error)
+	QuerySmfRegListWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmfRegListParams, reqEditors ...RequestEditorFn) (*QuerySmfRegListResponse, error)
 
 	// DeleteSmfRegistrationWithResponse request
-	DeleteSmfRegistrationWithResponse(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, reqEditors ...RequestEditorFn) (*DeleteSmfRegistrationResponse, error)
+	DeleteSmfRegistrationWithResponse(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, reqEditors ...RequestEditorFn) (*DeleteSmfRegistrationResponse, error)
 
 	// QuerySmfRegistrationWithResponse request
-	QuerySmfRegistrationWithResponse(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, params *QuerySmfRegistrationParams, reqEditors ...RequestEditorFn) (*QuerySmfRegistrationResponse, error)
+	QuerySmfRegistrationWithResponse(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, params *QuerySmfRegistrationParams, reqEditors ...RequestEditorFn) (*QuerySmfRegistrationResponse, error)
 
 	// CreateOrUpdateSmfRegistrationWithBodyWithResponse request with any body
-	CreateOrUpdateSmfRegistrationWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateSmfRegistrationResponse, error)
+	CreateOrUpdateSmfRegistrationWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateSmfRegistrationResponse, error)
 
-	CreateOrUpdateSmfRegistrationWithResponse(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateSmfRegistrationResponse, error)
+	CreateOrUpdateSmfRegistrationWithResponse(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateSmfRegistrationResponse, error)
 
 	// DeleteSmsfContext3gppWithResponse request
-	DeleteSmsfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*DeleteSmsfContext3gppResponse, error)
+	DeleteSmsfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*DeleteSmsfContext3gppResponse, error)
 
 	// QuerySmsfContext3gppWithResponse request
-	QuerySmsfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmsfContext3gppParams, reqEditors ...RequestEditorFn) (*QuerySmsfContext3gppResponse, error)
+	QuerySmsfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmsfContext3gppParams, reqEditors ...RequestEditorFn) (*QuerySmsfContext3gppResponse, error)
 
 	// CreateSmsfContext3gppWithBodyWithResponse request with any body
-	CreateSmsfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSmsfContext3gppResponse, error)
+	CreateSmsfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSmsfContext3gppResponse, error)
 
-	CreateSmsfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateSmsfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSmsfContext3gppResponse, error)
+	CreateSmsfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateSmsfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSmsfContext3gppResponse, error)
 
 	// DeleteSmsfContextNon3gppWithResponse request
-	DeleteSmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*DeleteSmsfContextNon3gppResponse, error)
+	DeleteSmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*DeleteSmsfContextNon3gppResponse, error)
 
 	// QuerySmsfContextNon3gppWithResponse request
-	QuerySmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmsfContextNon3gppParams, reqEditors ...RequestEditorFn) (*QuerySmsfContextNon3gppResponse, error)
+	QuerySmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmsfContextNon3gppParams, reqEditors ...RequestEditorFn) (*QuerySmsfContextNon3gppResponse, error)
 
 	// CreateSmsfContextNon3gppWithBodyWithResponse request with any body
-	CreateSmsfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSmsfContextNon3gppResponse, error)
+	CreateSmsfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSmsfContextNon3gppResponse, error)
 
-	CreateSmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSmsfContextNon3gppResponse, error)
+	CreateSmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSmsfContextNon3gppResponse, error)
 
 	// QueryCoverageRestrictionDataWithResponse request
-	QueryCoverageRestrictionDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryCoverageRestrictionDataParams, reqEditors ...RequestEditorFn) (*QueryCoverageRestrictionDataResponse, error)
+	QueryCoverageRestrictionDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryCoverageRestrictionDataParams, reqEditors ...RequestEditorFn) (*QueryCoverageRestrictionDataResponse, error)
 
 	// QueryEEDataWithResponse request
-	QueryEEDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryEEDataParams, reqEditors ...RequestEditorFn) (*QueryEEDataResponse, error)
+	QueryEEDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryEEDataParams, reqEditors ...RequestEditorFn) (*QueryEEDataResponse, error)
 
 	// GetIdentityDataWithResponse request
-	GetIdentityDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *GetIdentityDataParams, reqEditors ...RequestEditorFn) (*GetIdentityDataResponse, error)
+	GetIdentityDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *GetIdentityDataParams, reqEditors ...RequestEditorFn) (*GetIdentityDataResponse, error)
 
 	// QueryLcsMoDataWithResponse request
-	QueryLcsMoDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryLcsMoDataParams, reqEditors ...RequestEditorFn) (*QueryLcsMoDataResponse, error)
+	QueryLcsMoDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryLcsMoDataParams, reqEditors ...RequestEditorFn) (*QueryLcsMoDataResponse, error)
 
 	// QueryLcsPrivacyDataWithResponse request
-	QueryLcsPrivacyDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryLcsPrivacyDataParams, reqEditors ...RequestEditorFn) (*QueryLcsPrivacyDataResponse, error)
+	QueryLcsPrivacyDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryLcsPrivacyDataParams, reqEditors ...RequestEditorFn) (*QueryLcsPrivacyDataResponse, error)
 
 	// GetNiddAuDataWithResponse request
 	GetNiddAuDataWithResponse(ctx context.Context, ueId string, params *GetNiddAuDataParams, reqEditors ...RequestEditorFn) (*GetNiddAuDataResponse, error)
 
 	// GetOdbDataWithResponse request
-	GetOdbDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*GetOdbDataResponse, error)
+	GetOdbDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*GetOdbDataResponse, error)
 
 	// QueryOperSpecDataWithResponse request
-	QueryOperSpecDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryOperSpecDataParams, reqEditors ...RequestEditorFn) (*QueryOperSpecDataResponse, error)
+	QueryOperSpecDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryOperSpecDataParams, reqEditors ...RequestEditorFn) (*QueryOperSpecDataResponse, error)
 
 	// ModifyOperSpecDataWithBodyWithResponse request with any body
-	ModifyOperSpecDataWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyOperSpecDataResponse, error)
+	ModifyOperSpecDataWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyOperSpecDataResponse, error)
 
-	ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyOperSpecDataResponse, error)
+	ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyOperSpecDataResponse, error)
 
 	// GetppDataWithResponse request
-	GetppDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *GetppDataParams, reqEditors ...RequestEditorFn) (*GetppDataResponse, error)
+	GetppDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *GetppDataParams, reqEditors ...RequestEditorFn) (*GetppDataResponse, error)
 
 	// ModifyPpDataWithBodyWithResponse request with any body
-	ModifyPpDataWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyPpDataResponse, error)
+	ModifyPpDataWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyPpDataResponse, error)
 
-	ModifyPpDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyPpDataResponse, error)
+	ModifyPpDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyPpDataResponse, error)
 
 	// QueryPPDataWithResponse request
-	QueryPPDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryPPDataParams, reqEditors ...RequestEditorFn) (*QueryPPDataResponse, error)
+	QueryPPDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryPPDataParams, reqEditors ...RequestEditorFn) (*QueryPPDataResponse, error)
 
 	// QueryAuthSoRWithResponse request
-	QueryAuthSoRWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthSoRParams, reqEditors ...RequestEditorFn) (*QueryAuthSoRResponse, error)
+	QueryAuthSoRWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSoRParams, reqEditors ...RequestEditorFn) (*QueryAuthSoRResponse, error)
 
 	// CreateAuthenticationSoRWithBodyWithResponse request with any body
-	CreateAuthenticationSoRWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationSoRResponse, error)
+	CreateAuthenticationSoRWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationSoRResponse, error)
 
-	CreateAuthenticationSoRWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationSoRResponse, error)
+	CreateAuthenticationSoRWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationSoRResponse, error)
 
 	// QueryCagAckWithResponse request
-	QueryCagAckWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryCagAckParams, reqEditors ...RequestEditorFn) (*QueryCagAckResponse, error)
+	QueryCagAckWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryCagAckParams, reqEditors ...RequestEditorFn) (*QueryCagAckResponse, error)
 
 	// CreateCagUpdateAckWithBodyWithResponse request with any body
-	CreateCagUpdateAckWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCagUpdateAckResponse, error)
+	CreateCagUpdateAckWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCagUpdateAckResponse, error)
 
-	CreateCagUpdateAckWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCagUpdateAckResponse, error)
+	CreateCagUpdateAckWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCagUpdateAckResponse, error)
 
 	// QueryNssaiAckWithResponse request
-	QueryNssaiAckWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryNssaiAckParams, reqEditors ...RequestEditorFn) (*QueryNssaiAckResponse, error)
+	QueryNssaiAckWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryNssaiAckParams, reqEditors ...RequestEditorFn) (*QueryNssaiAckResponse, error)
 
 	// CreateOrUpdateNssaiAckWithBodyWithResponse request with any body
-	CreateOrUpdateNssaiAckWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateNssaiAckResponse, error)
+	CreateOrUpdateNssaiAckWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateNssaiAckResponse, error)
 
-	CreateOrUpdateNssaiAckWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateNssaiAckResponse, error)
+	CreateOrUpdateNssaiAckWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateNssaiAckResponse, error)
 
 	// QueryAuthUPUWithResponse request
-	QueryAuthUPUWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthUPUParams, reqEditors ...RequestEditorFn) (*QueryAuthUPUResponse, error)
+	QueryAuthUPUWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthUPUParams, reqEditors ...RequestEditorFn) (*QueryAuthUPUResponse, error)
 
 	// CreateAuthenticationUPUWithBodyWithResponse request with any body
-	CreateAuthenticationUPUWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationUPUResponse, error)
+	CreateAuthenticationUPUWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationUPUResponse, error)
 
-	CreateAuthenticationUPUWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationUPUResponse, error)
+	CreateAuthenticationUPUWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationUPUResponse, error)
 
 	// QueryV2xDataWithResponse request
-	QueryV2xDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*QueryV2xDataResponse, error)
+	QueryV2xDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*QueryV2xDataResponse, error)
 
 	// QueryProvisionedDataWithResponse request
-	QueryProvisionedDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*QueryProvisionedDataResponse, error)
+	QueryProvisionedDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*QueryProvisionedDataResponse, error)
 
 	// QueryAmDataWithResponse request
-	QueryAmDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*QueryAmDataResponse, error)
+	QueryAmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*QueryAmDataResponse, error)
 
 	// QueryLcsBcaDataWithResponse request
-	QueryLcsBcaDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*QueryLcsBcaDataResponse, error)
+	QueryLcsBcaDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*QueryLcsBcaDataResponse, error)
 
 	// QuerySmDataWithResponse request
-	QuerySmDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*QuerySmDataResponse, error)
+	QuerySmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*QuerySmDataResponse, error)
 
 	// QuerySmfSelectDataWithResponse request
-	QuerySmfSelectDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*QuerySmfSelectDataResponse, error)
+	QuerySmfSelectDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*QuerySmfSelectDataResponse, error)
 
 	// QuerySmsDataWithResponse request
-	QuerySmsDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*QuerySmsDataResponse, error)
+	QuerySmsDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*QuerySmsDataResponse, error)
 
 	// QuerySmsMngDataWithResponse request
-	QuerySmsMngDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*QuerySmsMngDataResponse, error)
+	QuerySmsMngDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*QuerySmsMngDataResponse, error)
 
 	// QueryTraceDataWithResponse request
-	QueryTraceDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*QueryTraceDataResponse, error)
+	QueryTraceDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*QueryTraceDataResponse, error)
 }
 
 type Query5GVnGroupResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *map[string]externalRef5.N5GVnGroupConfiguration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *map[string]externalRef0.N5GVnGroupConfiguration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13759,8 +10479,8 @@ func (r Query5GVnGroupResponse) StatusCode() int {
 type Query5GVnGroupInternalResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *map[string]externalRef5.N5GVnGroupConfiguration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *map[string]externalRef0.N5GVnGroupConfiguration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13782,8 +10502,8 @@ func (r Query5GVnGroupInternalResponse) StatusCode() int {
 type Query5GVNGroupPPDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *Pp5gVnGroupProfileData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.Pp5gVnGroupProfileData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13805,7 +10525,7 @@ func (r Query5GVNGroupPPDataResponse) StatusCode() int {
 type Delete5GVnGroupResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13827,8 +10547,8 @@ func (r Delete5GVnGroupResponse) StatusCode() int {
 type Get5GVnGroupConfigurationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.N5GVnGroupConfiguration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.N5GVnGroupConfiguration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13850,9 +10570,9 @@ func (r Get5GVnGroupConfigurationResponse) StatusCode() int {
 type Modify5GVnGroupResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13874,9 +10594,9 @@ func (r Modify5GVnGroupResponse) StatusCode() int {
 type Create5GVnGroupResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef5.N5GVnGroupConfiguration
-	ApplicationproblemJSON403     *externalRef2.N403
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.N5GVnGroupConfiguration
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13898,8 +10618,8 @@ func (r Create5GVnGroupResponse) StatusCode() int {
 type GetGroupIdentifiersResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef6.GroupIdentifiers
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.GroupIdentifiers
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13921,8 +10641,8 @@ func (r GetGroupIdentifiersResponse) StatusCode() int {
 type QueryGroupEEDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *EeGroupProfileData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.EeGroupProfileData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13944,8 +10664,8 @@ func (r QueryGroupEEDataResponse) StatusCode() int {
 type QueryEeGroupSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]EeSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.EeSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13967,8 +10687,8 @@ func (r QueryEeGroupSubscriptionsResponse) StatusCode() int {
 type CreateEeGroupSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *EeSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.EeSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13990,7 +10710,7 @@ func (r CreateEeGroupSubscriptionsResponse) StatusCode() int {
 type RemoveEeGroupSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14012,8 +10732,8 @@ func (r RemoveEeGroupSubscriptionsResponse) StatusCode() int {
 type QueryEeGroupSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]EeSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.EeSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14035,10 +10755,10 @@ func (r QueryEeGroupSubscriptionResponse) StatusCode() int {
 type ModifyEeGroupSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.N403
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14060,8 +10780,8 @@ func (r ModifyEeGroupSubscriptionResponse) StatusCode() int {
 type UpdateEeGroupSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSON404     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSON404     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14083,12 +10803,12 @@ func (r UpdateEeGroupSubscriptionsResponse) StatusCode() int {
 type GetSharedDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef6.SharedData
-	ApplicationproblemJSON400     *externalRef2.N400
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSON500     *externalRef2.N500
-	ApplicationproblemJSON503     *externalRef2.N503
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.SharedData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14110,12 +10830,12 @@ func (r GetSharedDataResponse) StatusCode() int {
 type GetIndividualSharedDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef6.SharedData
-	ApplicationproblemJSON400     *externalRef2.N400
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSON500     *externalRef2.N500
-	ApplicationproblemJSON503     *externalRef2.N503
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SharedData
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14137,7 +10857,7 @@ func (r GetIndividualSharedDataResponse) StatusCode() int {
 type RemoveMultipleSubscriptionDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14159,8 +10879,8 @@ func (r RemoveMultipleSubscriptionDataSubscriptionsResponse) StatusCode() int {
 type QuerySubsToNotifyResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]SubscriptionDataSubscriptions
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.SubscriptionDataSubscriptions
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14182,8 +10902,8 @@ func (r QuerySubsToNotifyResponse) StatusCode() int {
 type SubscriptionDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *SubscriptionDataSubscriptions
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.SubscriptionDataSubscriptions
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14205,7 +10925,7 @@ func (r SubscriptionDataSubscriptionsResponse) StatusCode() int {
 type RemovesubscriptionDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14227,8 +10947,8 @@ func (r RemovesubscriptionDataSubscriptionsResponse) StatusCode() int {
 type QuerySubscriptionDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]SubscriptionDataSubscriptions
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.SubscriptionDataSubscriptions
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14250,10 +10970,10 @@ func (r QuerySubscriptionDataSubscriptionsResponse) StatusCode() int {
 type ModifysubscriptionDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.N403
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14275,7 +10995,7 @@ func (r ModifysubscriptionDataSubscriptionResponse) StatusCode() int {
 type DeleteAuthenticationStatusResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14297,8 +11017,8 @@ func (r DeleteAuthenticationStatusResponse) StatusCode() int {
 type QueryAuthenticationStatusResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.AuthEvent
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.AuthEvent
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14320,7 +11040,7 @@ func (r QueryAuthenticationStatusResponse) StatusCode() int {
 type CreateAuthenticationStatusResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14342,7 +11062,7 @@ func (r CreateAuthenticationStatusResponse) StatusCode() int {
 type DeleteIndividualAuthenticationStatusResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14364,8 +11084,8 @@ func (r DeleteIndividualAuthenticationStatusResponse) StatusCode() int {
 type QueryIndividualAuthenticationStatusResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.AuthEvent
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.AuthEvent
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14387,7 +11107,7 @@ func (r QueryIndividualAuthenticationStatusResponse) StatusCode() int {
 type CreateIndividualAuthenticationStatusResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14409,8 +11129,8 @@ func (r CreateIndividualAuthenticationStatusResponse) StatusCode() int {
 type QueryAuthSubsDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AuthenticationSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.AuthenticationSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14432,9 +11152,9 @@ func (r QueryAuthSubsDataResponse) StatusCode() int {
 type ModifyAuthenticationSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14456,8 +11176,8 @@ func (r ModifyAuthenticationSubscriptionResponse) StatusCode() int {
 type QueryContextDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *ContextDataSets
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.ContextDataSets
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14479,8 +11199,8 @@ func (r QueryContextDataResponse) StatusCode() int {
 type QueryAmfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *Amf3GppAccessRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.Amf3GppAccessRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14502,9 +11222,9 @@ func (r QueryAmfContext3gppResponse) StatusCode() int {
 type AmfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14526,8 +11246,8 @@ func (r AmfContext3gppResponse) StatusCode() int {
 type CreateAmfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *Amf3GppAccessRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.Amf3GppAccessRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14549,8 +11269,8 @@ func (r CreateAmfContext3gppResponse) StatusCode() int {
 type QueryAmfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AmfNon3GppAccessRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.AmfNon3GppAccessRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14572,9 +11292,9 @@ func (r QueryAmfContextNon3gppResponse) StatusCode() int {
 type AmfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14596,8 +11316,8 @@ func (r AmfContextNon3gppResponse) StatusCode() int {
 type CreateAmfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *Amf3GppAccessRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.Amf3GppAccessRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14619,8 +11339,8 @@ func (r CreateAmfContextNon3gppResponse) StatusCode() int {
 type QueryeesubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]EeSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.EeSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14642,8 +11362,8 @@ func (r QueryeesubscriptionsResponse) StatusCode() int {
 type CreateEeSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *EeSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.EeSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14665,7 +11385,7 @@ func (r CreateEeSubscriptionsResponse) StatusCode() int {
 type RemoveeeSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14687,8 +11407,8 @@ func (r RemoveeeSubscriptionsResponse) StatusCode() int {
 type QueryeeSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]EeSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.EeSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14710,10 +11430,10 @@ func (r QueryeeSubscriptionResponse) StatusCode() int {
 type ModifyEesubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.N403
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14735,8 +11455,8 @@ func (r ModifyEesubscriptionResponse) StatusCode() int {
 type UpdateEesubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSON404     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSON404     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14758,7 +11478,7 @@ func (r UpdateEesubscriptionsResponse) StatusCode() int {
 type RemoveAmfSubscriptionsInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14780,8 +11500,8 @@ func (r RemoveAmfSubscriptionsInfoResponse) StatusCode() int {
 type GetAmfSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]AmfSubscriptionInfo
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.AmfSubscriptionInfo
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14803,9 +11523,9 @@ func (r GetAmfSubscriptionInfoResponse) StatusCode() int {
 type ModifyAmfSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14827,7 +11547,7 @@ func (r ModifyAmfSubscriptionInfoResponse) StatusCode() int {
 type CreateAMFSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14849,7 +11569,7 @@ func (r CreateAMFSubscriptionsResponse) StatusCode() int {
 type RemoveHssSubscriptionsInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14871,8 +11591,8 @@ func (r RemoveHssSubscriptionsInfoResponse) StatusCode() int {
 type GetHssSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfSubscriptionInfo
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmfSubscriptionInfo
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14894,9 +11614,9 @@ func (r GetHssSubscriptionInfoResponse) StatusCode() int {
 type ModifyHssSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14918,7 +11638,7 @@ func (r ModifyHssSubscriptionInfoResponse) StatusCode() int {
 type CreateHSSSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14940,7 +11660,7 @@ func (r CreateHSSSubscriptionsResponse) StatusCode() int {
 type RemoveSmfSubscriptionsInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14962,8 +11682,8 @@ func (r RemoveSmfSubscriptionsInfoResponse) StatusCode() int {
 type GetSmfSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfSubscriptionInfo
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmfSubscriptionInfo
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -14985,9 +11705,9 @@ func (r GetSmfSubscriptionInfoResponse) StatusCode() int {
 type ModifySmfSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15009,7 +11729,7 @@ func (r ModifySmfSubscriptionInfoResponse) StatusCode() int {
 type CreateSMFSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15031,7 +11751,7 @@ func (r CreateSMFSubscriptionsResponse) StatusCode() int {
 type DeleteIpSmGwContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15053,8 +11773,8 @@ func (r DeleteIpSmGwContextResponse) StatusCode() int {
 type QueryIpSmGwContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *IpSmGwRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.IpSmGwRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15076,9 +11796,9 @@ func (r QueryIpSmGwContextResponse) StatusCode() int {
 type ModifyIpSmGwContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSON403     *externalRef2.N403
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15100,7 +11820,7 @@ func (r ModifyIpSmGwContextResponse) StatusCode() int {
 type CreateIpSmGwContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15122,8 +11842,8 @@ func (r CreateIpSmGwContextResponse) StatusCode() int {
 type QueryUeLocationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *LocationInfo
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.LocationInfo
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15145,7 +11865,7 @@ func (r QueryUeLocationResponse) StatusCode() int {
 type DeleteMessageWaitingDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15167,8 +11887,8 @@ func (r DeleteMessageWaitingDataResponse) StatusCode() int {
 type QueryMessageWaitingDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *MessageWaitingData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.MessageWaitingData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15190,9 +11910,9 @@ func (r QueryMessageWaitingDataResponse) StatusCode() int {
 type ModifyMessageWaitingDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSON403     *externalRef2.N403
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15214,7 +11934,7 @@ func (r ModifyMessageWaitingDataResponse) StatusCode() int {
 type CreateMessageWaitingDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -15236,8 +11956,8 @@ func (r CreateMessageWaitingDataResponse) StatusCode() int {
 type QuerysdmsubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]SdmSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.SdmSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15259,8 +11979,8 @@ func (r QuerysdmsubscriptionsResponse) StatusCode() int {
 type CreateSdmSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *SdmSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.SdmSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15282,8 +12002,8 @@ func (r CreateSdmSubscriptionsResponse) StatusCode() int {
 type RemovesdmSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15305,8 +12025,8 @@ func (r RemovesdmSubscriptionsResponse) StatusCode() int {
 type QuerysdmSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]SdmSubscription
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.SdmSubscription
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15328,10 +12048,10 @@ func (r QuerysdmSubscriptionResponse) StatusCode() int {
 type ModifysdmSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.N403
-	ApplicationproblemJSON404     *externalRef2.N404
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15353,8 +12073,8 @@ func (r ModifysdmSubscriptionResponse) StatusCode() int {
 type UpdatesdmsubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSON404     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSON404     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15376,7 +12096,7 @@ func (r UpdatesdmsubscriptionsResponse) StatusCode() int {
 type RemoveHssSDMSubscriptionsInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15398,8 +12118,8 @@ func (r RemoveHssSDMSubscriptionsInfoResponse) StatusCode() int {
 type GetHssSDMSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfSubscriptionInfo
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmfSubscriptionInfo
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15421,9 +12141,9 @@ func (r GetHssSDMSubscriptionInfoResponse) StatusCode() int {
 type ModifyHssSDMSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15445,7 +12165,7 @@ func (r ModifyHssSDMSubscriptionInfoResponse) StatusCode() int {
 type CreateHSSSDMSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15467,8 +12187,8 @@ func (r CreateHSSSDMSubscriptionsResponse) StatusCode() int {
 type QuerySmfRegListResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfRegList
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmfRegList
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15490,7 +12210,7 @@ func (r QuerySmfRegListResponse) StatusCode() int {
 type DeleteSmfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15512,8 +12232,8 @@ func (r DeleteSmfRegistrationResponse) StatusCode() int {
 type QuerySmfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmfRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15535,8 +12255,8 @@ func (r QuerySmfRegistrationResponse) StatusCode() int {
 type CreateOrUpdateSmfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *SmfRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.SmfRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15558,7 +12278,7 @@ func (r CreateOrUpdateSmfRegistrationResponse) StatusCode() int {
 type DeleteSmsfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15580,8 +12300,8 @@ func (r DeleteSmsfContext3gppResponse) StatusCode() int {
 type QuerySmsfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmsfRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmsfRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15603,8 +12323,8 @@ func (r QuerySmsfContext3gppResponse) StatusCode() int {
 type CreateSmsfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *SmsfRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.SmsfRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15626,7 +12346,7 @@ func (r CreateSmsfContext3gppResponse) StatusCode() int {
 type DeleteSmsfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15648,8 +12368,8 @@ func (r DeleteSmsfContextNon3gppResponse) StatusCode() int {
 type QuerySmsfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmsfRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmsfRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15671,8 +12391,8 @@ func (r QuerySmsfContextNon3gppResponse) StatusCode() int {
 type CreateSmsfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *SmsfRegistration
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON201                       *externalRef0.SmsfRegistration
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15694,8 +12414,8 @@ func (r CreateSmsfContextNon3gppResponse) StatusCode() int {
 type QueryCoverageRestrictionDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *EnhancedCoverageRestrictionData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.EnhancedCoverageRestrictionData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15717,8 +12437,8 @@ func (r QueryCoverageRestrictionDataResponse) StatusCode() int {
 type QueryEEDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *EeProfileData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.EeProfileData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15740,8 +12460,8 @@ func (r QueryEEDataResponse) StatusCode() int {
 type GetIdentityDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *IdentityData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.IdentityData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15763,8 +12483,8 @@ func (r GetIdentityDataResponse) StatusCode() int {
 type QueryLcsMoDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *LcsMoData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.LcsMoData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15786,8 +12506,8 @@ func (r QueryLcsMoDataResponse) StatusCode() int {
 type QueryLcsPrivacyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *LcsPrivacyData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.LcsPrivacyData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15809,8 +12529,8 @@ func (r QueryLcsPrivacyDataResponse) StatusCode() int {
 type GetNiddAuDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AuthorizationData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.AuthorizationData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15832,8 +12552,8 @@ func (r GetNiddAuDataResponse) StatusCode() int {
 type GetOdbDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.OdbData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.OdbData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15855,8 +12575,8 @@ func (r GetOdbDataResponse) StatusCode() int {
 type QueryOperSpecDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *map[string]OperatorSpecificDataContainer
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *map[string]externalRef0.OperatorSpecificDataContainer
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15878,9 +12598,9 @@ func (r QueryOperSpecDataResponse) StatusCode() int {
 type ModifyOperSpecDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15902,9 +12622,9 @@ func (r ModifyOperSpecDataResponse) StatusCode() int {
 type GetppDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *PpData
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PpData
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15926,9 +12646,9 @@ func (r GetppDataResponse) StatusCode() int {
 type ModifyPpDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.PatchResult
-	ApplicationproblemJSON403     *externalRef2.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15950,8 +12670,8 @@ func (r ModifyPpDataResponse) StatusCode() int {
 type QueryPPDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *PpProfileData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.PpProfileData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15973,8 +12693,8 @@ func (r QueryPPDataResponse) StatusCode() int {
 type QueryAuthSoRResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SorData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SorData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -15996,7 +12716,7 @@ func (r QueryAuthSoRResponse) StatusCode() int {
 type CreateAuthenticationSoRResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16018,8 +12738,8 @@ func (r CreateAuthenticationSoRResponse) StatusCode() int {
 type QueryCagAckResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *CagAckData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.CagAckData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16041,7 +12761,7 @@ func (r QueryCagAckResponse) StatusCode() int {
 type CreateCagUpdateAckResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16063,8 +12783,8 @@ func (r CreateCagUpdateAckResponse) StatusCode() int {
 type QueryNssaiAckResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *NssaiAckData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.NssaiAckData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16086,7 +12806,7 @@ func (r QueryNssaiAckResponse) StatusCode() int {
 type CreateOrUpdateNssaiAckResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16108,8 +12828,8 @@ func (r CreateOrUpdateNssaiAckResponse) StatusCode() int {
 type QueryAuthUPUResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *UpuData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.UpuData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16131,7 +12851,7 @@ func (r QueryAuthUPUResponse) StatusCode() int {
 type CreateAuthenticationUPUResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSONDefault *externalRef2.Default
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16153,8 +12873,8 @@ func (r CreateAuthenticationUPUResponse) StatusCode() int {
 type QueryV2xDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *V2xSubscriptionData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.V2xSubscriptionData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16176,8 +12896,8 @@ func (r QueryV2xDataResponse) StatusCode() int {
 type QueryProvisionedDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *ProvisionedDataSets
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.ProvisionedDataSets
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16199,8 +12919,8 @@ func (r QueryProvisionedDataResponse) StatusCode() int {
 type QueryAmDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AccessAndMobilitySubscriptionData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.AccessAndMobilitySubscriptionData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16222,8 +12942,8 @@ func (r QueryAmDataResponse) StatusCode() int {
 type QueryLcsBcaDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *LcsBroadcastAssistanceTypesData
-	ApplicationproblemJSONDefault *externalRef2.ProblemDetails
+	JSON200                       *externalRef0.LcsBroadcastAssistanceTypesData
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -16245,8 +12965,8 @@ func (r QueryLcsBcaDataResponse) StatusCode() int {
 type QuerySmDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]SessionManagementSubscriptionData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *[]externalRef0.SessionManagementSubscriptionData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16268,8 +12988,8 @@ func (r QuerySmDataResponse) StatusCode() int {
 type QuerySmfSelectDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmfSelectionSubscriptionData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmfSelectionSubscriptionData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16291,8 +13011,8 @@ func (r QuerySmfSelectDataResponse) StatusCode() int {
 type QuerySmsDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmsSubscriptionData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmsSubscriptionData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16314,8 +13034,8 @@ func (r QuerySmsDataResponse) StatusCode() int {
 type QuerySmsMngDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SmsManagementSubscriptionData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.SmsManagementSubscriptionData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16337,8 +13057,8 @@ func (r QuerySmsMngDataResponse) StatusCode() int {
 type QueryTraceDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.TraceData
-	ApplicationproblemJSONDefault *externalRef2.Default
+	JSON200                       *externalRef0.TraceData
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -16385,7 +13105,7 @@ func (c *ClientWithResponses) Query5GVNGroupPPDataWithResponse(ctx context.Conte
 }
 
 // Delete5GVnGroupWithResponse request returning *Delete5GVnGroupResponse
-func (c *ClientWithResponses) Delete5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, reqEditors ...RequestEditorFn) (*Delete5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Delete5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Delete5GVnGroupResponse, error) {
 	rsp, err := c.Delete5GVnGroup(ctx, externalGroupId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16394,7 +13114,7 @@ func (c *ClientWithResponses) Delete5GVnGroupWithResponse(ctx context.Context, e
 }
 
 // Get5GVnGroupConfigurationWithResponse request returning *Get5GVnGroupConfigurationResponse
-func (c *ClientWithResponses) Get5GVnGroupConfigurationWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVnGroupConfigurationResponse, error) {
+func (c *ClientWithResponses) Get5GVnGroupConfigurationWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVnGroupConfigurationResponse, error) {
 	rsp, err := c.Get5GVnGroupConfiguration(ctx, externalGroupId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16403,7 +13123,7 @@ func (c *ClientWithResponses) Get5GVnGroupConfigurationWithResponse(ctx context.
 }
 
 // Modify5GVnGroupWithBodyWithResponse request with arbitrary body returning *Modify5GVnGroupResponse
-func (c *ClientWithResponses) Modify5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Modify5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error) {
 	rsp, err := c.Modify5GVnGroupWithBody(ctx, externalGroupId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16411,7 +13131,7 @@ func (c *ClientWithResponses) Modify5GVnGroupWithBodyWithResponse(ctx context.Co
 	return ParseModify5GVnGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error) {
 	rsp, err := c.Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx, externalGroupId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16420,7 +13140,7 @@ func (c *ClientWithResponses) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBod
 }
 
 // Create5GVnGroupWithBodyWithResponse request with arbitrary body returning *Create5GVnGroupResponse
-func (c *ClientWithResponses) Create5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Create5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error) {
 	rsp, err := c.Create5GVnGroupWithBody(ctx, externalGroupId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16428,7 +13148,7 @@ func (c *ClientWithResponses) Create5GVnGroupWithBodyWithResponse(ctx context.Co
 	return ParseCreate5GVnGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Create5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef6.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Create5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error) {
 	rsp, err := c.Create5GVnGroup(ctx, externalGroupId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16446,7 +13166,7 @@ func (c *ClientWithResponses) GetGroupIdentifiersWithResponse(ctx context.Contex
 }
 
 // QueryGroupEEDataWithResponse request returning *QueryGroupEEDataResponse
-func (c *ClientWithResponses) QueryGroupEEDataWithResponse(ctx context.Context, ueGroupId VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*QueryGroupEEDataResponse, error) {
+func (c *ClientWithResponses) QueryGroupEEDataWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*QueryGroupEEDataResponse, error) {
 	rsp, err := c.QueryGroupEEData(ctx, ueGroupId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16455,7 +13175,7 @@ func (c *ClientWithResponses) QueryGroupEEDataWithResponse(ctx context.Context, 
 }
 
 // QueryEeGroupSubscriptionsWithResponse request returning *QueryEeGroupSubscriptionsResponse
-func (c *ClientWithResponses) QueryEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) QueryEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.QueryEeGroupSubscriptions(ctx, ueGroupId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16464,7 +13184,7 @@ func (c *ClientWithResponses) QueryEeGroupSubscriptionsWithResponse(ctx context.
 }
 
 // CreateEeGroupSubscriptionsWithBodyWithResponse request with arbitrary body returning *CreateEeGroupSubscriptionsResponse
-func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.CreateEeGroupSubscriptionsWithBody(ctx, ueGroupId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16472,7 +13192,7 @@ func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithBodyWithResponse(ctx
 	return ParseCreateEeGroupSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.CreateEeGroupSubscriptions(ctx, ueGroupId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16481,7 +13201,7 @@ func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithResponse(ctx context
 }
 
 // RemoveEeGroupSubscriptionsWithResponse request returning *RemoveEeGroupSubscriptionsResponse
-func (c *ClientWithResponses) RemoveEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*RemoveEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) RemoveEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*RemoveEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.RemoveEeGroupSubscriptions(ctx, ueGroupId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16490,7 +13210,7 @@ func (c *ClientWithResponses) RemoveEeGroupSubscriptionsWithResponse(ctx context
 }
 
 // QueryEeGroupSubscriptionWithResponse request returning *QueryEeGroupSubscriptionResponse
-func (c *ClientWithResponses) QueryEeGroupSubscriptionWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionResponse, error) {
+func (c *ClientWithResponses) QueryEeGroupSubscriptionWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionResponse, error) {
 	rsp, err := c.QueryEeGroupSubscription(ctx, ueGroupId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16499,7 +13219,7 @@ func (c *ClientWithResponses) QueryEeGroupSubscriptionWithResponse(ctx context.C
 }
 
 // ModifyEeGroupSubscriptionWithBodyWithResponse request with arbitrary body returning *ModifyEeGroupSubscriptionResponse
-func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithBodyWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error) {
 	rsp, err := c.ModifyEeGroupSubscriptionWithBody(ctx, ueGroupId, subsId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16507,7 +13227,7 @@ func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithBodyWithResponse(ctx 
 	return ParseModifyEeGroupSubscriptionResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error) {
 	rsp, err := c.ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx, ueGroupId, subsId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16516,7 +13236,7 @@ func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithApplicationJSONPatchP
 }
 
 // UpdateEeGroupSubscriptionsWithBodyWithResponse request with arbitrary body returning *UpdateEeGroupSubscriptionsResponse
-func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.UpdateEeGroupSubscriptionsWithBody(ctx, ueGroupId, subsId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16524,7 +13244,7 @@ func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx
 	return ParseUpdateEeGroupSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.UpdateEeGroupSubscriptions(ctx, ueGroupId, subsId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16542,7 +13262,7 @@ func (c *ClientWithResponses) GetSharedDataWithResponse(ctx context.Context, par
 }
 
 // GetIndividualSharedDataWithResponse request returning *GetIndividualSharedDataResponse
-func (c *ClientWithResponses) GetIndividualSharedDataWithResponse(ctx context.Context, sharedDataId externalRef6.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*GetIndividualSharedDataResponse, error) {
+func (c *ClientWithResponses) GetIndividualSharedDataWithResponse(ctx context.Context, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*GetIndividualSharedDataResponse, error) {
 	rsp, err := c.GetIndividualSharedData(ctx, sharedDataId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16621,7 +13341,7 @@ func (c *ClientWithResponses) ModifysubscriptionDataSubscriptionWithApplicationJ
 }
 
 // DeleteAuthenticationStatusWithResponse request returning *DeleteAuthenticationStatusResponse
-func (c *ClientWithResponses) DeleteAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, reqEditors ...RequestEditorFn) (*DeleteAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) DeleteAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, reqEditors ...RequestEditorFn) (*DeleteAuthenticationStatusResponse, error) {
 	rsp, err := c.DeleteAuthenticationStatus(ctx, ueId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16630,7 +13350,7 @@ func (c *ClientWithResponses) DeleteAuthenticationStatusWithResponse(ctx context
 }
 
 // QueryAuthenticationStatusWithResponse request returning *QueryAuthenticationStatusResponse
-func (c *ClientWithResponses) QueryAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) QueryAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryAuthenticationStatusResponse, error) {
 	rsp, err := c.QueryAuthenticationStatus(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16639,7 +13359,7 @@ func (c *ClientWithResponses) QueryAuthenticationStatusWithResponse(ctx context.
 }
 
 // CreateAuthenticationStatusWithBodyWithResponse request with arbitrary body returning *CreateAuthenticationStatusResponse
-func (c *ClientWithResponses) CreateAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) CreateAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error) {
 	rsp, err := c.CreateAuthenticationStatusWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16647,7 +13367,7 @@ func (c *ClientWithResponses) CreateAuthenticationStatusWithBodyWithResponse(ctx
 	return ParseCreateAuthenticationStatusResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) CreateAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error) {
 	rsp, err := c.CreateAuthenticationStatus(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16656,7 +13376,7 @@ func (c *ClientWithResponses) CreateAuthenticationStatusWithResponse(ctx context
 }
 
 // DeleteIndividualAuthenticationStatusWithResponse request returning *DeleteIndividualAuthenticationStatusResponse
-func (c *ClientWithResponses) DeleteIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, reqEditors ...RequestEditorFn) (*DeleteIndividualAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) DeleteIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, reqEditors ...RequestEditorFn) (*DeleteIndividualAuthenticationStatusResponse, error) {
 	rsp, err := c.DeleteIndividualAuthenticationStatus(ctx, ueId, servingNetworkName, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16665,7 +13385,7 @@ func (c *ClientWithResponses) DeleteIndividualAuthenticationStatusWithResponse(c
 }
 
 // QueryIndividualAuthenticationStatusWithResponse request returning *QueryIndividualAuthenticationStatusResponse
-func (c *ClientWithResponses) QueryIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryIndividualAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) QueryIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryIndividualAuthenticationStatusResponse, error) {
 	rsp, err := c.QueryIndividualAuthenticationStatus(ctx, ueId, servingNetworkName, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16674,7 +13394,7 @@ func (c *ClientWithResponses) QueryIndividualAuthenticationStatusWithResponse(ct
 }
 
 // CreateIndividualAuthenticationStatusWithBodyWithResponse request with arbitrary body returning *CreateIndividualAuthenticationStatusResponse
-func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error) {
 	rsp, err := c.CreateIndividualAuthenticationStatusWithBody(ctx, ueId, servingNetworkName, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16682,7 +13402,7 @@ func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithBodyWithRe
 	return ParseCreateIndividualAuthenticationStatusResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error) {
 	rsp, err := c.CreateIndividualAuthenticationStatus(ctx, ueId, servingNetworkName, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16691,7 +13411,7 @@ func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithResponse(c
 }
 
 // QueryAuthSubsDataWithResponse request returning *QueryAuthSubsDataResponse
-func (c *ClientWithResponses) QueryAuthSubsDataWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*QueryAuthSubsDataResponse, error) {
+func (c *ClientWithResponses) QueryAuthSubsDataWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*QueryAuthSubsDataResponse, error) {
 	rsp, err := c.QueryAuthSubsData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16700,7 +13420,7 @@ func (c *ClientWithResponses) QueryAuthSubsDataWithResponse(ctx context.Context,
 }
 
 // ModifyAuthenticationSubscriptionWithBodyWithResponse request with arbitrary body returning *ModifyAuthenticationSubscriptionResponse
-func (c *ClientWithResponses) ModifyAuthenticationSubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyAuthenticationSubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifyAuthenticationSubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyAuthenticationSubscriptionResponse, error) {
 	rsp, err := c.ModifyAuthenticationSubscriptionWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16708,7 +13428,7 @@ func (c *ClientWithResponses) ModifyAuthenticationSubscriptionWithBodyWithRespon
 	return ParseModifyAuthenticationSubscriptionResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyAuthenticationSubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *ModifyAuthenticationSubscriptionParams, body ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyAuthenticationSubscriptionResponse, error) {
 	rsp, err := c.ModifyAuthenticationSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16717,7 +13437,7 @@ func (c *ClientWithResponses) ModifyAuthenticationSubscriptionWithApplicationJSO
 }
 
 // QueryContextDataWithResponse request returning *QueryContextDataResponse
-func (c *ClientWithResponses) QueryContextDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryContextDataParams, reqEditors ...RequestEditorFn) (*QueryContextDataResponse, error) {
+func (c *ClientWithResponses) QueryContextDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryContextDataParams, reqEditors ...RequestEditorFn) (*QueryContextDataResponse, error) {
 	rsp, err := c.QueryContextData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16726,7 +13446,7 @@ func (c *ClientWithResponses) QueryContextDataWithResponse(ctx context.Context, 
 }
 
 // QueryAmfContext3gppWithResponse request returning *QueryAmfContext3gppResponse
-func (c *ClientWithResponses) QueryAmfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryAmfContext3gppParams, reqEditors ...RequestEditorFn) (*QueryAmfContext3gppResponse, error) {
+func (c *ClientWithResponses) QueryAmfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryAmfContext3gppParams, reqEditors ...RequestEditorFn) (*QueryAmfContext3gppResponse, error) {
 	rsp, err := c.QueryAmfContext3gpp(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16735,7 +13455,7 @@ func (c *ClientWithResponses) QueryAmfContext3gppWithResponse(ctx context.Contex
 }
 
 // AmfContext3gppWithBodyWithResponse request with arbitrary body returning *AmfContext3gppResponse
-func (c *ClientWithResponses) AmfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AmfContext3gppResponse, error) {
+func (c *ClientWithResponses) AmfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContext3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AmfContext3gppResponse, error) {
 	rsp, err := c.AmfContext3gppWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16743,7 +13463,7 @@ func (c *ClientWithResponses) AmfContext3gppWithBodyWithResponse(ctx context.Con
 	return ParseAmfContext3gppResponse(rsp)
 }
 
-func (c *ClientWithResponses) AmfContext3gppWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*AmfContext3gppResponse, error) {
+func (c *ClientWithResponses) AmfContext3gppWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContext3gppParams, body AmfContext3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*AmfContext3gppResponse, error) {
 	rsp, err := c.AmfContext3gppWithApplicationJSONPatchPlusJSONBody(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16752,7 +13472,7 @@ func (c *ClientWithResponses) AmfContext3gppWithApplicationJSONPatchPlusJSONBody
 }
 
 // CreateAmfContext3gppWithBodyWithResponse request with arbitrary body returning *CreateAmfContext3gppResponse
-func (c *ClientWithResponses) CreateAmfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAmfContext3gppResponse, error) {
+func (c *ClientWithResponses) CreateAmfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAmfContext3gppResponse, error) {
 	rsp, err := c.CreateAmfContext3gppWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16760,7 +13480,7 @@ func (c *ClientWithResponses) CreateAmfContext3gppWithBodyWithResponse(ctx conte
 	return ParseCreateAmfContext3gppResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateAmfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateAmfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAmfContext3gppResponse, error) {
+func (c *ClientWithResponses) CreateAmfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateAmfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAmfContext3gppResponse, error) {
 	rsp, err := c.CreateAmfContext3gpp(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16769,7 +13489,7 @@ func (c *ClientWithResponses) CreateAmfContext3gppWithResponse(ctx context.Conte
 }
 
 // QueryAmfContextNon3gppWithResponse request returning *QueryAmfContextNon3gppResponse
-func (c *ClientWithResponses) QueryAmfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryAmfContextNon3gppParams, reqEditors ...RequestEditorFn) (*QueryAmfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) QueryAmfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryAmfContextNon3gppParams, reqEditors ...RequestEditorFn) (*QueryAmfContextNon3gppResponse, error) {
 	rsp, err := c.QueryAmfContextNon3gpp(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16778,7 +13498,7 @@ func (c *ClientWithResponses) QueryAmfContextNon3gppWithResponse(ctx context.Con
 }
 
 // AmfContextNon3gppWithBodyWithResponse request with arbitrary body returning *AmfContextNon3gppResponse
-func (c *ClientWithResponses) AmfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AmfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) AmfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AmfContextNon3gppResponse, error) {
 	rsp, err := c.AmfContextNon3gppWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16786,7 +13506,7 @@ func (c *ClientWithResponses) AmfContextNon3gppWithBodyWithResponse(ctx context.
 	return ParseAmfContextNon3gppResponse(rsp)
 }
 
-func (c *ClientWithResponses) AmfContextNon3gppWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*AmfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) AmfContextNon3gppWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *AmfContextNon3gppParams, body AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*AmfContextNon3gppResponse, error) {
 	rsp, err := c.AmfContextNon3gppWithApplicationJSONPatchPlusJSONBody(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16795,7 +13515,7 @@ func (c *ClientWithResponses) AmfContextNon3gppWithApplicationJSONPatchPlusJSONB
 }
 
 // CreateAmfContextNon3gppWithBodyWithResponse request with arbitrary body returning *CreateAmfContextNon3gppResponse
-func (c *ClientWithResponses) CreateAmfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAmfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) CreateAmfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAmfContextNon3gppResponse, error) {
 	rsp, err := c.CreateAmfContextNon3gppWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16803,7 +13523,7 @@ func (c *ClientWithResponses) CreateAmfContextNon3gppWithBodyWithResponse(ctx co
 	return ParseCreateAmfContextNon3gppResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateAmfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateAmfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAmfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) CreateAmfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateAmfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAmfContextNon3gppResponse, error) {
 	rsp, err := c.CreateAmfContextNon3gpp(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16812,7 +13532,7 @@ func (c *ClientWithResponses) CreateAmfContextNon3gppWithResponse(ctx context.Co
 }
 
 // QueryeesubscriptionsWithResponse request returning *QueryeesubscriptionsResponse
-func (c *ClientWithResponses) QueryeesubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryeesubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryeesubscriptionsResponse, error) {
+func (c *ClientWithResponses) QueryeesubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryeesubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryeesubscriptionsResponse, error) {
 	rsp, err := c.Queryeesubscriptions(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16821,7 +13541,7 @@ func (c *ClientWithResponses) QueryeesubscriptionsWithResponse(ctx context.Conte
 }
 
 // CreateEeSubscriptionsWithBodyWithResponse request with arbitrary body returning *CreateEeSubscriptionsResponse
-func (c *ClientWithResponses) CreateEeSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateEeSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeSubscriptionsResponse, error) {
 	rsp, err := c.CreateEeSubscriptionsWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16829,7 +13549,7 @@ func (c *ClientWithResponses) CreateEeSubscriptionsWithBodyWithResponse(ctx cont
 	return ParseCreateEeSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateEeSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateEeSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateEeSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateEeSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeSubscriptionsResponse, error) {
 	rsp, err := c.CreateEeSubscriptions(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16838,7 +13558,7 @@ func (c *ClientWithResponses) CreateEeSubscriptionsWithResponse(ctx context.Cont
 }
 
 // RemoveeeSubscriptionsWithResponse request returning *RemoveeeSubscriptionsResponse
-func (c *ClientWithResponses) RemoveeeSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveeeSubscriptionsResponse, error) {
+func (c *ClientWithResponses) RemoveeeSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveeeSubscriptionsResponse, error) {
 	rsp, err := c.RemoveeeSubscriptions(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16847,7 +13567,7 @@ func (c *ClientWithResponses) RemoveeeSubscriptionsWithResponse(ctx context.Cont
 }
 
 // QueryeeSubscriptionWithResponse request returning *QueryeeSubscriptionResponse
-func (c *ClientWithResponses) QueryeeSubscriptionWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*QueryeeSubscriptionResponse, error) {
+func (c *ClientWithResponses) QueryeeSubscriptionWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*QueryeeSubscriptionResponse, error) {
 	rsp, err := c.QueryeeSubscription(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16856,7 +13576,7 @@ func (c *ClientWithResponses) QueryeeSubscriptionWithResponse(ctx context.Contex
 }
 
 // ModifyEesubscriptionWithBodyWithResponse request with arbitrary body returning *ModifyEesubscriptionResponse
-func (c *ClientWithResponses) ModifyEesubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEesubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifyEesubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEesubscriptionResponse, error) {
 	rsp, err := c.ModifyEesubscriptionWithBody(ctx, ueId, subsId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16864,7 +13584,7 @@ func (c *ClientWithResponses) ModifyEesubscriptionWithBodyWithResponse(ctx conte
 	return ParseModifyEesubscriptionResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEesubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyEesubscriptionParams, body ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEesubscriptionResponse, error) {
 	rsp, err := c.ModifyEesubscriptionWithApplicationJSONPatchPlusJSONBody(ctx, ueId, subsId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16873,7 +13593,7 @@ func (c *ClientWithResponses) ModifyEesubscriptionWithApplicationJSONPatchPlusJS
 }
 
 // UpdateEesubscriptionsWithBodyWithResponse request with arbitrary body returning *UpdateEesubscriptionsResponse
-func (c *ClientWithResponses) UpdateEesubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEesubscriptionsResponse, error) {
+func (c *ClientWithResponses) UpdateEesubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEesubscriptionsResponse, error) {
 	rsp, err := c.UpdateEesubscriptionsWithBody(ctx, ueId, subsId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16881,7 +13601,7 @@ func (c *ClientWithResponses) UpdateEesubscriptionsWithBodyWithResponse(ctx cont
 	return ParseUpdateEesubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateEesubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEesubscriptionsResponse, error) {
+func (c *ClientWithResponses) UpdateEesubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body UpdateEesubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEesubscriptionsResponse, error) {
 	rsp, err := c.UpdateEesubscriptions(ctx, ueId, subsId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16890,7 +13610,7 @@ func (c *ClientWithResponses) UpdateEesubscriptionsWithResponse(ctx context.Cont
 }
 
 // RemoveAmfSubscriptionsInfoWithResponse request returning *RemoveAmfSubscriptionsInfoResponse
-func (c *ClientWithResponses) RemoveAmfSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveAmfSubscriptionsInfoResponse, error) {
+func (c *ClientWithResponses) RemoveAmfSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveAmfSubscriptionsInfoResponse, error) {
 	rsp, err := c.RemoveAmfSubscriptionsInfo(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16899,7 +13619,7 @@ func (c *ClientWithResponses) RemoveAmfSubscriptionsInfoWithResponse(ctx context
 }
 
 // GetAmfSubscriptionInfoWithResponse request returning *GetAmfSubscriptionInfoResponse
-func (c *ClientWithResponses) GetAmfSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetAmfSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) GetAmfSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetAmfSubscriptionInfoResponse, error) {
 	rsp, err := c.GetAmfSubscriptionInfo(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16908,7 +13628,7 @@ func (c *ClientWithResponses) GetAmfSubscriptionInfoWithResponse(ctx context.Con
 }
 
 // ModifyAmfSubscriptionInfoWithBodyWithResponse request with arbitrary body returning *ModifyAmfSubscriptionInfoResponse
-func (c *ClientWithResponses) ModifyAmfSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyAmfSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) ModifyAmfSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyAmfSubscriptionInfoResponse, error) {
 	rsp, err := c.ModifyAmfSubscriptionInfoWithBody(ctx, ueId, subsId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16916,7 +13636,7 @@ func (c *ClientWithResponses) ModifyAmfSubscriptionInfoWithBodyWithResponse(ctx 
 	return ParseModifyAmfSubscriptionInfoResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyAmfSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyAmfSubscriptionInfoParams, body ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyAmfSubscriptionInfoResponse, error) {
 	rsp, err := c.ModifyAmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx, ueId, subsId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16925,7 +13645,7 @@ func (c *ClientWithResponses) ModifyAmfSubscriptionInfoWithApplicationJSONPatchP
 }
 
 // CreateAMFSubscriptionsWithBodyWithResponse request with arbitrary body returning *CreateAMFSubscriptionsResponse
-func (c *ClientWithResponses) CreateAMFSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAMFSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateAMFSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAMFSubscriptionsResponse, error) {
 	rsp, err := c.CreateAMFSubscriptionsWithBody(ctx, ueId, subsId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16933,7 +13653,7 @@ func (c *ClientWithResponses) CreateAMFSubscriptionsWithBodyWithResponse(ctx con
 	return ParseCreateAMFSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateAMFSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAMFSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateAMFSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateAMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAMFSubscriptionsResponse, error) {
 	rsp, err := c.CreateAMFSubscriptions(ctx, ueId, subsId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16942,7 +13662,7 @@ func (c *ClientWithResponses) CreateAMFSubscriptionsWithResponse(ctx context.Con
 }
 
 // RemoveHssSubscriptionsInfoWithResponse request returning *RemoveHssSubscriptionsInfoResponse
-func (c *ClientWithResponses) RemoveHssSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveHssSubscriptionsInfoResponse, error) {
+func (c *ClientWithResponses) RemoveHssSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveHssSubscriptionsInfoResponse, error) {
 	rsp, err := c.RemoveHssSubscriptionsInfo(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16951,7 +13671,7 @@ func (c *ClientWithResponses) RemoveHssSubscriptionsInfoWithResponse(ctx context
 }
 
 // GetHssSubscriptionInfoWithResponse request returning *GetHssSubscriptionInfoResponse
-func (c *ClientWithResponses) GetHssSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetHssSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) GetHssSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetHssSubscriptionInfoResponse, error) {
 	rsp, err := c.GetHssSubscriptionInfo(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16960,7 +13680,7 @@ func (c *ClientWithResponses) GetHssSubscriptionInfoWithResponse(ctx context.Con
 }
 
 // ModifyHssSubscriptionInfoWithBodyWithResponse request with arbitrary body returning *ModifyHssSubscriptionInfoResponse
-func (c *ClientWithResponses) ModifyHssSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyHssSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) ModifyHssSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyHssSubscriptionInfoResponse, error) {
 	rsp, err := c.ModifyHssSubscriptionInfoWithBody(ctx, ueId, subsId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16968,7 +13688,7 @@ func (c *ClientWithResponses) ModifyHssSubscriptionInfoWithBodyWithResponse(ctx 
 	return ParseModifyHssSubscriptionInfoResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyHssSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSubscriptionInfoParams, body ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyHssSubscriptionInfoResponse, error) {
 	rsp, err := c.ModifyHssSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx, ueId, subsId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16977,7 +13697,7 @@ func (c *ClientWithResponses) ModifyHssSubscriptionInfoWithApplicationJSONPatchP
 }
 
 // CreateHSSSubscriptionsWithBodyWithResponse request with arbitrary body returning *CreateHSSSubscriptionsResponse
-func (c *ClientWithResponses) CreateHSSSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHSSSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateHSSSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHSSSubscriptionsResponse, error) {
 	rsp, err := c.CreateHSSSubscriptionsWithBody(ctx, ueId, subsId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16985,7 +13705,7 @@ func (c *ClientWithResponses) CreateHSSSubscriptionsWithBodyWithResponse(ctx con
 	return ParseCreateHSSSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateHSSSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHSSSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateHSSSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateHSSSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHSSSubscriptionsResponse, error) {
 	rsp, err := c.CreateHSSSubscriptions(ctx, ueId, subsId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -16994,7 +13714,7 @@ func (c *ClientWithResponses) CreateHSSSubscriptionsWithResponse(ctx context.Con
 }
 
 // RemoveSmfSubscriptionsInfoWithResponse request returning *RemoveSmfSubscriptionsInfoResponse
-func (c *ClientWithResponses) RemoveSmfSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveSmfSubscriptionsInfoResponse, error) {
+func (c *ClientWithResponses) RemoveSmfSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveSmfSubscriptionsInfoResponse, error) {
 	rsp, err := c.RemoveSmfSubscriptionsInfo(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17003,7 +13723,7 @@ func (c *ClientWithResponses) RemoveSmfSubscriptionsInfoWithResponse(ctx context
 }
 
 // GetSmfSubscriptionInfoWithResponse request returning *GetSmfSubscriptionInfoResponse
-func (c *ClientWithResponses) GetSmfSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetSmfSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) GetSmfSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetSmfSubscriptionInfoResponse, error) {
 	rsp, err := c.GetSmfSubscriptionInfo(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17012,7 +13732,7 @@ func (c *ClientWithResponses) GetSmfSubscriptionInfoWithResponse(ctx context.Con
 }
 
 // ModifySmfSubscriptionInfoWithBodyWithResponse request with arbitrary body returning *ModifySmfSubscriptionInfoResponse
-func (c *ClientWithResponses) ModifySmfSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifySmfSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) ModifySmfSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifySmfSubscriptionInfoResponse, error) {
 	rsp, err := c.ModifySmfSubscriptionInfoWithBody(ctx, ueId, subsId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17020,7 +13740,7 @@ func (c *ClientWithResponses) ModifySmfSubscriptionInfoWithBodyWithResponse(ctx 
 	return ParseModifySmfSubscriptionInfoResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifySmfSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifySmfSubscriptionInfoParams, body ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifySmfSubscriptionInfoResponse, error) {
 	rsp, err := c.ModifySmfSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx, ueId, subsId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17029,7 +13749,7 @@ func (c *ClientWithResponses) ModifySmfSubscriptionInfoWithApplicationJSONPatchP
 }
 
 // CreateSMFSubscriptionsWithBodyWithResponse request with arbitrary body returning *CreateSMFSubscriptionsResponse
-func (c *ClientWithResponses) CreateSMFSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSMFSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateSMFSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSMFSubscriptionsResponse, error) {
 	rsp, err := c.CreateSMFSubscriptionsWithBody(ctx, ueId, subsId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17037,7 +13757,7 @@ func (c *ClientWithResponses) CreateSMFSubscriptionsWithBodyWithResponse(ctx con
 	return ParseCreateSMFSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateSMFSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSMFSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateSMFSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateSMFSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSMFSubscriptionsResponse, error) {
 	rsp, err := c.CreateSMFSubscriptions(ctx, ueId, subsId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17046,7 +13766,7 @@ func (c *ClientWithResponses) CreateSMFSubscriptionsWithResponse(ctx context.Con
 }
 
 // DeleteIpSmGwContextWithResponse request returning *DeleteIpSmGwContextResponse
-func (c *ClientWithResponses) DeleteIpSmGwContextWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*DeleteIpSmGwContextResponse, error) {
+func (c *ClientWithResponses) DeleteIpSmGwContextWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*DeleteIpSmGwContextResponse, error) {
 	rsp, err := c.DeleteIpSmGwContext(ctx, ueId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17055,7 +13775,7 @@ func (c *ClientWithResponses) DeleteIpSmGwContextWithResponse(ctx context.Contex
 }
 
 // QueryIpSmGwContextWithResponse request returning *QueryIpSmGwContextResponse
-func (c *ClientWithResponses) QueryIpSmGwContextWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryIpSmGwContextParams, reqEditors ...RequestEditorFn) (*QueryIpSmGwContextResponse, error) {
+func (c *ClientWithResponses) QueryIpSmGwContextWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryIpSmGwContextParams, reqEditors ...RequestEditorFn) (*QueryIpSmGwContextResponse, error) {
 	rsp, err := c.QueryIpSmGwContext(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17064,7 +13784,7 @@ func (c *ClientWithResponses) QueryIpSmGwContextWithResponse(ctx context.Context
 }
 
 // ModifyIpSmGwContextWithBodyWithResponse request with arbitrary body returning *ModifyIpSmGwContextResponse
-func (c *ClientWithResponses) ModifyIpSmGwContextWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyIpSmGwContextResponse, error) {
+func (c *ClientWithResponses) ModifyIpSmGwContextWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyIpSmGwContextResponse, error) {
 	rsp, err := c.ModifyIpSmGwContextWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17072,7 +13792,7 @@ func (c *ClientWithResponses) ModifyIpSmGwContextWithBodyWithResponse(ctx contex
 	return ParseModifyIpSmGwContextResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyIpSmGwContextResponse, error) {
+func (c *ClientWithResponses) ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyIpSmGwContextResponse, error) {
 	rsp, err := c.ModifyIpSmGwContextWithApplicationJSONPatchPlusJSONBody(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17081,7 +13801,7 @@ func (c *ClientWithResponses) ModifyIpSmGwContextWithApplicationJSONPatchPlusJSO
 }
 
 // CreateIpSmGwContextWithBodyWithResponse request with arbitrary body returning *CreateIpSmGwContextResponse
-func (c *ClientWithResponses) CreateIpSmGwContextWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIpSmGwContextResponse, error) {
+func (c *ClientWithResponses) CreateIpSmGwContextWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIpSmGwContextResponse, error) {
 	rsp, err := c.CreateIpSmGwContextWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17089,7 +13809,7 @@ func (c *ClientWithResponses) CreateIpSmGwContextWithBodyWithResponse(ctx contex
 	return ParseCreateIpSmGwContextResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateIpSmGwContextWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateIpSmGwContextJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIpSmGwContextResponse, error) {
+func (c *ClientWithResponses) CreateIpSmGwContextWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateIpSmGwContextJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIpSmGwContextResponse, error) {
 	rsp, err := c.CreateIpSmGwContext(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17098,7 +13818,7 @@ func (c *ClientWithResponses) CreateIpSmGwContextWithResponse(ctx context.Contex
 }
 
 // QueryUeLocationWithResponse request returning *QueryUeLocationResponse
-func (c *ClientWithResponses) QueryUeLocationWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryUeLocationParams, reqEditors ...RequestEditorFn) (*QueryUeLocationResponse, error) {
+func (c *ClientWithResponses) QueryUeLocationWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryUeLocationParams, reqEditors ...RequestEditorFn) (*QueryUeLocationResponse, error) {
 	rsp, err := c.QueryUeLocation(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17107,7 +13827,7 @@ func (c *ClientWithResponses) QueryUeLocationWithResponse(ctx context.Context, u
 }
 
 // DeleteMessageWaitingDataWithResponse request returning *DeleteMessageWaitingDataResponse
-func (c *ClientWithResponses) DeleteMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*DeleteMessageWaitingDataResponse, error) {
+func (c *ClientWithResponses) DeleteMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*DeleteMessageWaitingDataResponse, error) {
 	rsp, err := c.DeleteMessageWaitingData(ctx, ueId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17116,7 +13836,7 @@ func (c *ClientWithResponses) DeleteMessageWaitingDataWithResponse(ctx context.C
 }
 
 // QueryMessageWaitingDataWithResponse request returning *QueryMessageWaitingDataResponse
-func (c *ClientWithResponses) QueryMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryMessageWaitingDataParams, reqEditors ...RequestEditorFn) (*QueryMessageWaitingDataResponse, error) {
+func (c *ClientWithResponses) QueryMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryMessageWaitingDataParams, reqEditors ...RequestEditorFn) (*QueryMessageWaitingDataResponse, error) {
 	rsp, err := c.QueryMessageWaitingData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17125,7 +13845,7 @@ func (c *ClientWithResponses) QueryMessageWaitingDataWithResponse(ctx context.Co
 }
 
 // ModifyMessageWaitingDataWithBodyWithResponse request with arbitrary body returning *ModifyMessageWaitingDataResponse
-func (c *ClientWithResponses) ModifyMessageWaitingDataWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyMessageWaitingDataResponse, error) {
+func (c *ClientWithResponses) ModifyMessageWaitingDataWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyMessageWaitingDataResponse, error) {
 	rsp, err := c.ModifyMessageWaitingDataWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17133,7 +13853,7 @@ func (c *ClientWithResponses) ModifyMessageWaitingDataWithBodyWithResponse(ctx c
 	return ParseModifyMessageWaitingDataResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyMessageWaitingDataResponse, error) {
+func (c *ClientWithResponses) ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyMessageWaitingDataResponse, error) {
 	rsp, err := c.ModifyMessageWaitingDataWithApplicationJSONPatchPlusJSONBody(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17142,7 +13862,7 @@ func (c *ClientWithResponses) ModifyMessageWaitingDataWithApplicationJSONPatchPl
 }
 
 // CreateMessageWaitingDataWithBodyWithResponse request with arbitrary body returning *CreateMessageWaitingDataResponse
-func (c *ClientWithResponses) CreateMessageWaitingDataWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateMessageWaitingDataResponse, error) {
+func (c *ClientWithResponses) CreateMessageWaitingDataWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateMessageWaitingDataResponse, error) {
 	rsp, err := c.CreateMessageWaitingDataWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17150,7 +13870,7 @@ func (c *ClientWithResponses) CreateMessageWaitingDataWithBodyWithResponse(ctx c
 	return ParseCreateMessageWaitingDataResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateMessageWaitingDataJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateMessageWaitingDataResponse, error) {
+func (c *ClientWithResponses) CreateMessageWaitingDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateMessageWaitingDataJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateMessageWaitingDataResponse, error) {
 	rsp, err := c.CreateMessageWaitingData(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17159,7 +13879,7 @@ func (c *ClientWithResponses) CreateMessageWaitingDataWithResponse(ctx context.C
 }
 
 // QuerysdmsubscriptionsWithResponse request returning *QuerysdmsubscriptionsResponse
-func (c *ClientWithResponses) QuerysdmsubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QuerysdmsubscriptionsParams, reqEditors ...RequestEditorFn) (*QuerysdmsubscriptionsResponse, error) {
+func (c *ClientWithResponses) QuerysdmsubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QuerysdmsubscriptionsParams, reqEditors ...RequestEditorFn) (*QuerysdmsubscriptionsResponse, error) {
 	rsp, err := c.Querysdmsubscriptions(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17168,7 +13888,7 @@ func (c *ClientWithResponses) QuerysdmsubscriptionsWithResponse(ctx context.Cont
 }
 
 // CreateSdmSubscriptionsWithBodyWithResponse request with arbitrary body returning *CreateSdmSubscriptionsResponse
-func (c *ClientWithResponses) CreateSdmSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSdmSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateSdmSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSdmSubscriptionsResponse, error) {
 	rsp, err := c.CreateSdmSubscriptionsWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17176,7 +13896,7 @@ func (c *ClientWithResponses) CreateSdmSubscriptionsWithBodyWithResponse(ctx con
 	return ParseCreateSdmSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateSdmSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateSdmSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSdmSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateSdmSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateSdmSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSdmSubscriptionsResponse, error) {
 	rsp, err := c.CreateSdmSubscriptions(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17185,7 +13905,7 @@ func (c *ClientWithResponses) CreateSdmSubscriptionsWithResponse(ctx context.Con
 }
 
 // RemovesdmSubscriptionsWithResponse request returning *RemovesdmSubscriptionsResponse
-func (c *ClientWithResponses) RemovesdmSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemovesdmSubscriptionsResponse, error) {
+func (c *ClientWithResponses) RemovesdmSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemovesdmSubscriptionsResponse, error) {
 	rsp, err := c.RemovesdmSubscriptions(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17194,7 +13914,7 @@ func (c *ClientWithResponses) RemovesdmSubscriptionsWithResponse(ctx context.Con
 }
 
 // QuerysdmSubscriptionWithResponse request returning *QuerysdmSubscriptionResponse
-func (c *ClientWithResponses) QuerysdmSubscriptionWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*QuerysdmSubscriptionResponse, error) {
+func (c *ClientWithResponses) QuerysdmSubscriptionWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*QuerysdmSubscriptionResponse, error) {
 	rsp, err := c.QuerysdmSubscription(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17203,7 +13923,7 @@ func (c *ClientWithResponses) QuerysdmSubscriptionWithResponse(ctx context.Conte
 }
 
 // ModifysdmSubscriptionWithBodyWithResponse request with arbitrary body returning *ModifysdmSubscriptionResponse
-func (c *ClientWithResponses) ModifysdmSubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifysdmSubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifysdmSubscriptionWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifysdmSubscriptionResponse, error) {
 	rsp, err := c.ModifysdmSubscriptionWithBody(ctx, ueId, subsId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17211,7 +13931,7 @@ func (c *ClientWithResponses) ModifysdmSubscriptionWithBodyWithResponse(ctx cont
 	return ParseModifysdmSubscriptionResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifysdmSubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifysdmSubscriptionParams, body ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifysdmSubscriptionResponse, error) {
 	rsp, err := c.ModifysdmSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx, ueId, subsId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17220,7 +13940,7 @@ func (c *ClientWithResponses) ModifysdmSubscriptionWithApplicationJSONPatchPlusJ
 }
 
 // UpdatesdmsubscriptionsWithBodyWithResponse request with arbitrary body returning *UpdatesdmsubscriptionsResponse
-func (c *ClientWithResponses) UpdatesdmsubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatesdmsubscriptionsResponse, error) {
+func (c *ClientWithResponses) UpdatesdmsubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdatesdmsubscriptionsResponse, error) {
 	rsp, err := c.UpdatesdmsubscriptionsWithBody(ctx, ueId, subsId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17228,7 +13948,7 @@ func (c *ClientWithResponses) UpdatesdmsubscriptionsWithBodyWithResponse(ctx con
 	return ParseUpdatesdmsubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdatesdmsubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatesdmsubscriptionsResponse, error) {
+func (c *ClientWithResponses) UpdatesdmsubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body UpdatesdmsubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdatesdmsubscriptionsResponse, error) {
 	rsp, err := c.Updatesdmsubscriptions(ctx, ueId, subsId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17237,7 +13957,7 @@ func (c *ClientWithResponses) UpdatesdmsubscriptionsWithResponse(ctx context.Con
 }
 
 // RemoveHssSDMSubscriptionsInfoWithResponse request returning *RemoveHssSDMSubscriptionsInfoResponse
-func (c *ClientWithResponses) RemoveHssSDMSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveHssSDMSubscriptionsInfoResponse, error) {
+func (c *ClientWithResponses) RemoveHssSDMSubscriptionsInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*RemoveHssSDMSubscriptionsInfoResponse, error) {
 	rsp, err := c.RemoveHssSDMSubscriptionsInfo(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17246,7 +13966,7 @@ func (c *ClientWithResponses) RemoveHssSDMSubscriptionsInfoWithResponse(ctx cont
 }
 
 // GetHssSDMSubscriptionInfoWithResponse request returning *GetHssSDMSubscriptionInfoResponse
-func (c *ClientWithResponses) GetHssSDMSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetHssSDMSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) GetHssSDMSubscriptionInfoWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, reqEditors ...RequestEditorFn) (*GetHssSDMSubscriptionInfoResponse, error) {
 	rsp, err := c.GetHssSDMSubscriptionInfo(ctx, ueId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17255,7 +13975,7 @@ func (c *ClientWithResponses) GetHssSDMSubscriptionInfoWithResponse(ctx context.
 }
 
 // ModifyHssSDMSubscriptionInfoWithBodyWithResponse request with arbitrary body returning *ModifyHssSDMSubscriptionInfoResponse
-func (c *ClientWithResponses) ModifyHssSDMSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyHssSDMSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) ModifyHssSDMSubscriptionInfoWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyHssSDMSubscriptionInfoResponse, error) {
 	rsp, err := c.ModifyHssSDMSubscriptionInfoWithBody(ctx, ueId, subsId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17263,7 +13983,7 @@ func (c *ClientWithResponses) ModifyHssSDMSubscriptionInfoWithBodyWithResponse(c
 	return ParseModifyHssSDMSubscriptionInfoResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyHssSDMSubscriptionInfoResponse, error) {
+func (c *ClientWithResponses) ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, params *ModifyHssSDMSubscriptionInfoParams, body ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyHssSDMSubscriptionInfoResponse, error) {
 	rsp, err := c.ModifyHssSDMSubscriptionInfoWithApplicationJSONPatchPlusJSONBody(ctx, ueId, subsId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17272,7 +13992,7 @@ func (c *ClientWithResponses) ModifyHssSDMSubscriptionInfoWithApplicationJSONPat
 }
 
 // CreateHSSSDMSubscriptionsWithBodyWithResponse request with arbitrary body returning *CreateHSSSDMSubscriptionsResponse
-func (c *ClientWithResponses) CreateHSSSDMSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHSSSDMSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateHSSSDMSubscriptionsWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateHSSSDMSubscriptionsResponse, error) {
 	rsp, err := c.CreateHSSSDMSubscriptionsWithBody(ctx, ueId, subsId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17280,7 +14000,7 @@ func (c *ClientWithResponses) CreateHSSSDMSubscriptionsWithBodyWithResponse(ctx 
 	return ParseCreateHSSSDMSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateHSSSDMSubscriptionsWithResponse(ctx context.Context, ueId externalRef2.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHSSSDMSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateHSSSDMSubscriptionsWithResponse(ctx context.Context, ueId externalRef0.VarUeId, subsId string, body CreateHSSSDMSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateHSSSDMSubscriptionsResponse, error) {
 	rsp, err := c.CreateHSSSDMSubscriptions(ctx, ueId, subsId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17289,7 +14009,7 @@ func (c *ClientWithResponses) CreateHSSSDMSubscriptionsWithResponse(ctx context.
 }
 
 // QuerySmfRegListWithResponse request returning *QuerySmfRegListResponse
-func (c *ClientWithResponses) QuerySmfRegListWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmfRegListParams, reqEditors ...RequestEditorFn) (*QuerySmfRegListResponse, error) {
+func (c *ClientWithResponses) QuerySmfRegListWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmfRegListParams, reqEditors ...RequestEditorFn) (*QuerySmfRegListResponse, error) {
 	rsp, err := c.QuerySmfRegList(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17298,7 +14018,7 @@ func (c *ClientWithResponses) QuerySmfRegListWithResponse(ctx context.Context, u
 }
 
 // DeleteSmfRegistrationWithResponse request returning *DeleteSmfRegistrationResponse
-func (c *ClientWithResponses) DeleteSmfRegistrationWithResponse(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, reqEditors ...RequestEditorFn) (*DeleteSmfRegistrationResponse, error) {
+func (c *ClientWithResponses) DeleteSmfRegistrationWithResponse(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, reqEditors ...RequestEditorFn) (*DeleteSmfRegistrationResponse, error) {
 	rsp, err := c.DeleteSmfRegistration(ctx, ueId, pduSessionId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17307,7 +14027,7 @@ func (c *ClientWithResponses) DeleteSmfRegistrationWithResponse(ctx context.Cont
 }
 
 // QuerySmfRegistrationWithResponse request returning *QuerySmfRegistrationResponse
-func (c *ClientWithResponses) QuerySmfRegistrationWithResponse(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, params *QuerySmfRegistrationParams, reqEditors ...RequestEditorFn) (*QuerySmfRegistrationResponse, error) {
+func (c *ClientWithResponses) QuerySmfRegistrationWithResponse(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, params *QuerySmfRegistrationParams, reqEditors ...RequestEditorFn) (*QuerySmfRegistrationResponse, error) {
 	rsp, err := c.QuerySmfRegistration(ctx, ueId, pduSessionId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17316,7 +14036,7 @@ func (c *ClientWithResponses) QuerySmfRegistrationWithResponse(ctx context.Conte
 }
 
 // CreateOrUpdateSmfRegistrationWithBodyWithResponse request with arbitrary body returning *CreateOrUpdateSmfRegistrationResponse
-func (c *ClientWithResponses) CreateOrUpdateSmfRegistrationWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateSmfRegistrationResponse, error) {
+func (c *ClientWithResponses) CreateOrUpdateSmfRegistrationWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateSmfRegistrationResponse, error) {
 	rsp, err := c.CreateOrUpdateSmfRegistrationWithBody(ctx, ueId, pduSessionId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17324,7 +14044,7 @@ func (c *ClientWithResponses) CreateOrUpdateSmfRegistrationWithBodyWithResponse(
 	return ParseCreateOrUpdateSmfRegistrationResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateOrUpdateSmfRegistrationWithResponse(ctx context.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateSmfRegistrationResponse, error) {
+func (c *ClientWithResponses) CreateOrUpdateSmfRegistrationWithResponse(ctx context.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, body CreateOrUpdateSmfRegistrationJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateSmfRegistrationResponse, error) {
 	rsp, err := c.CreateOrUpdateSmfRegistration(ctx, ueId, pduSessionId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17333,7 +14053,7 @@ func (c *ClientWithResponses) CreateOrUpdateSmfRegistrationWithResponse(ctx cont
 }
 
 // DeleteSmsfContext3gppWithResponse request returning *DeleteSmsfContext3gppResponse
-func (c *ClientWithResponses) DeleteSmsfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*DeleteSmsfContext3gppResponse, error) {
+func (c *ClientWithResponses) DeleteSmsfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*DeleteSmsfContext3gppResponse, error) {
 	rsp, err := c.DeleteSmsfContext3gpp(ctx, ueId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17342,7 +14062,7 @@ func (c *ClientWithResponses) DeleteSmsfContext3gppWithResponse(ctx context.Cont
 }
 
 // QuerySmsfContext3gppWithResponse request returning *QuerySmsfContext3gppResponse
-func (c *ClientWithResponses) QuerySmsfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmsfContext3gppParams, reqEditors ...RequestEditorFn) (*QuerySmsfContext3gppResponse, error) {
+func (c *ClientWithResponses) QuerySmsfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmsfContext3gppParams, reqEditors ...RequestEditorFn) (*QuerySmsfContext3gppResponse, error) {
 	rsp, err := c.QuerySmsfContext3gpp(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17351,7 +14071,7 @@ func (c *ClientWithResponses) QuerySmsfContext3gppWithResponse(ctx context.Conte
 }
 
 // CreateSmsfContext3gppWithBodyWithResponse request with arbitrary body returning *CreateSmsfContext3gppResponse
-func (c *ClientWithResponses) CreateSmsfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSmsfContext3gppResponse, error) {
+func (c *ClientWithResponses) CreateSmsfContext3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSmsfContext3gppResponse, error) {
 	rsp, err := c.CreateSmsfContext3gppWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17359,7 +14079,7 @@ func (c *ClientWithResponses) CreateSmsfContext3gppWithBodyWithResponse(ctx cont
 	return ParseCreateSmsfContext3gppResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateSmsfContext3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateSmsfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSmsfContext3gppResponse, error) {
+func (c *ClientWithResponses) CreateSmsfContext3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateSmsfContext3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSmsfContext3gppResponse, error) {
 	rsp, err := c.CreateSmsfContext3gpp(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17368,7 +14088,7 @@ func (c *ClientWithResponses) CreateSmsfContext3gppWithResponse(ctx context.Cont
 }
 
 // DeleteSmsfContextNon3gppWithResponse request returning *DeleteSmsfContextNon3gppResponse
-func (c *ClientWithResponses) DeleteSmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*DeleteSmsfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) DeleteSmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*DeleteSmsfContextNon3gppResponse, error) {
 	rsp, err := c.DeleteSmsfContextNon3gpp(ctx, ueId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17377,7 +14097,7 @@ func (c *ClientWithResponses) DeleteSmsfContextNon3gppWithResponse(ctx context.C
 }
 
 // QuerySmsfContextNon3gppWithResponse request returning *QuerySmsfContextNon3gppResponse
-func (c *ClientWithResponses) QuerySmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QuerySmsfContextNon3gppParams, reqEditors ...RequestEditorFn) (*QuerySmsfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) QuerySmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QuerySmsfContextNon3gppParams, reqEditors ...RequestEditorFn) (*QuerySmsfContextNon3gppResponse, error) {
 	rsp, err := c.QuerySmsfContextNon3gpp(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17386,7 +14106,7 @@ func (c *ClientWithResponses) QuerySmsfContextNon3gppWithResponse(ctx context.Co
 }
 
 // CreateSmsfContextNon3gppWithBodyWithResponse request with arbitrary body returning *CreateSmsfContextNon3gppResponse
-func (c *ClientWithResponses) CreateSmsfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSmsfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) CreateSmsfContextNon3gppWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateSmsfContextNon3gppResponse, error) {
 	rsp, err := c.CreateSmsfContextNon3gppWithBody(ctx, ueId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17394,7 +14114,7 @@ func (c *ClientWithResponses) CreateSmsfContextNon3gppWithBodyWithResponse(ctx c
 	return ParseCreateSmsfContextNon3gppResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateSmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef2.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSmsfContextNon3gppResponse, error) {
+func (c *ClientWithResponses) CreateSmsfContextNon3gppWithResponse(ctx context.Context, ueId externalRef0.VarUeId, body CreateSmsfContextNon3gppJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateSmsfContextNon3gppResponse, error) {
 	rsp, err := c.CreateSmsfContextNon3gpp(ctx, ueId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17403,7 +14123,7 @@ func (c *ClientWithResponses) CreateSmsfContextNon3gppWithResponse(ctx context.C
 }
 
 // QueryCoverageRestrictionDataWithResponse request returning *QueryCoverageRestrictionDataResponse
-func (c *ClientWithResponses) QueryCoverageRestrictionDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryCoverageRestrictionDataParams, reqEditors ...RequestEditorFn) (*QueryCoverageRestrictionDataResponse, error) {
+func (c *ClientWithResponses) QueryCoverageRestrictionDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryCoverageRestrictionDataParams, reqEditors ...RequestEditorFn) (*QueryCoverageRestrictionDataResponse, error) {
 	rsp, err := c.QueryCoverageRestrictionData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17412,7 +14132,7 @@ func (c *ClientWithResponses) QueryCoverageRestrictionDataWithResponse(ctx conte
 }
 
 // QueryEEDataWithResponse request returning *QueryEEDataResponse
-func (c *ClientWithResponses) QueryEEDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryEEDataParams, reqEditors ...RequestEditorFn) (*QueryEEDataResponse, error) {
+func (c *ClientWithResponses) QueryEEDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryEEDataParams, reqEditors ...RequestEditorFn) (*QueryEEDataResponse, error) {
 	rsp, err := c.QueryEEData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17421,7 +14141,7 @@ func (c *ClientWithResponses) QueryEEDataWithResponse(ctx context.Context, ueId 
 }
 
 // GetIdentityDataWithResponse request returning *GetIdentityDataResponse
-func (c *ClientWithResponses) GetIdentityDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *GetIdentityDataParams, reqEditors ...RequestEditorFn) (*GetIdentityDataResponse, error) {
+func (c *ClientWithResponses) GetIdentityDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *GetIdentityDataParams, reqEditors ...RequestEditorFn) (*GetIdentityDataResponse, error) {
 	rsp, err := c.GetIdentityData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17430,7 +14150,7 @@ func (c *ClientWithResponses) GetIdentityDataWithResponse(ctx context.Context, u
 }
 
 // QueryLcsMoDataWithResponse request returning *QueryLcsMoDataResponse
-func (c *ClientWithResponses) QueryLcsMoDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryLcsMoDataParams, reqEditors ...RequestEditorFn) (*QueryLcsMoDataResponse, error) {
+func (c *ClientWithResponses) QueryLcsMoDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryLcsMoDataParams, reqEditors ...RequestEditorFn) (*QueryLcsMoDataResponse, error) {
 	rsp, err := c.QueryLcsMoData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17439,7 +14159,7 @@ func (c *ClientWithResponses) QueryLcsMoDataWithResponse(ctx context.Context, ue
 }
 
 // QueryLcsPrivacyDataWithResponse request returning *QueryLcsPrivacyDataResponse
-func (c *ClientWithResponses) QueryLcsPrivacyDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryLcsPrivacyDataParams, reqEditors ...RequestEditorFn) (*QueryLcsPrivacyDataResponse, error) {
+func (c *ClientWithResponses) QueryLcsPrivacyDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryLcsPrivacyDataParams, reqEditors ...RequestEditorFn) (*QueryLcsPrivacyDataResponse, error) {
 	rsp, err := c.QueryLcsPrivacyData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17457,7 +14177,7 @@ func (c *ClientWithResponses) GetNiddAuDataWithResponse(ctx context.Context, ueI
 }
 
 // GetOdbDataWithResponse request returning *GetOdbDataResponse
-func (c *ClientWithResponses) GetOdbDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, reqEditors ...RequestEditorFn) (*GetOdbDataResponse, error) {
+func (c *ClientWithResponses) GetOdbDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, reqEditors ...RequestEditorFn) (*GetOdbDataResponse, error) {
 	rsp, err := c.GetOdbData(ctx, ueId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17466,7 +14186,7 @@ func (c *ClientWithResponses) GetOdbDataWithResponse(ctx context.Context, ueId e
 }
 
 // QueryOperSpecDataWithResponse request returning *QueryOperSpecDataResponse
-func (c *ClientWithResponses) QueryOperSpecDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryOperSpecDataParams, reqEditors ...RequestEditorFn) (*QueryOperSpecDataResponse, error) {
+func (c *ClientWithResponses) QueryOperSpecDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryOperSpecDataParams, reqEditors ...RequestEditorFn) (*QueryOperSpecDataResponse, error) {
 	rsp, err := c.QueryOperSpecData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17475,7 +14195,7 @@ func (c *ClientWithResponses) QueryOperSpecDataWithResponse(ctx context.Context,
 }
 
 // ModifyOperSpecDataWithBodyWithResponse request with arbitrary body returning *ModifyOperSpecDataResponse
-func (c *ClientWithResponses) ModifyOperSpecDataWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyOperSpecDataResponse, error) {
+func (c *ClientWithResponses) ModifyOperSpecDataWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyOperSpecDataResponse, error) {
 	rsp, err := c.ModifyOperSpecDataWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17483,7 +14203,7 @@ func (c *ClientWithResponses) ModifyOperSpecDataWithBodyWithResponse(ctx context
 	return ParseModifyOperSpecDataResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyOperSpecDataResponse, error) {
+func (c *ClientWithResponses) ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyOperSpecDataParams, body ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyOperSpecDataResponse, error) {
 	rsp, err := c.ModifyOperSpecDataWithApplicationJSONPatchPlusJSONBody(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17492,7 +14212,7 @@ func (c *ClientWithResponses) ModifyOperSpecDataWithApplicationJSONPatchPlusJSON
 }
 
 // GetppDataWithResponse request returning *GetppDataResponse
-func (c *ClientWithResponses) GetppDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *GetppDataParams, reqEditors ...RequestEditorFn) (*GetppDataResponse, error) {
+func (c *ClientWithResponses) GetppDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *GetppDataParams, reqEditors ...RequestEditorFn) (*GetppDataResponse, error) {
 	rsp, err := c.GetppData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17501,7 +14221,7 @@ func (c *ClientWithResponses) GetppDataWithResponse(ctx context.Context, ueId ex
 }
 
 // ModifyPpDataWithBodyWithResponse request with arbitrary body returning *ModifyPpDataResponse
-func (c *ClientWithResponses) ModifyPpDataWithBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyPpDataResponse, error) {
+func (c *ClientWithResponses) ModifyPpDataWithBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyPpDataParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyPpDataResponse, error) {
 	rsp, err := c.ModifyPpDataWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17509,7 +14229,7 @@ func (c *ClientWithResponses) ModifyPpDataWithBodyWithResponse(ctx context.Conte
 	return ParseModifyPpDataResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyPpDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyPpDataResponse, error) {
+func (c *ClientWithResponses) ModifyPpDataWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *ModifyPpDataParams, body ModifyPpDataApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyPpDataResponse, error) {
 	rsp, err := c.ModifyPpDataWithApplicationJSONPatchPlusJSONBody(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17518,7 +14238,7 @@ func (c *ClientWithResponses) ModifyPpDataWithApplicationJSONPatchPlusJSONBodyWi
 }
 
 // QueryPPDataWithResponse request returning *QueryPPDataResponse
-func (c *ClientWithResponses) QueryPPDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryPPDataParams, reqEditors ...RequestEditorFn) (*QueryPPDataResponse, error) {
+func (c *ClientWithResponses) QueryPPDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryPPDataParams, reqEditors ...RequestEditorFn) (*QueryPPDataResponse, error) {
 	rsp, err := c.QueryPPData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17527,7 +14247,7 @@ func (c *ClientWithResponses) QueryPPDataWithResponse(ctx context.Context, ueId 
 }
 
 // QueryAuthSoRWithResponse request returning *QueryAuthSoRResponse
-func (c *ClientWithResponses) QueryAuthSoRWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthSoRParams, reqEditors ...RequestEditorFn) (*QueryAuthSoRResponse, error) {
+func (c *ClientWithResponses) QueryAuthSoRWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSoRParams, reqEditors ...RequestEditorFn) (*QueryAuthSoRResponse, error) {
 	rsp, err := c.QueryAuthSoR(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17536,7 +14256,7 @@ func (c *ClientWithResponses) QueryAuthSoRWithResponse(ctx context.Context, ueId
 }
 
 // CreateAuthenticationSoRWithBodyWithResponse request with arbitrary body returning *CreateAuthenticationSoRResponse
-func (c *ClientWithResponses) CreateAuthenticationSoRWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationSoRResponse, error) {
+func (c *ClientWithResponses) CreateAuthenticationSoRWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationSoRResponse, error) {
 	rsp, err := c.CreateAuthenticationSoRWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17544,7 +14264,7 @@ func (c *ClientWithResponses) CreateAuthenticationSoRWithBodyWithResponse(ctx co
 	return ParseCreateAuthenticationSoRResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateAuthenticationSoRWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationSoRResponse, error) {
+func (c *ClientWithResponses) CreateAuthenticationSoRWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationSoRParams, body CreateAuthenticationSoRJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationSoRResponse, error) {
 	rsp, err := c.CreateAuthenticationSoR(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17553,7 +14273,7 @@ func (c *ClientWithResponses) CreateAuthenticationSoRWithResponse(ctx context.Co
 }
 
 // QueryCagAckWithResponse request returning *QueryCagAckResponse
-func (c *ClientWithResponses) QueryCagAckWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryCagAckParams, reqEditors ...RequestEditorFn) (*QueryCagAckResponse, error) {
+func (c *ClientWithResponses) QueryCagAckWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryCagAckParams, reqEditors ...RequestEditorFn) (*QueryCagAckResponse, error) {
 	rsp, err := c.QueryCagAck(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17562,7 +14282,7 @@ func (c *ClientWithResponses) QueryCagAckWithResponse(ctx context.Context, ueId 
 }
 
 // CreateCagUpdateAckWithBodyWithResponse request with arbitrary body returning *CreateCagUpdateAckResponse
-func (c *ClientWithResponses) CreateCagUpdateAckWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCagUpdateAckResponse, error) {
+func (c *ClientWithResponses) CreateCagUpdateAckWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCagUpdateAckResponse, error) {
 	rsp, err := c.CreateCagUpdateAckWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17570,7 +14290,7 @@ func (c *ClientWithResponses) CreateCagUpdateAckWithBodyWithResponse(ctx context
 	return ParseCreateCagUpdateAckResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateCagUpdateAckWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCagUpdateAckResponse, error) {
+func (c *ClientWithResponses) CreateCagUpdateAckWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateCagUpdateAckParams, body CreateCagUpdateAckJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCagUpdateAckResponse, error) {
 	rsp, err := c.CreateCagUpdateAck(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17579,7 +14299,7 @@ func (c *ClientWithResponses) CreateCagUpdateAckWithResponse(ctx context.Context
 }
 
 // QueryNssaiAckWithResponse request returning *QueryNssaiAckResponse
-func (c *ClientWithResponses) QueryNssaiAckWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryNssaiAckParams, reqEditors ...RequestEditorFn) (*QueryNssaiAckResponse, error) {
+func (c *ClientWithResponses) QueryNssaiAckWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryNssaiAckParams, reqEditors ...RequestEditorFn) (*QueryNssaiAckResponse, error) {
 	rsp, err := c.QueryNssaiAck(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17588,7 +14308,7 @@ func (c *ClientWithResponses) QueryNssaiAckWithResponse(ctx context.Context, ueI
 }
 
 // CreateOrUpdateNssaiAckWithBodyWithResponse request with arbitrary body returning *CreateOrUpdateNssaiAckResponse
-func (c *ClientWithResponses) CreateOrUpdateNssaiAckWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateNssaiAckResponse, error) {
+func (c *ClientWithResponses) CreateOrUpdateNssaiAckWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrUpdateNssaiAckResponse, error) {
 	rsp, err := c.CreateOrUpdateNssaiAckWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17596,7 +14316,7 @@ func (c *ClientWithResponses) CreateOrUpdateNssaiAckWithBodyWithResponse(ctx con
 	return ParseCreateOrUpdateNssaiAckResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateOrUpdateNssaiAckWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateNssaiAckResponse, error) {
+func (c *ClientWithResponses) CreateOrUpdateNssaiAckWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateOrUpdateNssaiAckParams, body CreateOrUpdateNssaiAckJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrUpdateNssaiAckResponse, error) {
 	rsp, err := c.CreateOrUpdateNssaiAck(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17605,7 +14325,7 @@ func (c *ClientWithResponses) CreateOrUpdateNssaiAckWithResponse(ctx context.Con
 }
 
 // QueryAuthUPUWithResponse request returning *QueryAuthUPUResponse
-func (c *ClientWithResponses) QueryAuthUPUWithResponse(ctx context.Context, ueId externalRef2.Supi, params *QueryAuthUPUParams, reqEditors ...RequestEditorFn) (*QueryAuthUPUResponse, error) {
+func (c *ClientWithResponses) QueryAuthUPUWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthUPUParams, reqEditors ...RequestEditorFn) (*QueryAuthUPUResponse, error) {
 	rsp, err := c.QueryAuthUPU(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17614,7 +14334,7 @@ func (c *ClientWithResponses) QueryAuthUPUWithResponse(ctx context.Context, ueId
 }
 
 // CreateAuthenticationUPUWithBodyWithResponse request with arbitrary body returning *CreateAuthenticationUPUResponse
-func (c *ClientWithResponses) CreateAuthenticationUPUWithBodyWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationUPUResponse, error) {
+func (c *ClientWithResponses) CreateAuthenticationUPUWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateAuthenticationUPUResponse, error) {
 	rsp, err := c.CreateAuthenticationUPUWithBody(ctx, ueId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17622,7 +14342,7 @@ func (c *ClientWithResponses) CreateAuthenticationUPUWithBodyWithResponse(ctx co
 	return ParseCreateAuthenticationUPUResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateAuthenticationUPUWithResponse(ctx context.Context, ueId externalRef2.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationUPUResponse, error) {
+func (c *ClientWithResponses) CreateAuthenticationUPUWithResponse(ctx context.Context, ueId externalRef0.Supi, params *CreateAuthenticationUPUParams, body CreateAuthenticationUPUJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationUPUResponse, error) {
 	rsp, err := c.CreateAuthenticationUPU(ctx, ueId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17631,7 +14351,7 @@ func (c *ClientWithResponses) CreateAuthenticationUPUWithResponse(ctx context.Co
 }
 
 // QueryV2xDataWithResponse request returning *QueryV2xDataResponse
-func (c *ClientWithResponses) QueryV2xDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*QueryV2xDataResponse, error) {
+func (c *ClientWithResponses) QueryV2xDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*QueryV2xDataResponse, error) {
 	rsp, err := c.QueryV2xData(ctx, ueId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17640,7 +14360,7 @@ func (c *ClientWithResponses) QueryV2xDataWithResponse(ctx context.Context, ueId
 }
 
 // QueryProvisionedDataWithResponse request returning *QueryProvisionedDataResponse
-func (c *ClientWithResponses) QueryProvisionedDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*QueryProvisionedDataResponse, error) {
+func (c *ClientWithResponses) QueryProvisionedDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*QueryProvisionedDataResponse, error) {
 	rsp, err := c.QueryProvisionedData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17649,7 +14369,7 @@ func (c *ClientWithResponses) QueryProvisionedDataWithResponse(ctx context.Conte
 }
 
 // QueryAmDataWithResponse request returning *QueryAmDataResponse
-func (c *ClientWithResponses) QueryAmDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*QueryAmDataResponse, error) {
+func (c *ClientWithResponses) QueryAmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*QueryAmDataResponse, error) {
 	rsp, err := c.QueryAmData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17658,7 +14378,7 @@ func (c *ClientWithResponses) QueryAmDataWithResponse(ctx context.Context, ueId 
 }
 
 // QueryLcsBcaDataWithResponse request returning *QueryLcsBcaDataResponse
-func (c *ClientWithResponses) QueryLcsBcaDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*QueryLcsBcaDataResponse, error) {
+func (c *ClientWithResponses) QueryLcsBcaDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*QueryLcsBcaDataResponse, error) {
 	rsp, err := c.QueryLcsBcaData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17667,7 +14387,7 @@ func (c *ClientWithResponses) QueryLcsBcaDataWithResponse(ctx context.Context, u
 }
 
 // QuerySmDataWithResponse request returning *QuerySmDataResponse
-func (c *ClientWithResponses) QuerySmDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*QuerySmDataResponse, error) {
+func (c *ClientWithResponses) QuerySmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*QuerySmDataResponse, error) {
 	rsp, err := c.QuerySmData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17676,7 +14396,7 @@ func (c *ClientWithResponses) QuerySmDataWithResponse(ctx context.Context, ueId 
 }
 
 // QuerySmfSelectDataWithResponse request returning *QuerySmfSelectDataResponse
-func (c *ClientWithResponses) QuerySmfSelectDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*QuerySmfSelectDataResponse, error) {
+func (c *ClientWithResponses) QuerySmfSelectDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*QuerySmfSelectDataResponse, error) {
 	rsp, err := c.QuerySmfSelectData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17685,7 +14405,7 @@ func (c *ClientWithResponses) QuerySmfSelectDataWithResponse(ctx context.Context
 }
 
 // QuerySmsDataWithResponse request returning *QuerySmsDataResponse
-func (c *ClientWithResponses) QuerySmsDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*QuerySmsDataResponse, error) {
+func (c *ClientWithResponses) QuerySmsDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*QuerySmsDataResponse, error) {
 	rsp, err := c.QuerySmsData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17694,7 +14414,7 @@ func (c *ClientWithResponses) QuerySmsDataWithResponse(ctx context.Context, ueId
 }
 
 // QuerySmsMngDataWithResponse request returning *QuerySmsMngDataResponse
-func (c *ClientWithResponses) QuerySmsMngDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*QuerySmsMngDataResponse, error) {
+func (c *ClientWithResponses) QuerySmsMngDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*QuerySmsMngDataResponse, error) {
 	rsp, err := c.QuerySmsMngData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17703,7 +14423,7 @@ func (c *ClientWithResponses) QuerySmsMngDataWithResponse(ctx context.Context, u
 }
 
 // QueryTraceDataWithResponse request returning *QueryTraceDataResponse
-func (c *ClientWithResponses) QueryTraceDataWithResponse(ctx context.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*QueryTraceDataResponse, error) {
+func (c *ClientWithResponses) QueryTraceDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*QueryTraceDataResponse, error) {
 	rsp, err := c.QueryTraceData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -17726,14 +14446,14 @@ func ParseQuery5GVnGroupResponse(rsp *http.Response) (*Query5GVnGroupResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]externalRef5.N5GVnGroupConfiguration
+		var dest map[string]externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -17759,14 +14479,14 @@ func ParseQuery5GVnGroupInternalResponse(rsp *http.Response) (*Query5GVnGroupInt
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]externalRef5.N5GVnGroupConfiguration
+		var dest map[string]externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -17792,14 +14512,14 @@ func ParseQuery5GVNGroupPPDataResponse(rsp *http.Response) (*Query5GVNGroupPPDat
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Pp5gVnGroupProfileData
+		var dest externalRef0.Pp5gVnGroupProfileData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -17828,7 +14548,7 @@ func ParseDelete5GVnGroupResponse(rsp *http.Response) (*Delete5GVnGroupResponse,
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -17854,14 +14574,14 @@ func ParseGet5GVnGroupConfigurationResponse(rsp *http.Response) (*Get5GVnGroupCo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.N5GVnGroupConfiguration
+		var dest externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -17887,7 +14607,7 @@ func ParseModify5GVnGroupResponse(rsp *http.Response) (*Modify5GVnGroupResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -17897,14 +14617,14 @@ func ParseModify5GVnGroupResponse(rsp *http.Response) (*Modify5GVnGroupResponse,
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -17930,21 +14650,21 @@ func ParseCreate5GVnGroupResponse(rsp *http.Response) (*Create5GVnGroupResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef5.N5GVnGroupConfiguration
+		var dest externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -17970,14 +14690,14 @@ func ParseGetGroupIdentifiersResponse(rsp *http.Response) (*GetGroupIdentifiersR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef6.GroupIdentifiers
+		var dest externalRef0.GroupIdentifiers
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18003,14 +14723,14 @@ func ParseQueryGroupEEDataResponse(rsp *http.Response) (*QueryGroupEEDataRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest EeGroupProfileData
+		var dest externalRef0.EeGroupProfileData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18036,14 +14756,14 @@ func ParseQueryEeGroupSubscriptionsResponse(rsp *http.Response) (*QueryEeGroupSu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []EeSubscription
+		var dest []externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18069,14 +14789,14 @@ func ParseCreateEeGroupSubscriptionsResponse(rsp *http.Response) (*CreateEeGroup
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest EeSubscription
+		var dest externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18105,7 +14825,7 @@ func ParseRemoveEeGroupSubscriptionsResponse(rsp *http.Response) (*RemoveEeGroup
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18131,14 +14851,14 @@ func ParseQueryEeGroupSubscriptionResponse(rsp *http.Response) (*QueryEeGroupSub
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []EeSubscription
+		var dest []externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18164,7 +14884,7 @@ func ParseModifyEeGroupSubscriptionResponse(rsp *http.Response) (*ModifyEeGroupS
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18174,21 +14894,21 @@ func ParseModifyEeGroupSubscriptionResponse(rsp *http.Response) (*ModifyEeGroupS
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18217,14 +14937,14 @@ func ParseUpdateEeGroupSubscriptionsResponse(rsp *http.Response) (*UpdateEeGroup
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18250,42 +14970,42 @@ func ParseGetSharedDataResponse(rsp *http.Response) (*GetSharedDataResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef6.SharedData
+		var dest []externalRef0.SharedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef2.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef2.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef2.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18311,42 +15031,42 @@ func ParseGetIndividualSharedDataResponse(rsp *http.Response) (*GetIndividualSha
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef6.SharedData
+		var dest externalRef0.SharedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef2.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef2.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef2.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18375,7 +15095,7 @@ func ParseRemoveMultipleSubscriptionDataSubscriptionsResponse(rsp *http.Response
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18401,14 +15121,14 @@ func ParseQuerySubsToNotifyResponse(rsp *http.Response) (*QuerySubsToNotifyRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []SubscriptionDataSubscriptions
+		var dest []externalRef0.SubscriptionDataSubscriptions
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18434,14 +15154,14 @@ func ParseSubscriptionDataSubscriptionsResponse(rsp *http.Response) (*Subscripti
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SubscriptionDataSubscriptions
+		var dest externalRef0.SubscriptionDataSubscriptions
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18470,7 +15190,7 @@ func ParseRemovesubscriptionDataSubscriptionsResponse(rsp *http.Response) (*Remo
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18496,14 +15216,14 @@ func ParseQuerySubscriptionDataSubscriptionsResponse(rsp *http.Response) (*Query
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []SubscriptionDataSubscriptions
+		var dest []externalRef0.SubscriptionDataSubscriptions
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18529,7 +15249,7 @@ func ParseModifysubscriptionDataSubscriptionResponse(rsp *http.Response) (*Modif
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18539,21 +15259,21 @@ func ParseModifysubscriptionDataSubscriptionResponse(rsp *http.Response) (*Modif
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18582,7 +15302,7 @@ func ParseDeleteAuthenticationStatusResponse(rsp *http.Response) (*DeleteAuthent
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18608,14 +15328,14 @@ func ParseQueryAuthenticationStatusResponse(rsp *http.Response) (*QueryAuthentic
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.AuthEvent
+		var dest externalRef0.AuthEvent
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18644,7 +15364,7 @@ func ParseCreateAuthenticationStatusResponse(rsp *http.Response) (*CreateAuthent
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18673,7 +15393,7 @@ func ParseDeleteIndividualAuthenticationStatusResponse(rsp *http.Response) (*Del
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18699,14 +15419,14 @@ func ParseQueryIndividualAuthenticationStatusResponse(rsp *http.Response) (*Quer
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.AuthEvent
+		var dest externalRef0.AuthEvent
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18735,7 +15455,7 @@ func ParseCreateIndividualAuthenticationStatusResponse(rsp *http.Response) (*Cre
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18761,14 +15481,14 @@ func ParseQueryAuthSubsDataResponse(rsp *http.Response) (*QueryAuthSubsDataRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthenticationSubscription
+		var dest externalRef0.AuthenticationSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18794,7 +15514,7 @@ func ParseModifyAuthenticationSubscriptionResponse(rsp *http.Response) (*ModifyA
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18804,14 +15524,14 @@ func ParseModifyAuthenticationSubscriptionResponse(rsp *http.Response) (*ModifyA
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18837,14 +15557,14 @@ func ParseQueryContextDataResponse(rsp *http.Response) (*QueryContextDataRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ContextDataSets
+		var dest externalRef0.ContextDataSets
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18870,14 +15590,14 @@ func ParseQueryAmfContext3gppResponse(rsp *http.Response) (*QueryAmfContext3gppR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18903,7 +15623,7 @@ func ParseAmfContext3gppResponse(rsp *http.Response) (*AmfContext3gppResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18913,14 +15633,14 @@ func ParseAmfContext3gppResponse(rsp *http.Response) (*AmfContext3gppResponse, e
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18946,7 +15666,7 @@ func ParseCreateAmfContext3gppResponse(rsp *http.Response) (*CreateAmfContext3gp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18956,7 +15676,7 @@ func ParseCreateAmfContext3gppResponse(rsp *http.Response) (*CreateAmfContext3gp
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -18982,14 +15702,14 @@ func ParseQueryAmfContextNon3gppResponse(rsp *http.Response) (*QueryAmfContextNo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AmfNon3GppAccessRegistration
+		var dest externalRef0.AmfNon3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19015,7 +15735,7 @@ func ParseAmfContextNon3gppResponse(rsp *http.Response) (*AmfContextNon3gppRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19025,14 +15745,14 @@ func ParseAmfContextNon3gppResponse(rsp *http.Response) (*AmfContextNon3gppRespo
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19058,7 +15778,7 @@ func ParseCreateAmfContextNon3gppResponse(rsp *http.Response) (*CreateAmfContext
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19068,7 +15788,7 @@ func ParseCreateAmfContextNon3gppResponse(rsp *http.Response) (*CreateAmfContext
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19094,14 +15814,14 @@ func ParseQueryeesubscriptionsResponse(rsp *http.Response) (*Queryeesubscription
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []EeSubscription
+		var dest []externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19127,14 +15847,14 @@ func ParseCreateEeSubscriptionsResponse(rsp *http.Response) (*CreateEeSubscripti
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest EeSubscription
+		var dest externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19163,7 +15883,7 @@ func ParseRemoveeeSubscriptionsResponse(rsp *http.Response) (*RemoveeeSubscripti
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19189,14 +15909,14 @@ func ParseQueryeeSubscriptionResponse(rsp *http.Response) (*QueryeeSubscriptionR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []EeSubscription
+		var dest []externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19222,7 +15942,7 @@ func ParseModifyEesubscriptionResponse(rsp *http.Response) (*ModifyEesubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19232,21 +15952,21 @@ func ParseModifyEesubscriptionResponse(rsp *http.Response) (*ModifyEesubscriptio
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19275,14 +15995,14 @@ func ParseUpdateEesubscriptionsResponse(rsp *http.Response) (*UpdateEesubscripti
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19311,7 +16031,7 @@ func ParseRemoveAmfSubscriptionsInfoResponse(rsp *http.Response) (*RemoveAmfSubs
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19337,14 +16057,14 @@ func ParseGetAmfSubscriptionInfoResponse(rsp *http.Response) (*GetAmfSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []AmfSubscriptionInfo
+		var dest []externalRef0.AmfSubscriptionInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19370,7 +16090,7 @@ func ParseModifyAmfSubscriptionInfoResponse(rsp *http.Response) (*ModifyAmfSubsc
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19380,14 +16100,14 @@ func ParseModifyAmfSubscriptionInfoResponse(rsp *http.Response) (*ModifyAmfSubsc
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19416,7 +16136,7 @@ func ParseCreateAMFSubscriptionsResponse(rsp *http.Response) (*CreateAMFSubscrip
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19445,7 +16165,7 @@ func ParseRemoveHssSubscriptionsInfoResponse(rsp *http.Response) (*RemoveHssSubs
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19471,14 +16191,14 @@ func ParseGetHssSubscriptionInfoResponse(rsp *http.Response) (*GetHssSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfSubscriptionInfo
+		var dest externalRef0.SmfSubscriptionInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19504,7 +16224,7 @@ func ParseModifyHssSubscriptionInfoResponse(rsp *http.Response) (*ModifyHssSubsc
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19514,14 +16234,14 @@ func ParseModifyHssSubscriptionInfoResponse(rsp *http.Response) (*ModifyHssSubsc
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19550,7 +16270,7 @@ func ParseCreateHSSSubscriptionsResponse(rsp *http.Response) (*CreateHSSSubscrip
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19579,7 +16299,7 @@ func ParseRemoveSmfSubscriptionsInfoResponse(rsp *http.Response) (*RemoveSmfSubs
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19605,14 +16325,14 @@ func ParseGetSmfSubscriptionInfoResponse(rsp *http.Response) (*GetSmfSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfSubscriptionInfo
+		var dest externalRef0.SmfSubscriptionInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19638,7 +16358,7 @@ func ParseModifySmfSubscriptionInfoResponse(rsp *http.Response) (*ModifySmfSubsc
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19648,14 +16368,14 @@ func ParseModifySmfSubscriptionInfoResponse(rsp *http.Response) (*ModifySmfSubsc
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19684,7 +16404,7 @@ func ParseCreateSMFSubscriptionsResponse(rsp *http.Response) (*CreateSMFSubscrip
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19713,7 +16433,7 @@ func ParseDeleteIpSmGwContextResponse(rsp *http.Response) (*DeleteIpSmGwContextR
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19739,14 +16459,14 @@ func ParseQueryIpSmGwContextResponse(rsp *http.Response) (*QueryIpSmGwContextRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IpSmGwRegistration
+		var dest externalRef0.IpSmGwRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19775,21 +16495,21 @@ func ParseModifyIpSmGwContextResponse(rsp *http.Response) (*ModifyIpSmGwContextR
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19818,7 +16538,7 @@ func ParseCreateIpSmGwContextResponse(rsp *http.Response) (*CreateIpSmGwContextR
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19844,14 +16564,14 @@ func ParseQueryUeLocationResponse(rsp *http.Response) (*QueryUeLocationResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LocationInfo
+		var dest externalRef0.LocationInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19880,7 +16600,7 @@ func ParseDeleteMessageWaitingDataResponse(rsp *http.Response) (*DeleteMessageWa
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19906,14 +16626,14 @@ func ParseQueryMessageWaitingDataResponse(rsp *http.Response) (*QueryMessageWait
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MessageWaitingData
+		var dest externalRef0.MessageWaitingData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19942,21 +16662,21 @@ func ParseModifyMessageWaitingDataResponse(rsp *http.Response) (*ModifyMessageWa
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -19985,7 +16705,7 @@ func ParseCreateMessageWaitingDataResponse(rsp *http.Response) (*CreateMessageWa
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20011,14 +16731,14 @@ func ParseQuerysdmsubscriptionsResponse(rsp *http.Response) (*Querysdmsubscripti
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []SdmSubscription
+		var dest []externalRef0.SdmSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20044,14 +16764,14 @@ func ParseCreateSdmSubscriptionsResponse(rsp *http.Response) (*CreateSdmSubscrip
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SdmSubscription
+		var dest externalRef0.SdmSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20080,14 +16800,14 @@ func ParseRemovesdmSubscriptionsResponse(rsp *http.Response) (*RemovesdmSubscrip
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20113,14 +16833,14 @@ func ParseQuerysdmSubscriptionResponse(rsp *http.Response) (*QuerysdmSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []SdmSubscription
+		var dest []externalRef0.SdmSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20146,7 +16866,7 @@ func ParseModifysdmSubscriptionResponse(rsp *http.Response) (*ModifysdmSubscript
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20156,21 +16876,21 @@ func ParseModifysdmSubscriptionResponse(rsp *http.Response) (*ModifysdmSubscript
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20199,14 +16919,14 @@ func ParseUpdatesdmsubscriptionsResponse(rsp *http.Response) (*Updatesdmsubscrip
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20235,7 +16955,7 @@ func ParseRemoveHssSDMSubscriptionsInfoResponse(rsp *http.Response) (*RemoveHssS
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20261,14 +16981,14 @@ func ParseGetHssSDMSubscriptionInfoResponse(rsp *http.Response) (*GetHssSDMSubsc
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfSubscriptionInfo
+		var dest externalRef0.SmfSubscriptionInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20294,7 +17014,7 @@ func ParseModifyHssSDMSubscriptionInfoResponse(rsp *http.Response) (*ModifyHssSD
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20304,14 +17024,14 @@ func ParseModifyHssSDMSubscriptionInfoResponse(rsp *http.Response) (*ModifyHssSD
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20340,7 +17060,7 @@ func ParseCreateHSSSDMSubscriptionsResponse(rsp *http.Response) (*CreateHSSSDMSu
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20366,14 +17086,14 @@ func ParseQuerySmfRegListResponse(rsp *http.Response) (*QuerySmfRegListResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfRegList
+		var dest externalRef0.SmfRegList
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20402,7 +17122,7 @@ func ParseDeleteSmfRegistrationResponse(rsp *http.Response) (*DeleteSmfRegistrat
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20428,14 +17148,14 @@ func ParseQuerySmfRegistrationResponse(rsp *http.Response) (*QuerySmfRegistratio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfRegistration
+		var dest externalRef0.SmfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20461,7 +17181,7 @@ func ParseCreateOrUpdateSmfRegistrationResponse(rsp *http.Response) (*CreateOrUp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SmfRegistration
+		var dest externalRef0.SmfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20471,7 +17191,7 @@ func ParseCreateOrUpdateSmfRegistrationResponse(rsp *http.Response) (*CreateOrUp
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20500,7 +17220,7 @@ func ParseDeleteSmsfContext3gppResponse(rsp *http.Response) (*DeleteSmsfContext3
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20526,14 +17246,14 @@ func ParseQuerySmsfContext3gppResponse(rsp *http.Response) (*QuerySmsfContext3gp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20559,7 +17279,7 @@ func ParseCreateSmsfContext3gppResponse(rsp *http.Response) (*CreateSmsfContext3
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20569,7 +17289,7 @@ func ParseCreateSmsfContext3gppResponse(rsp *http.Response) (*CreateSmsfContext3
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20598,7 +17318,7 @@ func ParseDeleteSmsfContextNon3gppResponse(rsp *http.Response) (*DeleteSmsfConte
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20624,14 +17344,14 @@ func ParseQuerySmsfContextNon3gppResponse(rsp *http.Response) (*QuerySmsfContext
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20657,7 +17377,7 @@ func ParseCreateSmsfContextNon3gppResponse(rsp *http.Response) (*CreateSmsfConte
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20667,7 +17387,7 @@ func ParseCreateSmsfContextNon3gppResponse(rsp *http.Response) (*CreateSmsfConte
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20693,14 +17413,14 @@ func ParseQueryCoverageRestrictionDataResponse(rsp *http.Response) (*QueryCovera
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest EnhancedCoverageRestrictionData
+		var dest externalRef0.EnhancedCoverageRestrictionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20726,14 +17446,14 @@ func ParseQueryEEDataResponse(rsp *http.Response) (*QueryEEDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest EeProfileData
+		var dest externalRef0.EeProfileData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20759,14 +17479,14 @@ func ParseGetIdentityDataResponse(rsp *http.Response) (*GetIdentityDataResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IdentityData
+		var dest externalRef0.IdentityData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20792,14 +17512,14 @@ func ParseQueryLcsMoDataResponse(rsp *http.Response) (*QueryLcsMoDataResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LcsMoData
+		var dest externalRef0.LcsMoData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20825,14 +17545,14 @@ func ParseQueryLcsPrivacyDataResponse(rsp *http.Response) (*QueryLcsPrivacyDataR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LcsPrivacyData
+		var dest externalRef0.LcsPrivacyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20858,14 +17578,14 @@ func ParseGetNiddAuDataResponse(rsp *http.Response) (*GetNiddAuDataResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthorizationData
+		var dest externalRef0.AuthorizationData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20891,14 +17611,14 @@ func ParseGetOdbDataResponse(rsp *http.Response) (*GetOdbDataResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.OdbData
+		var dest externalRef0.OdbData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20924,14 +17644,14 @@ func ParseQueryOperSpecDataResponse(rsp *http.Response) (*QueryOperSpecDataRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]OperatorSpecificDataContainer
+		var dest map[string]externalRef0.OperatorSpecificDataContainer
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20957,7 +17677,7 @@ func ParseModifyOperSpecDataResponse(rsp *http.Response) (*ModifyOperSpecDataRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -20967,14 +17687,14 @@ func ParseModifyOperSpecDataResponse(rsp *http.Response) (*ModifyOperSpecDataRes
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21000,21 +17720,21 @@ func ParseGetppDataResponse(rsp *http.Response) (*GetppDataResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PpData
+		var dest externalRef0.PpData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21040,7 +17760,7 @@ func ParseModifyPpDataResponse(rsp *http.Response) (*ModifyPpDataResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21050,14 +17770,14 @@ func ParseModifyPpDataResponse(rsp *http.Response) (*ModifyPpDataResponse, error
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21083,14 +17803,14 @@ func ParseQueryPPDataResponse(rsp *http.Response) (*QueryPPDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PpProfileData
+		var dest externalRef0.PpProfileData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21116,14 +17836,14 @@ func ParseQueryAuthSoRResponse(rsp *http.Response) (*QueryAuthSoRResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SorData
+		var dest externalRef0.SorData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21152,7 +17872,7 @@ func ParseCreateAuthenticationSoRResponse(rsp *http.Response) (*CreateAuthentica
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21178,14 +17898,14 @@ func ParseQueryCagAckResponse(rsp *http.Response) (*QueryCagAckResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CagAckData
+		var dest externalRef0.CagAckData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21214,7 +17934,7 @@ func ParseCreateCagUpdateAckResponse(rsp *http.Response) (*CreateCagUpdateAckRes
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21240,14 +17960,14 @@ func ParseQueryNssaiAckResponse(rsp *http.Response) (*QueryNssaiAckResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest NssaiAckData
+		var dest externalRef0.NssaiAckData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21276,7 +17996,7 @@ func ParseCreateOrUpdateNssaiAckResponse(rsp *http.Response) (*CreateOrUpdateNss
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21302,14 +18022,14 @@ func ParseQueryAuthUPUResponse(rsp *http.Response) (*QueryAuthUPUResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UpuData
+		var dest externalRef0.UpuData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21338,7 +18058,7 @@ func ParseCreateAuthenticationUPUResponse(rsp *http.Response) (*CreateAuthentica
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21364,14 +18084,14 @@ func ParseQueryV2xDataResponse(rsp *http.Response) (*QueryV2xDataResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest V2xSubscriptionData
+		var dest externalRef0.V2xSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21397,14 +18117,14 @@ func ParseQueryProvisionedDataResponse(rsp *http.Response) (*QueryProvisionedDat
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProvisionedDataSets
+		var dest externalRef0.ProvisionedDataSets
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21430,14 +18150,14 @@ func ParseQueryAmDataResponse(rsp *http.Response) (*QueryAmDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AccessAndMobilitySubscriptionData
+		var dest externalRef0.AccessAndMobilitySubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21463,14 +18183,14 @@ func ParseQueryLcsBcaDataResponse(rsp *http.Response) (*QueryLcsBcaDataResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LcsBroadcastAssistanceTypesData
+		var dest externalRef0.LcsBroadcastAssistanceTypesData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21496,14 +18216,14 @@ func ParseQuerySmDataResponse(rsp *http.Response) (*QuerySmDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []SessionManagementSubscriptionData
+		var dest []externalRef0.SessionManagementSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21529,14 +18249,14 @@ func ParseQuerySmfSelectDataResponse(rsp *http.Response) (*QuerySmfSelectDataRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmfSelectionSubscriptionData
+		var dest externalRef0.SmfSelectionSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21562,14 +18282,14 @@ func ParseQuerySmsDataResponse(rsp *http.Response) (*QuerySmsDataResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmsSubscriptionData
+		var dest externalRef0.SmsSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21595,14 +18315,14 @@ func ParseQuerySmsMngDataResponse(rsp *http.Response) (*QuerySmsMngDataResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SmsManagementSubscriptionData
+		var dest externalRef0.SmsManagementSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21628,14 +18348,14 @@ func ParseQueryTraceDataResponse(rsp *http.Response) (*QueryTraceDataResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.TraceData
+		var dest externalRef0.TraceData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef2.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -21659,46 +18379,46 @@ type ServerInterface interface {
 	Query5GVNGroupPPData(c *gin.Context, params Query5GVNGroupPPDataParams)
 	// Deletes the 5GVnGroup
 	// (DELETE /subscription-data/group-data/5g-vn-groups/{externalGroupId})
-	Delete5GVnGroup(c *gin.Context, externalGroupId externalRef6.ExtGroupId)
+	Delete5GVnGroup(c *gin.Context, externalGroupId externalRef0.ExtGroupId)
 	// Retrieve a 5GVnGroup configuration
 	// (GET /subscription-data/group-data/5g-vn-groups/{externalGroupId})
-	Get5GVnGroupConfiguration(c *gin.Context, externalGroupId externalRef6.ExtGroupId)
+	Get5GVnGroupConfiguration(c *gin.Context, externalGroupId externalRef0.ExtGroupId)
 	// modify the 5GVnGroup
 	// (PATCH /subscription-data/group-data/5g-vn-groups/{externalGroupId})
-	Modify5GVnGroup(c *gin.Context, externalGroupId externalRef6.ExtGroupId, params Modify5GVnGroupParams)
+	Modify5GVnGroup(c *gin.Context, externalGroupId externalRef0.ExtGroupId, params Modify5GVnGroupParams)
 	// Create an individual 5G VN Grouop
 	// (PUT /subscription-data/group-data/5g-vn-groups/{externalGroupId})
-	Create5GVnGroup(c *gin.Context, externalGroupId externalRef6.ExtGroupId)
+	Create5GVnGroup(c *gin.Context, externalGroupId externalRef0.ExtGroupId)
 	// Mapping of Group Identifiers
 	// (GET /subscription-data/group-data/group-identifiers)
 	GetGroupIdentifiers(c *gin.Context, params GetGroupIdentifiersParams)
 	// Retrieves the ee profile data profile data of a group or anyUE
 	// (GET /subscription-data/group-data/{ueGroupId}/ee-profile-data)
-	QueryGroupEEData(c *gin.Context, ueGroupId VarUeGroupId, params QueryGroupEEDataParams)
+	QueryGroupEEData(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, params QueryGroupEEDataParams)
 	// Retrieves the ee subscriptions of a group of UEs or any UE
 	// (GET /subscription-data/group-data/{ueGroupId}/ee-subscriptions)
-	QueryEeGroupSubscriptions(c *gin.Context, ueGroupId VarUeGroupId, params QueryEeGroupSubscriptionsParams)
+	QueryEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, params QueryEeGroupSubscriptionsParams)
 	// Create individual EE subscription for a group of UEs or any UE
 	// (POST /subscription-data/group-data/{ueGroupId}/ee-subscriptions)
-	CreateEeGroupSubscriptions(c *gin.Context, ueGroupId VarUeGroupId)
+	CreateEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef0.VarUeGroupId)
 	// Deletes a eeSubscription for a group of UEs or any UE
 	// (DELETE /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId})
-	RemoveEeGroupSubscriptions(c *gin.Context, ueGroupId VarUeGroupId, subsId string)
+	RemoveEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string)
 	// Retrieve a individual eeSubscription for a group of UEs or any UE
 	// (GET /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId})
-	QueryEeGroupSubscription(c *gin.Context, ueGroupId VarUeGroupId, subsId string)
+	QueryEeGroupSubscription(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string)
 	// Modify an individual ee subscription for a group of a UEs
 	// (PATCH /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId})
-	ModifyEeGroupSubscription(c *gin.Context, ueGroupId VarUeGroupId, subsId string, params ModifyEeGroupSubscriptionParams)
+	ModifyEeGroupSubscription(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params ModifyEeGroupSubscriptionParams)
 	// Update an individual ee subscription of a group of UEs or any UE
 	// (PUT /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId})
-	UpdateEeGroupSubscriptions(c *gin.Context, ueGroupId VarUeGroupId, subsId string)
+	UpdateEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string)
 	// retrieve shared data
 	// (GET /subscription-data/shared-data)
 	GetSharedData(c *gin.Context, params GetSharedDataParams)
 	// retrieve individual shared data
 	// (GET /subscription-data/shared-data/{sharedDataId})
-	GetIndividualSharedData(c *gin.Context, sharedDataId externalRef6.SharedDataId, params GetIndividualSharedDataParams)
+	GetIndividualSharedData(c *gin.Context, sharedDataId externalRef0.SharedDataId, params GetIndividualSharedDataParams)
 	// Deletes subscriptions identified by a given ue-id parameter
 	// (DELETE /subscription-data/subs-to-notify)
 	RemoveMultipleSubscriptionDataSubscriptions(c *gin.Context, params RemoveMultipleSubscriptionDataSubscriptionsParams)
@@ -21719,277 +18439,277 @@ type ServerInterface interface {
 	ModifysubscriptionDataSubscription(c *gin.Context, subsId string, params ModifysubscriptionDataSubscriptionParams)
 	// To remove the Authentication Status of a UE
 	// (DELETE /subscription-data/{ueId}/authentication-data/authentication-status)
-	DeleteAuthenticationStatus(c *gin.Context, ueId externalRef2.Supi)
+	DeleteAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi)
 	// Retrieves the Authentication Status of a UE
 	// (GET /subscription-data/{ueId}/authentication-data/authentication-status)
-	QueryAuthenticationStatus(c *gin.Context, ueId externalRef2.Supi, params QueryAuthenticationStatusParams)
+	QueryAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, params QueryAuthenticationStatusParams)
 	// To store the Authentication Status data of a UE
 	// (PUT /subscription-data/{ueId}/authentication-data/authentication-status)
-	CreateAuthenticationStatus(c *gin.Context, ueId externalRef2.Supi)
+	CreateAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi)
 	// To remove the Individual Authentication Status of a UE
 	// (DELETE /subscription-data/{ueId}/authentication-data/authentication-status/{servingNetworkName})
-	DeleteIndividualAuthenticationStatus(c *gin.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName)
+	DeleteIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName)
 	// Retrieves the Individual Authentication Status of a UE
 	// (GET /subscription-data/{ueId}/authentication-data/authentication-status/{servingNetworkName})
-	QueryIndividualAuthenticationStatus(c *gin.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, params QueryIndividualAuthenticationStatusParams)
+	QueryIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params QueryIndividualAuthenticationStatusParams)
 	// To store the individual Authentication Status data of a UE
 	// (PUT /subscription-data/{ueId}/authentication-data/authentication-status/{servingNetworkName})
-	CreateIndividualAuthenticationStatus(c *gin.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName)
+	CreateIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName)
 	// Retrieves the authentication subscription data of a UE
 	// (GET /subscription-data/{ueId}/authentication-data/authentication-subscription)
-	QueryAuthSubsData(c *gin.Context, ueId externalRef2.Supi, params QueryAuthSubsDataParams)
+	QueryAuthSubsData(c *gin.Context, ueId externalRef0.Supi, params QueryAuthSubsDataParams)
 	// modify the authentication subscription data of a UE
 	// (PATCH /subscription-data/{ueId}/authentication-data/authentication-subscription)
-	ModifyAuthenticationSubscription(c *gin.Context, ueId externalRef2.Supi, params ModifyAuthenticationSubscriptionParams)
+	ModifyAuthenticationSubscription(c *gin.Context, ueId externalRef0.Supi, params ModifyAuthenticationSubscriptionParams)
 	// Retrieve multiple context data sets of a UE
 	// (GET /subscription-data/{ueId}/context-data)
-	QueryContextData(c *gin.Context, ueId externalRef2.VarUeId, params QueryContextDataParams)
+	QueryContextData(c *gin.Context, ueId externalRef0.VarUeId, params QueryContextDataParams)
 	// Retrieves the AMF context data of a UE using 3gpp access
 	// (GET /subscription-data/{ueId}/context-data/amf-3gpp-access)
-	QueryAmfContext3gpp(c *gin.Context, ueId externalRef2.VarUeId, params QueryAmfContext3gppParams)
+	QueryAmfContext3gpp(c *gin.Context, ueId externalRef0.VarUeId, params QueryAmfContext3gppParams)
 	// To modify the AMF context data of a UE using 3gpp access in the UDR
 	// (PATCH /subscription-data/{ueId}/context-data/amf-3gpp-access)
-	AmfContext3gpp(c *gin.Context, ueId externalRef2.VarUeId, params AmfContext3gppParams)
+	AmfContext3gpp(c *gin.Context, ueId externalRef0.VarUeId, params AmfContext3gppParams)
 	// To store the AMF context data of a UE using 3gpp access in the UDR
 	// (PUT /subscription-data/{ueId}/context-data/amf-3gpp-access)
-	CreateAmfContext3gpp(c *gin.Context, ueId externalRef2.VarUeId)
+	CreateAmfContext3gpp(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the AMF context data of a UE using non-3gpp access
 	// (GET /subscription-data/{ueId}/context-data/amf-non-3gpp-access)
-	QueryAmfContextNon3gpp(c *gin.Context, ueId externalRef2.VarUeId, params QueryAmfContextNon3gppParams)
+	QueryAmfContextNon3gpp(c *gin.Context, ueId externalRef0.VarUeId, params QueryAmfContextNon3gppParams)
 	// To modify the AMF context data of a UE using non 3gpp access in the UDR
 	// (PATCH /subscription-data/{ueId}/context-data/amf-non-3gpp-access)
-	AmfContextNon3gpp(c *gin.Context, ueId externalRef2.VarUeId, params AmfContextNon3gppParams)
+	AmfContextNon3gpp(c *gin.Context, ueId externalRef0.VarUeId, params AmfContextNon3gppParams)
 	// To store the AMF context data of a UE using non-3gpp access in the UDR
 	// (PUT /subscription-data/{ueId}/context-data/amf-non-3gpp-access)
-	CreateAmfContextNon3gpp(c *gin.Context, ueId externalRef2.VarUeId)
+	CreateAmfContextNon3gpp(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the ee subscriptions of a UE
 	// (GET /subscription-data/{ueId}/context-data/ee-subscriptions)
-	Queryeesubscriptions(c *gin.Context, ueId externalRef2.VarUeId, params QueryeesubscriptionsParams)
+	Queryeesubscriptions(c *gin.Context, ueId externalRef0.VarUeId, params QueryeesubscriptionsParams)
 	// Create individual EE subscription
 	// (POST /subscription-data/{ueId}/context-data/ee-subscriptions)
-	CreateEeSubscriptions(c *gin.Context, ueId externalRef2.VarUeId)
+	CreateEeSubscriptions(c *gin.Context, ueId externalRef0.VarUeId)
 	// Deletes a eeSubscription
 	// (DELETE /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId})
-	RemoveeeSubscriptions(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	RemoveeeSubscriptions(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Retrieve a eeSubscription
 	// (GET /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId})
-	QueryeeSubscription(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	QueryeeSubscription(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Modify an individual ee subscription of a UE
 	// (PATCH /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId})
-	ModifyEesubscription(c *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifyEesubscriptionParams)
+	ModifyEesubscription(c *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifyEesubscriptionParams)
 	// Update an individual ee subscriptions of a UE
 	// (PUT /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId})
-	UpdateEesubscriptions(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	UpdateEesubscriptions(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Deletes AMF Subscription Info for an eeSubscription
 	// (DELETE /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/amf-subscriptions)
-	RemoveAmfSubscriptionsInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	RemoveAmfSubscriptionsInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Retrieve AMF subscription Info
 	// (GET /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/amf-subscriptions)
-	GetAmfSubscriptionInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	GetAmfSubscriptionInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// modify the AMF Subscription Info
 	// (PATCH /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/amf-subscriptions)
-	ModifyAmfSubscriptionInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifyAmfSubscriptionInfoParams)
+	ModifyAmfSubscriptionInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifyAmfSubscriptionInfoParams)
 	// Create AmfSubscriptions for an individual ee subscriptions of a UE
 	// (PUT /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/amf-subscriptions)
-	CreateAMFSubscriptions(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	CreateAMFSubscriptions(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Delete HSS Subscription Info
 	// (DELETE /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/hss-subscriptions)
-	RemoveHssSubscriptionsInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	RemoveHssSubscriptionsInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Retrieve HSS Subscription Info
 	// (GET /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/hss-subscriptions)
-	GetHssSubscriptionInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	GetHssSubscriptionInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Modify HSS Subscription Info
 	// (PATCH /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/hss-subscriptions)
-	ModifyHssSubscriptionInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifyHssSubscriptionInfoParams)
+	ModifyHssSubscriptionInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifyHssSubscriptionInfoParams)
 	// Create HSS Subscription Info
 	// (PUT /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/hss-subscriptions)
-	CreateHSSSubscriptions(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	CreateHSSSubscriptions(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Delete SMF Subscription Info
 	// (DELETE /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/smf-subscriptions)
-	RemoveSmfSubscriptionsInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	RemoveSmfSubscriptionsInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Retrieve SMF Subscription Info
 	// (GET /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/smf-subscriptions)
-	GetSmfSubscriptionInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	GetSmfSubscriptionInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Modify SMF Subscription Info
 	// (PATCH /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/smf-subscriptions)
-	ModifySmfSubscriptionInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifySmfSubscriptionInfoParams)
+	ModifySmfSubscriptionInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifySmfSubscriptionInfoParams)
 	// Create SMF Subscription Info
 	// (PUT /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/smf-subscriptions)
-	CreateSMFSubscriptions(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	CreateSMFSubscriptions(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// To remove the IP-SM-GW context data of a UE
 	// (DELETE /subscription-data/{ueId}/context-data/ip-sm-gw)
-	DeleteIpSmGwContext(c *gin.Context, ueId externalRef2.VarUeId)
+	DeleteIpSmGwContext(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the IP-SM-GW context data of a UE
 	// (GET /subscription-data/{ueId}/context-data/ip-sm-gw)
-	QueryIpSmGwContext(c *gin.Context, ueId externalRef2.VarUeId, params QueryIpSmGwContextParams)
+	QueryIpSmGwContext(c *gin.Context, ueId externalRef0.VarUeId, params QueryIpSmGwContextParams)
 	// Modify the IP-SM-GW context data of a UE
 	// (PATCH /subscription-data/{ueId}/context-data/ip-sm-gw)
-	ModifyIpSmGwContext(c *gin.Context, ueId externalRef2.VarUeId)
+	ModifyIpSmGwContext(c *gin.Context, ueId externalRef0.VarUeId)
 	// Create the IP-SM-GW context data of a UE
 	// (PUT /subscription-data/{ueId}/context-data/ip-sm-gw)
-	CreateIpSmGwContext(c *gin.Context, ueId externalRef2.VarUeId)
+	CreateIpSmGwContext(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the UE's Location Information
 	// (GET /subscription-data/{ueId}/context-data/location)
-	QueryUeLocation(c *gin.Context, ueId externalRef2.VarUeId, params QueryUeLocationParams)
+	QueryUeLocation(c *gin.Context, ueId externalRef0.VarUeId, params QueryUeLocationParams)
 	// To remove the Message Waiting Data of the UE
 	// (DELETE /subscription-data/{ueId}/context-data/mwd)
-	DeleteMessageWaitingData(c *gin.Context, ueId externalRef2.VarUeId)
+	DeleteMessageWaitingData(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the Message Waiting Data of the UE
 	// (GET /subscription-data/{ueId}/context-data/mwd)
-	QueryMessageWaitingData(c *gin.Context, ueId externalRef2.VarUeId, params QueryMessageWaitingDataParams)
+	QueryMessageWaitingData(c *gin.Context, ueId externalRef0.VarUeId, params QueryMessageWaitingDataParams)
 	// Modify the Message Waiting Data of the UE
 	// (PATCH /subscription-data/{ueId}/context-data/mwd)
-	ModifyMessageWaitingData(c *gin.Context, ueId externalRef2.VarUeId)
+	ModifyMessageWaitingData(c *gin.Context, ueId externalRef0.VarUeId)
 	// Create the Message Waiting Data of the UE
 	// (PUT /subscription-data/{ueId}/context-data/mwd)
-	CreateMessageWaitingData(c *gin.Context, ueId externalRef2.VarUeId)
+	CreateMessageWaitingData(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the sdm subscriptions of a UE
 	// (GET /subscription-data/{ueId}/context-data/sdm-subscriptions)
-	Querysdmsubscriptions(c *gin.Context, ueId externalRef2.VarUeId, params QuerysdmsubscriptionsParams)
+	Querysdmsubscriptions(c *gin.Context, ueId externalRef0.VarUeId, params QuerysdmsubscriptionsParams)
 	// Create individual sdm subscription
 	// (POST /subscription-data/{ueId}/context-data/sdm-subscriptions)
-	CreateSdmSubscriptions(c *gin.Context, ueId externalRef2.VarUeId)
+	CreateSdmSubscriptions(c *gin.Context, ueId externalRef0.VarUeId)
 	// Deletes a sdmsubscriptions
 	// (DELETE /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId})
-	RemovesdmSubscriptions(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	RemovesdmSubscriptions(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Retrieves a individual sdmSubscription identified by subsId
 	// (GET /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId})
-	QuerysdmSubscription(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	QuerysdmSubscription(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Modify an individual sdm subscription
 	// (PATCH /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId})
-	ModifysdmSubscription(c *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifysdmSubscriptionParams)
+	ModifysdmSubscription(c *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifysdmSubscriptionParams)
 	// Update an individual sdm subscriptions of a UE
 	// (PUT /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId})
-	Updatesdmsubscriptions(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	Updatesdmsubscriptions(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Delete HSS SDM Subscription Info
 	// (DELETE /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId}/hss-sdm-subscriptions)
-	RemoveHssSDMSubscriptionsInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	RemoveHssSDMSubscriptionsInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Retrieve HSS SDM Subscription Info
 	// (GET /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId}/hss-sdm-subscriptions)
-	GetHssSDMSubscriptionInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	GetHssSDMSubscriptionInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Modify HSS SDM Subscription Info
 	// (PATCH /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId}/hss-sdm-subscriptions)
-	ModifyHssSDMSubscriptionInfo(c *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifyHssSDMSubscriptionInfoParams)
+	ModifyHssSDMSubscriptionInfo(c *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifyHssSDMSubscriptionInfoParams)
 	// Create HSS SDM Subscription Info
 	// (PUT /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId}/hss-sdm-subscriptions)
-	CreateHSSSDMSubscriptions(c *gin.Context, ueId externalRef2.VarUeId, subsId string)
+	CreateHSSSDMSubscriptions(c *gin.Context, ueId externalRef0.VarUeId, subsId string)
 	// Retrieves the SMF registration list of a UE
 	// (GET /subscription-data/{ueId}/context-data/smf-registrations)
-	QuerySmfRegList(c *gin.Context, ueId externalRef2.VarUeId, params QuerySmfRegListParams)
+	QuerySmfRegList(c *gin.Context, ueId externalRef0.VarUeId, params QuerySmfRegListParams)
 	// To remove an individual SMF context data of a UE the UDR
 	// (DELETE /subscription-data/{ueId}/context-data/smf-registrations/{pduSessionId})
-	DeleteSmfRegistration(c *gin.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId)
+	DeleteSmfRegistration(c *gin.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId)
 	// Retrieves the individual SMF registration of a UE
 	// (GET /subscription-data/{ueId}/context-data/smf-registrations/{pduSessionId})
-	QuerySmfRegistration(c *gin.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, params QuerySmfRegistrationParams)
+	QuerySmfRegistration(c *gin.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, params QuerySmfRegistrationParams)
 	// To create an individual SMF context data of a UE in the UDR
 	// (PUT /subscription-data/{ueId}/context-data/smf-registrations/{pduSessionId})
-	CreateOrUpdateSmfRegistration(c *gin.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId)
+	CreateOrUpdateSmfRegistration(c *gin.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId)
 	// To remove the SMSF context data of a UE via 3GPP access
 	// (DELETE /subscription-data/{ueId}/context-data/smsf-3gpp-access)
-	DeleteSmsfContext3gpp(c *gin.Context, ueId externalRef2.VarUeId)
+	DeleteSmsfContext3gpp(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the SMSF context data of a UE using 3gpp access
 	// (GET /subscription-data/{ueId}/context-data/smsf-3gpp-access)
-	QuerySmsfContext3gpp(c *gin.Context, ueId externalRef2.VarUeId, params QuerySmsfContext3gppParams)
+	QuerySmsfContext3gpp(c *gin.Context, ueId externalRef0.VarUeId, params QuerySmsfContext3gppParams)
 	// Create the SMSF context data of a UE via 3GPP access
 	// (PUT /subscription-data/{ueId}/context-data/smsf-3gpp-access)
-	CreateSmsfContext3gpp(c *gin.Context, ueId externalRef2.VarUeId)
+	CreateSmsfContext3gpp(c *gin.Context, ueId externalRef0.VarUeId)
 	// To remove the SMSF context data of a UE via non-3GPP access
 	// (DELETE /subscription-data/{ueId}/context-data/smsf-non-3gpp-access)
-	DeleteSmsfContextNon3gpp(c *gin.Context, ueId externalRef2.VarUeId)
+	DeleteSmsfContextNon3gpp(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the SMSF context data of a UE using non-3gpp access
 	// (GET /subscription-data/{ueId}/context-data/smsf-non-3gpp-access)
-	QuerySmsfContextNon3gpp(c *gin.Context, ueId externalRef2.VarUeId, params QuerySmsfContextNon3gppParams)
+	QuerySmsfContextNon3gpp(c *gin.Context, ueId externalRef0.VarUeId, params QuerySmsfContextNon3gppParams)
 	// Create the SMSF context data of a UE via non-3GPP access
 	// (PUT /subscription-data/{ueId}/context-data/smsf-non-3gpp-access)
-	CreateSmsfContextNon3gpp(c *gin.Context, ueId externalRef2.VarUeId)
+	CreateSmsfContextNon3gpp(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the subscribed enhanced Coverage Restriction Data of a UE
 	// (GET /subscription-data/{ueId}/coverage-restriction-data)
-	QueryCoverageRestrictionData(c *gin.Context, ueId externalRef2.VarUeId, params QueryCoverageRestrictionDataParams)
+	QueryCoverageRestrictionData(c *gin.Context, ueId externalRef0.VarUeId, params QueryCoverageRestrictionDataParams)
 	// Retrieves the ee profile data of a UE
 	// (GET /subscription-data/{ueId}/ee-profile-data)
-	QueryEEData(c *gin.Context, ueId externalRef2.VarUeId, params QueryEEDataParams)
+	QueryEEData(c *gin.Context, ueId externalRef0.VarUeId, params QueryEEDataParams)
 	// Retrieve identity data by SUPI or GPSI
 	// (GET /subscription-data/{ueId}/identity-data)
-	GetIdentityData(c *gin.Context, ueId externalRef2.VarUeId, params GetIdentityDataParams)
+	GetIdentityData(c *gin.Context, ueId externalRef0.VarUeId, params GetIdentityDataParams)
 	// Retrieves the LCS Mobile Originated subscription data of a UE
 	// (GET /subscription-data/{ueId}/lcs-mo-data)
-	QueryLcsMoData(c *gin.Context, ueId externalRef2.VarUeId, params QueryLcsMoDataParams)
+	QueryLcsMoData(c *gin.Context, ueId externalRef0.VarUeId, params QueryLcsMoDataParams)
 	// Retrieves the LCS Privacy subscription data of a UE
 	// (GET /subscription-data/{ueId}/lcs-privacy-data)
-	QueryLcsPrivacyData(c *gin.Context, ueId externalRef2.VarUeId, params QueryLcsPrivacyDataParams)
+	QueryLcsPrivacyData(c *gin.Context, ueId externalRef0.VarUeId, params QueryLcsPrivacyDataParams)
 	// Retrieve NIDD Authorization Data GPSI or External Group identifier
 	// (GET /subscription-data/{ueId}/nidd-authorization-data)
 	GetNiddAuData(c *gin.Context, ueId string, params GetNiddAuDataParams)
 	// Retrieve ODB Data data by SUPI or GPSI
 	// (GET /subscription-data/{ueId}/operator-determined-barring-data)
-	GetOdbData(c *gin.Context, ueId externalRef2.VarUeId)
+	GetOdbData(c *gin.Context, ueId externalRef0.VarUeId)
 	// Retrieves the operator specific data of a UE
 	// (GET /subscription-data/{ueId}/operator-specific-data)
-	QueryOperSpecData(c *gin.Context, ueId externalRef2.VarUeId, params QueryOperSpecDataParams)
+	QueryOperSpecData(c *gin.Context, ueId externalRef0.VarUeId, params QueryOperSpecDataParams)
 	// To modify operator specific data of a UE
 	// (PATCH /subscription-data/{ueId}/operator-specific-data)
-	ModifyOperSpecData(c *gin.Context, ueId externalRef2.VarUeId, params ModifyOperSpecDataParams)
+	ModifyOperSpecData(c *gin.Context, ueId externalRef0.VarUeId, params ModifyOperSpecDataParams)
 	// Read the profile of a given UE
 	// (GET /subscription-data/{ueId}/pp-data)
-	GetppData(c *gin.Context, ueId externalRef2.VarUeId, params GetppDataParams)
+	GetppData(c *gin.Context, ueId externalRef0.VarUeId, params GetppDataParams)
 	// modify the provisioned parameter data
 	// (PATCH /subscription-data/{ueId}/pp-data)
-	ModifyPpData(c *gin.Context, ueId externalRef2.VarUeId, params ModifyPpDataParams)
+	ModifyPpData(c *gin.Context, ueId externalRef0.VarUeId, params ModifyPpDataParams)
 	// Retrieves the parameter provision profile data of a UE
 	// (GET /subscription-data/{ueId}/pp-profile-data)
-	QueryPPData(c *gin.Context, ueId externalRef2.VarUeId, params QueryPPDataParams)
+	QueryPPData(c *gin.Context, ueId externalRef0.VarUeId, params QueryPPDataParams)
 	// Retrieves the SoR acknowledgement information of a UE
 	// (GET /subscription-data/{ueId}/ue-update-confirmation-data/sor-data)
-	QueryAuthSoR(c *gin.Context, ueId externalRef2.Supi, params QueryAuthSoRParams)
+	QueryAuthSoR(c *gin.Context, ueId externalRef0.Supi, params QueryAuthSoRParams)
 	// To store the SoR acknowledgement information of a UE
 	// (PUT /subscription-data/{ueId}/ue-update-confirmation-data/sor-data)
-	CreateAuthenticationSoR(c *gin.Context, ueId externalRef2.Supi, params CreateAuthenticationSoRParams)
+	CreateAuthenticationSoR(c *gin.Context, ueId externalRef0.Supi, params CreateAuthenticationSoRParams)
 	// Retrieves the CAG acknowledgement information of a UE
 	// (GET /subscription-data/{ueId}/ue-update-confirmation-data/subscribed-cag)
-	QueryCagAck(c *gin.Context, ueId externalRef2.Supi, params QueryCagAckParams)
+	QueryCagAck(c *gin.Context, ueId externalRef0.Supi, params QueryCagAckParams)
 	// To store the CAG update acknowledgement information of a UE
 	// (PUT /subscription-data/{ueId}/ue-update-confirmation-data/subscribed-cag)
-	CreateCagUpdateAck(c *gin.Context, ueId externalRef2.Supi, params CreateCagUpdateAckParams)
+	CreateCagUpdateAck(c *gin.Context, ueId externalRef0.Supi, params CreateCagUpdateAckParams)
 	// Retrieves the UPU acknowledgement information of a UE
 	// (GET /subscription-data/{ueId}/ue-update-confirmation-data/subscribed-snssais)
-	QueryNssaiAck(c *gin.Context, ueId externalRef2.Supi, params QueryNssaiAckParams)
+	QueryNssaiAck(c *gin.Context, ueId externalRef0.Supi, params QueryNssaiAckParams)
 	// To store the NSSAI update acknowledgement information of a UE
 	// (PUT /subscription-data/{ueId}/ue-update-confirmation-data/subscribed-snssais)
-	CreateOrUpdateNssaiAck(c *gin.Context, ueId externalRef2.Supi, params CreateOrUpdateNssaiAckParams)
+	CreateOrUpdateNssaiAck(c *gin.Context, ueId externalRef0.Supi, params CreateOrUpdateNssaiAckParams)
 	// Retrieves the UPU acknowledgement information of a UE
 	// (GET /subscription-data/{ueId}/ue-update-confirmation-data/upu-data)
-	QueryAuthUPU(c *gin.Context, ueId externalRef2.Supi, params QueryAuthUPUParams)
+	QueryAuthUPU(c *gin.Context, ueId externalRef0.Supi, params QueryAuthUPUParams)
 	// To store the UPU acknowledgement information of a UE
 	// (PUT /subscription-data/{ueId}/ue-update-confirmation-data/upu-data)
-	CreateAuthenticationUPU(c *gin.Context, ueId externalRef2.Supi, params CreateAuthenticationUPUParams)
+	CreateAuthenticationUPU(c *gin.Context, ueId externalRef0.Supi, params CreateAuthenticationUPUParams)
 	// Retrieves the subscribed V2X Data of a UE
 	// (GET /subscription-data/{ueId}/v2x-data)
-	QueryV2xData(c *gin.Context, ueId externalRef2.VarUeId, params QueryV2xDataParams)
+	QueryV2xData(c *gin.Context, ueId externalRef0.VarUeId, params QueryV2xDataParams)
 	// Retrieve multiple provisioned data sets of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data)
-	QueryProvisionedData(c *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QueryProvisionedDataParams)
+	QueryProvisionedData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryProvisionedDataParams)
 	// Retrieves the access and mobility subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/am-data)
-	QueryAmData(c *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QueryAmDataParams)
+	QueryAmData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryAmDataParams)
 	// Retrieves the LCS Broadcast Assistance subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/lcs-bca-data)
-	QueryLcsBcaData(c *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QueryLcsBcaDataParams)
+	QueryLcsBcaData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryLcsBcaDataParams)
 	// Retrieves the Session Management subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sm-data)
-	QuerySmData(c *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QuerySmDataParams)
+	QuerySmData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmDataParams)
 	// Retrieves the SMF selection subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/smf-selection-subscription-data)
-	QuerySmfSelectData(c *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QuerySmfSelectDataParams)
+	QuerySmfSelectData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmfSelectDataParams)
 	// Retrieves the SMS subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sms-data)
-	QuerySmsData(c *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QuerySmsDataParams)
+	QuerySmsData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmsDataParams)
 	// Retrieves the SMS management subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sms-mng-data)
-	QuerySmsMngData(c *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QuerySmsMngDataParams)
+	QuerySmsMngData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmsMngDataParams)
 	// Retrieves the trace configuration data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/trace-data)
-	QueryTraceData(c *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QueryTraceDataParams)
+	QueryTraceData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryTraceDataParams)
 }
 
 // ServerInterfaceWrapper converts contexts to parameters.
@@ -22100,7 +18820,7 @@ func (siw *ServerInterfaceWrapper) Delete5GVnGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "externalGroupId" -------------
-	var externalGroupId externalRef6.ExtGroupId
+	var externalGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "externalGroupId", c.Param("externalGroupId"), &externalGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22124,7 +18844,7 @@ func (siw *ServerInterfaceWrapper) Get5GVnGroupConfiguration(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "externalGroupId" -------------
-	var externalGroupId externalRef6.ExtGroupId
+	var externalGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "externalGroupId", c.Param("externalGroupId"), &externalGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22148,7 +18868,7 @@ func (siw *ServerInterfaceWrapper) Modify5GVnGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "externalGroupId" -------------
-	var externalGroupId externalRef6.ExtGroupId
+	var externalGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "externalGroupId", c.Param("externalGroupId"), &externalGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22183,7 +18903,7 @@ func (siw *ServerInterfaceWrapper) Create5GVnGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "externalGroupId" -------------
-	var externalGroupId externalRef6.ExtGroupId
+	var externalGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "externalGroupId", c.Param("externalGroupId"), &externalGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22257,7 +18977,7 @@ func (siw *ServerInterfaceWrapper) QueryGroupEEData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22292,7 +19012,7 @@ func (siw *ServerInterfaceWrapper) QueryEeGroupSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22327,7 +19047,7 @@ func (siw *ServerInterfaceWrapper) CreateEeGroupSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22351,7 +19071,7 @@ func (siw *ServerInterfaceWrapper) RemoveEeGroupSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22384,7 +19104,7 @@ func (siw *ServerInterfaceWrapper) QueryEeGroupSubscription(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22417,7 +19137,7 @@ func (siw *ServerInterfaceWrapper) ModifyEeGroupSubscription(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22461,7 +19181,7 @@ func (siw *ServerInterfaceWrapper) UpdateEeGroupSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22535,7 +19255,7 @@ func (siw *ServerInterfaceWrapper) GetIndividualSharedData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "sharedDataId" -------------
-	var sharedDataId externalRef6.SharedDataId
+	var sharedDataId externalRef0.SharedDataId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "sharedDataId", c.Param("sharedDataId"), &sharedDataId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22796,7 +19516,7 @@ func (siw *ServerInterfaceWrapper) DeleteAuthenticationStatus(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22820,7 +19540,7 @@ func (siw *ServerInterfaceWrapper) QueryAuthenticationStatus(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22863,7 +19583,7 @@ func (siw *ServerInterfaceWrapper) CreateAuthenticationStatus(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22887,7 +19607,7 @@ func (siw *ServerInterfaceWrapper) DeleteIndividualAuthenticationStatus(c *gin.C
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22896,7 +19616,7 @@ func (siw *ServerInterfaceWrapper) DeleteIndividualAuthenticationStatus(c *gin.C
 	}
 
 	// ------------- Path parameter "servingNetworkName" -------------
-	var servingNetworkName externalRef7.ServingNetworkName
+	var servingNetworkName externalRef0.ServingNetworkName
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingNetworkName", c.Param("servingNetworkName"), &servingNetworkName, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22920,7 +19640,7 @@ func (siw *ServerInterfaceWrapper) QueryIndividualAuthenticationStatus(c *gin.Co
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22929,7 +19649,7 @@ func (siw *ServerInterfaceWrapper) QueryIndividualAuthenticationStatus(c *gin.Co
 	}
 
 	// ------------- Path parameter "servingNetworkName" -------------
-	var servingNetworkName externalRef7.ServingNetworkName
+	var servingNetworkName externalRef0.ServingNetworkName
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingNetworkName", c.Param("servingNetworkName"), &servingNetworkName, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22972,7 +19692,7 @@ func (siw *ServerInterfaceWrapper) CreateIndividualAuthenticationStatus(c *gin.C
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -22981,7 +19701,7 @@ func (siw *ServerInterfaceWrapper) CreateIndividualAuthenticationStatus(c *gin.C
 	}
 
 	// ------------- Path parameter "servingNetworkName" -------------
-	var servingNetworkName externalRef7.ServingNetworkName
+	var servingNetworkName externalRef0.ServingNetworkName
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingNetworkName", c.Param("servingNetworkName"), &servingNetworkName, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23005,7 +19725,7 @@ func (siw *ServerInterfaceWrapper) QueryAuthSubsData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23044,7 +19764,7 @@ func (siw *ServerInterfaceWrapper) ModifyAuthenticationSubscription(c *gin.Conte
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23083,7 +19803,7 @@ func (siw *ServerInterfaceWrapper) QueryContextData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23125,7 +19845,7 @@ func (siw *ServerInterfaceWrapper) QueryAmfContext3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23168,7 +19888,7 @@ func (siw *ServerInterfaceWrapper) AmfContext3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23203,7 +19923,7 @@ func (siw *ServerInterfaceWrapper) CreateAmfContext3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23227,7 +19947,7 @@ func (siw *ServerInterfaceWrapper) QueryAmfContextNon3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23270,7 +19990,7 @@ func (siw *ServerInterfaceWrapper) AmfContextNon3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23305,7 +20025,7 @@ func (siw *ServerInterfaceWrapper) CreateAmfContextNon3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23329,7 +20049,7 @@ func (siw *ServerInterfaceWrapper) Queryeesubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23364,7 +20084,7 @@ func (siw *ServerInterfaceWrapper) CreateEeSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23388,7 +20108,7 @@ func (siw *ServerInterfaceWrapper) RemoveeeSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23421,7 +20141,7 @@ func (siw *ServerInterfaceWrapper) QueryeeSubscription(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23454,7 +20174,7 @@ func (siw *ServerInterfaceWrapper) ModifyEesubscription(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23498,7 +20218,7 @@ func (siw *ServerInterfaceWrapper) UpdateEesubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23531,7 +20251,7 @@ func (siw *ServerInterfaceWrapper) RemoveAmfSubscriptionsInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23564,7 +20284,7 @@ func (siw *ServerInterfaceWrapper) GetAmfSubscriptionInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23597,7 +20317,7 @@ func (siw *ServerInterfaceWrapper) ModifyAmfSubscriptionInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23641,7 +20361,7 @@ func (siw *ServerInterfaceWrapper) CreateAMFSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23674,7 +20394,7 @@ func (siw *ServerInterfaceWrapper) RemoveHssSubscriptionsInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23707,7 +20427,7 @@ func (siw *ServerInterfaceWrapper) GetHssSubscriptionInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23740,7 +20460,7 @@ func (siw *ServerInterfaceWrapper) ModifyHssSubscriptionInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23784,7 +20504,7 @@ func (siw *ServerInterfaceWrapper) CreateHSSSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23817,7 +20537,7 @@ func (siw *ServerInterfaceWrapper) RemoveSmfSubscriptionsInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23850,7 +20570,7 @@ func (siw *ServerInterfaceWrapper) GetSmfSubscriptionInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23883,7 +20603,7 @@ func (siw *ServerInterfaceWrapper) ModifySmfSubscriptionInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23927,7 +20647,7 @@ func (siw *ServerInterfaceWrapper) CreateSMFSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23960,7 +20680,7 @@ func (siw *ServerInterfaceWrapper) DeleteIpSmGwContext(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -23984,7 +20704,7 @@ func (siw *ServerInterfaceWrapper) QueryIpSmGwContext(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24027,7 +20747,7 @@ func (siw *ServerInterfaceWrapper) ModifyIpSmGwContext(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24051,7 +20771,7 @@ func (siw *ServerInterfaceWrapper) CreateIpSmGwContext(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24075,7 +20795,7 @@ func (siw *ServerInterfaceWrapper) QueryUeLocation(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24110,7 +20830,7 @@ func (siw *ServerInterfaceWrapper) DeleteMessageWaitingData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24134,7 +20854,7 @@ func (siw *ServerInterfaceWrapper) QueryMessageWaitingData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24177,7 +20897,7 @@ func (siw *ServerInterfaceWrapper) ModifyMessageWaitingData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24201,7 +20921,7 @@ func (siw *ServerInterfaceWrapper) CreateMessageWaitingData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24225,7 +20945,7 @@ func (siw *ServerInterfaceWrapper) Querysdmsubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24260,7 +20980,7 @@ func (siw *ServerInterfaceWrapper) CreateSdmSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24284,7 +21004,7 @@ func (siw *ServerInterfaceWrapper) RemovesdmSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24317,7 +21037,7 @@ func (siw *ServerInterfaceWrapper) QuerysdmSubscription(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24350,7 +21070,7 @@ func (siw *ServerInterfaceWrapper) ModifysdmSubscription(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24394,7 +21114,7 @@ func (siw *ServerInterfaceWrapper) Updatesdmsubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24427,7 +21147,7 @@ func (siw *ServerInterfaceWrapper) RemoveHssSDMSubscriptionsInfo(c *gin.Context)
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24460,7 +21180,7 @@ func (siw *ServerInterfaceWrapper) GetHssSDMSubscriptionInfo(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24493,7 +21213,7 @@ func (siw *ServerInterfaceWrapper) ModifyHssSDMSubscriptionInfo(c *gin.Context) 
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24537,7 +21257,7 @@ func (siw *ServerInterfaceWrapper) CreateHSSSDMSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24570,7 +21290,7 @@ func (siw *ServerInterfaceWrapper) QuerySmfRegList(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24605,7 +21325,7 @@ func (siw *ServerInterfaceWrapper) DeleteSmfRegistration(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24614,7 +21334,7 @@ func (siw *ServerInterfaceWrapper) DeleteSmfRegistration(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "pduSessionId" -------------
-	var pduSessionId externalRef2.PduSessionId
+	var pduSessionId externalRef0.PduSessionId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "pduSessionId", c.Param("pduSessionId"), &pduSessionId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24638,7 +21358,7 @@ func (siw *ServerInterfaceWrapper) QuerySmfRegistration(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24647,7 +21367,7 @@ func (siw *ServerInterfaceWrapper) QuerySmfRegistration(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "pduSessionId" -------------
-	var pduSessionId externalRef2.PduSessionId
+	var pduSessionId externalRef0.PduSessionId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "pduSessionId", c.Param("pduSessionId"), &pduSessionId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24690,7 +21410,7 @@ func (siw *ServerInterfaceWrapper) CreateOrUpdateSmfRegistration(c *gin.Context)
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24699,7 +21419,7 @@ func (siw *ServerInterfaceWrapper) CreateOrUpdateSmfRegistration(c *gin.Context)
 	}
 
 	// ------------- Path parameter "pduSessionId" -------------
-	var pduSessionId externalRef2.PduSessionId
+	var pduSessionId externalRef0.PduSessionId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "pduSessionId", c.Param("pduSessionId"), &pduSessionId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24723,7 +21443,7 @@ func (siw *ServerInterfaceWrapper) DeleteSmsfContext3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24747,7 +21467,7 @@ func (siw *ServerInterfaceWrapper) QuerySmsfContext3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24790,7 +21510,7 @@ func (siw *ServerInterfaceWrapper) CreateSmsfContext3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24814,7 +21534,7 @@ func (siw *ServerInterfaceWrapper) DeleteSmsfContextNon3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24838,7 +21558,7 @@ func (siw *ServerInterfaceWrapper) QuerySmsfContextNon3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24881,7 +21601,7 @@ func (siw *ServerInterfaceWrapper) CreateSmsfContextNon3gpp(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24905,7 +21625,7 @@ func (siw *ServerInterfaceWrapper) QueryCoverageRestrictionData(c *gin.Context) 
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -24980,7 +21700,7 @@ func (siw *ServerInterfaceWrapper) QueryEEData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25023,7 +21743,7 @@ func (siw *ServerInterfaceWrapper) GetIdentityData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25038,7 +21758,7 @@ func (siw *ServerInterfaceWrapper) GetIdentityData(c *gin.Context) {
 
 	if paramValue := c.Query("app-port-id"); paramValue != "" {
 
-		var value externalRef6.AppPortId
+		var value externalRef0.AppPortId
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'app-port-id' as JSON: %w", err), http.StatusBadRequest)
@@ -25105,7 +21825,7 @@ func (siw *ServerInterfaceWrapper) QueryLcsMoData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25188,7 +21908,7 @@ func (siw *ServerInterfaceWrapper) QueryLcsPrivacyData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25286,7 +22006,7 @@ func (siw *ServerInterfaceWrapper) GetNiddAuData(c *gin.Context) {
 
 	if paramValue := c.Query("single-nssai"); paramValue != "" {
 
-		var value VarSnssai
+		var value externalRef0.VarSnssai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'single-nssai' as JSON: %w", err), http.StatusBadRequest)
@@ -25386,7 +22106,7 @@ func (siw *ServerInterfaceWrapper) GetOdbData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25410,7 +22130,7 @@ func (siw *ServerInterfaceWrapper) QueryOperSpecData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25493,7 +22213,7 @@ func (siw *ServerInterfaceWrapper) ModifyOperSpecData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25528,7 +22248,7 @@ func (siw *ServerInterfaceWrapper) GetppData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25603,7 +22323,7 @@ func (siw *ServerInterfaceWrapper) ModifyPpData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25638,7 +22358,7 @@ func (siw *ServerInterfaceWrapper) QueryPPData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25673,7 +22393,7 @@ func (siw *ServerInterfaceWrapper) QueryAuthSoR(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25708,7 +22428,7 @@ func (siw *ServerInterfaceWrapper) CreateAuthenticationSoR(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25743,7 +22463,7 @@ func (siw *ServerInterfaceWrapper) QueryCagAck(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25778,7 +22498,7 @@ func (siw *ServerInterfaceWrapper) CreateCagUpdateAck(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25813,7 +22533,7 @@ func (siw *ServerInterfaceWrapper) QueryNssaiAck(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25848,7 +22568,7 @@ func (siw *ServerInterfaceWrapper) CreateOrUpdateNssaiAck(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25883,7 +22603,7 @@ func (siw *ServerInterfaceWrapper) QueryAuthUPU(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25918,7 +22638,7 @@ func (siw *ServerInterfaceWrapper) CreateAuthenticationUPU(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.Supi
+	var ueId externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -25953,7 +22673,7 @@ func (siw *ServerInterfaceWrapper) QueryV2xData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26028,7 +22748,7 @@ func (siw *ServerInterfaceWrapper) QueryProvisionedData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26037,7 +22757,7 @@ func (siw *ServerInterfaceWrapper) QueryProvisionedData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26072,7 +22792,7 @@ func (siw *ServerInterfaceWrapper) QueryAmData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26081,7 +22801,7 @@ func (siw *ServerInterfaceWrapper) QueryAmData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26164,7 +22884,7 @@ func (siw *ServerInterfaceWrapper) QueryLcsBcaData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26173,7 +22893,7 @@ func (siw *ServerInterfaceWrapper) QueryLcsBcaData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26248,7 +22968,7 @@ func (siw *ServerInterfaceWrapper) QuerySmData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26257,7 +22977,7 @@ func (siw *ServerInterfaceWrapper) QuerySmData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26272,7 +22992,7 @@ func (siw *ServerInterfaceWrapper) QuerySmData(c *gin.Context) {
 
 	if paramValue := c.Query("single-nssai"); paramValue != "" {
 
-		var value VarSnssai
+		var value externalRef0.VarSnssai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'single-nssai' as JSON: %w", err), http.StatusBadRequest)
@@ -26363,7 +23083,7 @@ func (siw *ServerInterfaceWrapper) QuerySmfSelectData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26372,7 +23092,7 @@ func (siw *ServerInterfaceWrapper) QuerySmfSelectData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26455,7 +23175,7 @@ func (siw *ServerInterfaceWrapper) QuerySmsData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26464,7 +23184,7 @@ func (siw *ServerInterfaceWrapper) QuerySmsData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26539,7 +23259,7 @@ func (siw *ServerInterfaceWrapper) QuerySmsMngData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26548,7 +23268,7 @@ func (siw *ServerInterfaceWrapper) QuerySmsMngData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26623,7 +23343,7 @@ func (siw *ServerInterfaceWrapper) QueryTraceData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueId" -------------
-	var ueId externalRef2.VarUeId
+	var ueId externalRef0.VarUeId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueId", c.Param("ueId"), &ueId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26632,7 +23352,7 @@ func (siw *ServerInterfaceWrapper) QueryTraceData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -26844,7 +23564,7 @@ type Query5GVnGroupResponseObject interface {
 	VisitQuery5GVnGroupResponse(w http.ResponseWriter) error
 }
 
-type Query5GVnGroup200JSONResponse map[string]externalRef5.N5GVnGroupConfiguration
+type Query5GVnGroup200JSONResponse map[string]externalRef0.N5GVnGroupConfiguration
 
 func (response Query5GVnGroup200JSONResponse) VisitQuery5GVnGroupResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -26854,7 +23574,7 @@ func (response Query5GVnGroup200JSONResponse) VisitQuery5GVnGroupResponse(w http
 }
 
 type Query5GVnGroupdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -26873,7 +23593,7 @@ type Query5GVnGroupInternalResponseObject interface {
 	VisitQuery5GVnGroupInternalResponse(w http.ResponseWriter) error
 }
 
-type Query5GVnGroupInternal200JSONResponse map[string]externalRef5.N5GVnGroupConfiguration
+type Query5GVnGroupInternal200JSONResponse map[string]externalRef0.N5GVnGroupConfiguration
 
 func (response Query5GVnGroupInternal200JSONResponse) VisitQuery5GVnGroupInternalResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -26883,7 +23603,7 @@ func (response Query5GVnGroupInternal200JSONResponse) VisitQuery5GVnGroupInterna
 }
 
 type Query5GVnGroupInternaldefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -26902,17 +23622,17 @@ type Query5GVNGroupPPDataResponseObject interface {
 	VisitQuery5GVNGroupPPDataResponse(w http.ResponseWriter) error
 }
 
-type Query5GVNGroupPPData200JSONResponse Pp5gVnGroupProfileData
+type Query5GVNGroupPPData200JSONResponse externalRef0.Pp5gVnGroupProfileData
 
 func (response Query5GVNGroupPPData200JSONResponse) VisitQuery5GVNGroupPPDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(Pp5gVnGroupProfileData(response))
+	return json.NewEncoder(w).Encode(externalRef0.Pp5gVnGroupProfileData(response))
 }
 
 type Query5GVNGroupPPDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -26924,7 +23644,7 @@ func (response Query5GVNGroupPPDatadefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type Delete5GVnGroupRequestObject struct {
-	ExternalGroupId externalRef6.ExtGroupId `json:"externalGroupId"`
+	ExternalGroupId externalRef0.ExtGroupId `json:"externalGroupId"`
 }
 
 type Delete5GVnGroupResponseObject interface {
@@ -26940,7 +23660,7 @@ func (response Delete5GVnGroup204Response) VisitDelete5GVnGroupResponse(w http.R
 }
 
 type Delete5GVnGroupdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -26952,24 +23672,24 @@ func (response Delete5GVnGroupdefaultApplicationProblemPlusJSONResponse) VisitDe
 }
 
 type Get5GVnGroupConfigurationRequestObject struct {
-	ExternalGroupId externalRef6.ExtGroupId `json:"externalGroupId"`
+	ExternalGroupId externalRef0.ExtGroupId `json:"externalGroupId"`
 }
 
 type Get5GVnGroupConfigurationResponseObject interface {
 	VisitGet5GVnGroupConfigurationResponse(w http.ResponseWriter) error
 }
 
-type Get5GVnGroupConfiguration200JSONResponse externalRef5.N5GVnGroupConfiguration
+type Get5GVnGroupConfiguration200JSONResponse externalRef0.N5GVnGroupConfiguration
 
 func (response Get5GVnGroupConfiguration200JSONResponse) VisitGet5GVnGroupConfigurationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.N5GVnGroupConfiguration(response))
+	return json.NewEncoder(w).Encode(externalRef0.N5GVnGroupConfiguration(response))
 }
 
 type Get5GVnGroupConfigurationdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -26981,7 +23701,7 @@ func (response Get5GVnGroupConfigurationdefaultApplicationProblemPlusJSONRespons
 }
 
 type Modify5GVnGroupRequestObject struct {
-	ExternalGroupId externalRef6.ExtGroupId `json:"externalGroupId"`
+	ExternalGroupId externalRef0.ExtGroupId `json:"externalGroupId"`
 	Params          Modify5GVnGroupParams
 	Body            *Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody
 }
@@ -26990,13 +23710,13 @@ type Modify5GVnGroupResponseObject interface {
 	VisitModify5GVnGroupResponse(w http.ResponseWriter) error
 }
 
-type Modify5GVnGroup200JSONResponse externalRef2.PatchResult
+type Modify5GVnGroup200JSONResponse externalRef0.PatchResult
 
 func (response Modify5GVnGroup200JSONResponse) VisitModify5GVnGroupResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type Modify5GVnGroup204Response struct {
@@ -27007,17 +23727,17 @@ func (response Modify5GVnGroup204Response) VisitModify5GVnGroupResponse(w http.R
 	return nil
 }
 
-type Modify5GVnGroup403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type Modify5GVnGroup403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response Modify5GVnGroup403ApplicationProblemPlusJSONResponse) VisitModify5GVnGroupResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type Modify5GVnGroupdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27029,7 +23749,7 @@ func (response Modify5GVnGroupdefaultApplicationProblemPlusJSONResponse) VisitMo
 }
 
 type Create5GVnGroupRequestObject struct {
-	ExternalGroupId externalRef6.ExtGroupId `json:"externalGroupId"`
+	ExternalGroupId externalRef0.ExtGroupId `json:"externalGroupId"`
 	Body            *Create5GVnGroupJSONRequestBody
 }
 
@@ -27037,28 +23757,28 @@ type Create5GVnGroupResponseObject interface {
 	VisitCreate5GVnGroupResponse(w http.ResponseWriter) error
 }
 
-type Create5GVnGroup201JSONResponse externalRef5.N5GVnGroupConfiguration
+type Create5GVnGroup201JSONResponse externalRef0.N5GVnGroupConfiguration
 
 func (response Create5GVnGroup201JSONResponse) VisitCreate5GVnGroupResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(201)
 
-	return json.NewEncoder(w).Encode(externalRef5.N5GVnGroupConfiguration(response))
+	return json.NewEncoder(w).Encode(externalRef0.N5GVnGroupConfiguration(response))
 }
 
 type Create5GVnGroup403ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response Create5GVnGroup403ApplicationProblemPlusJSONResponse) VisitCreate5GVnGroupResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type Create5GVnGroupdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27077,17 +23797,17 @@ type GetGroupIdentifiersResponseObject interface {
 	VisitGetGroupIdentifiersResponse(w http.ResponseWriter) error
 }
 
-type GetGroupIdentifiers200JSONResponse externalRef6.GroupIdentifiers
+type GetGroupIdentifiers200JSONResponse externalRef0.GroupIdentifiers
 
 func (response GetGroupIdentifiers200JSONResponse) VisitGetGroupIdentifiersResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef6.GroupIdentifiers(response))
+	return json.NewEncoder(w).Encode(externalRef0.GroupIdentifiers(response))
 }
 
 type GetGroupIdentifiersdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27099,7 +23819,7 @@ func (response GetGroupIdentifiersdefaultApplicationProblemPlusJSONResponse) Vis
 }
 
 type QueryGroupEEDataRequestObject struct {
-	UeGroupId VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	Params    QueryGroupEEDataParams
 }
 
@@ -27107,17 +23827,17 @@ type QueryGroupEEDataResponseObject interface {
 	VisitQueryGroupEEDataResponse(w http.ResponseWriter) error
 }
 
-type QueryGroupEEData200JSONResponse EeGroupProfileData
+type QueryGroupEEData200JSONResponse externalRef0.EeGroupProfileData
 
 func (response QueryGroupEEData200JSONResponse) VisitQueryGroupEEDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(EeGroupProfileData(response))
+	return json.NewEncoder(w).Encode(externalRef0.EeGroupProfileData(response))
 }
 
 type QueryGroupEEDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27129,7 +23849,7 @@ func (response QueryGroupEEDatadefaultApplicationProblemPlusJSONResponse) VisitQ
 }
 
 type QueryEeGroupSubscriptionsRequestObject struct {
-	UeGroupId VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	Params    QueryEeGroupSubscriptionsParams
 }
 
@@ -27137,7 +23857,7 @@ type QueryEeGroupSubscriptionsResponseObject interface {
 	VisitQueryEeGroupSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type QueryEeGroupSubscriptions200JSONResponse []EeSubscription
+type QueryEeGroupSubscriptions200JSONResponse []externalRef0.EeSubscription
 
 func (response QueryEeGroupSubscriptions200JSONResponse) VisitQueryEeGroupSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -27147,7 +23867,7 @@ func (response QueryEeGroupSubscriptions200JSONResponse) VisitQueryEeGroupSubscr
 }
 
 type QueryEeGroupSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27159,7 +23879,7 @@ func (response QueryEeGroupSubscriptionsdefaultApplicationProblemPlusJSONRespons
 }
 
 type CreateEeGroupSubscriptionsRequestObject struct {
-	UeGroupId VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	Body      *CreateEeGroupSubscriptionsJSONRequestBody
 }
 
@@ -27172,7 +23892,7 @@ type CreateEeGroupSubscriptions201ResponseHeaders struct {
 }
 
 type CreateEeGroupSubscriptions201JSONResponse struct {
-	Body    EeSubscription
+	Body    externalRef0.EeSubscription
 	Headers CreateEeGroupSubscriptions201ResponseHeaders
 }
 
@@ -27185,7 +23905,7 @@ func (response CreateEeGroupSubscriptions201JSONResponse) VisitCreateEeGroupSubs
 }
 
 type CreateEeGroupSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27197,8 +23917,8 @@ func (response CreateEeGroupSubscriptionsdefaultApplicationProblemPlusJSONRespon
 }
 
 type RemoveEeGroupSubscriptionsRequestObject struct {
-	UeGroupId VarUeGroupId `json:"ueGroupId"`
-	SubsId    string       `json:"subsId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
+	SubsId    string                    `json:"subsId"`
 }
 
 type RemoveEeGroupSubscriptionsResponseObject interface {
@@ -27214,7 +23934,7 @@ func (response RemoveEeGroupSubscriptions204Response) VisitRemoveEeGroupSubscrip
 }
 
 type RemoveEeGroupSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27226,15 +23946,15 @@ func (response RemoveEeGroupSubscriptionsdefaultApplicationProblemPlusJSONRespon
 }
 
 type QueryEeGroupSubscriptionRequestObject struct {
-	UeGroupId VarUeGroupId `json:"ueGroupId"`
-	SubsId    string       `json:"subsId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
+	SubsId    string                    `json:"subsId"`
 }
 
 type QueryEeGroupSubscriptionResponseObject interface {
 	VisitQueryEeGroupSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type QueryEeGroupSubscription200JSONResponse []EeSubscription
+type QueryEeGroupSubscription200JSONResponse []externalRef0.EeSubscription
 
 func (response QueryEeGroupSubscription200JSONResponse) VisitQueryEeGroupSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -27244,7 +23964,7 @@ func (response QueryEeGroupSubscription200JSONResponse) VisitQueryEeGroupSubscri
 }
 
 type QueryEeGroupSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27256,8 +23976,8 @@ func (response QueryEeGroupSubscriptiondefaultApplicationProblemPlusJSONResponse
 }
 
 type ModifyEeGroupSubscriptionRequestObject struct {
-	UeGroupId VarUeGroupId `json:"ueGroupId"`
-	SubsId    string       `json:"subsId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
+	SubsId    string                    `json:"subsId"`
 	Params    ModifyEeGroupSubscriptionParams
 	Body      *ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody
 }
@@ -27266,13 +23986,13 @@ type ModifyEeGroupSubscriptionResponseObject interface {
 	VisitModifyEeGroupSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ModifyEeGroupSubscription200JSONResponse externalRef2.PatchResult
+type ModifyEeGroupSubscription200JSONResponse externalRef0.PatchResult
 
 func (response ModifyEeGroupSubscription200JSONResponse) VisitModifyEeGroupSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifyEeGroupSubscription204Response struct {
@@ -27284,29 +24004,29 @@ func (response ModifyEeGroupSubscription204Response) VisitModifyEeGroupSubscript
 }
 
 type ModifyEeGroupSubscription403ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifyEeGroupSubscription403ApplicationProblemPlusJSONResponse) VisitModifyEeGroupSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ModifyEeGroupSubscription404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifyEeGroupSubscription404ApplicationProblemPlusJSONResponse) VisitModifyEeGroupSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ModifyEeGroupSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27318,8 +24038,8 @@ func (response ModifyEeGroupSubscriptiondefaultApplicationProblemPlusJSONRespons
 }
 
 type UpdateEeGroupSubscriptionsRequestObject struct {
-	UeGroupId VarUeGroupId `json:"ueGroupId"`
-	SubsId    string       `json:"subsId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
+	SubsId    string                    `json:"subsId"`
 	Body      *UpdateEeGroupSubscriptionsJSONRequestBody
 }
 
@@ -27335,17 +24055,17 @@ func (response UpdateEeGroupSubscriptions204Response) VisitUpdateEeGroupSubscrip
 	return nil
 }
 
-type UpdateEeGroupSubscriptions404ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type UpdateEeGroupSubscriptions404ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response UpdateEeGroupSubscriptions404ApplicationProblemPlusJSONResponse) VisitUpdateEeGroupSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type UpdateEeGroupSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27364,7 +24084,7 @@ type GetSharedDataResponseObject interface {
 	VisitGetSharedDataResponse(w http.ResponseWriter) error
 }
 
-type GetSharedData200JSONResponse []externalRef6.SharedData
+type GetSharedData200JSONResponse []externalRef0.SharedData
 
 func (response GetSharedData200JSONResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -27374,51 +24094,51 @@ func (response GetSharedData200JSONResponse) VisitGetSharedDataResponse(w http.R
 }
 
 type GetSharedData400ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response GetSharedData400ApplicationProblemPlusJSONResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetSharedData404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response GetSharedData404ApplicationProblemPlusJSONResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetSharedData500ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response GetSharedData500ApplicationProblemPlusJSONResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetSharedData503ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response GetSharedData503ApplicationProblemPlusJSONResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetSharedDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27430,7 +24150,7 @@ func (response GetSharedDatadefaultApplicationProblemPlusJSONResponse) VisitGetS
 }
 
 type GetIndividualSharedDataRequestObject struct {
-	SharedDataId externalRef6.SharedDataId `json:"sharedDataId"`
+	SharedDataId externalRef0.SharedDataId `json:"sharedDataId"`
 	Params       GetIndividualSharedDataParams
 }
 
@@ -27445,7 +24165,7 @@ type GetIndividualSharedData200ResponseHeaders struct {
 }
 
 type GetIndividualSharedData200JSONResponse struct {
-	Body    externalRef6.SharedData
+	Body    externalRef0.SharedData
 	Headers GetIndividualSharedData200ResponseHeaders
 }
 
@@ -27466,51 +24186,51 @@ func (response GetIndividualSharedData200JSONResponse) VisitGetIndividualSharedD
 }
 
 type GetIndividualSharedData400ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response GetIndividualSharedData400ApplicationProblemPlusJSONResponse) VisitGetIndividualSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSharedData404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response GetIndividualSharedData404ApplicationProblemPlusJSONResponse) VisitGetIndividualSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSharedData500ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response GetIndividualSharedData500ApplicationProblemPlusJSONResponse) VisitGetIndividualSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSharedData503ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response GetIndividualSharedData503ApplicationProblemPlusJSONResponse) VisitGetIndividualSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type GetIndividualSharedDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27538,7 +24258,7 @@ func (response RemoveMultipleSubscriptionDataSubscriptions204Response) VisitRemo
 }
 
 type RemoveMultipleSubscriptionDataSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27557,7 +24277,7 @@ type QuerySubsToNotifyResponseObject interface {
 	VisitQuerySubsToNotifyResponse(w http.ResponseWriter) error
 }
 
-type QuerySubsToNotify200JSONResponse []SubscriptionDataSubscriptions
+type QuerySubsToNotify200JSONResponse []externalRef0.SubscriptionDataSubscriptions
 
 func (response QuerySubsToNotify200JSONResponse) VisitQuerySubsToNotifyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -27567,7 +24287,7 @@ func (response QuerySubsToNotify200JSONResponse) VisitQuerySubsToNotifyResponse(
 }
 
 type QuerySubsToNotifydefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27591,7 +24311,7 @@ type SubscriptionDataSubscriptions201ResponseHeaders struct {
 }
 
 type SubscriptionDataSubscriptions201JSONResponse struct {
-	Body    SubscriptionDataSubscriptions
+	Body    externalRef0.SubscriptionDataSubscriptions
 	Headers SubscriptionDataSubscriptions201ResponseHeaders
 }
 
@@ -27604,7 +24324,7 @@ func (response SubscriptionDataSubscriptions201JSONResponse) VisitSubscriptionDa
 }
 
 type SubscriptionDataSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27632,7 +24352,7 @@ func (response RemovesubscriptionDataSubscriptions204Response) VisitRemovesubscr
 }
 
 type RemovesubscriptionDataSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27651,7 +24371,7 @@ type QuerySubscriptionDataSubscriptionsResponseObject interface {
 	VisitQuerySubscriptionDataSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type QuerySubscriptionDataSubscriptions200JSONResponse []SubscriptionDataSubscriptions
+type QuerySubscriptionDataSubscriptions200JSONResponse []externalRef0.SubscriptionDataSubscriptions
 
 func (response QuerySubscriptionDataSubscriptions200JSONResponse) VisitQuerySubscriptionDataSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -27661,7 +24381,7 @@ func (response QuerySubscriptionDataSubscriptions200JSONResponse) VisitQuerySubs
 }
 
 type QuerySubscriptionDataSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27682,13 +24402,13 @@ type ModifysubscriptionDataSubscriptionResponseObject interface {
 	VisitModifysubscriptionDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ModifysubscriptionDataSubscription200JSONResponse externalRef2.PatchResult
+type ModifysubscriptionDataSubscription200JSONResponse externalRef0.PatchResult
 
 func (response ModifysubscriptionDataSubscription200JSONResponse) VisitModifysubscriptionDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifysubscriptionDataSubscription204Response struct {
@@ -27700,29 +24420,29 @@ func (response ModifysubscriptionDataSubscription204Response) VisitModifysubscri
 }
 
 type ModifysubscriptionDataSubscription403ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifysubscriptionDataSubscription403ApplicationProblemPlusJSONResponse) VisitModifysubscriptionDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ModifysubscriptionDataSubscription404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifysubscriptionDataSubscription404ApplicationProblemPlusJSONResponse) VisitModifysubscriptionDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ModifysubscriptionDataSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27734,7 +24454,7 @@ func (response ModifysubscriptionDataSubscriptiondefaultApplicationProblemPlusJS
 }
 
 type DeleteAuthenticationStatusRequestObject struct {
-	UeId externalRef2.Supi `json:"ueId"`
+	UeId externalRef0.Supi `json:"ueId"`
 }
 
 type DeleteAuthenticationStatusResponseObject interface {
@@ -27750,7 +24470,7 @@ func (response DeleteAuthenticationStatus204Response) VisitDeleteAuthenticationS
 }
 
 type DeleteAuthenticationStatusdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27762,7 +24482,7 @@ func (response DeleteAuthenticationStatusdefaultApplicationProblemPlusJSONRespon
 }
 
 type QueryAuthenticationStatusRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params QueryAuthenticationStatusParams
 }
 
@@ -27770,17 +24490,17 @@ type QueryAuthenticationStatusResponseObject interface {
 	VisitQueryAuthenticationStatusResponse(w http.ResponseWriter) error
 }
 
-type QueryAuthenticationStatus200JSONResponse externalRef7.AuthEvent
+type QueryAuthenticationStatus200JSONResponse externalRef0.AuthEvent
 
 func (response QueryAuthenticationStatus200JSONResponse) VisitQueryAuthenticationStatusResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.AuthEvent(response))
+	return json.NewEncoder(w).Encode(externalRef0.AuthEvent(response))
 }
 
 type QueryAuthenticationStatusdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27792,7 +24512,7 @@ func (response QueryAuthenticationStatusdefaultApplicationProblemPlusJSONRespons
 }
 
 type CreateAuthenticationStatusRequestObject struct {
-	UeId externalRef2.Supi `json:"ueId"`
+	UeId externalRef0.Supi `json:"ueId"`
 	Body *CreateAuthenticationStatusJSONRequestBody
 }
 
@@ -27809,7 +24529,7 @@ func (response CreateAuthenticationStatus204Response) VisitCreateAuthenticationS
 }
 
 type CreateAuthenticationStatusdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27821,8 +24541,8 @@ func (response CreateAuthenticationStatusdefaultApplicationProblemPlusJSONRespon
 }
 
 type DeleteIndividualAuthenticationStatusRequestObject struct {
-	UeId               externalRef2.Supi               `json:"ueId"`
-	ServingNetworkName externalRef7.ServingNetworkName `json:"servingNetworkName"`
+	UeId               externalRef0.Supi               `json:"ueId"`
+	ServingNetworkName externalRef0.ServingNetworkName `json:"servingNetworkName"`
 }
 
 type DeleteIndividualAuthenticationStatusResponseObject interface {
@@ -27838,7 +24558,7 @@ func (response DeleteIndividualAuthenticationStatus204Response) VisitDeleteIndiv
 }
 
 type DeleteIndividualAuthenticationStatusdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27850,8 +24570,8 @@ func (response DeleteIndividualAuthenticationStatusdefaultApplicationProblemPlus
 }
 
 type QueryIndividualAuthenticationStatusRequestObject struct {
-	UeId               externalRef2.Supi               `json:"ueId"`
-	ServingNetworkName externalRef7.ServingNetworkName `json:"servingNetworkName"`
+	UeId               externalRef0.Supi               `json:"ueId"`
+	ServingNetworkName externalRef0.ServingNetworkName `json:"servingNetworkName"`
 	Params             QueryIndividualAuthenticationStatusParams
 }
 
@@ -27859,17 +24579,17 @@ type QueryIndividualAuthenticationStatusResponseObject interface {
 	VisitQueryIndividualAuthenticationStatusResponse(w http.ResponseWriter) error
 }
 
-type QueryIndividualAuthenticationStatus200JSONResponse externalRef7.AuthEvent
+type QueryIndividualAuthenticationStatus200JSONResponse externalRef0.AuthEvent
 
 func (response QueryIndividualAuthenticationStatus200JSONResponse) VisitQueryIndividualAuthenticationStatusResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.AuthEvent(response))
+	return json.NewEncoder(w).Encode(externalRef0.AuthEvent(response))
 }
 
 type QueryIndividualAuthenticationStatusdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27881,8 +24601,8 @@ func (response QueryIndividualAuthenticationStatusdefaultApplicationProblemPlusJ
 }
 
 type CreateIndividualAuthenticationStatusRequestObject struct {
-	UeId               externalRef2.Supi               `json:"ueId"`
-	ServingNetworkName externalRef7.ServingNetworkName `json:"servingNetworkName"`
+	UeId               externalRef0.Supi               `json:"ueId"`
+	ServingNetworkName externalRef0.ServingNetworkName `json:"servingNetworkName"`
 	Body               *CreateIndividualAuthenticationStatusJSONRequestBody
 }
 
@@ -27899,7 +24619,7 @@ func (response CreateIndividualAuthenticationStatus204Response) VisitCreateIndiv
 }
 
 type CreateIndividualAuthenticationStatusdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27911,7 +24631,7 @@ func (response CreateIndividualAuthenticationStatusdefaultApplicationProblemPlus
 }
 
 type QueryAuthSubsDataRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params QueryAuthSubsDataParams
 }
 
@@ -27919,17 +24639,17 @@ type QueryAuthSubsDataResponseObject interface {
 	VisitQueryAuthSubsDataResponse(w http.ResponseWriter) error
 }
 
-type QueryAuthSubsData200JSONResponse AuthenticationSubscription
+type QueryAuthSubsData200JSONResponse externalRef0.AuthenticationSubscription
 
 func (response QueryAuthSubsData200JSONResponse) VisitQueryAuthSubsDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(AuthenticationSubscription(response))
+	return json.NewEncoder(w).Encode(externalRef0.AuthenticationSubscription(response))
 }
 
 type QueryAuthSubsDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27941,7 +24661,7 @@ func (response QueryAuthSubsDatadefaultApplicationProblemPlusJSONResponse) Visit
 }
 
 type ModifyAuthenticationSubscriptionRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params ModifyAuthenticationSubscriptionParams
 	Body   *ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody
 }
@@ -27950,13 +24670,13 @@ type ModifyAuthenticationSubscriptionResponseObject interface {
 	VisitModifyAuthenticationSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ModifyAuthenticationSubscription200JSONResponse externalRef2.PatchResult
+type ModifyAuthenticationSubscription200JSONResponse externalRef0.PatchResult
 
 func (response ModifyAuthenticationSubscription200JSONResponse) VisitModifyAuthenticationSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifyAuthenticationSubscription204Response struct {
@@ -27967,17 +24687,17 @@ func (response ModifyAuthenticationSubscription204Response) VisitModifyAuthentic
 	return nil
 }
 
-type ModifyAuthenticationSubscription403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type ModifyAuthenticationSubscription403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response ModifyAuthenticationSubscription403ApplicationProblemPlusJSONResponse) VisitModifyAuthenticationSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type ModifyAuthenticationSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -27989,7 +24709,7 @@ func (response ModifyAuthenticationSubscriptiondefaultApplicationProblemPlusJSON
 }
 
 type QueryContextDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryContextDataParams
 }
 
@@ -27997,17 +24717,17 @@ type QueryContextDataResponseObject interface {
 	VisitQueryContextDataResponse(w http.ResponseWriter) error
 }
 
-type QueryContextData200JSONResponse ContextDataSets
+type QueryContextData200JSONResponse externalRef0.ContextDataSets
 
 func (response QueryContextData200JSONResponse) VisitQueryContextDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(ContextDataSets(response))
+	return json.NewEncoder(w).Encode(externalRef0.ContextDataSets(response))
 }
 
 type QueryContextDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28019,7 +24739,7 @@ func (response QueryContextDatadefaultApplicationProblemPlusJSONResponse) VisitQ
 }
 
 type QueryAmfContext3gppRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryAmfContext3gppParams
 }
 
@@ -28027,17 +24747,17 @@ type QueryAmfContext3gppResponseObject interface {
 	VisitQueryAmfContext3gppResponse(w http.ResponseWriter) error
 }
 
-type QueryAmfContext3gpp200JSONResponse Amf3GppAccessRegistration
+type QueryAmfContext3gpp200JSONResponse externalRef0.Amf3GppAccessRegistration
 
 func (response QueryAmfContext3gpp200JSONResponse) VisitQueryAmfContext3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(Amf3GppAccessRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.Amf3GppAccessRegistration(response))
 }
 
 type QueryAmfContext3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28049,7 +24769,7 @@ func (response QueryAmfContext3gppdefaultApplicationProblemPlusJSONResponse) Vis
 }
 
 type AmfContext3gppRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params AmfContext3gppParams
 	Body   *AmfContext3gppApplicationJSONPatchPlusJSONRequestBody
 }
@@ -28058,13 +24778,13 @@ type AmfContext3gppResponseObject interface {
 	VisitAmfContext3gppResponse(w http.ResponseWriter) error
 }
 
-type AmfContext3gpp200JSONResponse externalRef2.PatchResult
+type AmfContext3gpp200JSONResponse externalRef0.PatchResult
 
 func (response AmfContext3gpp200JSONResponse) VisitAmfContext3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type AmfContext3gpp204Response struct {
@@ -28075,17 +24795,17 @@ func (response AmfContext3gpp204Response) VisitAmfContext3gppResponse(w http.Res
 	return nil
 }
 
-type AmfContext3gpp403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type AmfContext3gpp403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response AmfContext3gpp403ApplicationProblemPlusJSONResponse) VisitAmfContext3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type AmfContext3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28097,7 +24817,7 @@ func (response AmfContext3gppdefaultApplicationProblemPlusJSONResponse) VisitAmf
 }
 
 type CreateAmfContext3gppRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *CreateAmfContext3gppJSONRequestBody
 }
 
@@ -28110,7 +24830,7 @@ type CreateAmfContext3gpp201ResponseHeaders struct {
 }
 
 type CreateAmfContext3gpp201JSONResponse struct {
-	Body    Amf3GppAccessRegistration
+	Body    externalRef0.Amf3GppAccessRegistration
 	Headers CreateAmfContext3gpp201ResponseHeaders
 }
 
@@ -28131,7 +24851,7 @@ func (response CreateAmfContext3gpp204Response) VisitCreateAmfContext3gppRespons
 }
 
 type CreateAmfContext3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28143,7 +24863,7 @@ func (response CreateAmfContext3gppdefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type QueryAmfContextNon3gppRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryAmfContextNon3gppParams
 }
 
@@ -28151,17 +24871,17 @@ type QueryAmfContextNon3gppResponseObject interface {
 	VisitQueryAmfContextNon3gppResponse(w http.ResponseWriter) error
 }
 
-type QueryAmfContextNon3gpp200JSONResponse AmfNon3GppAccessRegistration
+type QueryAmfContextNon3gpp200JSONResponse externalRef0.AmfNon3GppAccessRegistration
 
 func (response QueryAmfContextNon3gpp200JSONResponse) VisitQueryAmfContextNon3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(AmfNon3GppAccessRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.AmfNon3GppAccessRegistration(response))
 }
 
 type QueryAmfContextNon3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28173,7 +24893,7 @@ func (response QueryAmfContextNon3gppdefaultApplicationProblemPlusJSONResponse) 
 }
 
 type AmfContextNon3gppRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params AmfContextNon3gppParams
 	Body   *AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody
 }
@@ -28182,13 +24902,13 @@ type AmfContextNon3gppResponseObject interface {
 	VisitAmfContextNon3gppResponse(w http.ResponseWriter) error
 }
 
-type AmfContextNon3gpp200JSONResponse externalRef2.PatchResult
+type AmfContextNon3gpp200JSONResponse externalRef0.PatchResult
 
 func (response AmfContextNon3gpp200JSONResponse) VisitAmfContextNon3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type AmfContextNon3gpp204Response struct {
@@ -28199,17 +24919,17 @@ func (response AmfContextNon3gpp204Response) VisitAmfContextNon3gppResponse(w ht
 	return nil
 }
 
-type AmfContextNon3gpp403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type AmfContextNon3gpp403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response AmfContextNon3gpp403ApplicationProblemPlusJSONResponse) VisitAmfContextNon3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type AmfContextNon3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28221,7 +24941,7 @@ func (response AmfContextNon3gppdefaultApplicationProblemPlusJSONResponse) Visit
 }
 
 type CreateAmfContextNon3gppRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *CreateAmfContextNon3gppJSONRequestBody
 }
 
@@ -28234,7 +24954,7 @@ type CreateAmfContextNon3gpp201ResponseHeaders struct {
 }
 
 type CreateAmfContextNon3gpp201JSONResponse struct {
-	Body    Amf3GppAccessRegistration
+	Body    externalRef0.Amf3GppAccessRegistration
 	Headers CreateAmfContextNon3gpp201ResponseHeaders
 }
 
@@ -28255,7 +24975,7 @@ func (response CreateAmfContextNon3gpp204Response) VisitCreateAmfContextNon3gppR
 }
 
 type CreateAmfContextNon3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28267,7 +24987,7 @@ func (response CreateAmfContextNon3gppdefaultApplicationProblemPlusJSONResponse)
 }
 
 type QueryeesubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryeesubscriptionsParams
 }
 
@@ -28275,7 +24995,7 @@ type QueryeesubscriptionsResponseObject interface {
 	VisitQueryeesubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type Queryeesubscriptions200JSONResponse []EeSubscription
+type Queryeesubscriptions200JSONResponse []externalRef0.EeSubscription
 
 func (response Queryeesubscriptions200JSONResponse) VisitQueryeesubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -28285,7 +25005,7 @@ func (response Queryeesubscriptions200JSONResponse) VisitQueryeesubscriptionsRes
 }
 
 type QueryeesubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28297,7 +25017,7 @@ func (response QueryeesubscriptionsdefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type CreateEeSubscriptionsRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *CreateEeSubscriptionsJSONRequestBody
 }
 
@@ -28310,7 +25030,7 @@ type CreateEeSubscriptions201ResponseHeaders struct {
 }
 
 type CreateEeSubscriptions201JSONResponse struct {
-	Body    EeSubscription
+	Body    externalRef0.EeSubscription
 	Headers CreateEeSubscriptions201ResponseHeaders
 }
 
@@ -28323,7 +25043,7 @@ func (response CreateEeSubscriptions201JSONResponse) VisitCreateEeSubscriptionsR
 }
 
 type CreateEeSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28335,7 +25055,7 @@ func (response CreateEeSubscriptionsdefaultApplicationProblemPlusJSONResponse) V
 }
 
 type RemoveeeSubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -28352,7 +25072,7 @@ func (response RemoveeeSubscriptions204Response) VisitRemoveeeSubscriptionsRespo
 }
 
 type RemoveeeSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28364,7 +25084,7 @@ func (response RemoveeeSubscriptionsdefaultApplicationProblemPlusJSONResponse) V
 }
 
 type QueryeeSubscriptionRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -28372,7 +25092,7 @@ type QueryeeSubscriptionResponseObject interface {
 	VisitQueryeeSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type QueryeeSubscription200JSONResponse []EeSubscription
+type QueryeeSubscription200JSONResponse []externalRef0.EeSubscription
 
 func (response QueryeeSubscription200JSONResponse) VisitQueryeeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -28382,7 +25102,7 @@ func (response QueryeeSubscription200JSONResponse) VisitQueryeeSubscriptionRespo
 }
 
 type QueryeeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28394,7 +25114,7 @@ func (response QueryeeSubscriptiondefaultApplicationProblemPlusJSONResponse) Vis
 }
 
 type ModifyEesubscriptionRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Params ModifyEesubscriptionParams
 	Body   *ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody
@@ -28404,13 +25124,13 @@ type ModifyEesubscriptionResponseObject interface {
 	VisitModifyEesubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ModifyEesubscription200JSONResponse externalRef2.PatchResult
+type ModifyEesubscription200JSONResponse externalRef0.PatchResult
 
 func (response ModifyEesubscription200JSONResponse) VisitModifyEesubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifyEesubscription204Response struct {
@@ -28422,29 +25142,29 @@ func (response ModifyEesubscription204Response) VisitModifyEesubscriptionRespons
 }
 
 type ModifyEesubscription403ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifyEesubscription403ApplicationProblemPlusJSONResponse) VisitModifyEesubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ModifyEesubscription404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifyEesubscription404ApplicationProblemPlusJSONResponse) VisitModifyEesubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ModifyEesubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28456,7 +25176,7 @@ func (response ModifyEesubscriptiondefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type UpdateEesubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Body   *UpdateEesubscriptionsJSONRequestBody
 }
@@ -28473,17 +25193,17 @@ func (response UpdateEesubscriptions204Response) VisitUpdateEesubscriptionsRespo
 	return nil
 }
 
-type UpdateEesubscriptions404ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type UpdateEesubscriptions404ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response UpdateEesubscriptions404ApplicationProblemPlusJSONResponse) VisitUpdateEesubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type UpdateEesubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28495,7 +25215,7 @@ func (response UpdateEesubscriptionsdefaultApplicationProblemPlusJSONResponse) V
 }
 
 type RemoveAmfSubscriptionsInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -28512,7 +25232,7 @@ func (response RemoveAmfSubscriptionsInfo204Response) VisitRemoveAmfSubscription
 }
 
 type RemoveAmfSubscriptionsInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28524,7 +25244,7 @@ func (response RemoveAmfSubscriptionsInfodefaultApplicationProblemPlusJSONRespon
 }
 
 type GetAmfSubscriptionInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -28532,7 +25252,7 @@ type GetAmfSubscriptionInfoResponseObject interface {
 	VisitGetAmfSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type GetAmfSubscriptionInfo200JSONResponse []AmfSubscriptionInfo
+type GetAmfSubscriptionInfo200JSONResponse []externalRef0.AmfSubscriptionInfo
 
 func (response GetAmfSubscriptionInfo200JSONResponse) VisitGetAmfSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -28542,7 +25262,7 @@ func (response GetAmfSubscriptionInfo200JSONResponse) VisitGetAmfSubscriptionInf
 }
 
 type GetAmfSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28554,7 +25274,7 @@ func (response GetAmfSubscriptionInfodefaultApplicationProblemPlusJSONResponse) 
 }
 
 type ModifyAmfSubscriptionInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Params ModifyAmfSubscriptionInfoParams
 	Body   *ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody
@@ -28564,13 +25284,13 @@ type ModifyAmfSubscriptionInfoResponseObject interface {
 	VisitModifyAmfSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type ModifyAmfSubscriptionInfo200JSONResponse externalRef2.PatchResult
+type ModifyAmfSubscriptionInfo200JSONResponse externalRef0.PatchResult
 
 func (response ModifyAmfSubscriptionInfo200JSONResponse) VisitModifyAmfSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifyAmfSubscriptionInfo204Response struct {
@@ -28581,17 +25301,17 @@ func (response ModifyAmfSubscriptionInfo204Response) VisitModifyAmfSubscriptionI
 	return nil
 }
 
-type ModifyAmfSubscriptionInfo403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type ModifyAmfSubscriptionInfo403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response ModifyAmfSubscriptionInfo403ApplicationProblemPlusJSONResponse) VisitModifyAmfSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type ModifyAmfSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28603,7 +25323,7 @@ func (response ModifyAmfSubscriptionInfodefaultApplicationProblemPlusJSONRespons
 }
 
 type CreateAMFSubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Body   *CreateAMFSubscriptionsJSONRequestBody
 }
@@ -28621,7 +25341,7 @@ func (response CreateAMFSubscriptions204Response) VisitCreateAMFSubscriptionsRes
 }
 
 type CreateAMFSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28633,7 +25353,7 @@ func (response CreateAMFSubscriptionsdefaultApplicationProblemPlusJSONResponse) 
 }
 
 type RemoveHssSubscriptionsInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -28650,7 +25370,7 @@ func (response RemoveHssSubscriptionsInfo204Response) VisitRemoveHssSubscription
 }
 
 type RemoveHssSubscriptionsInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28662,7 +25382,7 @@ func (response RemoveHssSubscriptionsInfodefaultApplicationProblemPlusJSONRespon
 }
 
 type GetHssSubscriptionInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -28670,17 +25390,17 @@ type GetHssSubscriptionInfoResponseObject interface {
 	VisitGetHssSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type GetHssSubscriptionInfo200JSONResponse SmfSubscriptionInfo
+type GetHssSubscriptionInfo200JSONResponse externalRef0.SmfSubscriptionInfo
 
 func (response GetHssSubscriptionInfo200JSONResponse) VisitGetHssSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmfSubscriptionInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfSubscriptionInfo(response))
 }
 
 type GetHssSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28692,7 +25412,7 @@ func (response GetHssSubscriptionInfodefaultApplicationProblemPlusJSONResponse) 
 }
 
 type ModifyHssSubscriptionInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Params ModifyHssSubscriptionInfoParams
 	Body   *ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody
@@ -28702,13 +25422,13 @@ type ModifyHssSubscriptionInfoResponseObject interface {
 	VisitModifyHssSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type ModifyHssSubscriptionInfo200JSONResponse externalRef2.PatchResult
+type ModifyHssSubscriptionInfo200JSONResponse externalRef0.PatchResult
 
 func (response ModifyHssSubscriptionInfo200JSONResponse) VisitModifyHssSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifyHssSubscriptionInfo204Response struct {
@@ -28719,17 +25439,17 @@ func (response ModifyHssSubscriptionInfo204Response) VisitModifyHssSubscriptionI
 	return nil
 }
 
-type ModifyHssSubscriptionInfo403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type ModifyHssSubscriptionInfo403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response ModifyHssSubscriptionInfo403ApplicationProblemPlusJSONResponse) VisitModifyHssSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type ModifyHssSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28741,7 +25461,7 @@ func (response ModifyHssSubscriptionInfodefaultApplicationProblemPlusJSONRespons
 }
 
 type CreateHSSSubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Body   *CreateHSSSubscriptionsJSONRequestBody
 }
@@ -28759,7 +25479,7 @@ func (response CreateHSSSubscriptions204Response) VisitCreateHSSSubscriptionsRes
 }
 
 type CreateHSSSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28771,7 +25491,7 @@ func (response CreateHSSSubscriptionsdefaultApplicationProblemPlusJSONResponse) 
 }
 
 type RemoveSmfSubscriptionsInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -28788,7 +25508,7 @@ func (response RemoveSmfSubscriptionsInfo204Response) VisitRemoveSmfSubscription
 }
 
 type RemoveSmfSubscriptionsInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28800,7 +25520,7 @@ func (response RemoveSmfSubscriptionsInfodefaultApplicationProblemPlusJSONRespon
 }
 
 type GetSmfSubscriptionInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -28808,17 +25528,17 @@ type GetSmfSubscriptionInfoResponseObject interface {
 	VisitGetSmfSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type GetSmfSubscriptionInfo200JSONResponse SmfSubscriptionInfo
+type GetSmfSubscriptionInfo200JSONResponse externalRef0.SmfSubscriptionInfo
 
 func (response GetSmfSubscriptionInfo200JSONResponse) VisitGetSmfSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmfSubscriptionInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfSubscriptionInfo(response))
 }
 
 type GetSmfSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28830,7 +25550,7 @@ func (response GetSmfSubscriptionInfodefaultApplicationProblemPlusJSONResponse) 
 }
 
 type ModifySmfSubscriptionInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Params ModifySmfSubscriptionInfoParams
 	Body   *ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody
@@ -28840,13 +25560,13 @@ type ModifySmfSubscriptionInfoResponseObject interface {
 	VisitModifySmfSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type ModifySmfSubscriptionInfo200JSONResponse externalRef2.PatchResult
+type ModifySmfSubscriptionInfo200JSONResponse externalRef0.PatchResult
 
 func (response ModifySmfSubscriptionInfo200JSONResponse) VisitModifySmfSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifySmfSubscriptionInfo204Response struct {
@@ -28857,17 +25577,17 @@ func (response ModifySmfSubscriptionInfo204Response) VisitModifySmfSubscriptionI
 	return nil
 }
 
-type ModifySmfSubscriptionInfo403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type ModifySmfSubscriptionInfo403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response ModifySmfSubscriptionInfo403ApplicationProblemPlusJSONResponse) VisitModifySmfSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type ModifySmfSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28879,7 +25599,7 @@ func (response ModifySmfSubscriptionInfodefaultApplicationProblemPlusJSONRespons
 }
 
 type CreateSMFSubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Body   *CreateSMFSubscriptionsJSONRequestBody
 }
@@ -28897,7 +25617,7 @@ func (response CreateSMFSubscriptions204Response) VisitCreateSMFSubscriptionsRes
 }
 
 type CreateSMFSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28909,7 +25629,7 @@ func (response CreateSMFSubscriptionsdefaultApplicationProblemPlusJSONResponse) 
 }
 
 type DeleteIpSmGwContextRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 }
 
 type DeleteIpSmGwContextResponseObject interface {
@@ -28925,7 +25645,7 @@ func (response DeleteIpSmGwContext204Response) VisitDeleteIpSmGwContextResponse(
 }
 
 type DeleteIpSmGwContextdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28937,7 +25657,7 @@ func (response DeleteIpSmGwContextdefaultApplicationProblemPlusJSONResponse) Vis
 }
 
 type QueryIpSmGwContextRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryIpSmGwContextParams
 }
 
@@ -28945,17 +25665,17 @@ type QueryIpSmGwContextResponseObject interface {
 	VisitQueryIpSmGwContextResponse(w http.ResponseWriter) error
 }
 
-type QueryIpSmGwContext200JSONResponse IpSmGwRegistration
+type QueryIpSmGwContext200JSONResponse externalRef0.IpSmGwRegistration
 
 func (response QueryIpSmGwContext200JSONResponse) VisitQueryIpSmGwContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(IpSmGwRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.IpSmGwRegistration(response))
 }
 
 type QueryIpSmGwContextdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -28967,7 +25687,7 @@ func (response QueryIpSmGwContextdefaultApplicationProblemPlusJSONResponse) Visi
 }
 
 type ModifyIpSmGwContextRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody
 }
 
@@ -28984,29 +25704,29 @@ func (response ModifyIpSmGwContext204Response) VisitModifyIpSmGwContextResponse(
 }
 
 type ModifyIpSmGwContext403ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifyIpSmGwContext403ApplicationProblemPlusJSONResponse) VisitModifyIpSmGwContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ModifyIpSmGwContext404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifyIpSmGwContext404ApplicationProblemPlusJSONResponse) VisitModifyIpSmGwContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ModifyIpSmGwContextdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29018,7 +25738,7 @@ func (response ModifyIpSmGwContextdefaultApplicationProblemPlusJSONResponse) Vis
 }
 
 type CreateIpSmGwContextRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *CreateIpSmGwContextJSONRequestBody
 }
 
@@ -29035,7 +25755,7 @@ func (response CreateIpSmGwContext204Response) VisitCreateIpSmGwContextResponse(
 }
 
 type CreateIpSmGwContextdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29047,7 +25767,7 @@ func (response CreateIpSmGwContextdefaultApplicationProblemPlusJSONResponse) Vis
 }
 
 type QueryUeLocationRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryUeLocationParams
 }
 
@@ -29055,17 +25775,17 @@ type QueryUeLocationResponseObject interface {
 	VisitQueryUeLocationResponse(w http.ResponseWriter) error
 }
 
-type QueryUeLocation200JSONResponse LocationInfo
+type QueryUeLocation200JSONResponse externalRef0.LocationInfo
 
 func (response QueryUeLocation200JSONResponse) VisitQueryUeLocationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(LocationInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.LocationInfo(response))
 }
 
 type QueryUeLocationdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29077,7 +25797,7 @@ func (response QueryUeLocationdefaultApplicationProblemPlusJSONResponse) VisitQu
 }
 
 type DeleteMessageWaitingDataRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 }
 
 type DeleteMessageWaitingDataResponseObject interface {
@@ -29093,7 +25813,7 @@ func (response DeleteMessageWaitingData204Response) VisitDeleteMessageWaitingDat
 }
 
 type DeleteMessageWaitingDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29105,7 +25825,7 @@ func (response DeleteMessageWaitingDatadefaultApplicationProblemPlusJSONResponse
 }
 
 type QueryMessageWaitingDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryMessageWaitingDataParams
 }
 
@@ -29113,17 +25833,17 @@ type QueryMessageWaitingDataResponseObject interface {
 	VisitQueryMessageWaitingDataResponse(w http.ResponseWriter) error
 }
 
-type QueryMessageWaitingData200JSONResponse MessageWaitingData
+type QueryMessageWaitingData200JSONResponse externalRef0.MessageWaitingData
 
 func (response QueryMessageWaitingData200JSONResponse) VisitQueryMessageWaitingDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(MessageWaitingData(response))
+	return json.NewEncoder(w).Encode(externalRef0.MessageWaitingData(response))
 }
 
 type QueryMessageWaitingDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29135,7 +25855,7 @@ func (response QueryMessageWaitingDatadefaultApplicationProblemPlusJSONResponse)
 }
 
 type ModifyMessageWaitingDataRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody
 }
 
@@ -29152,29 +25872,29 @@ func (response ModifyMessageWaitingData204Response) VisitModifyMessageWaitingDat
 }
 
 type ModifyMessageWaitingData403ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifyMessageWaitingData403ApplicationProblemPlusJSONResponse) VisitModifyMessageWaitingDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ModifyMessageWaitingData404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifyMessageWaitingData404ApplicationProblemPlusJSONResponse) VisitModifyMessageWaitingDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ModifyMessageWaitingDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29186,7 +25906,7 @@ func (response ModifyMessageWaitingDatadefaultApplicationProblemPlusJSONResponse
 }
 
 type CreateMessageWaitingDataRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *CreateMessageWaitingDataJSONRequestBody
 }
 
@@ -29203,7 +25923,7 @@ func (response CreateMessageWaitingData204Response) VisitCreateMessageWaitingDat
 }
 
 type CreateMessageWaitingDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29215,7 +25935,7 @@ func (response CreateMessageWaitingDatadefaultApplicationProblemPlusJSONResponse
 }
 
 type QuerysdmsubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QuerysdmsubscriptionsParams
 }
 
@@ -29223,7 +25943,7 @@ type QuerysdmsubscriptionsResponseObject interface {
 	VisitQuerysdmsubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type Querysdmsubscriptions200JSONResponse []SdmSubscription
+type Querysdmsubscriptions200JSONResponse []externalRef0.SdmSubscription
 
 func (response Querysdmsubscriptions200JSONResponse) VisitQuerysdmsubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -29233,7 +25953,7 @@ func (response Querysdmsubscriptions200JSONResponse) VisitQuerysdmsubscriptionsR
 }
 
 type QuerysdmsubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29245,7 +25965,7 @@ func (response QuerysdmsubscriptionsdefaultApplicationProblemPlusJSONResponse) V
 }
 
 type CreateSdmSubscriptionsRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *CreateSdmSubscriptionsJSONRequestBody
 }
 
@@ -29258,7 +25978,7 @@ type CreateSdmSubscriptions201ResponseHeaders struct {
 }
 
 type CreateSdmSubscriptions201JSONResponse struct {
-	Body    SdmSubscription
+	Body    externalRef0.SdmSubscription
 	Headers CreateSdmSubscriptions201ResponseHeaders
 }
 
@@ -29271,7 +25991,7 @@ func (response CreateSdmSubscriptions201JSONResponse) VisitCreateSdmSubscription
 }
 
 type CreateSdmSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29283,7 +26003,7 @@ func (response CreateSdmSubscriptionsdefaultApplicationProblemPlusJSONResponse) 
 }
 
 type RemovesdmSubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -29300,18 +26020,18 @@ func (response RemovesdmSubscriptions204Response) VisitRemovesdmSubscriptionsRes
 }
 
 type RemovesdmSubscriptions404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response RemovesdmSubscriptions404ApplicationProblemPlusJSONResponse) VisitRemovesdmSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type RemovesdmSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29323,7 +26043,7 @@ func (response RemovesdmSubscriptionsdefaultApplicationProblemPlusJSONResponse) 
 }
 
 type QuerysdmSubscriptionRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -29331,7 +26051,7 @@ type QuerysdmSubscriptionResponseObject interface {
 	VisitQuerysdmSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type QuerysdmSubscription200JSONResponse []SdmSubscription
+type QuerysdmSubscription200JSONResponse []externalRef0.SdmSubscription
 
 func (response QuerysdmSubscription200JSONResponse) VisitQuerysdmSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -29341,7 +26061,7 @@ func (response QuerysdmSubscription200JSONResponse) VisitQuerysdmSubscriptionRes
 }
 
 type QuerysdmSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29353,7 +26073,7 @@ func (response QuerysdmSubscriptiondefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type ModifysdmSubscriptionRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Params ModifysdmSubscriptionParams
 	Body   *ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody
@@ -29363,13 +26083,13 @@ type ModifysdmSubscriptionResponseObject interface {
 	VisitModifysdmSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ModifysdmSubscription200JSONResponse externalRef2.PatchResult
+type ModifysdmSubscription200JSONResponse externalRef0.PatchResult
 
 func (response ModifysdmSubscription200JSONResponse) VisitModifysdmSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifysdmSubscription204Response struct {
@@ -29381,29 +26101,29 @@ func (response ModifysdmSubscription204Response) VisitModifysdmSubscriptionRespo
 }
 
 type ModifysdmSubscription403ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifysdmSubscription403ApplicationProblemPlusJSONResponse) VisitModifysdmSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ModifysdmSubscription404ApplicationProblemPlusJSONResponse struct {
-	externalRef2.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ModifysdmSubscription404ApplicationProblemPlusJSONResponse) VisitModifysdmSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ModifysdmSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29415,7 +26135,7 @@ func (response ModifysdmSubscriptiondefaultApplicationProblemPlusJSONResponse) V
 }
 
 type UpdatesdmsubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Body   *UpdatesdmsubscriptionsJSONRequestBody
 }
@@ -29432,17 +26152,17 @@ func (response Updatesdmsubscriptions204Response) VisitUpdatesdmsubscriptionsRes
 	return nil
 }
 
-type Updatesdmsubscriptions404ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type Updatesdmsubscriptions404ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response Updatesdmsubscriptions404ApplicationProblemPlusJSONResponse) VisitUpdatesdmsubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type UpdatesdmsubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29454,7 +26174,7 @@ func (response UpdatesdmsubscriptionsdefaultApplicationProblemPlusJSONResponse) 
 }
 
 type RemoveHssSDMSubscriptionsInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -29471,7 +26191,7 @@ func (response RemoveHssSDMSubscriptionsInfo204Response) VisitRemoveHssSDMSubscr
 }
 
 type RemoveHssSDMSubscriptionsInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29483,7 +26203,7 @@ func (response RemoveHssSDMSubscriptionsInfodefaultApplicationProblemPlusJSONRes
 }
 
 type GetHssSDMSubscriptionInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 }
 
@@ -29491,17 +26211,17 @@ type GetHssSDMSubscriptionInfoResponseObject interface {
 	VisitGetHssSDMSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type GetHssSDMSubscriptionInfo200JSONResponse SmfSubscriptionInfo
+type GetHssSDMSubscriptionInfo200JSONResponse externalRef0.SmfSubscriptionInfo
 
 func (response GetHssSDMSubscriptionInfo200JSONResponse) VisitGetHssSDMSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmfSubscriptionInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfSubscriptionInfo(response))
 }
 
 type GetHssSDMSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29513,7 +26233,7 @@ func (response GetHssSDMSubscriptionInfodefaultApplicationProblemPlusJSONRespons
 }
 
 type ModifyHssSDMSubscriptionInfoRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Params ModifyHssSDMSubscriptionInfoParams
 	Body   *ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody
@@ -29523,13 +26243,13 @@ type ModifyHssSDMSubscriptionInfoResponseObject interface {
 	VisitModifyHssSDMSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type ModifyHssSDMSubscriptionInfo200JSONResponse externalRef2.PatchResult
+type ModifyHssSDMSubscriptionInfo200JSONResponse externalRef0.PatchResult
 
 func (response ModifyHssSDMSubscriptionInfo200JSONResponse) VisitModifyHssSDMSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifyHssSDMSubscriptionInfo204Response struct {
@@ -29540,17 +26260,17 @@ func (response ModifyHssSDMSubscriptionInfo204Response) VisitModifyHssSDMSubscri
 	return nil
 }
 
-type ModifyHssSDMSubscriptionInfo403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type ModifyHssSDMSubscriptionInfo403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response ModifyHssSDMSubscriptionInfo403ApplicationProblemPlusJSONResponse) VisitModifyHssSDMSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type ModifyHssSDMSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29562,7 +26282,7 @@ func (response ModifyHssSDMSubscriptionInfodefaultApplicationProblemPlusJSONResp
 }
 
 type CreateHSSSDMSubscriptionsRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	SubsId string               `json:"subsId"`
 	Body   *CreateHSSSDMSubscriptionsJSONRequestBody
 }
@@ -29580,7 +26300,7 @@ func (response CreateHSSSDMSubscriptions204Response) VisitCreateHSSSDMSubscripti
 }
 
 type CreateHSSSDMSubscriptionsdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29592,7 +26312,7 @@ func (response CreateHSSSDMSubscriptionsdefaultApplicationProblemPlusJSONRespons
 }
 
 type QuerySmfRegListRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QuerySmfRegListParams
 }
 
@@ -29600,17 +26320,17 @@ type QuerySmfRegListResponseObject interface {
 	VisitQuerySmfRegListResponse(w http.ResponseWriter) error
 }
 
-type QuerySmfRegList200JSONResponse SmfRegList
+type QuerySmfRegList200JSONResponse externalRef0.SmfRegList
 
 func (response QuerySmfRegList200JSONResponse) VisitQuerySmfRegListResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmfRegList(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfRegList(response))
 }
 
 type QuerySmfRegListdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29622,8 +26342,8 @@ func (response QuerySmfRegListdefaultApplicationProblemPlusJSONResponse) VisitQu
 }
 
 type DeleteSmfRegistrationRequestObject struct {
-	UeId         externalRef2.VarUeId      `json:"ueId"`
-	PduSessionId externalRef2.PduSessionId `json:"pduSessionId"`
+	UeId         externalRef0.VarUeId      `json:"ueId"`
+	PduSessionId externalRef0.PduSessionId `json:"pduSessionId"`
 }
 
 type DeleteSmfRegistrationResponseObject interface {
@@ -29639,7 +26359,7 @@ func (response DeleteSmfRegistration204Response) VisitDeleteSmfRegistrationRespo
 }
 
 type DeleteSmfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29651,8 +26371,8 @@ func (response DeleteSmfRegistrationdefaultApplicationProblemPlusJSONResponse) V
 }
 
 type QuerySmfRegistrationRequestObject struct {
-	UeId         externalRef2.VarUeId      `json:"ueId"`
-	PduSessionId externalRef2.PduSessionId `json:"pduSessionId"`
+	UeId         externalRef0.VarUeId      `json:"ueId"`
+	PduSessionId externalRef0.PduSessionId `json:"pduSessionId"`
 	Params       QuerySmfRegistrationParams
 }
 
@@ -29660,17 +26380,17 @@ type QuerySmfRegistrationResponseObject interface {
 	VisitQuerySmfRegistrationResponse(w http.ResponseWriter) error
 }
 
-type QuerySmfRegistration200JSONResponse SmfRegistration
+type QuerySmfRegistration200JSONResponse externalRef0.SmfRegistration
 
 func (response QuerySmfRegistration200JSONResponse) VisitQuerySmfRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfRegistration(response))
 }
 
 type QuerySmfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29682,8 +26402,8 @@ func (response QuerySmfRegistrationdefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type CreateOrUpdateSmfRegistrationRequestObject struct {
-	UeId         externalRef2.VarUeId      `json:"ueId"`
-	PduSessionId externalRef2.PduSessionId `json:"pduSessionId"`
+	UeId         externalRef0.VarUeId      `json:"ueId"`
+	PduSessionId externalRef0.PduSessionId `json:"pduSessionId"`
 	Body         *CreateOrUpdateSmfRegistrationJSONRequestBody
 }
 
@@ -29696,7 +26416,7 @@ type CreateOrUpdateSmfRegistration201ResponseHeaders struct {
 }
 
 type CreateOrUpdateSmfRegistration201JSONResponse struct {
-	Body    SmfRegistration
+	Body    externalRef0.SmfRegistration
 	Headers CreateOrUpdateSmfRegistration201ResponseHeaders
 }
 
@@ -29717,7 +26437,7 @@ func (response CreateOrUpdateSmfRegistration204Response) VisitCreateOrUpdateSmfR
 }
 
 type CreateOrUpdateSmfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29729,7 +26449,7 @@ func (response CreateOrUpdateSmfRegistrationdefaultApplicationProblemPlusJSONRes
 }
 
 type DeleteSmsfContext3gppRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 }
 
 type DeleteSmsfContext3gppResponseObject interface {
@@ -29745,7 +26465,7 @@ func (response DeleteSmsfContext3gpp204Response) VisitDeleteSmsfContext3gppRespo
 }
 
 type DeleteSmsfContext3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29757,7 +26477,7 @@ func (response DeleteSmsfContext3gppdefaultApplicationProblemPlusJSONResponse) V
 }
 
 type QuerySmsfContext3gppRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QuerySmsfContext3gppParams
 }
 
@@ -29765,17 +26485,17 @@ type QuerySmsfContext3gppResponseObject interface {
 	VisitQuerySmsfContext3gppResponse(w http.ResponseWriter) error
 }
 
-type QuerySmsfContext3gpp200JSONResponse SmsfRegistration
+type QuerySmsfContext3gpp200JSONResponse externalRef0.SmsfRegistration
 
 func (response QuerySmsfContext3gpp200JSONResponse) VisitQuerySmsfContext3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmsfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmsfRegistration(response))
 }
 
 type QuerySmsfContext3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29787,7 +26507,7 @@ func (response QuerySmsfContext3gppdefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type CreateSmsfContext3gppRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *CreateSmsfContext3gppJSONRequestBody
 }
 
@@ -29800,7 +26520,7 @@ type CreateSmsfContext3gpp201ResponseHeaders struct {
 }
 
 type CreateSmsfContext3gpp201JSONResponse struct {
-	Body    SmsfRegistration
+	Body    externalRef0.SmsfRegistration
 	Headers CreateSmsfContext3gpp201ResponseHeaders
 }
 
@@ -29821,7 +26541,7 @@ func (response CreateSmsfContext3gpp204Response) VisitCreateSmsfContext3gppRespo
 }
 
 type CreateSmsfContext3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29833,7 +26553,7 @@ func (response CreateSmsfContext3gppdefaultApplicationProblemPlusJSONResponse) V
 }
 
 type DeleteSmsfContextNon3gppRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 }
 
 type DeleteSmsfContextNon3gppResponseObject interface {
@@ -29849,7 +26569,7 @@ func (response DeleteSmsfContextNon3gpp204Response) VisitDeleteSmsfContextNon3gp
 }
 
 type DeleteSmsfContextNon3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29861,7 +26581,7 @@ func (response DeleteSmsfContextNon3gppdefaultApplicationProblemPlusJSONResponse
 }
 
 type QuerySmsfContextNon3gppRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QuerySmsfContextNon3gppParams
 }
 
@@ -29869,17 +26589,17 @@ type QuerySmsfContextNon3gppResponseObject interface {
 	VisitQuerySmsfContextNon3gppResponse(w http.ResponseWriter) error
 }
 
-type QuerySmsfContextNon3gpp200JSONResponse SmsfRegistration
+type QuerySmsfContextNon3gpp200JSONResponse externalRef0.SmsfRegistration
 
 func (response QuerySmsfContextNon3gpp200JSONResponse) VisitQuerySmsfContextNon3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SmsfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmsfRegistration(response))
 }
 
 type QuerySmsfContextNon3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29891,7 +26611,7 @@ func (response QuerySmsfContextNon3gppdefaultApplicationProblemPlusJSONResponse)
 }
 
 type CreateSmsfContextNon3gppRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 	Body *CreateSmsfContextNon3gppJSONRequestBody
 }
 
@@ -29904,7 +26624,7 @@ type CreateSmsfContextNon3gpp201ResponseHeaders struct {
 }
 
 type CreateSmsfContextNon3gpp201JSONResponse struct {
-	Body    SmsfRegistration
+	Body    externalRef0.SmsfRegistration
 	Headers CreateSmsfContextNon3gpp201ResponseHeaders
 }
 
@@ -29925,7 +26645,7 @@ func (response CreateSmsfContextNon3gpp204Response) VisitCreateSmsfContextNon3gp
 }
 
 type CreateSmsfContextNon3gppdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29937,7 +26657,7 @@ func (response CreateSmsfContextNon3gppdefaultApplicationProblemPlusJSONResponse
 }
 
 type QueryCoverageRestrictionDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryCoverageRestrictionDataParams
 }
 
@@ -29952,7 +26672,7 @@ type QueryCoverageRestrictionData200ResponseHeaders struct {
 }
 
 type QueryCoverageRestrictionData200JSONResponse struct {
-	Body    EnhancedCoverageRestrictionData
+	Body    externalRef0.EnhancedCoverageRestrictionData
 	Headers QueryCoverageRestrictionData200ResponseHeaders
 }
 
@@ -29973,7 +26693,7 @@ func (response QueryCoverageRestrictionData200JSONResponse) VisitQueryCoverageRe
 }
 
 type QueryCoverageRestrictionDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -29985,7 +26705,7 @@ func (response QueryCoverageRestrictionDatadefaultApplicationProblemPlusJSONResp
 }
 
 type QueryEEDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryEEDataParams
 }
 
@@ -29993,17 +26713,17 @@ type QueryEEDataResponseObject interface {
 	VisitQueryEEDataResponse(w http.ResponseWriter) error
 }
 
-type QueryEEData200JSONResponse EeProfileData
+type QueryEEData200JSONResponse externalRef0.EeProfileData
 
 func (response QueryEEData200JSONResponse) VisitQueryEEDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(EeProfileData(response))
+	return json.NewEncoder(w).Encode(externalRef0.EeProfileData(response))
 }
 
 type QueryEEDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30015,7 +26735,7 @@ func (response QueryEEDatadefaultApplicationProblemPlusJSONResponse) VisitQueryE
 }
 
 type GetIdentityDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params GetIdentityDataParams
 }
 
@@ -30030,7 +26750,7 @@ type GetIdentityData200ResponseHeaders struct {
 }
 
 type GetIdentityData200JSONResponse struct {
-	Body    IdentityData
+	Body    externalRef0.IdentityData
 	Headers GetIdentityData200ResponseHeaders
 }
 
@@ -30051,7 +26771,7 @@ func (response GetIdentityData200JSONResponse) VisitGetIdentityDataResponse(w ht
 }
 
 type GetIdentityDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30063,7 +26783,7 @@ func (response GetIdentityDatadefaultApplicationProblemPlusJSONResponse) VisitGe
 }
 
 type QueryLcsMoDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryLcsMoDataParams
 }
 
@@ -30078,7 +26798,7 @@ type QueryLcsMoData200ResponseHeaders struct {
 }
 
 type QueryLcsMoData200JSONResponse struct {
-	Body    LcsMoData
+	Body    externalRef0.LcsMoData
 	Headers QueryLcsMoData200ResponseHeaders
 }
 
@@ -30099,7 +26819,7 @@ func (response QueryLcsMoData200JSONResponse) VisitQueryLcsMoDataResponse(w http
 }
 
 type QueryLcsMoDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30111,7 +26831,7 @@ func (response QueryLcsMoDatadefaultApplicationProblemPlusJSONResponse) VisitQue
 }
 
 type QueryLcsPrivacyDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryLcsPrivacyDataParams
 }
 
@@ -30126,7 +26846,7 @@ type QueryLcsPrivacyData200ResponseHeaders struct {
 }
 
 type QueryLcsPrivacyData200JSONResponse struct {
-	Body    LcsPrivacyData
+	Body    externalRef0.LcsPrivacyData
 	Headers QueryLcsPrivacyData200ResponseHeaders
 }
 
@@ -30147,7 +26867,7 @@ func (response QueryLcsPrivacyData200JSONResponse) VisitQueryLcsPrivacyDataRespo
 }
 
 type QueryLcsPrivacyDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30174,7 +26894,7 @@ type GetNiddAuData200ResponseHeaders struct {
 }
 
 type GetNiddAuData200JSONResponse struct {
-	Body    AuthorizationData
+	Body    externalRef0.AuthorizationData
 	Headers GetNiddAuData200ResponseHeaders
 }
 
@@ -30195,7 +26915,7 @@ func (response GetNiddAuData200JSONResponse) VisitGetNiddAuDataResponse(w http.R
 }
 
 type GetNiddAuDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30207,24 +26927,24 @@ func (response GetNiddAuDatadefaultApplicationProblemPlusJSONResponse) VisitGetN
 }
 
 type GetOdbDataRequestObject struct {
-	UeId externalRef2.VarUeId `json:"ueId"`
+	UeId externalRef0.VarUeId `json:"ueId"`
 }
 
 type GetOdbDataResponseObject interface {
 	VisitGetOdbDataResponse(w http.ResponseWriter) error
 }
 
-type GetOdbData200JSONResponse externalRef2.OdbData
+type GetOdbData200JSONResponse externalRef0.OdbData
 
 func (response GetOdbData200JSONResponse) VisitGetOdbDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.OdbData(response))
+	return json.NewEncoder(w).Encode(externalRef0.OdbData(response))
 }
 
 type GetOdbDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30236,7 +26956,7 @@ func (response GetOdbDatadefaultApplicationProblemPlusJSONResponse) VisitGetOdbD
 }
 
 type QueryOperSpecDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryOperSpecDataParams
 }
 
@@ -30251,7 +26971,7 @@ type QueryOperSpecData200ResponseHeaders struct {
 }
 
 type QueryOperSpecData200JSONResponse struct {
-	Body    map[string]OperatorSpecificDataContainer
+	Body    map[string]externalRef0.OperatorSpecificDataContainer
 	Headers QueryOperSpecData200ResponseHeaders
 }
 
@@ -30272,7 +26992,7 @@ func (response QueryOperSpecData200JSONResponse) VisitQueryOperSpecDataResponse(
 }
 
 type QueryOperSpecDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30284,7 +27004,7 @@ func (response QueryOperSpecDatadefaultApplicationProblemPlusJSONResponse) Visit
 }
 
 type ModifyOperSpecDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params ModifyOperSpecDataParams
 	Body   *ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody
 }
@@ -30293,13 +27013,13 @@ type ModifyOperSpecDataResponseObject interface {
 	VisitModifyOperSpecDataResponse(w http.ResponseWriter) error
 }
 
-type ModifyOperSpecData200JSONResponse externalRef2.PatchResult
+type ModifyOperSpecData200JSONResponse externalRef0.PatchResult
 
 func (response ModifyOperSpecData200JSONResponse) VisitModifyOperSpecDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifyOperSpecData204Response struct {
@@ -30310,17 +27030,17 @@ func (response ModifyOperSpecData204Response) VisitModifyOperSpecDataResponse(w 
 	return nil
 }
 
-type ModifyOperSpecData403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type ModifyOperSpecData403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response ModifyOperSpecData403ApplicationProblemPlusJSONResponse) VisitModifyOperSpecDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type ModifyOperSpecDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30332,7 +27052,7 @@ func (response ModifyOperSpecDatadefaultApplicationProblemPlusJSONResponse) Visi
 }
 
 type GetppDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params GetppDataParams
 }
 
@@ -30347,7 +27067,7 @@ type GetppData200ResponseHeaders struct {
 }
 
 type GetppData200JSONResponse struct {
-	Body    PpData
+	Body    externalRef0.PpData
 	Headers GetppData200ResponseHeaders
 }
 
@@ -30367,17 +27087,17 @@ func (response GetppData200JSONResponse) VisitGetppDataResponse(w http.ResponseW
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type GetppData403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type GetppData403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response GetppData403ApplicationProblemPlusJSONResponse) VisitGetppDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type GetppDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30389,7 +27109,7 @@ func (response GetppDatadefaultApplicationProblemPlusJSONResponse) VisitGetppDat
 }
 
 type ModifyPpDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params ModifyPpDataParams
 	Body   *ModifyPpDataApplicationJSONPatchPlusJSONRequestBody
 }
@@ -30398,13 +27118,13 @@ type ModifyPpDataResponseObject interface {
 	VisitModifyPpDataResponse(w http.ResponseWriter) error
 }
 
-type ModifyPpData200JSONResponse externalRef2.PatchResult
+type ModifyPpData200JSONResponse externalRef0.PatchResult
 
 func (response ModifyPpData200JSONResponse) VisitModifyPpDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type ModifyPpData204Response struct {
@@ -30415,17 +27135,17 @@ func (response ModifyPpData204Response) VisitModifyPpDataResponse(w http.Respons
 	return nil
 }
 
-type ModifyPpData403ApplicationProblemPlusJSONResponse externalRef2.ProblemDetails
+type ModifyPpData403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response ModifyPpData403ApplicationProblemPlusJSONResponse) VisitModifyPpDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef2.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type ModifyPpDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30437,7 +27157,7 @@ func (response ModifyPpDatadefaultApplicationProblemPlusJSONResponse) VisitModif
 }
 
 type QueryPPDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryPPDataParams
 }
 
@@ -30445,17 +27165,17 @@ type QueryPPDataResponseObject interface {
 	VisitQueryPPDataResponse(w http.ResponseWriter) error
 }
 
-type QueryPPData200JSONResponse PpProfileData
+type QueryPPData200JSONResponse externalRef0.PpProfileData
 
 func (response QueryPPData200JSONResponse) VisitQueryPPDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(PpProfileData(response))
+	return json.NewEncoder(w).Encode(externalRef0.PpProfileData(response))
 }
 
 type QueryPPDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30467,7 +27187,7 @@ func (response QueryPPDatadefaultApplicationProblemPlusJSONResponse) VisitQueryP
 }
 
 type QueryAuthSoRRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params QueryAuthSoRParams
 }
 
@@ -30475,17 +27195,17 @@ type QueryAuthSoRResponseObject interface {
 	VisitQueryAuthSoRResponse(w http.ResponseWriter) error
 }
 
-type QueryAuthSoR200JSONResponse SorData
+type QueryAuthSoR200JSONResponse externalRef0.SorData
 
 func (response QueryAuthSoR200JSONResponse) VisitQueryAuthSoRResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SorData(response))
+	return json.NewEncoder(w).Encode(externalRef0.SorData(response))
 }
 
 type QueryAuthSoRdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30497,7 +27217,7 @@ func (response QueryAuthSoRdefaultApplicationProblemPlusJSONResponse) VisitQuery
 }
 
 type CreateAuthenticationSoRRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params CreateAuthenticationSoRParams
 	Body   *CreateAuthenticationSoRJSONRequestBody
 }
@@ -30515,7 +27235,7 @@ func (response CreateAuthenticationSoR204Response) VisitCreateAuthenticationSoRR
 }
 
 type CreateAuthenticationSoRdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30527,7 +27247,7 @@ func (response CreateAuthenticationSoRdefaultApplicationProblemPlusJSONResponse)
 }
 
 type QueryCagAckRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params QueryCagAckParams
 }
 
@@ -30535,17 +27255,17 @@ type QueryCagAckResponseObject interface {
 	VisitQueryCagAckResponse(w http.ResponseWriter) error
 }
 
-type QueryCagAck200JSONResponse CagAckData
+type QueryCagAck200JSONResponse externalRef0.CagAckData
 
 func (response QueryCagAck200JSONResponse) VisitQueryCagAckResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(CagAckData(response))
+	return json.NewEncoder(w).Encode(externalRef0.CagAckData(response))
 }
 
 type QueryCagAckdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30557,7 +27277,7 @@ func (response QueryCagAckdefaultApplicationProblemPlusJSONResponse) VisitQueryC
 }
 
 type CreateCagUpdateAckRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params CreateCagUpdateAckParams
 	Body   *CreateCagUpdateAckJSONRequestBody
 }
@@ -30575,7 +27295,7 @@ func (response CreateCagUpdateAck204Response) VisitCreateCagUpdateAckResponse(w 
 }
 
 type CreateCagUpdateAckdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30587,7 +27307,7 @@ func (response CreateCagUpdateAckdefaultApplicationProblemPlusJSONResponse) Visi
 }
 
 type QueryNssaiAckRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params QueryNssaiAckParams
 }
 
@@ -30595,17 +27315,17 @@ type QueryNssaiAckResponseObject interface {
 	VisitQueryNssaiAckResponse(w http.ResponseWriter) error
 }
 
-type QueryNssaiAck200JSONResponse NssaiAckData
+type QueryNssaiAck200JSONResponse externalRef0.NssaiAckData
 
 func (response QueryNssaiAck200JSONResponse) VisitQueryNssaiAckResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(NssaiAckData(response))
+	return json.NewEncoder(w).Encode(externalRef0.NssaiAckData(response))
 }
 
 type QueryNssaiAckdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30617,7 +27337,7 @@ func (response QueryNssaiAckdefaultApplicationProblemPlusJSONResponse) VisitQuer
 }
 
 type CreateOrUpdateNssaiAckRequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params CreateOrUpdateNssaiAckParams
 	Body   *CreateOrUpdateNssaiAckJSONRequestBody
 }
@@ -30635,7 +27355,7 @@ func (response CreateOrUpdateNssaiAck204Response) VisitCreateOrUpdateNssaiAckRes
 }
 
 type CreateOrUpdateNssaiAckdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30647,7 +27367,7 @@ func (response CreateOrUpdateNssaiAckdefaultApplicationProblemPlusJSONResponse) 
 }
 
 type QueryAuthUPURequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params QueryAuthUPUParams
 }
 
@@ -30655,17 +27375,17 @@ type QueryAuthUPUResponseObject interface {
 	VisitQueryAuthUPUResponse(w http.ResponseWriter) error
 }
 
-type QueryAuthUPU200JSONResponse UpuData
+type QueryAuthUPU200JSONResponse externalRef0.UpuData
 
 func (response QueryAuthUPU200JSONResponse) VisitQueryAuthUPUResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(UpuData(response))
+	return json.NewEncoder(w).Encode(externalRef0.UpuData(response))
 }
 
 type QueryAuthUPUdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30677,7 +27397,7 @@ func (response QueryAuthUPUdefaultApplicationProblemPlusJSONResponse) VisitQuery
 }
 
 type CreateAuthenticationUPURequestObject struct {
-	UeId   externalRef2.Supi `json:"ueId"`
+	UeId   externalRef0.Supi `json:"ueId"`
 	Params CreateAuthenticationUPUParams
 	Body   *CreateAuthenticationUPUJSONRequestBody
 }
@@ -30695,7 +27415,7 @@ func (response CreateAuthenticationUPU204Response) VisitCreateAuthenticationUPUR
 }
 
 type CreateAuthenticationUPUdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30707,7 +27427,7 @@ func (response CreateAuthenticationUPUdefaultApplicationProblemPlusJSONResponse)
 }
 
 type QueryV2xDataRequestObject struct {
-	UeId   externalRef2.VarUeId `json:"ueId"`
+	UeId   externalRef0.VarUeId `json:"ueId"`
 	Params QueryV2xDataParams
 }
 
@@ -30722,7 +27442,7 @@ type QueryV2xData200ResponseHeaders struct {
 }
 
 type QueryV2xData200JSONResponse struct {
-	Body    V2xSubscriptionData
+	Body    externalRef0.V2xSubscriptionData
 	Headers QueryV2xData200ResponseHeaders
 }
 
@@ -30743,7 +27463,7 @@ func (response QueryV2xData200JSONResponse) VisitQueryV2xDataResponse(w http.Res
 }
 
 type QueryV2xDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30755,8 +27475,8 @@ func (response QueryV2xDatadefaultApplicationProblemPlusJSONResponse) VisitQuery
 }
 
 type QueryProvisionedDataRequestObject struct {
-	UeId          externalRef2.VarUeId `json:"ueId"`
-	ServingPlmnId VarPlmnId            `json:"servingPlmnId"`
+	UeId          externalRef0.VarUeId   `json:"ueId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QueryProvisionedDataParams
 }
 
@@ -30764,17 +27484,17 @@ type QueryProvisionedDataResponseObject interface {
 	VisitQueryProvisionedDataResponse(w http.ResponseWriter) error
 }
 
-type QueryProvisionedData200JSONResponse ProvisionedDataSets
+type QueryProvisionedData200JSONResponse externalRef0.ProvisionedDataSets
 
 func (response QueryProvisionedData200JSONResponse) VisitQueryProvisionedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(ProvisionedDataSets(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProvisionedDataSets(response))
 }
 
 type QueryProvisionedDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30786,8 +27506,8 @@ func (response QueryProvisionedDatadefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type QueryAmDataRequestObject struct {
-	UeId          externalRef2.VarUeId `json:"ueId"`
-	ServingPlmnId VarPlmnId            `json:"servingPlmnId"`
+	UeId          externalRef0.VarUeId   `json:"ueId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QueryAmDataParams
 }
 
@@ -30802,7 +27522,7 @@ type QueryAmData200ResponseHeaders struct {
 }
 
 type QueryAmData200JSONResponse struct {
-	Body    AccessAndMobilitySubscriptionData
+	Body    externalRef0.AccessAndMobilitySubscriptionData
 	Headers QueryAmData200ResponseHeaders
 }
 
@@ -30823,7 +27543,7 @@ func (response QueryAmData200JSONResponse) VisitQueryAmDataResponse(w http.Respo
 }
 
 type QueryAmDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30835,8 +27555,8 @@ func (response QueryAmDatadefaultApplicationProblemPlusJSONResponse) VisitQueryA
 }
 
 type QueryLcsBcaDataRequestObject struct {
-	UeId          externalRef2.VarUeId `json:"ueId"`
-	ServingPlmnId VarPlmnId            `json:"servingPlmnId"`
+	UeId          externalRef0.VarUeId   `json:"ueId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QueryLcsBcaDataParams
 }
 
@@ -30851,7 +27571,7 @@ type QueryLcsBcaData200ResponseHeaders struct {
 }
 
 type QueryLcsBcaData200JSONResponse struct {
-	Body    LcsBroadcastAssistanceTypesData
+	Body    externalRef0.LcsBroadcastAssistanceTypesData
 	Headers QueryLcsBcaData200ResponseHeaders
 }
 
@@ -30872,7 +27592,7 @@ func (response QueryLcsBcaData200JSONResponse) VisitQueryLcsBcaDataResponse(w ht
 }
 
 type QueryLcsBcaDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30884,8 +27604,8 @@ func (response QueryLcsBcaDatadefaultApplicationProblemPlusJSONResponse) VisitQu
 }
 
 type QuerySmDataRequestObject struct {
-	UeId          externalRef2.VarUeId `json:"ueId"`
-	ServingPlmnId VarPlmnId            `json:"servingPlmnId"`
+	UeId          externalRef0.VarUeId   `json:"ueId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QuerySmDataParams
 }
 
@@ -30900,7 +27620,7 @@ type QuerySmData200ResponseHeaders struct {
 }
 
 type QuerySmData200JSONResponse struct {
-	Body    []SessionManagementSubscriptionData
+	Body    []externalRef0.SessionManagementSubscriptionData
 	Headers QuerySmData200ResponseHeaders
 }
 
@@ -30921,7 +27641,7 @@ func (response QuerySmData200JSONResponse) VisitQuerySmDataResponse(w http.Respo
 }
 
 type QuerySmDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30933,8 +27653,8 @@ func (response QuerySmDatadefaultApplicationProblemPlusJSONResponse) VisitQueryS
 }
 
 type QuerySmfSelectDataRequestObject struct {
-	UeId          externalRef2.VarUeId `json:"ueId"`
-	ServingPlmnId VarPlmnId            `json:"servingPlmnId"`
+	UeId          externalRef0.VarUeId   `json:"ueId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QuerySmfSelectDataParams
 }
 
@@ -30949,7 +27669,7 @@ type QuerySmfSelectData200ResponseHeaders struct {
 }
 
 type QuerySmfSelectData200JSONResponse struct {
-	Body    SmfSelectionSubscriptionData
+	Body    externalRef0.SmfSelectionSubscriptionData
 	Headers QuerySmfSelectData200ResponseHeaders
 }
 
@@ -30970,7 +27690,7 @@ func (response QuerySmfSelectData200JSONResponse) VisitQuerySmfSelectDataRespons
 }
 
 type QuerySmfSelectDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -30982,8 +27702,8 @@ func (response QuerySmfSelectDatadefaultApplicationProblemPlusJSONResponse) Visi
 }
 
 type QuerySmsDataRequestObject struct {
-	UeId          externalRef2.VarUeId `json:"ueId"`
-	ServingPlmnId VarPlmnId            `json:"servingPlmnId"`
+	UeId          externalRef0.VarUeId   `json:"ueId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QuerySmsDataParams
 }
 
@@ -30998,7 +27718,7 @@ type QuerySmsData200ResponseHeaders struct {
 }
 
 type QuerySmsData200JSONResponse struct {
-	Body    SmsSubscriptionData
+	Body    externalRef0.SmsSubscriptionData
 	Headers QuerySmsData200ResponseHeaders
 }
 
@@ -31019,7 +27739,7 @@ func (response QuerySmsData200JSONResponse) VisitQuerySmsDataResponse(w http.Res
 }
 
 type QuerySmsDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -31031,8 +27751,8 @@ func (response QuerySmsDatadefaultApplicationProblemPlusJSONResponse) VisitQuery
 }
 
 type QuerySmsMngDataRequestObject struct {
-	UeId          externalRef2.VarUeId `json:"ueId"`
-	ServingPlmnId VarPlmnId            `json:"servingPlmnId"`
+	UeId          externalRef0.VarUeId   `json:"ueId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QuerySmsMngDataParams
 }
 
@@ -31047,7 +27767,7 @@ type QuerySmsMngData200ResponseHeaders struct {
 }
 
 type QuerySmsMngData200JSONResponse struct {
-	Body    SmsManagementSubscriptionData
+	Body    externalRef0.SmsManagementSubscriptionData
 	Headers QuerySmsMngData200ResponseHeaders
 }
 
@@ -31068,7 +27788,7 @@ func (response QuerySmsMngData200JSONResponse) VisitQuerySmsMngDataResponse(w ht
 }
 
 type QuerySmsMngDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -31080,8 +27800,8 @@ func (response QuerySmsMngDatadefaultApplicationProblemPlusJSONResponse) VisitQu
 }
 
 type QueryTraceDataRequestObject struct {
-	UeId          externalRef2.VarUeId `json:"ueId"`
-	ServingPlmnId VarPlmnId            `json:"servingPlmnId"`
+	UeId          externalRef0.VarUeId   `json:"ueId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QueryTraceDataParams
 }
 
@@ -31096,7 +27816,7 @@ type QueryTraceData200ResponseHeaders struct {
 }
 
 type QueryTraceData200JSONResponse struct {
-	Body    externalRef2.TraceData
+	Body    externalRef0.TraceData
 	Headers QueryTraceData200ResponseHeaders
 }
 
@@ -31117,7 +27837,7 @@ func (response QueryTraceData200JSONResponse) VisitQueryTraceDataResponse(w http
 }
 
 type QueryTraceDatadefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef2.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -31568,7 +28288,7 @@ func (sh *strictHandler) Query5GVNGroupPPData(ctx *gin.Context, params Query5GVN
 }
 
 // Delete5GVnGroup operation middleware
-func (sh *strictHandler) Delete5GVnGroup(ctx *gin.Context, externalGroupId externalRef6.ExtGroupId) {
+func (sh *strictHandler) Delete5GVnGroup(ctx *gin.Context, externalGroupId externalRef0.ExtGroupId) {
 	var request Delete5GVnGroupRequestObject
 
 	request.ExternalGroupId = externalGroupId
@@ -31595,7 +28315,7 @@ func (sh *strictHandler) Delete5GVnGroup(ctx *gin.Context, externalGroupId exter
 }
 
 // Get5GVnGroupConfiguration operation middleware
-func (sh *strictHandler) Get5GVnGroupConfiguration(ctx *gin.Context, externalGroupId externalRef6.ExtGroupId) {
+func (sh *strictHandler) Get5GVnGroupConfiguration(ctx *gin.Context, externalGroupId externalRef0.ExtGroupId) {
 	var request Get5GVnGroupConfigurationRequestObject
 
 	request.ExternalGroupId = externalGroupId
@@ -31622,7 +28342,7 @@ func (sh *strictHandler) Get5GVnGroupConfiguration(ctx *gin.Context, externalGro
 }
 
 // Modify5GVnGroup operation middleware
-func (sh *strictHandler) Modify5GVnGroup(ctx *gin.Context, externalGroupId externalRef6.ExtGroupId, params Modify5GVnGroupParams) {
+func (sh *strictHandler) Modify5GVnGroup(ctx *gin.Context, externalGroupId externalRef0.ExtGroupId, params Modify5GVnGroupParams) {
 	var request Modify5GVnGroupRequestObject
 
 	request.ExternalGroupId = externalGroupId
@@ -31658,7 +28378,7 @@ func (sh *strictHandler) Modify5GVnGroup(ctx *gin.Context, externalGroupId exter
 }
 
 // Create5GVnGroup operation middleware
-func (sh *strictHandler) Create5GVnGroup(ctx *gin.Context, externalGroupId externalRef6.ExtGroupId) {
+func (sh *strictHandler) Create5GVnGroup(ctx *gin.Context, externalGroupId externalRef0.ExtGroupId) {
 	var request Create5GVnGroupRequestObject
 
 	request.ExternalGroupId = externalGroupId
@@ -31720,7 +28440,7 @@ func (sh *strictHandler) GetGroupIdentifiers(ctx *gin.Context, params GetGroupId
 }
 
 // QueryGroupEEData operation middleware
-func (sh *strictHandler) QueryGroupEEData(ctx *gin.Context, ueGroupId VarUeGroupId, params QueryGroupEEDataParams) {
+func (sh *strictHandler) QueryGroupEEData(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, params QueryGroupEEDataParams) {
 	var request QueryGroupEEDataRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -31748,7 +28468,7 @@ func (sh *strictHandler) QueryGroupEEData(ctx *gin.Context, ueGroupId VarUeGroup
 }
 
 // QueryEeGroupSubscriptions operation middleware
-func (sh *strictHandler) QueryEeGroupSubscriptions(ctx *gin.Context, ueGroupId VarUeGroupId, params QueryEeGroupSubscriptionsParams) {
+func (sh *strictHandler) QueryEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, params QueryEeGroupSubscriptionsParams) {
 	var request QueryEeGroupSubscriptionsRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -31776,7 +28496,7 @@ func (sh *strictHandler) QueryEeGroupSubscriptions(ctx *gin.Context, ueGroupId V
 }
 
 // CreateEeGroupSubscriptions operation middleware
-func (sh *strictHandler) CreateEeGroupSubscriptions(ctx *gin.Context, ueGroupId VarUeGroupId) {
+func (sh *strictHandler) CreateEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId) {
 	var request CreateEeGroupSubscriptionsRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -31811,7 +28531,7 @@ func (sh *strictHandler) CreateEeGroupSubscriptions(ctx *gin.Context, ueGroupId 
 }
 
 // RemoveEeGroupSubscriptions operation middleware
-func (sh *strictHandler) RemoveEeGroupSubscriptions(ctx *gin.Context, ueGroupId VarUeGroupId, subsId string) {
+func (sh *strictHandler) RemoveEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string) {
 	var request RemoveEeGroupSubscriptionsRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -31839,7 +28559,7 @@ func (sh *strictHandler) RemoveEeGroupSubscriptions(ctx *gin.Context, ueGroupId 
 }
 
 // QueryEeGroupSubscription operation middleware
-func (sh *strictHandler) QueryEeGroupSubscription(ctx *gin.Context, ueGroupId VarUeGroupId, subsId string) {
+func (sh *strictHandler) QueryEeGroupSubscription(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string) {
 	var request QueryEeGroupSubscriptionRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -31867,7 +28587,7 @@ func (sh *strictHandler) QueryEeGroupSubscription(ctx *gin.Context, ueGroupId Va
 }
 
 // ModifyEeGroupSubscription operation middleware
-func (sh *strictHandler) ModifyEeGroupSubscription(ctx *gin.Context, ueGroupId VarUeGroupId, subsId string, params ModifyEeGroupSubscriptionParams) {
+func (sh *strictHandler) ModifyEeGroupSubscription(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params ModifyEeGroupSubscriptionParams) {
 	var request ModifyEeGroupSubscriptionRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -31904,7 +28624,7 @@ func (sh *strictHandler) ModifyEeGroupSubscription(ctx *gin.Context, ueGroupId V
 }
 
 // UpdateEeGroupSubscriptions operation middleware
-func (sh *strictHandler) UpdateEeGroupSubscriptions(ctx *gin.Context, ueGroupId VarUeGroupId, subsId string) {
+func (sh *strictHandler) UpdateEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string) {
 	var request UpdateEeGroupSubscriptionsRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -31967,7 +28687,7 @@ func (sh *strictHandler) GetSharedData(ctx *gin.Context, params GetSharedDataPar
 }
 
 // GetIndividualSharedData operation middleware
-func (sh *strictHandler) GetIndividualSharedData(ctx *gin.Context, sharedDataId externalRef6.SharedDataId, params GetIndividualSharedDataParams) {
+func (sh *strictHandler) GetIndividualSharedData(ctx *gin.Context, sharedDataId externalRef0.SharedDataId, params GetIndividualSharedDataParams) {
 	var request GetIndividualSharedDataRequestObject
 
 	request.SharedDataId = sharedDataId
@@ -32172,7 +28892,7 @@ func (sh *strictHandler) ModifysubscriptionDataSubscription(ctx *gin.Context, su
 }
 
 // DeleteAuthenticationStatus operation middleware
-func (sh *strictHandler) DeleteAuthenticationStatus(ctx *gin.Context, ueId externalRef2.Supi) {
+func (sh *strictHandler) DeleteAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi) {
 	var request DeleteAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -32199,7 +28919,7 @@ func (sh *strictHandler) DeleteAuthenticationStatus(ctx *gin.Context, ueId exter
 }
 
 // QueryAuthenticationStatus operation middleware
-func (sh *strictHandler) QueryAuthenticationStatus(ctx *gin.Context, ueId externalRef2.Supi, params QueryAuthenticationStatusParams) {
+func (sh *strictHandler) QueryAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, params QueryAuthenticationStatusParams) {
 	var request QueryAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -32227,7 +28947,7 @@ func (sh *strictHandler) QueryAuthenticationStatus(ctx *gin.Context, ueId extern
 }
 
 // CreateAuthenticationStatus operation middleware
-func (sh *strictHandler) CreateAuthenticationStatus(ctx *gin.Context, ueId externalRef2.Supi) {
+func (sh *strictHandler) CreateAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi) {
 	var request CreateAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -32262,7 +28982,7 @@ func (sh *strictHandler) CreateAuthenticationStatus(ctx *gin.Context, ueId exter
 }
 
 // DeleteIndividualAuthenticationStatus operation middleware
-func (sh *strictHandler) DeleteIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName) {
+func (sh *strictHandler) DeleteIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName) {
 	var request DeleteIndividualAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -32290,7 +29010,7 @@ func (sh *strictHandler) DeleteIndividualAuthenticationStatus(ctx *gin.Context, 
 }
 
 // QueryIndividualAuthenticationStatus operation middleware
-func (sh *strictHandler) QueryIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName, params QueryIndividualAuthenticationStatusParams) {
+func (sh *strictHandler) QueryIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params QueryIndividualAuthenticationStatusParams) {
 	var request QueryIndividualAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -32319,7 +29039,7 @@ func (sh *strictHandler) QueryIndividualAuthenticationStatus(ctx *gin.Context, u
 }
 
 // CreateIndividualAuthenticationStatus operation middleware
-func (sh *strictHandler) CreateIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef2.Supi, servingNetworkName externalRef7.ServingNetworkName) {
+func (sh *strictHandler) CreateIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName) {
 	var request CreateIndividualAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -32355,7 +29075,7 @@ func (sh *strictHandler) CreateIndividualAuthenticationStatus(ctx *gin.Context, 
 }
 
 // QueryAuthSubsData operation middleware
-func (sh *strictHandler) QueryAuthSubsData(ctx *gin.Context, ueId externalRef2.Supi, params QueryAuthSubsDataParams) {
+func (sh *strictHandler) QueryAuthSubsData(ctx *gin.Context, ueId externalRef0.Supi, params QueryAuthSubsDataParams) {
 	var request QueryAuthSubsDataRequestObject
 
 	request.UeId = ueId
@@ -32383,7 +29103,7 @@ func (sh *strictHandler) QueryAuthSubsData(ctx *gin.Context, ueId externalRef2.S
 }
 
 // ModifyAuthenticationSubscription operation middleware
-func (sh *strictHandler) ModifyAuthenticationSubscription(ctx *gin.Context, ueId externalRef2.Supi, params ModifyAuthenticationSubscriptionParams) {
+func (sh *strictHandler) ModifyAuthenticationSubscription(ctx *gin.Context, ueId externalRef0.Supi, params ModifyAuthenticationSubscriptionParams) {
 	var request ModifyAuthenticationSubscriptionRequestObject
 
 	request.UeId = ueId
@@ -32419,7 +29139,7 @@ func (sh *strictHandler) ModifyAuthenticationSubscription(ctx *gin.Context, ueId
 }
 
 // QueryContextData operation middleware
-func (sh *strictHandler) QueryContextData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryContextDataParams) {
+func (sh *strictHandler) QueryContextData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryContextDataParams) {
 	var request QueryContextDataRequestObject
 
 	request.UeId = ueId
@@ -32447,7 +29167,7 @@ func (sh *strictHandler) QueryContextData(ctx *gin.Context, ueId externalRef2.Va
 }
 
 // QueryAmfContext3gpp operation middleware
-func (sh *strictHandler) QueryAmfContext3gpp(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryAmfContext3gppParams) {
+func (sh *strictHandler) QueryAmfContext3gpp(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryAmfContext3gppParams) {
 	var request QueryAmfContext3gppRequestObject
 
 	request.UeId = ueId
@@ -32475,7 +29195,7 @@ func (sh *strictHandler) QueryAmfContext3gpp(ctx *gin.Context, ueId externalRef2
 }
 
 // AmfContext3gpp operation middleware
-func (sh *strictHandler) AmfContext3gpp(ctx *gin.Context, ueId externalRef2.VarUeId, params AmfContext3gppParams) {
+func (sh *strictHandler) AmfContext3gpp(ctx *gin.Context, ueId externalRef0.VarUeId, params AmfContext3gppParams) {
 	var request AmfContext3gppRequestObject
 
 	request.UeId = ueId
@@ -32511,7 +29231,7 @@ func (sh *strictHandler) AmfContext3gpp(ctx *gin.Context, ueId externalRef2.VarU
 }
 
 // CreateAmfContext3gpp operation middleware
-func (sh *strictHandler) CreateAmfContext3gpp(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) CreateAmfContext3gpp(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request CreateAmfContext3gppRequestObject
 
 	request.UeId = ueId
@@ -32546,7 +29266,7 @@ func (sh *strictHandler) CreateAmfContext3gpp(ctx *gin.Context, ueId externalRef
 }
 
 // QueryAmfContextNon3gpp operation middleware
-func (sh *strictHandler) QueryAmfContextNon3gpp(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryAmfContextNon3gppParams) {
+func (sh *strictHandler) QueryAmfContextNon3gpp(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryAmfContextNon3gppParams) {
 	var request QueryAmfContextNon3gppRequestObject
 
 	request.UeId = ueId
@@ -32574,7 +29294,7 @@ func (sh *strictHandler) QueryAmfContextNon3gpp(ctx *gin.Context, ueId externalR
 }
 
 // AmfContextNon3gpp operation middleware
-func (sh *strictHandler) AmfContextNon3gpp(ctx *gin.Context, ueId externalRef2.VarUeId, params AmfContextNon3gppParams) {
+func (sh *strictHandler) AmfContextNon3gpp(ctx *gin.Context, ueId externalRef0.VarUeId, params AmfContextNon3gppParams) {
 	var request AmfContextNon3gppRequestObject
 
 	request.UeId = ueId
@@ -32610,7 +29330,7 @@ func (sh *strictHandler) AmfContextNon3gpp(ctx *gin.Context, ueId externalRef2.V
 }
 
 // CreateAmfContextNon3gpp operation middleware
-func (sh *strictHandler) CreateAmfContextNon3gpp(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) CreateAmfContextNon3gpp(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request CreateAmfContextNon3gppRequestObject
 
 	request.UeId = ueId
@@ -32645,7 +29365,7 @@ func (sh *strictHandler) CreateAmfContextNon3gpp(ctx *gin.Context, ueId external
 }
 
 // Queryeesubscriptions operation middleware
-func (sh *strictHandler) Queryeesubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryeesubscriptionsParams) {
+func (sh *strictHandler) Queryeesubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryeesubscriptionsParams) {
 	var request QueryeesubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -32673,7 +29393,7 @@ func (sh *strictHandler) Queryeesubscriptions(ctx *gin.Context, ueId externalRef
 }
 
 // CreateEeSubscriptions operation middleware
-func (sh *strictHandler) CreateEeSubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) CreateEeSubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request CreateEeSubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -32708,7 +29428,7 @@ func (sh *strictHandler) CreateEeSubscriptions(ctx *gin.Context, ueId externalRe
 }
 
 // RemoveeeSubscriptions operation middleware
-func (sh *strictHandler) RemoveeeSubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) RemoveeeSubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request RemoveeeSubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -32736,7 +29456,7 @@ func (sh *strictHandler) RemoveeeSubscriptions(ctx *gin.Context, ueId externalRe
 }
 
 // QueryeeSubscription operation middleware
-func (sh *strictHandler) QueryeeSubscription(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) QueryeeSubscription(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request QueryeeSubscriptionRequestObject
 
 	request.UeId = ueId
@@ -32764,7 +29484,7 @@ func (sh *strictHandler) QueryeeSubscription(ctx *gin.Context, ueId externalRef2
 }
 
 // ModifyEesubscription operation middleware
-func (sh *strictHandler) ModifyEesubscription(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifyEesubscriptionParams) {
+func (sh *strictHandler) ModifyEesubscription(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifyEesubscriptionParams) {
 	var request ModifyEesubscriptionRequestObject
 
 	request.UeId = ueId
@@ -32801,7 +29521,7 @@ func (sh *strictHandler) ModifyEesubscription(ctx *gin.Context, ueId externalRef
 }
 
 // UpdateEesubscriptions operation middleware
-func (sh *strictHandler) UpdateEesubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) UpdateEesubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request UpdateEesubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -32837,7 +29557,7 @@ func (sh *strictHandler) UpdateEesubscriptions(ctx *gin.Context, ueId externalRe
 }
 
 // RemoveAmfSubscriptionsInfo operation middleware
-func (sh *strictHandler) RemoveAmfSubscriptionsInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) RemoveAmfSubscriptionsInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request RemoveAmfSubscriptionsInfoRequestObject
 
 	request.UeId = ueId
@@ -32865,7 +29585,7 @@ func (sh *strictHandler) RemoveAmfSubscriptionsInfo(ctx *gin.Context, ueId exter
 }
 
 // GetAmfSubscriptionInfo operation middleware
-func (sh *strictHandler) GetAmfSubscriptionInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) GetAmfSubscriptionInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request GetAmfSubscriptionInfoRequestObject
 
 	request.UeId = ueId
@@ -32893,7 +29613,7 @@ func (sh *strictHandler) GetAmfSubscriptionInfo(ctx *gin.Context, ueId externalR
 }
 
 // ModifyAmfSubscriptionInfo operation middleware
-func (sh *strictHandler) ModifyAmfSubscriptionInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifyAmfSubscriptionInfoParams) {
+func (sh *strictHandler) ModifyAmfSubscriptionInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifyAmfSubscriptionInfoParams) {
 	var request ModifyAmfSubscriptionInfoRequestObject
 
 	request.UeId = ueId
@@ -32930,7 +29650,7 @@ func (sh *strictHandler) ModifyAmfSubscriptionInfo(ctx *gin.Context, ueId extern
 }
 
 // CreateAMFSubscriptions operation middleware
-func (sh *strictHandler) CreateAMFSubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) CreateAMFSubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request CreateAMFSubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -32966,7 +29686,7 @@ func (sh *strictHandler) CreateAMFSubscriptions(ctx *gin.Context, ueId externalR
 }
 
 // RemoveHssSubscriptionsInfo operation middleware
-func (sh *strictHandler) RemoveHssSubscriptionsInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) RemoveHssSubscriptionsInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request RemoveHssSubscriptionsInfoRequestObject
 
 	request.UeId = ueId
@@ -32994,7 +29714,7 @@ func (sh *strictHandler) RemoveHssSubscriptionsInfo(ctx *gin.Context, ueId exter
 }
 
 // GetHssSubscriptionInfo operation middleware
-func (sh *strictHandler) GetHssSubscriptionInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) GetHssSubscriptionInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request GetHssSubscriptionInfoRequestObject
 
 	request.UeId = ueId
@@ -33022,7 +29742,7 @@ func (sh *strictHandler) GetHssSubscriptionInfo(ctx *gin.Context, ueId externalR
 }
 
 // ModifyHssSubscriptionInfo operation middleware
-func (sh *strictHandler) ModifyHssSubscriptionInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifyHssSubscriptionInfoParams) {
+func (sh *strictHandler) ModifyHssSubscriptionInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifyHssSubscriptionInfoParams) {
 	var request ModifyHssSubscriptionInfoRequestObject
 
 	request.UeId = ueId
@@ -33059,7 +29779,7 @@ func (sh *strictHandler) ModifyHssSubscriptionInfo(ctx *gin.Context, ueId extern
 }
 
 // CreateHSSSubscriptions operation middleware
-func (sh *strictHandler) CreateHSSSubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) CreateHSSSubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request CreateHSSSubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -33095,7 +29815,7 @@ func (sh *strictHandler) CreateHSSSubscriptions(ctx *gin.Context, ueId externalR
 }
 
 // RemoveSmfSubscriptionsInfo operation middleware
-func (sh *strictHandler) RemoveSmfSubscriptionsInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) RemoveSmfSubscriptionsInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request RemoveSmfSubscriptionsInfoRequestObject
 
 	request.UeId = ueId
@@ -33123,7 +29843,7 @@ func (sh *strictHandler) RemoveSmfSubscriptionsInfo(ctx *gin.Context, ueId exter
 }
 
 // GetSmfSubscriptionInfo operation middleware
-func (sh *strictHandler) GetSmfSubscriptionInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) GetSmfSubscriptionInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request GetSmfSubscriptionInfoRequestObject
 
 	request.UeId = ueId
@@ -33151,7 +29871,7 @@ func (sh *strictHandler) GetSmfSubscriptionInfo(ctx *gin.Context, ueId externalR
 }
 
 // ModifySmfSubscriptionInfo operation middleware
-func (sh *strictHandler) ModifySmfSubscriptionInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifySmfSubscriptionInfoParams) {
+func (sh *strictHandler) ModifySmfSubscriptionInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifySmfSubscriptionInfoParams) {
 	var request ModifySmfSubscriptionInfoRequestObject
 
 	request.UeId = ueId
@@ -33188,7 +29908,7 @@ func (sh *strictHandler) ModifySmfSubscriptionInfo(ctx *gin.Context, ueId extern
 }
 
 // CreateSMFSubscriptions operation middleware
-func (sh *strictHandler) CreateSMFSubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) CreateSMFSubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request CreateSMFSubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -33224,7 +29944,7 @@ func (sh *strictHandler) CreateSMFSubscriptions(ctx *gin.Context, ueId externalR
 }
 
 // DeleteIpSmGwContext operation middleware
-func (sh *strictHandler) DeleteIpSmGwContext(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) DeleteIpSmGwContext(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request DeleteIpSmGwContextRequestObject
 
 	request.UeId = ueId
@@ -33251,7 +29971,7 @@ func (sh *strictHandler) DeleteIpSmGwContext(ctx *gin.Context, ueId externalRef2
 }
 
 // QueryIpSmGwContext operation middleware
-func (sh *strictHandler) QueryIpSmGwContext(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryIpSmGwContextParams) {
+func (sh *strictHandler) QueryIpSmGwContext(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryIpSmGwContextParams) {
 	var request QueryIpSmGwContextRequestObject
 
 	request.UeId = ueId
@@ -33279,7 +29999,7 @@ func (sh *strictHandler) QueryIpSmGwContext(ctx *gin.Context, ueId externalRef2.
 }
 
 // ModifyIpSmGwContext operation middleware
-func (sh *strictHandler) ModifyIpSmGwContext(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) ModifyIpSmGwContext(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request ModifyIpSmGwContextRequestObject
 
 	request.UeId = ueId
@@ -33314,7 +30034,7 @@ func (sh *strictHandler) ModifyIpSmGwContext(ctx *gin.Context, ueId externalRef2
 }
 
 // CreateIpSmGwContext operation middleware
-func (sh *strictHandler) CreateIpSmGwContext(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) CreateIpSmGwContext(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request CreateIpSmGwContextRequestObject
 
 	request.UeId = ueId
@@ -33349,7 +30069,7 @@ func (sh *strictHandler) CreateIpSmGwContext(ctx *gin.Context, ueId externalRef2
 }
 
 // QueryUeLocation operation middleware
-func (sh *strictHandler) QueryUeLocation(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryUeLocationParams) {
+func (sh *strictHandler) QueryUeLocation(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryUeLocationParams) {
 	var request QueryUeLocationRequestObject
 
 	request.UeId = ueId
@@ -33377,7 +30097,7 @@ func (sh *strictHandler) QueryUeLocation(ctx *gin.Context, ueId externalRef2.Var
 }
 
 // DeleteMessageWaitingData operation middleware
-func (sh *strictHandler) DeleteMessageWaitingData(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) DeleteMessageWaitingData(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request DeleteMessageWaitingDataRequestObject
 
 	request.UeId = ueId
@@ -33404,7 +30124,7 @@ func (sh *strictHandler) DeleteMessageWaitingData(ctx *gin.Context, ueId externa
 }
 
 // QueryMessageWaitingData operation middleware
-func (sh *strictHandler) QueryMessageWaitingData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryMessageWaitingDataParams) {
+func (sh *strictHandler) QueryMessageWaitingData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryMessageWaitingDataParams) {
 	var request QueryMessageWaitingDataRequestObject
 
 	request.UeId = ueId
@@ -33432,7 +30152,7 @@ func (sh *strictHandler) QueryMessageWaitingData(ctx *gin.Context, ueId external
 }
 
 // ModifyMessageWaitingData operation middleware
-func (sh *strictHandler) ModifyMessageWaitingData(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) ModifyMessageWaitingData(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request ModifyMessageWaitingDataRequestObject
 
 	request.UeId = ueId
@@ -33467,7 +30187,7 @@ func (sh *strictHandler) ModifyMessageWaitingData(ctx *gin.Context, ueId externa
 }
 
 // CreateMessageWaitingData operation middleware
-func (sh *strictHandler) CreateMessageWaitingData(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) CreateMessageWaitingData(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request CreateMessageWaitingDataRequestObject
 
 	request.UeId = ueId
@@ -33502,7 +30222,7 @@ func (sh *strictHandler) CreateMessageWaitingData(ctx *gin.Context, ueId externa
 }
 
 // Querysdmsubscriptions operation middleware
-func (sh *strictHandler) Querysdmsubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, params QuerysdmsubscriptionsParams) {
+func (sh *strictHandler) Querysdmsubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, params QuerysdmsubscriptionsParams) {
 	var request QuerysdmsubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -33530,7 +30250,7 @@ func (sh *strictHandler) Querysdmsubscriptions(ctx *gin.Context, ueId externalRe
 }
 
 // CreateSdmSubscriptions operation middleware
-func (sh *strictHandler) CreateSdmSubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) CreateSdmSubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request CreateSdmSubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -33565,7 +30285,7 @@ func (sh *strictHandler) CreateSdmSubscriptions(ctx *gin.Context, ueId externalR
 }
 
 // RemovesdmSubscriptions operation middleware
-func (sh *strictHandler) RemovesdmSubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) RemovesdmSubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request RemovesdmSubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -33593,7 +30313,7 @@ func (sh *strictHandler) RemovesdmSubscriptions(ctx *gin.Context, ueId externalR
 }
 
 // QuerysdmSubscription operation middleware
-func (sh *strictHandler) QuerysdmSubscription(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) QuerysdmSubscription(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request QuerysdmSubscriptionRequestObject
 
 	request.UeId = ueId
@@ -33621,7 +30341,7 @@ func (sh *strictHandler) QuerysdmSubscription(ctx *gin.Context, ueId externalRef
 }
 
 // ModifysdmSubscription operation middleware
-func (sh *strictHandler) ModifysdmSubscription(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifysdmSubscriptionParams) {
+func (sh *strictHandler) ModifysdmSubscription(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifysdmSubscriptionParams) {
 	var request ModifysdmSubscriptionRequestObject
 
 	request.UeId = ueId
@@ -33658,7 +30378,7 @@ func (sh *strictHandler) ModifysdmSubscription(ctx *gin.Context, ueId externalRe
 }
 
 // Updatesdmsubscriptions operation middleware
-func (sh *strictHandler) Updatesdmsubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) Updatesdmsubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request UpdatesdmsubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -33694,7 +30414,7 @@ func (sh *strictHandler) Updatesdmsubscriptions(ctx *gin.Context, ueId externalR
 }
 
 // RemoveHssSDMSubscriptionsInfo operation middleware
-func (sh *strictHandler) RemoveHssSDMSubscriptionsInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) RemoveHssSDMSubscriptionsInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request RemoveHssSDMSubscriptionsInfoRequestObject
 
 	request.UeId = ueId
@@ -33722,7 +30442,7 @@ func (sh *strictHandler) RemoveHssSDMSubscriptionsInfo(ctx *gin.Context, ueId ex
 }
 
 // GetHssSDMSubscriptionInfo operation middleware
-func (sh *strictHandler) GetHssSDMSubscriptionInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) GetHssSDMSubscriptionInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request GetHssSDMSubscriptionInfoRequestObject
 
 	request.UeId = ueId
@@ -33750,7 +30470,7 @@ func (sh *strictHandler) GetHssSDMSubscriptionInfo(ctx *gin.Context, ueId extern
 }
 
 // ModifyHssSDMSubscriptionInfo operation middleware
-func (sh *strictHandler) ModifyHssSDMSubscriptionInfo(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string, params ModifyHssSDMSubscriptionInfoParams) {
+func (sh *strictHandler) ModifyHssSDMSubscriptionInfo(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string, params ModifyHssSDMSubscriptionInfoParams) {
 	var request ModifyHssSDMSubscriptionInfoRequestObject
 
 	request.UeId = ueId
@@ -33787,7 +30507,7 @@ func (sh *strictHandler) ModifyHssSDMSubscriptionInfo(ctx *gin.Context, ueId ext
 }
 
 // CreateHSSSDMSubscriptions operation middleware
-func (sh *strictHandler) CreateHSSSDMSubscriptions(ctx *gin.Context, ueId externalRef2.VarUeId, subsId string) {
+func (sh *strictHandler) CreateHSSSDMSubscriptions(ctx *gin.Context, ueId externalRef0.VarUeId, subsId string) {
 	var request CreateHSSSDMSubscriptionsRequestObject
 
 	request.UeId = ueId
@@ -33823,7 +30543,7 @@ func (sh *strictHandler) CreateHSSSDMSubscriptions(ctx *gin.Context, ueId extern
 }
 
 // QuerySmfRegList operation middleware
-func (sh *strictHandler) QuerySmfRegList(ctx *gin.Context, ueId externalRef2.VarUeId, params QuerySmfRegListParams) {
+func (sh *strictHandler) QuerySmfRegList(ctx *gin.Context, ueId externalRef0.VarUeId, params QuerySmfRegListParams) {
 	var request QuerySmfRegListRequestObject
 
 	request.UeId = ueId
@@ -33851,7 +30571,7 @@ func (sh *strictHandler) QuerySmfRegList(ctx *gin.Context, ueId externalRef2.Var
 }
 
 // DeleteSmfRegistration operation middleware
-func (sh *strictHandler) DeleteSmfRegistration(ctx *gin.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId) {
+func (sh *strictHandler) DeleteSmfRegistration(ctx *gin.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId) {
 	var request DeleteSmfRegistrationRequestObject
 
 	request.UeId = ueId
@@ -33879,7 +30599,7 @@ func (sh *strictHandler) DeleteSmfRegistration(ctx *gin.Context, ueId externalRe
 }
 
 // QuerySmfRegistration operation middleware
-func (sh *strictHandler) QuerySmfRegistration(ctx *gin.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId, params QuerySmfRegistrationParams) {
+func (sh *strictHandler) QuerySmfRegistration(ctx *gin.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId, params QuerySmfRegistrationParams) {
 	var request QuerySmfRegistrationRequestObject
 
 	request.UeId = ueId
@@ -33908,7 +30628,7 @@ func (sh *strictHandler) QuerySmfRegistration(ctx *gin.Context, ueId externalRef
 }
 
 // CreateOrUpdateSmfRegistration operation middleware
-func (sh *strictHandler) CreateOrUpdateSmfRegistration(ctx *gin.Context, ueId externalRef2.VarUeId, pduSessionId externalRef2.PduSessionId) {
+func (sh *strictHandler) CreateOrUpdateSmfRegistration(ctx *gin.Context, ueId externalRef0.VarUeId, pduSessionId externalRef0.PduSessionId) {
 	var request CreateOrUpdateSmfRegistrationRequestObject
 
 	request.UeId = ueId
@@ -33944,7 +30664,7 @@ func (sh *strictHandler) CreateOrUpdateSmfRegistration(ctx *gin.Context, ueId ex
 }
 
 // DeleteSmsfContext3gpp operation middleware
-func (sh *strictHandler) DeleteSmsfContext3gpp(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) DeleteSmsfContext3gpp(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request DeleteSmsfContext3gppRequestObject
 
 	request.UeId = ueId
@@ -33971,7 +30691,7 @@ func (sh *strictHandler) DeleteSmsfContext3gpp(ctx *gin.Context, ueId externalRe
 }
 
 // QuerySmsfContext3gpp operation middleware
-func (sh *strictHandler) QuerySmsfContext3gpp(ctx *gin.Context, ueId externalRef2.VarUeId, params QuerySmsfContext3gppParams) {
+func (sh *strictHandler) QuerySmsfContext3gpp(ctx *gin.Context, ueId externalRef0.VarUeId, params QuerySmsfContext3gppParams) {
 	var request QuerySmsfContext3gppRequestObject
 
 	request.UeId = ueId
@@ -33999,7 +30719,7 @@ func (sh *strictHandler) QuerySmsfContext3gpp(ctx *gin.Context, ueId externalRef
 }
 
 // CreateSmsfContext3gpp operation middleware
-func (sh *strictHandler) CreateSmsfContext3gpp(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) CreateSmsfContext3gpp(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request CreateSmsfContext3gppRequestObject
 
 	request.UeId = ueId
@@ -34034,7 +30754,7 @@ func (sh *strictHandler) CreateSmsfContext3gpp(ctx *gin.Context, ueId externalRe
 }
 
 // DeleteSmsfContextNon3gpp operation middleware
-func (sh *strictHandler) DeleteSmsfContextNon3gpp(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) DeleteSmsfContextNon3gpp(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request DeleteSmsfContextNon3gppRequestObject
 
 	request.UeId = ueId
@@ -34061,7 +30781,7 @@ func (sh *strictHandler) DeleteSmsfContextNon3gpp(ctx *gin.Context, ueId externa
 }
 
 // QuerySmsfContextNon3gpp operation middleware
-func (sh *strictHandler) QuerySmsfContextNon3gpp(ctx *gin.Context, ueId externalRef2.VarUeId, params QuerySmsfContextNon3gppParams) {
+func (sh *strictHandler) QuerySmsfContextNon3gpp(ctx *gin.Context, ueId externalRef0.VarUeId, params QuerySmsfContextNon3gppParams) {
 	var request QuerySmsfContextNon3gppRequestObject
 
 	request.UeId = ueId
@@ -34089,7 +30809,7 @@ func (sh *strictHandler) QuerySmsfContextNon3gpp(ctx *gin.Context, ueId external
 }
 
 // CreateSmsfContextNon3gpp operation middleware
-func (sh *strictHandler) CreateSmsfContextNon3gpp(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) CreateSmsfContextNon3gpp(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request CreateSmsfContextNon3gppRequestObject
 
 	request.UeId = ueId
@@ -34124,7 +30844,7 @@ func (sh *strictHandler) CreateSmsfContextNon3gpp(ctx *gin.Context, ueId externa
 }
 
 // QueryCoverageRestrictionData operation middleware
-func (sh *strictHandler) QueryCoverageRestrictionData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryCoverageRestrictionDataParams) {
+func (sh *strictHandler) QueryCoverageRestrictionData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryCoverageRestrictionDataParams) {
 	var request QueryCoverageRestrictionDataRequestObject
 
 	request.UeId = ueId
@@ -34152,7 +30872,7 @@ func (sh *strictHandler) QueryCoverageRestrictionData(ctx *gin.Context, ueId ext
 }
 
 // QueryEEData operation middleware
-func (sh *strictHandler) QueryEEData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryEEDataParams) {
+func (sh *strictHandler) QueryEEData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryEEDataParams) {
 	var request QueryEEDataRequestObject
 
 	request.UeId = ueId
@@ -34180,7 +30900,7 @@ func (sh *strictHandler) QueryEEData(ctx *gin.Context, ueId externalRef2.VarUeId
 }
 
 // GetIdentityData operation middleware
-func (sh *strictHandler) GetIdentityData(ctx *gin.Context, ueId externalRef2.VarUeId, params GetIdentityDataParams) {
+func (sh *strictHandler) GetIdentityData(ctx *gin.Context, ueId externalRef0.VarUeId, params GetIdentityDataParams) {
 	var request GetIdentityDataRequestObject
 
 	request.UeId = ueId
@@ -34208,7 +30928,7 @@ func (sh *strictHandler) GetIdentityData(ctx *gin.Context, ueId externalRef2.Var
 }
 
 // QueryLcsMoData operation middleware
-func (sh *strictHandler) QueryLcsMoData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryLcsMoDataParams) {
+func (sh *strictHandler) QueryLcsMoData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryLcsMoDataParams) {
 	var request QueryLcsMoDataRequestObject
 
 	request.UeId = ueId
@@ -34236,7 +30956,7 @@ func (sh *strictHandler) QueryLcsMoData(ctx *gin.Context, ueId externalRef2.VarU
 }
 
 // QueryLcsPrivacyData operation middleware
-func (sh *strictHandler) QueryLcsPrivacyData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryLcsPrivacyDataParams) {
+func (sh *strictHandler) QueryLcsPrivacyData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryLcsPrivacyDataParams) {
 	var request QueryLcsPrivacyDataRequestObject
 
 	request.UeId = ueId
@@ -34292,7 +31012,7 @@ func (sh *strictHandler) GetNiddAuData(ctx *gin.Context, ueId string, params Get
 }
 
 // GetOdbData operation middleware
-func (sh *strictHandler) GetOdbData(ctx *gin.Context, ueId externalRef2.VarUeId) {
+func (sh *strictHandler) GetOdbData(ctx *gin.Context, ueId externalRef0.VarUeId) {
 	var request GetOdbDataRequestObject
 
 	request.UeId = ueId
@@ -34319,7 +31039,7 @@ func (sh *strictHandler) GetOdbData(ctx *gin.Context, ueId externalRef2.VarUeId)
 }
 
 // QueryOperSpecData operation middleware
-func (sh *strictHandler) QueryOperSpecData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryOperSpecDataParams) {
+func (sh *strictHandler) QueryOperSpecData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryOperSpecDataParams) {
 	var request QueryOperSpecDataRequestObject
 
 	request.UeId = ueId
@@ -34347,7 +31067,7 @@ func (sh *strictHandler) QueryOperSpecData(ctx *gin.Context, ueId externalRef2.V
 }
 
 // ModifyOperSpecData operation middleware
-func (sh *strictHandler) ModifyOperSpecData(ctx *gin.Context, ueId externalRef2.VarUeId, params ModifyOperSpecDataParams) {
+func (sh *strictHandler) ModifyOperSpecData(ctx *gin.Context, ueId externalRef0.VarUeId, params ModifyOperSpecDataParams) {
 	var request ModifyOperSpecDataRequestObject
 
 	request.UeId = ueId
@@ -34383,7 +31103,7 @@ func (sh *strictHandler) ModifyOperSpecData(ctx *gin.Context, ueId externalRef2.
 }
 
 // GetppData operation middleware
-func (sh *strictHandler) GetppData(ctx *gin.Context, ueId externalRef2.VarUeId, params GetppDataParams) {
+func (sh *strictHandler) GetppData(ctx *gin.Context, ueId externalRef0.VarUeId, params GetppDataParams) {
 	var request GetppDataRequestObject
 
 	request.UeId = ueId
@@ -34411,7 +31131,7 @@ func (sh *strictHandler) GetppData(ctx *gin.Context, ueId externalRef2.VarUeId, 
 }
 
 // ModifyPpData operation middleware
-func (sh *strictHandler) ModifyPpData(ctx *gin.Context, ueId externalRef2.VarUeId, params ModifyPpDataParams) {
+func (sh *strictHandler) ModifyPpData(ctx *gin.Context, ueId externalRef0.VarUeId, params ModifyPpDataParams) {
 	var request ModifyPpDataRequestObject
 
 	request.UeId = ueId
@@ -34447,7 +31167,7 @@ func (sh *strictHandler) ModifyPpData(ctx *gin.Context, ueId externalRef2.VarUeI
 }
 
 // QueryPPData operation middleware
-func (sh *strictHandler) QueryPPData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryPPDataParams) {
+func (sh *strictHandler) QueryPPData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryPPDataParams) {
 	var request QueryPPDataRequestObject
 
 	request.UeId = ueId
@@ -34475,7 +31195,7 @@ func (sh *strictHandler) QueryPPData(ctx *gin.Context, ueId externalRef2.VarUeId
 }
 
 // QueryAuthSoR operation middleware
-func (sh *strictHandler) QueryAuthSoR(ctx *gin.Context, ueId externalRef2.Supi, params QueryAuthSoRParams) {
+func (sh *strictHandler) QueryAuthSoR(ctx *gin.Context, ueId externalRef0.Supi, params QueryAuthSoRParams) {
 	var request QueryAuthSoRRequestObject
 
 	request.UeId = ueId
@@ -34503,7 +31223,7 @@ func (sh *strictHandler) QueryAuthSoR(ctx *gin.Context, ueId externalRef2.Supi, 
 }
 
 // CreateAuthenticationSoR operation middleware
-func (sh *strictHandler) CreateAuthenticationSoR(ctx *gin.Context, ueId externalRef2.Supi, params CreateAuthenticationSoRParams) {
+func (sh *strictHandler) CreateAuthenticationSoR(ctx *gin.Context, ueId externalRef0.Supi, params CreateAuthenticationSoRParams) {
 	var request CreateAuthenticationSoRRequestObject
 
 	request.UeId = ueId
@@ -34539,7 +31259,7 @@ func (sh *strictHandler) CreateAuthenticationSoR(ctx *gin.Context, ueId external
 }
 
 // QueryCagAck operation middleware
-func (sh *strictHandler) QueryCagAck(ctx *gin.Context, ueId externalRef2.Supi, params QueryCagAckParams) {
+func (sh *strictHandler) QueryCagAck(ctx *gin.Context, ueId externalRef0.Supi, params QueryCagAckParams) {
 	var request QueryCagAckRequestObject
 
 	request.UeId = ueId
@@ -34567,7 +31287,7 @@ func (sh *strictHandler) QueryCagAck(ctx *gin.Context, ueId externalRef2.Supi, p
 }
 
 // CreateCagUpdateAck operation middleware
-func (sh *strictHandler) CreateCagUpdateAck(ctx *gin.Context, ueId externalRef2.Supi, params CreateCagUpdateAckParams) {
+func (sh *strictHandler) CreateCagUpdateAck(ctx *gin.Context, ueId externalRef0.Supi, params CreateCagUpdateAckParams) {
 	var request CreateCagUpdateAckRequestObject
 
 	request.UeId = ueId
@@ -34603,7 +31323,7 @@ func (sh *strictHandler) CreateCagUpdateAck(ctx *gin.Context, ueId externalRef2.
 }
 
 // QueryNssaiAck operation middleware
-func (sh *strictHandler) QueryNssaiAck(ctx *gin.Context, ueId externalRef2.Supi, params QueryNssaiAckParams) {
+func (sh *strictHandler) QueryNssaiAck(ctx *gin.Context, ueId externalRef0.Supi, params QueryNssaiAckParams) {
 	var request QueryNssaiAckRequestObject
 
 	request.UeId = ueId
@@ -34631,7 +31351,7 @@ func (sh *strictHandler) QueryNssaiAck(ctx *gin.Context, ueId externalRef2.Supi,
 }
 
 // CreateOrUpdateNssaiAck operation middleware
-func (sh *strictHandler) CreateOrUpdateNssaiAck(ctx *gin.Context, ueId externalRef2.Supi, params CreateOrUpdateNssaiAckParams) {
+func (sh *strictHandler) CreateOrUpdateNssaiAck(ctx *gin.Context, ueId externalRef0.Supi, params CreateOrUpdateNssaiAckParams) {
 	var request CreateOrUpdateNssaiAckRequestObject
 
 	request.UeId = ueId
@@ -34667,7 +31387,7 @@ func (sh *strictHandler) CreateOrUpdateNssaiAck(ctx *gin.Context, ueId externalR
 }
 
 // QueryAuthUPU operation middleware
-func (sh *strictHandler) QueryAuthUPU(ctx *gin.Context, ueId externalRef2.Supi, params QueryAuthUPUParams) {
+func (sh *strictHandler) QueryAuthUPU(ctx *gin.Context, ueId externalRef0.Supi, params QueryAuthUPUParams) {
 	var request QueryAuthUPURequestObject
 
 	request.UeId = ueId
@@ -34695,7 +31415,7 @@ func (sh *strictHandler) QueryAuthUPU(ctx *gin.Context, ueId externalRef2.Supi, 
 }
 
 // CreateAuthenticationUPU operation middleware
-func (sh *strictHandler) CreateAuthenticationUPU(ctx *gin.Context, ueId externalRef2.Supi, params CreateAuthenticationUPUParams) {
+func (sh *strictHandler) CreateAuthenticationUPU(ctx *gin.Context, ueId externalRef0.Supi, params CreateAuthenticationUPUParams) {
 	var request CreateAuthenticationUPURequestObject
 
 	request.UeId = ueId
@@ -34731,7 +31451,7 @@ func (sh *strictHandler) CreateAuthenticationUPU(ctx *gin.Context, ueId external
 }
 
 // QueryV2xData operation middleware
-func (sh *strictHandler) QueryV2xData(ctx *gin.Context, ueId externalRef2.VarUeId, params QueryV2xDataParams) {
+func (sh *strictHandler) QueryV2xData(ctx *gin.Context, ueId externalRef0.VarUeId, params QueryV2xDataParams) {
 	var request QueryV2xDataRequestObject
 
 	request.UeId = ueId
@@ -34759,7 +31479,7 @@ func (sh *strictHandler) QueryV2xData(ctx *gin.Context, ueId externalRef2.VarUeI
 }
 
 // QueryProvisionedData operation middleware
-func (sh *strictHandler) QueryProvisionedData(ctx *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QueryProvisionedDataParams) {
+func (sh *strictHandler) QueryProvisionedData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryProvisionedDataParams) {
 	var request QueryProvisionedDataRequestObject
 
 	request.UeId = ueId
@@ -34788,7 +31508,7 @@ func (sh *strictHandler) QueryProvisionedData(ctx *gin.Context, ueId externalRef
 }
 
 // QueryAmData operation middleware
-func (sh *strictHandler) QueryAmData(ctx *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QueryAmDataParams) {
+func (sh *strictHandler) QueryAmData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryAmDataParams) {
 	var request QueryAmDataRequestObject
 
 	request.UeId = ueId
@@ -34817,7 +31537,7 @@ func (sh *strictHandler) QueryAmData(ctx *gin.Context, ueId externalRef2.VarUeId
 }
 
 // QueryLcsBcaData operation middleware
-func (sh *strictHandler) QueryLcsBcaData(ctx *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QueryLcsBcaDataParams) {
+func (sh *strictHandler) QueryLcsBcaData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryLcsBcaDataParams) {
 	var request QueryLcsBcaDataRequestObject
 
 	request.UeId = ueId
@@ -34846,7 +31566,7 @@ func (sh *strictHandler) QueryLcsBcaData(ctx *gin.Context, ueId externalRef2.Var
 }
 
 // QuerySmData operation middleware
-func (sh *strictHandler) QuerySmData(ctx *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QuerySmDataParams) {
+func (sh *strictHandler) QuerySmData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmDataParams) {
 	var request QuerySmDataRequestObject
 
 	request.UeId = ueId
@@ -34875,7 +31595,7 @@ func (sh *strictHandler) QuerySmData(ctx *gin.Context, ueId externalRef2.VarUeId
 }
 
 // QuerySmfSelectData operation middleware
-func (sh *strictHandler) QuerySmfSelectData(ctx *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QuerySmfSelectDataParams) {
+func (sh *strictHandler) QuerySmfSelectData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmfSelectDataParams) {
 	var request QuerySmfSelectDataRequestObject
 
 	request.UeId = ueId
@@ -34904,7 +31624,7 @@ func (sh *strictHandler) QuerySmfSelectData(ctx *gin.Context, ueId externalRef2.
 }
 
 // QuerySmsData operation middleware
-func (sh *strictHandler) QuerySmsData(ctx *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QuerySmsDataParams) {
+func (sh *strictHandler) QuerySmsData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmsDataParams) {
 	var request QuerySmsDataRequestObject
 
 	request.UeId = ueId
@@ -34933,7 +31653,7 @@ func (sh *strictHandler) QuerySmsData(ctx *gin.Context, ueId externalRef2.VarUeI
 }
 
 // QuerySmsMngData operation middleware
-func (sh *strictHandler) QuerySmsMngData(ctx *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QuerySmsMngDataParams) {
+func (sh *strictHandler) QuerySmsMngData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmsMngDataParams) {
 	var request QuerySmsMngDataRequestObject
 
 	request.UeId = ueId
@@ -34962,7 +31682,7 @@ func (sh *strictHandler) QuerySmsMngData(ctx *gin.Context, ueId externalRef2.Var
 }
 
 // QueryTraceData operation middleware
-func (sh *strictHandler) QueryTraceData(ctx *gin.Context, ueId externalRef2.VarUeId, servingPlmnId VarPlmnId, params QueryTraceDataParams) {
+func (sh *strictHandler) QueryTraceData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryTraceDataParams) {
 	var request QueryTraceDataRequestObject
 
 	request.UeId = ueId

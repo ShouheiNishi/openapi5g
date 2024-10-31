@@ -21,42 +21,42 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
+	"github.com/ShouheiNishi/openapi5g/models"
 	"github.com/ShouheiNishi/openapi5g/utils/problem"
 )
 
 func TestMessages(t *testing.T) {
-	assert.Equal(t, commondata.ProblemDetails{
+	assert.Equal(t, models.ProblemDetails{
 		Status: http.StatusInternalServerError,
 		Title:  lo.ToPtr("Unspecified NF failure"),
 		Cause:  lo.ToPtr("UNSPECIFIED_NF_FAILURE"),
 		Detail: lo.ToPtr("Not implemented"),
 	}, problem.NotImplemented())
 
-	assert.Equal(t, commondata.ProblemDetails{
+	assert.Equal(t, models.ProblemDetails{
 		Status: http.StatusInternalServerError,
 		Title:  lo.ToPtr("System failure"),
 		Cause:  lo.ToPtr("SYSTEM_FAILURE"),
 	}, problem.SystemFailure(""))
 
-	assert.Equal(t, commondata.ProblemDetails{
+	assert.Equal(t, models.ProblemDetails{
 		Status: http.StatusInternalServerError,
 		Title:  lo.ToPtr("System failure"),
 		Cause:  lo.ToPtr("SYSTEM_FAILURE"),
 		Detail: lo.ToPtr("TEST"),
 	}, problem.SystemFailure("TEST"))
 
-	assert.Equal(t, commondata.ProblemDetails{
+	assert.Equal(t, models.ProblemDetails{
 		Status: http.StatusBadRequest,
 		Title:  lo.ToPtr("Mandatory IE missing"),
 		Cause:  lo.ToPtr("MANDATORY_IE_MISSING"),
-		InvalidParams: []commondata.InvalidParam{
+		InvalidParams: []models.InvalidParam{
 			{
 				Param:  "/foo",
 				Reason: lo.ToPtr("Test"),
 			},
 		},
-	}, problem.MandatoryIEMissing([]commondata.InvalidParam{
+	}, problem.MandatoryIEMissing([]models.InvalidParam{
 		{
 			Param:  "/foo",
 			Reason: lo.ToPtr("Test"),

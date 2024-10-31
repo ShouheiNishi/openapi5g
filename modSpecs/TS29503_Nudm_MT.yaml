@@ -1,80 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        5GSrvccInfo:
-            additionalProperties: true
-            properties:
-                cMsisdn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/CMsisdn
-                stnSr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/StnSr
-                ue5GSrvccCapability:
-                    type: boolean
-            required:
-                - ue5GSrvccCapability
-            type: object
-        LocationInfoRequest:
-            additionalProperties: true
-            properties:
-                req5gsLoc:
-                    default: false
-                    type: boolean
-                reqCurrentLoc:
-                    default: false
-                    type: boolean
-                reqRatType:
-                    default: false
-                    type: boolean
-                reqServingNode:
-                    default: false
-                    type: boolean
-                reqTimeZone:
-                    default: false
-                    type: boolean
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        LocationInfoResult:
-            additionalProperties: true
-            properties:
-                amfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                currentLoc:
-                    type: boolean
-                ecgi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ecgi
-                geoInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                    x-go-type-skip-optional-pointer: true
-                locationAge:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-                    x-go-type-skip-optional-pointer: true
-                ncgi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ncgi
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                smsfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                tai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Tai
-                timezone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                vPlmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-            type: object
-        UeInfo:
-            additionalProperties: true
-            properties:
-                5gSrvccInfo:
-                    $ref: '#/components/schemas/5GSrvccInfo'
-                tadsInfo:
-                    $ref: TS29518_Namf_MT.yaml#/components/schemas/UeContextInfo
-                userState:
-                    $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/5GsUserState
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -127,7 +53,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/UeInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/UeInfo
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -162,14 +88,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/LocationInfoRequest'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/LocationInfoRequest
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/LocationInfoResult'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/LocationInfoResult
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400

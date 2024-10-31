@@ -30,7 +30,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
+	"github.com/ShouheiNishi/openapi5g/models"
 	"github.com/ShouheiNishi/openapi5g/utils/error/middleware"
 )
 
@@ -102,7 +102,7 @@ func TestErrorMiddleware(t *testing.T) {
 		res, resBody, err := testOne(goodMethod, goodUri, goodBody,
 			TestdefaultApplicationProblemPlusJSONResponse{
 				StatusCode: http.StatusInternalServerError,
-				Body: commondata.ProblemDetails{
+				Body: models.ProblemDetails{
 					Status: http.StatusInternalServerError,
 					Cause:  lo.ToPtr("TEST"),
 				},

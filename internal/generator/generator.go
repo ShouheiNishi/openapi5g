@@ -74,8 +74,10 @@ func Generate(rootDir string) error {
 
 func (s *GeneratorState) RewriteYamlAndGenerateConfig() error {
 	for spec := range pkgList {
-		if err := s.LoadSpec(spec); err != nil {
-			return fmt.Errorf("LoadSpec(%s): %w", spec, err)
+		if s.Specs[spec] == nil {
+			if err := s.LoadSpec(spec); err != nil {
+				return fmt.Errorf("LoadSpec(%s): %w", spec, err)
+			}
 		}
 	}
 
@@ -83,10 +85,8 @@ func (s *GeneratorState) RewriteYamlAndGenerateConfig() error {
 		return fmt.Errorf("MakeDepsForLoader(): %w", err)
 	}
 
-	for spec := range pkgList {
-		if err := s.RewriteYaml(spec); err != nil {
-			return fmt.Errorf("RewriteYaml(%s): %w", spec, err)
-		}
+	if err := s.RewriteSpecs(); err != nil {
+		return fmt.Errorf("RewriteSpecs(): %w", err)
 	}
 
 	for spec := range pkgList {
@@ -141,11 +141,11 @@ func (s *GeneratorState) LoadSpec(spec string) error {
 			if err = yaml.Unmarshal(buf, &doc); err != nil {
 				return fmt.Errorf("yaml.Unmarshal(%s): %w", spec, err)
 			} else {
+				s.Specs[spec] = &doc
 				deps := make(map[string]struct{})
 				if err := setupRefs(&doc, spec, deps); err != nil {
 					return fmt.Errorf("setupRefs(%s): %w", spec, err)
 				} else {
-					s.Specs[spec] = &doc
 					s.DepsBase[spec] = deps
 					return resolveRefs(&doc, s)
 				}
@@ -173,20 +173,21 @@ func (s *GeneratorState) WriteSpec(spec string) error {
 	}
 }
 
-func ResolveRef[T any](s *GeneratorState, refFile string, refPointer string) (*T, error) {
-	if refFile == "" || refPointer == "" {
-		return nil, fmt.Errorf("invalid ref %s#%s", refFile, refPointer)
+func ResolveRef[T any](s *GeneratorState, ref openapi.Reference) (*T, error) {
+	if ref.Path == "" || ref.Pointer == "" {
+		return nil, fmt.Errorf("invalid ref %s", ref)
 	}
-	if s.Specs[refFile] == nil {
-		if err := s.LoadSpec(refFile); err != nil {
-			return nil, fmt.Errorf("LoadSpec(%s): %w", refFile, err)
-		} else if s.Specs[refFile] == nil {
-			return nil, fmt.Errorf("LoadSpec(%s): not loaded", refFile)
+	spec := ref.Path
+	if s.Specs[spec] == nil {
+		if err := s.LoadSpec(spec); err != nil {
+			return nil, fmt.Errorf("LoadSpec(%s): %w", spec, err)
+		} else if s.Specs[spec] == nil {
+			return nil, fmt.Errorf("LoadSpec(%s): not loaded", spec)
 		}
 	}
 
-	if v, err := s.Specs[refFile].GetFromJsonPointer(refPointer); err != nil {
-		return nil, fmt.Errorf("GetFromJsonPointer(%s - %s): %w", refFile, refPointer, err)
+	if v, err := s.Specs[spec].GetFromJsonPointer(ref.Pointer); err != nil {
+		return nil, fmt.Errorf("GetFromJsonPointer(%s - %s): %w", spec, ref.Pointer, err)
 	} else if r, ok := v.(*T); ok {
 		return r, nil
 	} else if r, ok := v.(*openapi.Ref[T]); ok {
@@ -199,8 +200,8 @@ func ResolveRef[T any](s *GeneratorState, refFile string, refPointer string) (*T
 				return r.Value, nil
 			}
 		} else {
-			if r2, err := ResolveRef[T](s, r.RefFile, r.RefPointer); err != nil {
-				return nil, fmt.Errorf("ResolvedRef(%s): %w", r.Ref(), err)
+			if r2, err := ResolveRef[T](s, r.Ref); err != nil {
+				return nil, fmt.Errorf("ResolvedRef(%s): %w", r.Ref, err)
 			} else {
 				return r2, nil
 			}

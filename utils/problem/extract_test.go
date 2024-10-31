@@ -24,6 +24,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/ShouheiNishi/openapi5g/amf/communication"
+	"github.com/ShouheiNishi/openapi5g/models"
 	"github.com/ShouheiNishi/openapi5g/utils/problem"
 )
 
@@ -118,7 +119,7 @@ func TestExtractStatusCodeAndProblemDetails(t *testing.T) {
 	c, err := communication.NewClientWithResponses(ts.URL)
 	assert.NoError(t, err)
 
-	res, err := c.N1N2MessageSubscribeWithResponse(context.TODO(), "", communication.UeN1N2InfoSubscriptionCreateData{})
+	res, err := c.N1N2MessageSubscribeWithResponse(context.TODO(), "", models.UeN1N2InfoSubscriptionCreateData{})
 	assert.NoError(t, err)
 
 	statusCode, pdRecv, err := problem.ExtractStatusCodeAndProblemDetails(res)

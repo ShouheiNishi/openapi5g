@@ -13,15 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/northbound/commondata"
-	externalRef2 "github.com/ShouheiNishi/openapi5g/udm/pp"
-	externalRef3 "github.com/ShouheiNishi/openapi5g/udm/sdm"
-	externalRef4 "github.com/ShouheiNishi/openapi5g/udm/ueau"
-	externalRef5 "github.com/ShouheiNishi/openapi5g/udr/application"
-	externalRef6 "github.com/ShouheiNishi/openapi5g/udr/exposure"
-	externalRef7 "github.com/ShouheiNishi/openapi5g/udr/policy"
-	externalRef8 "github.com/ShouheiNishi/openapi5g/udr/subscription"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -142,7 +134,7 @@ type UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONBody = int
 // ReadApplicationDataChangeSubscriptionsParams defines parameters for ReadApplicationDataChangeSubscriptions.
 type ReadApplicationDataChangeSubscriptionsParams struct {
 	// DataFilter The data filter for the query.
-	DataFilter *externalRef5.DataFilter `form:"data-filter,omitempty" json:"data-filter,omitempty"`
+	DataFilter *externalRef0.DataFilter `form:"data-filter,omitempty" json:"data-filter,omitempty"`
 }
 
 // QueryAccessAndMobilityDataParams defines parameters for QueryAccessAndMobilityData.
@@ -172,7 +164,7 @@ type QuerySessionManagementDataParams struct {
 // ReadBdtDataParams defines parameters for ReadBdtData.
 type ReadBdtDataParams struct {
 	// BdtRefIds List of the BDT reference identifiers.
-	BdtRefIds *[]externalRef1.BdtReferenceId `form:"bdt-ref-ids,omitempty" json:"bdt-ref-ids,omitempty"`
+	BdtRefIds *[]externalRef0.BdtReferenceId `form:"bdt-ref-ids,omitempty" json:"bdt-ref-ids,omitempty"`
 
 	// SuppFeat Supported Features
 	SuppFeat *externalRef0.SupportedFeatures `form:"supp-feat,omitempty" json:"supp-feat,omitempty"`
@@ -197,7 +189,7 @@ type ReadOperatorSpecificDataParams struct {
 type UpdateOperatorSpecificDataApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // ReplaceOperatorSpecificDataJSONBody defines parameters for ReplaceOperatorSpecificData.
-type ReplaceOperatorSpecificDataJSONBody map[string]interface{}
+type ReplaceOperatorSpecificDataJSONBody map[string]externalRef0.OperatorSpecificDataContainer
 
 // ReadSessionManagementPolicyDataParams defines parameters for ReadSessionManagementPolicyData.
 type ReadSessionManagementPolicyDataParams struct {
@@ -238,7 +230,7 @@ type Query5GVnGroupInternalParams struct {
 // Query5GVNGroupPPDataParams defines parameters for Query5GVNGroupPPData.
 type Query5GVNGroupPPDataParams struct {
 	// ExtGroupIds List of external VN group identifiers
-	ExtGroupIds *[]externalRef3.ExtGroupId `form:"ext-group-ids,omitempty" json:"ext-group-ids,omitempty"`
+	ExtGroupIds *[]externalRef0.ExtGroupId `form:"ext-group-ids,omitempty" json:"ext-group-ids,omitempty"`
 
 	// SupportedFeatures Supported Features
 	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
@@ -256,7 +248,7 @@ type Modify5GVnGroupParams struct {
 // GetGroupIdentifiersParams defines parameters for GetGroupIdentifiers.
 type GetGroupIdentifiersParams struct {
 	// ExtGroupId External Group Identifier
-	ExtGroupId *externalRef3.ExtGroupId `form:"ext-group-id,omitempty" json:"ext-group-id,omitempty"`
+	ExtGroupId *externalRef0.ExtGroupId `form:"ext-group-id,omitempty" json:"ext-group-id,omitempty"`
 
 	// IntGroupId Internal Group Identifier
 	IntGroupId *externalRef0.GroupId `form:"int-group-id,omitempty" json:"int-group-id,omitempty"`
@@ -292,7 +284,7 @@ type ModifyEeGroupSubscriptionParams struct {
 // GetSharedDataParams defines parameters for GetSharedData.
 type GetSharedDataParams struct {
 	// SharedDataIds List of shared data ids
-	SharedDataIds externalRef3.SharedDataIds `form:"shared-data-ids" json:"shared-data-ids"`
+	SharedDataIds externalRef0.SharedDataIds `form:"shared-data-ids" json:"shared-data-ids"`
 
 	// SupportedFeatures Supported Features
 	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
@@ -376,7 +368,7 @@ type ModifyAuthenticationSubscriptionParams struct {
 // QueryContextDataParams defines parameters for QueryContextData.
 type QueryContextDataParams struct {
 	// ContextDatasetNames List of context dataset names
-	ContextDatasetNames externalRef8.ContextDatasetNames `form:"context-dataset-names" json:"context-dataset-names"`
+	ContextDatasetNames externalRef0.ContextDatasetNames `form:"context-dataset-names" json:"context-dataset-names"`
 }
 
 // QueryAmfContext3gppParams defines parameters for QueryAmfContext3gpp.
@@ -440,7 +432,7 @@ type ModifyAmfSubscriptionInfoParams struct {
 }
 
 // CreateAMFSubscriptionsJSONBody defines parameters for CreateAMFSubscriptions.
-type CreateAMFSubscriptionsJSONBody = []externalRef8.AmfSubscriptionInfo
+type CreateAMFSubscriptionsJSONBody = []externalRef0.AmfSubscriptionInfo
 
 // ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONBody defines parameters for ModifyHssSubscriptionInfo.
 type ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
@@ -571,7 +563,7 @@ type QueryEEDataParams struct {
 // GetIdentityDataParams defines parameters for GetIdentityData.
 type GetIdentityDataParams struct {
 	// AppPortId Application port identifier
-	AppPortId *externalRef3.AppPortId `form:"app-port-id,omitempty" json:"app-port-id,omitempty"`
+	AppPortId *externalRef0.AppPortId `form:"app-port-id,omitempty" json:"app-port-id,omitempty"`
 
 	// IfNoneMatch Validator for conditional requests, as described in RFC 7232, 3.2
 	IfNoneMatch *string `json:"If-None-Match,omitempty"`
@@ -613,10 +605,10 @@ type QueryLcsPrivacyDataParams struct {
 // GetNiddAuDataParams defines parameters for GetNiddAuData.
 type GetNiddAuDataParams struct {
 	// SingleNssai single NSSAI
-	SingleNssai externalRef8.VarSnssai `form:"single-nssai" json:"single-nssai"`
+	SingleNssai externalRef0.VarSnssai `form:"single-nssai" json:"single-nssai"`
 
 	// Dnn DNN
-	Dnn externalRef8.Dnn `form:"dnn" json:"dnn"`
+	Dnn externalRef0.Dnn `form:"dnn" json:"dnn"`
 
 	// MtcProviderInformation MTC Provider Information
 	MtcProviderInformation externalRef0.MtcProviderInformation `form:"mtc-provider-information" json:"mtc-provider-information"`
@@ -742,7 +734,7 @@ type QueryV2xDataParams struct {
 // QueryProvisionedDataParams defines parameters for QueryProvisionedData.
 type QueryProvisionedDataParams struct {
 	// DatasetNames List of dataset names
-	DatasetNames *externalRef8.DatasetNames `form:"dataset-names,omitempty" json:"dataset-names,omitempty"`
+	DatasetNames *externalRef0.DatasetNames `form:"dataset-names,omitempty" json:"dataset-names,omitempty"`
 }
 
 // QueryAmDataParams defines parameters for QueryAmData.
@@ -775,10 +767,10 @@ type QueryLcsBcaDataParams struct {
 // QuerySmDataParams defines parameters for QuerySmData.
 type QuerySmDataParams struct {
 	// SingleNssai single NSSAI
-	SingleNssai *externalRef8.VarSnssai `form:"single-nssai,omitempty" json:"single-nssai,omitempty"`
+	SingleNssai *externalRef0.VarSnssai `form:"single-nssai,omitempty" json:"single-nssai,omitempty"`
 
 	// Dnn DNN
-	Dnn *externalRef8.Dnn `form:"dnn,omitempty" json:"dnn,omitempty"`
+	Dnn *externalRef0.Dnn `form:"dnn,omitempty" json:"dnn,omitempty"`
 
 	// Fields attributes to be retrieved
 	Fields *[]string `form:"fields,omitempty" json:"fields,omitempty"`
@@ -842,70 +834,70 @@ type QueryTraceDataParams struct {
 }
 
 // UpdateIndividualAppliedBdtPolicyDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndividualAppliedBdtPolicyData for application/merge-patch+json ContentType.
-type UpdateIndividualAppliedBdtPolicyDataApplicationMergePatchPlusJSONRequestBody = externalRef5.BdtPolicyDataPatch
+type UpdateIndividualAppliedBdtPolicyDataApplicationMergePatchPlusJSONRequestBody = externalRef0.BdtPolicyDataPatch
 
 // CreateIndividualAppliedBdtPolicyDataJSONRequestBody defines body for CreateIndividualAppliedBdtPolicyData for application/json ContentType.
-type CreateIndividualAppliedBdtPolicyDataJSONRequestBody = externalRef5.BdtPolicyData
+type CreateIndividualAppliedBdtPolicyDataJSONRequestBody = externalRef0.BdtPolicyData
 
 // CreateIndividualInfluenceDataSubscriptionJSONRequestBody defines body for CreateIndividualInfluenceDataSubscription for application/json ContentType.
-type CreateIndividualInfluenceDataSubscriptionJSONRequestBody = externalRef5.TrafficInfluSub
+type CreateIndividualInfluenceDataSubscriptionJSONRequestBody = externalRef0.TrafficInfluSub
 
 // ReplaceIndividualInfluenceDataSubscriptionJSONRequestBody defines body for ReplaceIndividualInfluenceDataSubscription for application/json ContentType.
-type ReplaceIndividualInfluenceDataSubscriptionJSONRequestBody = externalRef5.TrafficInfluSub
+type ReplaceIndividualInfluenceDataSubscriptionJSONRequestBody = externalRef0.TrafficInfluSub
 
 // UpdateIndividualInfluenceDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndividualInfluenceData for application/merge-patch+json ContentType.
-type UpdateIndividualInfluenceDataApplicationMergePatchPlusJSONRequestBody = externalRef5.TrafficInfluDataPatch
+type UpdateIndividualInfluenceDataApplicationMergePatchPlusJSONRequestBody = externalRef0.TrafficInfluDataPatch
 
 // CreateOrReplaceIndividualInfluenceDataJSONRequestBody defines body for CreateOrReplaceIndividualInfluenceData for application/json ContentType.
-type CreateOrReplaceIndividualInfluenceDataJSONRequestBody = externalRef5.TrafficInfluData
+type CreateOrReplaceIndividualInfluenceDataJSONRequestBody = externalRef0.TrafficInfluData
 
 // PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONRequestBody defines body for PartialReplaceIndividualIPTVConfigurationData for application/merge-patch+json ContentType.
 type PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONRequestBody = PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONBody
 
 // CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody defines body for CreateOrReplaceIndividualIPTVConfigurationData for application/json ContentType.
-type CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody = externalRef5.IptvConfigData
+type CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody = externalRef0.IptvConfigData
 
 // CreateOrReplaceIndividualPFDDataJSONRequestBody defines body for CreateOrReplaceIndividualPFDData for application/json ContentType.
-type CreateOrReplaceIndividualPFDDataJSONRequestBody = externalRef5.PfdDataForAppExt
+type CreateOrReplaceIndividualPFDDataJSONRequestBody = externalRef0.PfdDataForAppExt
 
 // UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndividualServiceParameterData for application/merge-patch+json ContentType.
 type UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONRequestBody = UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONBody
 
 // CreateOrReplaceServiceParameterDataJSONRequestBody defines body for CreateOrReplaceServiceParameterData for application/json ContentType.
-type CreateOrReplaceServiceParameterDataJSONRequestBody = externalRef5.ServiceParameterData
+type CreateOrReplaceServiceParameterDataJSONRequestBody = externalRef0.ServiceParameterData
 
 // CreateIndividualApplicationDataSubscriptionJSONRequestBody defines body for CreateIndividualApplicationDataSubscription for application/json ContentType.
-type CreateIndividualApplicationDataSubscriptionJSONRequestBody = externalRef5.ApplicationDataSubs
+type CreateIndividualApplicationDataSubscriptionJSONRequestBody = externalRef0.ApplicationDataSubs
 
 // ReplaceIndividualApplicationDataSubscriptionJSONRequestBody defines body for ReplaceIndividualApplicationDataSubscription for application/json ContentType.
-type ReplaceIndividualApplicationDataSubscriptionJSONRequestBody = externalRef5.ApplicationDataSubs
+type ReplaceIndividualApplicationDataSubscriptionJSONRequestBody = externalRef0.ApplicationDataSubs
 
 // CreateIndividualExposureDataSubscriptionJSONRequestBody defines body for CreateIndividualExposureDataSubscription for application/json ContentType.
-type CreateIndividualExposureDataSubscriptionJSONRequestBody = externalRef6.ExposureDataSubscription
+type CreateIndividualExposureDataSubscriptionJSONRequestBody = externalRef0.ExposureDataSubscription
 
 // ReplaceIndividualExposureDataSubscriptionJSONRequestBody defines body for ReplaceIndividualExposureDataSubscription for application/json ContentType.
-type ReplaceIndividualExposureDataSubscriptionJSONRequestBody = externalRef6.ExposureDataSubscription
+type ReplaceIndividualExposureDataSubscriptionJSONRequestBody = externalRef0.ExposureDataSubscription
 
 // UpdateAccessAndMobilityDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateAccessAndMobilityData for application/merge-patch+json ContentType.
-type UpdateAccessAndMobilityDataApplicationMergePatchPlusJSONRequestBody = externalRef6.AccessAndMobilityData
+type UpdateAccessAndMobilityDataApplicationMergePatchPlusJSONRequestBody = externalRef0.AccessAndMobilityData
 
 // CreateOrReplaceAccessAndMobilityDataJSONRequestBody defines body for CreateOrReplaceAccessAndMobilityData for application/json ContentType.
-type CreateOrReplaceAccessAndMobilityDataJSONRequestBody = externalRef6.AccessAndMobilityData
+type CreateOrReplaceAccessAndMobilityDataJSONRequestBody = externalRef0.AccessAndMobilityData
 
 // CreateOrReplaceSessionManagementDataJSONRequestBody defines body for CreateOrReplaceSessionManagementData for application/json ContentType.
-type CreateOrReplaceSessionManagementDataJSONRequestBody = externalRef6.PduSessionManagementData
+type CreateOrReplaceSessionManagementDataJSONRequestBody = externalRef0.PduSessionManagementData
 
 // UpdateIndividualBdtDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndividualBdtData for application/merge-patch+json ContentType.
-type UpdateIndividualBdtDataApplicationMergePatchPlusJSONRequestBody = externalRef7.BdtDataPatch
+type UpdateIndividualBdtDataApplicationMergePatchPlusJSONRequestBody = externalRef0.BdtDataPatch
 
 // CreateIndividualBdtDataJSONRequestBody defines body for CreateIndividualBdtData for application/json ContentType.
-type CreateIndividualBdtDataJSONRequestBody = externalRef7.BdtData
+type CreateIndividualBdtDataJSONRequestBody = externalRef0.BdtData
 
 // CreateIndividualPolicyDataSubscriptionJSONRequestBody defines body for CreateIndividualPolicyDataSubscription for application/json ContentType.
-type CreateIndividualPolicyDataSubscriptionJSONRequestBody = externalRef7.PolicyDataSubscription
+type CreateIndividualPolicyDataSubscriptionJSONRequestBody = externalRef0.PolicyDataSubscription
 
 // ReplaceIndividualPolicyDataSubscriptionJSONRequestBody defines body for ReplaceIndividualPolicyDataSubscription for application/json ContentType.
-type ReplaceIndividualPolicyDataSubscriptionJSONRequestBody = externalRef7.PolicyDataSubscription
+type ReplaceIndividualPolicyDataSubscriptionJSONRequestBody = externalRef0.PolicyDataSubscription
 
 // UpdateOperatorSpecificDataApplicationJSONPatchPlusJSONRequestBody defines body for UpdateOperatorSpecificData for application/json-patch+json ContentType.
 type UpdateOperatorSpecificDataApplicationJSONPatchPlusJSONRequestBody = UpdateOperatorSpecificDataApplicationJSONPatchPlusJSONBody
@@ -914,43 +906,43 @@ type UpdateOperatorSpecificDataApplicationJSONPatchPlusJSONRequestBody = UpdateO
 type ReplaceOperatorSpecificDataJSONRequestBody ReplaceOperatorSpecificDataJSONBody
 
 // UpdateSessionManagementPolicyDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateSessionManagementPolicyData for application/merge-patch+json ContentType.
-type UpdateSessionManagementPolicyDataApplicationMergePatchPlusJSONRequestBody = externalRef7.SmPolicyDataPatch
+type UpdateSessionManagementPolicyDataApplicationMergePatchPlusJSONRequestBody = externalRef0.SmPolicyDataPatch
 
 // CreateUsageMonitoringResourceJSONRequestBody defines body for CreateUsageMonitoringResource for application/json ContentType.
-type CreateUsageMonitoringResourceJSONRequestBody = externalRef7.UsageMonData
+type CreateUsageMonitoringResourceJSONRequestBody = externalRef0.UsageMonData
 
 // UpdateUEPolicySetApplicationMergePatchPlusJSONRequestBody defines body for UpdateUEPolicySet for application/merge-patch+json ContentType.
-type UpdateUEPolicySetApplicationMergePatchPlusJSONRequestBody = externalRef7.UePolicySetPatch
+type UpdateUEPolicySetApplicationMergePatchPlusJSONRequestBody = externalRef0.UePolicySetPatch
 
 // CreateOrReplaceUEPolicySetJSONRequestBody defines body for CreateOrReplaceUEPolicySet for application/json ContentType.
-type CreateOrReplaceUEPolicySetJSONRequestBody = externalRef7.UePolicySet
+type CreateOrReplaceUEPolicySetJSONRequestBody = externalRef0.UePolicySet
 
 // Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody defines body for Modify5GVnGroup for application/json-patch+json ContentType.
 type Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody = Modify5GVnGroupApplicationJSONPatchPlusJSONBody
 
 // Create5GVnGroupJSONRequestBody defines body for Create5GVnGroup for application/json ContentType.
-type Create5GVnGroupJSONRequestBody = externalRef2.N5GVnGroupConfiguration
+type Create5GVnGroupJSONRequestBody = externalRef0.N5GVnGroupConfiguration
 
 // CreateEeGroupSubscriptionsJSONRequestBody defines body for CreateEeGroupSubscriptions for application/json ContentType.
-type CreateEeGroupSubscriptionsJSONRequestBody = externalRef8.EeSubscription
+type CreateEeGroupSubscriptionsJSONRequestBody = externalRef0.EeSubscription
 
 // ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifyEeGroupSubscription for application/json-patch+json ContentType.
 type ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONBody
 
 // UpdateEeGroupSubscriptionsJSONRequestBody defines body for UpdateEeGroupSubscriptions for application/json ContentType.
-type UpdateEeGroupSubscriptionsJSONRequestBody = externalRef8.EeSubscription
+type UpdateEeGroupSubscriptionsJSONRequestBody = externalRef0.EeSubscription
 
 // SubscriptionDataSubscriptionsJSONRequestBody defines body for SubscriptionDataSubscriptions for application/json ContentType.
-type SubscriptionDataSubscriptionsJSONRequestBody = externalRef8.SubscriptionDataSubscriptions
+type SubscriptionDataSubscriptionsJSONRequestBody = externalRef0.SubscriptionDataSubscriptions
 
 // ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifysubscriptionDataSubscription for application/json-patch+json ContentType.
 type ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifysubscriptionDataSubscriptionApplicationJSONPatchPlusJSONBody
 
 // CreateAuthenticationStatusJSONRequestBody defines body for CreateAuthenticationStatus for application/json ContentType.
-type CreateAuthenticationStatusJSONRequestBody = externalRef4.AuthEvent
+type CreateAuthenticationStatusJSONRequestBody = externalRef0.AuthEvent
 
 // CreateIndividualAuthenticationStatusJSONRequestBody defines body for CreateIndividualAuthenticationStatus for application/json ContentType.
-type CreateIndividualAuthenticationStatusJSONRequestBody = externalRef4.AuthEvent
+type CreateIndividualAuthenticationStatusJSONRequestBody = externalRef0.AuthEvent
 
 // ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifyAuthenticationSubscription for application/json-patch+json ContentType.
 type ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONBody
@@ -959,22 +951,22 @@ type ModifyAuthenticationSubscriptionApplicationJSONPatchPlusJSONRequestBody = M
 type AmfContext3gppApplicationJSONPatchPlusJSONRequestBody = AmfContext3gppApplicationJSONPatchPlusJSONBody
 
 // CreateAmfContext3gppJSONRequestBody defines body for CreateAmfContext3gpp for application/json ContentType.
-type CreateAmfContext3gppJSONRequestBody = externalRef8.Amf3GppAccessRegistration
+type CreateAmfContext3gppJSONRequestBody = externalRef0.Amf3GppAccessRegistration
 
 // AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody defines body for AmfContextNon3gpp for application/json-patch+json ContentType.
 type AmfContextNon3gppApplicationJSONPatchPlusJSONRequestBody = AmfContextNon3gppApplicationJSONPatchPlusJSONBody
 
 // CreateAmfContextNon3gppJSONRequestBody defines body for CreateAmfContextNon3gpp for application/json ContentType.
-type CreateAmfContextNon3gppJSONRequestBody = externalRef8.AmfNon3GppAccessRegistration
+type CreateAmfContextNon3gppJSONRequestBody = externalRef0.AmfNon3GppAccessRegistration
 
 // CreateEeSubscriptionsJSONRequestBody defines body for CreateEeSubscriptions for application/json ContentType.
-type CreateEeSubscriptionsJSONRequestBody = externalRef8.EeSubscription
+type CreateEeSubscriptionsJSONRequestBody = externalRef0.EeSubscription
 
 // ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifyEesubscription for application/json-patch+json ContentType.
 type ModifyEesubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifyEesubscriptionApplicationJSONPatchPlusJSONBody
 
 // UpdateEesubscriptionsJSONRequestBody defines body for UpdateEesubscriptions for application/json ContentType.
-type UpdateEesubscriptionsJSONRequestBody = externalRef8.EeSubscription
+type UpdateEesubscriptionsJSONRequestBody = externalRef0.EeSubscription
 
 // ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody defines body for ModifyAmfSubscriptionInfo for application/json-patch+json ContentType.
 type ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody = ModifyAmfSubscriptionInfoApplicationJSONPatchPlusJSONBody
@@ -986,49 +978,49 @@ type CreateAMFSubscriptionsJSONRequestBody = CreateAMFSubscriptionsJSONBody
 type ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody = ModifyHssSubscriptionInfoApplicationJSONPatchPlusJSONBody
 
 // CreateHSSSubscriptionsJSONRequestBody defines body for CreateHSSSubscriptions for application/json ContentType.
-type CreateHSSSubscriptionsJSONRequestBody = externalRef8.HssSubscriptionInfo
+type CreateHSSSubscriptionsJSONRequestBody = externalRef0.HssSubscriptionInfo
 
 // ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody defines body for ModifySmfSubscriptionInfo for application/json-patch+json ContentType.
 type ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody = ModifySmfSubscriptionInfoApplicationJSONPatchPlusJSONBody
 
 // CreateSMFSubscriptionsJSONRequestBody defines body for CreateSMFSubscriptions for application/json ContentType.
-type CreateSMFSubscriptionsJSONRequestBody = externalRef8.SmfSubscriptionInfo
+type CreateSMFSubscriptionsJSONRequestBody = externalRef0.SmfSubscriptionInfo
 
 // ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody defines body for ModifyIpSmGwContext for application/json-patch+json ContentType.
 type ModifyIpSmGwContextApplicationJSONPatchPlusJSONRequestBody = ModifyIpSmGwContextApplicationJSONPatchPlusJSONBody
 
 // CreateIpSmGwContextJSONRequestBody defines body for CreateIpSmGwContext for application/json ContentType.
-type CreateIpSmGwContextJSONRequestBody = externalRef8.IpSmGwRegistration
+type CreateIpSmGwContextJSONRequestBody = externalRef0.IpSmGwRegistration
 
 // ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody defines body for ModifyMessageWaitingData for application/json-patch+json ContentType.
 type ModifyMessageWaitingDataApplicationJSONPatchPlusJSONRequestBody = ModifyMessageWaitingDataApplicationJSONPatchPlusJSONBody
 
 // CreateMessageWaitingDataJSONRequestBody defines body for CreateMessageWaitingData for application/json ContentType.
-type CreateMessageWaitingDataJSONRequestBody = externalRef8.MessageWaitingData
+type CreateMessageWaitingDataJSONRequestBody = externalRef0.MessageWaitingData
 
 // CreateSdmSubscriptionsJSONRequestBody defines body for CreateSdmSubscriptions for application/json ContentType.
-type CreateSdmSubscriptionsJSONRequestBody = externalRef8.SdmSubscription
+type CreateSdmSubscriptionsJSONRequestBody = externalRef0.SdmSubscription
 
 // ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for ModifysdmSubscription for application/json-patch+json ContentType.
 type ModifysdmSubscriptionApplicationJSONPatchPlusJSONRequestBody = ModifysdmSubscriptionApplicationJSONPatchPlusJSONBody
 
 // UpdatesdmsubscriptionsJSONRequestBody defines body for Updatesdmsubscriptions for application/json ContentType.
-type UpdatesdmsubscriptionsJSONRequestBody = externalRef8.SdmSubscription
+type UpdatesdmsubscriptionsJSONRequestBody = externalRef0.SdmSubscription
 
 // ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody defines body for ModifyHssSDMSubscriptionInfo for application/json-patch+json ContentType.
 type ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONRequestBody = ModifyHssSDMSubscriptionInfoApplicationJSONPatchPlusJSONBody
 
 // CreateHSSSDMSubscriptionsJSONRequestBody defines body for CreateHSSSDMSubscriptions for application/json ContentType.
-type CreateHSSSDMSubscriptionsJSONRequestBody = externalRef8.HssSubscriptionInfo
+type CreateHSSSDMSubscriptionsJSONRequestBody = externalRef0.HssSubscriptionInfo
 
 // CreateOrUpdateSmfRegistrationJSONRequestBody defines body for CreateOrUpdateSmfRegistration for application/json ContentType.
-type CreateOrUpdateSmfRegistrationJSONRequestBody = externalRef8.SmfRegistration
+type CreateOrUpdateSmfRegistrationJSONRequestBody = externalRef0.SmfRegistration
 
 // CreateSmsfContext3gppJSONRequestBody defines body for CreateSmsfContext3gpp for application/json ContentType.
-type CreateSmsfContext3gppJSONRequestBody = externalRef8.SmsfRegistration
+type CreateSmsfContext3gppJSONRequestBody = externalRef0.SmsfRegistration
 
 // CreateSmsfContextNon3gppJSONRequestBody defines body for CreateSmsfContextNon3gpp for application/json ContentType.
-type CreateSmsfContextNon3gppJSONRequestBody = externalRef8.SmsfRegistration
+type CreateSmsfContextNon3gppJSONRequestBody = externalRef0.SmsfRegistration
 
 // ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody defines body for ModifyOperSpecData for application/json-patch+json ContentType.
 type ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody = ModifyOperSpecDataApplicationJSONPatchPlusJSONBody
@@ -1037,16 +1029,16 @@ type ModifyOperSpecDataApplicationJSONPatchPlusJSONRequestBody = ModifyOperSpecD
 type ModifyPpDataApplicationJSONPatchPlusJSONRequestBody = ModifyPpDataApplicationJSONPatchPlusJSONBody
 
 // CreateAuthenticationSoRJSONRequestBody defines body for CreateAuthenticationSoR for application/json ContentType.
-type CreateAuthenticationSoRJSONRequestBody = externalRef8.SorData
+type CreateAuthenticationSoRJSONRequestBody = externalRef0.SorData
 
 // CreateCagUpdateAckJSONRequestBody defines body for CreateCagUpdateAck for application/json ContentType.
-type CreateCagUpdateAckJSONRequestBody = externalRef8.CagAckData
+type CreateCagUpdateAckJSONRequestBody = externalRef0.CagAckData
 
 // CreateOrUpdateNssaiAckJSONRequestBody defines body for CreateOrUpdateNssaiAck for application/json ContentType.
-type CreateOrUpdateNssaiAckJSONRequestBody = externalRef8.NssaiAckData
+type CreateOrUpdateNssaiAckJSONRequestBody = externalRef0.NssaiAckData
 
 // CreateAuthenticationUPUJSONRequestBody defines body for CreateAuthenticationUPU for application/json ContentType.
-type CreateAuthenticationUPUJSONRequestBody = externalRef8.UpuData
+type CreateAuthenticationUPUJSONRequestBody = externalRef0.UpuData
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1297,7 +1289,7 @@ type ClientInterface interface {
 	CreateIndividualBdtData(ctx context.Context, bdtReferenceId string, body CreateIndividualBdtDataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReadPlmnUePolicySet request
-	ReadPlmnUePolicySet(ctx context.Context, plmnId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ReadPlmnUePolicySet(ctx context.Context, plmnId externalRef0.VarPlmnId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReadSponsorConnectivityData request
 	ReadSponsorConnectivityData(ctx context.Context, sponsorId string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -1373,56 +1365,56 @@ type ClientInterface interface {
 	Query5GVNGroupPPData(ctx context.Context, params *Query5GVNGroupPPDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Delete5GVnGroup request
-	Delete5GVnGroup(ctx context.Context, externalGroupId externalRef3.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Delete5GVnGroup(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Get5GVnGroupConfiguration request
-	Get5GVnGroupConfiguration(ctx context.Context, externalGroupId externalRef3.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Get5GVnGroupConfiguration(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Modify5GVnGroupWithBody request with any body
-	Modify5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Modify5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context.Context, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Create5GVnGroupWithBody request with any body
-	Create5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef3.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Create5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Create5GVnGroup(ctx context.Context, externalGroupId externalRef3.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	Create5GVnGroup(ctx context.Context, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetGroupIdentifiers request
 	GetGroupIdentifiers(ctx context.Context, params *GetGroupIdentifiersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryGroupEEData request
-	QueryGroupEEData(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryGroupEEData(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryEeGroupSubscriptions request
-	QueryEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateEeGroupSubscriptionsWithBody request with any body
-	CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveEeGroupSubscriptions request
-	RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryEeGroupSubscription request
-	QueryEeGroupSubscription(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryEeGroupSubscription(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ModifyEeGroupSubscriptionWithBody request with any body
-	ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateEeGroupSubscriptionsWithBody request with any body
-	UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSharedData request
 	GetSharedData(ctx context.Context, params *GetSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetIndividualSharedData request
-	GetIndividualSharedData(ctx context.Context, sharedDataId externalRef3.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetIndividualSharedData(ctx context.Context, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoveMultipleSubscriptionDataSubscriptions request
 	RemoveMultipleSubscriptionDataSubscriptions(ctx context.Context, params *RemoveMultipleSubscriptionDataSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -1458,15 +1450,15 @@ type ClientInterface interface {
 	CreateAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteIndividualAuthenticationStatus request
-	DeleteIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryIndividualAuthenticationStatus request
-	QueryIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateIndividualAuthenticationStatusWithBody request with any body
-	CreateIndividualAuthenticationStatusWithBody(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateIndividualAuthenticationStatusWithBody(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAuthSubsData request
 	QueryAuthSubsData(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -1764,28 +1756,28 @@ type ClientInterface interface {
 	QueryV2xData(ctx context.Context, ueId externalRef0.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryProvisionedData request
-	QueryProvisionedData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryProvisionedData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryAmData request
-	QueryAmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryAmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryLcsBcaData request
-	QueryLcsBcaData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryLcsBcaData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmData request
-	QuerySmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmfSelectData request
-	QuerySmfSelectData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmfSelectData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmsData request
-	QuerySmsData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmsData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QuerySmsMngData request
-	QuerySmsMngData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QuerySmsMngData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryTraceData request
-	QueryTraceData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	QueryTraceData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) ReadBdtPolicyData(ctx context.Context, params *ReadBdtPolicyDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -2568,7 +2560,7 @@ func (c *Client) CreateIndividualBdtData(ctx context.Context, bdtReferenceId str
 	return c.Client.Do(req)
 }
 
-func (c *Client) ReadPlmnUePolicySet(ctx context.Context, plmnId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ReadPlmnUePolicySet(ctx context.Context, plmnId externalRef0.VarPlmnId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReadPlmnUePolicySetRequest(c.Server, plmnId)
 	if err != nil {
 		return nil, err
@@ -2904,7 +2896,7 @@ func (c *Client) Query5GVNGroupPPData(ctx context.Context, params *Query5GVNGrou
 	return c.Client.Do(req)
 }
 
-func (c *Client) Delete5GVnGroup(ctx context.Context, externalGroupId externalRef3.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Delete5GVnGroup(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDelete5GVnGroupRequest(c.Server, externalGroupId)
 	if err != nil {
 		return nil, err
@@ -2916,7 +2908,7 @@ func (c *Client) Delete5GVnGroup(ctx context.Context, externalGroupId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get5GVnGroupConfiguration(ctx context.Context, externalGroupId externalRef3.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Get5GVnGroupConfiguration(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGet5GVnGroupConfigurationRequest(c.Server, externalGroupId)
 	if err != nil {
 		return nil, err
@@ -2928,7 +2920,7 @@ func (c *Client) Get5GVnGroupConfiguration(ctx context.Context, externalGroupId 
 	return c.Client.Do(req)
 }
 
-func (c *Client) Modify5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Modify5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModify5GVnGroupRequestWithBody(c.Server, externalGroupId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -2940,7 +2932,7 @@ func (c *Client) Modify5GVnGroupWithBody(ctx context.Context, externalGroupId ex
 	return c.Client.Do(req)
 }
 
-func (c *Client) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context.Context, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody(c.Server, externalGroupId, params, body)
 	if err != nil {
 		return nil, err
@@ -2952,7 +2944,7 @@ func (c *Client) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx context
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef3.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Create5GVnGroupWithBody(ctx context.Context, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreate5GVnGroupRequestWithBody(c.Server, externalGroupId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -2964,7 +2956,7 @@ func (c *Client) Create5GVnGroupWithBody(ctx context.Context, externalGroupId ex
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create5GVnGroup(ctx context.Context, externalGroupId externalRef3.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) Create5GVnGroup(ctx context.Context, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreate5GVnGroupRequest(c.Server, externalGroupId, body)
 	if err != nil {
 		return nil, err
@@ -2988,7 +2980,7 @@ func (c *Client) GetGroupIdentifiers(ctx context.Context, params *GetGroupIdenti
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryGroupEEData(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryGroupEEData(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryGroupEEDataRequest(c.Server, ueGroupId, params)
 	if err != nil {
 		return nil, err
@@ -3000,7 +2992,7 @@ func (c *Client) QueryGroupEEData(ctx context.Context, ueGroupId externalRef8.Va
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryEeGroupSubscriptionsRequest(c.Server, ueGroupId, params)
 	if err != nil {
 		return nil, err
@@ -3012,7 +3004,7 @@ func (c *Client) QueryEeGroupSubscriptions(ctx context.Context, ueGroupId extern
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateEeGroupSubscriptionsRequestWithBody(c.Server, ueGroupId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -3024,7 +3016,7 @@ func (c *Client) CreateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroup
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateEeGroupSubscriptionsRequest(c.Server, ueGroupId, body)
 	if err != nil {
 		return nil, err
@@ -3036,7 +3028,7 @@ func (c *Client) CreateEeGroupSubscriptions(ctx context.Context, ueGroupId exter
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoveEeGroupSubscriptionsRequest(c.Server, ueGroupId, subsId)
 	if err != nil {
 		return nil, err
@@ -3048,7 +3040,7 @@ func (c *Client) RemoveEeGroupSubscriptions(ctx context.Context, ueGroupId exter
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryEeGroupSubscription(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryEeGroupSubscription(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryEeGroupSubscriptionRequest(c.Server, ueGroupId, subsId)
 	if err != nil {
 		return nil, err
@@ -3060,7 +3052,7 @@ func (c *Client) QueryEeGroupSubscription(ctx context.Context, ueGroupId externa
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyEeGroupSubscriptionRequestWithBody(c.Server, ueGroupId, subsId, params, contentType, body)
 	if err != nil {
 		return nil, err
@@ -3072,7 +3064,7 @@ func (c *Client) ModifyEeGroupSubscriptionWithBody(ctx context.Context, ueGroupI
 	return c.Client.Do(req)
 }
 
-func (c *Client) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(c.Server, ueGroupId, subsId, params, body)
 	if err != nil {
 		return nil, err
@@ -3084,7 +3076,7 @@ func (c *Client) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(c
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateEeGroupSubscriptionsRequestWithBody(c.Server, ueGroupId, subsId, contentType, body)
 	if err != nil {
 		return nil, err
@@ -3096,7 +3088,7 @@ func (c *Client) UpdateEeGroupSubscriptionsWithBody(ctx context.Context, ueGroup
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) UpdateEeGroupSubscriptions(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateEeGroupSubscriptionsRequest(c.Server, ueGroupId, subsId, body)
 	if err != nil {
 		return nil, err
@@ -3120,7 +3112,7 @@ func (c *Client) GetSharedData(ctx context.Context, params *GetSharedDataParams,
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetIndividualSharedData(ctx context.Context, sharedDataId externalRef3.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) GetIndividualSharedData(ctx context.Context, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetIndividualSharedDataRequest(c.Server, sharedDataId, params)
 	if err != nil {
 		return nil, err
@@ -3276,7 +3268,7 @@ func (c *Client) CreateAuthenticationStatus(ctx context.Context, ueId externalRe
 	return c.Client.Do(req)
 }
 
-func (c *Client) DeleteIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) DeleteIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDeleteIndividualAuthenticationStatusRequest(c.Server, ueId, servingNetworkName)
 	if err != nil {
 		return nil, err
@@ -3288,7 +3280,7 @@ func (c *Client) DeleteIndividualAuthenticationStatus(ctx context.Context, ueId 
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryIndividualAuthenticationStatusRequest(c.Server, ueId, servingNetworkName, params)
 	if err != nil {
 		return nil, err
@@ -3300,7 +3292,7 @@ func (c *Client) QueryIndividualAuthenticationStatus(ctx context.Context, ueId e
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateIndividualAuthenticationStatusWithBody(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateIndividualAuthenticationStatusWithBody(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateIndividualAuthenticationStatusRequestWithBody(c.Server, ueId, servingNetworkName, contentType, body)
 	if err != nil {
 		return nil, err
@@ -3312,7 +3304,7 @@ func (c *Client) CreateIndividualAuthenticationStatusWithBody(ctx context.Contex
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) CreateIndividualAuthenticationStatus(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCreateIndividualAuthenticationStatusRequest(c.Server, ueId, servingNetworkName, body)
 	if err != nil {
 		return nil, err
@@ -4632,7 +4624,7 @@ func (c *Client) QueryV2xData(ctx context.Context, ueId externalRef0.VarUeId, pa
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryProvisionedData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryProvisionedData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryProvisionedDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -4644,7 +4636,7 @@ func (c *Client) QueryProvisionedData(ctx context.Context, ueId externalRef0.Var
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryAmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryAmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryAmDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -4656,7 +4648,7 @@ func (c *Client) QueryAmData(ctx context.Context, ueId externalRef0.VarUeId, ser
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryLcsBcaData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryLcsBcaData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryLcsBcaDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -4668,7 +4660,7 @@ func (c *Client) QueryLcsBcaData(ctx context.Context, ueId externalRef0.VarUeId,
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -4680,7 +4672,7 @@ func (c *Client) QuerySmData(ctx context.Context, ueId externalRef0.VarUeId, ser
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmfSelectData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmfSelectData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmfSelectDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -4692,7 +4684,7 @@ func (c *Client) QuerySmfSelectData(ctx context.Context, ueId externalRef0.VarUe
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmsData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmsData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmsDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -4704,7 +4696,7 @@ func (c *Client) QuerySmsData(ctx context.Context, ueId externalRef0.VarUeId, se
 	return c.Client.Do(req)
 }
 
-func (c *Client) QuerySmsMngData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QuerySmsMngData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQuerySmsMngDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -4716,7 +4708,7 @@ func (c *Client) QuerySmsMngData(ctx context.Context, ueId externalRef0.VarUeId,
 	return c.Client.Do(req)
 }
 
-func (c *Client) QueryTraceData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) QueryTraceData(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryTraceDataRequest(c.Server, ueId, servingPlmnId, params)
 	if err != nil {
 		return nil, err
@@ -7107,7 +7099,7 @@ func NewCreateIndividualBdtDataRequestWithBody(server string, bdtReferenceId str
 }
 
 // NewReadPlmnUePolicySetRequest generates requests for ReadPlmnUePolicySet
-func NewReadPlmnUePolicySetRequest(server string, plmnId string) (*http.Request, error) {
+func NewReadPlmnUePolicySetRequest(server string, plmnId externalRef0.VarPlmnId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8108,7 +8100,7 @@ func NewQuery5GVNGroupPPDataRequest(server string, params *Query5GVNGroupPPDataP
 }
 
 // NewDelete5GVnGroupRequest generates requests for Delete5GVnGroup
-func NewDelete5GVnGroupRequest(server string, externalGroupId externalRef3.ExtGroupId) (*http.Request, error) {
+func NewDelete5GVnGroupRequest(server string, externalGroupId externalRef0.ExtGroupId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8142,7 +8134,7 @@ func NewDelete5GVnGroupRequest(server string, externalGroupId externalRef3.ExtGr
 }
 
 // NewGet5GVnGroupConfigurationRequest generates requests for Get5GVnGroupConfiguration
-func NewGet5GVnGroupConfigurationRequest(server string, externalGroupId externalRef3.ExtGroupId) (*http.Request, error) {
+func NewGet5GVnGroupConfigurationRequest(server string, externalGroupId externalRef0.ExtGroupId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8176,7 +8168,7 @@ func NewGet5GVnGroupConfigurationRequest(server string, externalGroupId external
 }
 
 // NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody calls the generic Modify5GVnGroup builder with application/json-patch+json body
-func NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody(server string, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody(server string, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8187,7 +8179,7 @@ func NewModify5GVnGroupRequestWithApplicationJSONPatchPlusJSONBody(server string
 }
 
 // NewModify5GVnGroupRequestWithBody generates requests for Modify5GVnGroup with any type of body
-func NewModify5GVnGroupRequestWithBody(server string, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModify5GVnGroupRequestWithBody(server string, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8245,7 +8237,7 @@ func NewModify5GVnGroupRequestWithBody(server string, externalGroupId externalRe
 }
 
 // NewCreate5GVnGroupRequest calls the generic Create5GVnGroup builder with application/json body
-func NewCreate5GVnGroupRequest(server string, externalGroupId externalRef3.ExtGroupId, body Create5GVnGroupJSONRequestBody) (*http.Request, error) {
+func NewCreate5GVnGroupRequest(server string, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8256,7 +8248,7 @@ func NewCreate5GVnGroupRequest(server string, externalGroupId externalRef3.ExtGr
 }
 
 // NewCreate5GVnGroupRequestWithBody generates requests for Create5GVnGroup with any type of body
-func NewCreate5GVnGroupRequestWithBody(server string, externalGroupId externalRef3.ExtGroupId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreate5GVnGroupRequestWithBody(server string, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8389,7 +8381,7 @@ func NewGetGroupIdentifiersRequest(server string, params *GetGroupIdentifiersPar
 }
 
 // NewQueryGroupEEDataRequest generates requests for QueryGroupEEData
-func NewQueryGroupEEDataRequest(server string, ueGroupId externalRef8.VarUeGroupId, params *QueryGroupEEDataParams) (*http.Request, error) {
+func NewQueryGroupEEDataRequest(server string, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8445,7 +8437,7 @@ func NewQueryGroupEEDataRequest(server string, ueGroupId externalRef8.VarUeGroup
 }
 
 // NewQueryEeGroupSubscriptionsRequest generates requests for QueryEeGroupSubscriptions
-func NewQueryEeGroupSubscriptionsRequest(server string, ueGroupId externalRef8.VarUeGroupId, params *QueryEeGroupSubscriptionsParams) (*http.Request, error) {
+func NewQueryEeGroupSubscriptionsRequest(server string, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8501,7 +8493,7 @@ func NewQueryEeGroupSubscriptionsRequest(server string, ueGroupId externalRef8.V
 }
 
 // NewCreateEeGroupSubscriptionsRequest calls the generic CreateEeGroupSubscriptions builder with application/json body
-func NewCreateEeGroupSubscriptionsRequest(server string, ueGroupId externalRef8.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewCreateEeGroupSubscriptionsRequest(server string, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8512,7 +8504,7 @@ func NewCreateEeGroupSubscriptionsRequest(server string, ueGroupId externalRef8.
 }
 
 // NewCreateEeGroupSubscriptionsRequestWithBody generates requests for CreateEeGroupSubscriptions with any type of body
-func NewCreateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId externalRef8.VarUeGroupId, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8548,7 +8540,7 @@ func NewCreateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId exter
 }
 
 // NewRemoveEeGroupSubscriptionsRequest generates requests for RemoveEeGroupSubscriptions
-func NewRemoveEeGroupSubscriptionsRequest(server string, ueGroupId externalRef8.VarUeGroupId, subsId string) (*http.Request, error) {
+func NewRemoveEeGroupSubscriptionsRequest(server string, ueGroupId externalRef0.VarUeGroupId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8589,7 +8581,7 @@ func NewRemoveEeGroupSubscriptionsRequest(server string, ueGroupId externalRef8.
 }
 
 // NewQueryEeGroupSubscriptionRequest generates requests for QueryEeGroupSubscription
-func NewQueryEeGroupSubscriptionRequest(server string, ueGroupId externalRef8.VarUeGroupId, subsId string) (*http.Request, error) {
+func NewQueryEeGroupSubscriptionRequest(server string, ueGroupId externalRef0.VarUeGroupId, subsId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8630,7 +8622,7 @@ func NewQueryEeGroupSubscriptionRequest(server string, ueGroupId externalRef8.Va
 }
 
 // NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody calls the generic ModifyEeGroupSubscription builder with application/json-patch+json body
-func NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
+func NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(server string, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8641,7 +8633,7 @@ func NewModifyEeGroupSubscriptionRequestWithApplicationJSONPatchPlusJSONBody(ser
 }
 
 // NewModifyEeGroupSubscriptionRequestWithBody generates requests for ModifyEeGroupSubscription with any type of body
-func NewModifyEeGroupSubscriptionRequestWithBody(server string, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewModifyEeGroupSubscriptionRequestWithBody(server string, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8706,7 +8698,7 @@ func NewModifyEeGroupSubscriptionRequestWithBody(server string, ueGroupId extern
 }
 
 // NewUpdateEeGroupSubscriptionsRequest calls the generic UpdateEeGroupSubscriptions builder with application/json body
-func NewUpdateEeGroupSubscriptionsRequest(server string, ueGroupId externalRef8.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody) (*http.Request, error) {
+func NewUpdateEeGroupSubscriptionsRequest(server string, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -8717,7 +8709,7 @@ func NewUpdateEeGroupSubscriptionsRequest(server string, ueGroupId externalRef8.
 }
 
 // NewUpdateEeGroupSubscriptionsRequestWithBody generates requests for UpdateEeGroupSubscriptions with any type of body
-func NewUpdateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId externalRef8.VarUeGroupId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateEeGroupSubscriptionsRequestWithBody(server string, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8821,7 +8813,7 @@ func NewGetSharedDataRequest(server string, params *GetSharedDataParams) (*http.
 }
 
 // NewGetIndividualSharedDataRequest generates requests for GetIndividualSharedData
-func NewGetIndividualSharedDataRequest(server string, sharedDataId externalRef3.SharedDataId, params *GetIndividualSharedDataParams) (*http.Request, error) {
+func NewGetIndividualSharedDataRequest(server string, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9365,7 +9357,7 @@ func NewCreateAuthenticationStatusRequestWithBody(server string, ueId externalRe
 }
 
 // NewDeleteIndividualAuthenticationStatusRequest generates requests for DeleteIndividualAuthenticationStatus
-func NewDeleteIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName) (*http.Request, error) {
+func NewDeleteIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9406,7 +9398,7 @@ func NewDeleteIndividualAuthenticationStatusRequest(server string, ueId external
 }
 
 // NewQueryIndividualAuthenticationStatusRequest generates requests for QueryIndividualAuthenticationStatus
-func NewQueryIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams) (*http.Request, error) {
+func NewQueryIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9485,7 +9477,7 @@ func NewQueryIndividualAuthenticationStatusRequest(server string, ueId externalR
 }
 
 // NewCreateIndividualAuthenticationStatusRequest calls the generic CreateIndividualAuthenticationStatus builder with application/json body
-func NewCreateIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody) (*http.Request, error) {
+func NewCreateIndividualAuthenticationStatusRequest(server string, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -9496,7 +9488,7 @@ func NewCreateIndividualAuthenticationStatusRequest(server string, ueId external
 }
 
 // NewCreateIndividualAuthenticationStatusRequestWithBody generates requests for CreateIndividualAuthenticationStatus with any type of body
-func NewCreateIndividualAuthenticationStatusRequestWithBody(server string, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateIndividualAuthenticationStatusRequestWithBody(server string, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -14074,7 +14066,7 @@ func NewQueryV2xDataRequest(server string, ueId externalRef0.VarUeId, params *Qu
 }
 
 // NewQueryProvisionedDataRequest generates requests for QueryProvisionedData
-func NewQueryProvisionedDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryProvisionedDataParams) (*http.Request, error) {
+func NewQueryProvisionedDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -14137,7 +14129,7 @@ func NewQueryProvisionedDataRequest(server string, ueId externalRef0.VarUeId, se
 }
 
 // NewQueryAmDataRequest generates requests for QueryAmData
-func NewQueryAmDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryAmDataParams) (*http.Request, error) {
+func NewQueryAmDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -14242,7 +14234,7 @@ func NewQueryAmDataRequest(server string, ueId externalRef0.VarUeId, servingPlmn
 }
 
 // NewQueryLcsBcaDataRequest generates requests for QueryLcsBcaData
-func NewQueryLcsBcaDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryLcsBcaDataParams) (*http.Request, error) {
+func NewQueryLcsBcaDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -14331,7 +14323,7 @@ func NewQueryLcsBcaDataRequest(server string, ueId externalRef0.VarUeId, serving
 }
 
 // NewQuerySmDataRequest generates requests for QuerySmData
-func NewQuerySmDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmDataParams) (*http.Request, error) {
+func NewQuerySmDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -14462,7 +14454,7 @@ func NewQuerySmDataRequest(server string, ueId externalRef0.VarUeId, servingPlmn
 }
 
 // NewQuerySmfSelectDataRequest generates requests for QuerySmfSelectData
-func NewQuerySmfSelectDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmfSelectDataParams) (*http.Request, error) {
+func NewQuerySmfSelectDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -14567,7 +14559,7 @@ func NewQuerySmfSelectDataRequest(server string, ueId externalRef0.VarUeId, serv
 }
 
 // NewQuerySmsDataRequest generates requests for QuerySmsData
-func NewQuerySmsDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsDataParams) (*http.Request, error) {
+func NewQuerySmsDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -14656,7 +14648,7 @@ func NewQuerySmsDataRequest(server string, ueId externalRef0.VarUeId, servingPlm
 }
 
 // NewQuerySmsMngDataRequest generates requests for QuerySmsMngData
-func NewQuerySmsMngDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsMngDataParams) (*http.Request, error) {
+func NewQuerySmsMngDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -14745,7 +14737,7 @@ func NewQuerySmsMngDataRequest(server string, ueId externalRef0.VarUeId, serving
 }
 
 // NewQueryTraceDataRequest generates requests for QueryTraceData
-func NewQueryTraceDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryTraceDataParams) (*http.Request, error) {
+func NewQueryTraceDataRequest(server string, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -15030,7 +15022,7 @@ type ClientWithResponsesInterface interface {
 	CreateIndividualBdtDataWithResponse(ctx context.Context, bdtReferenceId string, body CreateIndividualBdtDataJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualBdtDataResponse, error)
 
 	// ReadPlmnUePolicySetWithResponse request
-	ReadPlmnUePolicySetWithResponse(ctx context.Context, plmnId string, reqEditors ...RequestEditorFn) (*ReadPlmnUePolicySetResponse, error)
+	ReadPlmnUePolicySetWithResponse(ctx context.Context, plmnId externalRef0.VarPlmnId, reqEditors ...RequestEditorFn) (*ReadPlmnUePolicySetResponse, error)
 
 	// ReadSponsorConnectivityDataWithResponse request
 	ReadSponsorConnectivityDataWithResponse(ctx context.Context, sponsorId string, reqEditors ...RequestEditorFn) (*ReadSponsorConnectivityDataResponse, error)
@@ -15106,56 +15098,56 @@ type ClientWithResponsesInterface interface {
 	Query5GVNGroupPPDataWithResponse(ctx context.Context, params *Query5GVNGroupPPDataParams, reqEditors ...RequestEditorFn) (*Query5GVNGroupPPDataResponse, error)
 
 	// Delete5GVnGroupWithResponse request
-	Delete5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, reqEditors ...RequestEditorFn) (*Delete5GVnGroupResponse, error)
+	Delete5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Delete5GVnGroupResponse, error)
 
 	// Get5GVnGroupConfigurationWithResponse request
-	Get5GVnGroupConfigurationWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVnGroupConfigurationResponse, error)
+	Get5GVnGroupConfigurationWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVnGroupConfigurationResponse, error)
 
 	// Modify5GVnGroupWithBodyWithResponse request with any body
-	Modify5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error)
+	Modify5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error)
 
-	Modify5GVnGroupWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error)
+	Modify5GVnGroupWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error)
 
 	// Create5GVnGroupWithBodyWithResponse request with any body
-	Create5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error)
+	Create5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error)
 
-	Create5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error)
+	Create5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error)
 
 	// GetGroupIdentifiersWithResponse request
 	GetGroupIdentifiersWithResponse(ctx context.Context, params *GetGroupIdentifiersParams, reqEditors ...RequestEditorFn) (*GetGroupIdentifiersResponse, error)
 
 	// QueryGroupEEDataWithResponse request
-	QueryGroupEEDataWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*QueryGroupEEDataResponse, error)
+	QueryGroupEEDataWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*QueryGroupEEDataResponse, error)
 
 	// QueryEeGroupSubscriptionsWithResponse request
-	QueryEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionsResponse, error)
+	QueryEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionsResponse, error)
 
 	// CreateEeGroupSubscriptionsWithBodyWithResponse request with any body
-	CreateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error)
+	CreateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error)
 
-	CreateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error)
+	CreateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error)
 
 	// RemoveEeGroupSubscriptionsWithResponse request
-	RemoveEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*RemoveEeGroupSubscriptionsResponse, error)
+	RemoveEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*RemoveEeGroupSubscriptionsResponse, error)
 
 	// QueryEeGroupSubscriptionWithResponse request
-	QueryEeGroupSubscriptionWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionResponse, error)
+	QueryEeGroupSubscriptionWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionResponse, error)
 
 	// ModifyEeGroupSubscriptionWithBodyWithResponse request with any body
-	ModifyEeGroupSubscriptionWithBodyWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error)
+	ModifyEeGroupSubscriptionWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error)
 
-	ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error)
+	ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error)
 
 	// UpdateEeGroupSubscriptionsWithBodyWithResponse request with any body
-	UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error)
+	UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error)
 
-	UpdateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error)
+	UpdateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error)
 
 	// GetSharedDataWithResponse request
 	GetSharedDataWithResponse(ctx context.Context, params *GetSharedDataParams, reqEditors ...RequestEditorFn) (*GetSharedDataResponse, error)
 
 	// GetIndividualSharedDataWithResponse request
-	GetIndividualSharedDataWithResponse(ctx context.Context, sharedDataId externalRef3.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*GetIndividualSharedDataResponse, error)
+	GetIndividualSharedDataWithResponse(ctx context.Context, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*GetIndividualSharedDataResponse, error)
 
 	// RemoveMultipleSubscriptionDataSubscriptionsWithResponse request
 	RemoveMultipleSubscriptionDataSubscriptionsWithResponse(ctx context.Context, params *RemoveMultipleSubscriptionDataSubscriptionsParams, reqEditors ...RequestEditorFn) (*RemoveMultipleSubscriptionDataSubscriptionsResponse, error)
@@ -15191,15 +15183,15 @@ type ClientWithResponsesInterface interface {
 	CreateAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, body CreateAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateAuthenticationStatusResponse, error)
 
 	// DeleteIndividualAuthenticationStatusWithResponse request
-	DeleteIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, reqEditors ...RequestEditorFn) (*DeleteIndividualAuthenticationStatusResponse, error)
+	DeleteIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, reqEditors ...RequestEditorFn) (*DeleteIndividualAuthenticationStatusResponse, error)
 
 	// QueryIndividualAuthenticationStatusWithResponse request
-	QueryIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryIndividualAuthenticationStatusResponse, error)
+	QueryIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryIndividualAuthenticationStatusResponse, error)
 
 	// CreateIndividualAuthenticationStatusWithBodyWithResponse request with any body
-	CreateIndividualAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error)
+	CreateIndividualAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error)
 
-	CreateIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error)
+	CreateIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error)
 
 	// QueryAuthSubsDataWithResponse request
 	QueryAuthSubsDataWithResponse(ctx context.Context, ueId externalRef0.Supi, params *QueryAuthSubsDataParams, reqEditors ...RequestEditorFn) (*QueryAuthSubsDataResponse, error)
@@ -15497,34 +15489,34 @@ type ClientWithResponsesInterface interface {
 	QueryV2xDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, params *QueryV2xDataParams, reqEditors ...RequestEditorFn) (*QueryV2xDataResponse, error)
 
 	// QueryProvisionedDataWithResponse request
-	QueryProvisionedDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*QueryProvisionedDataResponse, error)
+	QueryProvisionedDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*QueryProvisionedDataResponse, error)
 
 	// QueryAmDataWithResponse request
-	QueryAmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*QueryAmDataResponse, error)
+	QueryAmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*QueryAmDataResponse, error)
 
 	// QueryLcsBcaDataWithResponse request
-	QueryLcsBcaDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*QueryLcsBcaDataResponse, error)
+	QueryLcsBcaDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*QueryLcsBcaDataResponse, error)
 
 	// QuerySmDataWithResponse request
-	QuerySmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*QuerySmDataResponse, error)
+	QuerySmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*QuerySmDataResponse, error)
 
 	// QuerySmfSelectDataWithResponse request
-	QuerySmfSelectDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*QuerySmfSelectDataResponse, error)
+	QuerySmfSelectDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*QuerySmfSelectDataResponse, error)
 
 	// QuerySmsDataWithResponse request
-	QuerySmsDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*QuerySmsDataResponse, error)
+	QuerySmsDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*QuerySmsDataResponse, error)
 
 	// QuerySmsMngDataWithResponse request
-	QuerySmsMngDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*QuerySmsMngDataResponse, error)
+	QuerySmsMngDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*QuerySmsMngDataResponse, error)
 
 	// QueryTraceDataWithResponse request
-	QueryTraceDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*QueryTraceDataResponse, error)
+	QueryTraceDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*QueryTraceDataResponse, error)
 }
 
 type ReadBdtPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef5.BdtPolicyData
+	JSON200                       *[]externalRef0.BdtPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15584,7 +15576,7 @@ func (r DeleteIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 type UpdateIndividualAppliedBdtPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.BdtPolicyData
+	JSON200                       *externalRef0.BdtPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15617,7 +15609,7 @@ func (r UpdateIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 type CreateIndividualAppliedBdtPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef5.BdtPolicyData
+	JSON201                       *externalRef0.BdtPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15651,7 +15643,7 @@ func (r CreateIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 type ReadInfluenceDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef5.TrafficInfluData
+	JSON200                       *[]externalRef0.TrafficInfluData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15682,7 +15674,7 @@ func (r ReadInfluenceDataResponse) StatusCode() int {
 type ReadInfluenceDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef5.TrafficInfluSub
+	JSON200                       *[]externalRef0.TrafficInfluSub
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15713,7 +15705,7 @@ func (r ReadInfluenceDataSubscriptionsResponse) StatusCode() int {
 type CreateIndividualInfluenceDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef5.TrafficInfluSub
+	JSON201                       *externalRef0.TrafficInfluSub
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15775,7 +15767,7 @@ func (r DeleteIndividualInfluenceDataSubscriptionResponse) StatusCode() int {
 type ReadIndividualInfluenceDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.TrafficInfluSub
+	JSON200                       *externalRef0.TrafficInfluSub
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15806,7 +15798,7 @@ func (r ReadIndividualInfluenceDataSubscriptionResponse) StatusCode() int {
 type ReplaceIndividualInfluenceDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.TrafficInfluSub
+	JSON200                       *externalRef0.TrafficInfluSub
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15868,7 +15860,7 @@ func (r DeleteIndividualInfluenceDataResponse) StatusCode() int {
 type UpdateIndividualInfluenceDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.TrafficInfluData
+	JSON200                       *externalRef0.TrafficInfluData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15901,8 +15893,8 @@ func (r UpdateIndividualInfluenceDataResponse) StatusCode() int {
 type CreateOrReplaceIndividualInfluenceDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.TrafficInfluData
-	JSON201                       *externalRef5.TrafficInfluData
+	JSON200                       *externalRef0.TrafficInfluData
+	JSON201                       *externalRef0.TrafficInfluData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15936,7 +15928,7 @@ func (r CreateOrReplaceIndividualInfluenceDataResponse) StatusCode() int {
 type ReadIPTVCongifurationDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef5.IptvConfigData
+	JSON200                       *[]externalRef0.IptvConfigData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -15996,7 +15988,7 @@ func (r DeleteIndividualIPTVConfigurationDataResponse) StatusCode() int {
 type PartialReplaceIndividualIPTVConfigurationDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.IptvConfigData
+	JSON200                       *externalRef0.IptvConfigData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16030,8 +16022,8 @@ func (r PartialReplaceIndividualIPTVConfigurationDataResponse) StatusCode() int 
 type CreateOrReplaceIndividualIPTVConfigurationDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.IptvConfigData
-	JSON201                       *externalRef5.IptvConfigData
+	JSON200                       *externalRef0.IptvConfigData
+	JSON201                       *externalRef0.IptvConfigData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16065,7 +16057,7 @@ func (r CreateOrReplaceIndividualIPTVConfigurationDataResponse) StatusCode() int
 type ReadPFDDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef5.PfdDataForAppExt
+	JSON200                       *[]externalRef0.PfdDataForAppExt
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16125,7 +16117,7 @@ func (r DeleteIndividualPFDDataResponse) StatusCode() int {
 type ReadIndividualPFDDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.PfdDataForAppExt
+	JSON200                       *externalRef0.PfdDataForAppExt
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16155,8 +16147,8 @@ func (r ReadIndividualPFDDataResponse) StatusCode() int {
 type CreateOrReplaceIndividualPFDDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.PfdDataForAppExt
-	JSON201                       *externalRef5.PfdDataForAppExt
+	JSON200                       *externalRef0.PfdDataForAppExt
+	JSON201                       *externalRef0.PfdDataForAppExt
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16190,7 +16182,7 @@ func (r CreateOrReplaceIndividualPFDDataResponse) StatusCode() int {
 type ReadServiceParameterDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef5.ServiceParameterData
+	JSON200                       *[]externalRef0.ServiceParameterData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16250,7 +16242,7 @@ func (r DeleteIndividualServiceParameterDataResponse) StatusCode() int {
 type UpdateIndividualServiceParameterDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.ServiceParameterData
+	JSON200                       *externalRef0.ServiceParameterData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16283,8 +16275,8 @@ func (r UpdateIndividualServiceParameterDataResponse) StatusCode() int {
 type CreateOrReplaceServiceParameterDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.ServiceParameterData
-	JSON201                       *externalRef5.ServiceParameterData
+	JSON200                       *externalRef0.ServiceParameterData
+	JSON201                       *externalRef0.ServiceParameterData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16318,7 +16310,7 @@ func (r CreateOrReplaceServiceParameterDataResponse) StatusCode() int {
 type ReadApplicationDataChangeSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef5.ApplicationDataSubs
+	JSON200                       *[]externalRef0.ApplicationDataSubs
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16349,7 +16341,7 @@ func (r ReadApplicationDataChangeSubscriptionsResponse) StatusCode() int {
 type CreateIndividualApplicationDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef5.ApplicationDataSubs
+	JSON201                       *externalRef0.ApplicationDataSubs
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16411,7 +16403,7 @@ func (r DeleteIndividualApplicationDataSubscriptionResponse) StatusCode() int {
 type ReadIndividualApplicationDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.ApplicationDataSubs
+	JSON200                       *externalRef0.ApplicationDataSubs
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16442,7 +16434,7 @@ func (r ReadIndividualApplicationDataSubscriptionResponse) StatusCode() int {
 type ReplaceIndividualApplicationDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef5.ApplicationDataSubs
+	JSON200                       *externalRef0.ApplicationDataSubs
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16475,7 +16467,7 @@ func (r ReplaceIndividualApplicationDataSubscriptionResponse) StatusCode() int {
 type CreateIndividualExposureDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef6.ExposureDataSubscription
+	JSON201                       *externalRef0.ExposureDataSubscription
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16537,7 +16529,7 @@ func (r DeleteIndividualExposureDataSubscriptionResponse) StatusCode() int {
 type ReplaceIndividualExposureDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef6.ExposureDataSubscription
+	JSON200                       *externalRef0.ExposureDataSubscription
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16599,7 +16591,7 @@ func (r DeleteAccessAndMobilityDataResponse) StatusCode() int {
 type QueryAccessAndMobilityDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef6.AccessAndMobilityData
+	JSON200                       *externalRef0.AccessAndMobilityData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16662,8 +16654,8 @@ func (r UpdateAccessAndMobilityDataResponse) StatusCode() int {
 type CreateOrReplaceAccessAndMobilityDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef6.AccessAndMobilityData
-	JSON201                       *externalRef6.AccessAndMobilityData
+	JSON200                       *externalRef0.AccessAndMobilityData
+	JSON201                       *externalRef0.AccessAndMobilityData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16725,7 +16717,7 @@ func (r DeleteSessionManagementDataResponse) StatusCode() int {
 type QuerySessionManagementDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef6.PduSessionManagementData
+	JSON200                       *externalRef0.PduSessionManagementData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16756,8 +16748,8 @@ func (r QuerySessionManagementDataResponse) StatusCode() int {
 type CreateOrReplaceSessionManagementDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef6.AccessAndMobilityData
-	JSON201                       *externalRef6.PduSessionManagementData
+	JSON200                       *externalRef0.AccessAndMobilityData
+	JSON201                       *externalRef0.PduSessionManagementData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16790,7 +16782,7 @@ func (r CreateOrReplaceSessionManagementDataResponse) StatusCode() int {
 type ReadBdtDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef7.BdtData
+	JSON200                       *[]externalRef0.BdtData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16849,7 +16841,7 @@ func (r DeleteIndividualBdtDataResponse) StatusCode() int {
 type ReadIndividualBdtDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.BdtData
+	JSON200                       *externalRef0.BdtData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16879,7 +16871,7 @@ func (r ReadIndividualBdtDataResponse) StatusCode() int {
 type UpdateIndividualBdtDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.BdtData
+	JSON200                       *externalRef0.BdtData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16912,7 +16904,7 @@ func (r UpdateIndividualBdtDataResponse) StatusCode() int {
 type CreateIndividualBdtDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef7.BdtData
+	JSON201                       *externalRef0.BdtData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16946,7 +16938,7 @@ func (r CreateIndividualBdtDataResponse) StatusCode() int {
 type ReadPlmnUePolicySetResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.UePolicySet
+	JSON200                       *externalRef0.UePolicySet
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -16977,7 +16969,7 @@ func (r ReadPlmnUePolicySetResponse) StatusCode() int {
 type ReadSponsorConnectivityDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.SponsorConnectivityData
+	JSON200                       *externalRef0.SponsorConnectivityData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17007,7 +16999,7 @@ func (r ReadSponsorConnectivityDataResponse) StatusCode() int {
 type CreateIndividualPolicyDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef7.PolicyDataSubscription
+	JSON201                       *externalRef0.PolicyDataSubscription
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17069,7 +17061,7 @@ func (r DeleteIndividualPolicyDataSubscriptionResponse) StatusCode() int {
 type ReplaceIndividualPolicyDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.PolicyDataSubscription
+	JSON200                       *externalRef0.PolicyDataSubscription
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17102,7 +17094,7 @@ func (r ReplaceIndividualPolicyDataSubscriptionResponse) StatusCode() int {
 type ReadAccessAndMobilityPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.AmPolicyData
+	JSON200                       *externalRef0.AmPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17132,7 +17124,7 @@ func (r ReadAccessAndMobilityPolicyDataResponse) StatusCode() int {
 type ReadOperatorSpecificDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *map[string]interface{}
+	JSON200                       *map[string]externalRef0.OperatorSpecificDataContainer
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17196,7 +17188,7 @@ func (r UpdateOperatorSpecificDataResponse) StatusCode() int {
 type ReplaceOperatorSpecificDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *map[string]interface{}
+	JSON200                       *map[string]externalRef0.OperatorSpecificDataContainer
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17229,7 +17221,7 @@ func (r ReplaceOperatorSpecificDataResponse) StatusCode() int {
 type ReadSessionManagementPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.SmPolicyData
+	JSON200                       *externalRef0.SmPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17260,7 +17252,7 @@ func (r ReadSessionManagementPolicyDataResponse) StatusCode() int {
 type UpdateSessionManagementPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.SmPolicyData
+	JSON200                       *externalRef0.SmPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17322,7 +17314,7 @@ func (r DeleteUsageMonitoringInformationResponse) StatusCode() int {
 type ReadUsageMonitoringInformationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.UsageMonData
+	JSON200                       *externalRef0.UsageMonData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17353,7 +17345,7 @@ func (r ReadUsageMonitoringInformationResponse) StatusCode() int {
 type CreateUsageMonitoringResourceResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef7.UsageMonData
+	JSON201                       *externalRef0.UsageMonData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17387,7 +17379,7 @@ func (r CreateUsageMonitoringResourceResponse) StatusCode() int {
 type ReadUEPolicySetResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.UePolicySet
+	JSON200                       *externalRef0.UePolicySet
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17449,8 +17441,8 @@ func (r UpdateUEPolicySetResponse) StatusCode() int {
 type CreateOrReplaceUEPolicySetResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef7.UePolicySet
-	JSON201                       *externalRef7.UePolicySet
+	JSON200                       *externalRef0.UePolicySet
+	JSON201                       *externalRef0.UePolicySet
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -17483,7 +17475,7 @@ func (r CreateOrReplaceUEPolicySetResponse) StatusCode() int {
 type Query5GVnGroupResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *map[string]externalRef2.N5GVnGroupConfiguration
+	JSON200                       *map[string]externalRef0.N5GVnGroupConfiguration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17506,7 +17498,7 @@ func (r Query5GVnGroupResponse) StatusCode() int {
 type Query5GVnGroupInternalResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *map[string]externalRef2.N5GVnGroupConfiguration
+	JSON200                       *map[string]externalRef0.N5GVnGroupConfiguration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17529,7 +17521,7 @@ func (r Query5GVnGroupInternalResponse) StatusCode() int {
 type Query5GVNGroupPPDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.Pp5gVnGroupProfileData
+	JSON200                       *externalRef0.Pp5gVnGroupProfileData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17574,7 +17566,7 @@ func (r Delete5GVnGroupResponse) StatusCode() int {
 type Get5GVnGroupConfigurationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef2.N5GVnGroupConfiguration
+	JSON200                       *externalRef0.N5GVnGroupConfiguration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17621,7 +17613,7 @@ func (r Modify5GVnGroupResponse) StatusCode() int {
 type Create5GVnGroupResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef2.N5GVnGroupConfiguration
+	JSON201                       *externalRef0.N5GVnGroupConfiguration
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
@@ -17645,7 +17637,7 @@ func (r Create5GVnGroupResponse) StatusCode() int {
 type GetGroupIdentifiersResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef3.GroupIdentifiers
+	JSON200                       *externalRef0.GroupIdentifiers
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17668,7 +17660,7 @@ func (r GetGroupIdentifiersResponse) StatusCode() int {
 type QueryGroupEEDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.EeGroupProfileData
+	JSON200                       *externalRef0.EeGroupProfileData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17691,7 +17683,7 @@ func (r QueryGroupEEDataResponse) StatusCode() int {
 type QueryEeGroupSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.EeSubscription
+	JSON200                       *[]externalRef0.EeSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17714,7 +17706,7 @@ func (r QueryEeGroupSubscriptionsResponse) StatusCode() int {
 type CreateEeGroupSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.EeSubscription
+	JSON201                       *externalRef0.EeSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17759,7 +17751,7 @@ func (r RemoveEeGroupSubscriptionsResponse) StatusCode() int {
 type QueryEeGroupSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.EeSubscription
+	JSON200                       *[]externalRef0.EeSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17830,7 +17822,7 @@ func (r UpdateEeGroupSubscriptionsResponse) StatusCode() int {
 type GetSharedDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef3.SharedData
+	JSON200                       *[]externalRef0.SharedData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON404     *externalRef0.N404
 	ApplicationproblemJSON500     *externalRef0.N500
@@ -17857,7 +17849,7 @@ func (r GetSharedDataResponse) StatusCode() int {
 type GetIndividualSharedDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef3.SharedData
+	JSON200                       *externalRef0.SharedData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON404     *externalRef0.N404
 	ApplicationproblemJSON500     *externalRef0.N500
@@ -17906,7 +17898,7 @@ func (r RemoveMultipleSubscriptionDataSubscriptionsResponse) StatusCode() int {
 type QuerySubsToNotifyResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.SubscriptionDataSubscriptions
+	JSON200                       *[]externalRef0.SubscriptionDataSubscriptions
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17929,7 +17921,7 @@ func (r QuerySubsToNotifyResponse) StatusCode() int {
 type SubscriptionDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.SubscriptionDataSubscriptions
+	JSON201                       *externalRef0.SubscriptionDataSubscriptions
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -17974,7 +17966,7 @@ func (r RemovesubscriptionDataSubscriptionsResponse) StatusCode() int {
 type QuerySubscriptionDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.SubscriptionDataSubscriptions
+	JSON200                       *[]externalRef0.SubscriptionDataSubscriptions
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18044,7 +18036,7 @@ func (r DeleteAuthenticationStatusResponse) StatusCode() int {
 type QueryAuthenticationStatusResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef4.AuthEvent
+	JSON200                       *externalRef0.AuthEvent
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18111,7 +18103,7 @@ func (r DeleteIndividualAuthenticationStatusResponse) StatusCode() int {
 type QueryIndividualAuthenticationStatusResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef4.AuthEvent
+	JSON200                       *externalRef0.AuthEvent
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18156,7 +18148,7 @@ func (r CreateIndividualAuthenticationStatusResponse) StatusCode() int {
 type QueryAuthSubsDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.AuthenticationSubscription
+	JSON200                       *externalRef0.AuthenticationSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18203,7 +18195,7 @@ func (r ModifyAuthenticationSubscriptionResponse) StatusCode() int {
 type QueryContextDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.ContextDataSets
+	JSON200                       *externalRef0.ContextDataSets
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18226,7 +18218,7 @@ func (r QueryContextDataResponse) StatusCode() int {
 type QueryAmfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.Amf3GppAccessRegistration
+	JSON200                       *externalRef0.Amf3GppAccessRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18273,7 +18265,7 @@ func (r AmfContext3gppResponse) StatusCode() int {
 type CreateAmfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.Amf3GppAccessRegistration
+	JSON201                       *externalRef0.Amf3GppAccessRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18296,7 +18288,7 @@ func (r CreateAmfContext3gppResponse) StatusCode() int {
 type QueryAmfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.AmfNon3GppAccessRegistration
+	JSON200                       *externalRef0.AmfNon3GppAccessRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18343,7 +18335,7 @@ func (r AmfContextNon3gppResponse) StatusCode() int {
 type CreateAmfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.Amf3GppAccessRegistration
+	JSON201                       *externalRef0.Amf3GppAccessRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18366,7 +18358,7 @@ func (r CreateAmfContextNon3gppResponse) StatusCode() int {
 type QueryeesubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.EeSubscription
+	JSON200                       *[]externalRef0.EeSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18389,7 +18381,7 @@ func (r QueryeesubscriptionsResponse) StatusCode() int {
 type CreateEeSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.EeSubscription
+	JSON201                       *externalRef0.EeSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18434,7 +18426,7 @@ func (r RemoveeeSubscriptionsResponse) StatusCode() int {
 type QueryeeSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.EeSubscription
+	JSON200                       *[]externalRef0.EeSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18527,7 +18519,7 @@ func (r RemoveAmfSubscriptionsInfoResponse) StatusCode() int {
 type GetAmfSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.AmfSubscriptionInfo
+	JSON200                       *[]externalRef0.AmfSubscriptionInfo
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18618,7 +18610,7 @@ func (r RemoveHssSubscriptionsInfoResponse) StatusCode() int {
 type GetHssSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmfSubscriptionInfo
+	JSON200                       *externalRef0.SmfSubscriptionInfo
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18709,7 +18701,7 @@ func (r RemoveSmfSubscriptionsInfoResponse) StatusCode() int {
 type GetSmfSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmfSubscriptionInfo
+	JSON200                       *externalRef0.SmfSubscriptionInfo
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18800,7 +18792,7 @@ func (r DeleteIpSmGwContextResponse) StatusCode() int {
 type QueryIpSmGwContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.IpSmGwRegistration
+	JSON200                       *externalRef0.IpSmGwRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18869,7 +18861,7 @@ func (r CreateIpSmGwContextResponse) StatusCode() int {
 type QueryUeLocationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.LocationInfo
+	JSON200                       *externalRef0.LocationInfo
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18914,7 +18906,7 @@ func (r DeleteMessageWaitingDataResponse) StatusCode() int {
 type QueryMessageWaitingDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.MessageWaitingData
+	JSON200                       *externalRef0.MessageWaitingData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -18983,7 +18975,7 @@ func (r CreateMessageWaitingDataResponse) StatusCode() int {
 type QuerysdmsubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.SdmSubscription
+	JSON200                       *[]externalRef0.SdmSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19006,7 +18998,7 @@ func (r QuerysdmsubscriptionsResponse) StatusCode() int {
 type CreateSdmSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.SdmSubscription
+	JSON201                       *externalRef0.SdmSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19052,7 +19044,7 @@ func (r RemovesdmSubscriptionsResponse) StatusCode() int {
 type QuerysdmSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.SdmSubscription
+	JSON200                       *[]externalRef0.SdmSubscription
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19145,7 +19137,7 @@ func (r RemoveHssSDMSubscriptionsInfoResponse) StatusCode() int {
 type GetHssSDMSubscriptionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmfSubscriptionInfo
+	JSON200                       *externalRef0.SmfSubscriptionInfo
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19214,7 +19206,7 @@ func (r CreateHSSSDMSubscriptionsResponse) StatusCode() int {
 type QuerySmfRegListResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmfRegList
+	JSON200                       *externalRef0.SmfRegList
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19259,7 +19251,7 @@ func (r DeleteSmfRegistrationResponse) StatusCode() int {
 type QuerySmfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmfRegistration
+	JSON200                       *externalRef0.SmfRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19282,7 +19274,7 @@ func (r QuerySmfRegistrationResponse) StatusCode() int {
 type CreateOrUpdateSmfRegistrationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.SmfRegistration
+	JSON201                       *externalRef0.SmfRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19327,7 +19319,7 @@ func (r DeleteSmsfContext3gppResponse) StatusCode() int {
 type QuerySmsfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmsfRegistration
+	JSON200                       *externalRef0.SmsfRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19350,7 +19342,7 @@ func (r QuerySmsfContext3gppResponse) StatusCode() int {
 type CreateSmsfContext3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.SmsfRegistration
+	JSON201                       *externalRef0.SmsfRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19395,7 +19387,7 @@ func (r DeleteSmsfContextNon3gppResponse) StatusCode() int {
 type QuerySmsfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmsfRegistration
+	JSON200                       *externalRef0.SmsfRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19418,7 +19410,7 @@ func (r QuerySmsfContextNon3gppResponse) StatusCode() int {
 type CreateSmsfContextNon3gppResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *externalRef8.SmsfRegistration
+	JSON201                       *externalRef0.SmsfRegistration
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19441,7 +19433,7 @@ func (r CreateSmsfContextNon3gppResponse) StatusCode() int {
 type QueryCoverageRestrictionDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.EnhancedCoverageRestrictionData
+	JSON200                       *externalRef0.EnhancedCoverageRestrictionData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19464,7 +19456,7 @@ func (r QueryCoverageRestrictionDataResponse) StatusCode() int {
 type QueryEEDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.EeProfileData
+	JSON200                       *externalRef0.EeProfileData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19487,7 +19479,7 @@ func (r QueryEEDataResponse) StatusCode() int {
 type GetIdentityDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.IdentityData
+	JSON200                       *externalRef0.IdentityData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19510,7 +19502,7 @@ func (r GetIdentityDataResponse) StatusCode() int {
 type QueryLcsMoDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.LcsMoData
+	JSON200                       *externalRef0.LcsMoData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19533,7 +19525,7 @@ func (r QueryLcsMoDataResponse) StatusCode() int {
 type QueryLcsPrivacyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.LcsPrivacyData
+	JSON200                       *externalRef0.LcsPrivacyData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19556,7 +19548,7 @@ func (r QueryLcsPrivacyDataResponse) StatusCode() int {
 type GetNiddAuDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.AuthorizationData
+	JSON200                       *externalRef0.AuthorizationData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19602,7 +19594,7 @@ func (r GetOdbDataResponse) StatusCode() int {
 type QueryOperSpecDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *map[string]externalRef8.OperatorSpecificDataContainer
+	JSON200                       *map[string]externalRef0.OperatorSpecificDataContainer
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19649,7 +19641,7 @@ func (r ModifyOperSpecDataResponse) StatusCode() int {
 type GetppDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.PpData
+	JSON200                       *externalRef0.PpData
 	ApplicationproblemJSON403     *externalRef0.ProblemDetails
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
@@ -19697,7 +19689,7 @@ func (r ModifyPpDataResponse) StatusCode() int {
 type QueryPPDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.PpProfileData
+	JSON200                       *externalRef0.PpProfileData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19720,7 +19712,7 @@ func (r QueryPPDataResponse) StatusCode() int {
 type QueryAuthSoRResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SorData
+	JSON200                       *externalRef0.SorData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19765,7 +19757,7 @@ func (r CreateAuthenticationSoRResponse) StatusCode() int {
 type QueryCagAckResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.CagAckData
+	JSON200                       *externalRef0.CagAckData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19810,7 +19802,7 @@ func (r CreateCagUpdateAckResponse) StatusCode() int {
 type QueryNssaiAckResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.NssaiAckData
+	JSON200                       *externalRef0.NssaiAckData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19855,7 +19847,7 @@ func (r CreateOrUpdateNssaiAckResponse) StatusCode() int {
 type QueryAuthUPUResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.UpuData
+	JSON200                       *externalRef0.UpuData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19900,7 +19892,7 @@ func (r CreateAuthenticationUPUResponse) StatusCode() int {
 type QueryV2xDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.V2xSubscriptionData
+	JSON200                       *externalRef0.V2xSubscriptionData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19923,7 +19915,7 @@ func (r QueryV2xDataResponse) StatusCode() int {
 type QueryProvisionedDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.ProvisionedDataSets
+	JSON200                       *externalRef0.ProvisionedDataSets
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19946,7 +19938,7 @@ func (r QueryProvisionedDataResponse) StatusCode() int {
 type QueryAmDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.AccessAndMobilitySubscriptionData
+	JSON200                       *externalRef0.AccessAndMobilitySubscriptionData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -19969,7 +19961,7 @@ func (r QueryAmDataResponse) StatusCode() int {
 type QueryLcsBcaDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.LcsBroadcastAssistanceTypesData
+	JSON200                       *externalRef0.LcsBroadcastAssistanceTypesData
 	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
@@ -19992,7 +19984,7 @@ func (r QueryLcsBcaDataResponse) StatusCode() int {
 type QuerySmDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]externalRef8.SessionManagementSubscriptionData
+	JSON200                       *[]externalRef0.SessionManagementSubscriptionData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -20015,7 +20007,7 @@ func (r QuerySmDataResponse) StatusCode() int {
 type QuerySmfSelectDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmfSelectionSubscriptionData
+	JSON200                       *externalRef0.SmfSelectionSubscriptionData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -20038,7 +20030,7 @@ func (r QuerySmfSelectDataResponse) StatusCode() int {
 type QuerySmsDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmsSubscriptionData
+	JSON200                       *externalRef0.SmsSubscriptionData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -20061,7 +20053,7 @@ func (r QuerySmsDataResponse) StatusCode() int {
 type QuerySmsMngDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef8.SmsManagementSubscriptionData
+	JSON200                       *externalRef0.SmsManagementSubscriptionData
 	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
@@ -20670,7 +20662,7 @@ func (c *ClientWithResponses) CreateIndividualBdtDataWithResponse(ctx context.Co
 }
 
 // ReadPlmnUePolicySetWithResponse request returning *ReadPlmnUePolicySetResponse
-func (c *ClientWithResponses) ReadPlmnUePolicySetWithResponse(ctx context.Context, plmnId string, reqEditors ...RequestEditorFn) (*ReadPlmnUePolicySetResponse, error) {
+func (c *ClientWithResponses) ReadPlmnUePolicySetWithResponse(ctx context.Context, plmnId externalRef0.VarPlmnId, reqEditors ...RequestEditorFn) (*ReadPlmnUePolicySetResponse, error) {
 	rsp, err := c.ReadPlmnUePolicySet(ctx, plmnId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20914,7 +20906,7 @@ func (c *ClientWithResponses) Query5GVNGroupPPDataWithResponse(ctx context.Conte
 }
 
 // Delete5GVnGroupWithResponse request returning *Delete5GVnGroupResponse
-func (c *ClientWithResponses) Delete5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, reqEditors ...RequestEditorFn) (*Delete5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Delete5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Delete5GVnGroupResponse, error) {
 	rsp, err := c.Delete5GVnGroup(ctx, externalGroupId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20923,7 +20915,7 @@ func (c *ClientWithResponses) Delete5GVnGroupWithResponse(ctx context.Context, e
 }
 
 // Get5GVnGroupConfigurationWithResponse request returning *Get5GVnGroupConfigurationResponse
-func (c *ClientWithResponses) Get5GVnGroupConfigurationWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVnGroupConfigurationResponse, error) {
+func (c *ClientWithResponses) Get5GVnGroupConfigurationWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, reqEditors ...RequestEditorFn) (*Get5GVnGroupConfigurationResponse, error) {
 	rsp, err := c.Get5GVnGroupConfiguration(ctx, externalGroupId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20932,7 +20924,7 @@ func (c *ClientWithResponses) Get5GVnGroupConfigurationWithResponse(ctx context.
 }
 
 // Modify5GVnGroupWithBodyWithResponse request with arbitrary body returning *Modify5GVnGroupResponse
-func (c *ClientWithResponses) Modify5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Modify5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error) {
 	rsp, err := c.Modify5GVnGroupWithBody(ctx, externalGroupId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20940,7 +20932,7 @@ func (c *ClientWithResponses) Modify5GVnGroupWithBodyWithResponse(ctx context.Co
 	return ParseModify5GVnGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, params *Modify5GVnGroupParams, body Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*Modify5GVnGroupResponse, error) {
 	rsp, err := c.Modify5GVnGroupWithApplicationJSONPatchPlusJSONBody(ctx, externalGroupId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20949,7 +20941,7 @@ func (c *ClientWithResponses) Modify5GVnGroupWithApplicationJSONPatchPlusJSONBod
 }
 
 // Create5GVnGroupWithBodyWithResponse request with arbitrary body returning *Create5GVnGroupResponse
-func (c *ClientWithResponses) Create5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Create5GVnGroupWithBodyWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error) {
 	rsp, err := c.Create5GVnGroupWithBody(ctx, externalGroupId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20957,7 +20949,7 @@ func (c *ClientWithResponses) Create5GVnGroupWithBodyWithResponse(ctx context.Co
 	return ParseCreate5GVnGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Create5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef3.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error) {
+func (c *ClientWithResponses) Create5GVnGroupWithResponse(ctx context.Context, externalGroupId externalRef0.ExtGroupId, body Create5GVnGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*Create5GVnGroupResponse, error) {
 	rsp, err := c.Create5GVnGroup(ctx, externalGroupId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20975,7 +20967,7 @@ func (c *ClientWithResponses) GetGroupIdentifiersWithResponse(ctx context.Contex
 }
 
 // QueryGroupEEDataWithResponse request returning *QueryGroupEEDataResponse
-func (c *ClientWithResponses) QueryGroupEEDataWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*QueryGroupEEDataResponse, error) {
+func (c *ClientWithResponses) QueryGroupEEDataWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryGroupEEDataParams, reqEditors ...RequestEditorFn) (*QueryGroupEEDataResponse, error) {
 	rsp, err := c.QueryGroupEEData(ctx, ueGroupId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20984,7 +20976,7 @@ func (c *ClientWithResponses) QueryGroupEEDataWithResponse(ctx context.Context, 
 }
 
 // QueryEeGroupSubscriptionsWithResponse request returning *QueryEeGroupSubscriptionsResponse
-func (c *ClientWithResponses) QueryEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) QueryEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, params *QueryEeGroupSubscriptionsParams, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.QueryEeGroupSubscriptions(ctx, ueGroupId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -20993,7 +20985,7 @@ func (c *ClientWithResponses) QueryEeGroupSubscriptionsWithResponse(ctx context.
 }
 
 // CreateEeGroupSubscriptionsWithBodyWithResponse request with arbitrary body returning *CreateEeGroupSubscriptionsResponse
-func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.CreateEeGroupSubscriptionsWithBody(ctx, ueGroupId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21001,7 +20993,7 @@ func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithBodyWithResponse(ctx
 	return ParseCreateEeGroupSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, body CreateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.CreateEeGroupSubscriptions(ctx, ueGroupId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21010,7 +21002,7 @@ func (c *ClientWithResponses) CreateEeGroupSubscriptionsWithResponse(ctx context
 }
 
 // RemoveEeGroupSubscriptionsWithResponse request returning *RemoveEeGroupSubscriptionsResponse
-func (c *ClientWithResponses) RemoveEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*RemoveEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) RemoveEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*RemoveEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.RemoveEeGroupSubscriptions(ctx, ueGroupId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21019,7 +21011,7 @@ func (c *ClientWithResponses) RemoveEeGroupSubscriptionsWithResponse(ctx context
 }
 
 // QueryEeGroupSubscriptionWithResponse request returning *QueryEeGroupSubscriptionResponse
-func (c *ClientWithResponses) QueryEeGroupSubscriptionWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionResponse, error) {
+func (c *ClientWithResponses) QueryEeGroupSubscriptionWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, reqEditors ...RequestEditorFn) (*QueryEeGroupSubscriptionResponse, error) {
 	rsp, err := c.QueryEeGroupSubscription(ctx, ueGroupId, subsId, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21028,7 +21020,7 @@ func (c *ClientWithResponses) QueryEeGroupSubscriptionWithResponse(ctx context.C
 }
 
 // ModifyEeGroupSubscriptionWithBodyWithResponse request with arbitrary body returning *ModifyEeGroupSubscriptionResponse
-func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithBodyWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error) {
 	rsp, err := c.ModifyEeGroupSubscriptionWithBody(ctx, ueGroupId, subsId, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21036,7 +21028,7 @@ func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithBodyWithResponse(ctx 
 	return ParseModifyEeGroupSubscriptionResponse(rsp)
 }
 
-func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error) {
+func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params *ModifyEeGroupSubscriptionParams, body ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody, reqEditors ...RequestEditorFn) (*ModifyEeGroupSubscriptionResponse, error) {
 	rsp, err := c.ModifyEeGroupSubscriptionWithApplicationJSONPatchPlusJSONBody(ctx, ueGroupId, subsId, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21045,7 +21037,7 @@ func (c *ClientWithResponses) ModifyEeGroupSubscriptionWithApplicationJSONPatchP
 }
 
 // UpdateEeGroupSubscriptionsWithBodyWithResponse request with arbitrary body returning *UpdateEeGroupSubscriptionsResponse
-func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.UpdateEeGroupSubscriptionsWithBody(ctx, ueGroupId, subsId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21053,7 +21045,7 @@ func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithBodyWithResponse(ctx
 	return ParseUpdateEeGroupSubscriptionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error) {
+func (c *ClientWithResponses) UpdateEeGroupSubscriptionsWithResponse(ctx context.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, body UpdateEeGroupSubscriptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateEeGroupSubscriptionsResponse, error) {
 	rsp, err := c.UpdateEeGroupSubscriptions(ctx, ueGroupId, subsId, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21071,7 +21063,7 @@ func (c *ClientWithResponses) GetSharedDataWithResponse(ctx context.Context, par
 }
 
 // GetIndividualSharedDataWithResponse request returning *GetIndividualSharedDataResponse
-func (c *ClientWithResponses) GetIndividualSharedDataWithResponse(ctx context.Context, sharedDataId externalRef3.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*GetIndividualSharedDataResponse, error) {
+func (c *ClientWithResponses) GetIndividualSharedDataWithResponse(ctx context.Context, sharedDataId externalRef0.SharedDataId, params *GetIndividualSharedDataParams, reqEditors ...RequestEditorFn) (*GetIndividualSharedDataResponse, error) {
 	rsp, err := c.GetIndividualSharedData(ctx, sharedDataId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21185,7 +21177,7 @@ func (c *ClientWithResponses) CreateAuthenticationStatusWithResponse(ctx context
 }
 
 // DeleteIndividualAuthenticationStatusWithResponse request returning *DeleteIndividualAuthenticationStatusResponse
-func (c *ClientWithResponses) DeleteIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, reqEditors ...RequestEditorFn) (*DeleteIndividualAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) DeleteIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, reqEditors ...RequestEditorFn) (*DeleteIndividualAuthenticationStatusResponse, error) {
 	rsp, err := c.DeleteIndividualAuthenticationStatus(ctx, ueId, servingNetworkName, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21194,7 +21186,7 @@ func (c *ClientWithResponses) DeleteIndividualAuthenticationStatusWithResponse(c
 }
 
 // QueryIndividualAuthenticationStatusWithResponse request returning *QueryIndividualAuthenticationStatusResponse
-func (c *ClientWithResponses) QueryIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryIndividualAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) QueryIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params *QueryIndividualAuthenticationStatusParams, reqEditors ...RequestEditorFn) (*QueryIndividualAuthenticationStatusResponse, error) {
 	rsp, err := c.QueryIndividualAuthenticationStatus(ctx, ueId, servingNetworkName, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21203,7 +21195,7 @@ func (c *ClientWithResponses) QueryIndividualAuthenticationStatusWithResponse(ct
 }
 
 // CreateIndividualAuthenticationStatusWithBodyWithResponse request with arbitrary body returning *CreateIndividualAuthenticationStatusResponse
-func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithBodyWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error) {
 	rsp, err := c.CreateIndividualAuthenticationStatusWithBody(ctx, ueId, servingNetworkName, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -21211,7 +21203,7 @@ func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithBodyWithRe
 	return ParseCreateIndividualAuthenticationStatusResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error) {
+func (c *ClientWithResponses) CreateIndividualAuthenticationStatusWithResponse(ctx context.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, body CreateIndividualAuthenticationStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateIndividualAuthenticationStatusResponse, error) {
 	rsp, err := c.CreateIndividualAuthenticationStatus(ctx, ueId, servingNetworkName, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22169,7 +22161,7 @@ func (c *ClientWithResponses) QueryV2xDataWithResponse(ctx context.Context, ueId
 }
 
 // QueryProvisionedDataWithResponse request returning *QueryProvisionedDataResponse
-func (c *ClientWithResponses) QueryProvisionedDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*QueryProvisionedDataResponse, error) {
+func (c *ClientWithResponses) QueryProvisionedDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryProvisionedDataParams, reqEditors ...RequestEditorFn) (*QueryProvisionedDataResponse, error) {
 	rsp, err := c.QueryProvisionedData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22178,7 +22170,7 @@ func (c *ClientWithResponses) QueryProvisionedDataWithResponse(ctx context.Conte
 }
 
 // QueryAmDataWithResponse request returning *QueryAmDataResponse
-func (c *ClientWithResponses) QueryAmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*QueryAmDataResponse, error) {
+func (c *ClientWithResponses) QueryAmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryAmDataParams, reqEditors ...RequestEditorFn) (*QueryAmDataResponse, error) {
 	rsp, err := c.QueryAmData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22187,7 +22179,7 @@ func (c *ClientWithResponses) QueryAmDataWithResponse(ctx context.Context, ueId 
 }
 
 // QueryLcsBcaDataWithResponse request returning *QueryLcsBcaDataResponse
-func (c *ClientWithResponses) QueryLcsBcaDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*QueryLcsBcaDataResponse, error) {
+func (c *ClientWithResponses) QueryLcsBcaDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryLcsBcaDataParams, reqEditors ...RequestEditorFn) (*QueryLcsBcaDataResponse, error) {
 	rsp, err := c.QueryLcsBcaData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22196,7 +22188,7 @@ func (c *ClientWithResponses) QueryLcsBcaDataWithResponse(ctx context.Context, u
 }
 
 // QuerySmDataWithResponse request returning *QuerySmDataResponse
-func (c *ClientWithResponses) QuerySmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*QuerySmDataResponse, error) {
+func (c *ClientWithResponses) QuerySmDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmDataParams, reqEditors ...RequestEditorFn) (*QuerySmDataResponse, error) {
 	rsp, err := c.QuerySmData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22205,7 +22197,7 @@ func (c *ClientWithResponses) QuerySmDataWithResponse(ctx context.Context, ueId 
 }
 
 // QuerySmfSelectDataWithResponse request returning *QuerySmfSelectDataResponse
-func (c *ClientWithResponses) QuerySmfSelectDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*QuerySmfSelectDataResponse, error) {
+func (c *ClientWithResponses) QuerySmfSelectDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmfSelectDataParams, reqEditors ...RequestEditorFn) (*QuerySmfSelectDataResponse, error) {
 	rsp, err := c.QuerySmfSelectData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22214,7 +22206,7 @@ func (c *ClientWithResponses) QuerySmfSelectDataWithResponse(ctx context.Context
 }
 
 // QuerySmsDataWithResponse request returning *QuerySmsDataResponse
-func (c *ClientWithResponses) QuerySmsDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*QuerySmsDataResponse, error) {
+func (c *ClientWithResponses) QuerySmsDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsDataParams, reqEditors ...RequestEditorFn) (*QuerySmsDataResponse, error) {
 	rsp, err := c.QuerySmsData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22223,7 +22215,7 @@ func (c *ClientWithResponses) QuerySmsDataWithResponse(ctx context.Context, ueId
 }
 
 // QuerySmsMngDataWithResponse request returning *QuerySmsMngDataResponse
-func (c *ClientWithResponses) QuerySmsMngDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*QuerySmsMngDataResponse, error) {
+func (c *ClientWithResponses) QuerySmsMngDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QuerySmsMngDataParams, reqEditors ...RequestEditorFn) (*QuerySmsMngDataResponse, error) {
 	rsp, err := c.QuerySmsMngData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22232,7 +22224,7 @@ func (c *ClientWithResponses) QuerySmsMngDataWithResponse(ctx context.Context, u
 }
 
 // QueryTraceDataWithResponse request returning *QueryTraceDataResponse
-func (c *ClientWithResponses) QueryTraceDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*QueryTraceDataResponse, error) {
+func (c *ClientWithResponses) QueryTraceDataWithResponse(ctx context.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params *QueryTraceDataParams, reqEditors ...RequestEditorFn) (*QueryTraceDataResponse, error) {
 	rsp, err := c.QueryTraceData(ctx, ueId, servingPlmnId, params, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -22255,7 +22247,7 @@ func ParseReadBdtPolicyDataResponse(rsp *http.Response) (*ReadBdtPolicyDataRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef5.BdtPolicyData
+		var dest []externalRef0.BdtPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -22425,7 +22417,7 @@ func ParseUpdateIndividualAppliedBdtPolicyDataResponse(rsp *http.Response) (*Upd
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.BdtPolicyData
+		var dest externalRef0.BdtPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -22531,7 +22523,7 @@ func ParseCreateIndividualAppliedBdtPolicyDataResponse(rsp *http.Response) (*Cre
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef5.BdtPolicyData
+		var dest externalRef0.BdtPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -22641,7 +22633,7 @@ func ParseReadInfluenceDataResponse(rsp *http.Response) (*ReadInfluenceDataRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef5.TrafficInfluData
+		var dest []externalRef0.TrafficInfluData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -22733,7 +22725,7 @@ func ParseReadInfluenceDataSubscriptionsResponse(rsp *http.Response) (*ReadInflu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef5.TrafficInfluSub
+		var dest []externalRef0.TrafficInfluSub
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -22825,7 +22817,7 @@ func ParseCreateIndividualInfluenceDataSubscriptionResponse(rsp *http.Response) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef5.TrafficInfluSub
+		var dest externalRef0.TrafficInfluSub
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -23006,7 +22998,7 @@ func ParseReadIndividualInfluenceDataSubscriptionResponse(rsp *http.Response) (*
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.TrafficInfluSub
+		var dest externalRef0.TrafficInfluSub
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -23098,7 +23090,7 @@ func ParseReplaceIndividualInfluenceDataSubscriptionResponse(rsp *http.Response)
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.TrafficInfluSub
+		var dest externalRef0.TrafficInfluSub
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -23282,7 +23274,7 @@ func ParseUpdateIndividualInfluenceDataResponse(rsp *http.Response) (*UpdateIndi
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.TrafficInfluData
+		var dest externalRef0.TrafficInfluData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -23388,14 +23380,14 @@ func ParseCreateOrReplaceIndividualInfluenceDataResponse(rsp *http.Response) (*C
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.TrafficInfluData
+		var dest externalRef0.TrafficInfluData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef5.TrafficInfluData
+		var dest externalRef0.TrafficInfluData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -23508,7 +23500,7 @@ func ParseReadIPTVCongifurationDataResponse(rsp *http.Response) (*ReadIPTVCongif
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef5.IptvConfigData
+		var dest []externalRef0.IptvConfigData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -23678,7 +23670,7 @@ func ParsePartialReplaceIndividualIPTVConfigurationDataResponse(rsp *http.Respon
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.IptvConfigData
+		var dest externalRef0.IptvConfigData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -23791,14 +23783,14 @@ func ParseCreateOrReplaceIndividualIPTVConfigurationDataResponse(rsp *http.Respo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.IptvConfigData
+		var dest externalRef0.IptvConfigData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef5.IptvConfigData
+		var dest externalRef0.IptvConfigData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -23911,7 +23903,7 @@ func ParseReadPFDDataResponse(rsp *http.Response) (*ReadPFDDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef5.PfdDataForAppExt
+		var dest []externalRef0.PfdDataForAppExt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24081,7 +24073,7 @@ func ParseReadIndividualPFDDataResponse(rsp *http.Response) (*ReadIndividualPFDD
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.PfdDataForAppExt
+		var dest externalRef0.PfdDataForAppExt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24166,14 +24158,14 @@ func ParseCreateOrReplaceIndividualPFDDataResponse(rsp *http.Response) (*CreateO
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.PfdDataForAppExt
+		var dest externalRef0.PfdDataForAppExt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef5.PfdDataForAppExt
+		var dest externalRef0.PfdDataForAppExt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24286,7 +24278,7 @@ func ParseReadServiceParameterDataResponse(rsp *http.Response) (*ReadServicePara
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef5.ServiceParameterData
+		var dest []externalRef0.ServiceParameterData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24456,7 +24448,7 @@ func ParseUpdateIndividualServiceParameterDataResponse(rsp *http.Response) (*Upd
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.ServiceParameterData
+		var dest externalRef0.ServiceParameterData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24562,14 +24554,14 @@ func ParseCreateOrReplaceServiceParameterDataResponse(rsp *http.Response) (*Crea
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.ServiceParameterData
+		var dest externalRef0.ServiceParameterData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef5.ServiceParameterData
+		var dest externalRef0.ServiceParameterData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24682,7 +24674,7 @@ func ParseReadApplicationDataChangeSubscriptionsResponse(rsp *http.Response) (*R
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef5.ApplicationDataSubs
+		var dest []externalRef0.ApplicationDataSubs
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24774,7 +24766,7 @@ func ParseCreateIndividualApplicationDataSubscriptionResponse(rsp *http.Response
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef5.ApplicationDataSubs
+		var dest externalRef0.ApplicationDataSubs
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -24955,7 +24947,7 @@ func ParseReadIndividualApplicationDataSubscriptionResponse(rsp *http.Response) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.ApplicationDataSubs
+		var dest externalRef0.ApplicationDataSubs
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -25047,7 +25039,7 @@ func ParseReplaceIndividualApplicationDataSubscriptionResponse(rsp *http.Respons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef5.ApplicationDataSubs
+		var dest externalRef0.ApplicationDataSubs
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -25153,7 +25145,7 @@ func ParseCreateIndividualExposureDataSubscriptionResponse(rsp *http.Response) (
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef6.ExposureDataSubscription
+		var dest externalRef0.ExposureDataSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -25334,7 +25326,7 @@ func ParseReplaceIndividualExposureDataSubscriptionResponse(rsp *http.Response) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef6.ExposureDataSubscription
+		var dest externalRef0.ExposureDataSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -25518,7 +25510,7 @@ func ParseQueryAccessAndMobilityDataResponse(rsp *http.Response) (*QueryAccessAn
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef6.AccessAndMobilityData
+		var dest externalRef0.AccessAndMobilityData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -25709,14 +25701,14 @@ func ParseCreateOrReplaceAccessAndMobilityDataResponse(rsp *http.Response) (*Cre
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef6.AccessAndMobilityData
+		var dest externalRef0.AccessAndMobilityData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef6.AccessAndMobilityData
+		var dest externalRef0.AccessAndMobilityData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -25900,7 +25892,7 @@ func ParseQuerySessionManagementDataResponse(rsp *http.Response) (*QuerySessionM
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef6.PduSessionManagementData
+		var dest externalRef0.PduSessionManagementData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -25992,14 +25984,14 @@ func ParseCreateOrReplaceSessionManagementDataResponse(rsp *http.Response) (*Cre
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef6.AccessAndMobilityData
+		var dest externalRef0.AccessAndMobilityData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef6.PduSessionManagementData
+		var dest externalRef0.PduSessionManagementData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -26105,7 +26097,7 @@ func ParseReadBdtDataResponse(rsp *http.Response) (*ReadBdtDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef7.BdtData
+		var dest []externalRef0.BdtData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -26268,7 +26260,7 @@ func ParseReadIndividualBdtDataResponse(rsp *http.Response) (*ReadIndividualBdtD
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.BdtData
+		var dest externalRef0.BdtData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -26353,7 +26345,7 @@ func ParseUpdateIndividualBdtDataResponse(rsp *http.Response) (*UpdateIndividual
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.BdtData
+		var dest externalRef0.BdtData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -26459,7 +26451,7 @@ func ParseCreateIndividualBdtDataResponse(rsp *http.Response) (*CreateIndividual
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef7.BdtData
+		var dest externalRef0.BdtData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -26569,7 +26561,7 @@ func ParseReadPlmnUePolicySetResponse(rsp *http.Response) (*ReadPlmnUePolicySetR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.UePolicySet
+		var dest externalRef0.UePolicySet
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -26661,7 +26653,7 @@ func ParseReadSponsorConnectivityDataResponse(rsp *http.Response) (*ReadSponsorC
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.SponsorConnectivityData
+		var dest externalRef0.SponsorConnectivityData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -26749,7 +26741,7 @@ func ParseCreateIndividualPolicyDataSubscriptionResponse(rsp *http.Response) (*C
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef7.PolicyDataSubscription
+		var dest externalRef0.PolicyDataSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -26930,7 +26922,7 @@ func ParseReplaceIndividualPolicyDataSubscriptionResponse(rsp *http.Response) (*
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.PolicyDataSubscription
+		var dest externalRef0.PolicyDataSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27036,7 +27028,7 @@ func ParseReadAccessAndMobilityPolicyDataResponse(rsp *http.Response) (*ReadAcce
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.AmPolicyData
+		var dest externalRef0.AmPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27121,7 +27113,7 @@ func ParseReadOperatorSpecificDataResponse(rsp *http.Response) (*ReadOperatorSpe
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest map[string]externalRef0.OperatorSpecificDataContainer
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27319,7 +27311,7 @@ func ParseReplaceOperatorSpecificDataResponse(rsp *http.Response) (*ReplaceOpera
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest map[string]externalRef0.OperatorSpecificDataContainer
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27425,7 +27417,7 @@ func ParseReadSessionManagementPolicyDataResponse(rsp *http.Response) (*ReadSess
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.SmPolicyData
+		var dest externalRef0.SmPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27517,7 +27509,7 @@ func ParseUpdateSessionManagementPolicyDataResponse(rsp *http.Response) (*Update
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.SmPolicyData
+		var dest externalRef0.SmPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27701,7 +27693,7 @@ func ParseReadUsageMonitoringInformationResponse(rsp *http.Response) (*ReadUsage
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.UsageMonData
+		var dest externalRef0.UsageMonData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27796,7 +27788,7 @@ func ParseCreateUsageMonitoringResourceResponse(rsp *http.Response) (*CreateUsag
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef7.UsageMonData
+		var dest externalRef0.UsageMonData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27906,7 +27898,7 @@ func ParseReadUEPolicySetResponse(rsp *http.Response) (*ReadUEPolicySetResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.UePolicySet
+		var dest externalRef0.UePolicySet
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28090,14 +28082,14 @@ func ParseCreateOrReplaceUEPolicySetResponse(rsp *http.Response) (*CreateOrRepla
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef7.UePolicySet
+		var dest externalRef0.UePolicySet
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef7.UePolicySet
+		var dest externalRef0.UePolicySet
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28203,7 +28195,7 @@ func ParseQuery5GVnGroupResponse(rsp *http.Response) (*Query5GVnGroupResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]externalRef2.N5GVnGroupConfiguration
+		var dest map[string]externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28236,7 +28228,7 @@ func ParseQuery5GVnGroupInternalResponse(rsp *http.Response) (*Query5GVnGroupInt
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]externalRef2.N5GVnGroupConfiguration
+		var dest map[string]externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28269,7 +28261,7 @@ func ParseQuery5GVNGroupPPDataResponse(rsp *http.Response) (*Query5GVNGroupPPDat
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.Pp5gVnGroupProfileData
+		var dest externalRef0.Pp5gVnGroupProfileData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28331,7 +28323,7 @@ func ParseGet5GVnGroupConfigurationResponse(rsp *http.Response) (*Get5GVnGroupCo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef2.N5GVnGroupConfiguration
+		var dest externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28407,7 +28399,7 @@ func ParseCreate5GVnGroupResponse(rsp *http.Response) (*Create5GVnGroupResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef2.N5GVnGroupConfiguration
+		var dest externalRef0.N5GVnGroupConfiguration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28447,7 +28439,7 @@ func ParseGetGroupIdentifiersResponse(rsp *http.Response) (*GetGroupIdentifiersR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef3.GroupIdentifiers
+		var dest externalRef0.GroupIdentifiers
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28480,7 +28472,7 @@ func ParseQueryGroupEEDataResponse(rsp *http.Response) (*QueryGroupEEDataRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.EeGroupProfileData
+		var dest externalRef0.EeGroupProfileData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28513,7 +28505,7 @@ func ParseQueryEeGroupSubscriptionsResponse(rsp *http.Response) (*QueryEeGroupSu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.EeSubscription
+		var dest []externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28546,7 +28538,7 @@ func ParseCreateEeGroupSubscriptionsResponse(rsp *http.Response) (*CreateEeGroup
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.EeSubscription
+		var dest externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28608,7 +28600,7 @@ func ParseQueryEeGroupSubscriptionResponse(rsp *http.Response) (*QueryEeGroupSub
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.EeSubscription
+		var dest []externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28727,7 +28719,7 @@ func ParseGetSharedDataResponse(rsp *http.Response) (*GetSharedDataResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef3.SharedData
+		var dest []externalRef0.SharedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28788,7 +28780,7 @@ func ParseGetIndividualSharedDataResponse(rsp *http.Response) (*GetIndividualSha
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef3.SharedData
+		var dest externalRef0.SharedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28878,7 +28870,7 @@ func ParseQuerySubsToNotifyResponse(rsp *http.Response) (*QuerySubsToNotifyRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.SubscriptionDataSubscriptions
+		var dest []externalRef0.SubscriptionDataSubscriptions
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28911,7 +28903,7 @@ func ParseSubscriptionDataSubscriptionsResponse(rsp *http.Response) (*Subscripti
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.SubscriptionDataSubscriptions
+		var dest externalRef0.SubscriptionDataSubscriptions
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28973,7 +28965,7 @@ func ParseQuerySubscriptionDataSubscriptionsResponse(rsp *http.Response) (*Query
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.SubscriptionDataSubscriptions
+		var dest []externalRef0.SubscriptionDataSubscriptions
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29085,7 +29077,7 @@ func ParseQueryAuthenticationStatusResponse(rsp *http.Response) (*QueryAuthentic
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef4.AuthEvent
+		var dest externalRef0.AuthEvent
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29176,7 +29168,7 @@ func ParseQueryIndividualAuthenticationStatusResponse(rsp *http.Response) (*Quer
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef4.AuthEvent
+		var dest externalRef0.AuthEvent
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29238,7 +29230,7 @@ func ParseQueryAuthSubsDataResponse(rsp *http.Response) (*QueryAuthSubsDataRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.AuthenticationSubscription
+		var dest externalRef0.AuthenticationSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29314,7 +29306,7 @@ func ParseQueryContextDataResponse(rsp *http.Response) (*QueryContextDataRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.ContextDataSets
+		var dest externalRef0.ContextDataSets
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29347,7 +29339,7 @@ func ParseQueryAmfContext3gppResponse(rsp *http.Response) (*QueryAmfContext3gppR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29423,7 +29415,7 @@ func ParseCreateAmfContext3gppResponse(rsp *http.Response) (*CreateAmfContext3gp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29459,7 +29451,7 @@ func ParseQueryAmfContextNon3gppResponse(rsp *http.Response) (*QueryAmfContextNo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.AmfNon3GppAccessRegistration
+		var dest externalRef0.AmfNon3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29535,7 +29527,7 @@ func ParseCreateAmfContextNon3gppResponse(rsp *http.Response) (*CreateAmfContext
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.Amf3GppAccessRegistration
+		var dest externalRef0.Amf3GppAccessRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29571,7 +29563,7 @@ func ParseQueryeesubscriptionsResponse(rsp *http.Response) (*Queryeesubscription
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.EeSubscription
+		var dest []externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29604,7 +29596,7 @@ func ParseCreateEeSubscriptionsResponse(rsp *http.Response) (*CreateEeSubscripti
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.EeSubscription
+		var dest externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29666,7 +29658,7 @@ func ParseQueryeeSubscriptionResponse(rsp *http.Response) (*QueryeeSubscriptionR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.EeSubscription
+		var dest []externalRef0.EeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29814,7 +29806,7 @@ func ParseGetAmfSubscriptionInfoResponse(rsp *http.Response) (*GetAmfSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.AmfSubscriptionInfo
+		var dest []externalRef0.AmfSubscriptionInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29948,7 +29940,7 @@ func ParseGetHssSubscriptionInfoResponse(rsp *http.Response) (*GetHssSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmfSubscriptionInfo
+		var dest externalRef0.SmfSubscriptionInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30082,7 +30074,7 @@ func ParseGetSmfSubscriptionInfoResponse(rsp *http.Response) (*GetSmfSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmfSubscriptionInfo
+		var dest externalRef0.SmfSubscriptionInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30216,7 +30208,7 @@ func ParseQueryIpSmGwContextResponse(rsp *http.Response) (*QueryIpSmGwContextRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.IpSmGwRegistration
+		var dest externalRef0.IpSmGwRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30321,7 +30313,7 @@ func ParseQueryUeLocationResponse(rsp *http.Response) (*QueryUeLocationResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.LocationInfo
+		var dest externalRef0.LocationInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30383,7 +30375,7 @@ func ParseQueryMessageWaitingDataResponse(rsp *http.Response) (*QueryMessageWait
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.MessageWaitingData
+		var dest externalRef0.MessageWaitingData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30488,7 +30480,7 @@ func ParseQuerysdmsubscriptionsResponse(rsp *http.Response) (*Querysdmsubscripti
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.SdmSubscription
+		var dest []externalRef0.SdmSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30521,7 +30513,7 @@ func ParseCreateSdmSubscriptionsResponse(rsp *http.Response) (*CreateSdmSubscrip
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.SdmSubscription
+		var dest externalRef0.SdmSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30590,7 +30582,7 @@ func ParseQuerysdmSubscriptionResponse(rsp *http.Response) (*QuerysdmSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.SdmSubscription
+		var dest []externalRef0.SdmSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30738,7 +30730,7 @@ func ParseGetHssSDMSubscriptionInfoResponse(rsp *http.Response) (*GetHssSDMSubsc
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmfSubscriptionInfo
+		var dest externalRef0.SmfSubscriptionInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30843,7 +30835,7 @@ func ParseQuerySmfRegListResponse(rsp *http.Response) (*QuerySmfRegListResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmfRegList
+		var dest externalRef0.SmfRegList
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30905,7 +30897,7 @@ func ParseQuerySmfRegistrationResponse(rsp *http.Response) (*QuerySmfRegistratio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmfRegistration
+		var dest externalRef0.SmfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30938,7 +30930,7 @@ func ParseCreateOrUpdateSmfRegistrationResponse(rsp *http.Response) (*CreateOrUp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.SmfRegistration
+		var dest externalRef0.SmfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31003,7 +30995,7 @@ func ParseQuerySmsfContext3gppResponse(rsp *http.Response) (*QuerySmsfContext3gp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31036,7 +31028,7 @@ func ParseCreateSmsfContext3gppResponse(rsp *http.Response) (*CreateSmsfContext3
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31101,7 +31093,7 @@ func ParseQuerySmsfContextNon3gppResponse(rsp *http.Response) (*QuerySmsfContext
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31134,7 +31126,7 @@ func ParseCreateSmsfContextNon3gppResponse(rsp *http.Response) (*CreateSmsfConte
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest externalRef8.SmsfRegistration
+		var dest externalRef0.SmsfRegistration
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31170,7 +31162,7 @@ func ParseQueryCoverageRestrictionDataResponse(rsp *http.Response) (*QueryCovera
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.EnhancedCoverageRestrictionData
+		var dest externalRef0.EnhancedCoverageRestrictionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31203,7 +31195,7 @@ func ParseQueryEEDataResponse(rsp *http.Response) (*QueryEEDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.EeProfileData
+		var dest externalRef0.EeProfileData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31236,7 +31228,7 @@ func ParseGetIdentityDataResponse(rsp *http.Response) (*GetIdentityDataResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.IdentityData
+		var dest externalRef0.IdentityData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31269,7 +31261,7 @@ func ParseQueryLcsMoDataResponse(rsp *http.Response) (*QueryLcsMoDataResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.LcsMoData
+		var dest externalRef0.LcsMoData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31302,7 +31294,7 @@ func ParseQueryLcsPrivacyDataResponse(rsp *http.Response) (*QueryLcsPrivacyDataR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.LcsPrivacyData
+		var dest externalRef0.LcsPrivacyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31335,7 +31327,7 @@ func ParseGetNiddAuDataResponse(rsp *http.Response) (*GetNiddAuDataResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.AuthorizationData
+		var dest externalRef0.AuthorizationData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31401,7 +31393,7 @@ func ParseQueryOperSpecDataResponse(rsp *http.Response) (*QueryOperSpecDataRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]externalRef8.OperatorSpecificDataContainer
+		var dest map[string]externalRef0.OperatorSpecificDataContainer
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31477,7 +31469,7 @@ func ParseGetppDataResponse(rsp *http.Response) (*GetppDataResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.PpData
+		var dest externalRef0.PpData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31560,7 +31552,7 @@ func ParseQueryPPDataResponse(rsp *http.Response) (*QueryPPDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.PpProfileData
+		var dest externalRef0.PpProfileData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31593,7 +31585,7 @@ func ParseQueryAuthSoRResponse(rsp *http.Response) (*QueryAuthSoRResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SorData
+		var dest externalRef0.SorData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31655,7 +31647,7 @@ func ParseQueryCagAckResponse(rsp *http.Response) (*QueryCagAckResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.CagAckData
+		var dest externalRef0.CagAckData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31717,7 +31709,7 @@ func ParseQueryNssaiAckResponse(rsp *http.Response) (*QueryNssaiAckResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.NssaiAckData
+		var dest externalRef0.NssaiAckData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31779,7 +31771,7 @@ func ParseQueryAuthUPUResponse(rsp *http.Response) (*QueryAuthUPUResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.UpuData
+		var dest externalRef0.UpuData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31841,7 +31833,7 @@ func ParseQueryV2xDataResponse(rsp *http.Response) (*QueryV2xDataResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.V2xSubscriptionData
+		var dest externalRef0.V2xSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31874,7 +31866,7 @@ func ParseQueryProvisionedDataResponse(rsp *http.Response) (*QueryProvisionedDat
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.ProvisionedDataSets
+		var dest externalRef0.ProvisionedDataSets
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31907,7 +31899,7 @@ func ParseQueryAmDataResponse(rsp *http.Response) (*QueryAmDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.AccessAndMobilitySubscriptionData
+		var dest externalRef0.AccessAndMobilitySubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31940,7 +31932,7 @@ func ParseQueryLcsBcaDataResponse(rsp *http.Response) (*QueryLcsBcaDataResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.LcsBroadcastAssistanceTypesData
+		var dest externalRef0.LcsBroadcastAssistanceTypesData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31973,7 +31965,7 @@ func ParseQuerySmDataResponse(rsp *http.Response) (*QuerySmDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []externalRef8.SessionManagementSubscriptionData
+		var dest []externalRef0.SessionManagementSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -32006,7 +31998,7 @@ func ParseQuerySmfSelectDataResponse(rsp *http.Response) (*QuerySmfSelectDataRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmfSelectionSubscriptionData
+		var dest externalRef0.SmfSelectionSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -32039,7 +32031,7 @@ func ParseQuerySmsDataResponse(rsp *http.Response) (*QuerySmsDataResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmsSubscriptionData
+		var dest externalRef0.SmsSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -32072,7 +32064,7 @@ func ParseQuerySmsMngDataResponse(rsp *http.Response) (*QuerySmsMngDataResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef8.SmsManagementSubscriptionData
+		var dest externalRef0.SmsManagementSubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -32262,7 +32254,7 @@ type ServerInterface interface {
 	CreateIndividualBdtData(c *gin.Context, bdtReferenceId string)
 	// Retrieve the UE policy set data for an H-PLMN
 	// (GET /policy-data/plmns/{plmnId}/ue-policy-set)
-	ReadPlmnUePolicySet(c *gin.Context, plmnId string)
+	ReadPlmnUePolicySet(c *gin.Context, plmnId externalRef0.VarPlmnId)
 	// Retrieves the sponsored connectivity information for a given sponsorId
 	// (GET /policy-data/sponsor-connectivity-data/{sponsorId})
 	ReadSponsorConnectivityData(c *gin.Context, sponsorId string)
@@ -32322,46 +32314,46 @@ type ServerInterface interface {
 	Query5GVNGroupPPData(c *gin.Context, params Query5GVNGroupPPDataParams)
 	// Deletes the 5GVnGroup
 	// (DELETE /subscription-data/group-data/5g-vn-groups/{externalGroupId})
-	Delete5GVnGroup(c *gin.Context, externalGroupId externalRef3.ExtGroupId)
+	Delete5GVnGroup(c *gin.Context, externalGroupId externalRef0.ExtGroupId)
 	// Retrieve a 5GVnGroup configuration
 	// (GET /subscription-data/group-data/5g-vn-groups/{externalGroupId})
-	Get5GVnGroupConfiguration(c *gin.Context, externalGroupId externalRef3.ExtGroupId)
+	Get5GVnGroupConfiguration(c *gin.Context, externalGroupId externalRef0.ExtGroupId)
 	// modify the 5GVnGroup
 	// (PATCH /subscription-data/group-data/5g-vn-groups/{externalGroupId})
-	Modify5GVnGroup(c *gin.Context, externalGroupId externalRef3.ExtGroupId, params Modify5GVnGroupParams)
+	Modify5GVnGroup(c *gin.Context, externalGroupId externalRef0.ExtGroupId, params Modify5GVnGroupParams)
 	// Create an individual 5G VN Grouop
 	// (PUT /subscription-data/group-data/5g-vn-groups/{externalGroupId})
-	Create5GVnGroup(c *gin.Context, externalGroupId externalRef3.ExtGroupId)
+	Create5GVnGroup(c *gin.Context, externalGroupId externalRef0.ExtGroupId)
 	// Mapping of Group Identifiers
 	// (GET /subscription-data/group-data/group-identifiers)
 	GetGroupIdentifiers(c *gin.Context, params GetGroupIdentifiersParams)
 	// Retrieves the ee profile data profile data of a group or anyUE
 	// (GET /subscription-data/group-data/{ueGroupId}/ee-profile-data)
-	QueryGroupEEData(c *gin.Context, ueGroupId externalRef8.VarUeGroupId, params QueryGroupEEDataParams)
+	QueryGroupEEData(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, params QueryGroupEEDataParams)
 	// Retrieves the ee subscriptions of a group of UEs or any UE
 	// (GET /subscription-data/group-data/{ueGroupId}/ee-subscriptions)
-	QueryEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef8.VarUeGroupId, params QueryEeGroupSubscriptionsParams)
+	QueryEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, params QueryEeGroupSubscriptionsParams)
 	// Create individual EE subscription for a group of UEs or any UE
 	// (POST /subscription-data/group-data/{ueGroupId}/ee-subscriptions)
-	CreateEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef8.VarUeGroupId)
+	CreateEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef0.VarUeGroupId)
 	// Deletes a eeSubscription for a group of UEs or any UE
 	// (DELETE /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId})
-	RemoveEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef8.VarUeGroupId, subsId string)
+	RemoveEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string)
 	// Retrieve a individual eeSubscription for a group of UEs or any UE
 	// (GET /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId})
-	QueryEeGroupSubscription(c *gin.Context, ueGroupId externalRef8.VarUeGroupId, subsId string)
+	QueryEeGroupSubscription(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string)
 	// Modify an individual ee subscription for a group of a UEs
 	// (PATCH /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId})
-	ModifyEeGroupSubscription(c *gin.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params ModifyEeGroupSubscriptionParams)
+	ModifyEeGroupSubscription(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params ModifyEeGroupSubscriptionParams)
 	// Update an individual ee subscription of a group of UEs or any UE
 	// (PUT /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId})
-	UpdateEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef8.VarUeGroupId, subsId string)
+	UpdateEeGroupSubscriptions(c *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string)
 	// retrieve shared data
 	// (GET /subscription-data/shared-data)
 	GetSharedData(c *gin.Context, params GetSharedDataParams)
 	// retrieve individual shared data
 	// (GET /subscription-data/shared-data/{sharedDataId})
-	GetIndividualSharedData(c *gin.Context, sharedDataId externalRef3.SharedDataId, params GetIndividualSharedDataParams)
+	GetIndividualSharedData(c *gin.Context, sharedDataId externalRef0.SharedDataId, params GetIndividualSharedDataParams)
 	// Deletes subscriptions identified by a given ue-id parameter
 	// (DELETE /subscription-data/subs-to-notify)
 	RemoveMultipleSubscriptionDataSubscriptions(c *gin.Context, params RemoveMultipleSubscriptionDataSubscriptionsParams)
@@ -32391,13 +32383,13 @@ type ServerInterface interface {
 	CreateAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi)
 	// To remove the Individual Authentication Status of a UE
 	// (DELETE /subscription-data/{ueId}/authentication-data/authentication-status/{servingNetworkName})
-	DeleteIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName)
+	DeleteIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName)
 	// Retrieves the Individual Authentication Status of a UE
 	// (GET /subscription-data/{ueId}/authentication-data/authentication-status/{servingNetworkName})
-	QueryIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, params QueryIndividualAuthenticationStatusParams)
+	QueryIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params QueryIndividualAuthenticationStatusParams)
 	// To store the individual Authentication Status data of a UE
 	// (PUT /subscription-data/{ueId}/authentication-data/authentication-status/{servingNetworkName})
-	CreateIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName)
+	CreateIndividualAuthenticationStatus(c *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName)
 	// Retrieves the authentication subscription data of a UE
 	// (GET /subscription-data/{ueId}/authentication-data/authentication-subscription)
 	QueryAuthSubsData(c *gin.Context, ueId externalRef0.Supi, params QueryAuthSubsDataParams)
@@ -32631,28 +32623,28 @@ type ServerInterface interface {
 	QueryV2xData(c *gin.Context, ueId externalRef0.VarUeId, params QueryV2xDataParams)
 	// Retrieve multiple provisioned data sets of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data)
-	QueryProvisionedData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QueryProvisionedDataParams)
+	QueryProvisionedData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryProvisionedDataParams)
 	// Retrieves the access and mobility subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/am-data)
-	QueryAmData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QueryAmDataParams)
+	QueryAmData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryAmDataParams)
 	// Retrieves the LCS Broadcast Assistance subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/lcs-bca-data)
-	QueryLcsBcaData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QueryLcsBcaDataParams)
+	QueryLcsBcaData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryLcsBcaDataParams)
 	// Retrieves the Session Management subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sm-data)
-	QuerySmData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QuerySmDataParams)
+	QuerySmData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmDataParams)
 	// Retrieves the SMF selection subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/smf-selection-subscription-data)
-	QuerySmfSelectData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QuerySmfSelectDataParams)
+	QuerySmfSelectData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmfSelectDataParams)
 	// Retrieves the SMS subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sms-data)
-	QuerySmsData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QuerySmsDataParams)
+	QuerySmsData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmsDataParams)
 	// Retrieves the SMS management subscription data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sms-mng-data)
-	QuerySmsMngData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QuerySmsMngDataParams)
+	QuerySmsMngData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmsMngDataParams)
 	// Retrieves the trace configuration data of a UE
 	// (GET /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/trace-data)
-	QueryTraceData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QueryTraceDataParams)
+	QueryTraceData(c *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryTraceDataParams)
 }
 
 // ServerInterfaceWrapper converts contexts to parameters.
@@ -33533,7 +33525,7 @@ func (siw *ServerInterfaceWrapper) ReadApplicationDataChangeSubscriptions(c *gin
 
 	if paramValue := c.Query("data-filter"); paramValue != "" {
 
-		var value externalRef5.DataFilter
+		var value externalRef0.DataFilter
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'data-filter' as JSON: %w", err), http.StatusBadRequest)
@@ -34134,7 +34126,7 @@ func (siw *ServerInterfaceWrapper) ReadPlmnUePolicySet(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "plmnId" -------------
-	var plmnId string
+	var plmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "plmnId", c.Param("plmnId"), &plmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -34774,7 +34766,7 @@ func (siw *ServerInterfaceWrapper) Delete5GVnGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "externalGroupId" -------------
-	var externalGroupId externalRef3.ExtGroupId
+	var externalGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "externalGroupId", c.Param("externalGroupId"), &externalGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -34800,7 +34792,7 @@ func (siw *ServerInterfaceWrapper) Get5GVnGroupConfiguration(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "externalGroupId" -------------
-	var externalGroupId externalRef3.ExtGroupId
+	var externalGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "externalGroupId", c.Param("externalGroupId"), &externalGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -34826,7 +34818,7 @@ func (siw *ServerInterfaceWrapper) Modify5GVnGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "externalGroupId" -------------
-	var externalGroupId externalRef3.ExtGroupId
+	var externalGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "externalGroupId", c.Param("externalGroupId"), &externalGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -34863,7 +34855,7 @@ func (siw *ServerInterfaceWrapper) Create5GVnGroup(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "externalGroupId" -------------
-	var externalGroupId externalRef3.ExtGroupId
+	var externalGroupId externalRef0.ExtGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "externalGroupId", c.Param("externalGroupId"), &externalGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -34941,7 +34933,7 @@ func (siw *ServerInterfaceWrapper) QueryGroupEEData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId externalRef8.VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -34978,7 +34970,7 @@ func (siw *ServerInterfaceWrapper) QueryEeGroupSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId externalRef8.VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35015,7 +35007,7 @@ func (siw *ServerInterfaceWrapper) CreateEeGroupSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId externalRef8.VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35041,7 +35033,7 @@ func (siw *ServerInterfaceWrapper) RemoveEeGroupSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId externalRef8.VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35076,7 +35068,7 @@ func (siw *ServerInterfaceWrapper) QueryEeGroupSubscription(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId externalRef8.VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35111,7 +35103,7 @@ func (siw *ServerInterfaceWrapper) ModifyEeGroupSubscription(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId externalRef8.VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35157,7 +35149,7 @@ func (siw *ServerInterfaceWrapper) UpdateEeGroupSubscriptions(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "ueGroupId" -------------
-	var ueGroupId externalRef8.VarUeGroupId
+	var ueGroupId externalRef0.VarUeGroupId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "ueGroupId", c.Param("ueGroupId"), &ueGroupId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35235,7 +35227,7 @@ func (siw *ServerInterfaceWrapper) GetIndividualSharedData(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "sharedDataId" -------------
-	var sharedDataId externalRef3.SharedDataId
+	var sharedDataId externalRef0.SharedDataId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "sharedDataId", c.Param("sharedDataId"), &sharedDataId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35616,7 +35608,7 @@ func (siw *ServerInterfaceWrapper) DeleteIndividualAuthenticationStatus(c *gin.C
 	}
 
 	// ------------- Path parameter "servingNetworkName" -------------
-	var servingNetworkName externalRef4.ServingNetworkName
+	var servingNetworkName externalRef0.ServingNetworkName
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingNetworkName", c.Param("servingNetworkName"), &servingNetworkName, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35651,7 +35643,7 @@ func (siw *ServerInterfaceWrapper) QueryIndividualAuthenticationStatus(c *gin.Co
 	}
 
 	// ------------- Path parameter "servingNetworkName" -------------
-	var servingNetworkName externalRef4.ServingNetworkName
+	var servingNetworkName externalRef0.ServingNetworkName
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingNetworkName", c.Param("servingNetworkName"), &servingNetworkName, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -35705,7 +35697,7 @@ func (siw *ServerInterfaceWrapper) CreateIndividualAuthenticationStatus(c *gin.C
 	}
 
 	// ------------- Path parameter "servingNetworkName" -------------
-	var servingNetworkName externalRef4.ServingNetworkName
+	var servingNetworkName externalRef0.ServingNetworkName
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingNetworkName", c.Param("servingNetworkName"), &servingNetworkName, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -37878,7 +37870,7 @@ func (siw *ServerInterfaceWrapper) GetIdentityData(c *gin.Context) {
 
 	if paramValue := c.Query("app-port-id"); paramValue != "" {
 
-		var value externalRef3.AppPortId
+		var value externalRef0.AppPortId
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'app-port-id' as JSON: %w", err), http.StatusBadRequest)
@@ -38132,7 +38124,7 @@ func (siw *ServerInterfaceWrapper) GetNiddAuData(c *gin.Context) {
 
 	if paramValue := c.Query("single-nssai"); paramValue != "" {
 
-		var value externalRef8.VarSnssai
+		var value externalRef0.VarSnssai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'single-nssai' as JSON: %w", err), http.StatusBadRequest)
@@ -38913,7 +38905,7 @@ func (siw *ServerInterfaceWrapper) QueryProvisionedData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId externalRef8.VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -38959,7 +38951,7 @@ func (siw *ServerInterfaceWrapper) QueryAmData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId externalRef8.VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -39053,7 +39045,7 @@ func (siw *ServerInterfaceWrapper) QueryLcsBcaData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId externalRef8.VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -39139,7 +39131,7 @@ func (siw *ServerInterfaceWrapper) QuerySmData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId externalRef8.VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -39156,7 +39148,7 @@ func (siw *ServerInterfaceWrapper) QuerySmData(c *gin.Context) {
 
 	if paramValue := c.Query("single-nssai"); paramValue != "" {
 
-		var value externalRef8.VarSnssai
+		var value externalRef0.VarSnssai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'single-nssai' as JSON: %w", err), http.StatusBadRequest)
@@ -39256,7 +39248,7 @@ func (siw *ServerInterfaceWrapper) QuerySmfSelectData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId externalRef8.VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -39350,7 +39342,7 @@ func (siw *ServerInterfaceWrapper) QuerySmsData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId externalRef8.VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -39436,7 +39428,7 @@ func (siw *ServerInterfaceWrapper) QuerySmsMngData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId externalRef8.VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -39522,7 +39514,7 @@ func (siw *ServerInterfaceWrapper) QueryTraceData(c *gin.Context) {
 	}
 
 	// ------------- Path parameter "servingPlmnId" -------------
-	var servingPlmnId externalRef8.VarPlmnId
+	var servingPlmnId externalRef0.VarPlmnId
 
 	err = runtime.BindStyledParameterWithOptions("simple", "servingPlmnId", c.Param("servingPlmnId"), &servingPlmnId, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -39798,7 +39790,7 @@ type ReadBdtPolicyDataResponseObject interface {
 	VisitReadBdtPolicyDataResponse(w http.ResponseWriter) error
 }
 
-type ReadBdtPolicyData200JSONResponse []externalRef5.BdtPolicyData
+type ReadBdtPolicyData200JSONResponse []externalRef0.BdtPolicyData
 
 func (response ReadBdtPolicyData200JSONResponse) VisitReadBdtPolicyDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -40028,13 +40020,13 @@ type UpdateIndividualAppliedBdtPolicyDataResponseObject interface {
 	VisitUpdateIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error
 }
 
-type UpdateIndividualAppliedBdtPolicyData200JSONResponse externalRef5.BdtPolicyData
+type UpdateIndividualAppliedBdtPolicyData200JSONResponse externalRef0.BdtPolicyData
 
 func (response UpdateIndividualAppliedBdtPolicyData200JSONResponse) VisitUpdateIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.BdtPolicyData(response))
+	return json.NewEncoder(w).Encode(externalRef0.BdtPolicyData(response))
 }
 
 type UpdateIndividualAppliedBdtPolicyData204Response struct {
@@ -40181,7 +40173,7 @@ type CreateIndividualAppliedBdtPolicyData201ResponseHeaders struct {
 }
 
 type CreateIndividualAppliedBdtPolicyData201JSONResponse struct {
-	Body    externalRef5.BdtPolicyData
+	Body    externalRef0.BdtPolicyData
 	Headers CreateIndividualAppliedBdtPolicyData201ResponseHeaders
 }
 
@@ -40334,7 +40326,7 @@ type ReadInfluenceDataResponseObject interface {
 	VisitReadInfluenceDataResponse(w http.ResponseWriter) error
 }
 
-type ReadInfluenceData200JSONResponse []externalRef5.TrafficInfluData
+type ReadInfluenceData200JSONResponse []externalRef0.TrafficInfluData
 
 func (response ReadInfluenceData200JSONResponse) VisitReadInfluenceDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -40458,7 +40450,7 @@ type ReadInfluenceDataSubscriptionsResponseObject interface {
 	VisitReadInfluenceDataSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type ReadInfluenceDataSubscriptions200JSONResponse []externalRef5.TrafficInfluSub
+type ReadInfluenceDataSubscriptions200JSONResponse []externalRef0.TrafficInfluSub
 
 func (response ReadInfluenceDataSubscriptions200JSONResponse) VisitReadInfluenceDataSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -40587,7 +40579,7 @@ type CreateIndividualInfluenceDataSubscription201ResponseHeaders struct {
 }
 
 type CreateIndividualInfluenceDataSubscription201JSONResponse struct {
-	Body    externalRef5.TrafficInfluSub
+	Body    externalRef0.TrafficInfluSub
 	Headers CreateIndividualInfluenceDataSubscription201ResponseHeaders
 }
 
@@ -40834,13 +40826,13 @@ type ReadIndividualInfluenceDataSubscriptionResponseObject interface {
 	VisitReadIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReadIndividualInfluenceDataSubscription200JSONResponse externalRef5.TrafficInfluSub
+type ReadIndividualInfluenceDataSubscription200JSONResponse externalRef0.TrafficInfluSub
 
 func (response ReadIndividualInfluenceDataSubscription200JSONResponse) VisitReadIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.TrafficInfluSub(response))
+	return json.NewEncoder(w).Encode(externalRef0.TrafficInfluSub(response))
 }
 
 type ReadIndividualInfluenceDataSubscription400ApplicationProblemPlusJSONResponse struct {
@@ -40959,13 +40951,13 @@ type ReplaceIndividualInfluenceDataSubscriptionResponseObject interface {
 	VisitReplaceIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReplaceIndividualInfluenceDataSubscription200JSONResponse externalRef5.TrafficInfluSub
+type ReplaceIndividualInfluenceDataSubscription200JSONResponse externalRef0.TrafficInfluSub
 
 func (response ReplaceIndividualInfluenceDataSubscription200JSONResponse) VisitReplaceIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.TrafficInfluSub(response))
+	return json.NewEncoder(w).Encode(externalRef0.TrafficInfluSub(response))
 }
 
 type ReplaceIndividualInfluenceDataSubscription204Response struct {
@@ -41212,13 +41204,13 @@ type UpdateIndividualInfluenceDataResponseObject interface {
 	VisitUpdateIndividualInfluenceDataResponse(w http.ResponseWriter) error
 }
 
-type UpdateIndividualInfluenceData200JSONResponse externalRef5.TrafficInfluData
+type UpdateIndividualInfluenceData200JSONResponse externalRef0.TrafficInfluData
 
 func (response UpdateIndividualInfluenceData200JSONResponse) VisitUpdateIndividualInfluenceDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.TrafficInfluData(response))
+	return json.NewEncoder(w).Encode(externalRef0.TrafficInfluData(response))
 }
 
 type UpdateIndividualInfluenceData204Response struct {
@@ -41360,13 +41352,13 @@ type CreateOrReplaceIndividualInfluenceDataResponseObject interface {
 	VisitCreateOrReplaceIndividualInfluenceDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceIndividualInfluenceData200JSONResponse externalRef5.TrafficInfluData
+type CreateOrReplaceIndividualInfluenceData200JSONResponse externalRef0.TrafficInfluData
 
 func (response CreateOrReplaceIndividualInfluenceData200JSONResponse) VisitCreateOrReplaceIndividualInfluenceDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.TrafficInfluData(response))
+	return json.NewEncoder(w).Encode(externalRef0.TrafficInfluData(response))
 }
 
 type CreateOrReplaceIndividualInfluenceData201ResponseHeaders struct {
@@ -41374,7 +41366,7 @@ type CreateOrReplaceIndividualInfluenceData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceIndividualInfluenceData201JSONResponse struct {
-	Body    externalRef5.TrafficInfluData
+	Body    externalRef0.TrafficInfluData
 	Headers CreateOrReplaceIndividualInfluenceData201ResponseHeaders
 }
 
@@ -41535,7 +41527,7 @@ type ReadIPTVCongifurationDataResponseObject interface {
 	VisitReadIPTVCongifurationDataResponse(w http.ResponseWriter) error
 }
 
-type ReadIPTVCongifurationData200JSONResponse []externalRef5.IptvConfigData
+type ReadIPTVCongifurationData200JSONResponse []externalRef0.IptvConfigData
 
 func (response ReadIPTVCongifurationData200JSONResponse) VisitReadIPTVCongifurationDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -41765,13 +41757,13 @@ type PartialReplaceIndividualIPTVConfigurationDataResponseObject interface {
 	VisitPartialReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error
 }
 
-type PartialReplaceIndividualIPTVConfigurationData200JSONResponse externalRef5.IptvConfigData
+type PartialReplaceIndividualIPTVConfigurationData200JSONResponse externalRef0.IptvConfigData
 
 func (response PartialReplaceIndividualIPTVConfigurationData200JSONResponse) VisitPartialReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.IptvConfigData(response))
+	return json.NewEncoder(w).Encode(externalRef0.IptvConfigData(response))
 }
 
 type PartialReplaceIndividualIPTVConfigurationData204Response struct {
@@ -41924,13 +41916,13 @@ type CreateOrReplaceIndividualIPTVConfigurationDataResponseObject interface {
 	VisitCreateOrReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceIndividualIPTVConfigurationData200JSONResponse externalRef5.IptvConfigData
+type CreateOrReplaceIndividualIPTVConfigurationData200JSONResponse externalRef0.IptvConfigData
 
 func (response CreateOrReplaceIndividualIPTVConfigurationData200JSONResponse) VisitCreateOrReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.IptvConfigData(response))
+	return json.NewEncoder(w).Encode(externalRef0.IptvConfigData(response))
 }
 
 type CreateOrReplaceIndividualIPTVConfigurationData201ResponseHeaders struct {
@@ -41938,7 +41930,7 @@ type CreateOrReplaceIndividualIPTVConfigurationData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceIndividualIPTVConfigurationData201JSONResponse struct {
-	Body    externalRef5.IptvConfigData
+	Body    externalRef0.IptvConfigData
 	Headers CreateOrReplaceIndividualIPTVConfigurationData201ResponseHeaders
 }
 
@@ -42099,7 +42091,7 @@ type ReadPFDDataResponseObject interface {
 	VisitReadPFDDataResponse(w http.ResponseWriter) error
 }
 
-type ReadPFDData200JSONResponse []externalRef5.PfdDataForAppExt
+type ReadPFDData200JSONResponse []externalRef0.PfdDataForAppExt
 
 func (response ReadPFDData200JSONResponse) VisitReadPFDDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -42328,13 +42320,13 @@ type ReadIndividualPFDDataResponseObject interface {
 	VisitReadIndividualPFDDataResponse(w http.ResponseWriter) error
 }
 
-type ReadIndividualPFDData200JSONResponse externalRef5.PfdDataForAppExt
+type ReadIndividualPFDData200JSONResponse externalRef0.PfdDataForAppExt
 
 func (response ReadIndividualPFDData200JSONResponse) VisitReadIndividualPFDDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.PfdDataForAppExt(response))
+	return json.NewEncoder(w).Encode(externalRef0.PfdDataForAppExt(response))
 }
 
 type ReadIndividualPFDData400ApplicationProblemPlusJSONResponse struct {
@@ -42442,13 +42434,13 @@ type CreateOrReplaceIndividualPFDDataResponseObject interface {
 	VisitCreateOrReplaceIndividualPFDDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceIndividualPFDData200JSONResponse externalRef5.PfdDataForAppExt
+type CreateOrReplaceIndividualPFDData200JSONResponse externalRef0.PfdDataForAppExt
 
 func (response CreateOrReplaceIndividualPFDData200JSONResponse) VisitCreateOrReplaceIndividualPFDDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.PfdDataForAppExt(response))
+	return json.NewEncoder(w).Encode(externalRef0.PfdDataForAppExt(response))
 }
 
 type CreateOrReplaceIndividualPFDData201ResponseHeaders struct {
@@ -42456,7 +42448,7 @@ type CreateOrReplaceIndividualPFDData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceIndividualPFDData201JSONResponse struct {
-	Body    externalRef5.PfdDataForAppExt
+	Body    externalRef0.PfdDataForAppExt
 	Headers CreateOrReplaceIndividualPFDData201ResponseHeaders
 }
 
@@ -42617,7 +42609,7 @@ type ReadServiceParameterDataResponseObject interface {
 	VisitReadServiceParameterDataResponse(w http.ResponseWriter) error
 }
 
-type ReadServiceParameterData200JSONResponse []externalRef5.ServiceParameterData
+type ReadServiceParameterData200JSONResponse []externalRef0.ServiceParameterData
 
 func (response ReadServiceParameterData200JSONResponse) VisitReadServiceParameterDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -42847,13 +42839,13 @@ type UpdateIndividualServiceParameterDataResponseObject interface {
 	VisitUpdateIndividualServiceParameterDataResponse(w http.ResponseWriter) error
 }
 
-type UpdateIndividualServiceParameterData200JSONResponse externalRef5.ServiceParameterData
+type UpdateIndividualServiceParameterData200JSONResponse externalRef0.ServiceParameterData
 
 func (response UpdateIndividualServiceParameterData200JSONResponse) VisitUpdateIndividualServiceParameterDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.ServiceParameterData(response))
+	return json.NewEncoder(w).Encode(externalRef0.ServiceParameterData(response))
 }
 
 type UpdateIndividualServiceParameterData204Response struct {
@@ -42995,13 +42987,13 @@ type CreateOrReplaceServiceParameterDataResponseObject interface {
 	VisitCreateOrReplaceServiceParameterDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceServiceParameterData200JSONResponse externalRef5.ServiceParameterData
+type CreateOrReplaceServiceParameterData200JSONResponse externalRef0.ServiceParameterData
 
 func (response CreateOrReplaceServiceParameterData200JSONResponse) VisitCreateOrReplaceServiceParameterDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.ServiceParameterData(response))
+	return json.NewEncoder(w).Encode(externalRef0.ServiceParameterData(response))
 }
 
 type CreateOrReplaceServiceParameterData201ResponseHeaders struct {
@@ -43009,7 +43001,7 @@ type CreateOrReplaceServiceParameterData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceServiceParameterData201JSONResponse struct {
-	Body    externalRef5.ServiceParameterData
+	Body    externalRef0.ServiceParameterData
 	Headers CreateOrReplaceServiceParameterData201ResponseHeaders
 }
 
@@ -43170,7 +43162,7 @@ type ReadApplicationDataChangeSubscriptionsResponseObject interface {
 	VisitReadApplicationDataChangeSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type ReadApplicationDataChangeSubscriptions200JSONResponse []externalRef5.ApplicationDataSubs
+type ReadApplicationDataChangeSubscriptions200JSONResponse []externalRef0.ApplicationDataSubs
 
 func (response ReadApplicationDataChangeSubscriptions200JSONResponse) VisitReadApplicationDataChangeSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -43299,7 +43291,7 @@ type CreateIndividualApplicationDataSubscription201ResponseHeaders struct {
 }
 
 type CreateIndividualApplicationDataSubscription201JSONResponse struct {
-	Body    externalRef5.ApplicationDataSubs
+	Body    externalRef0.ApplicationDataSubs
 	Headers CreateIndividualApplicationDataSubscription201ResponseHeaders
 }
 
@@ -43546,13 +43538,13 @@ type ReadIndividualApplicationDataSubscriptionResponseObject interface {
 	VisitReadIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReadIndividualApplicationDataSubscription200JSONResponse externalRef5.ApplicationDataSubs
+type ReadIndividualApplicationDataSubscription200JSONResponse externalRef0.ApplicationDataSubs
 
 func (response ReadIndividualApplicationDataSubscription200JSONResponse) VisitReadIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.ApplicationDataSubs(response))
+	return json.NewEncoder(w).Encode(externalRef0.ApplicationDataSubs(response))
 }
 
 type ReadIndividualApplicationDataSubscription400ApplicationProblemPlusJSONResponse struct {
@@ -43671,13 +43663,13 @@ type ReplaceIndividualApplicationDataSubscriptionResponseObject interface {
 	VisitReplaceIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReplaceIndividualApplicationDataSubscription200JSONResponse externalRef5.ApplicationDataSubs
+type ReplaceIndividualApplicationDataSubscription200JSONResponse externalRef0.ApplicationDataSubs
 
 func (response ReplaceIndividualApplicationDataSubscription200JSONResponse) VisitReplaceIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef5.ApplicationDataSubs(response))
+	return json.NewEncoder(w).Encode(externalRef0.ApplicationDataSubs(response))
 }
 
 type ReplaceIndividualApplicationDataSubscription204Response struct {
@@ -43823,7 +43815,7 @@ type CreateIndividualExposureDataSubscription201ResponseHeaders struct {
 }
 
 type CreateIndividualExposureDataSubscription201JSONResponse struct {
-	Body    externalRef6.ExposureDataSubscription
+	Body    externalRef0.ExposureDataSubscription
 	Headers CreateIndividualExposureDataSubscription201ResponseHeaders
 }
 
@@ -44071,13 +44063,13 @@ type ReplaceIndividualExposureDataSubscriptionResponseObject interface {
 	VisitReplaceIndividualExposureDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReplaceIndividualExposureDataSubscription200JSONResponse externalRef6.ExposureDataSubscription
+type ReplaceIndividualExposureDataSubscription200JSONResponse externalRef0.ExposureDataSubscription
 
 func (response ReplaceIndividualExposureDataSubscription200JSONResponse) VisitReplaceIndividualExposureDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef6.ExposureDataSubscription(response))
+	return json.NewEncoder(w).Encode(externalRef0.ExposureDataSubscription(response))
 }
 
 type ReplaceIndividualExposureDataSubscription204Response struct {
@@ -44324,13 +44316,13 @@ type QueryAccessAndMobilityDataResponseObject interface {
 	VisitQueryAccessAndMobilityDataResponse(w http.ResponseWriter) error
 }
 
-type QueryAccessAndMobilityData200JSONResponse externalRef6.AccessAndMobilityData
+type QueryAccessAndMobilityData200JSONResponse externalRef0.AccessAndMobilityData
 
 func (response QueryAccessAndMobilityData200JSONResponse) VisitQueryAccessAndMobilityDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef6.AccessAndMobilityData(response))
+	return json.NewEncoder(w).Encode(externalRef0.AccessAndMobilityData(response))
 }
 
 type QueryAccessAndMobilityData400ApplicationProblemPlusJSONResponse struct {
@@ -44588,13 +44580,13 @@ type CreateOrReplaceAccessAndMobilityDataResponseObject interface {
 	VisitCreateOrReplaceAccessAndMobilityDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceAccessAndMobilityData200JSONResponse externalRef6.AccessAndMobilityData
+type CreateOrReplaceAccessAndMobilityData200JSONResponse externalRef0.AccessAndMobilityData
 
 func (response CreateOrReplaceAccessAndMobilityData200JSONResponse) VisitCreateOrReplaceAccessAndMobilityDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef6.AccessAndMobilityData(response))
+	return json.NewEncoder(w).Encode(externalRef0.AccessAndMobilityData(response))
 }
 
 type CreateOrReplaceAccessAndMobilityData201ResponseHeaders struct {
@@ -44602,7 +44594,7 @@ type CreateOrReplaceAccessAndMobilityData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceAccessAndMobilityData201JSONResponse struct {
-	Body    externalRef6.AccessAndMobilityData
+	Body    externalRef0.AccessAndMobilityData
 	Headers CreateOrReplaceAccessAndMobilityData201ResponseHeaders
 }
 
@@ -44860,13 +44852,13 @@ type QuerySessionManagementDataResponseObject interface {
 	VisitQuerySessionManagementDataResponse(w http.ResponseWriter) error
 }
 
-type QuerySessionManagementData200JSONResponse externalRef6.PduSessionManagementData
+type QuerySessionManagementData200JSONResponse externalRef0.PduSessionManagementData
 
 func (response QuerySessionManagementData200JSONResponse) VisitQuerySessionManagementDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef6.PduSessionManagementData(response))
+	return json.NewEncoder(w).Encode(externalRef0.PduSessionManagementData(response))
 }
 
 type QuerySessionManagementData400ApplicationProblemPlusJSONResponse struct {
@@ -44986,13 +44978,13 @@ type CreateOrReplaceSessionManagementDataResponseObject interface {
 	VisitCreateOrReplaceSessionManagementDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceSessionManagementData200JSONResponse externalRef6.AccessAndMobilityData
+type CreateOrReplaceSessionManagementData200JSONResponse externalRef0.AccessAndMobilityData
 
 func (response CreateOrReplaceSessionManagementData200JSONResponse) VisitCreateOrReplaceSessionManagementDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef6.AccessAndMobilityData(response))
+	return json.NewEncoder(w).Encode(externalRef0.AccessAndMobilityData(response))
 }
 
 type CreateOrReplaceSessionManagementData201ResponseHeaders struct {
@@ -45000,7 +44992,7 @@ type CreateOrReplaceSessionManagementData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceSessionManagementData201JSONResponse struct {
-	Body    externalRef6.PduSessionManagementData
+	Body    externalRef0.PduSessionManagementData
 	Headers CreateOrReplaceSessionManagementData201ResponseHeaders
 }
 
@@ -45150,7 +45142,7 @@ type ReadBdtDataResponseObject interface {
 	VisitReadBdtDataResponse(w http.ResponseWriter) error
 }
 
-type ReadBdtData200JSONResponse []externalRef7.BdtData
+type ReadBdtData200JSONResponse []externalRef0.BdtData
 
 func (response ReadBdtData200JSONResponse) VisitReadBdtDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -45369,13 +45361,13 @@ type ReadIndividualBdtDataResponseObject interface {
 	VisitReadIndividualBdtDataResponse(w http.ResponseWriter) error
 }
 
-type ReadIndividualBdtData200JSONResponse externalRef7.BdtData
+type ReadIndividualBdtData200JSONResponse externalRef0.BdtData
 
 func (response ReadIndividualBdtData200JSONResponse) VisitReadIndividualBdtDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.BdtData(response))
+	return json.NewEncoder(w).Encode(externalRef0.BdtData(response))
 }
 
 type ReadIndividualBdtData400ApplicationProblemPlusJSONResponse struct {
@@ -45483,13 +45475,13 @@ type UpdateIndividualBdtDataResponseObject interface {
 	VisitUpdateIndividualBdtDataResponse(w http.ResponseWriter) error
 }
 
-type UpdateIndividualBdtData200JSONResponse externalRef7.BdtData
+type UpdateIndividualBdtData200JSONResponse externalRef0.BdtData
 
 func (response UpdateIndividualBdtData200JSONResponse) VisitUpdateIndividualBdtDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.BdtData(response))
+	return json.NewEncoder(w).Encode(externalRef0.BdtData(response))
 }
 
 type UpdateIndividualBdtData204Response struct {
@@ -45636,7 +45628,7 @@ type CreateIndividualBdtData201ResponseHeaders struct {
 }
 
 type CreateIndividualBdtData201JSONResponse struct {
-	Body    externalRef7.BdtData
+	Body    externalRef0.BdtData
 	Headers CreateIndividualBdtData201ResponseHeaders
 }
 
@@ -45782,20 +45774,20 @@ func (response CreateIndividualBdtDatadefaultApplicationProblemPlusJSONResponse)
 }
 
 type ReadPlmnUePolicySetRequestObject struct {
-	PlmnId string `json:"plmnId"`
+	PlmnId externalRef0.VarPlmnId `json:"plmnId"`
 }
 
 type ReadPlmnUePolicySetResponseObject interface {
 	VisitReadPlmnUePolicySetResponse(w http.ResponseWriter) error
 }
 
-type ReadPlmnUePolicySet200JSONResponse externalRef7.UePolicySet
+type ReadPlmnUePolicySet200JSONResponse externalRef0.UePolicySet
 
 func (response ReadPlmnUePolicySet200JSONResponse) VisitReadPlmnUePolicySetResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.UePolicySet(response))
+	return json.NewEncoder(w).Encode(externalRef0.UePolicySet(response))
 }
 
 type ReadPlmnUePolicySet400ApplicationProblemPlusJSONResponse struct {
@@ -45913,13 +45905,13 @@ type ReadSponsorConnectivityDataResponseObject interface {
 	VisitReadSponsorConnectivityDataResponse(w http.ResponseWriter) error
 }
 
-type ReadSponsorConnectivityData200JSONResponse externalRef7.SponsorConnectivityData
+type ReadSponsorConnectivityData200JSONResponse externalRef0.SponsorConnectivityData
 
 func (response ReadSponsorConnectivityData200JSONResponse) VisitReadSponsorConnectivityDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.SponsorConnectivityData(response))
+	return json.NewEncoder(w).Encode(externalRef0.SponsorConnectivityData(response))
 }
 
 type ReadSponsorConnectivityData204Response struct {
@@ -46039,7 +46031,7 @@ type CreateIndividualPolicyDataSubscription201ResponseHeaders struct {
 }
 
 type CreateIndividualPolicyDataSubscription201JSONResponse struct {
-	Body    externalRef7.PolicyDataSubscription
+	Body    externalRef0.PolicyDataSubscription
 	Headers CreateIndividualPolicyDataSubscription201ResponseHeaders
 }
 
@@ -46287,13 +46279,13 @@ type ReplaceIndividualPolicyDataSubscriptionResponseObject interface {
 	VisitReplaceIndividualPolicyDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReplaceIndividualPolicyDataSubscription200JSONResponse externalRef7.PolicyDataSubscription
+type ReplaceIndividualPolicyDataSubscription200JSONResponse externalRef0.PolicyDataSubscription
 
 func (response ReplaceIndividualPolicyDataSubscription200JSONResponse) VisitReplaceIndividualPolicyDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.PolicyDataSubscription(response))
+	return json.NewEncoder(w).Encode(externalRef0.PolicyDataSubscription(response))
 }
 
 type ReplaceIndividualPolicyDataSubscription204Response struct {
@@ -46434,13 +46426,13 @@ type ReadAccessAndMobilityPolicyDataResponseObject interface {
 	VisitReadAccessAndMobilityPolicyDataResponse(w http.ResponseWriter) error
 }
 
-type ReadAccessAndMobilityPolicyData200JSONResponse externalRef7.AmPolicyData
+type ReadAccessAndMobilityPolicyData200JSONResponse externalRef0.AmPolicyData
 
 func (response ReadAccessAndMobilityPolicyData200JSONResponse) VisitReadAccessAndMobilityPolicyDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.AmPolicyData(response))
+	return json.NewEncoder(w).Encode(externalRef0.AmPolicyData(response))
 }
 
 type ReadAccessAndMobilityPolicyData400ApplicationProblemPlusJSONResponse struct {
@@ -46548,7 +46540,7 @@ type ReadOperatorSpecificDataResponseObject interface {
 	VisitReadOperatorSpecificDataResponse(w http.ResponseWriter) error
 }
 
-type ReadOperatorSpecificData200JSONResponse map[string]interface{}
+type ReadOperatorSpecificData200JSONResponse map[string]externalRef0.OperatorSpecificDataContainer
 
 func (response ReadOperatorSpecificData200JSONResponse) VisitReadOperatorSpecificDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -46821,7 +46813,7 @@ type ReplaceOperatorSpecificDataResponseObject interface {
 	VisitReplaceOperatorSpecificDataResponse(w http.ResponseWriter) error
 }
 
-type ReplaceOperatorSpecificData200JSONResponse map[string]interface{}
+type ReplaceOperatorSpecificData200JSONResponse map[string]externalRef0.OperatorSpecificDataContainer
 
 func (response ReplaceOperatorSpecificData200JSONResponse) VisitReplaceOperatorSpecificDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -46969,13 +46961,13 @@ type ReadSessionManagementPolicyDataResponseObject interface {
 	VisitReadSessionManagementPolicyDataResponse(w http.ResponseWriter) error
 }
 
-type ReadSessionManagementPolicyData200JSONResponse externalRef7.SmPolicyData
+type ReadSessionManagementPolicyData200JSONResponse externalRef0.SmPolicyData
 
 func (response ReadSessionManagementPolicyData200JSONResponse) VisitReadSessionManagementPolicyDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.SmPolicyData(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmPolicyData(response))
 }
 
 type ReadSessionManagementPolicyData400ApplicationProblemPlusJSONResponse struct {
@@ -47094,13 +47086,13 @@ type UpdateSessionManagementPolicyDataResponseObject interface {
 	VisitUpdateSessionManagementPolicyDataResponse(w http.ResponseWriter) error
 }
 
-type UpdateSessionManagementPolicyData200JSONResponse externalRef7.SmPolicyData
+type UpdateSessionManagementPolicyData200JSONResponse externalRef0.SmPolicyData
 
 func (response UpdateSessionManagementPolicyData200JSONResponse) VisitUpdateSessionManagementPolicyDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.SmPolicyData(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmPolicyData(response))
 }
 
 type UpdateSessionManagementPolicyData204Response struct {
@@ -47349,13 +47341,13 @@ type ReadUsageMonitoringInformationResponseObject interface {
 	VisitReadUsageMonitoringInformationResponse(w http.ResponseWriter) error
 }
 
-type ReadUsageMonitoringInformation200JSONResponse externalRef7.UsageMonData
+type ReadUsageMonitoringInformation200JSONResponse externalRef0.UsageMonData
 
 func (response ReadUsageMonitoringInformation200JSONResponse) VisitReadUsageMonitoringInformationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.UsageMonData(response))
+	return json.NewEncoder(w).Encode(externalRef0.UsageMonData(response))
 }
 
 type ReadUsageMonitoringInformation204Response struct {
@@ -47488,7 +47480,7 @@ type CreateUsageMonitoringResource201ResponseHeaders struct {
 }
 
 type CreateUsageMonitoringResource201JSONResponse struct {
-	Body    externalRef7.UsageMonData
+	Body    externalRef0.UsageMonData
 	Headers CreateUsageMonitoringResource201ResponseHeaders
 }
 
@@ -47642,13 +47634,13 @@ type ReadUEPolicySetResponseObject interface {
 	VisitReadUEPolicySetResponse(w http.ResponseWriter) error
 }
 
-type ReadUEPolicySet200JSONResponse externalRef7.UePolicySet
+type ReadUEPolicySet200JSONResponse externalRef0.UePolicySet
 
 func (response ReadUEPolicySet200JSONResponse) VisitReadUEPolicySetResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.UePolicySet(response))
+	return json.NewEncoder(w).Encode(externalRef0.UePolicySet(response))
 }
 
 type ReadUEPolicySet400ApplicationProblemPlusJSONResponse struct {
@@ -47895,13 +47887,13 @@ type CreateOrReplaceUEPolicySetResponseObject interface {
 	VisitCreateOrReplaceUEPolicySetResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceUEPolicySet200JSONResponse externalRef7.UePolicySet
+type CreateOrReplaceUEPolicySet200JSONResponse externalRef0.UePolicySet
 
 func (response CreateOrReplaceUEPolicySet200JSONResponse) VisitCreateOrReplaceUEPolicySetResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef7.UePolicySet(response))
+	return json.NewEncoder(w).Encode(externalRef0.UePolicySet(response))
 }
 
 type CreateOrReplaceUEPolicySet201ResponseHeaders struct {
@@ -47909,7 +47901,7 @@ type CreateOrReplaceUEPolicySet201ResponseHeaders struct {
 }
 
 type CreateOrReplaceUEPolicySet201JSONResponse struct {
-	Body    externalRef7.UePolicySet
+	Body    externalRef0.UePolicySet
 	Headers CreateOrReplaceUEPolicySet201ResponseHeaders
 }
 
@@ -48059,7 +48051,7 @@ type Query5GVnGroupResponseObject interface {
 	VisitQuery5GVnGroupResponse(w http.ResponseWriter) error
 }
 
-type Query5GVnGroup200JSONResponse map[string]externalRef2.N5GVnGroupConfiguration
+type Query5GVnGroup200JSONResponse map[string]externalRef0.N5GVnGroupConfiguration
 
 func (response Query5GVnGroup200JSONResponse) VisitQuery5GVnGroupResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -48088,7 +48080,7 @@ type Query5GVnGroupInternalResponseObject interface {
 	VisitQuery5GVnGroupInternalResponse(w http.ResponseWriter) error
 }
 
-type Query5GVnGroupInternal200JSONResponse map[string]externalRef2.N5GVnGroupConfiguration
+type Query5GVnGroupInternal200JSONResponse map[string]externalRef0.N5GVnGroupConfiguration
 
 func (response Query5GVnGroupInternal200JSONResponse) VisitQuery5GVnGroupInternalResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -48117,13 +48109,13 @@ type Query5GVNGroupPPDataResponseObject interface {
 	VisitQuery5GVNGroupPPDataResponse(w http.ResponseWriter) error
 }
 
-type Query5GVNGroupPPData200JSONResponse externalRef8.Pp5gVnGroupProfileData
+type Query5GVNGroupPPData200JSONResponse externalRef0.Pp5gVnGroupProfileData
 
 func (response Query5GVNGroupPPData200JSONResponse) VisitQuery5GVNGroupPPDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.Pp5gVnGroupProfileData(response))
+	return json.NewEncoder(w).Encode(externalRef0.Pp5gVnGroupProfileData(response))
 }
 
 type Query5GVNGroupPPDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -48139,7 +48131,7 @@ func (response Query5GVNGroupPPDatadefaultApplicationProblemPlusJSONResponse) Vi
 }
 
 type Delete5GVnGroupRequestObject struct {
-	ExternalGroupId externalRef3.ExtGroupId `json:"externalGroupId"`
+	ExternalGroupId externalRef0.ExtGroupId `json:"externalGroupId"`
 }
 
 type Delete5GVnGroupResponseObject interface {
@@ -48167,20 +48159,20 @@ func (response Delete5GVnGroupdefaultApplicationProblemPlusJSONResponse) VisitDe
 }
 
 type Get5GVnGroupConfigurationRequestObject struct {
-	ExternalGroupId externalRef3.ExtGroupId `json:"externalGroupId"`
+	ExternalGroupId externalRef0.ExtGroupId `json:"externalGroupId"`
 }
 
 type Get5GVnGroupConfigurationResponseObject interface {
 	VisitGet5GVnGroupConfigurationResponse(w http.ResponseWriter) error
 }
 
-type Get5GVnGroupConfiguration200JSONResponse externalRef2.N5GVnGroupConfiguration
+type Get5GVnGroupConfiguration200JSONResponse externalRef0.N5GVnGroupConfiguration
 
 func (response Get5GVnGroupConfiguration200JSONResponse) VisitGet5GVnGroupConfigurationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef2.N5GVnGroupConfiguration(response))
+	return json.NewEncoder(w).Encode(externalRef0.N5GVnGroupConfiguration(response))
 }
 
 type Get5GVnGroupConfigurationdefaultApplicationProblemPlusJSONResponse struct {
@@ -48196,7 +48188,7 @@ func (response Get5GVnGroupConfigurationdefaultApplicationProblemPlusJSONRespons
 }
 
 type Modify5GVnGroupRequestObject struct {
-	ExternalGroupId externalRef3.ExtGroupId `json:"externalGroupId"`
+	ExternalGroupId externalRef0.ExtGroupId `json:"externalGroupId"`
 	Params          Modify5GVnGroupParams
 	Body            *Modify5GVnGroupApplicationJSONPatchPlusJSONRequestBody
 }
@@ -48244,7 +48236,7 @@ func (response Modify5GVnGroupdefaultApplicationProblemPlusJSONResponse) VisitMo
 }
 
 type Create5GVnGroupRequestObject struct {
-	ExternalGroupId externalRef3.ExtGroupId `json:"externalGroupId"`
+	ExternalGroupId externalRef0.ExtGroupId `json:"externalGroupId"`
 	Body            *Create5GVnGroupJSONRequestBody
 }
 
@@ -48252,13 +48244,13 @@ type Create5GVnGroupResponseObject interface {
 	VisitCreate5GVnGroupResponse(w http.ResponseWriter) error
 }
 
-type Create5GVnGroup201JSONResponse externalRef2.N5GVnGroupConfiguration
+type Create5GVnGroup201JSONResponse externalRef0.N5GVnGroupConfiguration
 
 func (response Create5GVnGroup201JSONResponse) VisitCreate5GVnGroupResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(201)
 
-	return json.NewEncoder(w).Encode(externalRef2.N5GVnGroupConfiguration(response))
+	return json.NewEncoder(w).Encode(externalRef0.N5GVnGroupConfiguration(response))
 }
 
 type Create5GVnGroup403ApplicationProblemPlusJSONResponse struct {
@@ -48292,13 +48284,13 @@ type GetGroupIdentifiersResponseObject interface {
 	VisitGetGroupIdentifiersResponse(w http.ResponseWriter) error
 }
 
-type GetGroupIdentifiers200JSONResponse externalRef3.GroupIdentifiers
+type GetGroupIdentifiers200JSONResponse externalRef0.GroupIdentifiers
 
 func (response GetGroupIdentifiers200JSONResponse) VisitGetGroupIdentifiersResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef3.GroupIdentifiers(response))
+	return json.NewEncoder(w).Encode(externalRef0.GroupIdentifiers(response))
 }
 
 type GetGroupIdentifiersdefaultApplicationProblemPlusJSONResponse struct {
@@ -48314,7 +48306,7 @@ func (response GetGroupIdentifiersdefaultApplicationProblemPlusJSONResponse) Vis
 }
 
 type QueryGroupEEDataRequestObject struct {
-	UeGroupId externalRef8.VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	Params    QueryGroupEEDataParams
 }
 
@@ -48322,13 +48314,13 @@ type QueryGroupEEDataResponseObject interface {
 	VisitQueryGroupEEDataResponse(w http.ResponseWriter) error
 }
 
-type QueryGroupEEData200JSONResponse externalRef8.EeGroupProfileData
+type QueryGroupEEData200JSONResponse externalRef0.EeGroupProfileData
 
 func (response QueryGroupEEData200JSONResponse) VisitQueryGroupEEDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.EeGroupProfileData(response))
+	return json.NewEncoder(w).Encode(externalRef0.EeGroupProfileData(response))
 }
 
 type QueryGroupEEDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -48344,7 +48336,7 @@ func (response QueryGroupEEDatadefaultApplicationProblemPlusJSONResponse) VisitQ
 }
 
 type QueryEeGroupSubscriptionsRequestObject struct {
-	UeGroupId externalRef8.VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	Params    QueryEeGroupSubscriptionsParams
 }
 
@@ -48352,7 +48344,7 @@ type QueryEeGroupSubscriptionsResponseObject interface {
 	VisitQueryEeGroupSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type QueryEeGroupSubscriptions200JSONResponse []externalRef8.EeSubscription
+type QueryEeGroupSubscriptions200JSONResponse []externalRef0.EeSubscription
 
 func (response QueryEeGroupSubscriptions200JSONResponse) VisitQueryEeGroupSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -48374,7 +48366,7 @@ func (response QueryEeGroupSubscriptionsdefaultApplicationProblemPlusJSONRespons
 }
 
 type CreateEeGroupSubscriptionsRequestObject struct {
-	UeGroupId externalRef8.VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	Body      *CreateEeGroupSubscriptionsJSONRequestBody
 }
 
@@ -48387,7 +48379,7 @@ type CreateEeGroupSubscriptions201ResponseHeaders struct {
 }
 
 type CreateEeGroupSubscriptions201JSONResponse struct {
-	Body    externalRef8.EeSubscription
+	Body    externalRef0.EeSubscription
 	Headers CreateEeGroupSubscriptions201ResponseHeaders
 }
 
@@ -48412,7 +48404,7 @@ func (response CreateEeGroupSubscriptionsdefaultApplicationProblemPlusJSONRespon
 }
 
 type RemoveEeGroupSubscriptionsRequestObject struct {
-	UeGroupId externalRef8.VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	SubsId    string                    `json:"subsId"`
 }
 
@@ -48441,7 +48433,7 @@ func (response RemoveEeGroupSubscriptionsdefaultApplicationProblemPlusJSONRespon
 }
 
 type QueryEeGroupSubscriptionRequestObject struct {
-	UeGroupId externalRef8.VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	SubsId    string                    `json:"subsId"`
 }
 
@@ -48449,7 +48441,7 @@ type QueryEeGroupSubscriptionResponseObject interface {
 	VisitQueryEeGroupSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type QueryEeGroupSubscription200JSONResponse []externalRef8.EeSubscription
+type QueryEeGroupSubscription200JSONResponse []externalRef0.EeSubscription
 
 func (response QueryEeGroupSubscription200JSONResponse) VisitQueryEeGroupSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -48471,7 +48463,7 @@ func (response QueryEeGroupSubscriptiondefaultApplicationProblemPlusJSONResponse
 }
 
 type ModifyEeGroupSubscriptionRequestObject struct {
-	UeGroupId externalRef8.VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	SubsId    string                    `json:"subsId"`
 	Params    ModifyEeGroupSubscriptionParams
 	Body      *ModifyEeGroupSubscriptionApplicationJSONPatchPlusJSONRequestBody
@@ -48533,7 +48525,7 @@ func (response ModifyEeGroupSubscriptiondefaultApplicationProblemPlusJSONRespons
 }
 
 type UpdateEeGroupSubscriptionsRequestObject struct {
-	UeGroupId externalRef8.VarUeGroupId `json:"ueGroupId"`
+	UeGroupId externalRef0.VarUeGroupId `json:"ueGroupId"`
 	SubsId    string                    `json:"subsId"`
 	Body      *UpdateEeGroupSubscriptionsJSONRequestBody
 }
@@ -48579,7 +48571,7 @@ type GetSharedDataResponseObject interface {
 	VisitGetSharedDataResponse(w http.ResponseWriter) error
 }
 
-type GetSharedData200JSONResponse []externalRef3.SharedData
+type GetSharedData200JSONResponse []externalRef0.SharedData
 
 func (response GetSharedData200JSONResponse) VisitGetSharedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -48645,7 +48637,7 @@ func (response GetSharedDatadefaultApplicationProblemPlusJSONResponse) VisitGetS
 }
 
 type GetIndividualSharedDataRequestObject struct {
-	SharedDataId externalRef3.SharedDataId `json:"sharedDataId"`
+	SharedDataId externalRef0.SharedDataId `json:"sharedDataId"`
 	Params       GetIndividualSharedDataParams
 }
 
@@ -48660,7 +48652,7 @@ type GetIndividualSharedData200ResponseHeaders struct {
 }
 
 type GetIndividualSharedData200JSONResponse struct {
-	Body    externalRef3.SharedData
+	Body    externalRef0.SharedData
 	Headers GetIndividualSharedData200ResponseHeaders
 }
 
@@ -48772,7 +48764,7 @@ type QuerySubsToNotifyResponseObject interface {
 	VisitQuerySubsToNotifyResponse(w http.ResponseWriter) error
 }
 
-type QuerySubsToNotify200JSONResponse []externalRef8.SubscriptionDataSubscriptions
+type QuerySubsToNotify200JSONResponse []externalRef0.SubscriptionDataSubscriptions
 
 func (response QuerySubsToNotify200JSONResponse) VisitQuerySubsToNotifyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -48806,7 +48798,7 @@ type SubscriptionDataSubscriptions201ResponseHeaders struct {
 }
 
 type SubscriptionDataSubscriptions201JSONResponse struct {
-	Body    externalRef8.SubscriptionDataSubscriptions
+	Body    externalRef0.SubscriptionDataSubscriptions
 	Headers SubscriptionDataSubscriptions201ResponseHeaders
 }
 
@@ -48866,7 +48858,7 @@ type QuerySubscriptionDataSubscriptionsResponseObject interface {
 	VisitQuerySubscriptionDataSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type QuerySubscriptionDataSubscriptions200JSONResponse []externalRef8.SubscriptionDataSubscriptions
+type QuerySubscriptionDataSubscriptions200JSONResponse []externalRef0.SubscriptionDataSubscriptions
 
 func (response QuerySubscriptionDataSubscriptions200JSONResponse) VisitQuerySubscriptionDataSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -48985,13 +48977,13 @@ type QueryAuthenticationStatusResponseObject interface {
 	VisitQueryAuthenticationStatusResponse(w http.ResponseWriter) error
 }
 
-type QueryAuthenticationStatus200JSONResponse externalRef4.AuthEvent
+type QueryAuthenticationStatus200JSONResponse externalRef0.AuthEvent
 
 func (response QueryAuthenticationStatus200JSONResponse) VisitQueryAuthenticationStatusResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef4.AuthEvent(response))
+	return json.NewEncoder(w).Encode(externalRef0.AuthEvent(response))
 }
 
 type QueryAuthenticationStatusdefaultApplicationProblemPlusJSONResponse struct {
@@ -49037,7 +49029,7 @@ func (response CreateAuthenticationStatusdefaultApplicationProblemPlusJSONRespon
 
 type DeleteIndividualAuthenticationStatusRequestObject struct {
 	UeId               externalRef0.Supi               `json:"ueId"`
-	ServingNetworkName externalRef4.ServingNetworkName `json:"servingNetworkName"`
+	ServingNetworkName externalRef0.ServingNetworkName `json:"servingNetworkName"`
 }
 
 type DeleteIndividualAuthenticationStatusResponseObject interface {
@@ -49066,7 +49058,7 @@ func (response DeleteIndividualAuthenticationStatusdefaultApplicationProblemPlus
 
 type QueryIndividualAuthenticationStatusRequestObject struct {
 	UeId               externalRef0.Supi               `json:"ueId"`
-	ServingNetworkName externalRef4.ServingNetworkName `json:"servingNetworkName"`
+	ServingNetworkName externalRef0.ServingNetworkName `json:"servingNetworkName"`
 	Params             QueryIndividualAuthenticationStatusParams
 }
 
@@ -49074,13 +49066,13 @@ type QueryIndividualAuthenticationStatusResponseObject interface {
 	VisitQueryIndividualAuthenticationStatusResponse(w http.ResponseWriter) error
 }
 
-type QueryIndividualAuthenticationStatus200JSONResponse externalRef4.AuthEvent
+type QueryIndividualAuthenticationStatus200JSONResponse externalRef0.AuthEvent
 
 func (response QueryIndividualAuthenticationStatus200JSONResponse) VisitQueryIndividualAuthenticationStatusResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef4.AuthEvent(response))
+	return json.NewEncoder(w).Encode(externalRef0.AuthEvent(response))
 }
 
 type QueryIndividualAuthenticationStatusdefaultApplicationProblemPlusJSONResponse struct {
@@ -49097,7 +49089,7 @@ func (response QueryIndividualAuthenticationStatusdefaultApplicationProblemPlusJ
 
 type CreateIndividualAuthenticationStatusRequestObject struct {
 	UeId               externalRef0.Supi               `json:"ueId"`
-	ServingNetworkName externalRef4.ServingNetworkName `json:"servingNetworkName"`
+	ServingNetworkName externalRef0.ServingNetworkName `json:"servingNetworkName"`
 	Body               *CreateIndividualAuthenticationStatusJSONRequestBody
 }
 
@@ -49134,13 +49126,13 @@ type QueryAuthSubsDataResponseObject interface {
 	VisitQueryAuthSubsDataResponse(w http.ResponseWriter) error
 }
 
-type QueryAuthSubsData200JSONResponse externalRef8.AuthenticationSubscription
+type QueryAuthSubsData200JSONResponse externalRef0.AuthenticationSubscription
 
 func (response QueryAuthSubsData200JSONResponse) VisitQueryAuthSubsDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.AuthenticationSubscription(response))
+	return json.NewEncoder(w).Encode(externalRef0.AuthenticationSubscription(response))
 }
 
 type QueryAuthSubsDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -49212,13 +49204,13 @@ type QueryContextDataResponseObject interface {
 	VisitQueryContextDataResponse(w http.ResponseWriter) error
 }
 
-type QueryContextData200JSONResponse externalRef8.ContextDataSets
+type QueryContextData200JSONResponse externalRef0.ContextDataSets
 
 func (response QueryContextData200JSONResponse) VisitQueryContextDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.ContextDataSets(response))
+	return json.NewEncoder(w).Encode(externalRef0.ContextDataSets(response))
 }
 
 type QueryContextDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -49242,13 +49234,13 @@ type QueryAmfContext3gppResponseObject interface {
 	VisitQueryAmfContext3gppResponse(w http.ResponseWriter) error
 }
 
-type QueryAmfContext3gpp200JSONResponse externalRef8.Amf3GppAccessRegistration
+type QueryAmfContext3gpp200JSONResponse externalRef0.Amf3GppAccessRegistration
 
 func (response QueryAmfContext3gpp200JSONResponse) VisitQueryAmfContext3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.Amf3GppAccessRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.Amf3GppAccessRegistration(response))
 }
 
 type QueryAmfContext3gppdefaultApplicationProblemPlusJSONResponse struct {
@@ -49325,7 +49317,7 @@ type CreateAmfContext3gpp201ResponseHeaders struct {
 }
 
 type CreateAmfContext3gpp201JSONResponse struct {
-	Body    externalRef8.Amf3GppAccessRegistration
+	Body    externalRef0.Amf3GppAccessRegistration
 	Headers CreateAmfContext3gpp201ResponseHeaders
 }
 
@@ -49366,13 +49358,13 @@ type QueryAmfContextNon3gppResponseObject interface {
 	VisitQueryAmfContextNon3gppResponse(w http.ResponseWriter) error
 }
 
-type QueryAmfContextNon3gpp200JSONResponse externalRef8.AmfNon3GppAccessRegistration
+type QueryAmfContextNon3gpp200JSONResponse externalRef0.AmfNon3GppAccessRegistration
 
 func (response QueryAmfContextNon3gpp200JSONResponse) VisitQueryAmfContextNon3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.AmfNon3GppAccessRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.AmfNon3GppAccessRegistration(response))
 }
 
 type QueryAmfContextNon3gppdefaultApplicationProblemPlusJSONResponse struct {
@@ -49449,7 +49441,7 @@ type CreateAmfContextNon3gpp201ResponseHeaders struct {
 }
 
 type CreateAmfContextNon3gpp201JSONResponse struct {
-	Body    externalRef8.Amf3GppAccessRegistration
+	Body    externalRef0.Amf3GppAccessRegistration
 	Headers CreateAmfContextNon3gpp201ResponseHeaders
 }
 
@@ -49490,7 +49482,7 @@ type QueryeesubscriptionsResponseObject interface {
 	VisitQueryeesubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type Queryeesubscriptions200JSONResponse []externalRef8.EeSubscription
+type Queryeesubscriptions200JSONResponse []externalRef0.EeSubscription
 
 func (response Queryeesubscriptions200JSONResponse) VisitQueryeesubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -49525,7 +49517,7 @@ type CreateEeSubscriptions201ResponseHeaders struct {
 }
 
 type CreateEeSubscriptions201JSONResponse struct {
-	Body    externalRef8.EeSubscription
+	Body    externalRef0.EeSubscription
 	Headers CreateEeSubscriptions201ResponseHeaders
 }
 
@@ -49587,7 +49579,7 @@ type QueryeeSubscriptionResponseObject interface {
 	VisitQueryeeSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type QueryeeSubscription200JSONResponse []externalRef8.EeSubscription
+type QueryeeSubscription200JSONResponse []externalRef0.EeSubscription
 
 func (response QueryeeSubscription200JSONResponse) VisitQueryeeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -49747,7 +49739,7 @@ type GetAmfSubscriptionInfoResponseObject interface {
 	VisitGetAmfSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type GetAmfSubscriptionInfo200JSONResponse []externalRef8.AmfSubscriptionInfo
+type GetAmfSubscriptionInfo200JSONResponse []externalRef0.AmfSubscriptionInfo
 
 func (response GetAmfSubscriptionInfo200JSONResponse) VisitGetAmfSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -49885,13 +49877,13 @@ type GetHssSubscriptionInfoResponseObject interface {
 	VisitGetHssSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type GetHssSubscriptionInfo200JSONResponse externalRef8.SmfSubscriptionInfo
+type GetHssSubscriptionInfo200JSONResponse externalRef0.SmfSubscriptionInfo
 
 func (response GetHssSubscriptionInfo200JSONResponse) VisitGetHssSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.SmfSubscriptionInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfSubscriptionInfo(response))
 }
 
 type GetHssSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
@@ -50023,13 +50015,13 @@ type GetSmfSubscriptionInfoResponseObject interface {
 	VisitGetSmfSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type GetSmfSubscriptionInfo200JSONResponse externalRef8.SmfSubscriptionInfo
+type GetSmfSubscriptionInfo200JSONResponse externalRef0.SmfSubscriptionInfo
 
 func (response GetSmfSubscriptionInfo200JSONResponse) VisitGetSmfSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.SmfSubscriptionInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfSubscriptionInfo(response))
 }
 
 type GetSmfSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
@@ -50160,13 +50152,13 @@ type QueryIpSmGwContextResponseObject interface {
 	VisitQueryIpSmGwContextResponse(w http.ResponseWriter) error
 }
 
-type QueryIpSmGwContext200JSONResponse externalRef8.IpSmGwRegistration
+type QueryIpSmGwContext200JSONResponse externalRef0.IpSmGwRegistration
 
 func (response QueryIpSmGwContext200JSONResponse) VisitQueryIpSmGwContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.IpSmGwRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.IpSmGwRegistration(response))
 }
 
 type QueryIpSmGwContextdefaultApplicationProblemPlusJSONResponse struct {
@@ -50270,13 +50262,13 @@ type QueryUeLocationResponseObject interface {
 	VisitQueryUeLocationResponse(w http.ResponseWriter) error
 }
 
-type QueryUeLocation200JSONResponse externalRef8.LocationInfo
+type QueryUeLocation200JSONResponse externalRef0.LocationInfo
 
 func (response QueryUeLocation200JSONResponse) VisitQueryUeLocationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.LocationInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.LocationInfo(response))
 }
 
 type QueryUeLocationdefaultApplicationProblemPlusJSONResponse struct {
@@ -50328,13 +50320,13 @@ type QueryMessageWaitingDataResponseObject interface {
 	VisitQueryMessageWaitingDataResponse(w http.ResponseWriter) error
 }
 
-type QueryMessageWaitingData200JSONResponse externalRef8.MessageWaitingData
+type QueryMessageWaitingData200JSONResponse externalRef0.MessageWaitingData
 
 func (response QueryMessageWaitingData200JSONResponse) VisitQueryMessageWaitingDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.MessageWaitingData(response))
+	return json.NewEncoder(w).Encode(externalRef0.MessageWaitingData(response))
 }
 
 type QueryMessageWaitingDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -50438,7 +50430,7 @@ type QuerysdmsubscriptionsResponseObject interface {
 	VisitQuerysdmsubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type Querysdmsubscriptions200JSONResponse []externalRef8.SdmSubscription
+type Querysdmsubscriptions200JSONResponse []externalRef0.SdmSubscription
 
 func (response Querysdmsubscriptions200JSONResponse) VisitQuerysdmsubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -50473,7 +50465,7 @@ type CreateSdmSubscriptions201ResponseHeaders struct {
 }
 
 type CreateSdmSubscriptions201JSONResponse struct {
-	Body    externalRef8.SdmSubscription
+	Body    externalRef0.SdmSubscription
 	Headers CreateSdmSubscriptions201ResponseHeaders
 }
 
@@ -50546,7 +50538,7 @@ type QuerysdmSubscriptionResponseObject interface {
 	VisitQuerysdmSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type QuerysdmSubscription200JSONResponse []externalRef8.SdmSubscription
+type QuerysdmSubscription200JSONResponse []externalRef0.SdmSubscription
 
 func (response QuerysdmSubscription200JSONResponse) VisitQuerysdmSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -50706,13 +50698,13 @@ type GetHssSDMSubscriptionInfoResponseObject interface {
 	VisitGetHssSDMSubscriptionInfoResponse(w http.ResponseWriter) error
 }
 
-type GetHssSDMSubscriptionInfo200JSONResponse externalRef8.SmfSubscriptionInfo
+type GetHssSDMSubscriptionInfo200JSONResponse externalRef0.SmfSubscriptionInfo
 
 func (response GetHssSDMSubscriptionInfo200JSONResponse) VisitGetHssSDMSubscriptionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.SmfSubscriptionInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfSubscriptionInfo(response))
 }
 
 type GetHssSDMSubscriptionInfodefaultApplicationProblemPlusJSONResponse struct {
@@ -50815,13 +50807,13 @@ type QuerySmfRegListResponseObject interface {
 	VisitQuerySmfRegListResponse(w http.ResponseWriter) error
 }
 
-type QuerySmfRegList200JSONResponse externalRef8.SmfRegList
+type QuerySmfRegList200JSONResponse externalRef0.SmfRegList
 
 func (response QuerySmfRegList200JSONResponse) VisitQuerySmfRegListResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.SmfRegList(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfRegList(response))
 }
 
 type QuerySmfRegListdefaultApplicationProblemPlusJSONResponse struct {
@@ -50875,13 +50867,13 @@ type QuerySmfRegistrationResponseObject interface {
 	VisitQuerySmfRegistrationResponse(w http.ResponseWriter) error
 }
 
-type QuerySmfRegistration200JSONResponse externalRef8.SmfRegistration
+type QuerySmfRegistration200JSONResponse externalRef0.SmfRegistration
 
 func (response QuerySmfRegistration200JSONResponse) VisitQuerySmfRegistrationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.SmfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmfRegistration(response))
 }
 
 type QuerySmfRegistrationdefaultApplicationProblemPlusJSONResponse struct {
@@ -50911,7 +50903,7 @@ type CreateOrUpdateSmfRegistration201ResponseHeaders struct {
 }
 
 type CreateOrUpdateSmfRegistration201JSONResponse struct {
-	Body    externalRef8.SmfRegistration
+	Body    externalRef0.SmfRegistration
 	Headers CreateOrUpdateSmfRegistration201ResponseHeaders
 }
 
@@ -50980,13 +50972,13 @@ type QuerySmsfContext3gppResponseObject interface {
 	VisitQuerySmsfContext3gppResponse(w http.ResponseWriter) error
 }
 
-type QuerySmsfContext3gpp200JSONResponse externalRef8.SmsfRegistration
+type QuerySmsfContext3gpp200JSONResponse externalRef0.SmsfRegistration
 
 func (response QuerySmsfContext3gpp200JSONResponse) VisitQuerySmsfContext3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.SmsfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmsfRegistration(response))
 }
 
 type QuerySmsfContext3gppdefaultApplicationProblemPlusJSONResponse struct {
@@ -51015,7 +51007,7 @@ type CreateSmsfContext3gpp201ResponseHeaders struct {
 }
 
 type CreateSmsfContext3gpp201JSONResponse struct {
-	Body    externalRef8.SmsfRegistration
+	Body    externalRef0.SmsfRegistration
 	Headers CreateSmsfContext3gpp201ResponseHeaders
 }
 
@@ -51084,13 +51076,13 @@ type QuerySmsfContextNon3gppResponseObject interface {
 	VisitQuerySmsfContextNon3gppResponse(w http.ResponseWriter) error
 }
 
-type QuerySmsfContextNon3gpp200JSONResponse externalRef8.SmsfRegistration
+type QuerySmsfContextNon3gpp200JSONResponse externalRef0.SmsfRegistration
 
 func (response QuerySmsfContextNon3gpp200JSONResponse) VisitQuerySmsfContextNon3gppResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.SmsfRegistration(response))
+	return json.NewEncoder(w).Encode(externalRef0.SmsfRegistration(response))
 }
 
 type QuerySmsfContextNon3gppdefaultApplicationProblemPlusJSONResponse struct {
@@ -51119,7 +51111,7 @@ type CreateSmsfContextNon3gpp201ResponseHeaders struct {
 }
 
 type CreateSmsfContextNon3gpp201JSONResponse struct {
-	Body    externalRef8.SmsfRegistration
+	Body    externalRef0.SmsfRegistration
 	Headers CreateSmsfContextNon3gpp201ResponseHeaders
 }
 
@@ -51167,7 +51159,7 @@ type QueryCoverageRestrictionData200ResponseHeaders struct {
 }
 
 type QueryCoverageRestrictionData200JSONResponse struct {
-	Body    externalRef8.EnhancedCoverageRestrictionData
+	Body    externalRef0.EnhancedCoverageRestrictionData
 	Headers QueryCoverageRestrictionData200ResponseHeaders
 }
 
@@ -51208,13 +51200,13 @@ type QueryEEDataResponseObject interface {
 	VisitQueryEEDataResponse(w http.ResponseWriter) error
 }
 
-type QueryEEData200JSONResponse externalRef8.EeProfileData
+type QueryEEData200JSONResponse externalRef0.EeProfileData
 
 func (response QueryEEData200JSONResponse) VisitQueryEEDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.EeProfileData(response))
+	return json.NewEncoder(w).Encode(externalRef0.EeProfileData(response))
 }
 
 type QueryEEDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -51245,7 +51237,7 @@ type GetIdentityData200ResponseHeaders struct {
 }
 
 type GetIdentityData200JSONResponse struct {
-	Body    externalRef8.IdentityData
+	Body    externalRef0.IdentityData
 	Headers GetIdentityData200ResponseHeaders
 }
 
@@ -51293,7 +51285,7 @@ type QueryLcsMoData200ResponseHeaders struct {
 }
 
 type QueryLcsMoData200JSONResponse struct {
-	Body    externalRef8.LcsMoData
+	Body    externalRef0.LcsMoData
 	Headers QueryLcsMoData200ResponseHeaders
 }
 
@@ -51341,7 +51333,7 @@ type QueryLcsPrivacyData200ResponseHeaders struct {
 }
 
 type QueryLcsPrivacyData200JSONResponse struct {
-	Body    externalRef8.LcsPrivacyData
+	Body    externalRef0.LcsPrivacyData
 	Headers QueryLcsPrivacyData200ResponseHeaders
 }
 
@@ -51389,7 +51381,7 @@ type GetNiddAuData200ResponseHeaders struct {
 }
 
 type GetNiddAuData200JSONResponse struct {
-	Body    externalRef8.AuthorizationData
+	Body    externalRef0.AuthorizationData
 	Headers GetNiddAuData200ResponseHeaders
 }
 
@@ -51466,7 +51458,7 @@ type QueryOperSpecData200ResponseHeaders struct {
 }
 
 type QueryOperSpecData200JSONResponse struct {
-	Body    map[string]externalRef8.OperatorSpecificDataContainer
+	Body    map[string]externalRef0.OperatorSpecificDataContainer
 	Headers QueryOperSpecData200ResponseHeaders
 }
 
@@ -51562,7 +51554,7 @@ type GetppData200ResponseHeaders struct {
 }
 
 type GetppData200JSONResponse struct {
-	Body    externalRef8.PpData
+	Body    externalRef0.PpData
 	Headers GetppData200ResponseHeaders
 }
 
@@ -51660,13 +51652,13 @@ type QueryPPDataResponseObject interface {
 	VisitQueryPPDataResponse(w http.ResponseWriter) error
 }
 
-type QueryPPData200JSONResponse externalRef8.PpProfileData
+type QueryPPData200JSONResponse externalRef0.PpProfileData
 
 func (response QueryPPData200JSONResponse) VisitQueryPPDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.PpProfileData(response))
+	return json.NewEncoder(w).Encode(externalRef0.PpProfileData(response))
 }
 
 type QueryPPDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -51690,13 +51682,13 @@ type QueryAuthSoRResponseObject interface {
 	VisitQueryAuthSoRResponse(w http.ResponseWriter) error
 }
 
-type QueryAuthSoR200JSONResponse externalRef8.SorData
+type QueryAuthSoR200JSONResponse externalRef0.SorData
 
 func (response QueryAuthSoR200JSONResponse) VisitQueryAuthSoRResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.SorData(response))
+	return json.NewEncoder(w).Encode(externalRef0.SorData(response))
 }
 
 type QueryAuthSoRdefaultApplicationProblemPlusJSONResponse struct {
@@ -51750,13 +51742,13 @@ type QueryCagAckResponseObject interface {
 	VisitQueryCagAckResponse(w http.ResponseWriter) error
 }
 
-type QueryCagAck200JSONResponse externalRef8.CagAckData
+type QueryCagAck200JSONResponse externalRef0.CagAckData
 
 func (response QueryCagAck200JSONResponse) VisitQueryCagAckResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.CagAckData(response))
+	return json.NewEncoder(w).Encode(externalRef0.CagAckData(response))
 }
 
 type QueryCagAckdefaultApplicationProblemPlusJSONResponse struct {
@@ -51810,13 +51802,13 @@ type QueryNssaiAckResponseObject interface {
 	VisitQueryNssaiAckResponse(w http.ResponseWriter) error
 }
 
-type QueryNssaiAck200JSONResponse externalRef8.NssaiAckData
+type QueryNssaiAck200JSONResponse externalRef0.NssaiAckData
 
 func (response QueryNssaiAck200JSONResponse) VisitQueryNssaiAckResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.NssaiAckData(response))
+	return json.NewEncoder(w).Encode(externalRef0.NssaiAckData(response))
 }
 
 type QueryNssaiAckdefaultApplicationProblemPlusJSONResponse struct {
@@ -51870,13 +51862,13 @@ type QueryAuthUPUResponseObject interface {
 	VisitQueryAuthUPUResponse(w http.ResponseWriter) error
 }
 
-type QueryAuthUPU200JSONResponse externalRef8.UpuData
+type QueryAuthUPU200JSONResponse externalRef0.UpuData
 
 func (response QueryAuthUPU200JSONResponse) VisitQueryAuthUPUResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.UpuData(response))
+	return json.NewEncoder(w).Encode(externalRef0.UpuData(response))
 }
 
 type QueryAuthUPUdefaultApplicationProblemPlusJSONResponse struct {
@@ -51937,7 +51929,7 @@ type QueryV2xData200ResponseHeaders struct {
 }
 
 type QueryV2xData200JSONResponse struct {
-	Body    externalRef8.V2xSubscriptionData
+	Body    externalRef0.V2xSubscriptionData
 	Headers QueryV2xData200ResponseHeaders
 }
 
@@ -51971,7 +51963,7 @@ func (response QueryV2xDatadefaultApplicationProblemPlusJSONResponse) VisitQuery
 
 type QueryProvisionedDataRequestObject struct {
 	UeId          externalRef0.VarUeId   `json:"ueId"`
-	ServingPlmnId externalRef8.VarPlmnId `json:"servingPlmnId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QueryProvisionedDataParams
 }
 
@@ -51979,13 +51971,13 @@ type QueryProvisionedDataResponseObject interface {
 	VisitQueryProvisionedDataResponse(w http.ResponseWriter) error
 }
 
-type QueryProvisionedData200JSONResponse externalRef8.ProvisionedDataSets
+type QueryProvisionedData200JSONResponse externalRef0.ProvisionedDataSets
 
 func (response QueryProvisionedData200JSONResponse) VisitQueryProvisionedDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef8.ProvisionedDataSets(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProvisionedDataSets(response))
 }
 
 type QueryProvisionedDatadefaultApplicationProblemPlusJSONResponse struct {
@@ -52002,7 +51994,7 @@ func (response QueryProvisionedDatadefaultApplicationProblemPlusJSONResponse) Vi
 
 type QueryAmDataRequestObject struct {
 	UeId          externalRef0.VarUeId   `json:"ueId"`
-	ServingPlmnId externalRef8.VarPlmnId `json:"servingPlmnId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QueryAmDataParams
 }
 
@@ -52017,7 +52009,7 @@ type QueryAmData200ResponseHeaders struct {
 }
 
 type QueryAmData200JSONResponse struct {
-	Body    externalRef8.AccessAndMobilitySubscriptionData
+	Body    externalRef0.AccessAndMobilitySubscriptionData
 	Headers QueryAmData200ResponseHeaders
 }
 
@@ -52051,7 +52043,7 @@ func (response QueryAmDatadefaultApplicationProblemPlusJSONResponse) VisitQueryA
 
 type QueryLcsBcaDataRequestObject struct {
 	UeId          externalRef0.VarUeId   `json:"ueId"`
-	ServingPlmnId externalRef8.VarPlmnId `json:"servingPlmnId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QueryLcsBcaDataParams
 }
 
@@ -52066,7 +52058,7 @@ type QueryLcsBcaData200ResponseHeaders struct {
 }
 
 type QueryLcsBcaData200JSONResponse struct {
-	Body    externalRef8.LcsBroadcastAssistanceTypesData
+	Body    externalRef0.LcsBroadcastAssistanceTypesData
 	Headers QueryLcsBcaData200ResponseHeaders
 }
 
@@ -52100,7 +52092,7 @@ func (response QueryLcsBcaDatadefaultApplicationProblemPlusJSONResponse) VisitQu
 
 type QuerySmDataRequestObject struct {
 	UeId          externalRef0.VarUeId   `json:"ueId"`
-	ServingPlmnId externalRef8.VarPlmnId `json:"servingPlmnId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QuerySmDataParams
 }
 
@@ -52115,7 +52107,7 @@ type QuerySmData200ResponseHeaders struct {
 }
 
 type QuerySmData200JSONResponse struct {
-	Body    []externalRef8.SessionManagementSubscriptionData
+	Body    []externalRef0.SessionManagementSubscriptionData
 	Headers QuerySmData200ResponseHeaders
 }
 
@@ -52149,7 +52141,7 @@ func (response QuerySmDatadefaultApplicationProblemPlusJSONResponse) VisitQueryS
 
 type QuerySmfSelectDataRequestObject struct {
 	UeId          externalRef0.VarUeId   `json:"ueId"`
-	ServingPlmnId externalRef8.VarPlmnId `json:"servingPlmnId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QuerySmfSelectDataParams
 }
 
@@ -52164,7 +52156,7 @@ type QuerySmfSelectData200ResponseHeaders struct {
 }
 
 type QuerySmfSelectData200JSONResponse struct {
-	Body    externalRef8.SmfSelectionSubscriptionData
+	Body    externalRef0.SmfSelectionSubscriptionData
 	Headers QuerySmfSelectData200ResponseHeaders
 }
 
@@ -52198,7 +52190,7 @@ func (response QuerySmfSelectDatadefaultApplicationProblemPlusJSONResponse) Visi
 
 type QuerySmsDataRequestObject struct {
 	UeId          externalRef0.VarUeId   `json:"ueId"`
-	ServingPlmnId externalRef8.VarPlmnId `json:"servingPlmnId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QuerySmsDataParams
 }
 
@@ -52213,7 +52205,7 @@ type QuerySmsData200ResponseHeaders struct {
 }
 
 type QuerySmsData200JSONResponse struct {
-	Body    externalRef8.SmsSubscriptionData
+	Body    externalRef0.SmsSubscriptionData
 	Headers QuerySmsData200ResponseHeaders
 }
 
@@ -52247,7 +52239,7 @@ func (response QuerySmsDatadefaultApplicationProblemPlusJSONResponse) VisitQuery
 
 type QuerySmsMngDataRequestObject struct {
 	UeId          externalRef0.VarUeId   `json:"ueId"`
-	ServingPlmnId externalRef8.VarPlmnId `json:"servingPlmnId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QuerySmsMngDataParams
 }
 
@@ -52262,7 +52254,7 @@ type QuerySmsMngData200ResponseHeaders struct {
 }
 
 type QuerySmsMngData200JSONResponse struct {
-	Body    externalRef8.SmsManagementSubscriptionData
+	Body    externalRef0.SmsManagementSubscriptionData
 	Headers QuerySmsMngData200ResponseHeaders
 }
 
@@ -52296,7 +52288,7 @@ func (response QuerySmsMngDatadefaultApplicationProblemPlusJSONResponse) VisitQu
 
 type QueryTraceDataRequestObject struct {
 	UeId          externalRef0.VarUeId   `json:"ueId"`
-	ServingPlmnId externalRef8.VarPlmnId `json:"servingPlmnId"`
+	ServingPlmnId externalRef0.VarPlmnId `json:"servingPlmnId"`
 	Params        QueryTraceDataParams
 }
 
@@ -54263,7 +54255,7 @@ func (sh *strictHandler) CreateIndividualBdtData(ctx *gin.Context, bdtReferenceI
 }
 
 // ReadPlmnUePolicySet operation middleware
-func (sh *strictHandler) ReadPlmnUePolicySet(ctx *gin.Context, plmnId string) {
+func (sh *strictHandler) ReadPlmnUePolicySet(ctx *gin.Context, plmnId externalRef0.VarPlmnId) {
 	var request ReadPlmnUePolicySetRequestObject
 
 	request.PlmnId = plmnId
@@ -54872,7 +54864,7 @@ func (sh *strictHandler) Query5GVNGroupPPData(ctx *gin.Context, params Query5GVN
 }
 
 // Delete5GVnGroup operation middleware
-func (sh *strictHandler) Delete5GVnGroup(ctx *gin.Context, externalGroupId externalRef3.ExtGroupId) {
+func (sh *strictHandler) Delete5GVnGroup(ctx *gin.Context, externalGroupId externalRef0.ExtGroupId) {
 	var request Delete5GVnGroupRequestObject
 
 	request.ExternalGroupId = externalGroupId
@@ -54899,7 +54891,7 @@ func (sh *strictHandler) Delete5GVnGroup(ctx *gin.Context, externalGroupId exter
 }
 
 // Get5GVnGroupConfiguration operation middleware
-func (sh *strictHandler) Get5GVnGroupConfiguration(ctx *gin.Context, externalGroupId externalRef3.ExtGroupId) {
+func (sh *strictHandler) Get5GVnGroupConfiguration(ctx *gin.Context, externalGroupId externalRef0.ExtGroupId) {
 	var request Get5GVnGroupConfigurationRequestObject
 
 	request.ExternalGroupId = externalGroupId
@@ -54926,7 +54918,7 @@ func (sh *strictHandler) Get5GVnGroupConfiguration(ctx *gin.Context, externalGro
 }
 
 // Modify5GVnGroup operation middleware
-func (sh *strictHandler) Modify5GVnGroup(ctx *gin.Context, externalGroupId externalRef3.ExtGroupId, params Modify5GVnGroupParams) {
+func (sh *strictHandler) Modify5GVnGroup(ctx *gin.Context, externalGroupId externalRef0.ExtGroupId, params Modify5GVnGroupParams) {
 	var request Modify5GVnGroupRequestObject
 
 	request.ExternalGroupId = externalGroupId
@@ -54962,7 +54954,7 @@ func (sh *strictHandler) Modify5GVnGroup(ctx *gin.Context, externalGroupId exter
 }
 
 // Create5GVnGroup operation middleware
-func (sh *strictHandler) Create5GVnGroup(ctx *gin.Context, externalGroupId externalRef3.ExtGroupId) {
+func (sh *strictHandler) Create5GVnGroup(ctx *gin.Context, externalGroupId externalRef0.ExtGroupId) {
 	var request Create5GVnGroupRequestObject
 
 	request.ExternalGroupId = externalGroupId
@@ -55024,7 +55016,7 @@ func (sh *strictHandler) GetGroupIdentifiers(ctx *gin.Context, params GetGroupId
 }
 
 // QueryGroupEEData operation middleware
-func (sh *strictHandler) QueryGroupEEData(ctx *gin.Context, ueGroupId externalRef8.VarUeGroupId, params QueryGroupEEDataParams) {
+func (sh *strictHandler) QueryGroupEEData(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, params QueryGroupEEDataParams) {
 	var request QueryGroupEEDataRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -55052,7 +55044,7 @@ func (sh *strictHandler) QueryGroupEEData(ctx *gin.Context, ueGroupId externalRe
 }
 
 // QueryEeGroupSubscriptions operation middleware
-func (sh *strictHandler) QueryEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef8.VarUeGroupId, params QueryEeGroupSubscriptionsParams) {
+func (sh *strictHandler) QueryEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, params QueryEeGroupSubscriptionsParams) {
 	var request QueryEeGroupSubscriptionsRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -55080,7 +55072,7 @@ func (sh *strictHandler) QueryEeGroupSubscriptions(ctx *gin.Context, ueGroupId e
 }
 
 // CreateEeGroupSubscriptions operation middleware
-func (sh *strictHandler) CreateEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef8.VarUeGroupId) {
+func (sh *strictHandler) CreateEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId) {
 	var request CreateEeGroupSubscriptionsRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -55115,7 +55107,7 @@ func (sh *strictHandler) CreateEeGroupSubscriptions(ctx *gin.Context, ueGroupId 
 }
 
 // RemoveEeGroupSubscriptions operation middleware
-func (sh *strictHandler) RemoveEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef8.VarUeGroupId, subsId string) {
+func (sh *strictHandler) RemoveEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string) {
 	var request RemoveEeGroupSubscriptionsRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -55143,7 +55135,7 @@ func (sh *strictHandler) RemoveEeGroupSubscriptions(ctx *gin.Context, ueGroupId 
 }
 
 // QueryEeGroupSubscription operation middleware
-func (sh *strictHandler) QueryEeGroupSubscription(ctx *gin.Context, ueGroupId externalRef8.VarUeGroupId, subsId string) {
+func (sh *strictHandler) QueryEeGroupSubscription(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string) {
 	var request QueryEeGroupSubscriptionRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -55171,7 +55163,7 @@ func (sh *strictHandler) QueryEeGroupSubscription(ctx *gin.Context, ueGroupId ex
 }
 
 // ModifyEeGroupSubscription operation middleware
-func (sh *strictHandler) ModifyEeGroupSubscription(ctx *gin.Context, ueGroupId externalRef8.VarUeGroupId, subsId string, params ModifyEeGroupSubscriptionParams) {
+func (sh *strictHandler) ModifyEeGroupSubscription(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string, params ModifyEeGroupSubscriptionParams) {
 	var request ModifyEeGroupSubscriptionRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -55208,7 +55200,7 @@ func (sh *strictHandler) ModifyEeGroupSubscription(ctx *gin.Context, ueGroupId e
 }
 
 // UpdateEeGroupSubscriptions operation middleware
-func (sh *strictHandler) UpdateEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef8.VarUeGroupId, subsId string) {
+func (sh *strictHandler) UpdateEeGroupSubscriptions(ctx *gin.Context, ueGroupId externalRef0.VarUeGroupId, subsId string) {
 	var request UpdateEeGroupSubscriptionsRequestObject
 
 	request.UeGroupId = ueGroupId
@@ -55271,7 +55263,7 @@ func (sh *strictHandler) GetSharedData(ctx *gin.Context, params GetSharedDataPar
 }
 
 // GetIndividualSharedData operation middleware
-func (sh *strictHandler) GetIndividualSharedData(ctx *gin.Context, sharedDataId externalRef3.SharedDataId, params GetIndividualSharedDataParams) {
+func (sh *strictHandler) GetIndividualSharedData(ctx *gin.Context, sharedDataId externalRef0.SharedDataId, params GetIndividualSharedDataParams) {
 	var request GetIndividualSharedDataRequestObject
 
 	request.SharedDataId = sharedDataId
@@ -55566,7 +55558,7 @@ func (sh *strictHandler) CreateAuthenticationStatus(ctx *gin.Context, ueId exter
 }
 
 // DeleteIndividualAuthenticationStatus operation middleware
-func (sh *strictHandler) DeleteIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName) {
+func (sh *strictHandler) DeleteIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName) {
 	var request DeleteIndividualAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -55594,7 +55586,7 @@ func (sh *strictHandler) DeleteIndividualAuthenticationStatus(ctx *gin.Context, 
 }
 
 // QueryIndividualAuthenticationStatus operation middleware
-func (sh *strictHandler) QueryIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName, params QueryIndividualAuthenticationStatusParams) {
+func (sh *strictHandler) QueryIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName, params QueryIndividualAuthenticationStatusParams) {
 	var request QueryIndividualAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -55623,7 +55615,7 @@ func (sh *strictHandler) QueryIndividualAuthenticationStatus(ctx *gin.Context, u
 }
 
 // CreateIndividualAuthenticationStatus operation middleware
-func (sh *strictHandler) CreateIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef4.ServingNetworkName) {
+func (sh *strictHandler) CreateIndividualAuthenticationStatus(ctx *gin.Context, ueId externalRef0.Supi, servingNetworkName externalRef0.ServingNetworkName) {
 	var request CreateIndividualAuthenticationStatusRequestObject
 
 	request.UeId = ueId
@@ -58063,7 +58055,7 @@ func (sh *strictHandler) QueryV2xData(ctx *gin.Context, ueId externalRef0.VarUeI
 }
 
 // QueryProvisionedData operation middleware
-func (sh *strictHandler) QueryProvisionedData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QueryProvisionedDataParams) {
+func (sh *strictHandler) QueryProvisionedData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryProvisionedDataParams) {
 	var request QueryProvisionedDataRequestObject
 
 	request.UeId = ueId
@@ -58092,7 +58084,7 @@ func (sh *strictHandler) QueryProvisionedData(ctx *gin.Context, ueId externalRef
 }
 
 // QueryAmData operation middleware
-func (sh *strictHandler) QueryAmData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QueryAmDataParams) {
+func (sh *strictHandler) QueryAmData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryAmDataParams) {
 	var request QueryAmDataRequestObject
 
 	request.UeId = ueId
@@ -58121,7 +58113,7 @@ func (sh *strictHandler) QueryAmData(ctx *gin.Context, ueId externalRef0.VarUeId
 }
 
 // QueryLcsBcaData operation middleware
-func (sh *strictHandler) QueryLcsBcaData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QueryLcsBcaDataParams) {
+func (sh *strictHandler) QueryLcsBcaData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryLcsBcaDataParams) {
 	var request QueryLcsBcaDataRequestObject
 
 	request.UeId = ueId
@@ -58150,7 +58142,7 @@ func (sh *strictHandler) QueryLcsBcaData(ctx *gin.Context, ueId externalRef0.Var
 }
 
 // QuerySmData operation middleware
-func (sh *strictHandler) QuerySmData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QuerySmDataParams) {
+func (sh *strictHandler) QuerySmData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmDataParams) {
 	var request QuerySmDataRequestObject
 
 	request.UeId = ueId
@@ -58179,7 +58171,7 @@ func (sh *strictHandler) QuerySmData(ctx *gin.Context, ueId externalRef0.VarUeId
 }
 
 // QuerySmfSelectData operation middleware
-func (sh *strictHandler) QuerySmfSelectData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QuerySmfSelectDataParams) {
+func (sh *strictHandler) QuerySmfSelectData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmfSelectDataParams) {
 	var request QuerySmfSelectDataRequestObject
 
 	request.UeId = ueId
@@ -58208,7 +58200,7 @@ func (sh *strictHandler) QuerySmfSelectData(ctx *gin.Context, ueId externalRef0.
 }
 
 // QuerySmsData operation middleware
-func (sh *strictHandler) QuerySmsData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QuerySmsDataParams) {
+func (sh *strictHandler) QuerySmsData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmsDataParams) {
 	var request QuerySmsDataRequestObject
 
 	request.UeId = ueId
@@ -58237,7 +58229,7 @@ func (sh *strictHandler) QuerySmsData(ctx *gin.Context, ueId externalRef0.VarUeI
 }
 
 // QuerySmsMngData operation middleware
-func (sh *strictHandler) QuerySmsMngData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QuerySmsMngDataParams) {
+func (sh *strictHandler) QuerySmsMngData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QuerySmsMngDataParams) {
 	var request QuerySmsMngDataRequestObject
 
 	request.UeId = ueId
@@ -58266,7 +58258,7 @@ func (sh *strictHandler) QuerySmsMngData(ctx *gin.Context, ueId externalRef0.Var
 }
 
 // QueryTraceData operation middleware
-func (sh *strictHandler) QueryTraceData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef8.VarPlmnId, params QueryTraceDataParams) {
+func (sh *strictHandler) QueryTraceData(ctx *gin.Context, ueId externalRef0.VarUeId, servingPlmnId externalRef0.VarPlmnId, params QueryTraceDataParams) {
 	var request QueryTraceDataRequestObject
 
 	request.UeId = ueId

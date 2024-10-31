@@ -17,20 +17,18 @@ package openapi
 import (
 	"errors"
 	"fmt"
-	"strings"
 
 	"gopkg.in/yaml.v3"
 )
 
 type baseRef struct {
-	Ref         string `yaml:"$ref"`
-	Description string `yaml:"description,omitempty"`
-	MinItems    int    `yaml:"minItems,omitempty"`
+	Ref         Reference `yaml:"$ref"`
+	Description string    `yaml:"description,omitempty"`
+	MinItems    int       `yaml:"minItems,omitempty"`
 }
 
 type Ref[T any] struct {
-	RefFile     string
-	RefPointer  string
+	Ref         Reference
 	Description string
 	MinItems    int
 	Value       *T
@@ -42,28 +40,21 @@ var _ yaml.Marshaler = Ref[int]{}
 var _ yaml.Unmarshaler = &Ref[int]{}
 
 func (r Ref[T]) IsZero() bool {
-	return r.RefFile == "" && r.RefPointer == "" && r.Value == nil
+	return r.Ref.IsZero() && r.Value == nil
 }
 
 func (r Ref[T]) HasRef() bool {
-	return r.RefPointer != ""
-}
-
-func (r Ref[T]) Ref() string {
-	if r.HasRef() {
-		return r.RefFile + "#" + r.RefPointer
-	}
-	return ""
+	return !r.Ref.IsZero()
 }
 
 func (r Ref[T]) MarshalYAML() (interface{}, error) {
 	if !r.HasRef() {
 		return r.Value, nil
 	}
-	ref := r.Ref()
+	ref := r.Ref
 	if r.CurFile != nil {
-		if r.RefFile == *r.CurFile {
-			ref = "#" + r.RefPointer
+		if ref.Path == *r.CurFile {
+			ref.Path = ""
 		}
 	}
 	return baseRef{Ref: ref, Description: r.Description, MinItems: r.MinItems}, nil
@@ -71,13 +62,8 @@ func (r Ref[T]) MarshalYAML() (interface{}, error) {
 
 func (r *Ref[T]) UnmarshalYAML(value *yaml.Node) error {
 	var rNew baseRef
-	if err := value.Decode(&rNew); err == nil && rNew.Ref != "" {
-		refSplit := strings.Split(rNew.Ref, "#")
-		if len(refSplit) != 2 || refSplit[1] == "" {
-			return fmt.Errorf("invalid ref %s", rNew.Ref)
-		}
-		r.RefFile = refSplit[0]
-		r.RefPointer = refSplit[1]
+	if err := value.Decode(&rNew); err == nil && !rNew.Ref.IsZero() {
+		r.Ref = rNew.Ref
 		r.Description = rNew.Description
 		r.MinItems = rNew.MinItems
 		return nil
@@ -106,7 +92,7 @@ func (r *Ref[T]) GetFromJsonPointerSub(p jsonPointer) (any, error) {
 	switch p[0] {
 	case "$ref":
 		if len(p) == 1 {
-			return r.Ref(), nil
+			return r.Ref.String(), nil
 		} else {
 			return nil, errors.New("cannot traverse type string")
 		}

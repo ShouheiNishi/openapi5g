@@ -22,7 +22,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
+	"github.com/ShouheiNishi/openapi5g/models"
 )
 
 func ExtractBodyAndHttpResponse(v any) (body []byte, httpResponse *http.Response, err error) {
@@ -77,7 +77,7 @@ pointerLoop:
 	return
 }
 
-func ExtractStatusCodeAndProblemDetails(v any) (statusCode int, problemDetails *commondata.ProblemDetails, err error) {
+func ExtractStatusCodeAndProblemDetails(v any) (statusCode int, problemDetails *models.ProblemDetails, err error) {
 	body, httpResponse, err := ExtractBodyAndHttpResponse(v)
 	if err != nil {
 		return 0, nil, err
@@ -97,7 +97,7 @@ func ExtractStatusCodeAndProblemDetails(v any) (statusCode int, problemDetails *
 		return statusCode, nil, errors.New("empty body")
 	}
 
-	var pd commondata.ProblemDetails
+	var pd models.ProblemDetails
 	if err := json.Unmarshal(body, &pd); err != nil {
 		return statusCode, nil, err
 	}

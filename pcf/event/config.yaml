@@ -8,8 +8,5 @@ generate:
 output-options:
   skip-prune: true
 import-mapping:
-  TS29508_Nsmf_EventExposure.yaml: github.com/ShouheiNishi/openapi5g/smf/event
-  TS29512_Npcf_SMPolicyControl.yaml: github.com/ShouheiNishi/openapi5g/pcf/SMpolicy
-  TS29514_Npcf_PolicyAuthorization.yaml: github.com/ShouheiNishi/openapi5g/pcf/authorization
-  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/models
 output: event.go

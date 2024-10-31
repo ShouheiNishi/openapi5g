@@ -15,12 +15,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/amf/event"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef2 "github.com/ShouheiNishi/openapi5g/nrf/management"
-	externalRef3 "github.com/ShouheiNishi/openapi5g/nssf/selection"
-	externalRef4 "github.com/ShouheiNishi/openapi5g/pcf/AMpolicy"
-	externalRef5 "github.com/ShouheiNishi/openapi5g/udm/sdm"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -31,1174 +26,130 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// Defines values for CipheringAlgorithm.
-const (
-	NEA0 CipheringAlgorithm = "NEA0"
-	NEA1 CipheringAlgorithm = "NEA1"
-	NEA2 CipheringAlgorithm = "NEA2"
-	NEA3 CipheringAlgorithm = "NEA3"
-)
-
-// Defines values for EpsNasCipheringAlgorithm.
-const (
-	EEA0 EpsNasCipheringAlgorithm = "EEA0"
-	EEA1 EpsNasCipheringAlgorithm = "EEA1"
-	EEA2 EpsNasCipheringAlgorithm = "EEA2"
-	EEA3 EpsNasCipheringAlgorithm = "EEA3"
-)
-
-// Defines values for EpsNasIntegrityAlgorithm.
-const (
-	EIA0 EpsNasIntegrityAlgorithm = "EIA0"
-	EIA1 EpsNasIntegrityAlgorithm = "EIA1"
-	EIA2 EpsNasIntegrityAlgorithm = "EIA2"
-	EIA3 EpsNasIntegrityAlgorithm = "EIA3"
-)
-
-// Defines values for IntegrityAlgorithm.
-const (
-	NIA0 IntegrityAlgorithm = "NIA0"
-	NIA1 IntegrityAlgorithm = "NIA1"
-	NIA2 IntegrityAlgorithm = "NIA2"
-	NIA3 IntegrityAlgorithm = "NIA3"
-)
-
-// Defines values for KeyAmfType.
-const (
-	KAMF      KeyAmfType = "KAMF"
-	KPRIMEAMF KeyAmfType = "KPRIMEAMF"
-)
-
-// Defines values for N1MessageClass.
-const (
-	N1MessageClassLCS   N1MessageClass = "LCS"
-	N1MessageClassLPP   N1MessageClass = "LPP"
-	N1MessageClassN5GMM N1MessageClass = "5GMM"
-	N1MessageClassSM    N1MessageClass = "SM"
-	N1MessageClassSMS   N1MessageClass = "SMS"
-	N1MessageClassUPDP  N1MessageClass = "UPDP"
-)
-
-// Defines values for N1N2MessageTransferCause.
-const (
-	ATTEMPTINGTOREACHUE                N1N2MessageTransferCause = "ATTEMPTING_TO_REACH_UE"
-	N1MSGNOTTRANSFERRED                N1N2MessageTransferCause = "N1_MSG_NOT_TRANSFERRED"
-	N1N2TRANSFERINITIATED              N1N2MessageTransferCause = "N1_N2_TRANSFER_INITIATED"
-	TEMPORARYREJECTHANDOVERONGOING     N1N2MessageTransferCause = "TEMPORARY_REJECT_HANDOVER_ONGOING"
-	TEMPORARYREJECTREGISTRATIONONGOING N1N2MessageTransferCause = "TEMPORARY_REJECT_REGISTRATION_ONGOING"
-	UENOTREACHABLEFORSESSION           N1N2MessageTransferCause = "UE_NOT_REACHABLE_FOR_SESSION"
-	UENOTRESPONDING                    N1N2MessageTransferCause = "UE_NOT_RESPONDING"
-	WAITINGFORASYNCHRONOUSTRANSFER     N1N2MessageTransferCause = "WAITING_FOR_ASYNCHRONOUS_TRANSFER"
-)
-
-// Defines values for N2InfoNotifyReason.
-const (
-	HANDOVERCOMPLETED N2InfoNotifyReason = "HANDOVER_COMPLETED"
-)
-
-// Defines values for N2InformationClass.
-const (
-	N2InformationClassNRPPa   N2InformationClass = "NRPPa"
-	N2InformationClassPWS     N2InformationClass = "PWS"
-	N2InformationClassPWSBCAL N2InformationClass = "PWS-BCAL"
-	N2InformationClassPWSRF   N2InformationClass = "PWS-RF"
-	N2InformationClassRAN     N2InformationClass = "RAN"
-	N2InformationClassSM      N2InformationClass = "SM"
-	N2InformationClassV2X     N2InformationClass = "V2X"
-)
-
-// Defines values for N2InformationTransferResult.
-const (
-	N2INFOTRANSFERINITIATED N2InformationTransferResult = "N2_INFO_TRANSFER_INITIATED"
-)
-
-// Defines values for NgapIeType.
-const (
-	EARLYSTATUSTRANSCONTAINER NgapIeType = "EARLY_STATUS_TRANS_CONTAINER"
-	HANDOVERCMD               NgapIeType = "HANDOVER_CMD"
-	HANDOVERPREPFAIL          NgapIeType = "HANDOVER_PREP_FAIL"
-	HANDOVERREQUIRED          NgapIeType = "HANDOVER_REQUIRED"
-	NRPPAPDU                  NgapIeType = "NRPPA_PDU"
-	PC5QOSPARA                NgapIeType = "PC5_QOS_PARA"
-	PDURESMODREQ              NgapIeType = "PDU_RES_MOD_REQ"
-	PDURESRELCMD              NgapIeType = "PDU_RES_REL_CMD"
-	PDURESSETUPREQ            NgapIeType = "PDU_RES_SETUP_REQ"
-	RANSTATUSTRANSCONTAINER   NgapIeType = "RAN_STATUS_TRANS_CONTAINER"
-	RIMINFOTRANSFER           NgapIeType = "RIM_INFO_TRANSFER"
-	SECONDARYRATUSAGE         NgapIeType = "SECONDARY_RAT_USAGE"
-	SONCONFIGTRANSFER         NgapIeType = "SON_CONFIG_TRANSFER"
-	SRCTOTARCONTAINER         NgapIeType = "SRC_TO_TAR_CONTAINER"
-	TARTOSRCCONTAINER         NgapIeType = "TAR_TO_SRC_CONTAINER"
-	TARTOSRCFAILCONTAINER     NgapIeType = "TAR_TO_SRC_FAIL_CONTAINER"
-	UERADIOCAPABILITY         NgapIeType = "UE_RADIO_CAPABILITY"
-)
-
-// Defines values for PeriodicCommunicationIndicator.
-const (
-	ONDEMAND      PeriodicCommunicationIndicator = "ON_DEMAND"
-	PIORIODICALLY PeriodicCommunicationIndicator = "PIORIODICALLY"
-)
-
-// Defines values for PolicyReqTrigger.
-const (
-	ACCESSTYPECHANGE   PolicyReqTrigger = "ACCESS_TYPE_CHANGE"
-	ALLOWEDNSSAICHANGE PolicyReqTrigger = "ALLOWED_NSSAI_CHANGE"
-	CONSTATECHANGE     PolicyReqTrigger = "CON_STATE_CHANGE"
-	LOCATIONCHANGE     PolicyReqTrigger = "LOCATION_CHANGE"
-	PLMNCHANGE         PolicyReqTrigger = "PLMN_CHANGE"
-	PRACHANGE          PolicyReqTrigger = "PRA_CHANGE"
-	SMFSELECTCHANGE    PolicyReqTrigger = "SMF_SELECT_CHANGE"
-)
-
-// Defines values for RatSelector.
-const (
-	EUTRA RatSelector = "E-UTRA"
-	NR    RatSelector = "NR"
-)
-
-// Defines values for SbiBindingLevel.
-const (
-	NFINSTANCEBINDING        SbiBindingLevel = "NF_INSTANCE_BINDING"
-	NFSERVICEINSTANCEBINDING SbiBindingLevel = "NF_SERVICE_INSTANCE_BINDING"
-	NFSERVICESETBINDING      SbiBindingLevel = "NF_SERVICE_SET_BINDING"
-	NFSETBINDING             SbiBindingLevel = "NF_SET_BINDING"
-)
-
-// Defines values for ScType.
-const (
-	MAPPED ScType = "MAPPED"
-	NATIVE ScType = "NATIVE"
-)
-
-// Defines values for SmfChangeIndication.
-const (
-	CHANGED SmfChangeIndication = "CHANGED"
-	REMOVED SmfChangeIndication = "REMOVED"
-)
-
-// Defines values for SmsSupport.
-const (
-	BOTH    SmsSupport = "BOTH"
-	N3GPP   SmsSupport = "3GPP"
-	NON3GPP SmsSupport = "NON_3GPP"
-	NONE    SmsSupport = "NONE"
-)
-
-// Defines values for StatusChange.
-const (
-	AMFAVAILABLE   StatusChange = "AMF_AVAILABLE"
-	AMFUNAVAILABLE StatusChange = "AMF_UNAVAILABLE"
-)
-
-// Defines values for TransferReason.
-const (
-	INITREG            TransferReason = "INIT_REG"
-	MOBIREG            TransferReason = "MOBI_REG"
-	MOBIREGUEVALIDATED TransferReason = "MOBI_REG_UE_VALIDATED"
-)
-
-// Defines values for UeContextTransferStatus.
-const (
-	NOTTRANSFERRED UeContextTransferStatus = "NOT_TRANSFERRED"
-	TRANSFERRED    UeContextTransferStatus = "TRANSFERRED"
-)
-
-// N5GMmCapability defines model for 5GMmCapability.
-type N5GMmCapability = externalRef1.Bytes
-
-// AmfEventSubscriptionAddInfo defines model for AmfEventSubscriptionAddInfo.
-type AmfEventSubscriptionAddInfo struct {
-	// AoiStateList Map of subscribed Area of Interest (AoI) Event State in the old AMF. The JSON pointer to an AmfEventArea element in the areaList IE of the AmfEvent data type shall be the key of the map.
-	AoiStateList *map[string]AreaOfInterestEventState `json:"aoiStateList,omitempty"`
-	BindingInfo  []string                             `json:"bindingInfo,omitempty"`
-	EventSyncInd *bool                                `json:"eventSyncInd,omitempty"`
-
-	// SubscribingNfType NF types known to NRF
-	SubscribingNfType    *externalRef2.NFType   `json:"subscribingNfType,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AmfStatusChangeNotification defines model for AmfStatusChangeNotification.
-type AmfStatusChangeNotification struct {
-	AmfStatusInfoList    []AmfStatusInfo        `json:"amfStatusInfoList"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AmfStatusInfo defines model for AmfStatusInfo.
-type AmfStatusInfo struct {
-	GuamiList            []externalRef1.Guami   `json:"guamiList"`
-	StatusChange         StatusChange           `json:"statusChange"`
-	TargetAmfFailure     *externalRef1.AmfName  `json:"targetAmfFailure,omitempty"`
-	TargetAmfRemoval     *externalRef1.AmfName  `json:"targetAmfRemoval,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AreaOfInterestEventState Event State of AoI event in old AMF
-type AreaOfInterestEventState struct {
-	IndividualPraIdList  []string                   `json:"individualPraIdList,omitempty"`
-	Presence             externalRef1.PresenceState `json:"presence"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
-}
-
-// AreaOfValidity defines model for AreaOfValidity.
-type AreaOfValidity struct {
-	TaiList              []externalRef1.Tai     `json:"taiList"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// AssignEbiData defines model for AssignEbiData.
-type AssignEbiData struct {
-	ArpList              []externalRef1.Arp        `json:"arpList,omitempty"`
-	OldGuami             *externalRef1.Guami       `json:"oldGuami,omitempty"`
-	PduSessionId         externalRef1.PduSessionId `json:"pduSessionId"`
-	ReleasedEbiList      []EpsBearerId             `json:"releasedEbiList,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// AssignEbiError defines model for AssignEbiError.
-type AssignEbiError struct {
-	Error                externalRef1.ProblemDetails `json:"error"`
-	FailureDetails       AssignEbiFailed             `json:"failureDetails"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// AssignEbiFailed defines model for AssignEbiFailed.
-type AssignEbiFailed struct {
-	FailedArpList        []externalRef1.Arp        `json:"failedArpList,omitempty"`
-	PduSessionId         externalRef1.PduSessionId `json:"pduSessionId"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// AssignedEbiData defines model for AssignedEbiData.
-type AssignedEbiData struct {
-	AssignedEbiList      []interface{}             `json:"assignedEbiList"`
-	FailedArpList        []externalRef1.Arp        `json:"failedArpList,omitempty"`
-	PduSessionId         externalRef1.PduSessionId `json:"pduSessionId"`
-	ReleasedEbiList      []EpsBearerId             `json:"releasedEbiList,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// CeModeBInd CE-mode-B Support Indicator.
-type CeModeBInd struct {
-	CeModeBSupportInd    bool                   `json:"ceModeBSupportInd"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// CipheringAlgorithm defines model for CipheringAlgorithm.
-type CipheringAlgorithm string
-
-// DrxParameter defines model for DrxParameter.
-type DrxParameter = externalRef1.Bytes
-
-// EcRestrictionDataWb defines model for EcRestrictionDataWb.
-type EcRestrictionDataWb struct {
-	EcModeARestricted    *bool                  `json:"ecModeARestricted,omitempty"`
-	EcModeBRestricted    bool                   `json:"ecModeBRestricted"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// EpsBearerId defines model for EpsBearerId.
-type EpsBearerId = int
-
-// EpsNasCipheringAlgorithm defines model for EpsNasCipheringAlgorithm.
-type EpsNasCipheringAlgorithm string
-
-// EpsNasIntegrityAlgorithm defines model for EpsNasIntegrityAlgorithm.
-type EpsNasIntegrityAlgorithm string
-
-// EpsNasSecurityMode defines model for EpsNasSecurityMode.
-type EpsNasSecurityMode struct {
-	CipheringAlgorithm   EpsNasCipheringAlgorithm `json:"cipheringAlgorithm"`
-	IntegrityAlgorithm   EpsNasIntegrityAlgorithm `json:"integrityAlgorithm"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
-}
-
-// ExpectedUeBehavior defines model for ExpectedUeBehavior.
-type ExpectedUeBehavior struct {
-	ExpMoveTrajectory    []externalRef1.UserLocation `json:"expMoveTrajectory"`
-	ValidityTime         externalRef1.DateTime       `json:"validityTime"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// ExtAmfEventSubscription defines model for ExtAmfEventSubscription.
-type ExtAmfEventSubscription struct {
-	AnyUE *bool `json:"anyUE,omitempty"`
-
-	// AoiStateList Map of subscribed Area of Interest (AoI) Event State in the old AMF. The JSON pointer to an AmfEventArea element in the areaList IE of the AmfEvent data type shall be the key of the map.
-	AoiStateList        *map[string]AreaOfInterestEventState `json:"aoiStateList,omitempty"`
-	BindingInfo         []string                             `json:"bindingInfo,omitempty"`
-	EventList           []externalRef0.AmfEvent              `json:"eventList"`
-	EventNotifyUri      externalRef1.Uri                     `json:"eventNotifyUri"`
-	EventSyncInd        *bool                                `json:"eventSyncInd,omitempty"`
-	Gpsi                externalRef1.Gpsi                    `json:"gpsi,omitempty"`
-	GroupId             externalRef1.GroupId                 `json:"groupId,omitempty"`
-	NfId                externalRef1.NfInstanceId            `json:"nfId"`
-	NotifyCorrelationId string                               `json:"notifyCorrelationId"`
-	Options             *externalRef0.AmfEventMode           `json:"options,omitempty"`
-	Pei                 externalRef1.Pei                     `json:"pei,omitempty"`
-
-	// SourceNfType NF types known to NRF
-	SourceNfType                  *externalRef2.NFType `json:"sourceNfType,omitempty"`
-	SubsChangeNotifyCorrelationId *string              `json:"subsChangeNotifyCorrelationId,omitempty"`
-	SubsChangeNotifyUri           *externalRef1.Uri    `json:"subsChangeNotifyUri,omitempty"`
-
-	// SubscribingNfType NF types known to NRF
-	SubscribingNfType    *externalRef2.NFType   `json:"subscribingNfType,omitempty"`
-	Supi                 externalRef1.Supi      `json:"supi,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// ImmediateMdtConf defines model for ImmediateMdtConf.
-type ImmediateMdtConf struct {
-	AddPositioningMethodList []externalRef1.PositioningMethodMdt     `json:"addPositioningMethodList,omitempty"`
-	AreaScope                *externalRef1.AreaScope                 `json:"areaScope,omitempty"`
-	CollectionPeriodRmmLte   *externalRef1.CollectionPeriodRmmLteMdt `json:"collectionPeriodRmmLte,omitempty"`
-	CollectionPeriodRmmNr    *externalRef1.CollectionPeriodRmmNrMdt  `json:"collectionPeriodRmmNr,omitempty"`
-	EventThresholdRsrp       *int                                    `json:"eventThresholdRsrp,omitempty"`
-	EventThresholdRsrpNr     *int                                    `json:"eventThresholdRsrpNr,omitempty"`
-	EventThresholdRsrq       *int                                    `json:"eventThresholdRsrq,omitempty"`
-	EventThresholdRsrqNr     *int                                    `json:"eventThresholdRsrqNr,omitempty"`
-	JobType                  externalRef1.JobType                    `json:"jobType"`
-	MdtAllowedPlmnIdList     []externalRef1.PlmnId                   `json:"mdtAllowedPlmnIdList,omitempty"`
-	MeasurementLteList       []externalRef1.MeasurementLteForMdt     `json:"measurementLteList,omitempty"`
-	MeasurementNrList        []externalRef1.MeasurementNrForMdt      `json:"measurementNrList,omitempty"`
-	MeasurementPeriodLte     *externalRef1.MeasurementPeriodLteMdt   `json:"measurementPeriodLte,omitempty"`
-	PositioningMethod        *externalRef1.PositioningMethodMdt      `json:"positioningMethod,omitempty"`
-	ReportAmount             *externalRef1.ReportAmountMdt           `json:"reportAmount,omitempty"`
-	ReportInterval           *externalRef1.ReportIntervalMdt         `json:"reportInterval,omitempty"`
-	ReportIntervalNr         *externalRef1.ReportIntervalNrMdt       `json:"reportIntervalNr,omitempty"`
-	ReportingTriggerList     []externalRef1.ReportingTrigger         `json:"reportingTriggerList,omitempty"`
-	SensorMeasurementList    []externalRef1.SensorMeasurement        `json:"sensorMeasurementList,omitempty"`
-	AdditionalProperties     map[string]interface{}                  `json:"-"`
-}
-
-// IntegrityAlgorithm defines model for IntegrityAlgorithm.
-type IntegrityAlgorithm string
-
-// KeyAmf defines model for KeyAmf.
-type KeyAmf struct {
-	KeyType              KeyAmfType             `json:"keyType"`
-	KeyVal               string                 `json:"keyVal"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// KeyAmfType defines model for KeyAmfType.
-type KeyAmfType string
-
-// LteMInd LTE-M Indication.
-type LteMInd struct {
-	LteCatMInd           bool                   `json:"lteCatMInd"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// MSClassmark2 defines model for MSClassmark2.
-type MSClassmark2 = externalRef1.Bytes
-
-// MmContext defines model for MmContext.
-type MmContext struct {
-	AccessType              externalRef1.AccessType            `json:"accessType"`
-	AllowedHomeNssai        []externalRef1.Snssai              `json:"allowedHomeNssai,omitempty"`
-	AllowedNssai            []externalRef1.Snssai              `json:"allowedNssai,omitempty"`
-	AnN2ApId                *int                               `json:"anN2ApId,omitempty"`
-	EpsNasSecurityMode      *EpsNasSecurityMode                `json:"epsNasSecurityMode,omitempty"`
-	ExpectedUEbehavior      *ExpectedUeBehavior                `json:"expectedUEbehavior,omitempty"`
-	ManAssiUeRadioCapId     *externalRef1.ManAssiUeRadioCapId  `json:"manAssiUeRadioCapId,omitempty"`
-	N3IwfId                 *externalRef1.GlobalRanNodeId      `json:"n3IwfId,omitempty"`
-	NasDownlinkCount        *NasCount                          `json:"nasDownlinkCount,omitempty"`
-	NasSecurityMode         *NasSecurityMode                   `json:"nasSecurityMode,omitempty"`
-	NasUplinkCount          *NasCount                          `json:"nasUplinkCount,omitempty"`
-	NsInstanceList          []externalRef3.NsiId               `json:"nsInstanceList,omitempty"`
-	NssaaStatusList         []externalRef1.NssaaStatus         `json:"nssaaStatusList,omitempty"`
-	NssaiMappingList        []NssaiMapping                     `json:"nssaiMappingList,omitempty"`
-	PendingNssaiMappingList []NssaiMapping                     `json:"pendingNssaiMappingList,omitempty"`
-	PlmnAssiUeRadioCapId    *externalRef1.PlmnAssiUeRadioCapId `json:"plmnAssiUeRadioCapId,omitempty"`
-	S1UeNetworkCapability   *S1UeNetworkCapability             `json:"s1UeNetworkCapability,omitempty"`
-	TngfId                  *externalRef1.GlobalRanNodeId      `json:"tngfId,omitempty"`
-	UcmfDicEntryId          *string                            `json:"ucmfDicEntryId,omitempty"`
-	UeDifferentiationInfo   *UeDifferentiationInfo             `json:"ueDifferentiationInfo,omitempty"`
-	UeSecurityCapability    *UeSecurityCapability              `json:"ueSecurityCapability,omitempty"`
-	WagfId                  *externalRef1.GlobalRanNodeId      `json:"wagfId,omitempty"`
-	AdditionalProperties    map[string]interface{}             `json:"-"`
-}
-
-// N1MessageClass defines model for N1MessageClass.
-type N1MessageClass string
-
-// N1MessageContainer defines model for N1MessageContainer.
-type N1MessageContainer struct {
-	N1MessageClass       N1MessageClass               `json:"n1MessageClass"`
-	N1MessageContent     externalRef1.RefToBinaryData `json:"n1MessageContent"`
-	NfId                 *externalRef1.NfInstanceId   `json:"nfId,omitempty"`
-	ServiceInstanceId    *string                      `json:"serviceInstanceId,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
-}
-
-// N1MessageNotification defines model for N1MessageNotification.
-type N1MessageNotification struct {
-	CIoT5GSOptimisation *bool               `json:"cIoT5GSOptimisation,omitempty"`
-	Ecgi                *externalRef1.Ecgi  `json:"ecgi,omitempty"`
-	Guami               *externalRef1.Guami `json:"guami,omitempty"`
-
-	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *string            `json:"lcsCorrelationId,omitempty"`
-	N1MessageContainer     N1MessageContainer `json:"n1MessageContainer"`
-	N1NotifySubscriptionId *string            `json:"n1NotifySubscriptionId,omitempty"`
-	Ncgi                   *externalRef1.Ncgi `json:"ncgi,omitempty"`
-
-	// NewLmfIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	NewLmfIdentification      *string                       `json:"newLmfIdentification,omitempty"`
-	RegistrationCtxtContainer *RegistrationContextContainer `json:"registrationCtxtContainer,omitempty"`
-	AdditionalProperties      map[string]interface{}        `json:"-"`
-}
-
-// N1N2MessageTransferCause defines model for N1N2MessageTransferCause.
-type N1N2MessageTransferCause string
-
-// N1N2MessageTransferError defines model for N1N2MessageTransferError.
-type N1N2MessageTransferError struct {
-	ErrInfo              *N1N2MsgTxfrErrDetail       `json:"errInfo,omitempty"`
-	Error                externalRef1.ProblemDetails `json:"error"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// N1N2MessageTransferReqData defines model for N1N2MessageTransferReqData.
-type N1N2MessageTransferReqData struct {
-	N5qi              *externalRef1.N5Qi `json:"5qi,omitempty"`
-	AreaOfValidity    *AreaOfValidity    `json:"areaOfValidity,omitempty"`
-	Arp               *externalRef1.Arp  `json:"arp,omitempty"`
-	ExtBufSupport     *bool              `json:"extBufSupport,omitempty"`
-	LastMsgIndication *bool              `json:"lastMsgIndication,omitempty"`
-
-	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *string                         `json:"lcsCorrelationId,omitempty"`
-	MaAcceptedInd          *bool                           `json:"maAcceptedInd,omitempty"`
-	MtData                 *externalRef1.RefToBinaryData   `json:"mtData,omitempty"`
-	N1MessageContainer     *N1MessageContainer             `json:"n1MessageContainer,omitempty"`
-	N1n2FailureTxfNotifURI *externalRef1.Uri               `json:"n1n2FailureTxfNotifURI,omitempty"`
-	N2InfoContainer        *N2InfoContainer                `json:"n2InfoContainer,omitempty"`
-	OldGuami               *externalRef1.Guami             `json:"oldGuami,omitempty"`
-	PduSessionId           *externalRef1.PduSessionId      `json:"pduSessionId,omitempty"`
-	Ppi                    *Ppi                            `json:"ppi,omitempty"`
-	SkipInd                *bool                           `json:"skipInd,omitempty"`
-	SmfReallocationInd     *bool                           `json:"smfReallocationInd,omitempty"`
-	SupportedFeatures      *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TargetAccess           externalRef1.AccessType         `json:"targetAccess,omitempty"`
-	AdditionalProperties   map[string]interface{}          `json:"-"`
-}
-
-// N1N2MessageTransferRspData defines model for N1N2MessageTransferRspData.
-type N1N2MessageTransferRspData struct {
-	Cause                N1N2MessageTransferCause        `json:"cause"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// N1N2MsgTxfrErrDetail defines model for N1N2MsgTxfrErrDetail.
-type N1N2MsgTxfrErrDetail struct {
-	HighestPrioArp       *externalRef1.Arp         `json:"highestPrioArp,omitempty"`
-	MaxWaitingTime       *externalRef1.DurationSec `json:"maxWaitingTime,omitempty"`
-	RetryAfter           *externalRef1.Uinteger    `json:"retryAfter,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// N1N2MsgTxfrFailureNotification defines model for N1N2MsgTxfrFailureNotification.
-type N1N2MsgTxfrFailureNotification struct {
-	Cause                N1N2MessageTransferCause `json:"cause"`
-	N1n2MsgDataUri       externalRef1.Uri         `json:"n1n2MsgDataUri"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
-}
-
-// N2InfoContainer defines model for N2InfoContainer.
-type N2InfoContainer struct {
-	N2InformationClass   N2InformationClass     `json:"n2InformationClass"`
-	NrppaInfo            *NrppaInformation      `json:"nrppaInfo,omitempty"`
-	PwsInfo              *PwsInformation        `json:"pwsInfo,omitempty"`
-	RanInfo              *N2RanInformation      `json:"ranInfo,omitempty"`
-	SmInfo               *N2SmInformation       `json:"smInfo,omitempty"`
-	V2xInfo              *V2xInformation        `json:"v2xInfo,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// N2InfoContent defines model for N2InfoContent.
-type N2InfoContent struct {
-	NgapData             externalRef1.RefToBinaryData `json:"ngapData"`
-	NgapIeType           *NgapIeType                  `json:"ngapIeType,omitempty"`
-	NgapMessageType      *externalRef1.Uinteger       `json:"ngapMessageType,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
-}
-
-// N2InfoNotificationRspData defines model for N2InfoNotificationRspData.
-type N2InfoNotificationRspData struct {
-	SecRatDataUsageList  []N2SmInformation      `json:"secRatDataUsageList,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// N2InfoNotifyReason defines model for N2InfoNotifyReason.
-type N2InfoNotifyReason string
-
-// N2InformationClass defines model for N2InformationClass.
-type N2InformationClass string
-
-// N2InformationNotification defines model for N2InformationNotification.
-type N2InformationNotification struct {
-	AnN2IPv4Addr   externalRef1.Ipv4Addr  `json:"anN2IPv4Addr,omitempty"`
-	AnN2IPv6Addr   *externalRef1.Ipv6Addr `json:"anN2IPv6Addr,omitempty"`
-	Guami          *externalRef1.Guami    `json:"guami,omitempty"`
-	InitialAmfName *externalRef1.AmfName  `json:"initialAmfName,omitempty"`
-
-	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *string                       `json:"lcsCorrelationId,omitempty"`
-	N2InfoContainer        *N2InfoContainer              `json:"n2InfoContainer,omitempty"`
-	N2NotifySubscriptionId string                        `json:"n2NotifySubscriptionId"`
-	NotifyReason           *N2InfoNotifyReason           `json:"notifyReason,omitempty"`
-	NotifySourceNgRan      *bool                         `json:"notifySourceNgRan,omitempty"`
-	RanNodeId              *externalRef1.GlobalRanNodeId `json:"ranNodeId,omitempty"`
-	SmfChangeInfoList      []SmfChangeInfo               `json:"smfChangeInfoList,omitempty"`
-	ToReleaseSessionList   []externalRef1.PduSessionId   `json:"toReleaseSessionList,omitempty"`
-	AdditionalProperties   map[string]interface{}        `json:"-"`
-}
-
-// N2InformationTransferError defines model for N2InformationTransferError.
-type N2InformationTransferError struct {
-	Error                externalRef1.ProblemDetails `json:"error"`
-	PwsErrorInfo         *PWSErrorData               `json:"pwsErrorInfo,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// N2InformationTransferReqData defines model for N2InformationTransferReqData.
-type N2InformationTransferReqData struct {
-	GlobalRanNodeList    []externalRef1.GlobalRanNodeId  `json:"globalRanNodeList,omitempty"`
-	N2Information        N2InfoContainer                 `json:"n2Information"`
-	RatSelector          *RatSelector                    `json:"ratSelector,omitempty"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TaiList              []externalRef1.Tai              `json:"taiList,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// N2InformationTransferResult defines model for N2InformationTransferResult.
-type N2InformationTransferResult string
-
-// N2InformationTransferRspData defines model for N2InformationTransferRspData.
-type N2InformationTransferRspData struct {
-	PwsRspData           *PWSResponseData                `json:"pwsRspData,omitempty"`
-	Result               N2InformationTransferResult     `json:"result"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// N2RanInformation defines model for N2RanInformation.
-type N2RanInformation struct {
-	N2InfoContent        N2InfoContent          `json:"n2InfoContent"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// N2SmInformation defines model for N2SmInformation.
-type N2SmInformation struct {
-	HomePlmnSnssai       *externalRef1.Snssai      `json:"homePlmnSnssai,omitempty"`
-	IwkSnssai            *externalRef1.Snssai      `json:"iwkSnssai,omitempty"`
-	N2InfoContent        *N2InfoContent            `json:"n2InfoContent,omitempty"`
-	PduSessionId         externalRef1.PduSessionId `json:"pduSessionId"`
-	SNssai               *externalRef1.Snssai      `json:"sNssai,omitempty"`
-	SubjectToHo          *bool                     `json:"subjectToHo,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// NasCount defines model for NasCount.
-type NasCount = externalRef1.Uinteger
-
-// NasSecurityMode defines model for NasSecurityMode.
-type NasSecurityMode struct {
-	CipheringAlgorithm   CipheringAlgorithm     `json:"cipheringAlgorithm"`
-	IntegrityAlgorithm   IntegrityAlgorithm     `json:"integrityAlgorithm"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// NgKsi defines model for NgKsi.
-type NgKsi struct {
-	Ksi                  int                    `json:"ksi"`
-	Tsc                  ScType                 `json:"tsc"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// NgRanTargetId defines model for NgRanTargetId.
-type NgRanTargetId struct {
-	RanNodeId            externalRef1.GlobalRanNodeId `json:"ranNodeId"`
-	Tai                  externalRef1.Tai             `json:"tai"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
-}
-
-// NgapIeType defines model for NgapIeType.
-type NgapIeType string
-
-// NonUeN2InfoSubscriptionCreateData defines model for NonUeN2InfoSubscriptionCreateData.
-type NonUeN2InfoSubscriptionCreateData struct {
-	AnTypeList           []externalRef1.AccessType       `json:"anTypeList,omitempty"`
-	GlobalRanNodeList    []externalRef1.GlobalRanNodeId  `json:"globalRanNodeList,omitempty"`
-	N2InformationClass   N2InformationClass              `json:"n2InformationClass"`
-	N2NotifyCallbackUri  externalRef1.Uri                `json:"n2NotifyCallbackUri"`
-	NfId                 *externalRef1.NfInstanceId      `json:"nfId,omitempty"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// NonUeN2InfoSubscriptionCreatedData defines model for NonUeN2InfoSubscriptionCreatedData.
-type NonUeN2InfoSubscriptionCreatedData struct {
-	N2InformationClass     *N2InformationClass             `json:"n2InformationClass,omitempty"`
-	N2NotifySubscriptionId string                          `json:"n2NotifySubscriptionId"`
-	SupportedFeatures      *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties   map[string]interface{}          `json:"-"`
-}
-
-// NpnAccessInfo NPN Access Information.
-type NpnAccessInfo struct {
-	CellCagInfo          []externalRef1.CagId   `json:"cellCagInfo,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// NrppaInformation defines model for NrppaInformation.
-type NrppaInformation struct {
-	NfId                 externalRef1.NfInstanceId `json:"nfId"`
-	NrppaPdu             N2InfoContent             `json:"nrppaPdu"`
-	ServiceInstanceId    *string                   `json:"serviceInstanceId,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// NssaiMapping defines model for NssaiMapping.
-type NssaiMapping struct {
-	HSnssai              externalRef1.Snssai    `json:"hSnssai"`
-	MappedSnssai         externalRef1.Snssai    `json:"mappedSnssai"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// OmcIdentifier defines model for OmcIdentifier.
-type OmcIdentifier = string
-
-// PWSErrorData defines model for PWSErrorData.
-type PWSErrorData struct {
-	NamfCause            int                    `json:"namfCause"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PWSResponseData defines model for PWSResponseData.
-type PWSResponseData struct {
-	MessageIdentifier    int                    `json:"messageIdentifier"`
-	NgapMessageType      externalRef1.Uinteger  `json:"ngapMessageType"`
-	SerialNumber         externalRef1.Uint16    `json:"serialNumber"`
-	UnknownTaiList       []externalRef1.Tai     `json:"unknownTaiList,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PduSessionContext defines model for PduSessionContext.
-type PduSessionContext struct {
-	AccessType           externalRef1.AccessType `json:"accessType"`
-	AdditionalAccessType externalRef1.AccessType `json:"additionalAccessType,omitempty"`
-	AllocatedEbiList     []interface{}           `json:"allocatedEbiList,omitempty"`
-
-	// CnAssistedRanPara Original reference TS29502_Nsmf_PDUSession.yaml#/components/schemas/CnAssistedRanPara
-	CnAssistedRanPara    interface{}                  `json:"cnAssistedRanPara,omitempty"`
-	Dnn                  externalRef1.Dnn             `json:"dnn"`
-	HsmfId               *externalRef1.NfInstanceId   `json:"hsmfId,omitempty"`
-	HsmfServiceSetId     *externalRef1.NfServiceSetId `json:"hsmfServiceSetId,omitempty"`
-	HsmfSetId            *externalRef1.NfSetId        `json:"hsmfSetId,omitempty"`
-	IsmfBinding          *SbiBindingLevel             `json:"ismfBinding,omitempty"`
-	IsmfId               *externalRef1.NfInstanceId   `json:"ismfId,omitempty"`
-	IsmfServiceSetId     *externalRef1.NfServiceSetId `json:"ismfServiceSetId,omitempty"`
-	IsmfSetId            *externalRef1.NfSetId        `json:"ismfSetId,omitempty"`
-	MaPduSession         *bool                        `json:"maPduSession,omitempty"`
-	NsInstance           *externalRef3.NsiId          `json:"nsInstance,omitempty"`
-	PduSessionId         externalRef1.PduSessionId    `json:"pduSessionId"`
-	SNssai               externalRef1.Snssai          `json:"sNssai"`
-	SelectedDnn          *externalRef1.Dnn            `json:"selectedDnn,omitempty"`
-	SmContextRef         externalRef1.Uri             `json:"smContextRef"`
-	SmfBinding           *SbiBindingLevel             `json:"smfBinding,omitempty"`
-	SmfServiceInstanceId *string                      `json:"smfServiceInstanceId,omitempty"`
-	VsmfBinding          *SbiBindingLevel             `json:"vsmfBinding,omitempty"`
-	VsmfId               *externalRef1.NfInstanceId   `json:"vsmfId,omitempty"`
-	VsmfServiceSetId     *externalRef1.NfServiceSetId `json:"vsmfServiceSetId,omitempty"`
-	VsmfSetId            *externalRef1.NfSetId        `json:"vsmfSetId,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
-}
-
-// PeriodicCommunicationIndicator defines model for PeriodicCommunicationIndicator.
-type PeriodicCommunicationIndicator string
-
-// PolicyReqTrigger defines model for PolicyReqTrigger.
-type PolicyReqTrigger string
-
-// Ppi defines model for Ppi.
-type Ppi = int
-
-// PwsInformation defines model for PwsInformation.
-type PwsInformation struct {
-	BcEmptyAreaList      []externalRef1.GlobalRanNodeId `json:"bcEmptyAreaList,omitempty"`
-	MessageIdentifier    externalRef1.Uint16            `json:"messageIdentifier"`
-	OmcId                *OmcIdentifier                 `json:"omcId,omitempty"`
-	PwsContainer         N2InfoContent                  `json:"pwsContainer"`
-	SendRanResponse      *bool                          `json:"sendRanResponse,omitempty"`
-	SerialNumber         externalRef1.Uint16            `json:"serialNumber"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
-}
-
-// RatSelector defines model for RatSelector.
-type RatSelector string
-
-// RegistrationContextContainer defines model for RegistrationContextContainer.
-type RegistrationContextContainer struct {
-	AllowedNssai     *externalRef3.AllowedNssai `json:"allowedNssai,omitempty"`
-	AnN2ApId         int                        `json:"anN2ApId"`
-	AnN2IPv4Addr     externalRef1.Ipv4Addr      `json:"anN2IPv4Addr,omitempty"`
-	AnN2IPv6Addr     *externalRef1.Ipv6Addr     `json:"anN2IPv6Addr,omitempty"`
-	AnType           externalRef1.AccessType    `json:"anType"`
-	AuthenticatedInd *bool                      `json:"authenticatedInd,omitempty"`
-
-	// CeModeBInd CE-mode-B Support Indicator.
-	CeModeBInd       *CeModeBInd                     `json:"ceModeBInd,omitempty"`
-	ConfiguredNssai  []externalRef3.ConfiguredSnssai `json:"configuredNssai,omitempty"`
-	IabNodeInd       *bool                           `json:"iabNodeInd,omitempty"`
-	InitialAmfN2ApId *int                            `json:"initialAmfN2ApId,omitempty"`
-	InitialAmfName   externalRef1.AmfName            `json:"initialAmfName"`
-	LocalTimeZone    *externalRef1.TimeZone          `json:"localTimeZone,omitempty"`
-
-	// LteMInd LTE-M Indication.
-	LteMInd *LteMInd `json:"lteMInd,omitempty"`
-
-	// NpnAccessInfo NPN Access Information.
-	NpnAccessInfo        *NpnAccessInfo               `json:"npnAccessInfo,omitempty"`
-	RanNodeId            externalRef1.GlobalRanNodeId `json:"ranNodeId"`
-	RejectedNssaiInPlmn  []externalRef1.Snssai        `json:"rejectedNssaiInPlmn,omitempty"`
-	RejectedNssaiInTa    []externalRef1.Snssai        `json:"rejectedNssaiInTa,omitempty"`
-	RrcEstCause          string                       `json:"rrcEstCause,omitempty"`
-	SelectedPlmnId       *externalRef1.PlmnId         `json:"selectedPlmnId,omitempty"`
-	UeContext            UeContext                    `json:"ueContext"`
-	UeContextRequest     *bool                        `json:"ueContextRequest,omitempty"`
-	UserLocation         externalRef1.UserLocation    `json:"userLocation"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
-}
-
-// S1UeNetworkCapability defines model for S1UeNetworkCapability.
-type S1UeNetworkCapability = externalRef1.Bytes
-
-// SbiBindingLevel defines model for SbiBindingLevel.
-type SbiBindingLevel string
-
-// ScType defines model for ScType.
-type ScType string
-
-// SeafData defines model for SeafData.
-type SeafData struct {
-	KeyAmf               KeyAmf                 `json:"keyAmf"`
-	KeyAmfChangeInd      *bool                  `json:"keyAmfChangeInd,omitempty"`
-	KeyAmfHDerivationInd *bool                  `json:"keyAmfHDerivationInd,omitempty"`
-	Ncc                  *int                   `json:"ncc,omitempty"`
-	NgKsi                NgKsi                  `json:"ngKsi"`
-	Nh                   string                 `json:"nh,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// SmallDataRateStatusInfo defines model for SmallDataRateStatusInfo.
-type SmallDataRateStatusInfo struct {
-	Dnn                  externalRef1.Dnn                 `json:"Dnn"`
-	SmallDataRateStatus  externalRef1.SmallDataRateStatus `json:"SmallDataRateStatus"`
-	Snssai               externalRef1.Snssai              `json:"Snssai"`
-	AdditionalProperties map[string]interface{}           `json:"-"`
-}
-
-// SmfChangeIndication defines model for SmfChangeIndication.
-type SmfChangeIndication string
-
-// SmfChangeInfo defines model for SmfChangeInfo.
-type SmfChangeInfo struct {
-	PduSessionIdList     []externalRef1.PduSessionId `json:"pduSessionIdList"`
-	SmfChangeInd         SmfChangeIndication         `json:"smfChangeInd"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// SmsSupport defines model for SmsSupport.
-type SmsSupport string
-
-// StatusChange defines model for StatusChange.
-type StatusChange string
-
-// SubscriptionData defines model for SubscriptionData.
-type SubscriptionData struct {
-	AmfStatusUri         externalRef1.Uri       `json:"amfStatusUri"`
-	GuamiList            []externalRef1.Guami   `json:"guamiList,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// SupportedCodec defines model for SupportedCodec.
-type SupportedCodec = externalRef1.Bytes
-
-// TransferReason defines model for TransferReason.
-type TransferReason string
-
-// UEContextRelease defines model for UEContextRelease.
-type UEContextRelease struct {
-	NgapCause            externalRef1.NgApCause `json:"ngapCause"`
-	Supi                 externalRef1.Supi      `json:"supi,omitempty"`
-	UnauthenticatedSupi  *bool                  `json:"unauthenticatedSupi,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// UeContext defines model for UeContext.
-type UeContext struct {
-	N5gMmCapability        *N5GMmCapability               `json:"5gMmCapability,omitempty"`
-	AmPolicyReqTriggerList []PolicyReqTrigger             `json:"amPolicyReqTriggerList,omitempty"`
-	AusfGroupId            *externalRef1.NfGroupId        `json:"ausfGroupId,omitempty"`
-	CMsisdn                externalRef1.CMsisdn           `json:"cMsisdn,omitempty"`
-	CagData                *externalRef5.CagData          `json:"cagData,omitempty"`
-	DrxParameter           *DrxParameter                  `json:"drxParameter,omitempty"`
-	EcRestrictionDataNb    *bool                          `json:"ecRestrictionDataNb,omitempty"`
-	EcRestrictionDataWb    *EcRestrictionDataWb           `json:"ecRestrictionDataWb,omitempty"`
-	EventSubscriptionList  []ExtAmfEventSubscription      `json:"eventSubscriptionList,omitempty"`
-	ForbiddenAreaList      []externalRef1.Area            `json:"forbiddenAreaList,omitempty"`
-	GpsiList               []externalRef1.Gpsi            `json:"gpsiList,omitempty"`
-	GroupList              []externalRef1.GroupId         `json:"groupList,omitempty"`
-	HpcfId                 *externalRef1.NfInstanceId     `json:"hpcfId,omitempty"`
-	HpcfSetId              *externalRef1.NfSetId          `json:"hpcfSetId,omitempty"`
-	IabOperationAllowed    *bool                          `json:"iabOperationAllowed,omitempty"`
-	ImmediateMdtConf       *ImmediateMdtConf              `json:"immediateMdtConf,omitempty"`
-	LteCatMInd             *bool                          `json:"lteCatMInd,omitempty"`
-	ManagementMdtInd       *bool                          `json:"managementMdtInd,omitempty"`
-	MmContextList          []MmContext                    `json:"mmContextList,omitempty"`
-	MoExpDataCounter       *externalRef1.MoExpDataCounter `json:"moExpDataCounter,omitempty"`
-	MsClassmark2           *MSClassmark2                  `json:"msClassmark2,omitempty"`
-	PcfAmPolicyUri         *externalRef1.Uri              `json:"pcfAmPolicyUri,omitempty"`
-	PcfAmpBindingInfo      *string                        `json:"pcfAmpBindingInfo,omitempty"`
-	PcfAmpServiceSetId     *externalRef1.NfServiceSetId   `json:"pcfAmpServiceSetId,omitempty"`
-	PcfBinding             *SbiBindingLevel               `json:"pcfBinding,omitempty"`
-	PcfGroupId             *externalRef1.NfGroupId        `json:"pcfGroupId,omitempty"`
-	PcfId                  *externalRef1.NfInstanceId     `json:"pcfId,omitempty"`
-	PcfRfsp                externalRef1.RfspIndex         `json:"pcfRfsp,omitempty"`
-	PcfSetId               *externalRef1.NfSetId          `json:"pcfSetId,omitempty"`
-	PcfUeAmbr              *externalRef1.Ambr             `json:"pcfUeAmbr,omitempty"`
-	PcfUePolicyUri         *externalRef1.Uri              `json:"pcfUePolicyUri,omitempty"`
-	PcfUepBindingInfo      *string                        `json:"pcfUepBindingInfo,omitempty"`
-	PcfUepServiceSetId     *externalRef1.NfServiceSetId   `json:"pcfUepServiceSetId,omitempty"`
-	Pei                    externalRef1.Pei               `json:"pei,omitempty"`
-
-	// PraInAmPolicy A map(list of key-value pairs) where praId serves as key.
-	PraInAmPolicy *map[string]externalRef1.PresenceInfo `json:"praInAmPolicy,omitempty"`
-
-	// PraInUePolicy A map(list of key-value pairs) where praId serves as key.
-	PraInUePolicy              *map[string]externalRef1.PresenceInfo `json:"praInUePolicy,omitempty"`
-	RestrictedCoreNwTypeList   []externalRef1.CoreNetworkType        `json:"restrictedCoreNwTypeList,omitempty"`
-	RestrictedPrimaryRatList   []externalRef1.RatType                `json:"restrictedPrimaryRatList,omitempty"`
-	RestrictedRatList          []externalRef1.RatType                `json:"restrictedRatList,omitempty"`
-	RestrictedSecondaryRatList []externalRef1.RatType                `json:"restrictedSecondaryRatList,omitempty"`
-	RoutingIndicator           *string                               `json:"routingIndicator,omitempty"`
-	SeafData                   *SeafData                             `json:"seafData,omitempty"`
-	ServiceAreaRestriction     *externalRef1.ServiceAreaRestriction  `json:"serviceAreaRestriction,omitempty"`
-	ServiceGapExpiryTime       *externalRef1.DateTime                `json:"serviceGapExpiryTime,omitempty"`
-	SessionContextList         []PduSessionContext                   `json:"sessionContextList,omitempty"`
-	SmallDataRateStatusInfos   []SmallDataRateStatusInfo             `json:"smallDataRateStatusInfos,omitempty"`
-	SmfSelInfo                 *externalRef4.SmfSelectionData        `json:"smfSelInfo"`
-	SmsfBindingInfo            *string                               `json:"smsfBindingInfo,omitempty"`
-	SmsfId                     *externalRef1.NfInstanceId            `json:"smsfId,omitempty"`
-	SmsfServiceSetId           *externalRef1.NfServiceSetId          `json:"smsfServiceSetId,omitempty"`
-	SmsfSetId                  *externalRef1.NfSetId                 `json:"smsfSetId,omitempty"`
-	StnSr                      *externalRef1.StnSr                   `json:"stnSr,omitempty"`
-	SubRfsp                    externalRef1.RfspIndex                `json:"subRfsp,omitempty"`
-	SubUeAmbr                  *externalRef1.Ambr                    `json:"subUeAmbr,omitempty"`
-	Supi                       externalRef1.Supi                     `json:"supi,omitempty"`
-	SupiUnauthInd              *bool                                 `json:"supiUnauthInd,omitempty"`
-	SupportedCodecList         []SupportedCodec                      `json:"supportedCodecList,omitempty"`
-	TraceData                  *externalRef1.TraceData               `json:"traceData"`
-	UdmGroupId                 *externalRef1.NfGroupId               `json:"udmGroupId,omitempty"`
-	UePolicyReqTriggerList     []PolicyReqTrigger                    `json:"uePolicyReqTriggerList,omitempty"`
-
-	// UpdpSubscriptionData UE policy delivery related N1 message notification subscription data.
-	UpdpSubscriptionData       *UpdpSubscriptionData                        `json:"updpSubscriptionData,omitempty"`
-	UsedRfsp                   externalRef1.RfspIndex                       `json:"usedRfsp,omitempty"`
-	UsedServiceAreaRestriction *externalRef1.ServiceAreaRestriction         `json:"usedServiceAreaRestriction,omitempty"`
-	V2xContext                 *V2xContext                                  `json:"v2xContext,omitempty"`
-	WlServAreaRes              *externalRef1.WirelineServiceAreaRestriction `json:"wlServAreaRes,omitempty"`
-	AdditionalProperties       map[string]interface{}                       `json:"-"`
-}
-
-// UeContextCancelRelocateData defines model for UeContextCancelRelocateData.
-type UeContextCancelRelocateData struct {
-	RelocationCancelRequest externalRef1.RefToBinaryData `json:"relocationCancelRequest"`
-	Supi                    externalRef1.Supi            `json:"supi,omitempty"`
-	AdditionalProperties    map[string]interface{}       `json:"-"`
-}
-
-// UeContextCreateData defines model for UeContextCreateData.
-type UeContextCreateData struct {
-	N2NotifyUri          *externalRef1.Uri               `json:"n2NotifyUri,omitempty"`
-	NgapCause            *externalRef1.NgApCause         `json:"ngapCause,omitempty"`
-	PduSessionList       []N2SmInformation               `json:"pduSessionList"`
-	ServingNetwork       *externalRef1.PlmnIdNid         `json:"servingNetwork,omitempty"`
-	SourceToTargetData   N2InfoContent                   `json:"sourceToTargetData"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TargetId             NgRanTargetId                   `json:"targetId"`
-	UeContext            UeContext                       `json:"ueContext"`
-	UeRadioCapability    *N2InfoContent                  `json:"ueRadioCapability,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// UeContextCreateError defines model for UeContextCreateError.
-type UeContextCreateError struct {
-	Error                     externalRef1.ProblemDetails `json:"error"`
-	NgapCause                 *externalRef1.NgApCause     `json:"ngapCause,omitempty"`
-	TargetToSourceFailureData *N2InfoContent              `json:"targetToSourceFailureData,omitempty"`
-	AdditionalProperties      map[string]interface{}      `json:"-"`
-}
-
-// UeContextCreatedData defines model for UeContextCreatedData.
-type UeContextCreatedData struct {
-	FailedSessionList    []N2SmInformation               `json:"failedSessionList,omitempty"`
-	PcfReselectedInd     *bool                           `json:"pcfReselectedInd,omitempty"`
-	PduSessionList       []N2SmInformation               `json:"pduSessionList"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TargetToSourceData   N2InfoContent                   `json:"targetToSourceData"`
-	UeContext            UeContext                       `json:"ueContext"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// UeContextRelocateData defines model for UeContextRelocateData.
-type UeContextRelocateData struct {
-	ForwardRelocationRequest externalRef1.RefToBinaryData    `json:"forwardRelocationRequest"`
-	NgapCause                *externalRef1.NgApCause         `json:"ngapCause,omitempty"`
-	PduSessionList           []N2SmInformation               `json:"pduSessionList,omitempty"`
-	SourceToTargetData       N2InfoContent                   `json:"sourceToTargetData"`
-	SupportedFeatures        *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TargetId                 NgRanTargetId                   `json:"targetId"`
-	UeContext                UeContext                       `json:"ueContext"`
-	UeRadioCapability        *N2InfoContent                  `json:"ueRadioCapability,omitempty"`
-	AdditionalProperties     map[string]interface{}          `json:"-"`
-}
-
-// UeContextRelocatedData defines model for UeContextRelocatedData.
-type UeContextRelocatedData struct {
-	UeContext            UeContext              `json:"ueContext"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// UeContextTransferReqData defines model for UeContextTransferReqData.
-type UeContextTransferReqData struct {
-	AccessType           externalRef1.AccessType         `json:"accessType"`
-	PlmnId               *externalRef1.PlmnId            `json:"plmnId,omitempty"`
-	Reason               TransferReason                  `json:"reason"`
-	RegRequest           *N1MessageContainer             `json:"regRequest,omitempty"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// UeContextTransferRspData defines model for UeContextTransferRspData.
-type UeContextTransferRspData struct {
-	SupportedFeatures      *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	UeContext              UeContext                       `json:"ueContext"`
-	UeNbiotRadioCapability *N2InfoContent                  `json:"ueNbiotRadioCapability,omitempty"`
-	UeRadioCapability      *N2InfoContent                  `json:"ueRadioCapability,omitempty"`
-	AdditionalProperties   map[string]interface{}          `json:"-"`
-}
-
-// UeContextTransferStatus defines model for UeContextTransferStatus.
-type UeContextTransferStatus string
-
-// UeDifferentiationInfo defines model for UeDifferentiationInfo.
-type UeDifferentiationInfo struct {
-	BatteryInd       *externalRef1.BatteryIndication          `json:"batteryInd,omitempty"`
-	PeriodicComInd   *PeriodicCommunicationIndicator          `json:"periodicComInd,omitempty"`
-	PeriodicTime     *externalRef1.DurationSec                `json:"periodicTime,omitempty"`
-	ScheduledComTime *externalRef1.ScheduledCommunicationTime `json:"scheduledComTime,omitempty"`
-
-	// StationaryInd Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
-	StationaryInd *externalRef1.StationaryIndication `json:"stationaryInd,omitempty"`
-
-	// TrafficProfile Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
-	TrafficProfile       *externalRef1.TrafficProfile `json:"trafficProfile,omitempty"`
-	ValidityTime         *externalRef1.DateTime       `json:"validityTime,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
-}
-
-// UeN1N2InfoSubscriptionCreateData defines model for UeN1N2InfoSubscriptionCreateData.
-type UeN1N2InfoSubscriptionCreateData struct {
-	N1MessageClass       *N1MessageClass                 `json:"n1MessageClass,omitempty"`
-	N1NotifyCallbackUri  *externalRef1.Uri               `json:"n1NotifyCallbackUri,omitempty"`
-	N2InformationClass   *N2InformationClass             `json:"n2InformationClass,omitempty"`
-	N2NotifyCallbackUri  *externalRef1.Uri               `json:"n2NotifyCallbackUri,omitempty"`
-	NfId                 *externalRef1.NfInstanceId      `json:"nfId,omitempty"`
-	OldGuami             *externalRef1.Guami             `json:"oldGuami,omitempty"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// UeN1N2InfoSubscriptionCreatedData defines model for UeN1N2InfoSubscriptionCreatedData.
-type UeN1N2InfoSubscriptionCreatedData struct {
-	N1n2NotifySubscriptionId string                          `json:"n1n2NotifySubscriptionId"`
-	SupportedFeatures        *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties     map[string]interface{}          `json:"-"`
-}
-
-// UeRegStatusUpdateReqData defines model for UeRegStatusUpdateReqData.
-type UeRegStatusUpdateReqData struct {
-	PcfReselectedInd     *bool                       `json:"pcfReselectedInd,omitempty"`
-	SmfChangeInfoList    []SmfChangeInfo             `json:"smfChangeInfoList,omitempty"`
-	ToReleaseSessionList []externalRef1.PduSessionId `json:"toReleaseSessionList,omitempty"`
-	TransferStatus       UeContextTransferStatus     `json:"transferStatus"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// UeRegStatusUpdateRspData defines model for UeRegStatusUpdateRspData.
-type UeRegStatusUpdateRspData struct {
-	RegStatusTransferComplete bool                   `json:"regStatusTransferComplete"`
-	AdditionalProperties      map[string]interface{} `json:"-"`
-}
-
-// UeSecurityCapability defines model for UeSecurityCapability.
-type UeSecurityCapability = externalRef1.Bytes
-
-// UpdpSubscriptionData UE policy delivery related N1 message notification subscription data.
-type UpdpSubscriptionData struct {
-	SupportedFeatures        *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	UpdpCallbackBinding      *string                         `json:"updpCallbackBinding,omitempty"`
-	UpdpNotifyCallbackUri    externalRef1.Uri                `json:"updpNotifyCallbackUri"`
-	UpdpNotifySubscriptionId string                          `json:"updpNotifySubscriptionId"`
-	AdditionalProperties     map[string]interface{}          `json:"-"`
-}
-
-// V2xContext defines model for V2xContext.
-type V2xContext struct {
-	LteUeSidelinkAmbr    externalRef1.BitRate     `json:"lteUeSidelinkAmbr,omitempty"`
-	LteV2xServicesAuth   *externalRef1.LteV2xAuth `json:"lteV2xServicesAuth,omitempty"`
-	NrUeSidelinkAmbr     externalRef1.BitRate     `json:"nrUeSidelinkAmbr,omitempty"`
-	NrV2xServicesAuth    *externalRef1.NrV2xAuth  `json:"nrV2xServicesAuth,omitempty"`
-	Pc5QoSPara           *externalRef1.Pc5QoSPara `json:"pc5QoSPara,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
-}
-
-// V2xInformation defines model for V2xInformation.
-type V2xInformation struct {
-	N2Pc5Pol             *N2InfoContent         `json:"n2Pc5Pol,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // NonUeN2MessageTransferMultipartBody defines parameters for NonUeN2MessageTransfer.
 type NonUeN2MessageTransferMultipartBody struct {
-	BinaryDataN2Information *openapi_types.File           `json:"binaryDataN2Information,omitempty"`
-	JsonData                *N2InformationTransferReqData `json:"jsonData,omitempty"`
-	AdditionalProperties    map[string]interface{}        `json:"-"`
+	BinaryDataN2Information *openapi_types.File                        `json:"binaryDataN2Information,omitempty"`
+	JsonData                *externalRef0.N2InformationTransferReqData `json:"jsonData,omitempty"`
+	AdditionalProperties    map[string]interface{}                     `json:"-"`
 }
 
 // CreateUEContextMultipartBody defines parameters for CreateUEContext.
 type CreateUEContextMultipartBody struct {
-	BinaryDataN2Information      *openapi_types.File    `json:"binaryDataN2Information,omitempty"`
-	BinaryDataN2InformationExt1  *openapi_types.File    `json:"binaryDataN2InformationExt1,omitempty"`
-	BinaryDataN2InformationExt10 *openapi_types.File    `json:"binaryDataN2InformationExt10,omitempty"`
-	BinaryDataN2InformationExt11 *openapi_types.File    `json:"binaryDataN2InformationExt11,omitempty"`
-	BinaryDataN2InformationExt12 *openapi_types.File    `json:"binaryDataN2InformationExt12,omitempty"`
-	BinaryDataN2InformationExt13 *openapi_types.File    `json:"binaryDataN2InformationExt13,omitempty"`
-	BinaryDataN2InformationExt14 *openapi_types.File    `json:"binaryDataN2InformationExt14,omitempty"`
-	BinaryDataN2InformationExt15 *openapi_types.File    `json:"binaryDataN2InformationExt15,omitempty"`
-	BinaryDataN2InformationExt16 *openapi_types.File    `json:"binaryDataN2InformationExt16,omitempty"`
-	BinaryDataN2InformationExt2  *openapi_types.File    `json:"binaryDataN2InformationExt2,omitempty"`
-	BinaryDataN2InformationExt3  *openapi_types.File    `json:"binaryDataN2InformationExt3,omitempty"`
-	BinaryDataN2InformationExt4  *openapi_types.File    `json:"binaryDataN2InformationExt4,omitempty"`
-	BinaryDataN2InformationExt5  *openapi_types.File    `json:"binaryDataN2InformationExt5,omitempty"`
-	BinaryDataN2InformationExt6  *openapi_types.File    `json:"binaryDataN2InformationExt6,omitempty"`
-	BinaryDataN2InformationExt7  *openapi_types.File    `json:"binaryDataN2InformationExt7,omitempty"`
-	BinaryDataN2InformationExt8  *openapi_types.File    `json:"binaryDataN2InformationExt8,omitempty"`
-	BinaryDataN2InformationExt9  *openapi_types.File    `json:"binaryDataN2InformationExt9,omitempty"`
-	JsonData                     *UeContextCreateData   `json:"jsonData,omitempty"`
-	AdditionalProperties         map[string]interface{} `json:"-"`
+	BinaryDataN2Information      *openapi_types.File               `json:"binaryDataN2Information,omitempty"`
+	BinaryDataN2InformationExt1  *openapi_types.File               `json:"binaryDataN2InformationExt1,omitempty"`
+	BinaryDataN2InformationExt10 *openapi_types.File               `json:"binaryDataN2InformationExt10,omitempty"`
+	BinaryDataN2InformationExt11 *openapi_types.File               `json:"binaryDataN2InformationExt11,omitempty"`
+	BinaryDataN2InformationExt12 *openapi_types.File               `json:"binaryDataN2InformationExt12,omitempty"`
+	BinaryDataN2InformationExt13 *openapi_types.File               `json:"binaryDataN2InformationExt13,omitempty"`
+	BinaryDataN2InformationExt14 *openapi_types.File               `json:"binaryDataN2InformationExt14,omitempty"`
+	BinaryDataN2InformationExt15 *openapi_types.File               `json:"binaryDataN2InformationExt15,omitempty"`
+	BinaryDataN2InformationExt16 *openapi_types.File               `json:"binaryDataN2InformationExt16,omitempty"`
+	BinaryDataN2InformationExt2  *openapi_types.File               `json:"binaryDataN2InformationExt2,omitempty"`
+	BinaryDataN2InformationExt3  *openapi_types.File               `json:"binaryDataN2InformationExt3,omitempty"`
+	BinaryDataN2InformationExt4  *openapi_types.File               `json:"binaryDataN2InformationExt4,omitempty"`
+	BinaryDataN2InformationExt5  *openapi_types.File               `json:"binaryDataN2InformationExt5,omitempty"`
+	BinaryDataN2InformationExt6  *openapi_types.File               `json:"binaryDataN2InformationExt6,omitempty"`
+	BinaryDataN2InformationExt7  *openapi_types.File               `json:"binaryDataN2InformationExt7,omitempty"`
+	BinaryDataN2InformationExt8  *openapi_types.File               `json:"binaryDataN2InformationExt8,omitempty"`
+	BinaryDataN2InformationExt9  *openapi_types.File               `json:"binaryDataN2InformationExt9,omitempty"`
+	JsonData                     *externalRef0.UeContextCreateData `json:"jsonData,omitempty"`
+	AdditionalProperties         map[string]interface{}            `json:"-"`
 }
 
 // CancelRelocateUEContextMultipartBody defines parameters for CancelRelocateUEContext.
 type CancelRelocateUEContextMultipartBody struct {
-	BinaryDataGtpcMessage *openapi_types.File          `json:"binaryDataGtpcMessage,omitempty"`
-	JsonData              *UeContextCancelRelocateData `json:"jsonData,omitempty"`
-	AdditionalProperties  map[string]interface{}       `json:"-"`
+	BinaryDataGtpcMessage *openapi_types.File                       `json:"binaryDataGtpcMessage,omitempty"`
+	JsonData              *externalRef0.UeContextCancelRelocateData `json:"jsonData,omitempty"`
+	AdditionalProperties  map[string]interface{}                    `json:"-"`
 }
 
 // N1N2MessageTransferMultipartBody defines parameters for N1N2MessageTransfer.
 type N1N2MessageTransferMultipartBody struct {
-	BinaryDataN1Message     *openapi_types.File         `json:"binaryDataN1Message,omitempty"`
-	BinaryDataN2Information *openapi_types.File         `json:"binaryDataN2Information,omitempty"`
-	BinaryMtData            *openapi_types.File         `json:"binaryMtData,omitempty"`
-	JsonData                *N1N2MessageTransferReqData `json:"jsonData,omitempty"`
-	AdditionalProperties    map[string]interface{}      `json:"-"`
+	BinaryDataN1Message     *openapi_types.File                      `json:"binaryDataN1Message,omitempty"`
+	BinaryDataN2Information *openapi_types.File                      `json:"binaryDataN2Information,omitempty"`
+	BinaryMtData            *openapi_types.File                      `json:"binaryMtData,omitempty"`
+	JsonData                *externalRef0.N1N2MessageTransferReqData `json:"jsonData,omitempty"`
+	AdditionalProperties    map[string]interface{}                   `json:"-"`
 }
 
 // RelocateUEContextMultipartBody defines parameters for RelocateUEContext.
 type RelocateUEContextMultipartBody struct {
-	BinaryDataGtpcMessage        *openapi_types.File    `json:"binaryDataGtpcMessage,omitempty"`
-	BinaryDataN2Information      *openapi_types.File    `json:"binaryDataN2Information,omitempty"`
-	BinaryDataN2InformationExt1  *openapi_types.File    `json:"binaryDataN2InformationExt1,omitempty"`
-	BinaryDataN2InformationExt10 *openapi_types.File    `json:"binaryDataN2InformationExt10,omitempty"`
-	BinaryDataN2InformationExt11 *openapi_types.File    `json:"binaryDataN2InformationExt11,omitempty"`
-	BinaryDataN2InformationExt12 *openapi_types.File    `json:"binaryDataN2InformationExt12,omitempty"`
-	BinaryDataN2InformationExt13 *openapi_types.File    `json:"binaryDataN2InformationExt13,omitempty"`
-	BinaryDataN2InformationExt14 *openapi_types.File    `json:"binaryDataN2InformationExt14,omitempty"`
-	BinaryDataN2InformationExt15 *openapi_types.File    `json:"binaryDataN2InformationExt15,omitempty"`
-	BinaryDataN2InformationExt16 *openapi_types.File    `json:"binaryDataN2InformationExt16,omitempty"`
-	BinaryDataN2InformationExt2  *openapi_types.File    `json:"binaryDataN2InformationExt2,omitempty"`
-	BinaryDataN2InformationExt3  *openapi_types.File    `json:"binaryDataN2InformationExt3,omitempty"`
-	BinaryDataN2InformationExt4  *openapi_types.File    `json:"binaryDataN2InformationExt4,omitempty"`
-	BinaryDataN2InformationExt5  *openapi_types.File    `json:"binaryDataN2InformationExt5,omitempty"`
-	BinaryDataN2InformationExt6  *openapi_types.File    `json:"binaryDataN2InformationExt6,omitempty"`
-	BinaryDataN2InformationExt7  *openapi_types.File    `json:"binaryDataN2InformationExt7,omitempty"`
-	BinaryDataN2InformationExt8  *openapi_types.File    `json:"binaryDataN2InformationExt8,omitempty"`
-	BinaryDataN2InformationExt9  *openapi_types.File    `json:"binaryDataN2InformationExt9,omitempty"`
-	JsonData                     *UeContextRelocateData `json:"jsonData,omitempty"`
-	AdditionalProperties         map[string]interface{} `json:"-"`
+	BinaryDataGtpcMessage        *openapi_types.File                 `json:"binaryDataGtpcMessage,omitempty"`
+	BinaryDataN2Information      *openapi_types.File                 `json:"binaryDataN2Information,omitempty"`
+	BinaryDataN2InformationExt1  *openapi_types.File                 `json:"binaryDataN2InformationExt1,omitempty"`
+	BinaryDataN2InformationExt10 *openapi_types.File                 `json:"binaryDataN2InformationExt10,omitempty"`
+	BinaryDataN2InformationExt11 *openapi_types.File                 `json:"binaryDataN2InformationExt11,omitempty"`
+	BinaryDataN2InformationExt12 *openapi_types.File                 `json:"binaryDataN2InformationExt12,omitempty"`
+	BinaryDataN2InformationExt13 *openapi_types.File                 `json:"binaryDataN2InformationExt13,omitempty"`
+	BinaryDataN2InformationExt14 *openapi_types.File                 `json:"binaryDataN2InformationExt14,omitempty"`
+	BinaryDataN2InformationExt15 *openapi_types.File                 `json:"binaryDataN2InformationExt15,omitempty"`
+	BinaryDataN2InformationExt16 *openapi_types.File                 `json:"binaryDataN2InformationExt16,omitempty"`
+	BinaryDataN2InformationExt2  *openapi_types.File                 `json:"binaryDataN2InformationExt2,omitempty"`
+	BinaryDataN2InformationExt3  *openapi_types.File                 `json:"binaryDataN2InformationExt3,omitempty"`
+	BinaryDataN2InformationExt4  *openapi_types.File                 `json:"binaryDataN2InformationExt4,omitempty"`
+	BinaryDataN2InformationExt5  *openapi_types.File                 `json:"binaryDataN2InformationExt5,omitempty"`
+	BinaryDataN2InformationExt6  *openapi_types.File                 `json:"binaryDataN2InformationExt6,omitempty"`
+	BinaryDataN2InformationExt7  *openapi_types.File                 `json:"binaryDataN2InformationExt7,omitempty"`
+	BinaryDataN2InformationExt8  *openapi_types.File                 `json:"binaryDataN2InformationExt8,omitempty"`
+	BinaryDataN2InformationExt9  *openapi_types.File                 `json:"binaryDataN2InformationExt9,omitempty"`
+	JsonData                     *externalRef0.UeContextRelocateData `json:"jsonData,omitempty"`
+	AdditionalProperties         map[string]interface{}              `json:"-"`
 }
 
 // UEContextTransferMultipartBody defines parameters for UEContextTransfer.
 type UEContextTransferMultipartBody struct {
-	BinaryDataN1Message  *openapi_types.File       `json:"binaryDataN1Message,omitempty"`
-	JsonData             *UeContextTransferReqData `json:"jsonData,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
+	BinaryDataN1Message  *openapi_types.File                    `json:"binaryDataN1Message,omitempty"`
+	JsonData             *externalRef0.UeContextTransferReqData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}                 `json:"-"`
 }
 
 // NonUeN2InfoSubscribeJSONRequestBody defines body for NonUeN2InfoSubscribe for application/json ContentType.
-type NonUeN2InfoSubscribeJSONRequestBody = NonUeN2InfoSubscriptionCreateData
+type NonUeN2InfoSubscribeJSONRequestBody = externalRef0.NonUeN2InfoSubscriptionCreateData
 
 // NonUeN2MessageTransferJSONRequestBody defines body for NonUeN2MessageTransfer for application/json ContentType.
-type NonUeN2MessageTransferJSONRequestBody = N2InformationTransferReqData
+type NonUeN2MessageTransferJSONRequestBody = externalRef0.N2InformationTransferReqData
 
 // NonUeN2MessageTransferMultipartRequestBody defines body for NonUeN2MessageTransfer for multipart/related ContentType.
 type NonUeN2MessageTransferMultipartRequestBody NonUeN2MessageTransferMultipartBody
 
 // AMFStatusChangeSubscribeJSONRequestBody defines body for AMFStatusChangeSubscribe for application/json ContentType.
-type AMFStatusChangeSubscribeJSONRequestBody = SubscriptionData
+type AMFStatusChangeSubscribeJSONRequestBody = externalRef0.SubscriptionData
 
 // AMFStatusChangeSubscribeModfyJSONRequestBody defines body for AMFStatusChangeSubscribeModfy for application/json ContentType.
-type AMFStatusChangeSubscribeModfyJSONRequestBody = SubscriptionData
+type AMFStatusChangeSubscribeModfyJSONRequestBody = externalRef0.SubscriptionData
 
 // CreateUEContextMultipartRequestBody defines body for CreateUEContext for multipart/related ContentType.
 type CreateUEContextMultipartRequestBody CreateUEContextMultipartBody
 
 // EBIAssignmentJSONRequestBody defines body for EBIAssignment for application/json ContentType.
-type EBIAssignmentJSONRequestBody = AssignEbiData
+type EBIAssignmentJSONRequestBody = externalRef0.AssignEbiData
 
 // CancelRelocateUEContextMultipartRequestBody defines body for CancelRelocateUEContext for multipart/related ContentType.
 type CancelRelocateUEContextMultipartRequestBody CancelRelocateUEContextMultipartBody
 
 // N1N2MessageTransferJSONRequestBody defines body for N1N2MessageTransfer for application/json ContentType.
-type N1N2MessageTransferJSONRequestBody = N1N2MessageTransferReqData
+type N1N2MessageTransferJSONRequestBody = externalRef0.N1N2MessageTransferReqData
 
 // N1N2MessageTransferMultipartRequestBody defines body for N1N2MessageTransfer for multipart/related ContentType.
 type N1N2MessageTransferMultipartRequestBody N1N2MessageTransferMultipartBody
 
 // N1N2MessageSubscribeJSONRequestBody defines body for N1N2MessageSubscribe for application/json ContentType.
-type N1N2MessageSubscribeJSONRequestBody = UeN1N2InfoSubscriptionCreateData
+type N1N2MessageSubscribeJSONRequestBody = externalRef0.UeN1N2InfoSubscriptionCreateData
 
 // ReleaseUEContextJSONRequestBody defines body for ReleaseUEContext for application/json ContentType.
-type ReleaseUEContextJSONRequestBody = UEContextRelease
+type ReleaseUEContextJSONRequestBody = externalRef0.UEContextRelease
 
 // RelocateUEContextMultipartRequestBody defines body for RelocateUEContext for multipart/related ContentType.
 type RelocateUEContextMultipartRequestBody RelocateUEContextMultipartBody
 
 // UEContextTransferJSONRequestBody defines body for UEContextTransfer for application/json ContentType.
-type UEContextTransferJSONRequestBody = UeContextTransferReqData
+type UEContextTransferJSONRequestBody = externalRef0.UeContextTransferReqData
 
 // UEContextTransferMultipartRequestBody defines body for UEContextTransfer for multipart/related ContentType.
 type UEContextTransferMultipartRequestBody UEContextTransferMultipartBody
 
 // RegistrationStatusUpdateJSONRequestBody defines body for RegistrationStatusUpdate for application/json ContentType.
-type RegistrationStatusUpdateJSONRequestBody = UeRegStatusUpdateReqData
+type RegistrationStatusUpdateJSONRequestBody = externalRef0.UeRegStatusUpdateReqData
 
 // Getter for additional properties for NonUeN2MessageTransferMultipartBody. Returns the specified
 // element and whether it was found
@@ -2211,9438 +1162,6 @@ func (a UEContextTransferMultipartBody) MarshalJSON() ([]byte, error) {
 		object["jsonData"], err = json.Marshal(a.JsonData)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AmfEventSubscriptionAddInfo. Returns the specified
-// element and whether it was found
-func (a AmfEventSubscriptionAddInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AmfEventSubscriptionAddInfo
-func (a *AmfEventSubscriptionAddInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AmfEventSubscriptionAddInfo to handle AdditionalProperties
-func (a *AmfEventSubscriptionAddInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["aoiStateList"]; found {
-		err = json.Unmarshal(raw, &a.AoiStateList)
-		if err != nil {
-			return fmt.Errorf("error reading 'aoiStateList': %w", err)
-		}
-		delete(object, "aoiStateList")
-	}
-
-	if raw, found := object["bindingInfo"]; found {
-		err = json.Unmarshal(raw, &a.BindingInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'bindingInfo': %w", err)
-		}
-		delete(object, "bindingInfo")
-	}
-
-	if raw, found := object["eventSyncInd"]; found {
-		err = json.Unmarshal(raw, &a.EventSyncInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventSyncInd': %w", err)
-		}
-		delete(object, "eventSyncInd")
-	}
-
-	if raw, found := object["subscribingNfType"]; found {
-		err = json.Unmarshal(raw, &a.SubscribingNfType)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscribingNfType': %w", err)
-		}
-		delete(object, "subscribingNfType")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AmfEventSubscriptionAddInfo to handle AdditionalProperties
-func (a AmfEventSubscriptionAddInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AoiStateList != nil {
-		object["aoiStateList"], err = json.Marshal(a.AoiStateList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'aoiStateList': %w", err)
-		}
-	}
-
-	if len(a.BindingInfo) != 0 {
-		object["bindingInfo"], err = json.Marshal(a.BindingInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'bindingInfo': %w", err)
-		}
-	}
-
-	if a.EventSyncInd != nil {
-		object["eventSyncInd"], err = json.Marshal(a.EventSyncInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eventSyncInd': %w", err)
-		}
-	}
-
-	if a.SubscribingNfType != nil {
-		object["subscribingNfType"], err = json.Marshal(a.SubscribingNfType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscribingNfType': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AmfStatusChangeNotification. Returns the specified
-// element and whether it was found
-func (a AmfStatusChangeNotification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AmfStatusChangeNotification
-func (a *AmfStatusChangeNotification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AmfStatusChangeNotification to handle AdditionalProperties
-func (a *AmfStatusChangeNotification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfStatusInfoList"]; found {
-		err = json.Unmarshal(raw, &a.AmfStatusInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfStatusInfoList': %w", err)
-		}
-		delete(object, "amfStatusInfoList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AmfStatusChangeNotification to handle AdditionalProperties
-func (a AmfStatusChangeNotification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["amfStatusInfoList"], err = json.Marshal(a.AmfStatusInfoList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'amfStatusInfoList': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AmfStatusInfo. Returns the specified
-// element and whether it was found
-func (a AmfStatusInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AmfStatusInfo
-func (a *AmfStatusInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AmfStatusInfo to handle AdditionalProperties
-func (a *AmfStatusInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["guamiList"]; found {
-		err = json.Unmarshal(raw, &a.GuamiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'guamiList': %w", err)
-		}
-		delete(object, "guamiList")
-	}
-
-	if raw, found := object["statusChange"]; found {
-		err = json.Unmarshal(raw, &a.StatusChange)
-		if err != nil {
-			return fmt.Errorf("error reading 'statusChange': %w", err)
-		}
-		delete(object, "statusChange")
-	}
-
-	if raw, found := object["targetAmfFailure"]; found {
-		err = json.Unmarshal(raw, &a.TargetAmfFailure)
-		if err != nil {
-			return fmt.Errorf("error reading 'targetAmfFailure': %w", err)
-		}
-		delete(object, "targetAmfFailure")
-	}
-
-	if raw, found := object["targetAmfRemoval"]; found {
-		err = json.Unmarshal(raw, &a.TargetAmfRemoval)
-		if err != nil {
-			return fmt.Errorf("error reading 'targetAmfRemoval': %w", err)
-		}
-		delete(object, "targetAmfRemoval")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AmfStatusInfo to handle AdditionalProperties
-func (a AmfStatusInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["guamiList"], err = json.Marshal(a.GuamiList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'guamiList': %w", err)
-	}
-
-	object["statusChange"], err = json.Marshal(a.StatusChange)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'statusChange': %w", err)
-	}
-
-	if a.TargetAmfFailure != nil {
-		object["targetAmfFailure"], err = json.Marshal(a.TargetAmfFailure)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'targetAmfFailure': %w", err)
-		}
-	}
-
-	if a.TargetAmfRemoval != nil {
-		object["targetAmfRemoval"], err = json.Marshal(a.TargetAmfRemoval)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'targetAmfRemoval': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AreaOfInterestEventState. Returns the specified
-// element and whether it was found
-func (a AreaOfInterestEventState) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AreaOfInterestEventState
-func (a *AreaOfInterestEventState) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AreaOfInterestEventState to handle AdditionalProperties
-func (a *AreaOfInterestEventState) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["individualPraIdList"]; found {
-		err = json.Unmarshal(raw, &a.IndividualPraIdList)
-		if err != nil {
-			return fmt.Errorf("error reading 'individualPraIdList': %w", err)
-		}
-		delete(object, "individualPraIdList")
-	}
-
-	if raw, found := object["presence"]; found {
-		err = json.Unmarshal(raw, &a.Presence)
-		if err != nil {
-			return fmt.Errorf("error reading 'presence': %w", err)
-		}
-		delete(object, "presence")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AreaOfInterestEventState to handle AdditionalProperties
-func (a AreaOfInterestEventState) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.IndividualPraIdList) != 0 {
-		object["individualPraIdList"], err = json.Marshal(a.IndividualPraIdList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'individualPraIdList': %w", err)
-		}
-	}
-
-	object["presence"], err = json.Marshal(a.Presence)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'presence': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AreaOfValidity. Returns the specified
-// element and whether it was found
-func (a AreaOfValidity) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AreaOfValidity
-func (a *AreaOfValidity) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AreaOfValidity to handle AdditionalProperties
-func (a *AreaOfValidity) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["taiList"]; found {
-		err = json.Unmarshal(raw, &a.TaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'taiList': %w", err)
-		}
-		delete(object, "taiList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AreaOfValidity to handle AdditionalProperties
-func (a AreaOfValidity) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["taiList"], err = json.Marshal(a.TaiList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AssignEbiData. Returns the specified
-// element and whether it was found
-func (a AssignEbiData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AssignEbiData
-func (a *AssignEbiData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AssignEbiData to handle AdditionalProperties
-func (a *AssignEbiData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["arpList"]; found {
-		err = json.Unmarshal(raw, &a.ArpList)
-		if err != nil {
-			return fmt.Errorf("error reading 'arpList': %w", err)
-		}
-		delete(object, "arpList")
-	}
-
-	if raw, found := object["oldGuami"]; found {
-		err = json.Unmarshal(raw, &a.OldGuami)
-		if err != nil {
-			return fmt.Errorf("error reading 'oldGuami': %w", err)
-		}
-		delete(object, "oldGuami")
-	}
-
-	if raw, found := object["pduSessionId"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionId': %w", err)
-		}
-		delete(object, "pduSessionId")
-	}
-
-	if raw, found := object["releasedEbiList"]; found {
-		err = json.Unmarshal(raw, &a.ReleasedEbiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'releasedEbiList': %w", err)
-		}
-		delete(object, "releasedEbiList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AssignEbiData to handle AdditionalProperties
-func (a AssignEbiData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.ArpList) != 0 {
-		object["arpList"], err = json.Marshal(a.ArpList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'arpList': %w", err)
-		}
-	}
-
-	if a.OldGuami != nil {
-		object["oldGuami"], err = json.Marshal(a.OldGuami)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oldGuami': %w", err)
-		}
-	}
-
-	object["pduSessionId"], err = json.Marshal(a.PduSessionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
-	}
-
-	if len(a.ReleasedEbiList) != 0 {
-		object["releasedEbiList"], err = json.Marshal(a.ReleasedEbiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'releasedEbiList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AssignEbiError. Returns the specified
-// element and whether it was found
-func (a AssignEbiError) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AssignEbiError
-func (a *AssignEbiError) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AssignEbiError to handle AdditionalProperties
-func (a *AssignEbiError) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["error"]; found {
-		err = json.Unmarshal(raw, &a.Error)
-		if err != nil {
-			return fmt.Errorf("error reading 'error': %w", err)
-		}
-		delete(object, "error")
-	}
-
-	if raw, found := object["failureDetails"]; found {
-		err = json.Unmarshal(raw, &a.FailureDetails)
-		if err != nil {
-			return fmt.Errorf("error reading 'failureDetails': %w", err)
-		}
-		delete(object, "failureDetails")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AssignEbiError to handle AdditionalProperties
-func (a AssignEbiError) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["error"], err = json.Marshal(a.Error)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'error': %w", err)
-	}
-
-	object["failureDetails"], err = json.Marshal(a.FailureDetails)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'failureDetails': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AssignEbiFailed. Returns the specified
-// element and whether it was found
-func (a AssignEbiFailed) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AssignEbiFailed
-func (a *AssignEbiFailed) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AssignEbiFailed to handle AdditionalProperties
-func (a *AssignEbiFailed) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["failedArpList"]; found {
-		err = json.Unmarshal(raw, &a.FailedArpList)
-		if err != nil {
-			return fmt.Errorf("error reading 'failedArpList': %w", err)
-		}
-		delete(object, "failedArpList")
-	}
-
-	if raw, found := object["pduSessionId"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionId': %w", err)
-		}
-		delete(object, "pduSessionId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AssignEbiFailed to handle AdditionalProperties
-func (a AssignEbiFailed) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.FailedArpList) != 0 {
-		object["failedArpList"], err = json.Marshal(a.FailedArpList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'failedArpList': %w", err)
-		}
-	}
-
-	object["pduSessionId"], err = json.Marshal(a.PduSessionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AssignedEbiData. Returns the specified
-// element and whether it was found
-func (a AssignedEbiData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AssignedEbiData
-func (a *AssignedEbiData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AssignedEbiData to handle AdditionalProperties
-func (a *AssignedEbiData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["assignedEbiList"]; found {
-		err = json.Unmarshal(raw, &a.AssignedEbiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'assignedEbiList': %w", err)
-		}
-		delete(object, "assignedEbiList")
-	}
-
-	if raw, found := object["failedArpList"]; found {
-		err = json.Unmarshal(raw, &a.FailedArpList)
-		if err != nil {
-			return fmt.Errorf("error reading 'failedArpList': %w", err)
-		}
-		delete(object, "failedArpList")
-	}
-
-	if raw, found := object["pduSessionId"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionId': %w", err)
-		}
-		delete(object, "pduSessionId")
-	}
-
-	if raw, found := object["releasedEbiList"]; found {
-		err = json.Unmarshal(raw, &a.ReleasedEbiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'releasedEbiList': %w", err)
-		}
-		delete(object, "releasedEbiList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AssignedEbiData to handle AdditionalProperties
-func (a AssignedEbiData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["assignedEbiList"], err = json.Marshal(a.AssignedEbiList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'assignedEbiList': %w", err)
-	}
-
-	if len(a.FailedArpList) != 0 {
-		object["failedArpList"], err = json.Marshal(a.FailedArpList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'failedArpList': %w", err)
-		}
-	}
-
-	object["pduSessionId"], err = json.Marshal(a.PduSessionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
-	}
-
-	if len(a.ReleasedEbiList) != 0 {
-		object["releasedEbiList"], err = json.Marshal(a.ReleasedEbiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'releasedEbiList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for CeModeBInd. Returns the specified
-// element and whether it was found
-func (a CeModeBInd) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for CeModeBInd
-func (a *CeModeBInd) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for CeModeBInd to handle AdditionalProperties
-func (a *CeModeBInd) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ceModeBSupportInd"]; found {
-		err = json.Unmarshal(raw, &a.CeModeBSupportInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'ceModeBSupportInd': %w", err)
-		}
-		delete(object, "ceModeBSupportInd")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for CeModeBInd to handle AdditionalProperties
-func (a CeModeBInd) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ceModeBSupportInd"], err = json.Marshal(a.CeModeBSupportInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ceModeBSupportInd': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EcRestrictionDataWb. Returns the specified
-// element and whether it was found
-func (a EcRestrictionDataWb) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EcRestrictionDataWb
-func (a *EcRestrictionDataWb) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EcRestrictionDataWb to handle AdditionalProperties
-func (a *EcRestrictionDataWb) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ecModeARestricted"]; found {
-		err = json.Unmarshal(raw, &a.EcModeARestricted)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecModeARestricted': %w", err)
-		}
-		delete(object, "ecModeARestricted")
-	}
-
-	if raw, found := object["ecModeBRestricted"]; found {
-		err = json.Unmarshal(raw, &a.EcModeBRestricted)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecModeBRestricted': %w", err)
-		}
-		delete(object, "ecModeBRestricted")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EcRestrictionDataWb to handle AdditionalProperties
-func (a EcRestrictionDataWb) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.EcModeARestricted != nil {
-		object["ecModeARestricted"], err = json.Marshal(a.EcModeARestricted)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecModeARestricted': %w", err)
-		}
-	}
-
-	object["ecModeBRestricted"], err = json.Marshal(a.EcModeBRestricted)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ecModeBRestricted': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EpsNasSecurityMode. Returns the specified
-// element and whether it was found
-func (a EpsNasSecurityMode) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EpsNasSecurityMode
-func (a *EpsNasSecurityMode) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EpsNasSecurityMode to handle AdditionalProperties
-func (a *EpsNasSecurityMode) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["cipheringAlgorithm"]; found {
-		err = json.Unmarshal(raw, &a.CipheringAlgorithm)
-		if err != nil {
-			return fmt.Errorf("error reading 'cipheringAlgorithm': %w", err)
-		}
-		delete(object, "cipheringAlgorithm")
-	}
-
-	if raw, found := object["integrityAlgorithm"]; found {
-		err = json.Unmarshal(raw, &a.IntegrityAlgorithm)
-		if err != nil {
-			return fmt.Errorf("error reading 'integrityAlgorithm': %w", err)
-		}
-		delete(object, "integrityAlgorithm")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EpsNasSecurityMode to handle AdditionalProperties
-func (a EpsNasSecurityMode) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["cipheringAlgorithm"], err = json.Marshal(a.CipheringAlgorithm)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'cipheringAlgorithm': %w", err)
-	}
-
-	object["integrityAlgorithm"], err = json.Marshal(a.IntegrityAlgorithm)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'integrityAlgorithm': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ExpectedUeBehavior. Returns the specified
-// element and whether it was found
-func (a ExpectedUeBehavior) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ExpectedUeBehavior
-func (a *ExpectedUeBehavior) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ExpectedUeBehavior to handle AdditionalProperties
-func (a *ExpectedUeBehavior) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["expMoveTrajectory"]; found {
-		err = json.Unmarshal(raw, &a.ExpMoveTrajectory)
-		if err != nil {
-			return fmt.Errorf("error reading 'expMoveTrajectory': %w", err)
-		}
-		delete(object, "expMoveTrajectory")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ExpectedUeBehavior to handle AdditionalProperties
-func (a ExpectedUeBehavior) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["expMoveTrajectory"], err = json.Marshal(a.ExpMoveTrajectory)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'expMoveTrajectory': %w", err)
-	}
-
-	object["validityTime"], err = json.Marshal(a.ValidityTime)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ExtAmfEventSubscription. Returns the specified
-// element and whether it was found
-func (a ExtAmfEventSubscription) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ExtAmfEventSubscription
-func (a *ExtAmfEventSubscription) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ExtAmfEventSubscription to handle AdditionalProperties
-func (a *ExtAmfEventSubscription) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["anyUE"]; found {
-		err = json.Unmarshal(raw, &a.AnyUE)
-		if err != nil {
-			return fmt.Errorf("error reading 'anyUE': %w", err)
-		}
-		delete(object, "anyUE")
-	}
-
-	if raw, found := object["aoiStateList"]; found {
-		err = json.Unmarshal(raw, &a.AoiStateList)
-		if err != nil {
-			return fmt.Errorf("error reading 'aoiStateList': %w", err)
-		}
-		delete(object, "aoiStateList")
-	}
-
-	if raw, found := object["bindingInfo"]; found {
-		err = json.Unmarshal(raw, &a.BindingInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'bindingInfo': %w", err)
-		}
-		delete(object, "bindingInfo")
-	}
-
-	if raw, found := object["eventList"]; found {
-		err = json.Unmarshal(raw, &a.EventList)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventList': %w", err)
-		}
-		delete(object, "eventList")
-	}
-
-	if raw, found := object["eventNotifyUri"]; found {
-		err = json.Unmarshal(raw, &a.EventNotifyUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventNotifyUri': %w", err)
-		}
-		delete(object, "eventNotifyUri")
-	}
-
-	if raw, found := object["eventSyncInd"]; found {
-		err = json.Unmarshal(raw, &a.EventSyncInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventSyncInd': %w", err)
-		}
-		delete(object, "eventSyncInd")
-	}
-
-	if raw, found := object["gpsi"]; found {
-		err = json.Unmarshal(raw, &a.Gpsi)
-		if err != nil {
-			return fmt.Errorf("error reading 'gpsi': %w", err)
-		}
-		delete(object, "gpsi")
-	}
-
-	if raw, found := object["groupId"]; found {
-		err = json.Unmarshal(raw, &a.GroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'groupId': %w", err)
-		}
-		delete(object, "groupId")
-	}
-
-	if raw, found := object["nfId"]; found {
-		err = json.Unmarshal(raw, &a.NfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfId': %w", err)
-		}
-		delete(object, "nfId")
-	}
-
-	if raw, found := object["notifyCorrelationId"]; found {
-		err = json.Unmarshal(raw, &a.NotifyCorrelationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'notifyCorrelationId': %w", err)
-		}
-		delete(object, "notifyCorrelationId")
-	}
-
-	if raw, found := object["options"]; found {
-		err = json.Unmarshal(raw, &a.Options)
-		if err != nil {
-			return fmt.Errorf("error reading 'options': %w", err)
-		}
-		delete(object, "options")
-	}
-
-	if raw, found := object["pei"]; found {
-		err = json.Unmarshal(raw, &a.Pei)
-		if err != nil {
-			return fmt.Errorf("error reading 'pei': %w", err)
-		}
-		delete(object, "pei")
-	}
-
-	if raw, found := object["sourceNfType"]; found {
-		err = json.Unmarshal(raw, &a.SourceNfType)
-		if err != nil {
-			return fmt.Errorf("error reading 'sourceNfType': %w", err)
-		}
-		delete(object, "sourceNfType")
-	}
-
-	if raw, found := object["subsChangeNotifyCorrelationId"]; found {
-		err = json.Unmarshal(raw, &a.SubsChangeNotifyCorrelationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subsChangeNotifyCorrelationId': %w", err)
-		}
-		delete(object, "subsChangeNotifyCorrelationId")
-	}
-
-	if raw, found := object["subsChangeNotifyUri"]; found {
-		err = json.Unmarshal(raw, &a.SubsChangeNotifyUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'subsChangeNotifyUri': %w", err)
-		}
-		delete(object, "subsChangeNotifyUri")
-	}
-
-	if raw, found := object["subscribingNfType"]; found {
-		err = json.Unmarshal(raw, &a.SubscribingNfType)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscribingNfType': %w", err)
-		}
-		delete(object, "subscribingNfType")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ExtAmfEventSubscription to handle AdditionalProperties
-func (a ExtAmfEventSubscription) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AnyUE != nil {
-		object["anyUE"], err = json.Marshal(a.AnyUE)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anyUE': %w", err)
-		}
-	}
-
-	if a.AoiStateList != nil {
-		object["aoiStateList"], err = json.Marshal(a.AoiStateList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'aoiStateList': %w", err)
-		}
-	}
-
-	if len(a.BindingInfo) != 0 {
-		object["bindingInfo"], err = json.Marshal(a.BindingInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'bindingInfo': %w", err)
-		}
-	}
-
-	object["eventList"], err = json.Marshal(a.EventList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'eventList': %w", err)
-	}
-
-	object["eventNotifyUri"], err = json.Marshal(a.EventNotifyUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'eventNotifyUri': %w", err)
-	}
-
-	if a.EventSyncInd != nil {
-		object["eventSyncInd"], err = json.Marshal(a.EventSyncInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eventSyncInd': %w", err)
-		}
-	}
-
-	if len(a.Gpsi) != 0 {
-		object["gpsi"], err = json.Marshal(a.Gpsi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
-		}
-	}
-
-	if len(a.GroupId) != 0 {
-		object["groupId"], err = json.Marshal(a.GroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'groupId': %w", err)
-		}
-	}
-
-	object["nfId"], err = json.Marshal(a.NfId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfId': %w", err)
-	}
-
-	object["notifyCorrelationId"], err = json.Marshal(a.NotifyCorrelationId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'notifyCorrelationId': %w", err)
-	}
-
-	if a.Options != nil {
-		object["options"], err = json.Marshal(a.Options)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'options': %w", err)
-		}
-	}
-
-	if len(a.Pei) != 0 {
-		object["pei"], err = json.Marshal(a.Pei)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
-		}
-	}
-
-	if a.SourceNfType != nil {
-		object["sourceNfType"], err = json.Marshal(a.SourceNfType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sourceNfType': %w", err)
-		}
-	}
-
-	if a.SubsChangeNotifyCorrelationId != nil {
-		object["subsChangeNotifyCorrelationId"], err = json.Marshal(a.SubsChangeNotifyCorrelationId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subsChangeNotifyCorrelationId': %w", err)
-		}
-	}
-
-	if a.SubsChangeNotifyUri != nil {
-		object["subsChangeNotifyUri"], err = json.Marshal(a.SubsChangeNotifyUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subsChangeNotifyUri': %w", err)
-		}
-	}
-
-	if a.SubscribingNfType != nil {
-		object["subscribingNfType"], err = json.Marshal(a.SubscribingNfType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscribingNfType': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ImmediateMdtConf. Returns the specified
-// element and whether it was found
-func (a ImmediateMdtConf) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ImmediateMdtConf
-func (a *ImmediateMdtConf) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ImmediateMdtConf to handle AdditionalProperties
-func (a *ImmediateMdtConf) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["addPositioningMethodList"]; found {
-		err = json.Unmarshal(raw, &a.AddPositioningMethodList)
-		if err != nil {
-			return fmt.Errorf("error reading 'addPositioningMethodList': %w", err)
-		}
-		delete(object, "addPositioningMethodList")
-	}
-
-	if raw, found := object["areaScope"]; found {
-		err = json.Unmarshal(raw, &a.AreaScope)
-		if err != nil {
-			return fmt.Errorf("error reading 'areaScope': %w", err)
-		}
-		delete(object, "areaScope")
-	}
-
-	if raw, found := object["collectionPeriodRmmLte"]; found {
-		err = json.Unmarshal(raw, &a.CollectionPeriodRmmLte)
-		if err != nil {
-			return fmt.Errorf("error reading 'collectionPeriodRmmLte': %w", err)
-		}
-		delete(object, "collectionPeriodRmmLte")
-	}
-
-	if raw, found := object["collectionPeriodRmmNr"]; found {
-		err = json.Unmarshal(raw, &a.CollectionPeriodRmmNr)
-		if err != nil {
-			return fmt.Errorf("error reading 'collectionPeriodRmmNr': %w", err)
-		}
-		delete(object, "collectionPeriodRmmNr")
-	}
-
-	if raw, found := object["eventThresholdRsrp"]; found {
-		err = json.Unmarshal(raw, &a.EventThresholdRsrp)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventThresholdRsrp': %w", err)
-		}
-		delete(object, "eventThresholdRsrp")
-	}
-
-	if raw, found := object["eventThresholdRsrpNr"]; found {
-		err = json.Unmarshal(raw, &a.EventThresholdRsrpNr)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventThresholdRsrpNr': %w", err)
-		}
-		delete(object, "eventThresholdRsrpNr")
-	}
-
-	if raw, found := object["eventThresholdRsrq"]; found {
-		err = json.Unmarshal(raw, &a.EventThresholdRsrq)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventThresholdRsrq': %w", err)
-		}
-		delete(object, "eventThresholdRsrq")
-	}
-
-	if raw, found := object["eventThresholdRsrqNr"]; found {
-		err = json.Unmarshal(raw, &a.EventThresholdRsrqNr)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventThresholdRsrqNr': %w", err)
-		}
-		delete(object, "eventThresholdRsrqNr")
-	}
-
-	if raw, found := object["jobType"]; found {
-		err = json.Unmarshal(raw, &a.JobType)
-		if err != nil {
-			return fmt.Errorf("error reading 'jobType': %w", err)
-		}
-		delete(object, "jobType")
-	}
-
-	if raw, found := object["mdtAllowedPlmnIdList"]; found {
-		err = json.Unmarshal(raw, &a.MdtAllowedPlmnIdList)
-		if err != nil {
-			return fmt.Errorf("error reading 'mdtAllowedPlmnIdList': %w", err)
-		}
-		delete(object, "mdtAllowedPlmnIdList")
-	}
-
-	if raw, found := object["measurementLteList"]; found {
-		err = json.Unmarshal(raw, &a.MeasurementLteList)
-		if err != nil {
-			return fmt.Errorf("error reading 'measurementLteList': %w", err)
-		}
-		delete(object, "measurementLteList")
-	}
-
-	if raw, found := object["measurementNrList"]; found {
-		err = json.Unmarshal(raw, &a.MeasurementNrList)
-		if err != nil {
-			return fmt.Errorf("error reading 'measurementNrList': %w", err)
-		}
-		delete(object, "measurementNrList")
-	}
-
-	if raw, found := object["measurementPeriodLte"]; found {
-		err = json.Unmarshal(raw, &a.MeasurementPeriodLte)
-		if err != nil {
-			return fmt.Errorf("error reading 'measurementPeriodLte': %w", err)
-		}
-		delete(object, "measurementPeriodLte")
-	}
-
-	if raw, found := object["positioningMethod"]; found {
-		err = json.Unmarshal(raw, &a.PositioningMethod)
-		if err != nil {
-			return fmt.Errorf("error reading 'positioningMethod': %w", err)
-		}
-		delete(object, "positioningMethod")
-	}
-
-	if raw, found := object["reportAmount"]; found {
-		err = json.Unmarshal(raw, &a.ReportAmount)
-		if err != nil {
-			return fmt.Errorf("error reading 'reportAmount': %w", err)
-		}
-		delete(object, "reportAmount")
-	}
-
-	if raw, found := object["reportInterval"]; found {
-		err = json.Unmarshal(raw, &a.ReportInterval)
-		if err != nil {
-			return fmt.Errorf("error reading 'reportInterval': %w", err)
-		}
-		delete(object, "reportInterval")
-	}
-
-	if raw, found := object["reportIntervalNr"]; found {
-		err = json.Unmarshal(raw, &a.ReportIntervalNr)
-		if err != nil {
-			return fmt.Errorf("error reading 'reportIntervalNr': %w", err)
-		}
-		delete(object, "reportIntervalNr")
-	}
-
-	if raw, found := object["reportingTriggerList"]; found {
-		err = json.Unmarshal(raw, &a.ReportingTriggerList)
-		if err != nil {
-			return fmt.Errorf("error reading 'reportingTriggerList': %w", err)
-		}
-		delete(object, "reportingTriggerList")
-	}
-
-	if raw, found := object["sensorMeasurementList"]; found {
-		err = json.Unmarshal(raw, &a.SensorMeasurementList)
-		if err != nil {
-			return fmt.Errorf("error reading 'sensorMeasurementList': %w", err)
-		}
-		delete(object, "sensorMeasurementList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ImmediateMdtConf to handle AdditionalProperties
-func (a ImmediateMdtConf) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AddPositioningMethodList) != 0 {
-		object["addPositioningMethodList"], err = json.Marshal(a.AddPositioningMethodList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'addPositioningMethodList': %w", err)
-		}
-	}
-
-	if a.AreaScope != nil {
-		object["areaScope"], err = json.Marshal(a.AreaScope)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'areaScope': %w", err)
-		}
-	}
-
-	if a.CollectionPeriodRmmLte != nil {
-		object["collectionPeriodRmmLte"], err = json.Marshal(a.CollectionPeriodRmmLte)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'collectionPeriodRmmLte': %w", err)
-		}
-	}
-
-	if a.CollectionPeriodRmmNr != nil {
-		object["collectionPeriodRmmNr"], err = json.Marshal(a.CollectionPeriodRmmNr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'collectionPeriodRmmNr': %w", err)
-		}
-	}
-
-	if a.EventThresholdRsrp != nil {
-		object["eventThresholdRsrp"], err = json.Marshal(a.EventThresholdRsrp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eventThresholdRsrp': %w", err)
-		}
-	}
-
-	if a.EventThresholdRsrpNr != nil {
-		object["eventThresholdRsrpNr"], err = json.Marshal(a.EventThresholdRsrpNr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eventThresholdRsrpNr': %w", err)
-		}
-	}
-
-	if a.EventThresholdRsrq != nil {
-		object["eventThresholdRsrq"], err = json.Marshal(a.EventThresholdRsrq)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eventThresholdRsrq': %w", err)
-		}
-	}
-
-	if a.EventThresholdRsrqNr != nil {
-		object["eventThresholdRsrqNr"], err = json.Marshal(a.EventThresholdRsrqNr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eventThresholdRsrqNr': %w", err)
-		}
-	}
-
-	object["jobType"], err = json.Marshal(a.JobType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'jobType': %w", err)
-	}
-
-	if len(a.MdtAllowedPlmnIdList) != 0 {
-		object["mdtAllowedPlmnIdList"], err = json.Marshal(a.MdtAllowedPlmnIdList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mdtAllowedPlmnIdList': %w", err)
-		}
-	}
-
-	if len(a.MeasurementLteList) != 0 {
-		object["measurementLteList"], err = json.Marshal(a.MeasurementLteList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'measurementLteList': %w", err)
-		}
-	}
-
-	if len(a.MeasurementNrList) != 0 {
-		object["measurementNrList"], err = json.Marshal(a.MeasurementNrList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'measurementNrList': %w", err)
-		}
-	}
-
-	if a.MeasurementPeriodLte != nil {
-		object["measurementPeriodLte"], err = json.Marshal(a.MeasurementPeriodLte)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'measurementPeriodLte': %w", err)
-		}
-	}
-
-	if a.PositioningMethod != nil {
-		object["positioningMethod"], err = json.Marshal(a.PositioningMethod)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'positioningMethod': %w", err)
-		}
-	}
-
-	if a.ReportAmount != nil {
-		object["reportAmount"], err = json.Marshal(a.ReportAmount)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reportAmount': %w", err)
-		}
-	}
-
-	if a.ReportInterval != nil {
-		object["reportInterval"], err = json.Marshal(a.ReportInterval)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reportInterval': %w", err)
-		}
-	}
-
-	if a.ReportIntervalNr != nil {
-		object["reportIntervalNr"], err = json.Marshal(a.ReportIntervalNr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reportIntervalNr': %w", err)
-		}
-	}
-
-	if len(a.ReportingTriggerList) != 0 {
-		object["reportingTriggerList"], err = json.Marshal(a.ReportingTriggerList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reportingTriggerList': %w", err)
-		}
-	}
-
-	if len(a.SensorMeasurementList) != 0 {
-		object["sensorMeasurementList"], err = json.Marshal(a.SensorMeasurementList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sensorMeasurementList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for KeyAmf. Returns the specified
-// element and whether it was found
-func (a KeyAmf) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for KeyAmf
-func (a *KeyAmf) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for KeyAmf to handle AdditionalProperties
-func (a *KeyAmf) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["keyType"]; found {
-		err = json.Unmarshal(raw, &a.KeyType)
-		if err != nil {
-			return fmt.Errorf("error reading 'keyType': %w", err)
-		}
-		delete(object, "keyType")
-	}
-
-	if raw, found := object["keyVal"]; found {
-		err = json.Unmarshal(raw, &a.KeyVal)
-		if err != nil {
-			return fmt.Errorf("error reading 'keyVal': %w", err)
-		}
-		delete(object, "keyVal")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for KeyAmf to handle AdditionalProperties
-func (a KeyAmf) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["keyType"], err = json.Marshal(a.KeyType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'keyType': %w", err)
-	}
-
-	object["keyVal"], err = json.Marshal(a.KeyVal)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'keyVal': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LteMInd. Returns the specified
-// element and whether it was found
-func (a LteMInd) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LteMInd
-func (a *LteMInd) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LteMInd to handle AdditionalProperties
-func (a *LteMInd) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["lteCatMInd"]; found {
-		err = json.Unmarshal(raw, &a.LteCatMInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'lteCatMInd': %w", err)
-		}
-		delete(object, "lteCatMInd")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LteMInd to handle AdditionalProperties
-func (a LteMInd) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["lteCatMInd"], err = json.Marshal(a.LteCatMInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'lteCatMInd': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for MmContext. Returns the specified
-// element and whether it was found
-func (a MmContext) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for MmContext
-func (a *MmContext) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for MmContext to handle AdditionalProperties
-func (a *MmContext) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessType"]; found {
-		err = json.Unmarshal(raw, &a.AccessType)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessType': %w", err)
-		}
-		delete(object, "accessType")
-	}
-
-	if raw, found := object["allowedHomeNssai"]; found {
-		err = json.Unmarshal(raw, &a.AllowedHomeNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedHomeNssai': %w", err)
-		}
-		delete(object, "allowedHomeNssai")
-	}
-
-	if raw, found := object["allowedNssai"]; found {
-		err = json.Unmarshal(raw, &a.AllowedNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedNssai': %w", err)
-		}
-		delete(object, "allowedNssai")
-	}
-
-	if raw, found := object["anN2ApId"]; found {
-		err = json.Unmarshal(raw, &a.AnN2ApId)
-		if err != nil {
-			return fmt.Errorf("error reading 'anN2ApId': %w", err)
-		}
-		delete(object, "anN2ApId")
-	}
-
-	if raw, found := object["epsNasSecurityMode"]; found {
-		err = json.Unmarshal(raw, &a.EpsNasSecurityMode)
-		if err != nil {
-			return fmt.Errorf("error reading 'epsNasSecurityMode': %w", err)
-		}
-		delete(object, "epsNasSecurityMode")
-	}
-
-	if raw, found := object["expectedUEbehavior"]; found {
-		err = json.Unmarshal(raw, &a.ExpectedUEbehavior)
-		if err != nil {
-			return fmt.Errorf("error reading 'expectedUEbehavior': %w", err)
-		}
-		delete(object, "expectedUEbehavior")
-	}
-
-	if raw, found := object["manAssiUeRadioCapId"]; found {
-		err = json.Unmarshal(raw, &a.ManAssiUeRadioCapId)
-		if err != nil {
-			return fmt.Errorf("error reading 'manAssiUeRadioCapId': %w", err)
-		}
-		delete(object, "manAssiUeRadioCapId")
-	}
-
-	if raw, found := object["n3IwfId"]; found {
-		err = json.Unmarshal(raw, &a.N3IwfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'n3IwfId': %w", err)
-		}
-		delete(object, "n3IwfId")
-	}
-
-	if raw, found := object["nasDownlinkCount"]; found {
-		err = json.Unmarshal(raw, &a.NasDownlinkCount)
-		if err != nil {
-			return fmt.Errorf("error reading 'nasDownlinkCount': %w", err)
-		}
-		delete(object, "nasDownlinkCount")
-	}
-
-	if raw, found := object["nasSecurityMode"]; found {
-		err = json.Unmarshal(raw, &a.NasSecurityMode)
-		if err != nil {
-			return fmt.Errorf("error reading 'nasSecurityMode': %w", err)
-		}
-		delete(object, "nasSecurityMode")
-	}
-
-	if raw, found := object["nasUplinkCount"]; found {
-		err = json.Unmarshal(raw, &a.NasUplinkCount)
-		if err != nil {
-			return fmt.Errorf("error reading 'nasUplinkCount': %w", err)
-		}
-		delete(object, "nasUplinkCount")
-	}
-
-	if raw, found := object["nsInstanceList"]; found {
-		err = json.Unmarshal(raw, &a.NsInstanceList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nsInstanceList': %w", err)
-		}
-		delete(object, "nsInstanceList")
-	}
-
-	if raw, found := object["nssaaStatusList"]; found {
-		err = json.Unmarshal(raw, &a.NssaaStatusList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nssaaStatusList': %w", err)
-		}
-		delete(object, "nssaaStatusList")
-	}
-
-	if raw, found := object["nssaiMappingList"]; found {
-		err = json.Unmarshal(raw, &a.NssaiMappingList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nssaiMappingList': %w", err)
-		}
-		delete(object, "nssaiMappingList")
-	}
-
-	if raw, found := object["pendingNssaiMappingList"]; found {
-		err = json.Unmarshal(raw, &a.PendingNssaiMappingList)
-		if err != nil {
-			return fmt.Errorf("error reading 'pendingNssaiMappingList': %w", err)
-		}
-		delete(object, "pendingNssaiMappingList")
-	}
-
-	if raw, found := object["plmnAssiUeRadioCapId"]; found {
-		err = json.Unmarshal(raw, &a.PlmnAssiUeRadioCapId)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnAssiUeRadioCapId': %w", err)
-		}
-		delete(object, "plmnAssiUeRadioCapId")
-	}
-
-	if raw, found := object["s1UeNetworkCapability"]; found {
-		err = json.Unmarshal(raw, &a.S1UeNetworkCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 's1UeNetworkCapability': %w", err)
-		}
-		delete(object, "s1UeNetworkCapability")
-	}
-
-	if raw, found := object["tngfId"]; found {
-		err = json.Unmarshal(raw, &a.TngfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'tngfId': %w", err)
-		}
-		delete(object, "tngfId")
-	}
-
-	if raw, found := object["ucmfDicEntryId"]; found {
-		err = json.Unmarshal(raw, &a.UcmfDicEntryId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ucmfDicEntryId': %w", err)
-		}
-		delete(object, "ucmfDicEntryId")
-	}
-
-	if raw, found := object["ueDifferentiationInfo"]; found {
-		err = json.Unmarshal(raw, &a.UeDifferentiationInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueDifferentiationInfo': %w", err)
-		}
-		delete(object, "ueDifferentiationInfo")
-	}
-
-	if raw, found := object["ueSecurityCapability"]; found {
-		err = json.Unmarshal(raw, &a.UeSecurityCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueSecurityCapability': %w", err)
-		}
-		delete(object, "ueSecurityCapability")
-	}
-
-	if raw, found := object["wagfId"]; found {
-		err = json.Unmarshal(raw, &a.WagfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'wagfId': %w", err)
-		}
-		delete(object, "wagfId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for MmContext to handle AdditionalProperties
-func (a MmContext) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["accessType"], err = json.Marshal(a.AccessType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
-	}
-
-	if len(a.AllowedHomeNssai) != 0 {
-		object["allowedHomeNssai"], err = json.Marshal(a.AllowedHomeNssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedHomeNssai': %w", err)
-		}
-	}
-
-	if len(a.AllowedNssai) != 0 {
-		object["allowedNssai"], err = json.Marshal(a.AllowedNssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedNssai': %w", err)
-		}
-	}
-
-	if a.AnN2ApId != nil {
-		object["anN2ApId"], err = json.Marshal(a.AnN2ApId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anN2ApId': %w", err)
-		}
-	}
-
-	if a.EpsNasSecurityMode != nil {
-		object["epsNasSecurityMode"], err = json.Marshal(a.EpsNasSecurityMode)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'epsNasSecurityMode': %w", err)
-		}
-	}
-
-	if a.ExpectedUEbehavior != nil {
-		object["expectedUEbehavior"], err = json.Marshal(a.ExpectedUEbehavior)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'expectedUEbehavior': %w", err)
-		}
-	}
-
-	if a.ManAssiUeRadioCapId != nil {
-		object["manAssiUeRadioCapId"], err = json.Marshal(a.ManAssiUeRadioCapId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'manAssiUeRadioCapId': %w", err)
-		}
-	}
-
-	if a.N3IwfId != nil {
-		object["n3IwfId"], err = json.Marshal(a.N3IwfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n3IwfId': %w", err)
-		}
-	}
-
-	if a.NasDownlinkCount != nil {
-		object["nasDownlinkCount"], err = json.Marshal(a.NasDownlinkCount)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nasDownlinkCount': %w", err)
-		}
-	}
-
-	if a.NasSecurityMode != nil {
-		object["nasSecurityMode"], err = json.Marshal(a.NasSecurityMode)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nasSecurityMode': %w", err)
-		}
-	}
-
-	if a.NasUplinkCount != nil {
-		object["nasUplinkCount"], err = json.Marshal(a.NasUplinkCount)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nasUplinkCount': %w", err)
-		}
-	}
-
-	if len(a.NsInstanceList) != 0 {
-		object["nsInstanceList"], err = json.Marshal(a.NsInstanceList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nsInstanceList': %w", err)
-		}
-	}
-
-	if len(a.NssaaStatusList) != 0 {
-		object["nssaaStatusList"], err = json.Marshal(a.NssaaStatusList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nssaaStatusList': %w", err)
-		}
-	}
-
-	if len(a.NssaiMappingList) != 0 {
-		object["nssaiMappingList"], err = json.Marshal(a.NssaiMappingList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nssaiMappingList': %w", err)
-		}
-	}
-
-	if len(a.PendingNssaiMappingList) != 0 {
-		object["pendingNssaiMappingList"], err = json.Marshal(a.PendingNssaiMappingList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pendingNssaiMappingList': %w", err)
-		}
-	}
-
-	if a.PlmnAssiUeRadioCapId != nil {
-		object["plmnAssiUeRadioCapId"], err = json.Marshal(a.PlmnAssiUeRadioCapId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'plmnAssiUeRadioCapId': %w", err)
-		}
-	}
-
-	if a.S1UeNetworkCapability != nil {
-		object["s1UeNetworkCapability"], err = json.Marshal(a.S1UeNetworkCapability)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 's1UeNetworkCapability': %w", err)
-		}
-	}
-
-	if a.TngfId != nil {
-		object["tngfId"], err = json.Marshal(a.TngfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'tngfId': %w", err)
-		}
-	}
-
-	if a.UcmfDicEntryId != nil {
-		object["ucmfDicEntryId"], err = json.Marshal(a.UcmfDicEntryId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ucmfDicEntryId': %w", err)
-		}
-	}
-
-	if a.UeDifferentiationInfo != nil {
-		object["ueDifferentiationInfo"], err = json.Marshal(a.UeDifferentiationInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueDifferentiationInfo': %w", err)
-		}
-	}
-
-	if a.UeSecurityCapability != nil {
-		object["ueSecurityCapability"], err = json.Marshal(a.UeSecurityCapability)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueSecurityCapability': %w", err)
-		}
-	}
-
-	if a.WagfId != nil {
-		object["wagfId"], err = json.Marshal(a.WagfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'wagfId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N1MessageContainer. Returns the specified
-// element and whether it was found
-func (a N1MessageContainer) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N1MessageContainer
-func (a *N1MessageContainer) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N1MessageContainer to handle AdditionalProperties
-func (a *N1MessageContainer) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["n1MessageClass"]; found {
-		err = json.Unmarshal(raw, &a.N1MessageClass)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1MessageClass': %w", err)
-		}
-		delete(object, "n1MessageClass")
-	}
-
-	if raw, found := object["n1MessageContent"]; found {
-		err = json.Unmarshal(raw, &a.N1MessageContent)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1MessageContent': %w", err)
-		}
-		delete(object, "n1MessageContent")
-	}
-
-	if raw, found := object["nfId"]; found {
-		err = json.Unmarshal(raw, &a.NfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfId': %w", err)
-		}
-		delete(object, "nfId")
-	}
-
-	if raw, found := object["serviceInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.ServiceInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceInstanceId': %w", err)
-		}
-		delete(object, "serviceInstanceId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N1MessageContainer to handle AdditionalProperties
-func (a N1MessageContainer) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["n1MessageClass"], err = json.Marshal(a.N1MessageClass)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n1MessageClass': %w", err)
-	}
-
-	object["n1MessageContent"], err = json.Marshal(a.N1MessageContent)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n1MessageContent': %w", err)
-	}
-
-	if a.NfId != nil {
-		object["nfId"], err = json.Marshal(a.NfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfId': %w", err)
-		}
-	}
-
-	if a.ServiceInstanceId != nil {
-		object["serviceInstanceId"], err = json.Marshal(a.ServiceInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'serviceInstanceId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N1MessageNotification. Returns the specified
-// element and whether it was found
-func (a N1MessageNotification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N1MessageNotification
-func (a *N1MessageNotification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N1MessageNotification to handle AdditionalProperties
-func (a *N1MessageNotification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["cIoT5GSOptimisation"]; found {
-		err = json.Unmarshal(raw, &a.CIoT5GSOptimisation)
-		if err != nil {
-			return fmt.Errorf("error reading 'cIoT5GSOptimisation': %w", err)
-		}
-		delete(object, "cIoT5GSOptimisation")
-	}
-
-	if raw, found := object["ecgi"]; found {
-		err = json.Unmarshal(raw, &a.Ecgi)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecgi': %w", err)
-		}
-		delete(object, "ecgi")
-	}
-
-	if raw, found := object["guami"]; found {
-		err = json.Unmarshal(raw, &a.Guami)
-		if err != nil {
-			return fmt.Errorf("error reading 'guami': %w", err)
-		}
-		delete(object, "guami")
-	}
-
-	if raw, found := object["lcsCorrelationId"]; found {
-		err = json.Unmarshal(raw, &a.LcsCorrelationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'lcsCorrelationId': %w", err)
-		}
-		delete(object, "lcsCorrelationId")
-	}
-
-	if raw, found := object["n1MessageContainer"]; found {
-		err = json.Unmarshal(raw, &a.N1MessageContainer)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1MessageContainer': %w", err)
-		}
-		delete(object, "n1MessageContainer")
-	}
-
-	if raw, found := object["n1NotifySubscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.N1NotifySubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1NotifySubscriptionId': %w", err)
-		}
-		delete(object, "n1NotifySubscriptionId")
-	}
-
-	if raw, found := object["ncgi"]; found {
-		err = json.Unmarshal(raw, &a.Ncgi)
-		if err != nil {
-			return fmt.Errorf("error reading 'ncgi': %w", err)
-		}
-		delete(object, "ncgi")
-	}
-
-	if raw, found := object["newLmfIdentification"]; found {
-		err = json.Unmarshal(raw, &a.NewLmfIdentification)
-		if err != nil {
-			return fmt.Errorf("error reading 'newLmfIdentification': %w", err)
-		}
-		delete(object, "newLmfIdentification")
-	}
-
-	if raw, found := object["registrationCtxtContainer"]; found {
-		err = json.Unmarshal(raw, &a.RegistrationCtxtContainer)
-		if err != nil {
-			return fmt.Errorf("error reading 'registrationCtxtContainer': %w", err)
-		}
-		delete(object, "registrationCtxtContainer")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N1MessageNotification to handle AdditionalProperties
-func (a N1MessageNotification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.CIoT5GSOptimisation != nil {
-		object["cIoT5GSOptimisation"], err = json.Marshal(a.CIoT5GSOptimisation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cIoT5GSOptimisation': %w", err)
-		}
-	}
-
-	if a.Ecgi != nil {
-		object["ecgi"], err = json.Marshal(a.Ecgi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecgi': %w", err)
-		}
-	}
-
-	if a.Guami != nil {
-		object["guami"], err = json.Marshal(a.Guami)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'guami': %w", err)
-		}
-	}
-
-	if a.LcsCorrelationId != nil {
-		object["lcsCorrelationId"], err = json.Marshal(a.LcsCorrelationId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lcsCorrelationId': %w", err)
-		}
-	}
-
-	object["n1MessageContainer"], err = json.Marshal(a.N1MessageContainer)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n1MessageContainer': %w", err)
-	}
-
-	if a.N1NotifySubscriptionId != nil {
-		object["n1NotifySubscriptionId"], err = json.Marshal(a.N1NotifySubscriptionId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n1NotifySubscriptionId': %w", err)
-		}
-	}
-
-	if a.Ncgi != nil {
-		object["ncgi"], err = json.Marshal(a.Ncgi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ncgi': %w", err)
-		}
-	}
-
-	if a.NewLmfIdentification != nil {
-		object["newLmfIdentification"], err = json.Marshal(a.NewLmfIdentification)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'newLmfIdentification': %w", err)
-		}
-	}
-
-	if a.RegistrationCtxtContainer != nil {
-		object["registrationCtxtContainer"], err = json.Marshal(a.RegistrationCtxtContainer)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'registrationCtxtContainer': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N1N2MessageTransferError. Returns the specified
-// element and whether it was found
-func (a N1N2MessageTransferError) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N1N2MessageTransferError
-func (a *N1N2MessageTransferError) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N1N2MessageTransferError to handle AdditionalProperties
-func (a *N1N2MessageTransferError) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["errInfo"]; found {
-		err = json.Unmarshal(raw, &a.ErrInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'errInfo': %w", err)
-		}
-		delete(object, "errInfo")
-	}
-
-	if raw, found := object["error"]; found {
-		err = json.Unmarshal(raw, &a.Error)
-		if err != nil {
-			return fmt.Errorf("error reading 'error': %w", err)
-		}
-		delete(object, "error")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N1N2MessageTransferError to handle AdditionalProperties
-func (a N1N2MessageTransferError) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.ErrInfo != nil {
-		object["errInfo"], err = json.Marshal(a.ErrInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'errInfo': %w", err)
-		}
-	}
-
-	object["error"], err = json.Marshal(a.Error)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'error': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N1N2MessageTransferReqData. Returns the specified
-// element and whether it was found
-func (a N1N2MessageTransferReqData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N1N2MessageTransferReqData
-func (a *N1N2MessageTransferReqData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N1N2MessageTransferReqData to handle AdditionalProperties
-func (a *N1N2MessageTransferReqData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["5qi"]; found {
-		err = json.Unmarshal(raw, &a.N5qi)
-		if err != nil {
-			return fmt.Errorf("error reading '5qi': %w", err)
-		}
-		delete(object, "5qi")
-	}
-
-	if raw, found := object["areaOfValidity"]; found {
-		err = json.Unmarshal(raw, &a.AreaOfValidity)
-		if err != nil {
-			return fmt.Errorf("error reading 'areaOfValidity': %w", err)
-		}
-		delete(object, "areaOfValidity")
-	}
-
-	if raw, found := object["arp"]; found {
-		err = json.Unmarshal(raw, &a.Arp)
-		if err != nil {
-			return fmt.Errorf("error reading 'arp': %w", err)
-		}
-		delete(object, "arp")
-	}
-
-	if raw, found := object["extBufSupport"]; found {
-		err = json.Unmarshal(raw, &a.ExtBufSupport)
-		if err != nil {
-			return fmt.Errorf("error reading 'extBufSupport': %w", err)
-		}
-		delete(object, "extBufSupport")
-	}
-
-	if raw, found := object["lastMsgIndication"]; found {
-		err = json.Unmarshal(raw, &a.LastMsgIndication)
-		if err != nil {
-			return fmt.Errorf("error reading 'lastMsgIndication': %w", err)
-		}
-		delete(object, "lastMsgIndication")
-	}
-
-	if raw, found := object["lcsCorrelationId"]; found {
-		err = json.Unmarshal(raw, &a.LcsCorrelationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'lcsCorrelationId': %w", err)
-		}
-		delete(object, "lcsCorrelationId")
-	}
-
-	if raw, found := object["maAcceptedInd"]; found {
-		err = json.Unmarshal(raw, &a.MaAcceptedInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'maAcceptedInd': %w", err)
-		}
-		delete(object, "maAcceptedInd")
-	}
-
-	if raw, found := object["mtData"]; found {
-		err = json.Unmarshal(raw, &a.MtData)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtData': %w", err)
-		}
-		delete(object, "mtData")
-	}
-
-	if raw, found := object["n1MessageContainer"]; found {
-		err = json.Unmarshal(raw, &a.N1MessageContainer)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1MessageContainer': %w", err)
-		}
-		delete(object, "n1MessageContainer")
-	}
-
-	if raw, found := object["n1n2FailureTxfNotifURI"]; found {
-		err = json.Unmarshal(raw, &a.N1n2FailureTxfNotifURI)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1n2FailureTxfNotifURI': %w", err)
-		}
-		delete(object, "n1n2FailureTxfNotifURI")
-	}
-
-	if raw, found := object["n2InfoContainer"]; found {
-		err = json.Unmarshal(raw, &a.N2InfoContainer)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2InfoContainer': %w", err)
-		}
-		delete(object, "n2InfoContainer")
-	}
-
-	if raw, found := object["oldGuami"]; found {
-		err = json.Unmarshal(raw, &a.OldGuami)
-		if err != nil {
-			return fmt.Errorf("error reading 'oldGuami': %w", err)
-		}
-		delete(object, "oldGuami")
-	}
-
-	if raw, found := object["pduSessionId"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionId': %w", err)
-		}
-		delete(object, "pduSessionId")
-	}
-
-	if raw, found := object["ppi"]; found {
-		err = json.Unmarshal(raw, &a.Ppi)
-		if err != nil {
-			return fmt.Errorf("error reading 'ppi': %w", err)
-		}
-		delete(object, "ppi")
-	}
-
-	if raw, found := object["skipInd"]; found {
-		err = json.Unmarshal(raw, &a.SkipInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'skipInd': %w", err)
-		}
-		delete(object, "skipInd")
-	}
-
-	if raw, found := object["smfReallocationInd"]; found {
-		err = json.Unmarshal(raw, &a.SmfReallocationInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfReallocationInd': %w", err)
-		}
-		delete(object, "smfReallocationInd")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["targetAccess"]; found {
-		err = json.Unmarshal(raw, &a.TargetAccess)
-		if err != nil {
-			return fmt.Errorf("error reading 'targetAccess': %w", err)
-		}
-		delete(object, "targetAccess")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N1N2MessageTransferReqData to handle AdditionalProperties
-func (a N1N2MessageTransferReqData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.N5qi != nil {
-		object["5qi"], err = json.Marshal(a.N5qi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '5qi': %w", err)
-		}
-	}
-
-	if a.AreaOfValidity != nil {
-		object["areaOfValidity"], err = json.Marshal(a.AreaOfValidity)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'areaOfValidity': %w", err)
-		}
-	}
-
-	if a.Arp != nil {
-		object["arp"], err = json.Marshal(a.Arp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'arp': %w", err)
-		}
-	}
-
-	if a.ExtBufSupport != nil {
-		object["extBufSupport"], err = json.Marshal(a.ExtBufSupport)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'extBufSupport': %w", err)
-		}
-	}
-
-	if a.LastMsgIndication != nil {
-		object["lastMsgIndication"], err = json.Marshal(a.LastMsgIndication)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lastMsgIndication': %w", err)
-		}
-	}
-
-	if a.LcsCorrelationId != nil {
-		object["lcsCorrelationId"], err = json.Marshal(a.LcsCorrelationId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lcsCorrelationId': %w", err)
-		}
-	}
-
-	if a.MaAcceptedInd != nil {
-		object["maAcceptedInd"], err = json.Marshal(a.MaAcceptedInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maAcceptedInd': %w", err)
-		}
-	}
-
-	if a.MtData != nil {
-		object["mtData"], err = json.Marshal(a.MtData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtData': %w", err)
-		}
-	}
-
-	if a.N1MessageContainer != nil {
-		object["n1MessageContainer"], err = json.Marshal(a.N1MessageContainer)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n1MessageContainer': %w", err)
-		}
-	}
-
-	if a.N1n2FailureTxfNotifURI != nil {
-		object["n1n2FailureTxfNotifURI"], err = json.Marshal(a.N1n2FailureTxfNotifURI)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n1n2FailureTxfNotifURI': %w", err)
-		}
-	}
-
-	if a.N2InfoContainer != nil {
-		object["n2InfoContainer"], err = json.Marshal(a.N2InfoContainer)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n2InfoContainer': %w", err)
-		}
-	}
-
-	if a.OldGuami != nil {
-		object["oldGuami"], err = json.Marshal(a.OldGuami)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oldGuami': %w", err)
-		}
-	}
-
-	if a.PduSessionId != nil {
-		object["pduSessionId"], err = json.Marshal(a.PduSessionId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
-		}
-	}
-
-	if a.Ppi != nil {
-		object["ppi"], err = json.Marshal(a.Ppi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ppi': %w", err)
-		}
-	}
-
-	if a.SkipInd != nil {
-		object["skipInd"], err = json.Marshal(a.SkipInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'skipInd': %w", err)
-		}
-	}
-
-	if a.SmfReallocationInd != nil {
-		object["smfReallocationInd"], err = json.Marshal(a.SmfReallocationInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfReallocationInd': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if len(a.TargetAccess) != 0 {
-		object["targetAccess"], err = json.Marshal(a.TargetAccess)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'targetAccess': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N1N2MessageTransferRspData. Returns the specified
-// element and whether it was found
-func (a N1N2MessageTransferRspData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N1N2MessageTransferRspData
-func (a *N1N2MessageTransferRspData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N1N2MessageTransferRspData to handle AdditionalProperties
-func (a *N1N2MessageTransferRspData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["cause"]; found {
-		err = json.Unmarshal(raw, &a.Cause)
-		if err != nil {
-			return fmt.Errorf("error reading 'cause': %w", err)
-		}
-		delete(object, "cause")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N1N2MessageTransferRspData to handle AdditionalProperties
-func (a N1N2MessageTransferRspData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["cause"], err = json.Marshal(a.Cause)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'cause': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N1N2MsgTxfrErrDetail. Returns the specified
-// element and whether it was found
-func (a N1N2MsgTxfrErrDetail) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N1N2MsgTxfrErrDetail
-func (a *N1N2MsgTxfrErrDetail) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N1N2MsgTxfrErrDetail to handle AdditionalProperties
-func (a *N1N2MsgTxfrErrDetail) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["highestPrioArp"]; found {
-		err = json.Unmarshal(raw, &a.HighestPrioArp)
-		if err != nil {
-			return fmt.Errorf("error reading 'highestPrioArp': %w", err)
-		}
-		delete(object, "highestPrioArp")
-	}
-
-	if raw, found := object["maxWaitingTime"]; found {
-		err = json.Unmarshal(raw, &a.MaxWaitingTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'maxWaitingTime': %w", err)
-		}
-		delete(object, "maxWaitingTime")
-	}
-
-	if raw, found := object["retryAfter"]; found {
-		err = json.Unmarshal(raw, &a.RetryAfter)
-		if err != nil {
-			return fmt.Errorf("error reading 'retryAfter': %w", err)
-		}
-		delete(object, "retryAfter")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N1N2MsgTxfrErrDetail to handle AdditionalProperties
-func (a N1N2MsgTxfrErrDetail) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.HighestPrioArp != nil {
-		object["highestPrioArp"], err = json.Marshal(a.HighestPrioArp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'highestPrioArp': %w", err)
-		}
-	}
-
-	if a.MaxWaitingTime != nil {
-		object["maxWaitingTime"], err = json.Marshal(a.MaxWaitingTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maxWaitingTime': %w", err)
-		}
-	}
-
-	if a.RetryAfter != nil {
-		object["retryAfter"], err = json.Marshal(a.RetryAfter)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'retryAfter': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N1N2MsgTxfrFailureNotification. Returns the specified
-// element and whether it was found
-func (a N1N2MsgTxfrFailureNotification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N1N2MsgTxfrFailureNotification
-func (a *N1N2MsgTxfrFailureNotification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N1N2MsgTxfrFailureNotification to handle AdditionalProperties
-func (a *N1N2MsgTxfrFailureNotification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["cause"]; found {
-		err = json.Unmarshal(raw, &a.Cause)
-		if err != nil {
-			return fmt.Errorf("error reading 'cause': %w", err)
-		}
-		delete(object, "cause")
-	}
-
-	if raw, found := object["n1n2MsgDataUri"]; found {
-		err = json.Unmarshal(raw, &a.N1n2MsgDataUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1n2MsgDataUri': %w", err)
-		}
-		delete(object, "n1n2MsgDataUri")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N1N2MsgTxfrFailureNotification to handle AdditionalProperties
-func (a N1N2MsgTxfrFailureNotification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["cause"], err = json.Marshal(a.Cause)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'cause': %w", err)
-	}
-
-	object["n1n2MsgDataUri"], err = json.Marshal(a.N1n2MsgDataUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n1n2MsgDataUri': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2InfoContainer. Returns the specified
-// element and whether it was found
-func (a N2InfoContainer) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2InfoContainer
-func (a *N2InfoContainer) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2InfoContainer to handle AdditionalProperties
-func (a *N2InfoContainer) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["n2InformationClass"]; found {
-		err = json.Unmarshal(raw, &a.N2InformationClass)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2InformationClass': %w", err)
-		}
-		delete(object, "n2InformationClass")
-	}
-
-	if raw, found := object["nrppaInfo"]; found {
-		err = json.Unmarshal(raw, &a.NrppaInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrppaInfo': %w", err)
-		}
-		delete(object, "nrppaInfo")
-	}
-
-	if raw, found := object["pwsInfo"]; found {
-		err = json.Unmarshal(raw, &a.PwsInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'pwsInfo': %w", err)
-		}
-		delete(object, "pwsInfo")
-	}
-
-	if raw, found := object["ranInfo"]; found {
-		err = json.Unmarshal(raw, &a.RanInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'ranInfo': %w", err)
-		}
-		delete(object, "ranInfo")
-	}
-
-	if raw, found := object["smInfo"]; found {
-		err = json.Unmarshal(raw, &a.SmInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'smInfo': %w", err)
-		}
-		delete(object, "smInfo")
-	}
-
-	if raw, found := object["v2xInfo"]; found {
-		err = json.Unmarshal(raw, &a.V2xInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'v2xInfo': %w", err)
-		}
-		delete(object, "v2xInfo")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2InfoContainer to handle AdditionalProperties
-func (a N2InfoContainer) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["n2InformationClass"], err = json.Marshal(a.N2InformationClass)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n2InformationClass': %w", err)
-	}
-
-	if a.NrppaInfo != nil {
-		object["nrppaInfo"], err = json.Marshal(a.NrppaInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nrppaInfo': %w", err)
-		}
-	}
-
-	if a.PwsInfo != nil {
-		object["pwsInfo"], err = json.Marshal(a.PwsInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pwsInfo': %w", err)
-		}
-	}
-
-	if a.RanInfo != nil {
-		object["ranInfo"], err = json.Marshal(a.RanInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ranInfo': %w", err)
-		}
-	}
-
-	if a.SmInfo != nil {
-		object["smInfo"], err = json.Marshal(a.SmInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smInfo': %w", err)
-		}
-	}
-
-	if a.V2xInfo != nil {
-		object["v2xInfo"], err = json.Marshal(a.V2xInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'v2xInfo': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2InfoContent. Returns the specified
-// element and whether it was found
-func (a N2InfoContent) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2InfoContent
-func (a *N2InfoContent) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2InfoContent to handle AdditionalProperties
-func (a *N2InfoContent) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ngapData"]; found {
-		err = json.Unmarshal(raw, &a.NgapData)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngapData': %w", err)
-		}
-		delete(object, "ngapData")
-	}
-
-	if raw, found := object["ngapIeType"]; found {
-		err = json.Unmarshal(raw, &a.NgapIeType)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngapIeType': %w", err)
-		}
-		delete(object, "ngapIeType")
-	}
-
-	if raw, found := object["ngapMessageType"]; found {
-		err = json.Unmarshal(raw, &a.NgapMessageType)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngapMessageType': %w", err)
-		}
-		delete(object, "ngapMessageType")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2InfoContent to handle AdditionalProperties
-func (a N2InfoContent) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ngapData"], err = json.Marshal(a.NgapData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ngapData': %w", err)
-	}
-
-	if a.NgapIeType != nil {
-		object["ngapIeType"], err = json.Marshal(a.NgapIeType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ngapIeType': %w", err)
-		}
-	}
-
-	if a.NgapMessageType != nil {
-		object["ngapMessageType"], err = json.Marshal(a.NgapMessageType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ngapMessageType': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2InfoNotificationRspData. Returns the specified
-// element and whether it was found
-func (a N2InfoNotificationRspData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2InfoNotificationRspData
-func (a *N2InfoNotificationRspData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2InfoNotificationRspData to handle AdditionalProperties
-func (a *N2InfoNotificationRspData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["secRatDataUsageList"]; found {
-		err = json.Unmarshal(raw, &a.SecRatDataUsageList)
-		if err != nil {
-			return fmt.Errorf("error reading 'secRatDataUsageList': %w", err)
-		}
-		delete(object, "secRatDataUsageList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2InfoNotificationRspData to handle AdditionalProperties
-func (a N2InfoNotificationRspData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.SecRatDataUsageList) != 0 {
-		object["secRatDataUsageList"], err = json.Marshal(a.SecRatDataUsageList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'secRatDataUsageList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2InformationNotification. Returns the specified
-// element and whether it was found
-func (a N2InformationNotification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2InformationNotification
-func (a *N2InformationNotification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2InformationNotification to handle AdditionalProperties
-func (a *N2InformationNotification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["anN2IPv4Addr"]; found {
-		err = json.Unmarshal(raw, &a.AnN2IPv4Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'anN2IPv4Addr': %w", err)
-		}
-		delete(object, "anN2IPv4Addr")
-	}
-
-	if raw, found := object["anN2IPv6Addr"]; found {
-		err = json.Unmarshal(raw, &a.AnN2IPv6Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'anN2IPv6Addr': %w", err)
-		}
-		delete(object, "anN2IPv6Addr")
-	}
-
-	if raw, found := object["guami"]; found {
-		err = json.Unmarshal(raw, &a.Guami)
-		if err != nil {
-			return fmt.Errorf("error reading 'guami': %w", err)
-		}
-		delete(object, "guami")
-	}
-
-	if raw, found := object["initialAmfName"]; found {
-		err = json.Unmarshal(raw, &a.InitialAmfName)
-		if err != nil {
-			return fmt.Errorf("error reading 'initialAmfName': %w", err)
-		}
-		delete(object, "initialAmfName")
-	}
-
-	if raw, found := object["lcsCorrelationId"]; found {
-		err = json.Unmarshal(raw, &a.LcsCorrelationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'lcsCorrelationId': %w", err)
-		}
-		delete(object, "lcsCorrelationId")
-	}
-
-	if raw, found := object["n2InfoContainer"]; found {
-		err = json.Unmarshal(raw, &a.N2InfoContainer)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2InfoContainer': %w", err)
-		}
-		delete(object, "n2InfoContainer")
-	}
-
-	if raw, found := object["n2NotifySubscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.N2NotifySubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2NotifySubscriptionId': %w", err)
-		}
-		delete(object, "n2NotifySubscriptionId")
-	}
-
-	if raw, found := object["notifyReason"]; found {
-		err = json.Unmarshal(raw, &a.NotifyReason)
-		if err != nil {
-			return fmt.Errorf("error reading 'notifyReason': %w", err)
-		}
-		delete(object, "notifyReason")
-	}
-
-	if raw, found := object["notifySourceNgRan"]; found {
-		err = json.Unmarshal(raw, &a.NotifySourceNgRan)
-		if err != nil {
-			return fmt.Errorf("error reading 'notifySourceNgRan': %w", err)
-		}
-		delete(object, "notifySourceNgRan")
-	}
-
-	if raw, found := object["ranNodeId"]; found {
-		err = json.Unmarshal(raw, &a.RanNodeId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ranNodeId': %w", err)
-		}
-		delete(object, "ranNodeId")
-	}
-
-	if raw, found := object["smfChangeInfoList"]; found {
-		err = json.Unmarshal(raw, &a.SmfChangeInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfChangeInfoList': %w", err)
-		}
-		delete(object, "smfChangeInfoList")
-	}
-
-	if raw, found := object["toReleaseSessionList"]; found {
-		err = json.Unmarshal(raw, &a.ToReleaseSessionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'toReleaseSessionList': %w", err)
-		}
-		delete(object, "toReleaseSessionList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2InformationNotification to handle AdditionalProperties
-func (a N2InformationNotification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AnN2IPv4Addr) != 0 {
-		object["anN2IPv4Addr"], err = json.Marshal(a.AnN2IPv4Addr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anN2IPv4Addr': %w", err)
-		}
-	}
-
-	if a.AnN2IPv6Addr != nil {
-		object["anN2IPv6Addr"], err = json.Marshal(a.AnN2IPv6Addr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anN2IPv6Addr': %w", err)
-		}
-	}
-
-	if a.Guami != nil {
-		object["guami"], err = json.Marshal(a.Guami)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'guami': %w", err)
-		}
-	}
-
-	if a.InitialAmfName != nil {
-		object["initialAmfName"], err = json.Marshal(a.InitialAmfName)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'initialAmfName': %w", err)
-		}
-	}
-
-	if a.LcsCorrelationId != nil {
-		object["lcsCorrelationId"], err = json.Marshal(a.LcsCorrelationId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lcsCorrelationId': %w", err)
-		}
-	}
-
-	if a.N2InfoContainer != nil {
-		object["n2InfoContainer"], err = json.Marshal(a.N2InfoContainer)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n2InfoContainer': %w", err)
-		}
-	}
-
-	object["n2NotifySubscriptionId"], err = json.Marshal(a.N2NotifySubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n2NotifySubscriptionId': %w", err)
-	}
-
-	if a.NotifyReason != nil {
-		object["notifyReason"], err = json.Marshal(a.NotifyReason)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'notifyReason': %w", err)
-		}
-	}
-
-	if a.NotifySourceNgRan != nil {
-		object["notifySourceNgRan"], err = json.Marshal(a.NotifySourceNgRan)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'notifySourceNgRan': %w", err)
-		}
-	}
-
-	if a.RanNodeId != nil {
-		object["ranNodeId"], err = json.Marshal(a.RanNodeId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ranNodeId': %w", err)
-		}
-	}
-
-	if len(a.SmfChangeInfoList) != 0 {
-		object["smfChangeInfoList"], err = json.Marshal(a.SmfChangeInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfChangeInfoList': %w", err)
-		}
-	}
-
-	if len(a.ToReleaseSessionList) != 0 {
-		object["toReleaseSessionList"], err = json.Marshal(a.ToReleaseSessionList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'toReleaseSessionList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2InformationTransferError. Returns the specified
-// element and whether it was found
-func (a N2InformationTransferError) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2InformationTransferError
-func (a *N2InformationTransferError) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2InformationTransferError to handle AdditionalProperties
-func (a *N2InformationTransferError) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["error"]; found {
-		err = json.Unmarshal(raw, &a.Error)
-		if err != nil {
-			return fmt.Errorf("error reading 'error': %w", err)
-		}
-		delete(object, "error")
-	}
-
-	if raw, found := object["pwsErrorInfo"]; found {
-		err = json.Unmarshal(raw, &a.PwsErrorInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'pwsErrorInfo': %w", err)
-		}
-		delete(object, "pwsErrorInfo")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2InformationTransferError to handle AdditionalProperties
-func (a N2InformationTransferError) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["error"], err = json.Marshal(a.Error)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'error': %w", err)
-	}
-
-	if a.PwsErrorInfo != nil {
-		object["pwsErrorInfo"], err = json.Marshal(a.PwsErrorInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pwsErrorInfo': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2InformationTransferReqData. Returns the specified
-// element and whether it was found
-func (a N2InformationTransferReqData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2InformationTransferReqData
-func (a *N2InformationTransferReqData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2InformationTransferReqData to handle AdditionalProperties
-func (a *N2InformationTransferReqData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["globalRanNodeList"]; found {
-		err = json.Unmarshal(raw, &a.GlobalRanNodeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'globalRanNodeList': %w", err)
-		}
-		delete(object, "globalRanNodeList")
-	}
-
-	if raw, found := object["n2Information"]; found {
-		err = json.Unmarshal(raw, &a.N2Information)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2Information': %w", err)
-		}
-		delete(object, "n2Information")
-	}
-
-	if raw, found := object["ratSelector"]; found {
-		err = json.Unmarshal(raw, &a.RatSelector)
-		if err != nil {
-			return fmt.Errorf("error reading 'ratSelector': %w", err)
-		}
-		delete(object, "ratSelector")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["taiList"]; found {
-		err = json.Unmarshal(raw, &a.TaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'taiList': %w", err)
-		}
-		delete(object, "taiList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2InformationTransferReqData to handle AdditionalProperties
-func (a N2InformationTransferReqData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.GlobalRanNodeList) != 0 {
-		object["globalRanNodeList"], err = json.Marshal(a.GlobalRanNodeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'globalRanNodeList': %w", err)
-		}
-	}
-
-	object["n2Information"], err = json.Marshal(a.N2Information)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n2Information': %w", err)
-	}
-
-	if a.RatSelector != nil {
-		object["ratSelector"], err = json.Marshal(a.RatSelector)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ratSelector': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if len(a.TaiList) != 0 {
-		object["taiList"], err = json.Marshal(a.TaiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2InformationTransferRspData. Returns the specified
-// element and whether it was found
-func (a N2InformationTransferRspData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2InformationTransferRspData
-func (a *N2InformationTransferRspData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2InformationTransferRspData to handle AdditionalProperties
-func (a *N2InformationTransferRspData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["pwsRspData"]; found {
-		err = json.Unmarshal(raw, &a.PwsRspData)
-		if err != nil {
-			return fmt.Errorf("error reading 'pwsRspData': %w", err)
-		}
-		delete(object, "pwsRspData")
-	}
-
-	if raw, found := object["result"]; found {
-		err = json.Unmarshal(raw, &a.Result)
-		if err != nil {
-			return fmt.Errorf("error reading 'result': %w", err)
-		}
-		delete(object, "result")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2InformationTransferRspData to handle AdditionalProperties
-func (a N2InformationTransferRspData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.PwsRspData != nil {
-		object["pwsRspData"], err = json.Marshal(a.PwsRspData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pwsRspData': %w", err)
-		}
-	}
-
-	object["result"], err = json.Marshal(a.Result)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'result': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2RanInformation. Returns the specified
-// element and whether it was found
-func (a N2RanInformation) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2RanInformation
-func (a *N2RanInformation) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2RanInformation to handle AdditionalProperties
-func (a *N2RanInformation) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["n2InfoContent"]; found {
-		err = json.Unmarshal(raw, &a.N2InfoContent)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2InfoContent': %w", err)
-		}
-		delete(object, "n2InfoContent")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2RanInformation to handle AdditionalProperties
-func (a N2RanInformation) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["n2InfoContent"], err = json.Marshal(a.N2InfoContent)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n2InfoContent': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for N2SmInformation. Returns the specified
-// element and whether it was found
-func (a N2SmInformation) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for N2SmInformation
-func (a *N2SmInformation) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for N2SmInformation to handle AdditionalProperties
-func (a *N2SmInformation) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["homePlmnSnssai"]; found {
-		err = json.Unmarshal(raw, &a.HomePlmnSnssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'homePlmnSnssai': %w", err)
-		}
-		delete(object, "homePlmnSnssai")
-	}
-
-	if raw, found := object["iwkSnssai"]; found {
-		err = json.Unmarshal(raw, &a.IwkSnssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'iwkSnssai': %w", err)
-		}
-		delete(object, "iwkSnssai")
-	}
-
-	if raw, found := object["n2InfoContent"]; found {
-		err = json.Unmarshal(raw, &a.N2InfoContent)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2InfoContent': %w", err)
-		}
-		delete(object, "n2InfoContent")
-	}
-
-	if raw, found := object["pduSessionId"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionId': %w", err)
-		}
-		delete(object, "pduSessionId")
-	}
-
-	if raw, found := object["sNssai"]; found {
-		err = json.Unmarshal(raw, &a.SNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'sNssai': %w", err)
-		}
-		delete(object, "sNssai")
-	}
-
-	if raw, found := object["subjectToHo"]; found {
-		err = json.Unmarshal(raw, &a.SubjectToHo)
-		if err != nil {
-			return fmt.Errorf("error reading 'subjectToHo': %w", err)
-		}
-		delete(object, "subjectToHo")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for N2SmInformation to handle AdditionalProperties
-func (a N2SmInformation) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.HomePlmnSnssai != nil {
-		object["homePlmnSnssai"], err = json.Marshal(a.HomePlmnSnssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'homePlmnSnssai': %w", err)
-		}
-	}
-
-	if a.IwkSnssai != nil {
-		object["iwkSnssai"], err = json.Marshal(a.IwkSnssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'iwkSnssai': %w", err)
-		}
-	}
-
-	if a.N2InfoContent != nil {
-		object["n2InfoContent"], err = json.Marshal(a.N2InfoContent)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n2InfoContent': %w", err)
-		}
-	}
-
-	object["pduSessionId"], err = json.Marshal(a.PduSessionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
-	}
-
-	if a.SNssai != nil {
-		object["sNssai"], err = json.Marshal(a.SNssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sNssai': %w", err)
-		}
-	}
-
-	if a.SubjectToHo != nil {
-		object["subjectToHo"], err = json.Marshal(a.SubjectToHo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subjectToHo': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NasSecurityMode. Returns the specified
-// element and whether it was found
-func (a NasSecurityMode) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NasSecurityMode
-func (a *NasSecurityMode) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NasSecurityMode to handle AdditionalProperties
-func (a *NasSecurityMode) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["cipheringAlgorithm"]; found {
-		err = json.Unmarshal(raw, &a.CipheringAlgorithm)
-		if err != nil {
-			return fmt.Errorf("error reading 'cipheringAlgorithm': %w", err)
-		}
-		delete(object, "cipheringAlgorithm")
-	}
-
-	if raw, found := object["integrityAlgorithm"]; found {
-		err = json.Unmarshal(raw, &a.IntegrityAlgorithm)
-		if err != nil {
-			return fmt.Errorf("error reading 'integrityAlgorithm': %w", err)
-		}
-		delete(object, "integrityAlgorithm")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NasSecurityMode to handle AdditionalProperties
-func (a NasSecurityMode) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["cipheringAlgorithm"], err = json.Marshal(a.CipheringAlgorithm)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'cipheringAlgorithm': %w", err)
-	}
-
-	object["integrityAlgorithm"], err = json.Marshal(a.IntegrityAlgorithm)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'integrityAlgorithm': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NgKsi. Returns the specified
-// element and whether it was found
-func (a NgKsi) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NgKsi
-func (a *NgKsi) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NgKsi to handle AdditionalProperties
-func (a *NgKsi) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ksi"]; found {
-		err = json.Unmarshal(raw, &a.Ksi)
-		if err != nil {
-			return fmt.Errorf("error reading 'ksi': %w", err)
-		}
-		delete(object, "ksi")
-	}
-
-	if raw, found := object["tsc"]; found {
-		err = json.Unmarshal(raw, &a.Tsc)
-		if err != nil {
-			return fmt.Errorf("error reading 'tsc': %w", err)
-		}
-		delete(object, "tsc")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NgKsi to handle AdditionalProperties
-func (a NgKsi) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ksi"], err = json.Marshal(a.Ksi)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ksi': %w", err)
-	}
-
-	object["tsc"], err = json.Marshal(a.Tsc)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'tsc': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NgRanTargetId. Returns the specified
-// element and whether it was found
-func (a NgRanTargetId) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NgRanTargetId
-func (a *NgRanTargetId) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NgRanTargetId to handle AdditionalProperties
-func (a *NgRanTargetId) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ranNodeId"]; found {
-		err = json.Unmarshal(raw, &a.RanNodeId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ranNodeId': %w", err)
-		}
-		delete(object, "ranNodeId")
-	}
-
-	if raw, found := object["tai"]; found {
-		err = json.Unmarshal(raw, &a.Tai)
-		if err != nil {
-			return fmt.Errorf("error reading 'tai': %w", err)
-		}
-		delete(object, "tai")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NgRanTargetId to handle AdditionalProperties
-func (a NgRanTargetId) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ranNodeId"], err = json.Marshal(a.RanNodeId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ranNodeId': %w", err)
-	}
-
-	object["tai"], err = json.Marshal(a.Tai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'tai': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NonUeN2InfoSubscriptionCreateData. Returns the specified
-// element and whether it was found
-func (a NonUeN2InfoSubscriptionCreateData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NonUeN2InfoSubscriptionCreateData
-func (a *NonUeN2InfoSubscriptionCreateData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NonUeN2InfoSubscriptionCreateData to handle AdditionalProperties
-func (a *NonUeN2InfoSubscriptionCreateData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["anTypeList"]; found {
-		err = json.Unmarshal(raw, &a.AnTypeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'anTypeList': %w", err)
-		}
-		delete(object, "anTypeList")
-	}
-
-	if raw, found := object["globalRanNodeList"]; found {
-		err = json.Unmarshal(raw, &a.GlobalRanNodeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'globalRanNodeList': %w", err)
-		}
-		delete(object, "globalRanNodeList")
-	}
-
-	if raw, found := object["n2InformationClass"]; found {
-		err = json.Unmarshal(raw, &a.N2InformationClass)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2InformationClass': %w", err)
-		}
-		delete(object, "n2InformationClass")
-	}
-
-	if raw, found := object["n2NotifyCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.N2NotifyCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2NotifyCallbackUri': %w", err)
-		}
-		delete(object, "n2NotifyCallbackUri")
-	}
-
-	if raw, found := object["nfId"]; found {
-		err = json.Unmarshal(raw, &a.NfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfId': %w", err)
-		}
-		delete(object, "nfId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NonUeN2InfoSubscriptionCreateData to handle AdditionalProperties
-func (a NonUeN2InfoSubscriptionCreateData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AnTypeList) != 0 {
-		object["anTypeList"], err = json.Marshal(a.AnTypeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anTypeList': %w", err)
-		}
-	}
-
-	if len(a.GlobalRanNodeList) != 0 {
-		object["globalRanNodeList"], err = json.Marshal(a.GlobalRanNodeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'globalRanNodeList': %w", err)
-		}
-	}
-
-	object["n2InformationClass"], err = json.Marshal(a.N2InformationClass)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n2InformationClass': %w", err)
-	}
-
-	object["n2NotifyCallbackUri"], err = json.Marshal(a.N2NotifyCallbackUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n2NotifyCallbackUri': %w", err)
-	}
-
-	if a.NfId != nil {
-		object["nfId"], err = json.Marshal(a.NfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfId': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NonUeN2InfoSubscriptionCreatedData. Returns the specified
-// element and whether it was found
-func (a NonUeN2InfoSubscriptionCreatedData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NonUeN2InfoSubscriptionCreatedData
-func (a *NonUeN2InfoSubscriptionCreatedData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NonUeN2InfoSubscriptionCreatedData to handle AdditionalProperties
-func (a *NonUeN2InfoSubscriptionCreatedData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["n2InformationClass"]; found {
-		err = json.Unmarshal(raw, &a.N2InformationClass)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2InformationClass': %w", err)
-		}
-		delete(object, "n2InformationClass")
-	}
-
-	if raw, found := object["n2NotifySubscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.N2NotifySubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2NotifySubscriptionId': %w", err)
-		}
-		delete(object, "n2NotifySubscriptionId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NonUeN2InfoSubscriptionCreatedData to handle AdditionalProperties
-func (a NonUeN2InfoSubscriptionCreatedData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.N2InformationClass != nil {
-		object["n2InformationClass"], err = json.Marshal(a.N2InformationClass)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n2InformationClass': %w", err)
-		}
-	}
-
-	object["n2NotifySubscriptionId"], err = json.Marshal(a.N2NotifySubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n2NotifySubscriptionId': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NpnAccessInfo. Returns the specified
-// element and whether it was found
-func (a NpnAccessInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NpnAccessInfo
-func (a *NpnAccessInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NpnAccessInfo to handle AdditionalProperties
-func (a *NpnAccessInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["cellCagInfo"]; found {
-		err = json.Unmarshal(raw, &a.CellCagInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'cellCagInfo': %w", err)
-		}
-		delete(object, "cellCagInfo")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NpnAccessInfo to handle AdditionalProperties
-func (a NpnAccessInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.CellCagInfo) != 0 {
-		object["cellCagInfo"], err = json.Marshal(a.CellCagInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cellCagInfo': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NrppaInformation. Returns the specified
-// element and whether it was found
-func (a NrppaInformation) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NrppaInformation
-func (a *NrppaInformation) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NrppaInformation to handle AdditionalProperties
-func (a *NrppaInformation) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["nfId"]; found {
-		err = json.Unmarshal(raw, &a.NfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfId': %w", err)
-		}
-		delete(object, "nfId")
-	}
-
-	if raw, found := object["nrppaPdu"]; found {
-		err = json.Unmarshal(raw, &a.NrppaPdu)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrppaPdu': %w", err)
-		}
-		delete(object, "nrppaPdu")
-	}
-
-	if raw, found := object["serviceInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.ServiceInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceInstanceId': %w", err)
-		}
-		delete(object, "serviceInstanceId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NrppaInformation to handle AdditionalProperties
-func (a NrppaInformation) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["nfId"], err = json.Marshal(a.NfId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfId': %w", err)
-	}
-
-	object["nrppaPdu"], err = json.Marshal(a.NrppaPdu)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nrppaPdu': %w", err)
-	}
-
-	if a.ServiceInstanceId != nil {
-		object["serviceInstanceId"], err = json.Marshal(a.ServiceInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'serviceInstanceId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NssaiMapping. Returns the specified
-// element and whether it was found
-func (a NssaiMapping) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NssaiMapping
-func (a *NssaiMapping) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NssaiMapping to handle AdditionalProperties
-func (a *NssaiMapping) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["hSnssai"]; found {
-		err = json.Unmarshal(raw, &a.HSnssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'hSnssai': %w", err)
-		}
-		delete(object, "hSnssai")
-	}
-
-	if raw, found := object["mappedSnssai"]; found {
-		err = json.Unmarshal(raw, &a.MappedSnssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'mappedSnssai': %w", err)
-		}
-		delete(object, "mappedSnssai")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NssaiMapping to handle AdditionalProperties
-func (a NssaiMapping) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["hSnssai"], err = json.Marshal(a.HSnssai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'hSnssai': %w", err)
-	}
-
-	object["mappedSnssai"], err = json.Marshal(a.MappedSnssai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'mappedSnssai': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PWSErrorData. Returns the specified
-// element and whether it was found
-func (a PWSErrorData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PWSErrorData
-func (a *PWSErrorData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PWSErrorData to handle AdditionalProperties
-func (a *PWSErrorData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["namfCause"]; found {
-		err = json.Unmarshal(raw, &a.NamfCause)
-		if err != nil {
-			return fmt.Errorf("error reading 'namfCause': %w", err)
-		}
-		delete(object, "namfCause")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PWSErrorData to handle AdditionalProperties
-func (a PWSErrorData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["namfCause"], err = json.Marshal(a.NamfCause)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'namfCause': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PWSResponseData. Returns the specified
-// element and whether it was found
-func (a PWSResponseData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PWSResponseData
-func (a *PWSResponseData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PWSResponseData to handle AdditionalProperties
-func (a *PWSResponseData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["messageIdentifier"]; found {
-		err = json.Unmarshal(raw, &a.MessageIdentifier)
-		if err != nil {
-			return fmt.Errorf("error reading 'messageIdentifier': %w", err)
-		}
-		delete(object, "messageIdentifier")
-	}
-
-	if raw, found := object["ngapMessageType"]; found {
-		err = json.Unmarshal(raw, &a.NgapMessageType)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngapMessageType': %w", err)
-		}
-		delete(object, "ngapMessageType")
-	}
-
-	if raw, found := object["serialNumber"]; found {
-		err = json.Unmarshal(raw, &a.SerialNumber)
-		if err != nil {
-			return fmt.Errorf("error reading 'serialNumber': %w", err)
-		}
-		delete(object, "serialNumber")
-	}
-
-	if raw, found := object["unknownTaiList"]; found {
-		err = json.Unmarshal(raw, &a.UnknownTaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'unknownTaiList': %w", err)
-		}
-		delete(object, "unknownTaiList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PWSResponseData to handle AdditionalProperties
-func (a PWSResponseData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["messageIdentifier"], err = json.Marshal(a.MessageIdentifier)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'messageIdentifier': %w", err)
-	}
-
-	object["ngapMessageType"], err = json.Marshal(a.NgapMessageType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ngapMessageType': %w", err)
-	}
-
-	object["serialNumber"], err = json.Marshal(a.SerialNumber)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'serialNumber': %w", err)
-	}
-
-	if len(a.UnknownTaiList) != 0 {
-		object["unknownTaiList"], err = json.Marshal(a.UnknownTaiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'unknownTaiList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PduSessionContext. Returns the specified
-// element and whether it was found
-func (a PduSessionContext) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PduSessionContext
-func (a *PduSessionContext) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PduSessionContext to handle AdditionalProperties
-func (a *PduSessionContext) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessType"]; found {
-		err = json.Unmarshal(raw, &a.AccessType)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessType': %w", err)
-		}
-		delete(object, "accessType")
-	}
-
-	if raw, found := object["additionalAccessType"]; found {
-		err = json.Unmarshal(raw, &a.AdditionalAccessType)
-		if err != nil {
-			return fmt.Errorf("error reading 'additionalAccessType': %w", err)
-		}
-		delete(object, "additionalAccessType")
-	}
-
-	if raw, found := object["allocatedEbiList"]; found {
-		err = json.Unmarshal(raw, &a.AllocatedEbiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'allocatedEbiList': %w", err)
-		}
-		delete(object, "allocatedEbiList")
-	}
-
-	if raw, found := object["cnAssistedRanPara"]; found {
-		err = json.Unmarshal(raw, &a.CnAssistedRanPara)
-		if err != nil {
-			return fmt.Errorf("error reading 'cnAssistedRanPara': %w", err)
-		}
-		delete(object, "cnAssistedRanPara")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["hsmfId"]; found {
-		err = json.Unmarshal(raw, &a.HsmfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'hsmfId': %w", err)
-		}
-		delete(object, "hsmfId")
-	}
-
-	if raw, found := object["hsmfServiceSetId"]; found {
-		err = json.Unmarshal(raw, &a.HsmfServiceSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'hsmfServiceSetId': %w", err)
-		}
-		delete(object, "hsmfServiceSetId")
-	}
-
-	if raw, found := object["hsmfSetId"]; found {
-		err = json.Unmarshal(raw, &a.HsmfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'hsmfSetId': %w", err)
-		}
-		delete(object, "hsmfSetId")
-	}
-
-	if raw, found := object["ismfBinding"]; found {
-		err = json.Unmarshal(raw, &a.IsmfBinding)
-		if err != nil {
-			return fmt.Errorf("error reading 'ismfBinding': %w", err)
-		}
-		delete(object, "ismfBinding")
-	}
-
-	if raw, found := object["ismfId"]; found {
-		err = json.Unmarshal(raw, &a.IsmfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ismfId': %w", err)
-		}
-		delete(object, "ismfId")
-	}
-
-	if raw, found := object["ismfServiceSetId"]; found {
-		err = json.Unmarshal(raw, &a.IsmfServiceSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ismfServiceSetId': %w", err)
-		}
-		delete(object, "ismfServiceSetId")
-	}
-
-	if raw, found := object["ismfSetId"]; found {
-		err = json.Unmarshal(raw, &a.IsmfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ismfSetId': %w", err)
-		}
-		delete(object, "ismfSetId")
-	}
-
-	if raw, found := object["maPduSession"]; found {
-		err = json.Unmarshal(raw, &a.MaPduSession)
-		if err != nil {
-			return fmt.Errorf("error reading 'maPduSession': %w", err)
-		}
-		delete(object, "maPduSession")
-	}
-
-	if raw, found := object["nsInstance"]; found {
-		err = json.Unmarshal(raw, &a.NsInstance)
-		if err != nil {
-			return fmt.Errorf("error reading 'nsInstance': %w", err)
-		}
-		delete(object, "nsInstance")
-	}
-
-	if raw, found := object["pduSessionId"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionId': %w", err)
-		}
-		delete(object, "pduSessionId")
-	}
-
-	if raw, found := object["sNssai"]; found {
-		err = json.Unmarshal(raw, &a.SNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'sNssai': %w", err)
-		}
-		delete(object, "sNssai")
-	}
-
-	if raw, found := object["selectedDnn"]; found {
-		err = json.Unmarshal(raw, &a.SelectedDnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'selectedDnn': %w", err)
-		}
-		delete(object, "selectedDnn")
-	}
-
-	if raw, found := object["smContextRef"]; found {
-		err = json.Unmarshal(raw, &a.SmContextRef)
-		if err != nil {
-			return fmt.Errorf("error reading 'smContextRef': %w", err)
-		}
-		delete(object, "smContextRef")
-	}
-
-	if raw, found := object["smfBinding"]; found {
-		err = json.Unmarshal(raw, &a.SmfBinding)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfBinding': %w", err)
-		}
-		delete(object, "smfBinding")
-	}
-
-	if raw, found := object["smfServiceInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.SmfServiceInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfServiceInstanceId': %w", err)
-		}
-		delete(object, "smfServiceInstanceId")
-	}
-
-	if raw, found := object["vsmfBinding"]; found {
-		err = json.Unmarshal(raw, &a.VsmfBinding)
-		if err != nil {
-			return fmt.Errorf("error reading 'vsmfBinding': %w", err)
-		}
-		delete(object, "vsmfBinding")
-	}
-
-	if raw, found := object["vsmfId"]; found {
-		err = json.Unmarshal(raw, &a.VsmfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'vsmfId': %w", err)
-		}
-		delete(object, "vsmfId")
-	}
-
-	if raw, found := object["vsmfServiceSetId"]; found {
-		err = json.Unmarshal(raw, &a.VsmfServiceSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'vsmfServiceSetId': %w", err)
-		}
-		delete(object, "vsmfServiceSetId")
-	}
-
-	if raw, found := object["vsmfSetId"]; found {
-		err = json.Unmarshal(raw, &a.VsmfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'vsmfSetId': %w", err)
-		}
-		delete(object, "vsmfSetId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PduSessionContext to handle AdditionalProperties
-func (a PduSessionContext) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["accessType"], err = json.Marshal(a.AccessType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
-	}
-
-	if len(a.AdditionalAccessType) != 0 {
-		object["additionalAccessType"], err = json.Marshal(a.AdditionalAccessType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'additionalAccessType': %w", err)
-		}
-	}
-
-	if len(a.AllocatedEbiList) != 0 {
-		object["allocatedEbiList"], err = json.Marshal(a.AllocatedEbiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allocatedEbiList': %w", err)
-		}
-	}
-
-	if a.CnAssistedRanPara != nil {
-		object["cnAssistedRanPara"], err = json.Marshal(a.CnAssistedRanPara)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cnAssistedRanPara': %w", err)
-		}
-	}
-
-	object["dnn"], err = json.Marshal(a.Dnn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-	}
-
-	if a.HsmfId != nil {
-		object["hsmfId"], err = json.Marshal(a.HsmfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'hsmfId': %w", err)
-		}
-	}
-
-	if a.HsmfServiceSetId != nil {
-		object["hsmfServiceSetId"], err = json.Marshal(a.HsmfServiceSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'hsmfServiceSetId': %w", err)
-		}
-	}
-
-	if a.HsmfSetId != nil {
-		object["hsmfSetId"], err = json.Marshal(a.HsmfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'hsmfSetId': %w", err)
-		}
-	}
-
-	if a.IsmfBinding != nil {
-		object["ismfBinding"], err = json.Marshal(a.IsmfBinding)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ismfBinding': %w", err)
-		}
-	}
-
-	if a.IsmfId != nil {
-		object["ismfId"], err = json.Marshal(a.IsmfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ismfId': %w", err)
-		}
-	}
-
-	if a.IsmfServiceSetId != nil {
-		object["ismfServiceSetId"], err = json.Marshal(a.IsmfServiceSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ismfServiceSetId': %w", err)
-		}
-	}
-
-	if a.IsmfSetId != nil {
-		object["ismfSetId"], err = json.Marshal(a.IsmfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ismfSetId': %w", err)
-		}
-	}
-
-	if a.MaPduSession != nil {
-		object["maPduSession"], err = json.Marshal(a.MaPduSession)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maPduSession': %w", err)
-		}
-	}
-
-	if a.NsInstance != nil {
-		object["nsInstance"], err = json.Marshal(a.NsInstance)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nsInstance': %w", err)
-		}
-	}
-
-	object["pduSessionId"], err = json.Marshal(a.PduSessionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionId': %w", err)
-	}
-
-	object["sNssai"], err = json.Marshal(a.SNssai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'sNssai': %w", err)
-	}
-
-	if a.SelectedDnn != nil {
-		object["selectedDnn"], err = json.Marshal(a.SelectedDnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'selectedDnn': %w", err)
-		}
-	}
-
-	object["smContextRef"], err = json.Marshal(a.SmContextRef)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smContextRef': %w", err)
-	}
-
-	if a.SmfBinding != nil {
-		object["smfBinding"], err = json.Marshal(a.SmfBinding)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfBinding': %w", err)
-		}
-	}
-
-	if a.SmfServiceInstanceId != nil {
-		object["smfServiceInstanceId"], err = json.Marshal(a.SmfServiceInstanceId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfServiceInstanceId': %w", err)
-		}
-	}
-
-	if a.VsmfBinding != nil {
-		object["vsmfBinding"], err = json.Marshal(a.VsmfBinding)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vsmfBinding': %w", err)
-		}
-	}
-
-	if a.VsmfId != nil {
-		object["vsmfId"], err = json.Marshal(a.VsmfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vsmfId': %w", err)
-		}
-	}
-
-	if a.VsmfServiceSetId != nil {
-		object["vsmfServiceSetId"], err = json.Marshal(a.VsmfServiceSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vsmfServiceSetId': %w", err)
-		}
-	}
-
-	if a.VsmfSetId != nil {
-		object["vsmfSetId"], err = json.Marshal(a.VsmfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vsmfSetId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PwsInformation. Returns the specified
-// element and whether it was found
-func (a PwsInformation) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PwsInformation
-func (a *PwsInformation) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PwsInformation to handle AdditionalProperties
-func (a *PwsInformation) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["bcEmptyAreaList"]; found {
-		err = json.Unmarshal(raw, &a.BcEmptyAreaList)
-		if err != nil {
-			return fmt.Errorf("error reading 'bcEmptyAreaList': %w", err)
-		}
-		delete(object, "bcEmptyAreaList")
-	}
-
-	if raw, found := object["messageIdentifier"]; found {
-		err = json.Unmarshal(raw, &a.MessageIdentifier)
-		if err != nil {
-			return fmt.Errorf("error reading 'messageIdentifier': %w", err)
-		}
-		delete(object, "messageIdentifier")
-	}
-
-	if raw, found := object["omcId"]; found {
-		err = json.Unmarshal(raw, &a.OmcId)
-		if err != nil {
-			return fmt.Errorf("error reading 'omcId': %w", err)
-		}
-		delete(object, "omcId")
-	}
-
-	if raw, found := object["pwsContainer"]; found {
-		err = json.Unmarshal(raw, &a.PwsContainer)
-		if err != nil {
-			return fmt.Errorf("error reading 'pwsContainer': %w", err)
-		}
-		delete(object, "pwsContainer")
-	}
-
-	if raw, found := object["sendRanResponse"]; found {
-		err = json.Unmarshal(raw, &a.SendRanResponse)
-		if err != nil {
-			return fmt.Errorf("error reading 'sendRanResponse': %w", err)
-		}
-		delete(object, "sendRanResponse")
-	}
-
-	if raw, found := object["serialNumber"]; found {
-		err = json.Unmarshal(raw, &a.SerialNumber)
-		if err != nil {
-			return fmt.Errorf("error reading 'serialNumber': %w", err)
-		}
-		delete(object, "serialNumber")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PwsInformation to handle AdditionalProperties
-func (a PwsInformation) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.BcEmptyAreaList) != 0 {
-		object["bcEmptyAreaList"], err = json.Marshal(a.BcEmptyAreaList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'bcEmptyAreaList': %w", err)
-		}
-	}
-
-	object["messageIdentifier"], err = json.Marshal(a.MessageIdentifier)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'messageIdentifier': %w", err)
-	}
-
-	if a.OmcId != nil {
-		object["omcId"], err = json.Marshal(a.OmcId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'omcId': %w", err)
-		}
-	}
-
-	object["pwsContainer"], err = json.Marshal(a.PwsContainer)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pwsContainer': %w", err)
-	}
-
-	if a.SendRanResponse != nil {
-		object["sendRanResponse"], err = json.Marshal(a.SendRanResponse)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sendRanResponse': %w", err)
-		}
-	}
-
-	object["serialNumber"], err = json.Marshal(a.SerialNumber)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'serialNumber': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for RegistrationContextContainer. Returns the specified
-// element and whether it was found
-func (a RegistrationContextContainer) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for RegistrationContextContainer
-func (a *RegistrationContextContainer) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for RegistrationContextContainer to handle AdditionalProperties
-func (a *RegistrationContextContainer) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["allowedNssai"]; found {
-		err = json.Unmarshal(raw, &a.AllowedNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedNssai': %w", err)
-		}
-		delete(object, "allowedNssai")
-	}
-
-	if raw, found := object["anN2ApId"]; found {
-		err = json.Unmarshal(raw, &a.AnN2ApId)
-		if err != nil {
-			return fmt.Errorf("error reading 'anN2ApId': %w", err)
-		}
-		delete(object, "anN2ApId")
-	}
-
-	if raw, found := object["anN2IPv4Addr"]; found {
-		err = json.Unmarshal(raw, &a.AnN2IPv4Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'anN2IPv4Addr': %w", err)
-		}
-		delete(object, "anN2IPv4Addr")
-	}
-
-	if raw, found := object["anN2IPv6Addr"]; found {
-		err = json.Unmarshal(raw, &a.AnN2IPv6Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'anN2IPv6Addr': %w", err)
-		}
-		delete(object, "anN2IPv6Addr")
-	}
-
-	if raw, found := object["anType"]; found {
-		err = json.Unmarshal(raw, &a.AnType)
-		if err != nil {
-			return fmt.Errorf("error reading 'anType': %w", err)
-		}
-		delete(object, "anType")
-	}
-
-	if raw, found := object["authenticatedInd"]; found {
-		err = json.Unmarshal(raw, &a.AuthenticatedInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'authenticatedInd': %w", err)
-		}
-		delete(object, "authenticatedInd")
-	}
-
-	if raw, found := object["ceModeBInd"]; found {
-		err = json.Unmarshal(raw, &a.CeModeBInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'ceModeBInd': %w", err)
-		}
-		delete(object, "ceModeBInd")
-	}
-
-	if raw, found := object["configuredNssai"]; found {
-		err = json.Unmarshal(raw, &a.ConfiguredNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'configuredNssai': %w", err)
-		}
-		delete(object, "configuredNssai")
-	}
-
-	if raw, found := object["iabNodeInd"]; found {
-		err = json.Unmarshal(raw, &a.IabNodeInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'iabNodeInd': %w", err)
-		}
-		delete(object, "iabNodeInd")
-	}
-
-	if raw, found := object["initialAmfN2ApId"]; found {
-		err = json.Unmarshal(raw, &a.InitialAmfN2ApId)
-		if err != nil {
-			return fmt.Errorf("error reading 'initialAmfN2ApId': %w", err)
-		}
-		delete(object, "initialAmfN2ApId")
-	}
-
-	if raw, found := object["initialAmfName"]; found {
-		err = json.Unmarshal(raw, &a.InitialAmfName)
-		if err != nil {
-			return fmt.Errorf("error reading 'initialAmfName': %w", err)
-		}
-		delete(object, "initialAmfName")
-	}
-
-	if raw, found := object["localTimeZone"]; found {
-		err = json.Unmarshal(raw, &a.LocalTimeZone)
-		if err != nil {
-			return fmt.Errorf("error reading 'localTimeZone': %w", err)
-		}
-		delete(object, "localTimeZone")
-	}
-
-	if raw, found := object["lteMInd"]; found {
-		err = json.Unmarshal(raw, &a.LteMInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'lteMInd': %w", err)
-		}
-		delete(object, "lteMInd")
-	}
-
-	if raw, found := object["npnAccessInfo"]; found {
-		err = json.Unmarshal(raw, &a.NpnAccessInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'npnAccessInfo': %w", err)
-		}
-		delete(object, "npnAccessInfo")
-	}
-
-	if raw, found := object["ranNodeId"]; found {
-		err = json.Unmarshal(raw, &a.RanNodeId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ranNodeId': %w", err)
-		}
-		delete(object, "ranNodeId")
-	}
-
-	if raw, found := object["rejectedNssaiInPlmn"]; found {
-		err = json.Unmarshal(raw, &a.RejectedNssaiInPlmn)
-		if err != nil {
-			return fmt.Errorf("error reading 'rejectedNssaiInPlmn': %w", err)
-		}
-		delete(object, "rejectedNssaiInPlmn")
-	}
-
-	if raw, found := object["rejectedNssaiInTa"]; found {
-		err = json.Unmarshal(raw, &a.RejectedNssaiInTa)
-		if err != nil {
-			return fmt.Errorf("error reading 'rejectedNssaiInTa': %w", err)
-		}
-		delete(object, "rejectedNssaiInTa")
-	}
-
-	if raw, found := object["rrcEstCause"]; found {
-		err = json.Unmarshal(raw, &a.RrcEstCause)
-		if err != nil {
-			return fmt.Errorf("error reading 'rrcEstCause': %w", err)
-		}
-		delete(object, "rrcEstCause")
-	}
-
-	if raw, found := object["selectedPlmnId"]; found {
-		err = json.Unmarshal(raw, &a.SelectedPlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'selectedPlmnId': %w", err)
-		}
-		delete(object, "selectedPlmnId")
-	}
-
-	if raw, found := object["ueContext"]; found {
-		err = json.Unmarshal(raw, &a.UeContext)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueContext': %w", err)
-		}
-		delete(object, "ueContext")
-	}
-
-	if raw, found := object["ueContextRequest"]; found {
-		err = json.Unmarshal(raw, &a.UeContextRequest)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueContextRequest': %w", err)
-		}
-		delete(object, "ueContextRequest")
-	}
-
-	if raw, found := object["userLocation"]; found {
-		err = json.Unmarshal(raw, &a.UserLocation)
-		if err != nil {
-			return fmt.Errorf("error reading 'userLocation': %w", err)
-		}
-		delete(object, "userLocation")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for RegistrationContextContainer to handle AdditionalProperties
-func (a RegistrationContextContainer) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AllowedNssai != nil {
-		object["allowedNssai"], err = json.Marshal(a.AllowedNssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedNssai': %w", err)
-		}
-	}
-
-	object["anN2ApId"], err = json.Marshal(a.AnN2ApId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'anN2ApId': %w", err)
-	}
-
-	if len(a.AnN2IPv4Addr) != 0 {
-		object["anN2IPv4Addr"], err = json.Marshal(a.AnN2IPv4Addr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anN2IPv4Addr': %w", err)
-		}
-	}
-
-	if a.AnN2IPv6Addr != nil {
-		object["anN2IPv6Addr"], err = json.Marshal(a.AnN2IPv6Addr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anN2IPv6Addr': %w", err)
-		}
-	}
-
-	object["anType"], err = json.Marshal(a.AnType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'anType': %w", err)
-	}
-
-	if a.AuthenticatedInd != nil {
-		object["authenticatedInd"], err = json.Marshal(a.AuthenticatedInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'authenticatedInd': %w", err)
-		}
-	}
-
-	if a.CeModeBInd != nil {
-		object["ceModeBInd"], err = json.Marshal(a.CeModeBInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ceModeBInd': %w", err)
-		}
-	}
-
-	if len(a.ConfiguredNssai) != 0 {
-		object["configuredNssai"], err = json.Marshal(a.ConfiguredNssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'configuredNssai': %w", err)
-		}
-	}
-
-	if a.IabNodeInd != nil {
-		object["iabNodeInd"], err = json.Marshal(a.IabNodeInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'iabNodeInd': %w", err)
-		}
-	}
-
-	if a.InitialAmfN2ApId != nil {
-		object["initialAmfN2ApId"], err = json.Marshal(a.InitialAmfN2ApId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'initialAmfN2ApId': %w", err)
-		}
-	}
-
-	object["initialAmfName"], err = json.Marshal(a.InitialAmfName)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'initialAmfName': %w", err)
-	}
-
-	if a.LocalTimeZone != nil {
-		object["localTimeZone"], err = json.Marshal(a.LocalTimeZone)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'localTimeZone': %w", err)
-		}
-	}
-
-	if a.LteMInd != nil {
-		object["lteMInd"], err = json.Marshal(a.LteMInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lteMInd': %w", err)
-		}
-	}
-
-	if a.NpnAccessInfo != nil {
-		object["npnAccessInfo"], err = json.Marshal(a.NpnAccessInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'npnAccessInfo': %w", err)
-		}
-	}
-
-	object["ranNodeId"], err = json.Marshal(a.RanNodeId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ranNodeId': %w", err)
-	}
-
-	if len(a.RejectedNssaiInPlmn) != 0 {
-		object["rejectedNssaiInPlmn"], err = json.Marshal(a.RejectedNssaiInPlmn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'rejectedNssaiInPlmn': %w", err)
-		}
-	}
-
-	if len(a.RejectedNssaiInTa) != 0 {
-		object["rejectedNssaiInTa"], err = json.Marshal(a.RejectedNssaiInTa)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'rejectedNssaiInTa': %w", err)
-		}
-	}
-
-	if len(a.RrcEstCause) != 0 {
-		object["rrcEstCause"], err = json.Marshal(a.RrcEstCause)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'rrcEstCause': %w", err)
-		}
-	}
-
-	if a.SelectedPlmnId != nil {
-		object["selectedPlmnId"], err = json.Marshal(a.SelectedPlmnId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'selectedPlmnId': %w", err)
-		}
-	}
-
-	object["ueContext"], err = json.Marshal(a.UeContext)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueContext': %w", err)
-	}
-
-	if a.UeContextRequest != nil {
-		object["ueContextRequest"], err = json.Marshal(a.UeContextRequest)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueContextRequest': %w", err)
-		}
-	}
-
-	object["userLocation"], err = json.Marshal(a.UserLocation)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'userLocation': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SeafData. Returns the specified
-// element and whether it was found
-func (a SeafData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SeafData
-func (a *SeafData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SeafData to handle AdditionalProperties
-func (a *SeafData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["keyAmf"]; found {
-		err = json.Unmarshal(raw, &a.KeyAmf)
-		if err != nil {
-			return fmt.Errorf("error reading 'keyAmf': %w", err)
-		}
-		delete(object, "keyAmf")
-	}
-
-	if raw, found := object["keyAmfChangeInd"]; found {
-		err = json.Unmarshal(raw, &a.KeyAmfChangeInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'keyAmfChangeInd': %w", err)
-		}
-		delete(object, "keyAmfChangeInd")
-	}
-
-	if raw, found := object["keyAmfHDerivationInd"]; found {
-		err = json.Unmarshal(raw, &a.KeyAmfHDerivationInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'keyAmfHDerivationInd': %w", err)
-		}
-		delete(object, "keyAmfHDerivationInd")
-	}
-
-	if raw, found := object["ncc"]; found {
-		err = json.Unmarshal(raw, &a.Ncc)
-		if err != nil {
-			return fmt.Errorf("error reading 'ncc': %w", err)
-		}
-		delete(object, "ncc")
-	}
-
-	if raw, found := object["ngKsi"]; found {
-		err = json.Unmarshal(raw, &a.NgKsi)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngKsi': %w", err)
-		}
-		delete(object, "ngKsi")
-	}
-
-	if raw, found := object["nh"]; found {
-		err = json.Unmarshal(raw, &a.Nh)
-		if err != nil {
-			return fmt.Errorf("error reading 'nh': %w", err)
-		}
-		delete(object, "nh")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SeafData to handle AdditionalProperties
-func (a SeafData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["keyAmf"], err = json.Marshal(a.KeyAmf)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'keyAmf': %w", err)
-	}
-
-	if a.KeyAmfChangeInd != nil {
-		object["keyAmfChangeInd"], err = json.Marshal(a.KeyAmfChangeInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'keyAmfChangeInd': %w", err)
-		}
-	}
-
-	if a.KeyAmfHDerivationInd != nil {
-		object["keyAmfHDerivationInd"], err = json.Marshal(a.KeyAmfHDerivationInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'keyAmfHDerivationInd': %w", err)
-		}
-	}
-
-	if a.Ncc != nil {
-		object["ncc"], err = json.Marshal(a.Ncc)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ncc': %w", err)
-		}
-	}
-
-	object["ngKsi"], err = json.Marshal(a.NgKsi)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ngKsi': %w", err)
-	}
-
-	if len(a.Nh) != 0 {
-		object["nh"], err = json.Marshal(a.Nh)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nh': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SmallDataRateStatusInfo. Returns the specified
-// element and whether it was found
-func (a SmallDataRateStatusInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SmallDataRateStatusInfo
-func (a *SmallDataRateStatusInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SmallDataRateStatusInfo to handle AdditionalProperties
-func (a *SmallDataRateStatusInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["Dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'Dnn': %w", err)
-		}
-		delete(object, "Dnn")
-	}
-
-	if raw, found := object["SmallDataRateStatus"]; found {
-		err = json.Unmarshal(raw, &a.SmallDataRateStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'SmallDataRateStatus': %w", err)
-		}
-		delete(object, "SmallDataRateStatus")
-	}
-
-	if raw, found := object["Snssai"]; found {
-		err = json.Unmarshal(raw, &a.Snssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'Snssai': %w", err)
-		}
-		delete(object, "Snssai")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SmallDataRateStatusInfo to handle AdditionalProperties
-func (a SmallDataRateStatusInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["Dnn"], err = json.Marshal(a.Dnn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'Dnn': %w", err)
-	}
-
-	object["SmallDataRateStatus"], err = json.Marshal(a.SmallDataRateStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'SmallDataRateStatus': %w", err)
-	}
-
-	object["Snssai"], err = json.Marshal(a.Snssai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'Snssai': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SmfChangeInfo. Returns the specified
-// element and whether it was found
-func (a SmfChangeInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SmfChangeInfo
-func (a *SmfChangeInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SmfChangeInfo to handle AdditionalProperties
-func (a *SmfChangeInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["pduSessionIdList"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionIdList)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionIdList': %w", err)
-		}
-		delete(object, "pduSessionIdList")
-	}
-
-	if raw, found := object["smfChangeInd"]; found {
-		err = json.Unmarshal(raw, &a.SmfChangeInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfChangeInd': %w", err)
-		}
-		delete(object, "smfChangeInd")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SmfChangeInfo to handle AdditionalProperties
-func (a SmfChangeInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["pduSessionIdList"], err = json.Marshal(a.PduSessionIdList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionIdList': %w", err)
-	}
-
-	object["smfChangeInd"], err = json.Marshal(a.SmfChangeInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smfChangeInd': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SubscriptionData. Returns the specified
-// element and whether it was found
-func (a SubscriptionData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SubscriptionData
-func (a *SubscriptionData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SubscriptionData to handle AdditionalProperties
-func (a *SubscriptionData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfStatusUri"]; found {
-		err = json.Unmarshal(raw, &a.AmfStatusUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfStatusUri': %w", err)
-		}
-		delete(object, "amfStatusUri")
-	}
-
-	if raw, found := object["guamiList"]; found {
-		err = json.Unmarshal(raw, &a.GuamiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'guamiList': %w", err)
-		}
-		delete(object, "guamiList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SubscriptionData to handle AdditionalProperties
-func (a SubscriptionData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["amfStatusUri"], err = json.Marshal(a.AmfStatusUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'amfStatusUri': %w", err)
-	}
-
-	if len(a.GuamiList) != 0 {
-		object["guamiList"], err = json.Marshal(a.GuamiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'guamiList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UEContextRelease. Returns the specified
-// element and whether it was found
-func (a UEContextRelease) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UEContextRelease
-func (a *UEContextRelease) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UEContextRelease to handle AdditionalProperties
-func (a *UEContextRelease) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ngapCause"]; found {
-		err = json.Unmarshal(raw, &a.NgapCause)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngapCause': %w", err)
-		}
-		delete(object, "ngapCause")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["unauthenticatedSupi"]; found {
-		err = json.Unmarshal(raw, &a.UnauthenticatedSupi)
-		if err != nil {
-			return fmt.Errorf("error reading 'unauthenticatedSupi': %w", err)
-		}
-		delete(object, "unauthenticatedSupi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UEContextRelease to handle AdditionalProperties
-func (a UEContextRelease) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ngapCause"], err = json.Marshal(a.NgapCause)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ngapCause': %w", err)
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.UnauthenticatedSupi != nil {
-		object["unauthenticatedSupi"], err = json.Marshal(a.UnauthenticatedSupi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'unauthenticatedSupi': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContext. Returns the specified
-// element and whether it was found
-func (a UeContext) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContext
-func (a *UeContext) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContext to handle AdditionalProperties
-func (a *UeContext) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["5gMmCapability"]; found {
-		err = json.Unmarshal(raw, &a.N5gMmCapability)
-		if err != nil {
-			return fmt.Errorf("error reading '5gMmCapability': %w", err)
-		}
-		delete(object, "5gMmCapability")
-	}
-
-	if raw, found := object["amPolicyReqTriggerList"]; found {
-		err = json.Unmarshal(raw, &a.AmPolicyReqTriggerList)
-		if err != nil {
-			return fmt.Errorf("error reading 'amPolicyReqTriggerList': %w", err)
-		}
-		delete(object, "amPolicyReqTriggerList")
-	}
-
-	if raw, found := object["ausfGroupId"]; found {
-		err = json.Unmarshal(raw, &a.AusfGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'ausfGroupId': %w", err)
-		}
-		delete(object, "ausfGroupId")
-	}
-
-	if raw, found := object["cMsisdn"]; found {
-		err = json.Unmarshal(raw, &a.CMsisdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'cMsisdn': %w", err)
-		}
-		delete(object, "cMsisdn")
-	}
-
-	if raw, found := object["cagData"]; found {
-		err = json.Unmarshal(raw, &a.CagData)
-		if err != nil {
-			return fmt.Errorf("error reading 'cagData': %w", err)
-		}
-		delete(object, "cagData")
-	}
-
-	if raw, found := object["drxParameter"]; found {
-		err = json.Unmarshal(raw, &a.DrxParameter)
-		if err != nil {
-			return fmt.Errorf("error reading 'drxParameter': %w", err)
-		}
-		delete(object, "drxParameter")
-	}
-
-	if raw, found := object["ecRestrictionDataNb"]; found {
-		err = json.Unmarshal(raw, &a.EcRestrictionDataNb)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecRestrictionDataNb': %w", err)
-		}
-		delete(object, "ecRestrictionDataNb")
-	}
-
-	if raw, found := object["ecRestrictionDataWb"]; found {
-		err = json.Unmarshal(raw, &a.EcRestrictionDataWb)
-		if err != nil {
-			return fmt.Errorf("error reading 'ecRestrictionDataWb': %w", err)
-		}
-		delete(object, "ecRestrictionDataWb")
-	}
-
-	if raw, found := object["eventSubscriptionList"]; found {
-		err = json.Unmarshal(raw, &a.EventSubscriptionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventSubscriptionList': %w", err)
-		}
-		delete(object, "eventSubscriptionList")
-	}
-
-	if raw, found := object["forbiddenAreaList"]; found {
-		err = json.Unmarshal(raw, &a.ForbiddenAreaList)
-		if err != nil {
-			return fmt.Errorf("error reading 'forbiddenAreaList': %w", err)
-		}
-		delete(object, "forbiddenAreaList")
-	}
-
-	if raw, found := object["gpsiList"]; found {
-		err = json.Unmarshal(raw, &a.GpsiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'gpsiList': %w", err)
-		}
-		delete(object, "gpsiList")
-	}
-
-	if raw, found := object["groupList"]; found {
-		err = json.Unmarshal(raw, &a.GroupList)
-		if err != nil {
-			return fmt.Errorf("error reading 'groupList': %w", err)
-		}
-		delete(object, "groupList")
-	}
-
-	if raw, found := object["hpcfId"]; found {
-		err = json.Unmarshal(raw, &a.HpcfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'hpcfId': %w", err)
-		}
-		delete(object, "hpcfId")
-	}
-
-	if raw, found := object["hpcfSetId"]; found {
-		err = json.Unmarshal(raw, &a.HpcfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'hpcfSetId': %w", err)
-		}
-		delete(object, "hpcfSetId")
-	}
-
-	if raw, found := object["iabOperationAllowed"]; found {
-		err = json.Unmarshal(raw, &a.IabOperationAllowed)
-		if err != nil {
-			return fmt.Errorf("error reading 'iabOperationAllowed': %w", err)
-		}
-		delete(object, "iabOperationAllowed")
-	}
-
-	if raw, found := object["immediateMdtConf"]; found {
-		err = json.Unmarshal(raw, &a.ImmediateMdtConf)
-		if err != nil {
-			return fmt.Errorf("error reading 'immediateMdtConf': %w", err)
-		}
-		delete(object, "immediateMdtConf")
-	}
-
-	if raw, found := object["lteCatMInd"]; found {
-		err = json.Unmarshal(raw, &a.LteCatMInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'lteCatMInd': %w", err)
-		}
-		delete(object, "lteCatMInd")
-	}
-
-	if raw, found := object["managementMdtInd"]; found {
-		err = json.Unmarshal(raw, &a.ManagementMdtInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'managementMdtInd': %w", err)
-		}
-		delete(object, "managementMdtInd")
-	}
-
-	if raw, found := object["mmContextList"]; found {
-		err = json.Unmarshal(raw, &a.MmContextList)
-		if err != nil {
-			return fmt.Errorf("error reading 'mmContextList': %w", err)
-		}
-		delete(object, "mmContextList")
-	}
-
-	if raw, found := object["moExpDataCounter"]; found {
-		err = json.Unmarshal(raw, &a.MoExpDataCounter)
-		if err != nil {
-			return fmt.Errorf("error reading 'moExpDataCounter': %w", err)
-		}
-		delete(object, "moExpDataCounter")
-	}
-
-	if raw, found := object["msClassmark2"]; found {
-		err = json.Unmarshal(raw, &a.MsClassmark2)
-		if err != nil {
-			return fmt.Errorf("error reading 'msClassmark2': %w", err)
-		}
-		delete(object, "msClassmark2")
-	}
-
-	if raw, found := object["pcfAmPolicyUri"]; found {
-		err = json.Unmarshal(raw, &a.PcfAmPolicyUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfAmPolicyUri': %w", err)
-		}
-		delete(object, "pcfAmPolicyUri")
-	}
-
-	if raw, found := object["pcfAmpBindingInfo"]; found {
-		err = json.Unmarshal(raw, &a.PcfAmpBindingInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfAmpBindingInfo': %w", err)
-		}
-		delete(object, "pcfAmpBindingInfo")
-	}
-
-	if raw, found := object["pcfAmpServiceSetId"]; found {
-		err = json.Unmarshal(raw, &a.PcfAmpServiceSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfAmpServiceSetId': %w", err)
-		}
-		delete(object, "pcfAmpServiceSetId")
-	}
-
-	if raw, found := object["pcfBinding"]; found {
-		err = json.Unmarshal(raw, &a.PcfBinding)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfBinding': %w", err)
-		}
-		delete(object, "pcfBinding")
-	}
-
-	if raw, found := object["pcfGroupId"]; found {
-		err = json.Unmarshal(raw, &a.PcfGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfGroupId': %w", err)
-		}
-		delete(object, "pcfGroupId")
-	}
-
-	if raw, found := object["pcfId"]; found {
-		err = json.Unmarshal(raw, &a.PcfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfId': %w", err)
-		}
-		delete(object, "pcfId")
-	}
-
-	if raw, found := object["pcfRfsp"]; found {
-		err = json.Unmarshal(raw, &a.PcfRfsp)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfRfsp': %w", err)
-		}
-		delete(object, "pcfRfsp")
-	}
-
-	if raw, found := object["pcfSetId"]; found {
-		err = json.Unmarshal(raw, &a.PcfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfSetId': %w", err)
-		}
-		delete(object, "pcfSetId")
-	}
-
-	if raw, found := object["pcfUeAmbr"]; found {
-		err = json.Unmarshal(raw, &a.PcfUeAmbr)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfUeAmbr': %w", err)
-		}
-		delete(object, "pcfUeAmbr")
-	}
-
-	if raw, found := object["pcfUePolicyUri"]; found {
-		err = json.Unmarshal(raw, &a.PcfUePolicyUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfUePolicyUri': %w", err)
-		}
-		delete(object, "pcfUePolicyUri")
-	}
-
-	if raw, found := object["pcfUepBindingInfo"]; found {
-		err = json.Unmarshal(raw, &a.PcfUepBindingInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfUepBindingInfo': %w", err)
-		}
-		delete(object, "pcfUepBindingInfo")
-	}
-
-	if raw, found := object["pcfUepServiceSetId"]; found {
-		err = json.Unmarshal(raw, &a.PcfUepServiceSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfUepServiceSetId': %w", err)
-		}
-		delete(object, "pcfUepServiceSetId")
-	}
-
-	if raw, found := object["pei"]; found {
-		err = json.Unmarshal(raw, &a.Pei)
-		if err != nil {
-			return fmt.Errorf("error reading 'pei': %w", err)
-		}
-		delete(object, "pei")
-	}
-
-	if raw, found := object["praInAmPolicy"]; found {
-		err = json.Unmarshal(raw, &a.PraInAmPolicy)
-		if err != nil {
-			return fmt.Errorf("error reading 'praInAmPolicy': %w", err)
-		}
-		delete(object, "praInAmPolicy")
-	}
-
-	if raw, found := object["praInUePolicy"]; found {
-		err = json.Unmarshal(raw, &a.PraInUePolicy)
-		if err != nil {
-			return fmt.Errorf("error reading 'praInUePolicy': %w", err)
-		}
-		delete(object, "praInUePolicy")
-	}
-
-	if raw, found := object["restrictedCoreNwTypeList"]; found {
-		err = json.Unmarshal(raw, &a.RestrictedCoreNwTypeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'restrictedCoreNwTypeList': %w", err)
-		}
-		delete(object, "restrictedCoreNwTypeList")
-	}
-
-	if raw, found := object["restrictedPrimaryRatList"]; found {
-		err = json.Unmarshal(raw, &a.RestrictedPrimaryRatList)
-		if err != nil {
-			return fmt.Errorf("error reading 'restrictedPrimaryRatList': %w", err)
-		}
-		delete(object, "restrictedPrimaryRatList")
-	}
-
-	if raw, found := object["restrictedRatList"]; found {
-		err = json.Unmarshal(raw, &a.RestrictedRatList)
-		if err != nil {
-			return fmt.Errorf("error reading 'restrictedRatList': %w", err)
-		}
-		delete(object, "restrictedRatList")
-	}
-
-	if raw, found := object["restrictedSecondaryRatList"]; found {
-		err = json.Unmarshal(raw, &a.RestrictedSecondaryRatList)
-		if err != nil {
-			return fmt.Errorf("error reading 'restrictedSecondaryRatList': %w", err)
-		}
-		delete(object, "restrictedSecondaryRatList")
-	}
-
-	if raw, found := object["routingIndicator"]; found {
-		err = json.Unmarshal(raw, &a.RoutingIndicator)
-		if err != nil {
-			return fmt.Errorf("error reading 'routingIndicator': %w", err)
-		}
-		delete(object, "routingIndicator")
-	}
-
-	if raw, found := object["seafData"]; found {
-		err = json.Unmarshal(raw, &a.SeafData)
-		if err != nil {
-			return fmt.Errorf("error reading 'seafData': %w", err)
-		}
-		delete(object, "seafData")
-	}
-
-	if raw, found := object["serviceAreaRestriction"]; found {
-		err = json.Unmarshal(raw, &a.ServiceAreaRestriction)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceAreaRestriction': %w", err)
-		}
-		delete(object, "serviceAreaRestriction")
-	}
-
-	if raw, found := object["serviceGapExpiryTime"]; found {
-		err = json.Unmarshal(raw, &a.ServiceGapExpiryTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceGapExpiryTime': %w", err)
-		}
-		delete(object, "serviceGapExpiryTime")
-	}
-
-	if raw, found := object["sessionContextList"]; found {
-		err = json.Unmarshal(raw, &a.SessionContextList)
-		if err != nil {
-			return fmt.Errorf("error reading 'sessionContextList': %w", err)
-		}
-		delete(object, "sessionContextList")
-	}
-
-	if raw, found := object["smallDataRateStatusInfos"]; found {
-		err = json.Unmarshal(raw, &a.SmallDataRateStatusInfos)
-		if err != nil {
-			return fmt.Errorf("error reading 'smallDataRateStatusInfos': %w", err)
-		}
-		delete(object, "smallDataRateStatusInfos")
-	}
-
-	if raw, found := object["smfSelInfo"]; found {
-		err = json.Unmarshal(raw, &a.SmfSelInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfSelInfo': %w", err)
-		}
-		delete(object, "smfSelInfo")
-	}
-
-	if raw, found := object["smsfBindingInfo"]; found {
-		err = json.Unmarshal(raw, &a.SmsfBindingInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfBindingInfo': %w", err)
-		}
-		delete(object, "smsfBindingInfo")
-	}
-
-	if raw, found := object["smsfId"]; found {
-		err = json.Unmarshal(raw, &a.SmsfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfId': %w", err)
-		}
-		delete(object, "smsfId")
-	}
-
-	if raw, found := object["smsfServiceSetId"]; found {
-		err = json.Unmarshal(raw, &a.SmsfServiceSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfServiceSetId': %w", err)
-		}
-		delete(object, "smsfServiceSetId")
-	}
-
-	if raw, found := object["smsfSetId"]; found {
-		err = json.Unmarshal(raw, &a.SmsfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfSetId': %w", err)
-		}
-		delete(object, "smsfSetId")
-	}
-
-	if raw, found := object["stnSr"]; found {
-		err = json.Unmarshal(raw, &a.StnSr)
-		if err != nil {
-			return fmt.Errorf("error reading 'stnSr': %w", err)
-		}
-		delete(object, "stnSr")
-	}
-
-	if raw, found := object["subRfsp"]; found {
-		err = json.Unmarshal(raw, &a.SubRfsp)
-		if err != nil {
-			return fmt.Errorf("error reading 'subRfsp': %w", err)
-		}
-		delete(object, "subRfsp")
-	}
-
-	if raw, found := object["subUeAmbr"]; found {
-		err = json.Unmarshal(raw, &a.SubUeAmbr)
-		if err != nil {
-			return fmt.Errorf("error reading 'subUeAmbr': %w", err)
-		}
-		delete(object, "subUeAmbr")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supiUnauthInd"]; found {
-		err = json.Unmarshal(raw, &a.SupiUnauthInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'supiUnauthInd': %w", err)
-		}
-		delete(object, "supiUnauthInd")
-	}
-
-	if raw, found := object["supportedCodecList"]; found {
-		err = json.Unmarshal(raw, &a.SupportedCodecList)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedCodecList': %w", err)
-		}
-		delete(object, "supportedCodecList")
-	}
-
-	if raw, found := object["traceData"]; found {
-		err = json.Unmarshal(raw, &a.TraceData)
-		if err != nil {
-			return fmt.Errorf("error reading 'traceData': %w", err)
-		}
-		delete(object, "traceData")
-	}
-
-	if raw, found := object["udmGroupId"]; found {
-		err = json.Unmarshal(raw, &a.UdmGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'udmGroupId': %w", err)
-		}
-		delete(object, "udmGroupId")
-	}
-
-	if raw, found := object["uePolicyReqTriggerList"]; found {
-		err = json.Unmarshal(raw, &a.UePolicyReqTriggerList)
-		if err != nil {
-			return fmt.Errorf("error reading 'uePolicyReqTriggerList': %w", err)
-		}
-		delete(object, "uePolicyReqTriggerList")
-	}
-
-	if raw, found := object["updpSubscriptionData"]; found {
-		err = json.Unmarshal(raw, &a.UpdpSubscriptionData)
-		if err != nil {
-			return fmt.Errorf("error reading 'updpSubscriptionData': %w", err)
-		}
-		delete(object, "updpSubscriptionData")
-	}
-
-	if raw, found := object["usedRfsp"]; found {
-		err = json.Unmarshal(raw, &a.UsedRfsp)
-		if err != nil {
-			return fmt.Errorf("error reading 'usedRfsp': %w", err)
-		}
-		delete(object, "usedRfsp")
-	}
-
-	if raw, found := object["usedServiceAreaRestriction"]; found {
-		err = json.Unmarshal(raw, &a.UsedServiceAreaRestriction)
-		if err != nil {
-			return fmt.Errorf("error reading 'usedServiceAreaRestriction': %w", err)
-		}
-		delete(object, "usedServiceAreaRestriction")
-	}
-
-	if raw, found := object["v2xContext"]; found {
-		err = json.Unmarshal(raw, &a.V2xContext)
-		if err != nil {
-			return fmt.Errorf("error reading 'v2xContext': %w", err)
-		}
-		delete(object, "v2xContext")
-	}
-
-	if raw, found := object["wlServAreaRes"]; found {
-		err = json.Unmarshal(raw, &a.WlServAreaRes)
-		if err != nil {
-			return fmt.Errorf("error reading 'wlServAreaRes': %w", err)
-		}
-		delete(object, "wlServAreaRes")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContext to handle AdditionalProperties
-func (a UeContext) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.N5gMmCapability != nil {
-		object["5gMmCapability"], err = json.Marshal(a.N5gMmCapability)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '5gMmCapability': %w", err)
-		}
-	}
-
-	if len(a.AmPolicyReqTriggerList) != 0 {
-		object["amPolicyReqTriggerList"], err = json.Marshal(a.AmPolicyReqTriggerList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amPolicyReqTriggerList': %w", err)
-		}
-	}
-
-	if a.AusfGroupId != nil {
-		object["ausfGroupId"], err = json.Marshal(a.AusfGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ausfGroupId': %w", err)
-		}
-	}
-
-	if len(a.CMsisdn) != 0 {
-		object["cMsisdn"], err = json.Marshal(a.CMsisdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cMsisdn': %w", err)
-		}
-	}
-
-	if a.CagData != nil {
-		object["cagData"], err = json.Marshal(a.CagData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cagData': %w", err)
-		}
-	}
-
-	if a.DrxParameter != nil {
-		object["drxParameter"], err = json.Marshal(a.DrxParameter)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'drxParameter': %w", err)
-		}
-	}
-
-	if a.EcRestrictionDataNb != nil {
-		object["ecRestrictionDataNb"], err = json.Marshal(a.EcRestrictionDataNb)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecRestrictionDataNb': %w", err)
-		}
-	}
-
-	if a.EcRestrictionDataWb != nil {
-		object["ecRestrictionDataWb"], err = json.Marshal(a.EcRestrictionDataWb)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ecRestrictionDataWb': %w", err)
-		}
-	}
-
-	if len(a.EventSubscriptionList) != 0 {
-		object["eventSubscriptionList"], err = json.Marshal(a.EventSubscriptionList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eventSubscriptionList': %w", err)
-		}
-	}
-
-	if len(a.ForbiddenAreaList) != 0 {
-		object["forbiddenAreaList"], err = json.Marshal(a.ForbiddenAreaList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'forbiddenAreaList': %w", err)
-		}
-	}
-
-	if len(a.GpsiList) != 0 {
-		object["gpsiList"], err = json.Marshal(a.GpsiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gpsiList': %w", err)
-		}
-	}
-
-	if len(a.GroupList) != 0 {
-		object["groupList"], err = json.Marshal(a.GroupList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'groupList': %w", err)
-		}
-	}
-
-	if a.HpcfId != nil {
-		object["hpcfId"], err = json.Marshal(a.HpcfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'hpcfId': %w", err)
-		}
-	}
-
-	if a.HpcfSetId != nil {
-		object["hpcfSetId"], err = json.Marshal(a.HpcfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'hpcfSetId': %w", err)
-		}
-	}
-
-	if a.IabOperationAllowed != nil {
-		object["iabOperationAllowed"], err = json.Marshal(a.IabOperationAllowed)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'iabOperationAllowed': %w", err)
-		}
-	}
-
-	if a.ImmediateMdtConf != nil {
-		object["immediateMdtConf"], err = json.Marshal(a.ImmediateMdtConf)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'immediateMdtConf': %w", err)
-		}
-	}
-
-	if a.LteCatMInd != nil {
-		object["lteCatMInd"], err = json.Marshal(a.LteCatMInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lteCatMInd': %w", err)
-		}
-	}
-
-	if a.ManagementMdtInd != nil {
-		object["managementMdtInd"], err = json.Marshal(a.ManagementMdtInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'managementMdtInd': %w", err)
-		}
-	}
-
-	if len(a.MmContextList) != 0 {
-		object["mmContextList"], err = json.Marshal(a.MmContextList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mmContextList': %w", err)
-		}
-	}
-
-	if a.MoExpDataCounter != nil {
-		object["moExpDataCounter"], err = json.Marshal(a.MoExpDataCounter)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'moExpDataCounter': %w", err)
-		}
-	}
-
-	if a.MsClassmark2 != nil {
-		object["msClassmark2"], err = json.Marshal(a.MsClassmark2)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'msClassmark2': %w", err)
-		}
-	}
-
-	if a.PcfAmPolicyUri != nil {
-		object["pcfAmPolicyUri"], err = json.Marshal(a.PcfAmPolicyUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfAmPolicyUri': %w", err)
-		}
-	}
-
-	if a.PcfAmpBindingInfo != nil {
-		object["pcfAmpBindingInfo"], err = json.Marshal(a.PcfAmpBindingInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfAmpBindingInfo': %w", err)
-		}
-	}
-
-	if a.PcfAmpServiceSetId != nil {
-		object["pcfAmpServiceSetId"], err = json.Marshal(a.PcfAmpServiceSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfAmpServiceSetId': %w", err)
-		}
-	}
-
-	if a.PcfBinding != nil {
-		object["pcfBinding"], err = json.Marshal(a.PcfBinding)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfBinding': %w", err)
-		}
-	}
-
-	if a.PcfGroupId != nil {
-		object["pcfGroupId"], err = json.Marshal(a.PcfGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfGroupId': %w", err)
-		}
-	}
-
-	if a.PcfId != nil {
-		object["pcfId"], err = json.Marshal(a.PcfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfId': %w", err)
-		}
-	}
-
-	if a.PcfRfsp != 0 {
-		object["pcfRfsp"], err = json.Marshal(a.PcfRfsp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfRfsp': %w", err)
-		}
-	}
-
-	if a.PcfSetId != nil {
-		object["pcfSetId"], err = json.Marshal(a.PcfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfSetId': %w", err)
-		}
-	}
-
-	if a.PcfUeAmbr != nil {
-		object["pcfUeAmbr"], err = json.Marshal(a.PcfUeAmbr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfUeAmbr': %w", err)
-		}
-	}
-
-	if a.PcfUePolicyUri != nil {
-		object["pcfUePolicyUri"], err = json.Marshal(a.PcfUePolicyUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfUePolicyUri': %w", err)
-		}
-	}
-
-	if a.PcfUepBindingInfo != nil {
-		object["pcfUepBindingInfo"], err = json.Marshal(a.PcfUepBindingInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfUepBindingInfo': %w", err)
-		}
-	}
-
-	if a.PcfUepServiceSetId != nil {
-		object["pcfUepServiceSetId"], err = json.Marshal(a.PcfUepServiceSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfUepServiceSetId': %w", err)
-		}
-	}
-
-	if len(a.Pei) != 0 {
-		object["pei"], err = json.Marshal(a.Pei)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
-		}
-	}
-
-	if a.PraInAmPolicy != nil {
-		object["praInAmPolicy"], err = json.Marshal(a.PraInAmPolicy)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'praInAmPolicy': %w", err)
-		}
-	}
-
-	if a.PraInUePolicy != nil {
-		object["praInUePolicy"], err = json.Marshal(a.PraInUePolicy)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'praInUePolicy': %w", err)
-		}
-	}
-
-	if len(a.RestrictedCoreNwTypeList) != 0 {
-		object["restrictedCoreNwTypeList"], err = json.Marshal(a.RestrictedCoreNwTypeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'restrictedCoreNwTypeList': %w", err)
-		}
-	}
-
-	if len(a.RestrictedPrimaryRatList) != 0 {
-		object["restrictedPrimaryRatList"], err = json.Marshal(a.RestrictedPrimaryRatList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'restrictedPrimaryRatList': %w", err)
-		}
-	}
-
-	if len(a.RestrictedRatList) != 0 {
-		object["restrictedRatList"], err = json.Marshal(a.RestrictedRatList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'restrictedRatList': %w", err)
-		}
-	}
-
-	if len(a.RestrictedSecondaryRatList) != 0 {
-		object["restrictedSecondaryRatList"], err = json.Marshal(a.RestrictedSecondaryRatList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'restrictedSecondaryRatList': %w", err)
-		}
-	}
-
-	if a.RoutingIndicator != nil {
-		object["routingIndicator"], err = json.Marshal(a.RoutingIndicator)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'routingIndicator': %w", err)
-		}
-	}
-
-	if a.SeafData != nil {
-		object["seafData"], err = json.Marshal(a.SeafData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'seafData': %w", err)
-		}
-	}
-
-	if a.ServiceAreaRestriction != nil {
-		object["serviceAreaRestriction"], err = json.Marshal(a.ServiceAreaRestriction)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'serviceAreaRestriction': %w", err)
-		}
-	}
-
-	if a.ServiceGapExpiryTime != nil {
-		object["serviceGapExpiryTime"], err = json.Marshal(a.ServiceGapExpiryTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'serviceGapExpiryTime': %w", err)
-		}
-	}
-
-	if len(a.SessionContextList) != 0 {
-		object["sessionContextList"], err = json.Marshal(a.SessionContextList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sessionContextList': %w", err)
-		}
-	}
-
-	if len(a.SmallDataRateStatusInfos) != 0 {
-		object["smallDataRateStatusInfos"], err = json.Marshal(a.SmallDataRateStatusInfos)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smallDataRateStatusInfos': %w", err)
-		}
-	}
-
-	object["smfSelInfo"], err = json.Marshal(a.SmfSelInfo)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smfSelInfo': %w", err)
-	}
-
-	if a.SmsfBindingInfo != nil {
-		object["smsfBindingInfo"], err = json.Marshal(a.SmsfBindingInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfBindingInfo': %w", err)
-		}
-	}
-
-	if a.SmsfId != nil {
-		object["smsfId"], err = json.Marshal(a.SmsfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfId': %w", err)
-		}
-	}
-
-	if a.SmsfServiceSetId != nil {
-		object["smsfServiceSetId"], err = json.Marshal(a.SmsfServiceSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfServiceSetId': %w", err)
-		}
-	}
-
-	if a.SmsfSetId != nil {
-		object["smsfSetId"], err = json.Marshal(a.SmsfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smsfSetId': %w", err)
-		}
-	}
-
-	if a.StnSr != nil {
-		object["stnSr"], err = json.Marshal(a.StnSr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'stnSr': %w", err)
-		}
-	}
-
-	if a.SubRfsp != 0 {
-		object["subRfsp"], err = json.Marshal(a.SubRfsp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subRfsp': %w", err)
-		}
-	}
-
-	if a.SubUeAmbr != nil {
-		object["subUeAmbr"], err = json.Marshal(a.SubUeAmbr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subUeAmbr': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SupiUnauthInd != nil {
-		object["supiUnauthInd"], err = json.Marshal(a.SupiUnauthInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supiUnauthInd': %w", err)
-		}
-	}
-
-	if len(a.SupportedCodecList) != 0 {
-		object["supportedCodecList"], err = json.Marshal(a.SupportedCodecList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedCodecList': %w", err)
-		}
-	}
-
-	object["traceData"], err = json.Marshal(a.TraceData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'traceData': %w", err)
-	}
-
-	if a.UdmGroupId != nil {
-		object["udmGroupId"], err = json.Marshal(a.UdmGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'udmGroupId': %w", err)
-		}
-	}
-
-	if len(a.UePolicyReqTriggerList) != 0 {
-		object["uePolicyReqTriggerList"], err = json.Marshal(a.UePolicyReqTriggerList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'uePolicyReqTriggerList': %w", err)
-		}
-	}
-
-	if a.UpdpSubscriptionData != nil {
-		object["updpSubscriptionData"], err = json.Marshal(a.UpdpSubscriptionData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'updpSubscriptionData': %w", err)
-		}
-	}
-
-	if a.UsedRfsp != 0 {
-		object["usedRfsp"], err = json.Marshal(a.UsedRfsp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'usedRfsp': %w", err)
-		}
-	}
-
-	if a.UsedServiceAreaRestriction != nil {
-		object["usedServiceAreaRestriction"], err = json.Marshal(a.UsedServiceAreaRestriction)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'usedServiceAreaRestriction': %w", err)
-		}
-	}
-
-	if a.V2xContext != nil {
-		object["v2xContext"], err = json.Marshal(a.V2xContext)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'v2xContext': %w", err)
-		}
-	}
-
-	if a.WlServAreaRes != nil {
-		object["wlServAreaRes"], err = json.Marshal(a.WlServAreaRes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'wlServAreaRes': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextCancelRelocateData. Returns the specified
-// element and whether it was found
-func (a UeContextCancelRelocateData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextCancelRelocateData
-func (a *UeContextCancelRelocateData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextCancelRelocateData to handle AdditionalProperties
-func (a *UeContextCancelRelocateData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["relocationCancelRequest"]; found {
-		err = json.Unmarshal(raw, &a.RelocationCancelRequest)
-		if err != nil {
-			return fmt.Errorf("error reading 'relocationCancelRequest': %w", err)
-		}
-		delete(object, "relocationCancelRequest")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextCancelRelocateData to handle AdditionalProperties
-func (a UeContextCancelRelocateData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["relocationCancelRequest"], err = json.Marshal(a.RelocationCancelRequest)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'relocationCancelRequest': %w", err)
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextCreateData. Returns the specified
-// element and whether it was found
-func (a UeContextCreateData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextCreateData
-func (a *UeContextCreateData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextCreateData to handle AdditionalProperties
-func (a *UeContextCreateData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["n2NotifyUri"]; found {
-		err = json.Unmarshal(raw, &a.N2NotifyUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2NotifyUri': %w", err)
-		}
-		delete(object, "n2NotifyUri")
-	}
-
-	if raw, found := object["ngapCause"]; found {
-		err = json.Unmarshal(raw, &a.NgapCause)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngapCause': %w", err)
-		}
-		delete(object, "ngapCause")
-	}
-
-	if raw, found := object["pduSessionList"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionList': %w", err)
-		}
-		delete(object, "pduSessionList")
-	}
-
-	if raw, found := object["servingNetwork"]; found {
-		err = json.Unmarshal(raw, &a.ServingNetwork)
-		if err != nil {
-			return fmt.Errorf("error reading 'servingNetwork': %w", err)
-		}
-		delete(object, "servingNetwork")
-	}
-
-	if raw, found := object["sourceToTargetData"]; found {
-		err = json.Unmarshal(raw, &a.SourceToTargetData)
-		if err != nil {
-			return fmt.Errorf("error reading 'sourceToTargetData': %w", err)
-		}
-		delete(object, "sourceToTargetData")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["targetId"]; found {
-		err = json.Unmarshal(raw, &a.TargetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'targetId': %w", err)
-		}
-		delete(object, "targetId")
-	}
-
-	if raw, found := object["ueContext"]; found {
-		err = json.Unmarshal(raw, &a.UeContext)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueContext': %w", err)
-		}
-		delete(object, "ueContext")
-	}
-
-	if raw, found := object["ueRadioCapability"]; found {
-		err = json.Unmarshal(raw, &a.UeRadioCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueRadioCapability': %w", err)
-		}
-		delete(object, "ueRadioCapability")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextCreateData to handle AdditionalProperties
-func (a UeContextCreateData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.N2NotifyUri != nil {
-		object["n2NotifyUri"], err = json.Marshal(a.N2NotifyUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n2NotifyUri': %w", err)
-		}
-	}
-
-	if a.NgapCause != nil {
-		object["ngapCause"], err = json.Marshal(a.NgapCause)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ngapCause': %w", err)
-		}
-	}
-
-	object["pduSessionList"], err = json.Marshal(a.PduSessionList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionList': %w", err)
-	}
-
-	if a.ServingNetwork != nil {
-		object["servingNetwork"], err = json.Marshal(a.ServingNetwork)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'servingNetwork': %w", err)
-		}
-	}
-
-	object["sourceToTargetData"], err = json.Marshal(a.SourceToTargetData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'sourceToTargetData': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["targetId"], err = json.Marshal(a.TargetId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'targetId': %w", err)
-	}
-
-	object["ueContext"], err = json.Marshal(a.UeContext)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueContext': %w", err)
-	}
-
-	if a.UeRadioCapability != nil {
-		object["ueRadioCapability"], err = json.Marshal(a.UeRadioCapability)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueRadioCapability': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextCreateError. Returns the specified
-// element and whether it was found
-func (a UeContextCreateError) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextCreateError
-func (a *UeContextCreateError) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextCreateError to handle AdditionalProperties
-func (a *UeContextCreateError) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["error"]; found {
-		err = json.Unmarshal(raw, &a.Error)
-		if err != nil {
-			return fmt.Errorf("error reading 'error': %w", err)
-		}
-		delete(object, "error")
-	}
-
-	if raw, found := object["ngapCause"]; found {
-		err = json.Unmarshal(raw, &a.NgapCause)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngapCause': %w", err)
-		}
-		delete(object, "ngapCause")
-	}
-
-	if raw, found := object["targetToSourceFailureData"]; found {
-		err = json.Unmarshal(raw, &a.TargetToSourceFailureData)
-		if err != nil {
-			return fmt.Errorf("error reading 'targetToSourceFailureData': %w", err)
-		}
-		delete(object, "targetToSourceFailureData")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextCreateError to handle AdditionalProperties
-func (a UeContextCreateError) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["error"], err = json.Marshal(a.Error)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'error': %w", err)
-	}
-
-	if a.NgapCause != nil {
-		object["ngapCause"], err = json.Marshal(a.NgapCause)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ngapCause': %w", err)
-		}
-	}
-
-	if a.TargetToSourceFailureData != nil {
-		object["targetToSourceFailureData"], err = json.Marshal(a.TargetToSourceFailureData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'targetToSourceFailureData': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextCreatedData. Returns the specified
-// element and whether it was found
-func (a UeContextCreatedData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextCreatedData
-func (a *UeContextCreatedData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextCreatedData to handle AdditionalProperties
-func (a *UeContextCreatedData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["failedSessionList"]; found {
-		err = json.Unmarshal(raw, &a.FailedSessionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'failedSessionList': %w", err)
-		}
-		delete(object, "failedSessionList")
-	}
-
-	if raw, found := object["pcfReselectedInd"]; found {
-		err = json.Unmarshal(raw, &a.PcfReselectedInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfReselectedInd': %w", err)
-		}
-		delete(object, "pcfReselectedInd")
-	}
-
-	if raw, found := object["pduSessionList"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionList': %w", err)
-		}
-		delete(object, "pduSessionList")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["targetToSourceData"]; found {
-		err = json.Unmarshal(raw, &a.TargetToSourceData)
-		if err != nil {
-			return fmt.Errorf("error reading 'targetToSourceData': %w", err)
-		}
-		delete(object, "targetToSourceData")
-	}
-
-	if raw, found := object["ueContext"]; found {
-		err = json.Unmarshal(raw, &a.UeContext)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueContext': %w", err)
-		}
-		delete(object, "ueContext")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextCreatedData to handle AdditionalProperties
-func (a UeContextCreatedData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.FailedSessionList) != 0 {
-		object["failedSessionList"], err = json.Marshal(a.FailedSessionList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'failedSessionList': %w", err)
-		}
-	}
-
-	if a.PcfReselectedInd != nil {
-		object["pcfReselectedInd"], err = json.Marshal(a.PcfReselectedInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfReselectedInd': %w", err)
-		}
-	}
-
-	object["pduSessionList"], err = json.Marshal(a.PduSessionList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pduSessionList': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["targetToSourceData"], err = json.Marshal(a.TargetToSourceData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'targetToSourceData': %w", err)
-	}
-
-	object["ueContext"], err = json.Marshal(a.UeContext)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueContext': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextRelocateData. Returns the specified
-// element and whether it was found
-func (a UeContextRelocateData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextRelocateData
-func (a *UeContextRelocateData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextRelocateData to handle AdditionalProperties
-func (a *UeContextRelocateData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["forwardRelocationRequest"]; found {
-		err = json.Unmarshal(raw, &a.ForwardRelocationRequest)
-		if err != nil {
-			return fmt.Errorf("error reading 'forwardRelocationRequest': %w", err)
-		}
-		delete(object, "forwardRelocationRequest")
-	}
-
-	if raw, found := object["ngapCause"]; found {
-		err = json.Unmarshal(raw, &a.NgapCause)
-		if err != nil {
-			return fmt.Errorf("error reading 'ngapCause': %w", err)
-		}
-		delete(object, "ngapCause")
-	}
-
-	if raw, found := object["pduSessionList"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionList': %w", err)
-		}
-		delete(object, "pduSessionList")
-	}
-
-	if raw, found := object["sourceToTargetData"]; found {
-		err = json.Unmarshal(raw, &a.SourceToTargetData)
-		if err != nil {
-			return fmt.Errorf("error reading 'sourceToTargetData': %w", err)
-		}
-		delete(object, "sourceToTargetData")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["targetId"]; found {
-		err = json.Unmarshal(raw, &a.TargetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'targetId': %w", err)
-		}
-		delete(object, "targetId")
-	}
-
-	if raw, found := object["ueContext"]; found {
-		err = json.Unmarshal(raw, &a.UeContext)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueContext': %w", err)
-		}
-		delete(object, "ueContext")
-	}
-
-	if raw, found := object["ueRadioCapability"]; found {
-		err = json.Unmarshal(raw, &a.UeRadioCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueRadioCapability': %w", err)
-		}
-		delete(object, "ueRadioCapability")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextRelocateData to handle AdditionalProperties
-func (a UeContextRelocateData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["forwardRelocationRequest"], err = json.Marshal(a.ForwardRelocationRequest)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'forwardRelocationRequest': %w", err)
-	}
-
-	if a.NgapCause != nil {
-		object["ngapCause"], err = json.Marshal(a.NgapCause)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ngapCause': %w", err)
-		}
-	}
-
-	if len(a.PduSessionList) != 0 {
-		object["pduSessionList"], err = json.Marshal(a.PduSessionList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pduSessionList': %w", err)
-		}
-	}
-
-	object["sourceToTargetData"], err = json.Marshal(a.SourceToTargetData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'sourceToTargetData': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["targetId"], err = json.Marshal(a.TargetId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'targetId': %w", err)
-	}
-
-	object["ueContext"], err = json.Marshal(a.UeContext)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueContext': %w", err)
-	}
-
-	if a.UeRadioCapability != nil {
-		object["ueRadioCapability"], err = json.Marshal(a.UeRadioCapability)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueRadioCapability': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextRelocatedData. Returns the specified
-// element and whether it was found
-func (a UeContextRelocatedData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextRelocatedData
-func (a *UeContextRelocatedData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextRelocatedData to handle AdditionalProperties
-func (a *UeContextRelocatedData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ueContext"]; found {
-		err = json.Unmarshal(raw, &a.UeContext)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueContext': %w", err)
-		}
-		delete(object, "ueContext")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextRelocatedData to handle AdditionalProperties
-func (a UeContextRelocatedData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ueContext"], err = json.Marshal(a.UeContext)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueContext': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextTransferReqData. Returns the specified
-// element and whether it was found
-func (a UeContextTransferReqData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextTransferReqData
-func (a *UeContextTransferReqData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextTransferReqData to handle AdditionalProperties
-func (a *UeContextTransferReqData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessType"]; found {
-		err = json.Unmarshal(raw, &a.AccessType)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessType': %w", err)
-		}
-		delete(object, "accessType")
-	}
-
-	if raw, found := object["plmnId"]; found {
-		err = json.Unmarshal(raw, &a.PlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnId': %w", err)
-		}
-		delete(object, "plmnId")
-	}
-
-	if raw, found := object["reason"]; found {
-		err = json.Unmarshal(raw, &a.Reason)
-		if err != nil {
-			return fmt.Errorf("error reading 'reason': %w", err)
-		}
-		delete(object, "reason")
-	}
-
-	if raw, found := object["regRequest"]; found {
-		err = json.Unmarshal(raw, &a.RegRequest)
-		if err != nil {
-			return fmt.Errorf("error reading 'regRequest': %w", err)
-		}
-		delete(object, "regRequest")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextTransferReqData to handle AdditionalProperties
-func (a UeContextTransferReqData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["accessType"], err = json.Marshal(a.AccessType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
-	}
-
-	if a.PlmnId != nil {
-		object["plmnId"], err = json.Marshal(a.PlmnId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
-		}
-	}
-
-	object["reason"], err = json.Marshal(a.Reason)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'reason': %w", err)
-	}
-
-	if a.RegRequest != nil {
-		object["regRequest"], err = json.Marshal(a.RegRequest)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'regRequest': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextTransferRspData. Returns the specified
-// element and whether it was found
-func (a UeContextTransferRspData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextTransferRspData
-func (a *UeContextTransferRspData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextTransferRspData to handle AdditionalProperties
-func (a *UeContextTransferRspData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["ueContext"]; found {
-		err = json.Unmarshal(raw, &a.UeContext)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueContext': %w", err)
-		}
-		delete(object, "ueContext")
-	}
-
-	if raw, found := object["ueNbiotRadioCapability"]; found {
-		err = json.Unmarshal(raw, &a.UeNbiotRadioCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueNbiotRadioCapability': %w", err)
-		}
-		delete(object, "ueNbiotRadioCapability")
-	}
-
-	if raw, found := object["ueRadioCapability"]; found {
-		err = json.Unmarshal(raw, &a.UeRadioCapability)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueRadioCapability': %w", err)
-		}
-		delete(object, "ueRadioCapability")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextTransferRspData to handle AdditionalProperties
-func (a UeContextTransferRspData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["ueContext"], err = json.Marshal(a.UeContext)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ueContext': %w", err)
-	}
-
-	if a.UeNbiotRadioCapability != nil {
-		object["ueNbiotRadioCapability"], err = json.Marshal(a.UeNbiotRadioCapability)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueNbiotRadioCapability': %w", err)
-		}
-	}
-
-	if a.UeRadioCapability != nil {
-		object["ueRadioCapability"], err = json.Marshal(a.UeRadioCapability)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueRadioCapability': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeDifferentiationInfo. Returns the specified
-// element and whether it was found
-func (a UeDifferentiationInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeDifferentiationInfo
-func (a *UeDifferentiationInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeDifferentiationInfo to handle AdditionalProperties
-func (a *UeDifferentiationInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["batteryInd"]; found {
-		err = json.Unmarshal(raw, &a.BatteryInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'batteryInd': %w", err)
-		}
-		delete(object, "batteryInd")
-	}
-
-	if raw, found := object["periodicComInd"]; found {
-		err = json.Unmarshal(raw, &a.PeriodicComInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'periodicComInd': %w", err)
-		}
-		delete(object, "periodicComInd")
-	}
-
-	if raw, found := object["periodicTime"]; found {
-		err = json.Unmarshal(raw, &a.PeriodicTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'periodicTime': %w", err)
-		}
-		delete(object, "periodicTime")
-	}
-
-	if raw, found := object["scheduledComTime"]; found {
-		err = json.Unmarshal(raw, &a.ScheduledComTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'scheduledComTime': %w", err)
-		}
-		delete(object, "scheduledComTime")
-	}
-
-	if raw, found := object["stationaryInd"]; found {
-		err = json.Unmarshal(raw, &a.StationaryInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'stationaryInd': %w", err)
-		}
-		delete(object, "stationaryInd")
-	}
-
-	if raw, found := object["trafficProfile"]; found {
-		err = json.Unmarshal(raw, &a.TrafficProfile)
-		if err != nil {
-			return fmt.Errorf("error reading 'trafficProfile': %w", err)
-		}
-		delete(object, "trafficProfile")
-	}
-
-	if raw, found := object["validityTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityTime': %w", err)
-		}
-		delete(object, "validityTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeDifferentiationInfo to handle AdditionalProperties
-func (a UeDifferentiationInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.BatteryInd != nil {
-		object["batteryInd"], err = json.Marshal(a.BatteryInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'batteryInd': %w", err)
-		}
-	}
-
-	if a.PeriodicComInd != nil {
-		object["periodicComInd"], err = json.Marshal(a.PeriodicComInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'periodicComInd': %w", err)
-		}
-	}
-
-	if a.PeriodicTime != nil {
-		object["periodicTime"], err = json.Marshal(a.PeriodicTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'periodicTime': %w", err)
-		}
-	}
-
-	if a.ScheduledComTime != nil {
-		object["scheduledComTime"], err = json.Marshal(a.ScheduledComTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scheduledComTime': %w", err)
-		}
-	}
-
-	if a.StationaryInd != nil {
-		object["stationaryInd"], err = json.Marshal(a.StationaryInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'stationaryInd': %w", err)
-		}
-	}
-
-	if a.TrafficProfile != nil {
-		object["trafficProfile"], err = json.Marshal(a.TrafficProfile)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'trafficProfile': %w", err)
-		}
-	}
-
-	if a.ValidityTime != nil {
-		object["validityTime"], err = json.Marshal(a.ValidityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeN1N2InfoSubscriptionCreateData. Returns the specified
-// element and whether it was found
-func (a UeN1N2InfoSubscriptionCreateData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeN1N2InfoSubscriptionCreateData
-func (a *UeN1N2InfoSubscriptionCreateData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeN1N2InfoSubscriptionCreateData to handle AdditionalProperties
-func (a *UeN1N2InfoSubscriptionCreateData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["n1MessageClass"]; found {
-		err = json.Unmarshal(raw, &a.N1MessageClass)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1MessageClass': %w", err)
-		}
-		delete(object, "n1MessageClass")
-	}
-
-	if raw, found := object["n1NotifyCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.N1NotifyCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1NotifyCallbackUri': %w", err)
-		}
-		delete(object, "n1NotifyCallbackUri")
-	}
-
-	if raw, found := object["n2InformationClass"]; found {
-		err = json.Unmarshal(raw, &a.N2InformationClass)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2InformationClass': %w", err)
-		}
-		delete(object, "n2InformationClass")
-	}
-
-	if raw, found := object["n2NotifyCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.N2NotifyCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2NotifyCallbackUri': %w", err)
-		}
-		delete(object, "n2NotifyCallbackUri")
-	}
-
-	if raw, found := object["nfId"]; found {
-		err = json.Unmarshal(raw, &a.NfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfId': %w", err)
-		}
-		delete(object, "nfId")
-	}
-
-	if raw, found := object["oldGuami"]; found {
-		err = json.Unmarshal(raw, &a.OldGuami)
-		if err != nil {
-			return fmt.Errorf("error reading 'oldGuami': %w", err)
-		}
-		delete(object, "oldGuami")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeN1N2InfoSubscriptionCreateData to handle AdditionalProperties
-func (a UeN1N2InfoSubscriptionCreateData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.N1MessageClass != nil {
-		object["n1MessageClass"], err = json.Marshal(a.N1MessageClass)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n1MessageClass': %w", err)
-		}
-	}
-
-	if a.N1NotifyCallbackUri != nil {
-		object["n1NotifyCallbackUri"], err = json.Marshal(a.N1NotifyCallbackUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n1NotifyCallbackUri': %w", err)
-		}
-	}
-
-	if a.N2InformationClass != nil {
-		object["n2InformationClass"], err = json.Marshal(a.N2InformationClass)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n2InformationClass': %w", err)
-		}
-	}
-
-	if a.N2NotifyCallbackUri != nil {
-		object["n2NotifyCallbackUri"], err = json.Marshal(a.N2NotifyCallbackUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n2NotifyCallbackUri': %w", err)
-		}
-	}
-
-	if a.NfId != nil {
-		object["nfId"], err = json.Marshal(a.NfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfId': %w", err)
-		}
-	}
-
-	if a.OldGuami != nil {
-		object["oldGuami"], err = json.Marshal(a.OldGuami)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oldGuami': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeN1N2InfoSubscriptionCreatedData. Returns the specified
-// element and whether it was found
-func (a UeN1N2InfoSubscriptionCreatedData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeN1N2InfoSubscriptionCreatedData
-func (a *UeN1N2InfoSubscriptionCreatedData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeN1N2InfoSubscriptionCreatedData to handle AdditionalProperties
-func (a *UeN1N2InfoSubscriptionCreatedData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["n1n2NotifySubscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.N1n2NotifySubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'n1n2NotifySubscriptionId': %w", err)
-		}
-		delete(object, "n1n2NotifySubscriptionId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeN1N2InfoSubscriptionCreatedData to handle AdditionalProperties
-func (a UeN1N2InfoSubscriptionCreatedData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["n1n2NotifySubscriptionId"], err = json.Marshal(a.N1n2NotifySubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'n1n2NotifySubscriptionId': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeRegStatusUpdateReqData. Returns the specified
-// element and whether it was found
-func (a UeRegStatusUpdateReqData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeRegStatusUpdateReqData
-func (a *UeRegStatusUpdateReqData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeRegStatusUpdateReqData to handle AdditionalProperties
-func (a *UeRegStatusUpdateReqData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["pcfReselectedInd"]; found {
-		err = json.Unmarshal(raw, &a.PcfReselectedInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfReselectedInd': %w", err)
-		}
-		delete(object, "pcfReselectedInd")
-	}
-
-	if raw, found := object["smfChangeInfoList"]; found {
-		err = json.Unmarshal(raw, &a.SmfChangeInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfChangeInfoList': %w", err)
-		}
-		delete(object, "smfChangeInfoList")
-	}
-
-	if raw, found := object["toReleaseSessionList"]; found {
-		err = json.Unmarshal(raw, &a.ToReleaseSessionList)
-		if err != nil {
-			return fmt.Errorf("error reading 'toReleaseSessionList': %w", err)
-		}
-		delete(object, "toReleaseSessionList")
-	}
-
-	if raw, found := object["transferStatus"]; found {
-		err = json.Unmarshal(raw, &a.TransferStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'transferStatus': %w", err)
-		}
-		delete(object, "transferStatus")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeRegStatusUpdateReqData to handle AdditionalProperties
-func (a UeRegStatusUpdateReqData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.PcfReselectedInd != nil {
-		object["pcfReselectedInd"], err = json.Marshal(a.PcfReselectedInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfReselectedInd': %w", err)
-		}
-	}
-
-	if len(a.SmfChangeInfoList) != 0 {
-		object["smfChangeInfoList"], err = json.Marshal(a.SmfChangeInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfChangeInfoList': %w", err)
-		}
-	}
-
-	if len(a.ToReleaseSessionList) != 0 {
-		object["toReleaseSessionList"], err = json.Marshal(a.ToReleaseSessionList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'toReleaseSessionList': %w", err)
-		}
-	}
-
-	object["transferStatus"], err = json.Marshal(a.TransferStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'transferStatus': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeRegStatusUpdateRspData. Returns the specified
-// element and whether it was found
-func (a UeRegStatusUpdateRspData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeRegStatusUpdateRspData
-func (a *UeRegStatusUpdateRspData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeRegStatusUpdateRspData to handle AdditionalProperties
-func (a *UeRegStatusUpdateRspData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["regStatusTransferComplete"]; found {
-		err = json.Unmarshal(raw, &a.RegStatusTransferComplete)
-		if err != nil {
-			return fmt.Errorf("error reading 'regStatusTransferComplete': %w", err)
-		}
-		delete(object, "regStatusTransferComplete")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeRegStatusUpdateRspData to handle AdditionalProperties
-func (a UeRegStatusUpdateRspData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["regStatusTransferComplete"], err = json.Marshal(a.RegStatusTransferComplete)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'regStatusTransferComplete': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UpdpSubscriptionData. Returns the specified
-// element and whether it was found
-func (a UpdpSubscriptionData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UpdpSubscriptionData
-func (a *UpdpSubscriptionData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UpdpSubscriptionData to handle AdditionalProperties
-func (a *UpdpSubscriptionData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["updpCallbackBinding"]; found {
-		err = json.Unmarshal(raw, &a.UpdpCallbackBinding)
-		if err != nil {
-			return fmt.Errorf("error reading 'updpCallbackBinding': %w", err)
-		}
-		delete(object, "updpCallbackBinding")
-	}
-
-	if raw, found := object["updpNotifyCallbackUri"]; found {
-		err = json.Unmarshal(raw, &a.UpdpNotifyCallbackUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'updpNotifyCallbackUri': %w", err)
-		}
-		delete(object, "updpNotifyCallbackUri")
-	}
-
-	if raw, found := object["updpNotifySubscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.UpdpNotifySubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'updpNotifySubscriptionId': %w", err)
-		}
-		delete(object, "updpNotifySubscriptionId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UpdpSubscriptionData to handle AdditionalProperties
-func (a UpdpSubscriptionData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.UpdpCallbackBinding != nil {
-		object["updpCallbackBinding"], err = json.Marshal(a.UpdpCallbackBinding)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'updpCallbackBinding': %w", err)
-		}
-	}
-
-	object["updpNotifyCallbackUri"], err = json.Marshal(a.UpdpNotifyCallbackUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'updpNotifyCallbackUri': %w", err)
-	}
-
-	object["updpNotifySubscriptionId"], err = json.Marshal(a.UpdpNotifySubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'updpNotifySubscriptionId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for V2xContext. Returns the specified
-// element and whether it was found
-func (a V2xContext) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for V2xContext
-func (a *V2xContext) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for V2xContext to handle AdditionalProperties
-func (a *V2xContext) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["lteUeSidelinkAmbr"]; found {
-		err = json.Unmarshal(raw, &a.LteUeSidelinkAmbr)
-		if err != nil {
-			return fmt.Errorf("error reading 'lteUeSidelinkAmbr': %w", err)
-		}
-		delete(object, "lteUeSidelinkAmbr")
-	}
-
-	if raw, found := object["lteV2xServicesAuth"]; found {
-		err = json.Unmarshal(raw, &a.LteV2xServicesAuth)
-		if err != nil {
-			return fmt.Errorf("error reading 'lteV2xServicesAuth': %w", err)
-		}
-		delete(object, "lteV2xServicesAuth")
-	}
-
-	if raw, found := object["nrUeSidelinkAmbr"]; found {
-		err = json.Unmarshal(raw, &a.NrUeSidelinkAmbr)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrUeSidelinkAmbr': %w", err)
-		}
-		delete(object, "nrUeSidelinkAmbr")
-	}
-
-	if raw, found := object["nrV2xServicesAuth"]; found {
-		err = json.Unmarshal(raw, &a.NrV2xServicesAuth)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrV2xServicesAuth': %w", err)
-		}
-		delete(object, "nrV2xServicesAuth")
-	}
-
-	if raw, found := object["pc5QoSPara"]; found {
-		err = json.Unmarshal(raw, &a.Pc5QoSPara)
-		if err != nil {
-			return fmt.Errorf("error reading 'pc5QoSPara': %w", err)
-		}
-		delete(object, "pc5QoSPara")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for V2xContext to handle AdditionalProperties
-func (a V2xContext) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.LteUeSidelinkAmbr) != 0 {
-		object["lteUeSidelinkAmbr"], err = json.Marshal(a.LteUeSidelinkAmbr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lteUeSidelinkAmbr': %w", err)
-		}
-	}
-
-	if a.LteV2xServicesAuth != nil {
-		object["lteV2xServicesAuth"], err = json.Marshal(a.LteV2xServicesAuth)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lteV2xServicesAuth': %w", err)
-		}
-	}
-
-	if len(a.NrUeSidelinkAmbr) != 0 {
-		object["nrUeSidelinkAmbr"], err = json.Marshal(a.NrUeSidelinkAmbr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nrUeSidelinkAmbr': %w", err)
-		}
-	}
-
-	if a.NrV2xServicesAuth != nil {
-		object["nrV2xServicesAuth"], err = json.Marshal(a.NrV2xServicesAuth)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nrV2xServicesAuth': %w", err)
-		}
-	}
-
-	if a.Pc5QoSPara != nil {
-		object["pc5QoSPara"], err = json.Marshal(a.Pc5QoSPara)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pc5QoSPara': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for V2xInformation. Returns the specified
-// element and whether it was found
-func (a V2xInformation) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for V2xInformation
-func (a *V2xInformation) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for V2xInformation to handle AdditionalProperties
-func (a *V2xInformation) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["n2Pc5Pol"]; found {
-		err = json.Unmarshal(raw, &a.N2Pc5Pol)
-		if err != nil {
-			return fmt.Errorf("error reading 'n2Pc5Pol': %w", err)
-		}
-		delete(object, "n2Pc5Pol")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for V2xInformation to handle AdditionalProperties
-func (a V2xInformation) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.N2Pc5Pol != nil {
-		object["n2Pc5Pol"], err = json.Marshal(a.N2Pc5Pol)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n2Pc5Pol': %w", err)
 		}
 	}
 
@@ -12890,18 +2409,18 @@ type ClientWithResponsesInterface interface {
 type NonUeN2InfoSubscribeResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *NonUeN2InfoSubscriptionCreatedData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON201                       *externalRef0.NonUeN2InfoSubscriptionCreatedData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12923,13 +2442,13 @@ func (r NonUeN2InfoSubscribeResponse) StatusCode() int {
 type NonUeN2InfoUnSubscribeResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12951,23 +2470,23 @@ func (r NonUeN2InfoUnSubscribeResponse) StatusCode() int {
 type NonUeN2MessageTransferResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *N2InformationTransferRspData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	JSON400                       *N2InformationTransferError
-	ApplicationproblemJSON400     *externalRef1.ProblemDetails
-	JSON403                       *N2InformationTransferError
-	ApplicationproblemJSON403     *externalRef1.ProblemDetails
-	JSON404                       *N2InformationTransferError
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	JSON500                       *N2InformationTransferError
-	ApplicationproblemJSON500     *externalRef1.ProblemDetails
-	JSON503                       *N2InformationTransferError
-	ApplicationproblemJSON503     *externalRef1.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.N2InformationTransferRspData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	JSON400                       *externalRef0.N2InformationTransferError
+	ApplicationproblemJSON400     *externalRef0.ProblemDetails
+	JSON403                       *externalRef0.N2InformationTransferError
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	JSON404                       *externalRef0.N2InformationTransferError
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	JSON500                       *externalRef0.N2InformationTransferError
+	ApplicationproblemJSON500     *externalRef0.ProblemDetails
+	JSON503                       *externalRef0.N2InformationTransferError
+	ApplicationproblemJSON503     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -12989,18 +2508,18 @@ func (r NonUeN2MessageTransferResponse) StatusCode() int {
 type AMFStatusChangeSubscribeResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *SubscriptionData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON201                       *externalRef0.SubscriptionData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13022,14 +2541,14 @@ func (r AMFStatusChangeSubscribeResponse) StatusCode() int {
 type AMFStatusChangeUnSubscribeResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13051,18 +2570,18 @@ func (r AMFStatusChangeUnSubscribeResponse) StatusCode() int {
 type AMFStatusChangeSubscribeModfyResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SubscriptionData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.SubscriptionData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13084,20 +2603,20 @@ func (r AMFStatusChangeSubscribeModfyResponse) StatusCode() int {
 type CreateUEContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *UeContextCreatedData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	JSON400                       *UeContextCreateError
-	ApplicationproblemJSON400     *externalRef1.ProblemDetails
-	JSON403                       *UeContextCreateError
-	ApplicationproblemJSON403     *externalRef1.ProblemDetails
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	JSON500                       *UeContextCreateError
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON201                       *externalRef0.UeContextCreatedData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	JSON400                       *externalRef0.UeContextCreateError
+	ApplicationproblemJSON400     *externalRef0.ProblemDetails
+	JSON403                       *externalRef0.UeContextCreateError
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	JSON500                       *externalRef0.UeContextCreateError
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13119,22 +2638,22 @@ func (r CreateUEContextResponse) StatusCode() int {
 type EBIAssignmentResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AssignedEbiData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	JSON400                       *AssignEbiError
-	ApplicationproblemJSON400     *externalRef1.ProblemDetails
-	JSON403                       *AssignEbiError
-	ApplicationproblemJSON403     *externalRef1.ProblemDetails
-	JSON409                       *AssignEbiError
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	JSON500                       *AssignEbiError
-	ApplicationproblemJSON500     *externalRef1.ProblemDetails
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.AssignedEbiData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	JSON400                       *externalRef0.AssignEbiError
+	ApplicationproblemJSON400     *externalRef0.ProblemDetails
+	JSON403                       *externalRef0.AssignEbiError
+	ApplicationproblemJSON403     *externalRef0.ProblemDetails
+	JSON409                       *externalRef0.AssignEbiError
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	JSON500                       *externalRef0.AssignEbiError
+	ApplicationproblemJSON500     *externalRef0.ProblemDetails
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13156,18 +2675,18 @@ func (r EBIAssignmentResponse) StatusCode() int {
 type CancelRelocateUEContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13189,23 +2708,23 @@ func (r CancelRelocateUEContextResponse) StatusCode() int {
 type N1N2MessageTransferResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *N1N2MessageTransferRspData
-	JSON202                       *N1N2MessageTransferRspData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	JSON409                       *N1N2MessageTransferError
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	JSON504                       *N1N2MessageTransferError
-	ApplicationproblemJSON504     *externalRef1.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.N1N2MessageTransferRspData
+	JSON202                       *externalRef0.N1N2MessageTransferRspData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	JSON409                       *externalRef0.N1N2MessageTransferError
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	JSON504                       *externalRef0.N1N2MessageTransferError
+	ApplicationproblemJSON504     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13227,17 +2746,17 @@ func (r N1N2MessageTransferResponse) StatusCode() int {
 type N1N2MessageSubscribeResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *UeN1N2InfoSubscriptionCreatedData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON201                       *externalRef0.UeN1N2InfoSubscriptionCreatedData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13259,16 +2778,16 @@ func (r N1N2MessageSubscribeResponse) StatusCode() int {
 type N1N2MessageUnSubscribeResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13290,18 +2809,18 @@ func (r N1N2MessageUnSubscribeResponse) StatusCode() int {
 type ReleaseUEContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13323,18 +2842,18 @@ func (r ReleaseUEContextResponse) StatusCode() int {
 type RelocateUEContextResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *UeContextRelocatedData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON201                       *externalRef0.UeContextRelocatedData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13356,19 +2875,19 @@ func (r RelocateUEContextResponse) StatusCode() int {
 type UEContextTransferResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *UeContextTransferRspData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.UeContextTransferRspData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -13390,19 +2909,19 @@ func (r UEContextTransferResponse) StatusCode() int {
 type RegistrationStatusUpdateResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *UeRegStatusUpdateRspData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.Default
+	JSON200                       *externalRef0.UeRegStatusUpdateRspData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -13660,84 +3179,84 @@ func ParseNonUeN2InfoSubscribeResponse(rsp *http.Response) (*NonUeN2InfoSubscrib
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest NonUeN2InfoSubscriptionCreatedData
+		var dest externalRef0.NonUeN2InfoSubscriptionCreatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -13766,49 +3285,49 @@ func ParseNonUeN2InfoUnSubscribeResponse(rsp *http.Response) (*NonUeN2InfoUnSubs
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -13834,119 +3353,119 @@ func ParseNonUeN2MessageTransferResponse(rsp *http.Response) (*NonUeN2MessageTra
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest N2InformationTransferRspData
+		var dest externalRef0.N2InformationTransferRspData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
-		var dest N2InformationTransferError
+		var dest externalRef0.N2InformationTransferError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
-		var dest N2InformationTransferError
+		var dest externalRef0.N2InformationTransferError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest N2InformationTransferError
+		var dest externalRef0.N2InformationTransferError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
-		var dest N2InformationTransferError
+		var dest externalRef0.N2InformationTransferError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 503:
-		var dest N2InformationTransferError
+		var dest externalRef0.N2InformationTransferError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON503 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 503:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -13972,84 +3491,84 @@ func ParseAMFStatusChangeSubscribeResponse(rsp *http.Response) (*AMFStatusChange
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest SubscriptionData
+		var dest externalRef0.SubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14078,56 +3597,56 @@ func ParseAMFStatusChangeUnSubscribeResponse(rsp *http.Response) (*AMFStatusChan
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14153,84 +3672,84 @@ func ParseAMFStatusChangeSubscribeModfyResponse(rsp *http.Response) (*AMFStatusC
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SubscriptionData
+		var dest externalRef0.SubscriptionData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14256,7 +3775,7 @@ func ParseCreateUEContextResponse(rsp *http.Response) (*CreateUEContextResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest UeContextCreatedData
+		var dest externalRef0.UeContextCreatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14266,42 +3785,42 @@ func ParseCreateUEContextResponse(rsp *http.Response) (*CreateUEContextResponse,
 	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
-		var dest UeContextCreateError
+		var dest externalRef0.UeContextCreateError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
-		var dest UeContextCreateError
+		var dest externalRef0.UeContextCreateError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14311,49 +3830,49 @@ func ParseCreateUEContextResponse(rsp *http.Response) (*CreateUEContextResponse,
 	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest UeContextCreateError
+		var dest externalRef0.UeContextCreateError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14379,112 +3898,112 @@ func ParseEBIAssignmentResponse(rsp *http.Response) (*EBIAssignmentResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AssignedEbiData
+		var dest externalRef0.AssignedEbiData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 400:
-		var dest AssignEbiError
+		var dest externalRef0.AssignEbiError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON400 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 400:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 403:
-		var dest AssignEbiError
+		var dest externalRef0.AssignEbiError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON403 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 403:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
-		var dest AssignEbiError
+		var dest externalRef0.AssignEbiError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 500:
-		var dest AssignEbiError
+		var dest externalRef0.AssignEbiError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON500 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 500:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14513,84 +4032,84 @@ func ParseCancelRelocateUEContextResponse(rsp *http.Response) (*CancelRelocateUE
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14616,119 +4135,119 @@ func ParseN1N2MessageTransferResponse(rsp *http.Response) (*N1N2MessageTransferR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest N1N2MessageTransferRspData
+		var dest externalRef0.N1N2MessageTransferRspData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
-		var dest N1N2MessageTransferRspData
+		var dest externalRef0.N1N2MessageTransferRspData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON202 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
-		var dest N1N2MessageTransferError
+		var dest externalRef0.N1N2MessageTransferError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 504:
-		var dest N1N2MessageTransferError
+		var dest externalRef0.N1N2MessageTransferError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON504 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/problem+json" && rsp.StatusCode == 504:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON504 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14754,77 +4273,77 @@ func ParseN1N2MessageSubscribeResponse(rsp *http.Response) (*N1N2MessageSubscrib
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest UeN1N2InfoSubscriptionCreatedData
+		var dest externalRef0.UeN1N2InfoSubscriptionCreatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14853,70 +4372,70 @@ func ParseN1N2MessageUnSubscribeResponse(rsp *http.Response) (*N1N2MessageUnSubs
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -14945,84 +4464,84 @@ func ParseReleaseUEContextResponse(rsp *http.Response) (*ReleaseUEContextRespons
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -15048,84 +4567,84 @@ func ParseRelocateUEContextResponse(rsp *http.Response) (*RelocateUEContextRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest UeContextRelocatedData
+		var dest externalRef0.UeContextRelocatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -15151,7 +4670,7 @@ func ParseUEContextTransferResponse(rsp *http.Response) (*UEContextTransferRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UeContextTransferRspData
+		var dest externalRef0.UeContextTransferRspData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -15161,84 +4680,84 @@ func ParseUEContextTransferResponse(rsp *http.Response) (*UEContextTransferRespo
 	// Content-type (multipart/related) unsupported
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -15264,91 +4783,91 @@ func ParseRegistrationStatusUpdateResponse(rsp *http.Response) (*RegistrationSta
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UeRegStatusUpdateRspData
+		var dest externalRef0.UeRegStatusUpdateRspData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -15870,7 +5389,7 @@ type NonUeN2InfoSubscribe201ResponseHeaders struct {
 }
 
 type NonUeN2InfoSubscribe201JSONResponse struct {
-	Body    NonUeN2InfoSubscriptionCreatedData
+	Body    externalRef0.NonUeN2InfoSubscriptionCreatedData
 	Headers NonUeN2InfoSubscribe201ResponseHeaders
 }
 
@@ -15882,7 +5401,7 @@ func (response NonUeN2InfoSubscribe201JSONResponse) VisitNonUeN2InfoSubscribeRes
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type NonUeN2InfoSubscribe307JSONResponse struct{ externalRef1.N307JSONResponse }
+type NonUeN2InfoSubscribe307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response NonUeN2InfoSubscribe307JSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -15895,7 +5414,7 @@ func (response NonUeN2InfoSubscribe307JSONResponse) VisitNonUeN2InfoSubscribeRes
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type NonUeN2InfoSubscribe308JSONResponse struct{ externalRef1.N308JSONResponse }
+type NonUeN2InfoSubscribe308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response NonUeN2InfoSubscribe308JSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -15909,95 +5428,95 @@ func (response NonUeN2InfoSubscribe308JSONResponse) VisitNonUeN2InfoSubscribeRes
 }
 
 type NonUeN2InfoSubscribe400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoSubscribe400ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoSubscribe403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoSubscribe403ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoSubscribe411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoSubscribe411ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoSubscribe413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoSubscribe413ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoSubscribe415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoSubscribe415ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoSubscribe429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoSubscribe429ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoSubscribe500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoSubscribe500ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoSubscribe503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoSubscribe503ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoSubscribedefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -16024,7 +5543,7 @@ func (response NonUeN2InfoUnSubscribe204Response) VisitNonUeN2InfoUnSubscribeRes
 	return nil
 }
 
-type NonUeN2InfoUnSubscribe307JSONResponse struct{ externalRef1.N307JSONResponse }
+type NonUeN2InfoUnSubscribe307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response NonUeN2InfoUnSubscribe307JSONResponse) VisitNonUeN2InfoUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16037,7 +5556,7 @@ func (response NonUeN2InfoUnSubscribe307JSONResponse) VisitNonUeN2InfoUnSubscrib
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type NonUeN2InfoUnSubscribe308JSONResponse struct{ externalRef1.N308JSONResponse }
+type NonUeN2InfoUnSubscribe308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response NonUeN2InfoUnSubscribe308JSONResponse) VisitNonUeN2InfoUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16051,51 +5570,51 @@ func (response NonUeN2InfoUnSubscribe308JSONResponse) VisitNonUeN2InfoUnSubscrib
 }
 
 type NonUeN2InfoUnSubscribe400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoUnSubscribe400ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoUnSubscribe429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoUnSubscribe429ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoUnSubscribe500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoUnSubscribe500ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoUnSubscribe503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2InfoUnSubscribe503ApplicationProblemPlusJSONResponse) VisitNonUeN2InfoUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2InfoUnSubscribedefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -16115,16 +5634,16 @@ type NonUeN2MessageTransferResponseObject interface {
 	VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error
 }
 
-type NonUeN2MessageTransfer200JSONResponse N2InformationTransferRspData
+type NonUeN2MessageTransfer200JSONResponse externalRef0.N2InformationTransferRspData
 
 func (response NonUeN2MessageTransfer200JSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(N2InformationTransferRspData(response))
+	return json.NewEncoder(w).Encode(externalRef0.N2InformationTransferRspData(response))
 }
 
-type NonUeN2MessageTransfer307JSONResponse struct{ externalRef1.N307JSONResponse }
+type NonUeN2MessageTransfer307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response NonUeN2MessageTransfer307JSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16137,7 +5656,7 @@ func (response NonUeN2MessageTransfer307JSONResponse) VisitNonUeN2MessageTransfe
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type NonUeN2MessageTransfer308JSONResponse struct{ externalRef1.N308JSONResponse }
+type NonUeN2MessageTransfer308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response NonUeN2MessageTransfer308JSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16150,133 +5669,133 @@ func (response NonUeN2MessageTransfer308JSONResponse) VisitNonUeN2MessageTransfe
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type NonUeN2MessageTransfer400JSONResponse N2InformationTransferError
+type NonUeN2MessageTransfer400JSONResponse externalRef0.N2InformationTransferError
 
 func (response NonUeN2MessageTransfer400JSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(N2InformationTransferError(response))
+	return json.NewEncoder(w).Encode(externalRef0.N2InformationTransferError(response))
 }
 
-type NonUeN2MessageTransfer400ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type NonUeN2MessageTransfer400ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response NonUeN2MessageTransfer400ApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
-type NonUeN2MessageTransfer403JSONResponse N2InformationTransferError
+type NonUeN2MessageTransfer403JSONResponse externalRef0.N2InformationTransferError
 
 func (response NonUeN2MessageTransfer403JSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(N2InformationTransferError(response))
+	return json.NewEncoder(w).Encode(externalRef0.N2InformationTransferError(response))
 }
 
-type NonUeN2MessageTransfer403ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type NonUeN2MessageTransfer403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response NonUeN2MessageTransfer403ApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
-type NonUeN2MessageTransfer404JSONResponse N2InformationTransferError
+type NonUeN2MessageTransfer404JSONResponse externalRef0.N2InformationTransferError
 
 func (response NonUeN2MessageTransfer404JSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(N2InformationTransferError(response))
+	return json.NewEncoder(w).Encode(externalRef0.N2InformationTransferError(response))
 }
 
 type NonUeN2MessageTransfer411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2MessageTransfer411ApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2MessageTransfer413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2MessageTransfer413ApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2MessageTransfer415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2MessageTransfer415ApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type NonUeN2MessageTransfer429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response NonUeN2MessageTransfer429ApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
-type NonUeN2MessageTransfer500JSONResponse N2InformationTransferError
+type NonUeN2MessageTransfer500JSONResponse externalRef0.N2InformationTransferError
 
 func (response NonUeN2MessageTransfer500JSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(N2InformationTransferError(response))
+	return json.NewEncoder(w).Encode(externalRef0.N2InformationTransferError(response))
 }
 
-type NonUeN2MessageTransfer500ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type NonUeN2MessageTransfer500ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response NonUeN2MessageTransfer500ApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
-type NonUeN2MessageTransfer503JSONResponse N2InformationTransferError
+type NonUeN2MessageTransfer503JSONResponse externalRef0.N2InformationTransferError
 
 func (response NonUeN2MessageTransfer503JSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(N2InformationTransferError(response))
+	return json.NewEncoder(w).Encode(externalRef0.N2InformationTransferError(response))
 }
 
-type NonUeN2MessageTransfer503ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type NonUeN2MessageTransfer503ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response NonUeN2MessageTransfer503ApplicationProblemPlusJSONResponse) VisitNonUeN2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type NonUeN2MessageTransferdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -16300,7 +5819,7 @@ type AMFStatusChangeSubscribe201ResponseHeaders struct {
 }
 
 type AMFStatusChangeSubscribe201JSONResponse struct {
-	Body    SubscriptionData
+	Body    externalRef0.SubscriptionData
 	Headers AMFStatusChangeSubscribe201ResponseHeaders
 }
 
@@ -16312,7 +5831,7 @@ func (response AMFStatusChangeSubscribe201JSONResponse) VisitAMFStatusChangeSubs
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type AMFStatusChangeSubscribe307JSONResponse struct{ externalRef1.N307JSONResponse }
+type AMFStatusChangeSubscribe307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response AMFStatusChangeSubscribe307JSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16325,7 +5844,7 @@ func (response AMFStatusChangeSubscribe307JSONResponse) VisitAMFStatusChangeSubs
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type AMFStatusChangeSubscribe308JSONResponse struct{ externalRef1.N308JSONResponse }
+type AMFStatusChangeSubscribe308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response AMFStatusChangeSubscribe308JSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16339,95 +5858,95 @@ func (response AMFStatusChangeSubscribe308JSONResponse) VisitAMFStatusChangeSubs
 }
 
 type AMFStatusChangeSubscribe400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribe400ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribe403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribe403ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribe411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribe411ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribe413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribe413ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribe415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribe415ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribe429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribe429ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribe500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribe500ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribe503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribe503ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribedefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -16454,7 +5973,7 @@ func (response AMFStatusChangeUnSubscribe204Response) VisitAMFStatusChangeUnSubs
 	return nil
 }
 
-type AMFStatusChangeUnSubscribe307JSONResponse struct{ externalRef1.N307JSONResponse }
+type AMFStatusChangeUnSubscribe307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response AMFStatusChangeUnSubscribe307JSONResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16467,7 +5986,7 @@ func (response AMFStatusChangeUnSubscribe307JSONResponse) VisitAMFStatusChangeUn
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type AMFStatusChangeUnSubscribe308JSONResponse struct{ externalRef1.N308JSONResponse }
+type AMFStatusChangeUnSubscribe308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response AMFStatusChangeUnSubscribe308JSONResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16481,62 +6000,62 @@ func (response AMFStatusChangeUnSubscribe308JSONResponse) VisitAMFStatusChangeUn
 }
 
 type AMFStatusChangeUnSubscribe400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeUnSubscribe400ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeUnSubscribe404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeUnSubscribe404ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeUnSubscribe429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeUnSubscribe429ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeUnSubscribe500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeUnSubscribe500ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeUnSubscribe503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeUnSubscribe503ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeUnSubscribedefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -16556,16 +6075,16 @@ type AMFStatusChangeSubscribeModfyResponseObject interface {
 	VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error
 }
 
-type AMFStatusChangeSubscribeModfy200JSONResponse SubscriptionData
+type AMFStatusChangeSubscribeModfy200JSONResponse externalRef0.SubscriptionData
 
 func (response AMFStatusChangeSubscribeModfy200JSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SubscriptionData(response))
+	return json.NewEncoder(w).Encode(externalRef0.SubscriptionData(response))
 }
 
-type AMFStatusChangeSubscribeModfy307JSONResponse struct{ externalRef1.N307JSONResponse }
+type AMFStatusChangeSubscribeModfy307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response AMFStatusChangeSubscribeModfy307JSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16578,7 +6097,7 @@ func (response AMFStatusChangeSubscribeModfy307JSONResponse) VisitAMFStatusChang
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type AMFStatusChangeSubscribeModfy308JSONResponse struct{ externalRef1.N308JSONResponse }
+type AMFStatusChangeSubscribeModfy308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response AMFStatusChangeSubscribeModfy308JSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16592,95 +6111,95 @@ func (response AMFStatusChangeSubscribeModfy308JSONResponse) VisitAMFStatusChang
 }
 
 type AMFStatusChangeSubscribeModfy400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribeModfy400ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribeModfy403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribeModfy403ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribeModfy411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribeModfy411ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribeModfy413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribeModfy413ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribeModfy415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribeModfy415ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribeModfy429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribeModfy429ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribeModfy500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribeModfy500ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribeModfy503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response AMFStatusChangeSubscribeModfy503ApplicationProblemPlusJSONResponse) VisitAMFStatusChangeSubscribeModfyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type AMFStatusChangeSubscribeModfydefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -16705,7 +6224,7 @@ type CreateUEContext201ResponseHeaders struct {
 }
 
 type CreateUEContext201JSONResponse struct {
-	Body    UeContextCreatedData
+	Body    externalRef0.UeContextCreatedData
 	Headers CreateUEContext201ResponseHeaders
 }
 
@@ -16732,7 +6251,7 @@ func (response CreateUEContext201MultipartResponse) VisitCreateUEContextResponse
 	return response.Body(writer)
 }
 
-type CreateUEContext307JSONResponse struct{ externalRef1.N307JSONResponse }
+type CreateUEContext307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response CreateUEContext307JSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16745,7 +6264,7 @@ func (response CreateUEContext307JSONResponse) VisitCreateUEContextResponse(w ht
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type CreateUEContext308JSONResponse struct{ externalRef1.N308JSONResponse }
+type CreateUEContext308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response CreateUEContext308JSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16758,40 +6277,40 @@ func (response CreateUEContext308JSONResponse) VisitCreateUEContextResponse(w ht
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type CreateUEContext400JSONResponse UeContextCreateError
+type CreateUEContext400JSONResponse externalRef0.UeContextCreateError
 
 func (response CreateUEContext400JSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(UeContextCreateError(response))
+	return json.NewEncoder(w).Encode(externalRef0.UeContextCreateError(response))
 }
 
-type CreateUEContext400ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type CreateUEContext400ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response CreateUEContext400ApplicationProblemPlusJSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
-type CreateUEContext403JSONResponse UeContextCreateError
+type CreateUEContext403JSONResponse externalRef0.UeContextCreateError
 
 func (response CreateUEContext403JSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(UeContextCreateError(response))
+	return json.NewEncoder(w).Encode(externalRef0.UeContextCreateError(response))
 }
 
-type CreateUEContext403ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type CreateUEContext403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response CreateUEContext403ApplicationProblemPlusJSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type CreateUEContext403MultipartResponse func(writer *multipart.Writer) error
@@ -16806,71 +6325,71 @@ func (response CreateUEContext403MultipartResponse) VisitCreateUEContextResponse
 }
 
 type CreateUEContext411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateUEContext411ApplicationProblemPlusJSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type CreateUEContext413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateUEContext413ApplicationProblemPlusJSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type CreateUEContext415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateUEContext415ApplicationProblemPlusJSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type CreateUEContext429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateUEContext429ApplicationProblemPlusJSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
-type CreateUEContext500JSONResponse UeContextCreateError
+type CreateUEContext500JSONResponse externalRef0.UeContextCreateError
 
 func (response CreateUEContext500JSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(UeContextCreateError(response))
+	return json.NewEncoder(w).Encode(externalRef0.UeContextCreateError(response))
 }
 
 type CreateUEContext503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateUEContext503ApplicationProblemPlusJSONResponse) VisitCreateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type CreateUEContextdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -16890,16 +6409,16 @@ type EBIAssignmentResponseObject interface {
 	VisitEBIAssignmentResponse(w http.ResponseWriter) error
 }
 
-type EBIAssignment200JSONResponse AssignedEbiData
+type EBIAssignment200JSONResponse externalRef0.AssignedEbiData
 
 func (response EBIAssignment200JSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(AssignedEbiData(response))
+	return json.NewEncoder(w).Encode(externalRef0.AssignedEbiData(response))
 }
 
-type EBIAssignment307JSONResponse struct{ externalRef1.N307JSONResponse }
+type EBIAssignment307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response EBIAssignment307JSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16912,7 +6431,7 @@ func (response EBIAssignment307JSONResponse) VisitEBIAssignmentResponse(w http.R
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type EBIAssignment308JSONResponse struct{ externalRef1.N308JSONResponse }
+type EBIAssignment308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response EBIAssignment308JSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -16925,126 +6444,126 @@ func (response EBIAssignment308JSONResponse) VisitEBIAssignmentResponse(w http.R
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type EBIAssignment400JSONResponse AssignEbiError
+type EBIAssignment400JSONResponse externalRef0.AssignEbiError
 
 func (response EBIAssignment400JSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(AssignEbiError(response))
+	return json.NewEncoder(w).Encode(externalRef0.AssignEbiError(response))
 }
 
-type EBIAssignment400ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type EBIAssignment400ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response EBIAssignment400ApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
-type EBIAssignment403JSONResponse AssignEbiError
+type EBIAssignment403JSONResponse externalRef0.AssignEbiError
 
 func (response EBIAssignment403JSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(AssignEbiError(response))
+	return json.NewEncoder(w).Encode(externalRef0.AssignEbiError(response))
 }
 
-type EBIAssignment403ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type EBIAssignment403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response EBIAssignment403ApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
-type EBIAssignment409JSONResponse AssignEbiError
+type EBIAssignment409JSONResponse externalRef0.AssignEbiError
 
 func (response EBIAssignment409JSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(409)
 
-	return json.NewEncoder(w).Encode(AssignEbiError(response))
+	return json.NewEncoder(w).Encode(externalRef0.AssignEbiError(response))
 }
 
 type EBIAssignment411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response EBIAssignment411ApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type EBIAssignment413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response EBIAssignment413ApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type EBIAssignment415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response EBIAssignment415ApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type EBIAssignment429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response EBIAssignment429ApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
-type EBIAssignment500JSONResponse AssignEbiError
+type EBIAssignment500JSONResponse externalRef0.AssignEbiError
 
 func (response EBIAssignment500JSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(AssignEbiError(response))
+	return json.NewEncoder(w).Encode(externalRef0.AssignEbiError(response))
 }
 
-type EBIAssignment500ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type EBIAssignment500ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response EBIAssignment500ApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type EBIAssignment503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response EBIAssignment503ApplicationProblemPlusJSONResponse) VisitEBIAssignmentResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type EBIAssignmentdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -17072,7 +6591,7 @@ func (response CancelRelocateUEContext204Response) VisitCancelRelocateUEContextR
 	return nil
 }
 
-type CancelRelocateUEContext307JSONResponse struct{ externalRef1.N307JSONResponse }
+type CancelRelocateUEContext307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response CancelRelocateUEContext307JSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17085,7 +6604,7 @@ func (response CancelRelocateUEContext307JSONResponse) VisitCancelRelocateUECont
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type CancelRelocateUEContext308JSONResponse struct{ externalRef1.N308JSONResponse }
+type CancelRelocateUEContext308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response CancelRelocateUEContext308JSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17099,106 +6618,106 @@ func (response CancelRelocateUEContext308JSONResponse) VisitCancelRelocateUECont
 }
 
 type CancelRelocateUEContext400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext400ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContext403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext403ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContext404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext404ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContext411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext411ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContext413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext413ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContext415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext415ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContext429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext429ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContext500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext500ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContext503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response CancelRelocateUEContext503ApplicationProblemPlusJSONResponse) VisitCancelRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type CancelRelocateUEContextdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -17219,13 +6738,13 @@ type N1N2MessageTransferResponseObject interface {
 	VisitN1N2MessageTransferResponse(w http.ResponseWriter) error
 }
 
-type N1N2MessageTransfer200JSONResponse N1N2MessageTransferRspData
+type N1N2MessageTransfer200JSONResponse externalRef0.N1N2MessageTransferRspData
 
 func (response N1N2MessageTransfer200JSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(N1N2MessageTransferRspData(response))
+	return json.NewEncoder(w).Encode(externalRef0.N1N2MessageTransferRspData(response))
 }
 
 type N1N2MessageTransfer202ResponseHeaders struct {
@@ -17233,7 +6752,7 @@ type N1N2MessageTransfer202ResponseHeaders struct {
 }
 
 type N1N2MessageTransfer202JSONResponse struct {
-	Body    N1N2MessageTransferRspData
+	Body    externalRef0.N1N2MessageTransferRspData
 	Headers N1N2MessageTransfer202ResponseHeaders
 }
 
@@ -17245,7 +6764,7 @@ func (response N1N2MessageTransfer202JSONResponse) VisitN1N2MessageTransferRespo
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type N1N2MessageTransfer307JSONResponse struct{ externalRef1.N307JSONResponse }
+type N1N2MessageTransfer307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response N1N2MessageTransfer307JSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17258,7 +6777,7 @@ func (response N1N2MessageTransfer307JSONResponse) VisitN1N2MessageTransferRespo
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type N1N2MessageTransfer308JSONResponse struct{ externalRef1.N308JSONResponse }
+type N1N2MessageTransfer308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response N1N2MessageTransfer308JSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17272,133 +6791,133 @@ func (response N1N2MessageTransfer308JSONResponse) VisitN1N2MessageTransferRespo
 }
 
 type N1N2MessageTransfer400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer400ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageTransfer403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer403ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageTransfer404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer404ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
-type N1N2MessageTransfer409JSONResponse N1N2MessageTransferError
+type N1N2MessageTransfer409JSONResponse externalRef0.N1N2MessageTransferError
 
 func (response N1N2MessageTransfer409JSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(409)
 
-	return json.NewEncoder(w).Encode(N1N2MessageTransferError(response))
+	return json.NewEncoder(w).Encode(externalRef0.N1N2MessageTransferError(response))
 }
 
 type N1N2MessageTransfer411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer411ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageTransfer413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer413ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageTransfer415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer415ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageTransfer429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer429ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageTransfer500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer500ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageTransfer503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageTransfer503ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
-type N1N2MessageTransfer504JSONResponse N1N2MessageTransferError
+type N1N2MessageTransfer504JSONResponse externalRef0.N1N2MessageTransferError
 
 func (response N1N2MessageTransfer504JSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(504)
 
-	return json.NewEncoder(w).Encode(N1N2MessageTransferError(response))
+	return json.NewEncoder(w).Encode(externalRef0.N1N2MessageTransferError(response))
 }
 
-type N1N2MessageTransfer504ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type N1N2MessageTransfer504ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response N1N2MessageTransfer504ApplicationProblemPlusJSONResponse) VisitN1N2MessageTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(504)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type N1N2MessageTransferdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -17423,7 +6942,7 @@ type N1N2MessageSubscribe201ResponseHeaders struct {
 }
 
 type N1N2MessageSubscribe201JSONResponse struct {
-	Body    UeN1N2InfoSubscriptionCreatedData
+	Body    externalRef0.UeN1N2InfoSubscriptionCreatedData
 	Headers N1N2MessageSubscribe201ResponseHeaders
 }
 
@@ -17435,7 +6954,7 @@ func (response N1N2MessageSubscribe201JSONResponse) VisitN1N2MessageSubscribeRes
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type N1N2MessageSubscribe307JSONResponse struct{ externalRef1.N307JSONResponse }
+type N1N2MessageSubscribe307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response N1N2MessageSubscribe307JSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17448,7 +6967,7 @@ func (response N1N2MessageSubscribe307JSONResponse) VisitN1N2MessageSubscribeRes
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type N1N2MessageSubscribe308JSONResponse struct{ externalRef1.N308JSONResponse }
+type N1N2MessageSubscribe308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response N1N2MessageSubscribe308JSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17462,84 +6981,84 @@ func (response N1N2MessageSubscribe308JSONResponse) VisitN1N2MessageSubscribeRes
 }
 
 type N1N2MessageSubscribe400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageSubscribe400ApplicationProblemPlusJSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageSubscribe411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageSubscribe411ApplicationProblemPlusJSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageSubscribe413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageSubscribe413ApplicationProblemPlusJSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageSubscribe415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageSubscribe415ApplicationProblemPlusJSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageSubscribe429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageSubscribe429ApplicationProblemPlusJSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageSubscribe500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageSubscribe500ApplicationProblemPlusJSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageSubscribe503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageSubscribe503ApplicationProblemPlusJSONResponse) VisitN1N2MessageSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageSubscribedefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -17567,7 +7086,7 @@ func (response N1N2MessageUnSubscribe204Response) VisitN1N2MessageUnSubscribeRes
 	return nil
 }
 
-type N1N2MessageUnSubscribe307JSONResponse struct{ externalRef1.N307JSONResponse }
+type N1N2MessageUnSubscribe307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response N1N2MessageUnSubscribe307JSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17580,7 +7099,7 @@ func (response N1N2MessageUnSubscribe307JSONResponse) VisitN1N2MessageUnSubscrib
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type N1N2MessageUnSubscribe308JSONResponse struct{ externalRef1.N308JSONResponse }
+type N1N2MessageUnSubscribe308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response N1N2MessageUnSubscribe308JSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17594,84 +7113,84 @@ func (response N1N2MessageUnSubscribe308JSONResponse) VisitN1N2MessageUnSubscrib
 }
 
 type N1N2MessageUnSubscribe400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageUnSubscribe400ApplicationProblemPlusJSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageUnSubscribe411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageUnSubscribe411ApplicationProblemPlusJSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageUnSubscribe413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageUnSubscribe413ApplicationProblemPlusJSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageUnSubscribe415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageUnSubscribe415ApplicationProblemPlusJSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageUnSubscribe429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageUnSubscribe429ApplicationProblemPlusJSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageUnSubscribe500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageUnSubscribe500ApplicationProblemPlusJSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageUnSubscribe503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response N1N2MessageUnSubscribe503ApplicationProblemPlusJSONResponse) VisitN1N2MessageUnSubscribeResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type N1N2MessageUnSubscribedefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -17699,7 +7218,7 @@ func (response ReleaseUEContext204Response) VisitReleaseUEContextResponse(w http
 	return nil
 }
 
-type ReleaseUEContext307JSONResponse struct{ externalRef1.N307JSONResponse }
+type ReleaseUEContext307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response ReleaseUEContext307JSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17712,7 +7231,7 @@ func (response ReleaseUEContext307JSONResponse) VisitReleaseUEContextResponse(w 
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type ReleaseUEContext308JSONResponse struct{ externalRef1.N308JSONResponse }
+type ReleaseUEContext308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response ReleaseUEContext308JSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17726,106 +7245,106 @@ func (response ReleaseUEContext308JSONResponse) VisitReleaseUEContextResponse(w 
 }
 
 type ReleaseUEContext400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext400ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContext403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext403ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContext404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext404ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContext411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext411ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContext413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext413ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContext415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext415ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContext429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext429ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContext500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext500ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContext503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response ReleaseUEContext503ApplicationProblemPlusJSONResponse) VisitReleaseUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ReleaseUEContextdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -17850,7 +7369,7 @@ type RelocateUEContext201ResponseHeaders struct {
 }
 
 type RelocateUEContext201JSONResponse struct {
-	Body    UeContextRelocatedData
+	Body    externalRef0.UeContextRelocatedData
 	Headers RelocateUEContext201ResponseHeaders
 }
 
@@ -17862,7 +7381,7 @@ func (response RelocateUEContext201JSONResponse) VisitRelocateUEContextResponse(
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type RelocateUEContext307JSONResponse struct{ externalRef1.N307JSONResponse }
+type RelocateUEContext307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response RelocateUEContext307JSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17875,7 +7394,7 @@ func (response RelocateUEContext307JSONResponse) VisitRelocateUEContextResponse(
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type RelocateUEContext308JSONResponse struct{ externalRef1.N308JSONResponse }
+type RelocateUEContext308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response RelocateUEContext308JSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -17889,95 +7408,95 @@ func (response RelocateUEContext308JSONResponse) VisitRelocateUEContextResponse(
 }
 
 type RelocateUEContext400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response RelocateUEContext400ApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type RelocateUEContext403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response RelocateUEContext403ApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type RelocateUEContext411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response RelocateUEContext411ApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type RelocateUEContext413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response RelocateUEContext413ApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type RelocateUEContext415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response RelocateUEContext415ApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type RelocateUEContext429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response RelocateUEContext429ApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type RelocateUEContext500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response RelocateUEContext500ApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type RelocateUEContext503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response RelocateUEContext503ApplicationProblemPlusJSONResponse) VisitRelocateUEContextResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type RelocateUEContextdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -17998,13 +7517,13 @@ type UEContextTransferResponseObject interface {
 	VisitUEContextTransferResponse(w http.ResponseWriter) error
 }
 
-type UEContextTransfer200JSONResponse UeContextTransferRspData
+type UEContextTransfer200JSONResponse externalRef0.UeContextTransferRspData
 
 func (response UEContextTransfer200JSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(UeContextTransferRspData(response))
+	return json.NewEncoder(w).Encode(externalRef0.UeContextTransferRspData(response))
 }
 
 type UEContextTransfer200MultipartResponse func(writer *multipart.Writer) error
@@ -18018,7 +7537,7 @@ func (response UEContextTransfer200MultipartResponse) VisitUEContextTransferResp
 	return response(writer)
 }
 
-type UEContextTransfer307JSONResponse struct{ externalRef1.N307JSONResponse }
+type UEContextTransfer307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response UEContextTransfer307JSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -18031,7 +7550,7 @@ func (response UEContextTransfer307JSONResponse) VisitUEContextTransferResponse(
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type UEContextTransfer308JSONResponse struct{ externalRef1.N308JSONResponse }
+type UEContextTransfer308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response UEContextTransfer308JSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -18045,106 +7564,106 @@ func (response UEContextTransfer308JSONResponse) VisitUEContextTransferResponse(
 }
 
 type UEContextTransfer400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer400ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransfer403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer403ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransfer404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer404ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransfer411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer411ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransfer413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer413ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransfer415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer415ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransfer429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer429ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransfer500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer500ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransfer503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response UEContextTransfer503ApplicationProblemPlusJSONResponse) VisitUEContextTransferResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type UEContextTransferdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -18164,16 +7683,16 @@ type RegistrationStatusUpdateResponseObject interface {
 	VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error
 }
 
-type RegistrationStatusUpdate200JSONResponse UeRegStatusUpdateRspData
+type RegistrationStatusUpdate200JSONResponse externalRef0.UeRegStatusUpdateRspData
 
 func (response RegistrationStatusUpdate200JSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(UeRegStatusUpdateRspData(response))
+	return json.NewEncoder(w).Encode(externalRef0.UeRegStatusUpdateRspData(response))
 }
 
-type RegistrationStatusUpdate307JSONResponse struct{ externalRef1.N307JSONResponse }
+type RegistrationStatusUpdate307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response RegistrationStatusUpdate307JSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -18186,7 +7705,7 @@ func (response RegistrationStatusUpdate307JSONResponse) VisitRegistrationStatusU
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type RegistrationStatusUpdate308JSONResponse struct{ externalRef1.N308JSONResponse }
+type RegistrationStatusUpdate308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response RegistrationStatusUpdate308JSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -18200,106 +7719,106 @@ func (response RegistrationStatusUpdate308JSONResponse) VisitRegistrationStatusU
 }
 
 type RegistrationStatusUpdate400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate400ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdate403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate403ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdate404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate404ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdate411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate411ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdate413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate413ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdate415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate415ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdate429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate429ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdate500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate500ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdate503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response RegistrationStatusUpdate503ApplicationProblemPlusJSONResponse) VisitRegistrationStatusUpdateResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type RegistrationStatusUpdatedefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 

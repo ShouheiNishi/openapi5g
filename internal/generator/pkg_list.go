@@ -21,9 +21,19 @@ type pkgEntry struct {
 
 var pkgList map[string]pkgEntry = map[string]pkgEntry{
 	// Common Data Types
-	"TS29571_CommonData.yaml": {"commondata", []string{
+	"TS29571_CommonData.yaml": {"models", []string{
 		"TS29510_Nnrf_AccessToken.yaml",  // To avoid import cycle
 		"TS29510_Nnrf_NFManagement.yaml", // To avoid import cycle
+		"TS29122_ResourceManagementOfBdt.yaml",
+		"TS29515_Ngmlc_Location.yaml",
+		"TS29517_Naf_EventExposure.yaml",
+		"TS29520_Nnwdaf_AnalyticsInfo.yaml",
+		"TS29520_Nnwdaf_EventsSubscription.yaml",
+		"TS29522_IPTVConfiguration.yaml",
+		"TS29522_ServiceParameter.yaml",
+		"TS29544_Nspaf_SecuredPacket.yaml",
+		"TS29572_Nlmf_Location.yaml",
+		"TS32291_Nchf_ConvergedCharging.yaml",
 	}},
 
 	// // Other dependency

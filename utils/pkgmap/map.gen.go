@@ -13,8 +13,8 @@ import (
 	ausf_sor "github.com/ShouheiNishi/openapi5g/ausf/sor"
 	ausf_upu "github.com/ShouheiNishi/openapi5g/ausf/upu"
 	bsf_management "github.com/ShouheiNishi/openapi5g/bsf/management"
-	commondata "github.com/ShouheiNishi/openapi5g/commondata"
 	influence "github.com/ShouheiNishi/openapi5g/influence"
+	models "github.com/ShouheiNishi/openapi5g/models"
 	nef_management "github.com/ShouheiNishi/openapi5g/nef/management"
 	northbound_commondata "github.com/ShouheiNishi/openapi5g/northbound/commondata"
 	nrf_bootstrapping "github.com/ShouheiNishi/openapi5g/nrf/bootstrapping"
@@ -87,7 +87,7 @@ var s2p = map[string]string{
 	"TS29531_Nnssf_NSSelection.yaml":        "github.com/ShouheiNishi/openapi5g/nssf/selection",
 	"TS29551_Nnef_PFDmanagement.yaml":       "github.com/ShouheiNishi/openapi5g/nef/management",
 	"TS29554_Npcf_BDTPolicyControl.yaml":    "github.com/ShouheiNishi/openapi5g/pcf/BDTpolicy",
-	"TS29571_CommonData.yaml":               "github.com/ShouheiNishi/openapi5g/commondata",
+	"TS29571_CommonData.yaml":               "github.com/ShouheiNishi/openapi5g/models",
 }
 
 var p2s = map[string]string{
@@ -99,8 +99,8 @@ var p2s = map[string]string{
 	"github.com/ShouheiNishi/openapi5g/ausf/sor":              "TS29509_Nausf_SoRProtection.yaml",
 	"github.com/ShouheiNishi/openapi5g/ausf/upu":              "TS29509_Nausf_UPUProtection.yaml",
 	"github.com/ShouheiNishi/openapi5g/bsf/management":        "TS29521_Nbsf_Management.yaml",
-	"github.com/ShouheiNishi/openapi5g/commondata":            "TS29571_CommonData.yaml",
 	"github.com/ShouheiNishi/openapi5g/influence":             "TS29522_TrafficInfluence.yaml",
+	"github.com/ShouheiNishi/openapi5g/models":                "TS29571_CommonData.yaml",
 	"github.com/ShouheiNishi/openapi5g/nef/management":        "TS29551_Nnef_PFDmanagement.yaml",
 	"github.com/ShouheiNishi/openapi5g/northbound/commondata": "TS29122_CommonData.yaml",
 	"github.com/ShouheiNishi/openapi5g/nrf/bootstrapping":     "TS29510_Nnrf_Bootstrapping.yaml",
@@ -142,8 +142,8 @@ var p2l = map[string]func() (*openapi3.T, error){
 	"github.com/ShouheiNishi/openapi5g/ausf/sor":              ausf_sor.GetKinOpenApi3Document,
 	"github.com/ShouheiNishi/openapi5g/ausf/upu":              ausf_upu.GetKinOpenApi3Document,
 	"github.com/ShouheiNishi/openapi5g/bsf/management":        bsf_management.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/commondata":            commondata.GetKinOpenApi3Document,
 	"github.com/ShouheiNishi/openapi5g/influence":             influence.GetKinOpenApi3Document,
+	"github.com/ShouheiNishi/openapi5g/models":                models.GetKinOpenApi3Document,
 	"github.com/ShouheiNishi/openapi5g/nef/management":        nef_management.GetKinOpenApi3Document,
 	"github.com/ShouheiNishi/openapi5g/northbound/commondata": northbound_commondata.GetKinOpenApi3Document,
 	"github.com/ShouheiNishi/openapi5g/nrf/bootstrapping":     nrf_bootstrapping.GetKinOpenApi3Document,

@@ -13,8 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/ausf/sor"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/commondata"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -24,348 +23,8 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// CounterUpu defines model for CounterUpu.
-type CounterUpu = string
-
-// UpuAckInd defines model for UpuAckInd.
-type UpuAckInd = bool
-
-// UpuData defines model for UpuData.
-type UpuData struct {
-	DefaultConfNssai []externalRef1.Snssai `json:"defaultConfNssai,omitempty"`
-
-	// RoutingId Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-	RoutingId            *string                     `json:"routingId,omitempty"`
-	SecPacket            *externalRef0.SecuredPacket `json:"secPacket,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// UpuHeader defines model for UpuHeader.
-type UpuHeader = string
-
-// UpuInfo defines model for UpuInfo.
-type UpuInfo struct {
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	UpuAckInd            UpuAckInd                       `json:"upuAckInd"`
-	UpuDataList          []UpuData                       `json:"upuDataList"`
-	UpuHeader            UpuHeader                       `json:"upuHeader,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// UpuMac defines model for UpuMac.
-type UpuMac = string
-
-// UpuSecurityInfo defines model for UpuSecurityInfo.
-type UpuSecurityInfo struct {
-	CounterUpu           CounterUpu             `json:"counterUpu"`
-	UpuMacIausf          UpuMac                 `json:"upuMacIausf"`
-	UpuXmacIue           UpuMac                 `json:"upuXmacIue,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // PostSupiUeUpuJSONRequestBody defines body for PostSupiUeUpu for application/json ContentType.
-type PostSupiUeUpuJSONRequestBody = UpuInfo
-
-// Getter for additional properties for UpuData. Returns the specified
-// element and whether it was found
-func (a UpuData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UpuData
-func (a *UpuData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UpuData to handle AdditionalProperties
-func (a *UpuData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["defaultConfNssai"]; found {
-		err = json.Unmarshal(raw, &a.DefaultConfNssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'defaultConfNssai': %w", err)
-		}
-		delete(object, "defaultConfNssai")
-	}
-
-	if raw, found := object["routingId"]; found {
-		err = json.Unmarshal(raw, &a.RoutingId)
-		if err != nil {
-			return fmt.Errorf("error reading 'routingId': %w", err)
-		}
-		delete(object, "routingId")
-	}
-
-	if raw, found := object["secPacket"]; found {
-		err = json.Unmarshal(raw, &a.SecPacket)
-		if err != nil {
-			return fmt.Errorf("error reading 'secPacket': %w", err)
-		}
-		delete(object, "secPacket")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UpuData to handle AdditionalProperties
-func (a UpuData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.DefaultConfNssai) != 0 {
-		object["defaultConfNssai"], err = json.Marshal(a.DefaultConfNssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'defaultConfNssai': %w", err)
-		}
-	}
-
-	if a.RoutingId != nil {
-		object["routingId"], err = json.Marshal(a.RoutingId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'routingId': %w", err)
-		}
-	}
-
-	if a.SecPacket != nil {
-		object["secPacket"], err = json.Marshal(a.SecPacket)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'secPacket': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UpuInfo. Returns the specified
-// element and whether it was found
-func (a UpuInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UpuInfo
-func (a *UpuInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UpuInfo to handle AdditionalProperties
-func (a *UpuInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["upuAckInd"]; found {
-		err = json.Unmarshal(raw, &a.UpuAckInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuAckInd': %w", err)
-		}
-		delete(object, "upuAckInd")
-	}
-
-	if raw, found := object["upuDataList"]; found {
-		err = json.Unmarshal(raw, &a.UpuDataList)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuDataList': %w", err)
-		}
-		delete(object, "upuDataList")
-	}
-
-	if raw, found := object["upuHeader"]; found {
-		err = json.Unmarshal(raw, &a.UpuHeader)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuHeader': %w", err)
-		}
-		delete(object, "upuHeader")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UpuInfo to handle AdditionalProperties
-func (a UpuInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["upuAckInd"], err = json.Marshal(a.UpuAckInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'upuAckInd': %w", err)
-	}
-
-	object["upuDataList"], err = json.Marshal(a.UpuDataList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'upuDataList': %w", err)
-	}
-
-	if len(a.UpuHeader) != 0 {
-		object["upuHeader"], err = json.Marshal(a.UpuHeader)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upuHeader': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UpuSecurityInfo. Returns the specified
-// element and whether it was found
-func (a UpuSecurityInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UpuSecurityInfo
-func (a *UpuSecurityInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UpuSecurityInfo to handle AdditionalProperties
-func (a *UpuSecurityInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["counterUpu"]; found {
-		err = json.Unmarshal(raw, &a.CounterUpu)
-		if err != nil {
-			return fmt.Errorf("error reading 'counterUpu': %w", err)
-		}
-		delete(object, "counterUpu")
-	}
-
-	if raw, found := object["upuMacIausf"]; found {
-		err = json.Unmarshal(raw, &a.UpuMacIausf)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuMacIausf': %w", err)
-		}
-		delete(object, "upuMacIausf")
-	}
-
-	if raw, found := object["upuXmacIue"]; found {
-		err = json.Unmarshal(raw, &a.UpuXmacIue)
-		if err != nil {
-			return fmt.Errorf("error reading 'upuXmacIue': %w", err)
-		}
-		delete(object, "upuXmacIue")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UpuSecurityInfo to handle AdditionalProperties
-func (a UpuSecurityInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["counterUpu"], err = json.Marshal(a.CounterUpu)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'counterUpu': %w", err)
-	}
-
-	object["upuMacIausf"], err = json.Marshal(a.UpuMacIausf)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'upuMacIausf': %w", err)
-	}
-
-	if len(a.UpuXmacIue) != 0 {
-		object["upuXmacIue"], err = json.Marshal(a.UpuXmacIue)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upuXmacIue': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type PostSupiUeUpuJSONRequestBody = externalRef0.AUSFUpuInfo
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -441,12 +100,12 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 // The interface specification for the client above.
 type ClientInterface interface {
 	// PostSupiUeUpuWithBody request with any body
-	PostSupiUeUpuWithBody(ctx context.Context, supi externalRef1.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostSupiUeUpuWithBody(ctx context.Context, supi externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PostSupiUeUpu(ctx context.Context, supi externalRef1.Supi, body PostSupiUeUpuJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostSupiUeUpu(ctx context.Context, supi externalRef0.Supi, body PostSupiUeUpuJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
-func (c *Client) PostSupiUeUpuWithBody(ctx context.Context, supi externalRef1.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) PostSupiUeUpuWithBody(ctx context.Context, supi externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPostSupiUeUpuRequestWithBody(c.Server, supi, contentType, body)
 	if err != nil {
 		return nil, err
@@ -458,7 +117,7 @@ func (c *Client) PostSupiUeUpuWithBody(ctx context.Context, supi externalRef1.Su
 	return c.Client.Do(req)
 }
 
-func (c *Client) PostSupiUeUpu(ctx context.Context, supi externalRef1.Supi, body PostSupiUeUpuJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) PostSupiUeUpu(ctx context.Context, supi externalRef0.Supi, body PostSupiUeUpuJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPostSupiUeUpuRequest(c.Server, supi, body)
 	if err != nil {
 		return nil, err
@@ -471,7 +130,7 @@ func (c *Client) PostSupiUeUpu(ctx context.Context, supi externalRef1.Supi, body
 }
 
 // NewPostSupiUeUpuRequest calls the generic PostSupiUeUpu builder with application/json body
-func NewPostSupiUeUpuRequest(server string, supi externalRef1.Supi, body PostSupiUeUpuJSONRequestBody) (*http.Request, error) {
+func NewPostSupiUeUpuRequest(server string, supi externalRef0.Supi, body PostSupiUeUpuJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -482,7 +141,7 @@ func NewPostSupiUeUpuRequest(server string, supi externalRef1.Supi, body PostSup
 }
 
 // NewPostSupiUeUpuRequestWithBody generates requests for PostSupiUeUpu with any type of body
-func NewPostSupiUeUpuRequestWithBody(server string, supi externalRef1.Supi, contentType string, body io.Reader) (*http.Request, error) {
+func NewPostSupiUeUpuRequestWithBody(server string, supi externalRef0.Supi, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -561,19 +220,19 @@ func WithBaseURL(baseURL string) ClientOption {
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
 	// PostSupiUeUpuWithBodyWithResponse request with any body
-	PostSupiUeUpuWithBodyWithResponse(ctx context.Context, supi externalRef1.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSupiUeUpuResponse, error)
+	PostSupiUeUpuWithBodyWithResponse(ctx context.Context, supi externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSupiUeUpuResponse, error)
 
-	PostSupiUeUpuWithResponse(ctx context.Context, supi externalRef1.Supi, body PostSupiUeUpuJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSupiUeUpuResponse, error)
+	PostSupiUeUpuWithResponse(ctx context.Context, supi externalRef0.Supi, body PostSupiUeUpuJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSupiUeUpuResponse, error)
 }
 
 type PostSupiUeUpuResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *UpuSecurityInfo
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N307
-	ApplicationproblemJSON503     *externalRef1.ProblemDetails
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.UpuSecurityInfo
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N307
+	ApplicationproblemJSON503     *externalRef0.ProblemDetails
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -593,7 +252,7 @@ func (r PostSupiUeUpuResponse) StatusCode() int {
 }
 
 // PostSupiUeUpuWithBodyWithResponse request with arbitrary body returning *PostSupiUeUpuResponse
-func (c *ClientWithResponses) PostSupiUeUpuWithBodyWithResponse(ctx context.Context, supi externalRef1.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSupiUeUpuResponse, error) {
+func (c *ClientWithResponses) PostSupiUeUpuWithBodyWithResponse(ctx context.Context, supi externalRef0.Supi, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSupiUeUpuResponse, error) {
 	rsp, err := c.PostSupiUeUpuWithBody(ctx, supi, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -601,7 +260,7 @@ func (c *ClientWithResponses) PostSupiUeUpuWithBodyWithResponse(ctx context.Cont
 	return ParsePostSupiUeUpuResponse(rsp)
 }
 
-func (c *ClientWithResponses) PostSupiUeUpuWithResponse(ctx context.Context, supi externalRef1.Supi, body PostSupiUeUpuJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSupiUeUpuResponse, error) {
+func (c *ClientWithResponses) PostSupiUeUpuWithResponse(ctx context.Context, supi externalRef0.Supi, body PostSupiUeUpuJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSupiUeUpuResponse, error) {
 	rsp, err := c.PostSupiUeUpu(ctx, supi, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -624,35 +283,35 @@ func ParsePostSupiUeUpuResponse(rsp *http.Response) (*PostSupiUeUpuResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UpuSecurityInfo
+		var dest externalRef0.UpuSecurityInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -667,7 +326,7 @@ func ParsePostSupiUeUpuResponse(rsp *http.Response) (*PostSupiUeUpuResponse, err
 type ServerInterface interface {
 
 	// (POST /{supi}/ue-upu)
-	PostSupiUeUpu(c *gin.Context, supi externalRef1.Supi)
+	PostSupiUeUpu(c *gin.Context, supi externalRef0.Supi)
 }
 
 // ServerInterfaceWrapper converts contexts to parameters.
@@ -685,7 +344,7 @@ func (siw *ServerInterfaceWrapper) PostSupiUeUpu(c *gin.Context) {
 	var err error
 
 	// ------------- Path parameter "supi" -------------
-	var supi externalRef1.Supi
+	var supi externalRef0.Supi
 
 	err = runtime.BindStyledParameterWithOptions("simple", "supi", c.Param("supi"), &supi, runtime.BindStyledParameterOptions{Explode: false, Required: true})
 	if err != nil {
@@ -736,7 +395,7 @@ func RegisterHandlersWithOptions(router gin.IRouter, si ServerInterface, options
 }
 
 type PostSupiUeUpuRequestObject struct {
-	Supi externalRef1.Supi `json:"supi"`
+	Supi externalRef0.Supi `json:"supi"`
 	Body *PostSupiUeUpuJSONRequestBody
 }
 
@@ -744,16 +403,16 @@ type PostSupiUeUpuResponseObject interface {
 	VisitPostSupiUeUpuResponse(w http.ResponseWriter) error
 }
 
-type PostSupiUeUpu200JSONResponse UpuSecurityInfo
+type PostSupiUeUpu200JSONResponse externalRef0.UpuSecurityInfo
 
 func (response PostSupiUeUpu200JSONResponse) VisitPostSupiUeUpuResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(UpuSecurityInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.UpuSecurityInfo(response))
 }
 
-type PostSupiUeUpu307JSONResponse struct{ externalRef1.N307JSONResponse }
+type PostSupiUeUpu307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response PostSupiUeUpu307JSONResponse) VisitPostSupiUeUpuResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -772,7 +431,7 @@ type PostSupiUeUpu308ResponseHeaders struct {
 }
 
 type PostSupiUeUpu308JSONResponse struct {
-	Body    externalRef1.RedirectResponse
+	Body    externalRef0.RedirectResponse
 	Headers PostSupiUeUpu308ResponseHeaders
 }
 
@@ -787,17 +446,17 @@ func (response PostSupiUeUpu308JSONResponse) VisitPostSupiUeUpuResponse(w http.R
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type PostSupiUeUpu503ApplicationProblemPlusJSONResponse externalRef1.ProblemDetails
+type PostSupiUeUpu503ApplicationProblemPlusJSONResponse externalRef0.ProblemDetails
 
 func (response PostSupiUeUpu503ApplicationProblemPlusJSONResponse) VisitPostSupiUeUpuResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response))
 }
 
 type PostSupiUeUpudefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -828,7 +487,7 @@ type strictHandler struct {
 }
 
 // PostSupiUeUpu operation middleware
-func (sh *strictHandler) PostSupiUeUpu(ctx *gin.Context, supi externalRef1.Supi) {
+func (sh *strictHandler) PostSupiUeUpu(ctx *gin.Context, supi externalRef0.Supi) {
 	var request PostSupiUeUpuRequestObject
 
 	request.Supi = supi

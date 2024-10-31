@@ -13,8 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/pfd/management"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -23,58 +22,6 @@ import (
 const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
-
-// PfdChangeNotification defines model for PfdChangeNotification.
-type PfdChangeNotification struct {
-	ApplicationId        externalRef0.ApplicationId `json:"applicationId"`
-	PartialFlag          *bool                      `json:"partialFlag,omitempty"`
-	Pfds                 []PfdContent               `json:"pfds,omitempty"`
-	RemovalFlag          *bool                      `json:"removalFlag,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
-}
-
-// PfdChangeReport defines model for PfdChangeReport.
-type PfdChangeReport struct {
-	ApplicationId        []externalRef0.ApplicationId `json:"applicationId"`
-	PfdError             externalRef0.ProblemDetails  `json:"pfdError"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
-}
-
-// PfdContent defines model for PfdContent.
-type PfdContent struct {
-	// DnProtocol Possible values are - DNS_QNAME: Identifies the DNS protocol and the question name in DNS query. - TLS_SNI: Identifies the Server Name Indication in TLS ClientHello message. - TLS_SAN: Identifies the Subject Alternative Name in TLS ServerCertificate message. - TSL_SCN: Identifies the Subject Common Name in TLS ServerCertificate message.
-	DnProtocol *externalRef1.DomainNameProtocol `json:"dnProtocol,omitempty"`
-
-	// DomainNames Indicates an FQDN or a regular expression as a domain name matching criteria.
-	DomainNames []string `json:"domainNames,omitempty"`
-
-	// FlowDescriptions Represents a 3-tuple with protocol, server ip and server port for UL/DL application traffic.
-	FlowDescriptions []string `json:"flowDescriptions,omitempty"`
-
-	// PfdId Identifies a PDF of an application identifier.
-	PfdId *string `json:"pfdId,omitempty"`
-
-	// Urls Indicates a URL or a regular expression which is used to match the significant parts of the URL.
-	Urls                 []string               `json:"urls,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// PfdDataForApp defines model for PfdDataForApp.
-type PfdDataForApp struct {
-	ApplicationId        externalRef0.ApplicationId      `json:"applicationId"`
-	CachingTime          *externalRef0.DateTime          `json:"cachingTime,omitempty"`
-	Pfds                 []PfdContent                    `json:"pfds"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// PfdSubscription defines model for PfdSubscription.
-type PfdSubscription struct {
-	ApplicationIds       []externalRef0.ApplicationId   `json:"applicationIds,omitempty"`
-	NotifyUri            externalRef0.Uri               `json:"notifyUri"`
-	SupportedFeatures    externalRef0.SupportedFeatures `json:"supportedFeatures"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
-}
 
 // NnefPFDmanagementAllFetchParams defines parameters for NnefPFDmanagementAllFetch.
 type NnefPFDmanagementAllFetchParams struct {
@@ -92,531 +39,10 @@ type NnefPFDmanagementIndAppFetchParams struct {
 }
 
 // NnefPFDmanagementCreateSubscrJSONRequestBody defines body for NnefPFDmanagementCreateSubscr for application/json ContentType.
-type NnefPFDmanagementCreateSubscrJSONRequestBody = PfdSubscription
+type NnefPFDmanagementCreateSubscrJSONRequestBody = externalRef0.PfdSubscription
 
 // NnefPFDmanagementModifySubscrJSONRequestBody defines body for NnefPFDmanagementModifySubscr for application/json ContentType.
-type NnefPFDmanagementModifySubscrJSONRequestBody = PfdSubscription
-
-// Getter for additional properties for PfdChangeNotification. Returns the specified
-// element and whether it was found
-func (a PfdChangeNotification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PfdChangeNotification
-func (a *PfdChangeNotification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PfdChangeNotification to handle AdditionalProperties
-func (a *PfdChangeNotification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["applicationId"]; found {
-		err = json.Unmarshal(raw, &a.ApplicationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'applicationId': %w", err)
-		}
-		delete(object, "applicationId")
-	}
-
-	if raw, found := object["partialFlag"]; found {
-		err = json.Unmarshal(raw, &a.PartialFlag)
-		if err != nil {
-			return fmt.Errorf("error reading 'partialFlag': %w", err)
-		}
-		delete(object, "partialFlag")
-	}
-
-	if raw, found := object["pfds"]; found {
-		err = json.Unmarshal(raw, &a.Pfds)
-		if err != nil {
-			return fmt.Errorf("error reading 'pfds': %w", err)
-		}
-		delete(object, "pfds")
-	}
-
-	if raw, found := object["removalFlag"]; found {
-		err = json.Unmarshal(raw, &a.RemovalFlag)
-		if err != nil {
-			return fmt.Errorf("error reading 'removalFlag': %w", err)
-		}
-		delete(object, "removalFlag")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PfdChangeNotification to handle AdditionalProperties
-func (a PfdChangeNotification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["applicationId"], err = json.Marshal(a.ApplicationId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'applicationId': %w", err)
-	}
-
-	if a.PartialFlag != nil {
-		object["partialFlag"], err = json.Marshal(a.PartialFlag)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'partialFlag': %w", err)
-		}
-	}
-
-	if len(a.Pfds) != 0 {
-		object["pfds"], err = json.Marshal(a.Pfds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pfds': %w", err)
-		}
-	}
-
-	if a.RemovalFlag != nil {
-		object["removalFlag"], err = json.Marshal(a.RemovalFlag)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'removalFlag': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PfdChangeReport. Returns the specified
-// element and whether it was found
-func (a PfdChangeReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PfdChangeReport
-func (a *PfdChangeReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PfdChangeReport to handle AdditionalProperties
-func (a *PfdChangeReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["applicationId"]; found {
-		err = json.Unmarshal(raw, &a.ApplicationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'applicationId': %w", err)
-		}
-		delete(object, "applicationId")
-	}
-
-	if raw, found := object["pfdError"]; found {
-		err = json.Unmarshal(raw, &a.PfdError)
-		if err != nil {
-			return fmt.Errorf("error reading 'pfdError': %w", err)
-		}
-		delete(object, "pfdError")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PfdChangeReport to handle AdditionalProperties
-func (a PfdChangeReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["applicationId"], err = json.Marshal(a.ApplicationId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'applicationId': %w", err)
-	}
-
-	object["pfdError"], err = json.Marshal(a.PfdError)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pfdError': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PfdContent. Returns the specified
-// element and whether it was found
-func (a PfdContent) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PfdContent
-func (a *PfdContent) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PfdContent to handle AdditionalProperties
-func (a *PfdContent) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["dnProtocol"]; found {
-		err = json.Unmarshal(raw, &a.DnProtocol)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnProtocol': %w", err)
-		}
-		delete(object, "dnProtocol")
-	}
-
-	if raw, found := object["domainNames"]; found {
-		err = json.Unmarshal(raw, &a.DomainNames)
-		if err != nil {
-			return fmt.Errorf("error reading 'domainNames': %w", err)
-		}
-		delete(object, "domainNames")
-	}
-
-	if raw, found := object["flowDescriptions"]; found {
-		err = json.Unmarshal(raw, &a.FlowDescriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'flowDescriptions': %w", err)
-		}
-		delete(object, "flowDescriptions")
-	}
-
-	if raw, found := object["pfdId"]; found {
-		err = json.Unmarshal(raw, &a.PfdId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pfdId': %w", err)
-		}
-		delete(object, "pfdId")
-	}
-
-	if raw, found := object["urls"]; found {
-		err = json.Unmarshal(raw, &a.Urls)
-		if err != nil {
-			return fmt.Errorf("error reading 'urls': %w", err)
-		}
-		delete(object, "urls")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PfdContent to handle AdditionalProperties
-func (a PfdContent) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.DnProtocol != nil {
-		object["dnProtocol"], err = json.Marshal(a.DnProtocol)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnProtocol': %w", err)
-		}
-	}
-
-	if len(a.DomainNames) != 0 {
-		object["domainNames"], err = json.Marshal(a.DomainNames)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'domainNames': %w", err)
-		}
-	}
-
-	if len(a.FlowDescriptions) != 0 {
-		object["flowDescriptions"], err = json.Marshal(a.FlowDescriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'flowDescriptions': %w", err)
-		}
-	}
-
-	if a.PfdId != nil {
-		object["pfdId"], err = json.Marshal(a.PfdId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pfdId': %w", err)
-		}
-	}
-
-	if len(a.Urls) != 0 {
-		object["urls"], err = json.Marshal(a.Urls)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'urls': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PfdDataForApp. Returns the specified
-// element and whether it was found
-func (a PfdDataForApp) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PfdDataForApp
-func (a *PfdDataForApp) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PfdDataForApp to handle AdditionalProperties
-func (a *PfdDataForApp) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["applicationId"]; found {
-		err = json.Unmarshal(raw, &a.ApplicationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'applicationId': %w", err)
-		}
-		delete(object, "applicationId")
-	}
-
-	if raw, found := object["cachingTime"]; found {
-		err = json.Unmarshal(raw, &a.CachingTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'cachingTime': %w", err)
-		}
-		delete(object, "cachingTime")
-	}
-
-	if raw, found := object["pfds"]; found {
-		err = json.Unmarshal(raw, &a.Pfds)
-		if err != nil {
-			return fmt.Errorf("error reading 'pfds': %w", err)
-		}
-		delete(object, "pfds")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PfdDataForApp to handle AdditionalProperties
-func (a PfdDataForApp) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["applicationId"], err = json.Marshal(a.ApplicationId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'applicationId': %w", err)
-	}
-
-	if a.CachingTime != nil {
-		object["cachingTime"], err = json.Marshal(a.CachingTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cachingTime': %w", err)
-		}
-	}
-
-	object["pfds"], err = json.Marshal(a.Pfds)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pfds': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PfdSubscription. Returns the specified
-// element and whether it was found
-func (a PfdSubscription) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PfdSubscription
-func (a *PfdSubscription) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PfdSubscription to handle AdditionalProperties
-func (a *PfdSubscription) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["applicationIds"]; found {
-		err = json.Unmarshal(raw, &a.ApplicationIds)
-		if err != nil {
-			return fmt.Errorf("error reading 'applicationIds': %w", err)
-		}
-		delete(object, "applicationIds")
-	}
-
-	if raw, found := object["notifyUri"]; found {
-		err = json.Unmarshal(raw, &a.NotifyUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'notifyUri': %w", err)
-		}
-		delete(object, "notifyUri")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PfdSubscription to handle AdditionalProperties
-func (a PfdSubscription) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.ApplicationIds) != 0 {
-		object["applicationIds"], err = json.Marshal(a.ApplicationIds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'applicationIds': %w", err)
-		}
-	}
-
-	object["notifyUri"], err = json.Marshal(a.NotifyUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'notifyUri': %w", err)
-	}
-
-	object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type NnefPFDmanagementModifySubscrJSONRequestBody = externalRef0.PfdSubscription
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1099,7 +525,7 @@ type ClientWithResponsesInterface interface {
 type NnefPFDmanagementAllFetchResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]PfdDataForApp
+	JSON200                       *[]externalRef0.PfdDataForApp
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -1130,7 +556,7 @@ func (r NnefPFDmanagementAllFetchResponse) StatusCode() int {
 type NnefPFDmanagementIndAppFetchResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *PfdDataForApp
+	JSON200                       *externalRef0.PfdDataForApp
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -1163,7 +589,7 @@ func (r NnefPFDmanagementIndAppFetchResponse) StatusCode() int {
 type NnefPFDmanagementCreateSubscrResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *PfdSubscription
+	JSON201                       *externalRef0.PfdSubscription
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -1227,7 +653,7 @@ func (r NnefPFDmanagementUnsubscribeResponse) StatusCode() int {
 type NnefPFDmanagementModifySubscrResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *PfdSubscription
+	JSON200                       *externalRef0.PfdSubscription
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -1335,7 +761,7 @@ func ParseNnefPFDmanagementAllFetchResponse(rsp *http.Response) (*NnefPFDmanagem
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []PfdDataForApp
+		var dest []externalRef0.PfdDataForApp
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1427,7 +853,7 @@ func ParseNnefPFDmanagementIndAppFetchResponse(rsp *http.Response) (*NnefPFDmana
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PfdDataForApp
+		var dest externalRef0.PfdDataForApp
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1533,7 +959,7 @@ func ParseNnefPFDmanagementCreateSubscrResponse(rsp *http.Response) (*NnefPFDman
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest PfdSubscription
+		var dest externalRef0.PfdSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1728,7 +1154,7 @@ func ParseNnefPFDmanagementModifySubscrResponse(rsp *http.Response) (*NnefPFDman
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PfdSubscription
+		var dest externalRef0.PfdSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2047,7 +1473,7 @@ type NnefPFDmanagementAllFetchResponseObject interface {
 	VisitNnefPFDmanagementAllFetchResponse(w http.ResponseWriter) error
 }
 
-type NnefPFDmanagementAllFetch200JSONResponse []PfdDataForApp
+type NnefPFDmanagementAllFetch200JSONResponse []externalRef0.PfdDataForApp
 
 func (response NnefPFDmanagementAllFetch200JSONResponse) VisitNnefPFDmanagementAllFetchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -2172,13 +1598,13 @@ type NnefPFDmanagementIndAppFetchResponseObject interface {
 	VisitNnefPFDmanagementIndAppFetchResponse(w http.ResponseWriter) error
 }
 
-type NnefPFDmanagementIndAppFetch200JSONResponse PfdDataForApp
+type NnefPFDmanagementIndAppFetch200JSONResponse externalRef0.PfdDataForApp
 
 func (response NnefPFDmanagementIndAppFetch200JSONResponse) VisitNnefPFDmanagementIndAppFetchResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(PfdDataForApp(response))
+	return json.NewEncoder(w).Encode(externalRef0.PfdDataForApp(response))
 }
 
 type NnefPFDmanagementIndAppFetch307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -2327,7 +1753,7 @@ type NnefPFDmanagementCreateSubscr201ResponseHeaders struct {
 }
 
 type NnefPFDmanagementCreateSubscr201JSONResponse struct {
-	Body    PfdSubscription
+	Body    externalRef0.PfdSubscription
 	Headers NnefPFDmanagementCreateSubscr201ResponseHeaders
 }
 
@@ -2601,13 +2027,13 @@ type NnefPFDmanagementModifySubscrResponseObject interface {
 	VisitNnefPFDmanagementModifySubscrResponse(w http.ResponseWriter) error
 }
 
-type NnefPFDmanagementModifySubscr200JSONResponse PfdSubscription
+type NnefPFDmanagementModifySubscr200JSONResponse externalRef0.PfdSubscription
 
 func (response NnefPFDmanagementModifySubscr200JSONResponse) VisitNnefPFDmanagementModifySubscrResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(PfdSubscription(response))
+	return json.NewEncoder(w).Encode(externalRef0.PfdSubscription(response))
 }
 
 type NnefPFDmanagementModifySubscr307JSONResponse struct{ externalRef0.N307JSONResponse }

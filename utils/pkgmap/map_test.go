@@ -25,9 +25,9 @@ import (
 func TestPkgMap(t *testing.T) {
 	p, exist := pkgmap.SpecName2PkgName("TS29571_CommonData.yaml")
 	assert.True(t, exist)
-	assert.Equal(t, "github.com/ShouheiNishi/openapi5g/commondata", p)
+	assert.Equal(t, "github.com/ShouheiNishi/openapi5g/models", p)
 
-	s, exist := pkgmap.PkgName2specName("github.com/ShouheiNishi/openapi5g/commondata")
+	s, exist := pkgmap.PkgName2specName("github.com/ShouheiNishi/openapi5g/models")
 	assert.True(t, exist)
 	assert.Equal(t, "TS29571_CommonData.yaml", s)
 
@@ -35,7 +35,7 @@ func TestPkgMap(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, "Common Data Types", doc.Info.Title)
 
-	doc, err = pkgmap.PkgName2Doc("github.com/ShouheiNishi/openapi5g/commondata")
+	doc, err = pkgmap.PkgName2Doc("github.com/ShouheiNishi/openapi5g/models")
 	assert.NoError(t, err)
 	assert.Equal(t, "Common Data Types", doc.Info.Title)
 

@@ -10,24 +10,26 @@ import (
 	"github.com/ShouheiNishi/openapi5g/internal/generator/openapi"
 )
 
-type postRefsType struct {
+type setupRefsType struct {
 	visited map[interface{}]struct{}
 	doc     *openapi.Document
-	curFile *string
+	curFile string
+	deps    map[string]struct{}
 }
 
-func postRefs(d *openapi.Document, curFile *string) error {
-	s := &postRefsType{
+func setupRefs(d *openapi.Document, curFile string, deps map[string]struct{}) error {
+	s := &setupRefsType{
 		visited: make(map[interface{}]struct{}),
 		doc:     d,
 	}
 
 	s.curFile = curFile
+	s.deps = deps
 
 	return s.walkDocument(s.doc)
 }
 
-func (s *postRefsType) walkAdditionalProperties(v *openapi.AdditionalProperties) error {
+func (s *setupRefsType) walkAdditionalProperties(v *openapi.AdditionalProperties) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -42,24 +44,28 @@ func (s *postRefsType) walkAdditionalProperties(v *openapi.AdditionalProperties)
 	return nil
 }
 
-func (s *postRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
+func (s *setupRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
 	if v.Value != nil {
-		k1s5 := make([]string, 0, len(*v.Value))
+		k1s4 := make([]string, 0, len(*v.Value))
 		for k1 := range *v.Value {
-			k1s5 = append(k1s5, k1)
+			k1s4 = append(k1s4, k1)
 		}
-		sort.Strings(k1s5)
-		for _, k1 := range k1s5 {
+		sort.Strings(k1s4)
+		for _, k1 := range k1s4 {
 			if (*v.Value)[k1] != nil {
 				if err := s.walkPathItemBaseRef((*v.Value)[k1]); err != nil {
 					return err
@@ -71,7 +77,7 @@ func (s *postRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	return nil
 }
 
-func (s *postRefsType) walkComponents(v *openapi.Components) error {
+func (s *setupRefsType) walkComponents(v *openapi.Components) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -197,7 +203,7 @@ func (s *postRefsType) walkComponents(v *openapi.Components) error {
 	return nil
 }
 
-func (s *postRefsType) walkDocument(v *openapi.Document) error {
+func (s *setupRefsType) walkDocument(v *openapi.Document) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -225,7 +231,7 @@ func (s *postRefsType) walkDocument(v *openapi.Document) error {
 	return nil
 }
 
-func (s *postRefsType) walkEncoding(v *openapi.Encoding) error {
+func (s *setupRefsType) walkEncoding(v *openapi.Encoding) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -247,21 +253,25 @@ func (s *postRefsType) walkEncoding(v *openapi.Encoding) error {
 	return nil
 }
 
-func (s *postRefsType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
+func (s *setupRefsType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
 	return nil
 }
 
-func (s *postRefsType) walkHeader(v *openapi.Header) error {
+func (s *setupRefsType) walkHeader(v *openapi.Header) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -300,14 +310,18 @@ func (s *postRefsType) walkHeader(v *openapi.Header) error {
 	return nil
 }
 
-func (s *postRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
+func (s *setupRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
@@ -320,21 +334,25 @@ func (s *postRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	return nil
 }
 
-func (s *postRefsType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
+func (s *setupRefsType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
 	return nil
 }
 
-func (s *postRefsType) walkMediaType(v *openapi.MediaType) error {
+func (s *setupRefsType) walkMediaType(v *openapi.MediaType) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -373,21 +391,25 @@ func (s *postRefsType) walkMediaType(v *openapi.MediaType) error {
 	return nil
 }
 
-func (s *postRefsType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
+func (s *setupRefsType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
 	return nil
 }
 
-func (s *postRefsType) walkOperation(v *openapi.Operation) error {
+func (s *setupRefsType) walkOperation(v *openapi.Operation) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -432,7 +454,7 @@ func (s *postRefsType) walkOperation(v *openapi.Operation) error {
 	return nil
 }
 
-func (s *postRefsType) walkParameter(v *openapi.Parameter) error {
+func (s *setupRefsType) walkParameter(v *openapi.Parameter) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -471,14 +493,18 @@ func (s *postRefsType) walkParameter(v *openapi.Parameter) error {
 	return nil
 }
 
-func (s *postRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error {
+func (s *setupRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
@@ -491,7 +517,7 @@ func (s *postRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error
 	return nil
 }
 
-func (s *postRefsType) walkPathItemBase(v *openapi.PathItemBase) error {
+func (s *setupRefsType) walkPathItemBase(v *openapi.PathItemBase) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -554,14 +580,18 @@ func (s *postRefsType) walkPathItemBase(v *openapi.PathItemBase) error {
 	return nil
 }
 
-func (s *postRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) error {
+func (s *setupRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
@@ -574,7 +604,7 @@ func (s *postRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase])
 	return nil
 }
 
-func (s *postRefsType) walkRequestBody(v *openapi.RequestBody) error {
+func (s *setupRefsType) walkRequestBody(v *openapi.RequestBody) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -596,14 +626,18 @@ func (s *postRefsType) walkRequestBody(v *openapi.RequestBody) error {
 	return nil
 }
 
-func (s *postRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) error {
+func (s *setupRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
@@ -616,7 +650,7 @@ func (s *postRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) e
 	return nil
 }
 
-func (s *postRefsType) walkResponse(v *openapi.Response) error {
+func (s *setupRefsType) walkResponse(v *openapi.Response) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -664,14 +698,18 @@ func (s *postRefsType) walkResponse(v *openapi.Response) error {
 	return nil
 }
 
-func (s *postRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
+func (s *setupRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 
@@ -684,7 +722,7 @@ func (s *postRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	return nil
 }
 
-func (s *postRefsType) walkSchema(v *openapi.Schema) error {
+func (s *setupRefsType) walkSchema(v *openapi.Schema) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -736,14 +774,18 @@ func (s *postRefsType) walkSchema(v *openapi.Schema) error {
 	return nil
 }
 
-func (s *postRefsType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
+func (s *setupRefsType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	v.CurFile = s.curFile
 	if v.HasRef() {
+		if v.Ref.Path == "" {
+			v.Ref.Path = s.curFile
+		} else {
+			s.deps[v.Ref.Path] = struct{}{}
+		}
 		return nil
 	}
 

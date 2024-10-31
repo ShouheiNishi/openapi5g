@@ -1,185 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        EthernetFlowInfo:
-            additionalProperties: true
-            properties:
-                ethFlows:
-                    items:
-                        $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription
-                    maxItems: 2
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                flowNumber:
-                    type: integer
-            required:
-                - flowNumber
-            type: object
-        IpFlowInfo:
-            additionalProperties: true
-            properties:
-                flowNumber:
-                    type: integer
-                ipFlows:
-                    items:
-                        $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowDescription
-                    maxItems: 2
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - flowNumber
-            type: object
-        PcEvent:
-            enum:
-                - AC_TY_CH
-                - PLMN_CH
-            type: string
-        PcEventExposureNotif:
-            additionalProperties: true
-            properties:
-                eventNotifs:
-                    items:
-                        $ref: '#/components/schemas/PcEventNotification'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                notifId:
-                    type: string
-            required:
-                - notifId
-                - eventNotifs
-            type: object
-        PcEventExposureSubsc:
-            additionalProperties: true
-            properties:
-                eventSubs:
-                    items:
-                        $ref: '#/components/schemas/PcEvent'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                eventsRepInfo:
-                    $ref: '#/components/schemas/ReportingInformation'
-                filterDnns:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                filterServices:
-                    items:
-                        $ref: '#/components/schemas/ServiceIdentification'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                filterSnssais:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                groupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
-                notifId:
-                    type: string
-                notifUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                suppFeat:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - eventSubs
-                - notifId
-                - notifUri
-            type: object
-        PcEventNotification:
-            additionalProperties: true
-            properties:
-                accType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                addAccessInfo:
-                    $ref: TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
-                anGwAddr:
-                    $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AnGwAddress
-                event:
-                    $ref: '#/components/schemas/PcEvent'
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                pduSessionInfo:
-                    $ref: '#/components/schemas/PduSessionInformation'
-                plmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                relAccessInfo:
-                    $ref: TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
-                repServices:
-                    $ref: '#/components/schemas/ServiceIdentification'
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                timeStamp:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - event
-                - timeStamp
-            type: object
-        PduSessionInformation:
-            additionalProperties: true
-            properties:
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                ipDomain:
-                    type: string
-                snssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                ueIpv4:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ueIpv6:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                ueMac:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
-            required:
-                - snssai
-                - dnn
-            type: object
-        ReportingInformation:
-            additionalProperties: true
-            properties:
-                grpRepTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                immRep:
-                    type: boolean
-                maxReportNbr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
-                monDur:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                notifMethod:
-                    $ref: TS29508_Nsmf_EventExposure.yaml#/components/schemas/NotificationMethod
-                repPeriod:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                sampRatio:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SamplingRatio
-            type: object
-        ServiceIdentification:
-            additionalProperties: true
-            properties:
-                afAppId:
-                    $ref: TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId
-                servEthFlows:
-                    items:
-                        $ref: '#/components/schemas/EthernetFlowInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                servIpFlows:
-                    items:
-                        $ref: '#/components/schemas/IpFlowInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -210,7 +31,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/PcEventExposureNotif'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/PcEventExposureNotif
                                 required: true
                             responses:
                                 "204":
@@ -246,14 +67,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PcEventExposureSubsc'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PcEventExposureSubsc
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PcEventExposureSubsc'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PcEventExposureSubsc
                     description: Success
                     headers:
                         Location:
@@ -301,7 +122,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PcEventExposureSubsc'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PcEventExposureSubsc
                     description: OK. Resource representation is returned
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -341,14 +162,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PcEventExposureSubsc'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PcEventExposureSubsc
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PcEventExposureSubsc'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PcEventExposureSubsc
                     description: OK. Resource was succesfully modified and representation is returned
                 "204":
                     description: No Content. Resource was succesfully modified

@@ -1,90 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        AuthorizationData:
-            additionalProperties: true
-            properties:
-                authorizationData:
-                    items:
-                        $ref: '#/components/schemas/UserIdentifier'
-                    minItems: 1
-                    type: array
-                    uniqueItems: true
-                    x-go-type-skip-optional-pointer: true
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - authorizationData
-            type: object
-        AuthorizationInfo:
-            additionalProperties: true
-            properties:
-                afId:
-                    type: string
-                authUpdateCallbackUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-                nefId:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefId
-                snssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - snssai
-                - dnn
-                - mtcProviderInformation
-                - authUpdateCallbackUri
-            type: object
-        NiddAuthUpdateInfo:
-            additionalProperties: true
-            properties:
-                authorizationData:
-                    $ref: '#/components/schemas/AuthorizationData'
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                invalidityInd:
-                    type: boolean
-                niddCause:
-                    $ref: '#/components/schemas/NiddCause'
-                snssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-            required:
-                - authorizationData
-            type: object
-        NiddAuthUpdateNotification:
-            additionalProperties: true
-            properties:
-                niddAuthUpdateInfoList:
-                    items:
-                        $ref: '#/components/schemas/NiddAuthUpdateInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - niddAuthUpdateInfoList
-            type: object
-        NiddCause:
-            enum:
-                - SUBSCRIPTION_WITHDRAWAL
-                - DNN_REMOVED
-            type: string
-        UserIdentifier:
-            additionalProperties: true
-            properties:
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                validityTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - supi
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -112,7 +28,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/NiddAuthUpdateNotification'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/NiddAuthUpdateNotification
                                 required: true
                             responses:
                                 "204":
@@ -131,14 +47,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AuthorizationInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AuthorizationInfo
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuthorizationData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthorizationData
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400

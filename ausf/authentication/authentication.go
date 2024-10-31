@@ -13,8 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/udm/ueau"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -24,1190 +23,20 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// Defines values for AuthResult.
-const (
-	AUTHENTICATIONFAILURE AuthResult = "AUTHENTICATION_FAILURE"
-	AUTHENTICATIONONGOING AuthResult = "AUTHENTICATION_ONGOING"
-	AUTHENTICATIONSUCCESS AuthResult = "AUTHENTICATION_SUCCESS"
-)
-
-// Defines values for AuthType.
-const (
-	EAPAKAPRIME AuthType = "EAP_AKA_PRIME"
-	EAPTLS      AuthType = "EAP_TLS"
-	N5GAKA      AuthType = "5G_AKA"
-)
-
-// AuthResult defines model for AuthResult.
-type AuthResult string
-
-// AuthType defines model for AuthType.
-type AuthType string
-
-// AuthenticationInfo defines model for AuthenticationInfo.
-type AuthenticationInfo struct {
-	CellCagInfo           []externalRef0.CagId                `json:"cellCagInfo,omitempty"`
-	N5gcInd               *bool                               `json:"n5gcInd,omitempty"`
-	Pei                   externalRef0.Pei                    `json:"pei,omitempty"`
-	ResynchronizationInfo *externalRef1.ResynchronizationInfo `json:"resynchronizationInfo,omitempty"`
-	RoutingIndicator      string                              `json:"routingIndicator,omitempty"`
-	ServingNetworkName    externalRef1.ServingNetworkName     `json:"servingNetworkName"`
-	SupiOrSuci            externalRef0.SupiOrSuci             `json:"supiOrSuci"`
-	SupportedFeatures     *externalRef0.SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	TraceData             *externalRef0.TraceData             `json:"traceData"`
-	UdmGroupId            *externalRef0.NfGroupId             `json:"udmGroupId,omitempty"`
-	AdditionalProperties  map[string]interface{}              `json:"-"`
-}
-
-// Av5gAka defines model for Av5gAka.
-type Av5gAka struct {
-	Autn                 externalRef1.Autn      `json:"autn"`
-	HxresStar            HxresStar              `json:"hxresStar"`
-	Rand                 externalRef1.Rand      `json:"rand"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// ConfirmationData defines model for ConfirmationData.
-type ConfirmationData struct {
-	ResStar              *ResStar                        `json:"resStar"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// ConfirmationDataResponse defines model for ConfirmationDataResponse.
-type ConfirmationDataResponse struct {
-	AuthResult           AuthResult             `json:"authResult"`
-	Kseaf                Kseaf                  `json:"kseaf,omitempty"`
-	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// DeregistrationInfo defines model for DeregistrationInfo.
-type DeregistrationInfo struct {
-	Supi                 externalRef0.Supi               `json:"supi"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// EapPayload contains an EAP packet
-type EapPayload = string
-
-// EapSession defines model for EapSession.
-type EapSession struct {
-	Links      *map[string]externalRef0.LinksValueSchema `json:"_links,omitempty"`
-	AuthResult AuthResult                                `json:"authResult,omitempty"`
-
-	// EapPayload contains an EAP packet
-	EapPayload           *EapPayload                     `json:"eapPayload"`
-	KSeaf                Kseaf                           `json:"kSeaf,omitempty"`
-	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// HxresStar defines model for HxresStar.
-type HxresStar = string
-
-// Kseaf defines model for Kseaf.
-type Kseaf = string
-
-// ResStar defines model for ResStar.
-type ResStar = string
-
-// RgAuthCtx defines model for RgAuthCtx.
-type RgAuthCtx struct {
-	AuthInd              *bool                  `json:"authInd,omitempty"`
-	AuthResult           AuthResult             `json:"authResult"`
-	Supi                 externalRef0.Supi      `json:"supi,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// RgAuthenticationInfo defines model for RgAuthenticationInfo.
-type RgAuthenticationInfo struct {
-	AuthenticatedInd     bool                            `json:"authenticatedInd"`
-	Suci                 Suci                            `json:"suci"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// Suci defines model for Suci.
-type Suci = string
-
-// UEAuthenticationCtx defines model for UEAuthenticationCtx.
-type UEAuthenticationCtx struct {
-	N5gAuthData          UEAuthenticationCtx_5gAuthData           `json:"5gAuthData"`
-	Links                map[string]externalRef0.LinksValueSchema `json:"_links"`
-	AuthType             AuthType                                 `json:"authType"`
-	ServingNetworkName   externalRef1.ServingNetworkName          `json:"servingNetworkName,omitempty"`
-	AdditionalProperties map[string]interface{}                   `json:"-"`
-}
-
-// UEAuthenticationCtx_5gAuthData defines model for UEAuthenticationCtx.5gAuthData.
-type UEAuthenticationCtx_5gAuthData struct {
-	union json.RawMessage
-}
-
 // PostRgAuthenticationsJSONRequestBody defines body for PostRgAuthentications for application/json ContentType.
-type PostRgAuthenticationsJSONRequestBody = RgAuthenticationInfo
+type PostRgAuthenticationsJSONRequestBody = externalRef0.RgAuthenticationInfo
 
 // PostUeAuthenticationsJSONRequestBody defines body for PostUeAuthentications for application/json ContentType.
-type PostUeAuthenticationsJSONRequestBody = AuthenticationInfo
+type PostUeAuthenticationsJSONRequestBody = externalRef0.AuthenticationInfo
 
 // PostUeAuthenticationsDeregisterJSONRequestBody defines body for PostUeAuthenticationsDeregister for application/json ContentType.
-type PostUeAuthenticationsDeregisterJSONRequestBody = DeregistrationInfo
+type PostUeAuthenticationsDeregisterJSONRequestBody = externalRef0.DeregistrationInfo
 
 // PutUeAuthenticationsAuthCtxId5gAkaConfirmationJSONRequestBody defines body for PutUeAuthenticationsAuthCtxId5gAkaConfirmation for application/json ContentType.
-type PutUeAuthenticationsAuthCtxId5gAkaConfirmationJSONRequestBody = ConfirmationData
+type PutUeAuthenticationsAuthCtxId5gAkaConfirmationJSONRequestBody = externalRef0.ConfirmationData
 
 // EapAuthMethodJSONRequestBody defines body for EapAuthMethod for application/json ContentType.
-type EapAuthMethodJSONRequestBody = EapSession
-
-// Getter for additional properties for AuthenticationInfo. Returns the specified
-// element and whether it was found
-func (a AuthenticationInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AuthenticationInfo
-func (a *AuthenticationInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AuthenticationInfo to handle AdditionalProperties
-func (a *AuthenticationInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["cellCagInfo"]; found {
-		err = json.Unmarshal(raw, &a.CellCagInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'cellCagInfo': %w", err)
-		}
-		delete(object, "cellCagInfo")
-	}
-
-	if raw, found := object["n5gcInd"]; found {
-		err = json.Unmarshal(raw, &a.N5gcInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'n5gcInd': %w", err)
-		}
-		delete(object, "n5gcInd")
-	}
-
-	if raw, found := object["pei"]; found {
-		err = json.Unmarshal(raw, &a.Pei)
-		if err != nil {
-			return fmt.Errorf("error reading 'pei': %w", err)
-		}
-		delete(object, "pei")
-	}
-
-	if raw, found := object["resynchronizationInfo"]; found {
-		err = json.Unmarshal(raw, &a.ResynchronizationInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'resynchronizationInfo': %w", err)
-		}
-		delete(object, "resynchronizationInfo")
-	}
-
-	if raw, found := object["routingIndicator"]; found {
-		err = json.Unmarshal(raw, &a.RoutingIndicator)
-		if err != nil {
-			return fmt.Errorf("error reading 'routingIndicator': %w", err)
-		}
-		delete(object, "routingIndicator")
-	}
-
-	if raw, found := object["servingNetworkName"]; found {
-		err = json.Unmarshal(raw, &a.ServingNetworkName)
-		if err != nil {
-			return fmt.Errorf("error reading 'servingNetworkName': %w", err)
-		}
-		delete(object, "servingNetworkName")
-	}
-
-	if raw, found := object["supiOrSuci"]; found {
-		err = json.Unmarshal(raw, &a.SupiOrSuci)
-		if err != nil {
-			return fmt.Errorf("error reading 'supiOrSuci': %w", err)
-		}
-		delete(object, "supiOrSuci")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["traceData"]; found {
-		err = json.Unmarshal(raw, &a.TraceData)
-		if err != nil {
-			return fmt.Errorf("error reading 'traceData': %w", err)
-		}
-		delete(object, "traceData")
-	}
-
-	if raw, found := object["udmGroupId"]; found {
-		err = json.Unmarshal(raw, &a.UdmGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'udmGroupId': %w", err)
-		}
-		delete(object, "udmGroupId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AuthenticationInfo to handle AdditionalProperties
-func (a AuthenticationInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.CellCagInfo) != 0 {
-		object["cellCagInfo"], err = json.Marshal(a.CellCagInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cellCagInfo': %w", err)
-		}
-	}
-
-	if a.N5gcInd != nil {
-		object["n5gcInd"], err = json.Marshal(a.N5gcInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n5gcInd': %w", err)
-		}
-	}
-
-	if len(a.Pei) != 0 {
-		object["pei"], err = json.Marshal(a.Pei)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pei': %w", err)
-		}
-	}
-
-	if a.ResynchronizationInfo != nil {
-		object["resynchronizationInfo"], err = json.Marshal(a.ResynchronizationInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'resynchronizationInfo': %w", err)
-		}
-	}
-
-	if len(a.RoutingIndicator) != 0 {
-		object["routingIndicator"], err = json.Marshal(a.RoutingIndicator)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'routingIndicator': %w", err)
-		}
-	}
-
-	object["servingNetworkName"], err = json.Marshal(a.ServingNetworkName)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'servingNetworkName': %w", err)
-	}
-
-	object["supiOrSuci"], err = json.Marshal(a.SupiOrSuci)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'supiOrSuci': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["traceData"], err = json.Marshal(a.TraceData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'traceData': %w", err)
-	}
-
-	if a.UdmGroupId != nil {
-		object["udmGroupId"], err = json.Marshal(a.UdmGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'udmGroupId': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for Av5gAka. Returns the specified
-// element and whether it was found
-func (a Av5gAka) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for Av5gAka
-func (a *Av5gAka) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for Av5gAka to handle AdditionalProperties
-func (a *Av5gAka) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["autn"]; found {
-		err = json.Unmarshal(raw, &a.Autn)
-		if err != nil {
-			return fmt.Errorf("error reading 'autn': %w", err)
-		}
-		delete(object, "autn")
-	}
-
-	if raw, found := object["hxresStar"]; found {
-		err = json.Unmarshal(raw, &a.HxresStar)
-		if err != nil {
-			return fmt.Errorf("error reading 'hxresStar': %w", err)
-		}
-		delete(object, "hxresStar")
-	}
-
-	if raw, found := object["rand"]; found {
-		err = json.Unmarshal(raw, &a.Rand)
-		if err != nil {
-			return fmt.Errorf("error reading 'rand': %w", err)
-		}
-		delete(object, "rand")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for Av5gAka to handle AdditionalProperties
-func (a Av5gAka) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["autn"], err = json.Marshal(a.Autn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'autn': %w", err)
-	}
-
-	object["hxresStar"], err = json.Marshal(a.HxresStar)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'hxresStar': %w", err)
-	}
-
-	object["rand"], err = json.Marshal(a.Rand)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'rand': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ConfirmationData. Returns the specified
-// element and whether it was found
-func (a ConfirmationData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ConfirmationData
-func (a *ConfirmationData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ConfirmationData to handle AdditionalProperties
-func (a *ConfirmationData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["resStar"]; found {
-		err = json.Unmarshal(raw, &a.ResStar)
-		if err != nil {
-			return fmt.Errorf("error reading 'resStar': %w", err)
-		}
-		delete(object, "resStar")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ConfirmationData to handle AdditionalProperties
-func (a ConfirmationData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["resStar"], err = json.Marshal(a.ResStar)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'resStar': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ConfirmationDataResponse. Returns the specified
-// element and whether it was found
-func (a ConfirmationDataResponse) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ConfirmationDataResponse
-func (a *ConfirmationDataResponse) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ConfirmationDataResponse to handle AdditionalProperties
-func (a *ConfirmationDataResponse) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authResult"]; found {
-		err = json.Unmarshal(raw, &a.AuthResult)
-		if err != nil {
-			return fmt.Errorf("error reading 'authResult': %w", err)
-		}
-		delete(object, "authResult")
-	}
-
-	if raw, found := object["kseaf"]; found {
-		err = json.Unmarshal(raw, &a.Kseaf)
-		if err != nil {
-			return fmt.Errorf("error reading 'kseaf': %w", err)
-		}
-		delete(object, "kseaf")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ConfirmationDataResponse to handle AdditionalProperties
-func (a ConfirmationDataResponse) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["authResult"], err = json.Marshal(a.AuthResult)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authResult': %w", err)
-	}
-
-	if len(a.Kseaf) != 0 {
-		object["kseaf"], err = json.Marshal(a.Kseaf)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'kseaf': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for DeregistrationInfo. Returns the specified
-// element and whether it was found
-func (a DeregistrationInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for DeregistrationInfo
-func (a *DeregistrationInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for DeregistrationInfo to handle AdditionalProperties
-func (a *DeregistrationInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for DeregistrationInfo to handle AdditionalProperties
-func (a DeregistrationInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["supi"], err = json.Marshal(a.Supi)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EapSession. Returns the specified
-// element and whether it was found
-func (a EapSession) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EapSession
-func (a *EapSession) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EapSession to handle AdditionalProperties
-func (a *EapSession) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["_links"]; found {
-		err = json.Unmarshal(raw, &a.Links)
-		if err != nil {
-			return fmt.Errorf("error reading '_links': %w", err)
-		}
-		delete(object, "_links")
-	}
-
-	if raw, found := object["authResult"]; found {
-		err = json.Unmarshal(raw, &a.AuthResult)
-		if err != nil {
-			return fmt.Errorf("error reading 'authResult': %w", err)
-		}
-		delete(object, "authResult")
-	}
-
-	if raw, found := object["eapPayload"]; found {
-		err = json.Unmarshal(raw, &a.EapPayload)
-		if err != nil {
-			return fmt.Errorf("error reading 'eapPayload': %w", err)
-		}
-		delete(object, "eapPayload")
-	}
-
-	if raw, found := object["kSeaf"]; found {
-		err = json.Unmarshal(raw, &a.KSeaf)
-		if err != nil {
-			return fmt.Errorf("error reading 'kSeaf': %w", err)
-		}
-		delete(object, "kSeaf")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EapSession to handle AdditionalProperties
-func (a EapSession) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Links != nil {
-		object["_links"], err = json.Marshal(a.Links)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '_links': %w", err)
-		}
-	}
-
-	if len(a.AuthResult) != 0 {
-		object["authResult"], err = json.Marshal(a.AuthResult)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'authResult': %w", err)
-		}
-	}
-
-	object["eapPayload"], err = json.Marshal(a.EapPayload)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'eapPayload': %w", err)
-	}
-
-	if len(a.KSeaf) != 0 {
-		object["kSeaf"], err = json.Marshal(a.KSeaf)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'kSeaf': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for RgAuthCtx. Returns the specified
-// element and whether it was found
-func (a RgAuthCtx) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for RgAuthCtx
-func (a *RgAuthCtx) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for RgAuthCtx to handle AdditionalProperties
-func (a *RgAuthCtx) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authInd"]; found {
-		err = json.Unmarshal(raw, &a.AuthInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'authInd': %w", err)
-		}
-		delete(object, "authInd")
-	}
-
-	if raw, found := object["authResult"]; found {
-		err = json.Unmarshal(raw, &a.AuthResult)
-		if err != nil {
-			return fmt.Errorf("error reading 'authResult': %w", err)
-		}
-		delete(object, "authResult")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for RgAuthCtx to handle AdditionalProperties
-func (a RgAuthCtx) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AuthInd != nil {
-		object["authInd"], err = json.Marshal(a.AuthInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'authInd': %w", err)
-		}
-	}
-
-	object["authResult"], err = json.Marshal(a.AuthResult)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authResult': %w", err)
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for RgAuthenticationInfo. Returns the specified
-// element and whether it was found
-func (a RgAuthenticationInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for RgAuthenticationInfo
-func (a *RgAuthenticationInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for RgAuthenticationInfo to handle AdditionalProperties
-func (a *RgAuthenticationInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authenticatedInd"]; found {
-		err = json.Unmarshal(raw, &a.AuthenticatedInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'authenticatedInd': %w", err)
-		}
-		delete(object, "authenticatedInd")
-	}
-
-	if raw, found := object["suci"]; found {
-		err = json.Unmarshal(raw, &a.Suci)
-		if err != nil {
-			return fmt.Errorf("error reading 'suci': %w", err)
-		}
-		delete(object, "suci")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for RgAuthenticationInfo to handle AdditionalProperties
-func (a RgAuthenticationInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["authenticatedInd"], err = json.Marshal(a.AuthenticatedInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authenticatedInd': %w", err)
-	}
-
-	object["suci"], err = json.Marshal(a.Suci)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'suci': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UEAuthenticationCtx. Returns the specified
-// element and whether it was found
-func (a UEAuthenticationCtx) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UEAuthenticationCtx
-func (a *UEAuthenticationCtx) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UEAuthenticationCtx to handle AdditionalProperties
-func (a *UEAuthenticationCtx) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["5gAuthData"]; found {
-		err = json.Unmarshal(raw, &a.N5gAuthData)
-		if err != nil {
-			return fmt.Errorf("error reading '5gAuthData': %w", err)
-		}
-		delete(object, "5gAuthData")
-	}
-
-	if raw, found := object["_links"]; found {
-		err = json.Unmarshal(raw, &a.Links)
-		if err != nil {
-			return fmt.Errorf("error reading '_links': %w", err)
-		}
-		delete(object, "_links")
-	}
-
-	if raw, found := object["authType"]; found {
-		err = json.Unmarshal(raw, &a.AuthType)
-		if err != nil {
-			return fmt.Errorf("error reading 'authType': %w", err)
-		}
-		delete(object, "authType")
-	}
-
-	if raw, found := object["servingNetworkName"]; found {
-		err = json.Unmarshal(raw, &a.ServingNetworkName)
-		if err != nil {
-			return fmt.Errorf("error reading 'servingNetworkName': %w", err)
-		}
-		delete(object, "servingNetworkName")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UEAuthenticationCtx to handle AdditionalProperties
-func (a UEAuthenticationCtx) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["5gAuthData"], err = json.Marshal(a.N5gAuthData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling '5gAuthData': %w", err)
-	}
-
-	object["_links"], err = json.Marshal(a.Links)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling '_links': %w", err)
-	}
-
-	object["authType"], err = json.Marshal(a.AuthType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authType': %w", err)
-	}
-
-	if len(a.ServingNetworkName) != 0 {
-		object["servingNetworkName"], err = json.Marshal(a.ServingNetworkName)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'servingNetworkName': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// AsAv5gAka returns the union data inside the UEAuthenticationCtx_5gAuthData as a Av5gAka
-func (t UEAuthenticationCtx_5gAuthData) AsAv5gAka() (Av5gAka, error) {
-	var body Av5gAka
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAv5gAka overwrites any union data inside the UEAuthenticationCtx_5gAuthData as the provided Av5gAka
-func (t *UEAuthenticationCtx_5gAuthData) FromAv5gAka(v Av5gAka) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAv5gAka performs a merge with any union data inside the UEAuthenticationCtx_5gAuthData, using the provided Av5gAka
-func (t *UEAuthenticationCtx_5gAuthData) MergeAv5gAka(v Av5gAka) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsEapPayload returns the union data inside the UEAuthenticationCtx_5gAuthData as a EapPayload
-func (t UEAuthenticationCtx_5gAuthData) AsEapPayload() (EapPayload, error) {
-	var body EapPayload
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromEapPayload overwrites any union data inside the UEAuthenticationCtx_5gAuthData as the provided EapPayload
-func (t *UEAuthenticationCtx_5gAuthData) FromEapPayload(v EapPayload) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeEapPayload performs a merge with any union data inside the UEAuthenticationCtx_5gAuthData, using the provided EapPayload
-func (t *UEAuthenticationCtx_5gAuthData) MergeEapPayload(v EapPayload) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t UEAuthenticationCtx_5gAuthData) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *UEAuthenticationCtx_5gAuthData) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
+type EapAuthMethodJSONRequestBody = externalRef0.EapSession
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1818,7 +647,7 @@ type ClientWithResponsesInterface interface {
 type PostRgAuthenticationsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *RgAuthCtx
+	JSON201                       *externalRef0.AUSFRgAuthCtx
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.ProblemDetails
@@ -1846,7 +675,7 @@ func (r PostRgAuthenticationsResponse) StatusCode() int {
 type PostUeAuthenticationsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	Application3gppHalJSON201     *UEAuthenticationCtx
+	Application3gppHalJSON201     *externalRef0.UEAuthenticationCtx
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.ProblemDetails
@@ -1929,7 +758,7 @@ func (r Delete5gAkaAuthenticationResultResponse) StatusCode() int {
 type PutUeAuthenticationsAuthCtxId5gAkaConfirmationResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *ConfirmationDataResponse
+	JSON200                       *externalRef0.ConfirmationDataResponse
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.ProblemDetails
@@ -1989,10 +818,10 @@ type EapAuthMethodResponse struct {
 		Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
 		// EapPayload contains an EAP packet
-		EapPayload           *EapPayload            `json:"eapPayload"`
-		AdditionalProperties map[string]interface{} `json:"-"`
+		EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
+		AdditionalProperties map[string]interface{}   `json:"-"`
 	}
-	JSON200                       *EapSession
+	JSON200                       *externalRef0.EapSession
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.ProblemDetails
@@ -2134,7 +963,7 @@ func ParsePostRgAuthenticationsResponse(rsp *http.Response) (*PostRgAuthenticati
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest RgAuthCtx
+		var dest externalRef0.AUSFRgAuthCtx
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2202,7 +1031,7 @@ func ParsePostUeAuthenticationsResponse(rsp *http.Response) (*PostUeAuthenticati
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest UEAuthenticationCtx
+		var dest externalRef0.UEAuthenticationCtx
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2405,7 +1234,7 @@ func ParsePutUeAuthenticationsAuthCtxId5gAkaConfirmationResponse(rsp *http.Respo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ConfirmationDataResponse
+		var dest externalRef0.ConfirmationDataResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2542,8 +1371,8 @@ func ParseEapAuthMethodResponse(rsp *http.Response) (*EapAuthMethodResponse, err
 			Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
 			// EapPayload contains an EAP packet
-			EapPayload           *EapPayload            `json:"eapPayload"`
-			AdditionalProperties map[string]interface{} `json:"-"`
+			EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
+			AdditionalProperties map[string]interface{}   `json:"-"`
 		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -2551,7 +1380,7 @@ func ParseEapAuthMethodResponse(rsp *http.Response) (*EapAuthMethodResponse, err
 		response.Application3gppHalJSON200 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
-		var dest EapSession
+		var dest externalRef0.EapSession
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2829,7 +1658,7 @@ type PostRgAuthentications201ResponseHeaders struct {
 }
 
 type PostRgAuthentications201JSONResponse struct {
-	Body    RgAuthCtx
+	Body    externalRef0.AUSFRgAuthCtx
 	Headers PostRgAuthentications201ResponseHeaders
 }
 
@@ -2919,7 +1748,7 @@ type PostUeAuthentications201ResponseHeaders struct {
 }
 
 type PostUeAuthentications201Application3gppHalPlusJSONResponse struct {
-	Body    UEAuthenticationCtx
+	Body    externalRef0.UEAuthenticationCtx
 	Headers PostUeAuthentications201ResponseHeaders
 }
 
@@ -3186,13 +2015,13 @@ type PutUeAuthenticationsAuthCtxId5gAkaConfirmationResponseObject interface {
 	VisitPutUeAuthenticationsAuthCtxId5gAkaConfirmationResponse(w http.ResponseWriter) error
 }
 
-type PutUeAuthenticationsAuthCtxId5gAkaConfirmation200JSONResponse ConfirmationDataResponse
+type PutUeAuthenticationsAuthCtxId5gAkaConfirmation200JSONResponse externalRef0.ConfirmationDataResponse
 
 func (response PutUeAuthenticationsAuthCtxId5gAkaConfirmation200JSONResponse) VisitPutUeAuthenticationsAuthCtxId5gAkaConfirmationResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(ConfirmationDataResponse(response))
+	return json.NewEncoder(w).Encode(externalRef0.ConfirmationDataResponse(response))
 }
 
 type PutUeAuthenticationsAuthCtxId5gAkaConfirmation307JSONResponse struct{ externalRef0.N307JSONResponse }
@@ -3363,8 +2192,8 @@ type EapAuthMethod200Application3gppHalPlusJSONResponse struct {
 	Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
 	// EapPayload contains an EAP packet
-	EapPayload           *EapPayload            `json:"eapPayload"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
+	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
 func (response EapAuthMethod200Application3gppHalPlusJSONResponse) VisitEapAuthMethodResponse(w http.ResponseWriter) error {
@@ -3374,13 +2203,13 @@ func (response EapAuthMethod200Application3gppHalPlusJSONResponse) VisitEapAuthM
 	return json.NewEncoder(w).Encode(response)
 }
 
-type EapAuthMethod200JSONResponse EapSession
+type EapAuthMethod200JSONResponse externalRef0.EapSession
 
 func (response EapAuthMethod200JSONResponse) VisitEapAuthMethodResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(EapSession(response))
+	return json.NewEncoder(w).Encode(externalRef0.EapSession(response))
 }
 
 type EapAuthMethod307JSONResponse struct{ externalRef0.N307JSONResponse }

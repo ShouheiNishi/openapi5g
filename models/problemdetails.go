@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package commondata
+package models
 
 import (
 	"fmt"
@@ -78,7 +78,7 @@ func (p ProblemDetails) formatPrint(w io.Writer, fmtV string) {
 
 func (p ProblemDetails) GoString() string {
 	type tmpType ProblemDetails
-	return strings.Replace(fmt.Sprintf("%#v", tmpType(p)), "commondata.tmpType", "commondata.ProblemDetails", 1)
+	return strings.Replace(fmt.Sprintf("%#v", tmpType(p)), "models.tmpType", "models.ProblemDetails", 1)
 }
 
 func (p ProblemDetails) Format(state fmt.State, verb rune) {

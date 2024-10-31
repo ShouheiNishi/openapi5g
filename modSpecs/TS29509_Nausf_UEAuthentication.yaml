@@ -1,188 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        AuthResult:
-            enum:
-                - AUTHENTICATION_SUCCESS
-                - AUTHENTICATION_FAILURE
-                - AUTHENTICATION_ONGOING
-            type: string
-            x-go-type-skip-optional-pointer: true
-        AuthType:
-            enum:
-                - 5G_AKA
-                - EAP_AKA_PRIME
-                - EAP_TLS
-            type: string
-        AuthenticationInfo:
-            additionalProperties: true
-            properties:
-                cellCagInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/CagId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n5gcInd:
-                    default: false
-                    type: boolean
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                resynchronizationInfo:
-                    $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/ResynchronizationInfo
-                routingIndicator:
-                    pattern: ^[0-9]{1,4}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                servingNetworkName:
-                    $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
-                supiOrSuci:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupiOrSuci
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                traceData:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TraceData
-                udmGroupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
-            required:
-                - supiOrSuci
-                - servingNetworkName
-            type: object
-        Av5gAka:
-            additionalProperties: true
-            properties:
-                autn:
-                    $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/Autn
-                hxresStar:
-                    $ref: '#/components/schemas/HxresStar'
-                rand:
-                    $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/Rand
-            required:
-                - rand
-                - hxresStar
-                - autn
-            type: object
-        ConfirmationData:
-            additionalProperties: true
-            properties:
-                resStar:
-                    $ref: '#/components/schemas/ResStar'
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - resStar
-            type: object
-        ConfirmationDataResponse:
-            additionalProperties: true
-            properties:
-                authResult:
-                    $ref: '#/components/schemas/AuthResult'
-                kseaf:
-                    $ref: '#/components/schemas/Kseaf'
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-            required:
-                - authResult
-            type: object
-        DeregistrationInfo:
-            additionalProperties: true
-            properties:
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - supi
-            type: object
-        EapPayload:
-            description: contains an EAP packet
-            format: base64
-            nullable: true
-            type: string
-        EapSession:
-            additionalProperties: true
-            properties:
-                _links:
-                    additionalProperties:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/LinksValueSchema
-                    type: object
-                authResult:
-                    $ref: '#/components/schemas/AuthResult'
-                eapPayload:
-                    $ref: '#/components/schemas/EapPayload'
-                kSeaf:
-                    $ref: '#/components/schemas/Kseaf'
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - eapPayload
-            type: object
-        HxresStar:
-            pattern: '[A-Fa-f0-9]{32}'
-            type: string
-            x-go-type-skip-optional-pointer: true
-        Kseaf:
-            pattern: '[A-Fa-f0-9]{64}'
-            type: string
-            x-go-type-skip-optional-pointer: true
-        ResStar:
-            nullable: true
-            pattern: '[A-Fa-f0-9]{32}'
-            type: string
-        RgAuthCtx:
-            additionalProperties: true
-            properties:
-                authInd:
-                    default: false
-                    type: boolean
-                authResult:
-                    $ref: '#/components/schemas/AuthResult'
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-            required:
-                - authResult
-            type: object
-        RgAuthenticationInfo:
-            additionalProperties: true
-            properties:
-                authenticatedInd:
-                    default: false
-                    type: boolean
-                suci:
-                    $ref: '#/components/schemas/Suci'
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - suci
-                - authenticatedInd
-            type: object
-        Suci:
-            pattern: ^(suci-(0-[0-9]{3}-[0-9]{2,3}|[1-7]-.+)-[0-9]{1,4}-(0-0-.+|[a-fA-F1-9]-([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])-[a-fA-F0-9]+)|.+)$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        UEAuthenticationCtx:
-            additionalProperties: true
-            properties:
-                _links:
-                    additionalProperties:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/LinksValueSchema
-                    type: object
-                5gAuthData:
-                    oneOf:
-                        - $ref: '#/components/schemas/Av5gAka'
-                        - $ref: '#/components/schemas/EapPayload'
-                authType:
-                    $ref: '#/components/schemas/AuthType'
-                servingNetworkName:
-                    $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
-            required:
-                - authType
-                - 5gAuthData
-                - _links
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -209,14 +27,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/RgAuthenticationInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/RgAuthenticationInfo
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/RgAuthCtx'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AUSF-RgAuthCtx
                     description: RgAuthCtx
                     headers:
                         Location:
@@ -258,14 +76,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AuthenticationInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AuthenticationInfo
                 required: true
             responses:
                 "201":
                     content:
                         application/3gppHal+json:
                             schema:
-                                $ref: '#/components/schemas/UEAuthenticationCtx'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/UEAuthenticationCtx
                     description: UEAuthenticationCtx
                     headers:
                         Location:
@@ -325,13 +143,13 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/ConfirmationData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/ConfirmationData
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ConfirmationDataResponse'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ConfirmationDataResponse
                     description: Request processed (EAP success or Failure)
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -396,7 +214,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/EapSession'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/EapSession
             responses:
                 "200":
                     content:
@@ -411,14 +229,14 @@ paths:
                                         minProperties: 1
                                         type: object
                                     eapPayload:
-                                        $ref: '#/components/schemas/EapPayload'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/EapPayload
                                 required:
                                     - eapPayload
                                     - _links
                                 type: object
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/EapSession'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/EapSession
                     description: Use to handle or close the EAP session
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -476,7 +294,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/DeregistrationInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/DeregistrationInfo
                 required: true
             responses:
                 "204":

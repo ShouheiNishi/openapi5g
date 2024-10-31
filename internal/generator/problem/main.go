@@ -79,8 +79,8 @@ const (
 )
 
 {{range .}}
-func {{.GolangName}}({{if .HasInvalidParams}}invalidParams []commondata.InvalidParam,{{end}} detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func {{.GolangName}}({{if .HasInvalidParams}}invalidParams []models.InvalidParam,{{end}} detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: {{.StatusCode}},
 		Cause:  lo.ToPtr(Cause{{.GolangName}}),
 		Title:  lo.ToPtr("{{.Title}}"),{{if .HasInvalidParams}}
@@ -103,7 +103,7 @@ func main() {
 		writer.ImportSpecs{
 			{ImportPath: "net/http"},
 			{},
-			{ImportPath: "github.com/ShouheiNishi/openapi5g/commondata"},
+			{ImportPath: "github.com/ShouheiNishi/openapi5g/models"},
 			{ImportPath: "github.com/samber/lo"},
 		},
 	)

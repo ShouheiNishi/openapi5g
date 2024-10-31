@@ -1,194 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        AuthorizedNssaiAvailabilityData:
-            additionalProperties: true
-            properties:
-                restrictedSnssaiList:
-                    items:
-                        $ref: '#/components/schemas/RestrictedSnssai'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                supportedSnssaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                tai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Tai
-                taiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Tai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                taiRangeList:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TaiRange
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - tai
-                - supportedSnssaiList
-            type: object
-        AuthorizedNssaiAvailabilityInfo:
-            additionalProperties: true
-            properties:
-                authorizedNssaiAvailabilityData:
-                    items:
-                        $ref: '#/components/schemas/AuthorizedNssaiAvailabilityData'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - authorizedNssaiAvailabilityData
-            type: object
-        NssaiAvailabilityInfo:
-            additionalProperties: true
-            properties:
-                amfSetId:
-                    pattern: ^[0-9]{3}-[0-9]{2-3}-[A-Fa-f0-9]{2}-[0-3][A-Fa-f0-9]{2}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                supportedNssaiAvailabilityData:
-                    items:
-                        $ref: '#/components/schemas/SupportedNssaiAvailabilityData'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - supportedNssaiAvailabilityData
-            type: object
-        NssfEventNotification:
-            additionalProperties: true
-            properties:
-                authorizedNssaiAvailabilityData:
-                    items:
-                        $ref: '#/components/schemas/AuthorizedNssaiAvailabilityData'
-                    type: array
-                subscriptionId:
-                    type: string
-            required:
-                - subscriptionId
-                - authorizedNssaiAvailabilityData
-            type: object
-        NssfEventSubscriptionCreateData:
-            additionalProperties: true
-            properties:
-                amfSetId:
-                    pattern: ^[0-9]{3}-[0-9]{2-3}-[A-Fa-f0-9]{2}-[0-3][A-Fa-f0-9]{2}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                event:
-                    $ref: '#/components/schemas/NssfEventType'
-                expiry:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                nfNssaiAvailabilityUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                taiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Tai
-                    type: array
-                taiRangeList:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TaiRange
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - nfNssaiAvailabilityUri
-                - taiList
-                - event
-            type: object
-        NssfEventSubscriptionCreatedData:
-            additionalProperties: true
-            properties:
-                authorizedNssaiAvailabilityData:
-                    items:
-                        $ref: '#/components/schemas/AuthorizedNssaiAvailabilityData'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                expiry:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                subscriptionId:
-                    type: string
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - subscriptionId
-            type: object
-        NssfEventType:
-            enum:
-                - SNSSAI_STATUS_CHANGE_REPORT
-            type: string
-        PatchDocument:
-            items:
-                $ref: TS29571_CommonData.yaml#/components/schemas/PatchItem
-            minItems: 1
-            type: array
-            x-go-type-skip-optional-pointer: true
-        RestrictedSnssai:
-            additionalProperties: true
-            properties:
-                homePlmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                homePlmnIdList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                roamingRestriction:
-                    default: false
-                    type: boolean
-                sNssaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - homePlmnId
-                - sNssaiList
-            type: object
-        SupportedNssaiAvailabilityData:
-            additionalProperties: true
-            properties:
-                supportedSnssaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtSnssai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                tai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Tai
-                taiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Tai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                taiRangeList:
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TaiRange
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - tai
-                - supportedSnssaiList
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -271,7 +83,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/NssaiAvailabilityInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/NssaiAvailabilityInfo
                 description: Parameters to update/replace at the NSSF, the S-NSSAIs supported per TA
                 required: true
             responses:
@@ -279,7 +91,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuthorizedNssaiAvailabilityInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthorizedNssaiAvailabilityInfo
                     description: OK (Successful update of SNSSAI information per TA)
                     headers:
                         Accept-Encoding:
@@ -385,7 +197,7 @@ paths:
                 content:
                     'application/json-patch+json:':
                         schema:
-                            $ref: '#/components/schemas/PatchDocument'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PatchDocument
                 description: JSON Patch instructions to update at the NSSF, the S-NSSAIs supported per TA
                 required: true
             responses:
@@ -393,7 +205,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuthorizedNssaiAvailabilityInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthorizedNssaiAvailabilityInfo
                     description: OK (Successful update of SNSSAI information per TA)
                     headers:
                         Accept-Encoding:
@@ -455,7 +267,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/NssfEventNotification'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/NssfEventNotification
                                 required: true
                             responses:
                                 "204":
@@ -496,7 +308,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/NssfEventSubscriptionCreateData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/NssfEventSubscriptionCreateData
                 description: Subscription for notification about updates to NSSAI availability information
                 required: true
             responses:
@@ -504,7 +316,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/NssfEventSubscriptionCreatedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/NssfEventSubscriptionCreatedData
                     description: Created (Successful creation of subscription for notification)
                     headers:
                         Content-Encoding:
@@ -605,7 +417,7 @@ paths:
                 content:
                     'application/json-patch+json:':
                         schema:
-                            $ref: '#/components/schemas/PatchDocument'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PatchDocument
                 description: JSON Patch instructions to update at the NSSF, the NSSAI availability notification subscription
                 required: true
             responses:
@@ -613,7 +425,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/NssfEventSubscriptionCreatedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/NssfEventSubscriptionCreatedData
                     description: OK (Successful update of NSSAI availability notification subscription)
                     headers:
                         Content-Encoding:

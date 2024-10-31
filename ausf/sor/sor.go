@@ -13,7 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -23,402 +23,8 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// Defines values for AccessTech.
-const (
-	CDMA1xRTT                   AccessTech = "CDMA_1xRTT"
-	CDMAHRPD                    AccessTech = "CDMA_HRPD"
-	ECGSMIoTONLY                AccessTech = "ECGSM_IoT_ONLY"
-	EUTRANINNBS1MODEONLY        AccessTech = "EUTRAN_IN_NBS1_MODE_ONLY"
-	EUTRANINWBS1MODEANDNBS1MODE AccessTech = "EUTRAN_IN_WBS1_MODE_AND_NBS1_MODE"
-	EUTRANINWBS1MODEONLY        AccessTech = "EUTRAN_IN_WBS1_MODE_ONLY"
-	GSMANDECGSMIoT              AccessTech = "GSM_AND_ECGSM_IoT"
-	GSMCOMPACT                  AccessTech = "GSM_COMPACT"
-	GSMWITHOUTECGSMIoT          AccessTech = "GSM_WITHOUT_ECGSM_IoT"
-	NR                          AccessTech = "NR"
-	UTRAN                       AccessTech = "UTRAN"
-)
-
-// AccessTech defines model for AccessTech.
-type AccessTech string
-
-// AckInd defines model for AckInd.
-type AckInd = bool
-
-// CounterSor defines model for CounterSor.
-type CounterSor = string
-
-// SecuredPacket defines model for SecuredPacket.
-type SecuredPacket = string
-
-// SorInfo defines model for SorInfo.
-type SorInfo struct {
-	AckInd               AckInd                          `json:"ackInd"`
-	SteeringContainer    *SteeringContainer              `json:"steeringContainer,omitempty"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// SorMac defines model for SorMac.
-type SorMac = string
-
-// SorSecurityInfo defines model for SorSecurityInfo.
-type SorSecurityInfo struct {
-	CounterSor           CounterSor             `json:"counterSor"`
-	SorMacIausf          SorMac                 `json:"sorMacIausf"`
-	SorXmacIue           SorMac                 `json:"sorXmacIue,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// SteeringContainer defines model for SteeringContainer.
-type SteeringContainer struct {
-	union json.RawMessage
-}
-
-// SteeringContainer0 defines model for .
-type SteeringContainer0 = []SteeringInfo
-
-// SteeringInfo defines model for SteeringInfo.
-type SteeringInfo struct {
-	AccessTechList       []AccessTech           `json:"accessTechList,omitempty"`
-	PlmnId               externalRef0.PlmnId    `json:"plmnId"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // PostSupiUeSorJSONRequestBody defines body for PostSupiUeSor for application/json ContentType.
-type PostSupiUeSorJSONRequestBody = SorInfo
-
-// Getter for additional properties for SorInfo. Returns the specified
-// element and whether it was found
-func (a SorInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SorInfo
-func (a *SorInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SorInfo to handle AdditionalProperties
-func (a *SorInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["ackInd"]; found {
-		err = json.Unmarshal(raw, &a.AckInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'ackInd': %w", err)
-		}
-		delete(object, "ackInd")
-	}
-
-	if raw, found := object["steeringContainer"]; found {
-		err = json.Unmarshal(raw, &a.SteeringContainer)
-		if err != nil {
-			return fmt.Errorf("error reading 'steeringContainer': %w", err)
-		}
-		delete(object, "steeringContainer")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SorInfo to handle AdditionalProperties
-func (a SorInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["ackInd"], err = json.Marshal(a.AckInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'ackInd': %w", err)
-	}
-
-	if a.SteeringContainer != nil {
-		object["steeringContainer"], err = json.Marshal(a.SteeringContainer)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'steeringContainer': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SorSecurityInfo. Returns the specified
-// element and whether it was found
-func (a SorSecurityInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SorSecurityInfo
-func (a *SorSecurityInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SorSecurityInfo to handle AdditionalProperties
-func (a *SorSecurityInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["counterSor"]; found {
-		err = json.Unmarshal(raw, &a.CounterSor)
-		if err != nil {
-			return fmt.Errorf("error reading 'counterSor': %w", err)
-		}
-		delete(object, "counterSor")
-	}
-
-	if raw, found := object["sorMacIausf"]; found {
-		err = json.Unmarshal(raw, &a.SorMacIausf)
-		if err != nil {
-			return fmt.Errorf("error reading 'sorMacIausf': %w", err)
-		}
-		delete(object, "sorMacIausf")
-	}
-
-	if raw, found := object["sorXmacIue"]; found {
-		err = json.Unmarshal(raw, &a.SorXmacIue)
-		if err != nil {
-			return fmt.Errorf("error reading 'sorXmacIue': %w", err)
-		}
-		delete(object, "sorXmacIue")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SorSecurityInfo to handle AdditionalProperties
-func (a SorSecurityInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["counterSor"], err = json.Marshal(a.CounterSor)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'counterSor': %w", err)
-	}
-
-	object["sorMacIausf"], err = json.Marshal(a.SorMacIausf)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'sorMacIausf': %w", err)
-	}
-
-	if len(a.SorXmacIue) != 0 {
-		object["sorXmacIue"], err = json.Marshal(a.SorXmacIue)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sorXmacIue': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SteeringInfo. Returns the specified
-// element and whether it was found
-func (a SteeringInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SteeringInfo
-func (a *SteeringInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SteeringInfo to handle AdditionalProperties
-func (a *SteeringInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessTechList"]; found {
-		err = json.Unmarshal(raw, &a.AccessTechList)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessTechList': %w", err)
-		}
-		delete(object, "accessTechList")
-	}
-
-	if raw, found := object["plmnId"]; found {
-		err = json.Unmarshal(raw, &a.PlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnId': %w", err)
-		}
-		delete(object, "plmnId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SteeringInfo to handle AdditionalProperties
-func (a SteeringInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AccessTechList) != 0 {
-		object["accessTechList"], err = json.Marshal(a.AccessTechList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessTechList': %w", err)
-		}
-	}
-
-	object["plmnId"], err = json.Marshal(a.PlmnId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'plmnId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// AsSteeringContainer0 returns the union data inside the SteeringContainer as a SteeringContainer0
-func (t SteeringContainer) AsSteeringContainer0() (SteeringContainer0, error) {
-	var body SteeringContainer0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSteeringContainer0 overwrites any union data inside the SteeringContainer as the provided SteeringContainer0
-func (t *SteeringContainer) FromSteeringContainer0(v SteeringContainer0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSteeringContainer0 performs a merge with any union data inside the SteeringContainer, using the provided SteeringContainer0
-func (t *SteeringContainer) MergeSteeringContainer0(v SteeringContainer0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsSecuredPacket returns the union data inside the SteeringContainer as a SecuredPacket
-func (t SteeringContainer) AsSecuredPacket() (SecuredPacket, error) {
-	var body SecuredPacket
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSecuredPacket overwrites any union data inside the SteeringContainer as the provided SecuredPacket
-func (t *SteeringContainer) FromSecuredPacket(v SecuredPacket) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSecuredPacket performs a merge with any union data inside the SteeringContainer, using the provided SecuredPacket
-func (t *SteeringContainer) MergeSecuredPacket(v SecuredPacket) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t SteeringContainer) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *SteeringContainer) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
+type PostSupiUeSorJSONRequestBody = externalRef0.AUSFSorInfo
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -622,7 +228,7 @@ type ClientWithResponsesInterface interface {
 type PostSupiUeSorResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SorSecurityInfo
+	JSON200                       *externalRef0.SorSecurityInfo
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON503     *externalRef0.ProblemDetails
@@ -677,7 +283,7 @@ func ParsePostSupiUeSorResponse(rsp *http.Response) (*PostSupiUeSorResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SorSecurityInfo
+		var dest externalRef0.SorSecurityInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -797,13 +403,13 @@ type PostSupiUeSorResponseObject interface {
 	VisitPostSupiUeSorResponse(w http.ResponseWriter) error
 }
 
-type PostSupiUeSor200JSONResponse SorSecurityInfo
+type PostSupiUeSor200JSONResponse externalRef0.SorSecurityInfo
 
 func (response PostSupiUeSor200JSONResponse) VisitPostSupiUeSorResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(SorSecurityInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.SorSecurityInfo(response))
 }
 
 type PostSupiUeSor307JSONResponse struct{ externalRef0.N307JSONResponse }

@@ -1,575 +1,6 @@
 # This is generated file.
 
-components:
-    schemas:
-        AccessAndMobilitySubscriptionData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/AccessAndMobilitySubscriptionData
-        AllowedMtcProviderInfo:
-            additionalProperties: true
-            properties:
-                afId:
-                    type: string
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-            type: object
-        Amf3GppAccessRegistration:
-            $ref: TS29503_Nudm_UECM.yaml#/components/schemas/Amf3GppAccessRegistration
-        AmfNon3GppAccessRegistration:
-            $ref: TS29503_Nudm_UECM.yaml#/components/schemas/AmfNon3GppAccessRegistration
-        AmfSubscriptionInfo:
-            additionalProperties: true
-            properties:
-                amfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                subsChangeNotifyCorrelationId:
-                    type: string
-                subscriptionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-            required:
-                - amfInstanceId
-                - subscriptionId
-            type: object
-        AuthMethod:
-            enum:
-                - 5G_AKA
-                - EAP_AKA_PRIME
-                - EAP_TLS
-            type: string
-        AuthenticationSubscription:
-            additionalProperties: true
-            properties:
-                algorithmId:
-                    type: string
-                authenticationManagementField:
-                    pattern: ^[A-Fa-f0-9]{4}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                authenticationMethod:
-                    $ref: '#/components/schemas/AuthMethod'
-                encOpcKey:
-                    type: string
-                encPermanentKey:
-                    type: string
-                encTopcKey:
-                    type: string
-                n5gcAuthMethod:
-                    $ref: '#/components/schemas/AuthMethod'
-                protectionParameterId:
-                    type: string
-                rgAuthenticationInd:
-                    default: false
-                    type: boolean
-                sequenceNumber:
-                    $ref: '#/components/schemas/SequenceNumber'
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                vectorGenerationInHss:
-                    default: false
-                    type: boolean
-            required:
-                - authenticationMethod
-            type: object
-        AuthorizationData:
-            $ref: TS29503_Nudm_NIDDAU.yaml#/components/schemas/AuthorizationData
-        CagAckData:
-            additionalProperties: true
-            properties:
-                provisioningTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                ueUpdateStatus:
-                    $ref: '#/components/schemas/UeUpdateStatus'
-            required:
-                - provisioningTime
-                - ueUpdateStatus
-            type: object
-        ContextDataSetName:
-            enum:
-                - AMF_3GPP
-                - AMF_NON_3GPP
-                - SDM_SUBSCRIPTIONS
-                - EE_SUBSCRIPTIONS
-                - SMSF_3GPP
-                - SMSF_NON_3GPP
-                - SUBS_TO_NOTIFY
-                - SMF_REG
-                - IP_SM_GW
-            type: string
-        ContextDataSets:
-            additionalProperties: true
-            properties:
-                amf3Gpp:
-                    $ref: '#/components/schemas/Amf3GppAccessRegistration'
-                amfNon3Gpp:
-                    $ref: '#/components/schemas/AmfNon3GppAccessRegistration'
-                eeSubscriptions:
-                    items:
-                        $ref: '#/components/schemas/EeSubscription'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ipSmGw:
-                    $ref: '#/components/schemas/IpSmGwRegistration'
-                sdmSubscriptions:
-                    items:
-                        $ref: '#/components/schemas/SdmSubscription'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                smfRegistrations:
-                    $ref: '#/components/schemas/SmfRegList'
-                smsf3GppAccess:
-                    $ref: '#/components/schemas/SmsfRegistration'
-                smsfNon3GppAccess:
-                    $ref: '#/components/schemas/SmsfRegistration'
-                subscriptionDataSubscriptions:
-                    items:
-                        $ref: '#/components/schemas/SubscriptionDataSubscriptions'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        ContextDatasetNames:
-            items:
-                $ref: '#/components/schemas/ContextDataSetName'
-            minItems: 2
-            type: array
-            uniqueItems: true
-            x-go-type-skip-optional-pointer: true
-        DataChangeNotify:
-            additionalProperties: true
-            properties:
-                additionalSdmSubscriptions:
-                    items:
-                        $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SdmSubscription
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                notifyItems:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/NotifyItem
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                originalCallbackReference:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                sdmSubscription:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SdmSubscription
-                subscriptionDataSubscriptions:
-                    items:
-                        $ref: '#/components/schemas/SubscriptionDataSubscriptions'
-                    type: array
-                ueId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeId
-            type: object
-        DataSetName:
-            enum:
-                - AM
-                - SMF_SEL
-                - SMS_SUB
-                - SM
-                - TRACE
-                - SMS_MNG
-                - LCS_PRIVACY
-                - LCS_MO
-                - LCS_BCA
-                - V2X
-            type: string
-        DatasetNames:
-            items:
-                $ref: '#/components/schemas/DataSetName'
-            minItems: 1
-            type: array
-            uniqueItems: true
-            x-go-type-skip-optional-pointer: true
-        Dnn:
-            $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-        EeGroupProfileData:
-            additionalProperties: true
-            properties:
-                allowedMtcProvider:
-                    additionalProperties:
-                        items:
-                            $ref: '#/components/schemas/MtcProvider'
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    description: A map (list of key-value pairs where EventType serves as key) of MTC provider lists. In addition to defined EventTypes, the key value "ALL" may be used to identify a map entry which contains a list of MtcProviders that are allowed monitoring all Event Types.
-                    minProperties: 1
-                    type: object
-                restrictedEventTypes:
-                    items:
-                        $ref: TS29503_Nudm_EE.yaml#/components/schemas/EventType
-                    type: array
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        EeProfileData:
-            additionalProperties: true
-            properties:
-                allowedMtcProvider:
-                    additionalProperties:
-                        items:
-                            $ref: '#/components/schemas/MtcProvider'
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    description: A map (list of key-value pairs where EventType serves as key) of MTC provider lists. In addition to defined EventTypes, the key value "ALL" may be used to identify a map entry which contains a list of MtcProviders that are allowed monitoring all Event Types.
-                    minProperties: 1
-                    type: object
-                restrictedEventTypes:
-                    items:
-                        $ref: TS29503_Nudm_EE.yaml#/components/schemas/EventType
-                    type: array
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        EeSubscription:
-            $ref: TS29503_Nudm_EE.yaml#/components/schemas/EeSubscription
-        EnhancedCoverageRestrictionData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/EnhancedCoverageRestrictionData
-        HssSubscriptionInfo:
-            additionalProperties: true
-            description: Information related to active subscriptions at the HSS(s)
-            properties:
-                hssSubscriptionList:
-                    items:
-                        $ref: '#/components/schemas/HssSubscriptionItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - hssSubscriptionList
-            type: object
-        HssSubscriptionItem:
-            additionalProperties: true
-            description: Contains info about a single HSS event subscription
-            properties:
-                hssInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                subscriptionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-            required:
-                - hssInstanceId
-                - subscriptionId
-            type: object
-        IdentityData:
-            additionalProperties: true
-            properties:
-                gpsiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                supiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        IpSmGwRegistration:
-            $ref: TS29503_Nudm_UECM.yaml#/components/schemas/IpSmGwRegistration
-        LcsBroadcastAssistanceTypesData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/LcsBroadcastAssistanceTypesData
-        LcsMoData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/LcsMoData
-        LcsPrivacyData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/LcsPrivacyData
-        LocationInfo:
-            $ref: TS29503_Nudm_UECM.yaml#/components/schemas/LocationInfo
-        MessageWaitingData:
-            additionalProperties: true
-            properties:
-                mwdList:
-                    items:
-                        $ref: '#/components/schemas/SmscData'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        MtcProvider:
-            additionalProperties: true
-            properties:
-                afId:
-                    type: string
-                mtcProviderInformation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation
-            type: object
-        NssaiAckData:
-            additionalProperties: true
-            properties:
-                provisioningTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                ueUpdateStatus:
-                    $ref: '#/components/schemas/UeUpdateStatus'
-            required:
-                - provisioningTime
-                - ueUpdateStatus
-            type: object
-        OperatorSpecificDataContainer:
-            additionalProperties: true
-            properties:
-                dataType:
-                    enum:
-                        - string
-                        - integer
-                        - number
-                        - boolean
-                        - object
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                dataTypeDefinition:
-                    type: string
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                value:
-                    oneOf:
-                        - type: string
-                        - type: integer
-                        - type: number
-                        - type: boolean
-                        - type: object
-            required:
-                - dataType
-                - value
-            type: object
-        Pp5gVnGroupProfileData:
-            additionalProperties: true
-            properties:
-                allowedMtcProviders:
-                    additionalProperties:
-                        items:
-                            $ref: '#/components/schemas/AllowedMtcProviderInfo'
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    description: A map (list of key-value pairs where external VN group identifier serves as key) of AllowedMtcProviderInfo lists. In addition to defined external VN group identifier, the key value "ALL" may be used to identify a map entry which contains a list of AllowedMtcProviderInfo that are allowed operating all the external group identifiers.
-                    minProperties: 1
-                    type: object
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        PpData:
-            $ref: TS29503_Nudm_PP.yaml#/components/schemas/PpData
-        PpDataType:
-            enum:
-                - COMMUNICATION_CHARACTERISTICS
-                - EXPECTED_UE_BEHAVIOUR
-                - EC_RESTRICTION
-                - ACS_INFO
-                - TRACE
-                - STN_SR
-                - LCS_PRIVACY
-                - SOR_INFO
-            type: string
-        PpProfileData:
-            additionalProperties: true
-            properties:
-                allowedMtcProviders:
-                    additionalProperties:
-                        items:
-                            $ref: '#/components/schemas/AllowedMtcProviderInfo'
-                        minItems: 1
-                        type: array
-                        x-go-type-skip-optional-pointer: true
-                    description: A map (list of key-value pairs where PpDataType serves as key) of AllowedMtcProviderInfo lists. In addition to defined PpDataType, the key value "ALL" may be used to identify a map entry which contains a list of AllowedMtcProviderInfo that are allowed to provision all types of the PP data for the user using UDM ParameterProvision service.
-                    minProperties: 1
-                    type: object
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        ProvisionedDataSets:
-            additionalProperties: true
-            properties:
-                amData:
-                    $ref: '#/components/schemas/AccessAndMobilitySubscriptionData'
-                lcsBcaData:
-                    $ref: '#/components/schemas/LcsBroadcastAssistanceTypesData'
-                lcsMoData:
-                    $ref: '#/components/schemas/LcsMoData'
-                lcsPrivacyData:
-                    $ref: '#/components/schemas/LcsPrivacyData'
-                smData:
-                    items:
-                        $ref: '#/components/schemas/SessionManagementSubscriptionData'
-                    type: array
-                smfSelData:
-                    $ref: '#/components/schemas/SmfSelectionSubscriptionData'
-                smsMngData:
-                    $ref: '#/components/schemas/SmsManagementSubscriptionData'
-                smsSubsData:
-                    $ref: '#/components/schemas/SmsSubscriptionData'
-                traceData:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TraceData
-                v2xData:
-                    $ref: '#/components/schemas/V2xSubscriptionData'
-            type: object
-        SdmSubscription:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SdmSubscription
-        SequenceNumber:
-            additionalProperties: true
-            properties:
-                difSign:
-                    $ref: '#/components/schemas/Sign'
-                indLength:
-                    minimum: 0
-                    type: integer
-                lastIndexes:
-                    additionalProperties:
-                        minimum: 0
-                        type: integer
-                    type: object
-                sqn:
-                    pattern: ^[A-Fa-f0-9]{12}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                sqnScheme:
-                    $ref: '#/components/schemas/SqnScheme'
-            type: object
-        SessionManagementSubscriptionData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SessionManagementSubscriptionData
-        Sign:
-            enum:
-                - POSITIVE
-                - NEGATIVE
-            type: string
-            x-go-type-skip-optional-pointer: true
-        SmfRegList:
-            items:
-                $ref: '#/components/schemas/SmfRegistration'
-            type: array
-        SmfRegistration:
-            $ref: TS29503_Nudm_UECM.yaml#/components/schemas/SmfRegistration
-        SmfSelectionSubscriptionData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SmfSelectionSubscriptionData
-        SmfSubscriptionInfo:
-            additionalProperties: true
-            description: Information related to active subscriptions at the SMF(s)
-            properties:
-                smfSubscriptionList:
-                    items:
-                        $ref: '#/components/schemas/SmfSubscriptionItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - smfSubscriptionList
-            type: object
-        SmfSubscriptionItem:
-            additionalProperties: true
-            description: Contains info about a single SMF event subscription
-            properties:
-                smfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                subscriptionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-            required:
-                - smfInstanceId
-                - subscriptionId
-            type: object
-        SmsManagementSubscriptionData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SmsManagementSubscriptionData
-        SmsSubscriptionData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SmsSubscriptionData
-        SmscData:
-            additionalProperties: true
-            properties:
-                smscDiameterAddress:
-                    $ref: TS29503_Nudm_UECM.yaml#/components/schemas/NetworkNodeDiameterAddress
-                smscMapAddress:
-                    $ref: TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
-            type: object
-        SmsfRegistration:
-            $ref: TS29503_Nudm_UECM.yaml#/components/schemas/SmsfRegistration
-        SorData:
-            additionalProperties: true
-            properties:
-                provisioningTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                sorMacIue:
-                    $ref: TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
-                sorXmacIue:
-                    $ref: TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
-                ueUpdateStatus:
-                    $ref: '#/components/schemas/UeUpdateStatus'
-            required:
-                - provisioningTime
-                - ueUpdateStatus
-            type: object
-        SqnScheme:
-            enum:
-                - GENERAL
-                - NON_TIME_BASED
-                - TIME_BASED
-            type: string
-        SubscriptionDataSubscriptions:
-            additionalProperties: true
-            properties:
-                callbackReference:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                expiry:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                monitoredResourceUris:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                    type: array
-                originalCallbackReference:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                sdmSubscription:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SdmSubscription
-                subscriptionId:
-                    type: string
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                ueId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeId
-                uniqueSubscription:
-                    type: boolean
-            required:
-                - monitoredResourceUris
-                - callbackReference
-            type: object
-        UeUpdateStatus:
-            enum:
-                - NOT_SENT
-                - SENT_NO_ACK_REQUIRED
-                - WAITING_FOR_ACK
-                - ACK_RECEIVED
-                - NEGATIVE_ACK_RECEIVED
-            type: string
-            x-go-type-skip-optional-pointer: true
-        UpuData:
-            additionalProperties: true
-            properties:
-                provisioningTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                ueUpdateStatus:
-                    $ref: '#/components/schemas/UeUpdateStatus'
-                upuMacIue:
-                    $ref: TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
-                upuXmacIue:
-                    $ref: TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
-            required:
-                - provisioningTime
-                - ueUpdateStatus
-            type: object
-        V2xSubscriptionData:
-            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/V2xSubscriptionData
-        VarPlmnId:
-            pattern: ^[0-9]{5,6}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        VarSnssai:
-            $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-        VarUeGroupId:
-            pattern: ^(extgroupid-[^@]+@[^@]+|anyUE)$
-            type: string
-            x-go-type-skip-optional-pointer: true
+components: {}
 externalDocs:
     description: 3GPP TS 29.505 V16.10.0; 5G System; Usage of the Unified Data Repository Service for subscription data; Stage 3
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.505/
@@ -598,20 +29,20 @@ paths:
                   name: servingPlmnId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarPlmnId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarPlmnId
                 - description: List of dataset names
                   explode: false
                   in: query
                   name: dataset-names
                   schema:
-                    $ref: '#/components/schemas/DatasetNames'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/DatasetNames
                   style: form
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ProvisionedDataSets'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProvisionedDataSets
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -633,7 +64,7 @@ paths:
                   name: servingPlmnId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarPlmnId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarPlmnId
                 - description: attributes to be retrieved
                   explode: false
                   in: query
@@ -666,7 +97,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AccessAndMobilitySubscriptionData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AccessAndMobilitySubscriptionData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -701,7 +132,7 @@ paths:
                   name: servingPlmnId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarPlmnId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarPlmnId
                 - description: Supported Features
                   in: query
                   name: supported-features
@@ -722,7 +153,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/LcsBroadcastAssistanceTypesData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/LcsBroadcastAssistanceTypesData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -761,11 +192,11 @@ paths:
                   name: servingPlmnId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarPlmnId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarPlmnId
                 - content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/VarSnssai'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/VarSnssai
                   description: single NSSAI
                   in: query
                   name: single-nssai
@@ -775,7 +206,7 @@ paths:
                   name: dnn
                   required: false
                   schema:
-                    $ref: '#/components/schemas/Dnn'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                 - description: attributes to be retrieved
                   explode: false
                   in: query
@@ -809,7 +240,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/SessionManagementSubscriptionData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SessionManagementSubscriptionData
                                 minItems: 1
                                 type: array
                                 x-go-type-skip-optional-pointer: true
@@ -847,7 +278,7 @@ paths:
                   name: servingPlmnId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarPlmnId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarPlmnId
                 - description: attributes to be retrieved
                   explode: false
                   in: query
@@ -880,7 +311,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfSelectionSubscriptionData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfSelectionSubscriptionData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -915,7 +346,7 @@ paths:
                   name: servingPlmnId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarPlmnId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarPlmnId
                 - description: Supported Features
                   in: query
                   name: supported-features
@@ -936,7 +367,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsSubscriptionData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsSubscriptionData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -971,7 +402,7 @@ paths:
                   name: servingPlmnId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarPlmnId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarPlmnId
                 - description: Supported Features
                   in: query
                   name: supported-features
@@ -992,7 +423,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsManagementSubscriptionData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsManagementSubscriptionData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -1027,7 +458,7 @@ paths:
                   name: servingPlmnId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarPlmnId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarPlmnId
                 - description: Validator for conditional requests, as described in RFC 7232, 3.2
                   in: header
                   name: If-None-Match
@@ -1095,7 +526,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/AuthEvent
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthEvent
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -1115,7 +546,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/AuthEvent
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AuthEvent
                 required: true
             responses:
                 "204":
@@ -1157,7 +588,7 @@ paths:
                   name: servingNetworkName
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ServingNetworkName
                 - description: attributes to be retrieved
                   explode: false
                   in: query
@@ -1180,7 +611,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/AuthEvent
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthEvent
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -1201,12 +632,12 @@ paths:
                   name: servingNetworkName
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ServingNetworkName
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/AuthEvent
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AuthEvent
                 required: true
             responses:
                 "204":
@@ -1230,7 +661,7 @@ paths:
                   name: servingNetworkName
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ServingNetworkName
             responses:
                 "204":
                     description: Upon success, an empty response body shall be returned.
@@ -1259,7 +690,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuthenticationSubscription'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthenticationSubscription
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -1338,14 +769,14 @@ paths:
                   name: context-dataset-names
                   required: true
                   schema:
-                    $ref: '#/components/schemas/ContextDatasetNames'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ContextDatasetNames
                   style: form
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ContextDataSets'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ContextDataSets
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -1384,7 +815,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Amf3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistration
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -1404,14 +835,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Amf3GppAccessRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistration
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Amf3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistration
                     description: Created
                     headers:
                         Location:
@@ -1500,7 +931,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AmfNon3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AmfNon3GppAccessRegistration
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -1520,14 +951,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AmfNon3GppAccessRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AmfNon3GppAccessRegistration
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Amf3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistration
                     description: Created
                     headers:
                         Location:
@@ -1605,7 +1036,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/EeSubscription'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                                 type: array
                     description: Expected response to a valid request
                 default:
@@ -1626,14 +1057,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/EeSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/EeSubscription'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                     description: Expected response to a valid request
                     headers:
                         Location:
@@ -1667,7 +1098,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/EeSubscription'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                                 type: array
                     description: Expected response to a valid request
                 default:
@@ -1692,7 +1123,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/EeSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                 required: true
             responses:
                 "204":
@@ -1797,7 +1228,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/AmfSubscriptionInfo'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/AmfSubscriptionInfo
                                 minItems: 1
                                 type: array
                                 x-go-type-skip-optional-pointer: true
@@ -1825,7 +1256,7 @@ paths:
                     application/json:
                         schema:
                             items:
-                                $ref: '#/components/schemas/AmfSubscriptionInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AmfSubscriptionInfo
                             minItems: 1
                             type: array
                             x-go-type-skip-optional-pointer: true
@@ -1924,7 +1355,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfSubscriptionInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfSubscriptionInfo
                     description: OK
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -1948,7 +1379,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/HssSubscriptionInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/HssSubscriptionInfo
                 required: true
             responses:
                 "204":
@@ -2044,7 +1475,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfSubscriptionInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfSubscriptionInfo
                     description: OK
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2068,7 +1499,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmfSubscriptionInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmfSubscriptionInfo
                 required: true
             responses:
                 "204":
@@ -2177,7 +1608,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/IpSmGwRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/IpSmGwRegistration
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2197,7 +1628,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/IpSmGwRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/IpSmGwRegistration
                 required: true
             responses:
                 "204":
@@ -2275,7 +1706,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/LocationInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/LocationInfo
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2314,7 +1745,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/MessageWaitingData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/MessageWaitingData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2334,7 +1765,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/MessageWaitingData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/MessageWaitingData
                 required: true
             responses:
                 "204":
@@ -2417,7 +1848,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/SdmSubscription'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
                                 type: array
                     description: Expected response to a valid request
                 default:
@@ -2438,14 +1869,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SdmSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SdmSubscription'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
                     description: Expected response to a valid request
                     headers:
                         Location:
@@ -2479,7 +1910,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/SdmSubscription'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
                                 type: array
                     description: Expected response to a valid request
                 default:
@@ -2504,7 +1935,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SdmSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
                 required: true
             responses:
                 "204":
@@ -2610,7 +2041,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfSubscriptionInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfSubscriptionInfo
                     description: OK
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2634,7 +2065,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/HssSubscriptionInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/HssSubscriptionInfo
                 required: true
             responses:
                 "204":
@@ -2731,7 +2162,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfRegList'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegList
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2776,7 +2207,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegistration
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2802,14 +2233,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmfRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegistration
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegistration
                     description: Upon success, a response body containing a representation of the created Individual SmfRegistration resource shall be returned
                     headers:
                         Location:
@@ -2879,7 +2310,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2899,14 +2330,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmsfRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Created
                     headers:
                         Location:
@@ -2970,7 +2401,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2990,14 +2421,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmsfRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Created
                     headers:
                         Location:
@@ -3059,7 +2490,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/EnhancedCoverageRestrictionData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/EnhancedCoverageRestrictionData
                     description: OK
                     headers:
                         Cache-Control:
@@ -3109,7 +2540,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/EeProfileData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/EeProfileData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -3129,7 +2560,7 @@ paths:
                 - content:
                     application/json:
                         schema:
-                            $ref: TS29503_Nudm_SDM.yaml#/components/schemas/AppPortId
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AppPortId
                   description: Application port identifier
                   in: query
                   name: app-port-id
@@ -3148,7 +2579,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/IdentityData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/IdentityData
                     description: OK
                     headers:
                         Cache-Control:
@@ -3210,7 +2641,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/LcsMoData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/LcsMoData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -3272,7 +2703,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/LcsPrivacyData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/LcsPrivacyData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -3307,7 +2738,7 @@ paths:
                 - content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/VarSnssai'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/VarSnssai
                   description: single NSSAI
                   in: query
                   name: single-nssai
@@ -3317,7 +2748,7 @@ paths:
                   name: dnn
                   required: true
                   schema:
-                    $ref: '#/components/schemas/Dnn'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
                 - description: MTC Provider Information
                   in: query
                   name: mtc-provider-information
@@ -3339,7 +2770,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuthorizationData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthorizationData
                     description: OK
                     headers:
                         Cache-Control:
@@ -3424,7 +2855,7 @@ paths:
                         application/json:
                             schema:
                                 additionalProperties:
-                                    $ref: '#/components/schemas/OperatorSpecificDataContainer'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/OperatorSpecificDataContainer
                                 type: object
                     description: Expected response to a valid request
                     headers:
@@ -3517,7 +2948,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PpData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PpData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -3605,7 +3036,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PpProfileData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PpProfileData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -3632,7 +3063,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SorData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SorData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -3657,7 +3088,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SorData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SorData
                 required: true
             responses:
                 "204":
@@ -3687,7 +3118,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CagAckData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/CagAckData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -3712,7 +3143,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CagAckData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/CagAckData
                 required: true
             responses:
                 "204":
@@ -3742,7 +3173,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/NssaiAckData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/NssaiAckData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -3767,7 +3198,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/NssaiAckData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/NssaiAckData
                 required: true
             responses:
                 "204":
@@ -3797,7 +3228,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/UpuData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/UpuData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -3822,7 +3253,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpuData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/UpuData
             responses:
                 "204":
                     description: Expected response to a valid request
@@ -3861,7 +3292,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/V2xSubscriptionData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/V2xSubscriptionData
                     description: OK
                     headers:
                         Cache-Control:
@@ -3890,7 +3321,7 @@ paths:
                   name: ueGroupId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarUeGroupId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeGroupId
                 - description: Supported Features
                   in: query
                   name: supported-features
@@ -3901,7 +3332,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/EeGroupProfileData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/EeGroupProfileData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -3917,7 +3348,7 @@ paths:
                   name: ueGroupId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarUeGroupId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeGroupId
                 - description: Supported Features
                   in: query
                   name: supported-features
@@ -3929,7 +3360,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/EeSubscription'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                                 type: array
                     description: Expected response to a valid request
                 default:
@@ -3945,19 +3376,19 @@ paths:
                   name: ueGroupId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarUeGroupId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeGroupId
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/EeSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/EeSubscription'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                     description: Expected response to a valid request
                     headers:
                         Location:
@@ -3978,7 +3409,7 @@ paths:
                   name: ueGroupId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarUeGroupId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeGroupId
                 - description: Unique ID of the subscription to remove
                   in: path
                   name: subsId
@@ -3991,7 +3422,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/EeSubscription'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                                 type: array
                     description: Expected response to a valid request
                 default:
@@ -4006,7 +3437,7 @@ paths:
                   name: ueGroupId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarUeGroupId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeGroupId
                 - in: path
                   name: subsId
                   required: true
@@ -4016,7 +3447,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/EeSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/EeSubscription
                 required: true
             responses:
                 "204":
@@ -4039,7 +3470,7 @@ paths:
                   name: ueGroupId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarUeGroupId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeGroupId
                 - description: Unique ID of the subscription to remove
                   in: path
                   name: subsId
@@ -4061,7 +3492,7 @@ paths:
                   name: ueGroupId
                   required: true
                   schema:
-                    $ref: '#/components/schemas/VarUeGroupId'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeGroupId
                 - in: path
                   name: subsId
                   required: true
@@ -4119,7 +3550,7 @@ paths:
                         application/json:
                             schema:
                                 additionalProperties:
-                                    $ref: TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupConfiguration
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/5GVnGroupConfiguration
                                 description: A map(list of key-value pairs) where ExtGroupId serves as key
                                 type: object
                     description: Expected response to a valid request
@@ -4136,13 +3567,13 @@ paths:
                   name: externalGroupId
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupConfiguration
+                                $ref: TS29571_CommonData.yaml#/components/schemas/5GVnGroupConfiguration
                     description: OK
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -4156,19 +3587,19 @@ paths:
                   name: externalGroupId
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupConfiguration
+                            $ref: TS29571_CommonData.yaml#/components/schemas/5GVnGroupConfiguration
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupConfiguration
+                                $ref: TS29571_CommonData.yaml#/components/schemas/5GVnGroupConfiguration
                     description: Expected response to a valid request
                 "403":
                     $ref: TS29571_CommonData.yaml#/components/responses/403
@@ -4184,7 +3615,7 @@ paths:
                   name: externalGroupId
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
             responses:
                 "204":
                     description: Expected response to a successful group removal
@@ -4200,7 +3631,7 @@ paths:
                   name: externalGroupId
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
                 - description: Features required to be supported by the target NF
                   in: query
                   name: supported-features
@@ -4254,7 +3685,7 @@ paths:
                         application/json:
                             schema:
                                 additionalProperties:
-                                    $ref: TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupConfiguration
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/5GVnGroupConfiguration
                                 description: A map (list of key-value pairs) where ExtGroupId serves as key
                                 type: object
                     description: Expected response to a valid request
@@ -4273,7 +3704,7 @@ paths:
                   name: ext-group-ids
                   schema:
                     items:
-                        $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -4288,7 +3719,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Pp5gVnGroupProfileData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/Pp5gVnGroupProfileData
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -4304,7 +3735,7 @@ paths:
                   name: ext-group-id
                   required: false
                   schema:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ExtGroupId
                 - description: Internal Group Identifier
                   in: query
                   name: int-group-id
@@ -4328,7 +3759,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: TS29503_Nudm_SDM.yaml#/components/schemas/GroupIdentifiers
+                                $ref: TS29571_CommonData.yaml#/components/schemas/GroupIdentifiers
                     description: Expected response to a valid request
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -4345,7 +3776,7 @@ paths:
                   name: shared-data-ids
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataIds
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SharedDataIds
                   style: form
                 - description: Supported Features
                   in: query
@@ -4358,7 +3789,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SharedData
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SharedData
                                 minItems: 1
                                 type: array
                                 x-go-type-skip-optional-pointer: true
@@ -4395,13 +3826,13 @@ paths:
                   name: sharedDataId
                   required: true
                   schema:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataId
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SharedDataId
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: TS29503_Nudm_SDM.yaml#/components/schemas/SharedData
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SharedData
                     description: Expected response to a valid request
                     headers:
                         Cache-Control:
@@ -4450,7 +3881,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/SubscriptionDataSubscriptions'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SubscriptionDataSubscriptions
                                 type: array
                     description: Expected response to a valid request
                 default:
@@ -4467,7 +3898,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/DataChangeNotify'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/DataChangeNotify
                                 required: true
                             responses:
                                 "204":
@@ -4477,14 +3908,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SubscriptionDataSubscriptions'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SubscriptionDataSubscriptions
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SubscriptionDataSubscriptions'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SubscriptionDataSubscriptions
                     description: Expected response to a valid request
                     headers:
                         Location:
@@ -4548,7 +3979,7 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: '#/components/schemas/SubscriptionDataSubscriptions'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SubscriptionDataSubscriptions
                                 type: array
                     description: Expected response to a valid request
                 default:

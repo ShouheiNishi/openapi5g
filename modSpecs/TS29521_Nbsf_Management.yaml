@@ -1,166 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        BindingLevel:
-            description: |
-                Possible values are - "NF_SET" - "NF_INSTANCE"
-            enum:
-                - NF_SET
-                - NF_INSTANCE
-            type: string
-        BindingResp:
-            additionalProperties: true
-            properties:
-                pcfSmFqdn:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                pcfSmIpEndPoints:
-                    description: IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        ExtProblemDetails:
-            allOf:
-                - $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                - $ref: '#/components/schemas/BindingResp'
-        ParameterCombination:
-            additionalProperties: true
-            properties:
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                snssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-            type: object
-        PcfBinding:
-            additionalProperties: true
-            properties:
-                addIpv6Prefixes:
-                    description: The additional IPv6 Address Prefixes of the served UE.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                addMacAddrs:
-                    description: The additional MAC Addresses of the served UE.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                bindLevel:
-                    $ref: '#/components/schemas/BindingLevel'
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                ipDomain:
-                    type: string
-                ipv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ipv4FrameRouteList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4AddrMask
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ipv6FrameRouteList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ipv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                macAddr48:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
-                paraCom:
-                    $ref: '#/components/schemas/ParameterCombination'
-                pcfDiamHost:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                pcfDiamRealm:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                pcfFqdn:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                pcfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                pcfIpEndPoints:
-                    description: IP end points of the PCF hosting the Npcf_PolicyAuthorization service.
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                pcfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                pcfSmFqdn:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                pcfSmIpEndPoints:
-                    description: IP end points of the PCF hosting the Npcf_SMPolicyControl service.
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                snssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                suppFeat:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - dnn
-                - snssai
-            type: object
-        PcfBindingPatch:
-            additionalProperties: true
-            properties:
-                addIpv6Prefixes:
-                    description: The additional IPv6 Address Prefixes of the served UE.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                    minItems: 1
-                    nullable: true
-                    type: array
-                addMacAddrs:
-                    description: The additional MAC Addresses of the served UE.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48
-                    minItems: 1
-                    nullable: true
-                    type: array
-                ipDomain:
-                    nullable: true
-                    type: string
-                ipv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4AddrRm
-                ipv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6PrefixRm
-                macAddr48:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MacAddr48Rm
-                pcfDiamHost:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                pcfDiamRealm:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                pcfFqdn:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                pcfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                pcfIpEndPoints:
-                    description: IP end points of the PCF hosting the Npcf_PolicyAuthorization service.
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -245,7 +85,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PcfBinding'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PcfBinding
                     description: The individual PCF session binding session binding information resource matching the query parameter(s) is returned.
                 "204":
                     description: There is no PCF session binding information matching the query parameter(s).
@@ -278,14 +118,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PcfBinding'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PcfBinding
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PcfBinding'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PcfBinding
                     description: The creation of an individual PCF session binding.
                     headers:
                         Location:
@@ -301,7 +141,7 @@ paths:
                     content:
                         application/problem+json:
                             schema:
-                                $ref: '#/components/schemas/ExtProblemDetails'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/BSF-ExtProblemDetails
                     description: The existing PCF binding information stored in the BSF for the indicated combination is returned.
                 "404":
                     $ref: TS29571_CommonData.yaml#/components/responses/404
@@ -371,7 +211,7 @@ paths:
                 content:
                     application/merge-patch+json:
                         schema:
-                            $ref: '#/components/schemas/PcfBindingPatch'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PcfBindingPatch
                 description: Parameters to update the existing session binding
                 required: true
             responses:
@@ -379,7 +219,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PcfBinding'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PcfBinding
                     description: OK (Successful update of the session binding)
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307

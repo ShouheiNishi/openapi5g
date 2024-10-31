@@ -1,81 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        AccessTech:
-            enum:
-                - NR
-                - EUTRAN_IN_WBS1_MODE_AND_NBS1_MODE
-                - EUTRAN_IN_NBS1_MODE_ONLY
-                - EUTRAN_IN_WBS1_MODE_ONLY
-                - UTRAN
-                - GSM_AND_ECGSM_IoT
-                - GSM_WITHOUT_ECGSM_IoT
-                - ECGSM_IoT_ONLY
-                - CDMA_1xRTT
-                - CDMA_HRPD
-                - GSM_COMPACT
-            type: string
-        AckInd:
-            type: boolean
-        CounterSor:
-            pattern: ^[A-Fa-f0-9]{4}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        SecuredPacket:
-            format: base64
-            type: string
-        SorInfo:
-            additionalProperties: true
-            properties:
-                ackInd:
-                    $ref: '#/components/schemas/AckInd'
-                steeringContainer:
-                    $ref: '#/components/schemas/SteeringContainer'
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - ackInd
-            type: object
-        SorMac:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        SorSecurityInfo:
-            additionalProperties: true
-            properties:
-                counterSor:
-                    $ref: '#/components/schemas/CounterSor'
-                sorMacIausf:
-                    $ref: '#/components/schemas/SorMac'
-                sorXmacIue:
-                    $ref: '#/components/schemas/SorMac'
-            required:
-                - sorMacIausf
-                - counterSor
-            type: object
-        SteeringContainer:
-            oneOf:
-                - items:
-                    $ref: '#/components/schemas/SteeringInfo'
-                  minItems: 1
-                  type: array
-                  x-go-type-skip-optional-pointer: true
-                - $ref: '#/components/schemas/SecuredPacket'
-        SteeringInfo:
-            additionalProperties: true
-            properties:
-                accessTechList:
-                    items:
-                        $ref: '#/components/schemas/AccessTech'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                plmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-            required:
-                - plmnId
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -109,14 +34,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SorInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AUSF-SorInfo
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SorSecurityInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SorSecurityInfo
                     description: SorSecurityInfo
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307

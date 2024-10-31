@@ -14,8 +14,8 @@
 
 package problem
 
-import "github.com/ShouheiNishi/openapi5g/commondata"
+import "github.com/ShouheiNishi/openapi5g/models"
 
-func NotImplemented() commondata.ProblemDetails {
+func NotImplemented() models.ProblemDetails {
 	return UnspecifiedNFFailure("Not implemented")
 }

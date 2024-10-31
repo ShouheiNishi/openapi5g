@@ -1,247 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        Pc5Capability:
-            description: |
-                Possible values are - LTE_PC5: This value is used to indicate that UE supports PC5 LTE RAT for V2X communication over PC5 reference point. - NR_PC5: This value is used to indicate that UE supports PC5 NR RAT for V2X communication over PC5 reference point. - LTE_NR_PC5: This value is used to indicate that UE supports both PC5 LTE and NR RAT for V2X communication over PC5 reference point..
-            enum:
-                - LTE_PC5
-                - NR_PC5
-                - LTE_NR_PC5
-            type: string
-        PolicyAssociation:
-            additionalProperties: true
-            properties:
-                n2Pc5Pol:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
-                pras:
-                    additionalProperties:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/PresenceInfo
-                    minProperties: 1
-                    type: object
-                request:
-                    $ref: '#/components/schemas/PolicyAssociationRequest'
-                suppFeat:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                triggers:
-                    description: Request Triggers that the PCF subscribes. Only values "LOC_CH" and "PRA_CH" are permitted.
-                    items:
-                        $ref: '#/components/schemas/RequestTrigger'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                uePolicy:
-                    $ref: '#/components/schemas/UePolicy'
-            required:
-                - suppFeat
-            type: object
-        PolicyAssociationReleaseCause:
-            description: |
-                Possible values are - UNSPECIFIED: This value is used for unspecified reasons. - UE_SUBSCRIPTION: This value is used to indicate that the policy association needs to be terminated because the subscription of UE has changed (e.g. was removed). - INSUFFICIENT_RES: This value is used to indicate that the server is overloaded and needs to abort the policy association.
-            enum:
-                - UNSPECIFIED
-                - UE_SUBSCRIPTION
-                - INSUFFICIENT_RES
-            type: string
-        PolicyAssociationRequest:
-            additionalProperties: true
-            properties:
-                accessType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                altNotifFqdns:
-                    description: Alternate or backup FQDN(s) where to send Notifications.
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                altNotifIpv4Addrs:
-                    description: Alternate or backup IPv4 Address(es) where to send Notifications.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                altNotifIpv6Addrs:
-                    description: Alternate or backup IPv6 Address(es) where to send Notifications.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                groupIds:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                hPcfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                notificationUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                pc5Capab:
-                    $ref: '#/components/schemas/Pc5Capability'
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                serviceName:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
-                servingNfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                servingPlmn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                suppFeat:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                timeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                uePolReq:
-                    $ref: '#/components/schemas/UePolicyRequest'
-                userLoc:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-            required:
-                - notificationUri
-                - suppFeat
-                - supi
-            type: object
-        PolicyAssociationUpdateRequest:
-            additionalProperties: true
-            properties:
-                altNotifFqdns:
-                    description: Alternate or backup FQDN(s) where to send Notifications.
-                    items:
-                        $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                altNotifIpv4Addrs:
-                    description: Alternate or backup IPv4 Address(es) where to send Notifications.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                altNotifIpv6Addrs:
-                    description: Alternate or backup IPv6 Address(es) where to send Notifications.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                connectState:
-                    $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/CmState
-                groupIds:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/GroupId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                notificationUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                plmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                praStatuses:
-                    additionalProperties:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/PresenceInfo
-                    description: Map of PRA status information.
-                    minProperties: 1
-                    type: object
-                servingNfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                triggers:
-                    description: Request Triggers that the NF service consumer observes.
-                    items:
-                        $ref: '#/components/schemas/RequestTrigger'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                uePolDelResult:
-                    $ref: '#/components/schemas/UePolicyDeliveryResult'
-                uePolReq:
-                    $ref: '#/components/schemas/UePolicyRequest'
-                uePolTransFailNotif:
-                    $ref: '#/components/schemas/UePolicyTransferFailureNotification'
-                userLoc:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-            type: object
-        PolicyUpdate:
-            additionalProperties: true
-            properties:
-                n2Pc5Pol:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
-                pras:
-                    additionalProperties:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/PresenceInfo
-                    description: Map of PRA information.
-                    minProperties: 1
-                    nullable: true
-                    type: object
-                resourceUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                triggers:
-                    description: Request Triggers that the PCF subscribes. Only values "LOC_CH" and "PRA_CH" are permitted.
-                    items:
-                        $ref: '#/components/schemas/RequestTrigger'
-                    minItems: 1
-                    nullable: true
-                    type: array
-                uePolicy:
-                    $ref: '#/components/schemas/UePolicy'
-            required:
-                - resourceUri
-            type: object
-        RequestTrigger:
-            description: |
-                Possible values are - LOC_CH: Location change (tracking area). The tracking area of the UE has changed. - PRA_CH: Change of UE presence in PRA. The AMF reports the current presence status of the UE in a Presence Reporting Area, and notifies that the UE enters/leaves the Presence Reporting Area. - UE_POLICY: A MANAGE UE POLICY COMPLETE message or a MANAGE UE POLICY COMMAND REJECT message, as defined in Annex D.5 of 3GPP TS 24.501 or a "UE POLICY PROVISIONING REQUEST" message, as defined in subclause 7.2.1.1 of 3GPP TS 24.587 , has been received by the AMF and is being forwarded. - PLMN_CH: PLMN change. the serving PLMN of UE has changed.  - CON_STATE_CH: Connectivity state change: the connectivity state of UE has changed.  - GROUP_ID_LIST_CHG: UE Internal Group Identifier(s) has changed. This event does not require a subscription
-            enum:
-                - LOC_CH
-                - PRA_CH
-                - UE_POLICY
-                - PLMN_CH
-                - CON_STATE_CH
-                - GROUP_ID_LIST_CHG
-            type: string
-        TerminationNotification:
-            additionalProperties: true
-            properties:
-                cause:
-                    $ref: '#/components/schemas/PolicyAssociationReleaseCause'
-                resourceUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-            required:
-                - resourceUri
-                - cause
-            type: object
-        UePolicy:
-            $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-        UePolicyDeliveryResult:
-            $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-        UePolicyRequest:
-            $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-        UePolicyTransferFailureNotification:
-            additionalProperties: true
-            properties:
-                cause:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferCause
-                ptis:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uinteger
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - cause
-                - ptis
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -272,7 +31,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/TerminationNotification'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/UEPolicy-TerminationNotification
                                 required: true
                             responses:
                                 "204":
@@ -310,7 +69,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/PolicyUpdate'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/UEPolicy-PolicyUpdate
                                 required: true
                             responses:
                                 "204":
@@ -346,14 +105,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PolicyAssociationRequest'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/UEPolicy-PolicyAssociationRequest
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PolicyAssociation'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/UEPolicy-PolicyAssociation
                     description: Created
                     headers:
                         Location:
@@ -401,7 +160,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PolicyAssociation'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/UEPolicy-PolicyAssociation
                     description: OK. Resource representation is returned
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -477,14 +236,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PolicyAssociationUpdateRequest'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/UEPolicy-PolicyAssociationUpdateRequest
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PolicyUpdate'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/UEPolicy-PolicyUpdate
                     description: OK. Updated policies are returned
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307

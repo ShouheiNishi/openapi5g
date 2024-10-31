@@ -1,62 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        AdditionInfoEnableUeReachability:
-            additionalProperties: true
-            properties:
-                maxWaitingTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-            type: object
-        EnableUeReachabilityReqData:
-            additionalProperties: true
-            properties:
-                extBufSupport:
-                    default: false
-                    type: boolean
-                oldGuami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                reachability:
-                    $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - reachability
-            type: object
-        EnableUeReachabilityRspData:
-            additionalProperties: true
-            properties:
-                reachability:
-                    $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - reachability
-            type: object
-        ProblemDetailsEnableUeReachability:
-            allOf:
-                - $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                - $ref: '#/components/schemas/AdditionInfoEnableUeReachability'
-        UeContextInfo:
-            additionalProperties: true
-            properties:
-                accessType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                lastActTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                supportVoPS:
-                    type: boolean
-                supportVoPSn3gpp:
-                    type: boolean
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        UeContextInfoClass:
-            enum:
-                - TADS
-            type: string
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -93,7 +37,7 @@ paths:
                   in: query
                   name: info-class
                   schema:
-                    $ref: '#/components/schemas/UeContextInfoClass'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/UeContextInfoClass
                 - description: Supported Features
                   in: query
                   name: supported-features
@@ -111,7 +55,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/UeContextInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/UeContextInfo
                     description: Requested UE Context Information returned
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -154,14 +98,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/EnableUeReachabilityReqData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/EnableUeReachabilityReqData
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/EnableUeReachabilityRspData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/EnableUeReachabilityRspData
                     description: UE has become reachable as desired
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -173,7 +117,7 @@ paths:
                     content:
                         application/problem+json:
                             schema:
-                                $ref: '#/components/schemas/ProblemDetailsEnableUeReachability'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetailsEnableUeReachability
                     description: Forbidden
                 "404":
                     $ref: TS29571_CommonData.yaml#/components/responses/404
@@ -193,7 +137,7 @@ paths:
                     content:
                         application/problem+json:
                             schema:
-                                $ref: '#/components/schemas/ProblemDetailsEnableUeReachability'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetailsEnableUeReachability
                     description: Gateway Timeout
                 default:
                     content:

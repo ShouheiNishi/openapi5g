@@ -12,10 +12,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/amf/communication"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef2 "github.com/ShouheiNishi/openapi5g/nrf/management"
-	externalRef3 "github.com/ShouheiNishi/openapi5g/udm/sdm"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -25,283 +22,119 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// NFProfile Information of an NF Instance discovered by the NRF
-type NFProfile struct {
-	// AmfInfo Information of an AMF NF Instance
-	AmfInfo     *externalRef2.AmfInfo            `json:"amfInfo,omitempty"`
-	AmfInfoList *map[string]externalRef2.AmfInfo `json:"amfInfoList,omitempty"`
-
-	// AusfInfo Information of an AUSF NF Instance
-	AusfInfo     *externalRef2.AusfInfo            `json:"ausfInfo,omitempty"`
-	AusfInfoList *map[string]externalRef2.AusfInfo `json:"ausfInfoList,omitempty"`
-
-	// BsfInfo Information of a BSF NF Instance
-	BsfInfo     *externalRef2.BsfInfo            `json:"bsfInfo,omitempty"`
-	BsfInfoList *map[string]externalRef2.BsfInfo `json:"bsfInfoList,omitempty"`
-	Capacity    *int                             `json:"capacity,omitempty"`
-
-	// ChfInfo Information of a CHF NF Instance
-	ChfInfo                          *externalRef2.ChfInfo                           `json:"chfInfo,omitempty"`
-	ChfInfoList                      *map[string]externalRef2.ChfInfo                `json:"chfInfoList,omitempty"`
-	CustomInfo                       *map[string]interface{}                         `json:"customInfo,omitempty"`
-	DefaultNotificationSubscriptions *[]externalRef2.DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
-
-	// Fqdn Fully Qualified Domain Name
-	Fqdn *externalRef2.Fqdn `json:"fqdn,omitempty"`
-
-	// GmlcInfo Information of a GMLC NF Instance
-	GmlcInfo      *externalRef2.GmlcInfo           `json:"gmlcInfo,omitempty"`
-	HssInfoList   *map[string]externalRef2.HssInfo `json:"hssInfoList,omitempty"`
-	Ipv4Addresses []externalRef1.Ipv4Addr          `json:"ipv4Addresses,omitempty"`
-	Ipv6Addresses []externalRef1.Ipv6Addr          `json:"ipv6Addresses,omitempty"`
-	LcHSupportInd *bool                            `json:"lcHSupportInd,omitempty"`
-
-	// LmfInfo Information of an LMF NF Instance
-	LmfInfo       *externalRef2.LmfInfo  `json:"lmfInfo,omitempty"`
-	Load          *int                   `json:"load,omitempty"`
-	LoadTimeStamp *externalRef1.DateTime `json:"loadTimeStamp,omitempty"`
-	Locality      *string                `json:"locality,omitempty"`
-
-	// NefInfo Information of an NEF NF Instance
-	NefInfo              *externalRef2.NefInfo     `json:"nefInfo,omitempty"`
-	NfInstanceId         externalRef1.NfInstanceId `json:"nfInstanceId"`
-	NfInstanceName       *string                   `json:"nfInstanceName,omitempty"`
-	NfServiceList        *map[string]NFService     `json:"nfServiceList,omitempty"`
-	NfServicePersistence *bool                     `json:"nfServicePersistence,omitempty"`
-	// Deprecated:
-	NfServices            []NFService                       `json:"nfServices,omitempty"`
-	NfSetIdList           []externalRef1.NfSetId            `json:"nfSetIdList,omitempty"`
-	NfSetRecoveryTimeList *map[string]externalRef1.DateTime `json:"nfSetRecoveryTimeList,omitempty"`
-
-	// NfStatus Status of a given NF Instance stored in NRF
-	NfStatus externalRef2.NFStatus `json:"nfStatus"`
-
-	// NfType NF types known to NRF
-	NfType  externalRef2.NFType `json:"nfType"`
-	NsiList []string            `json:"nsiList,omitempty"`
-
-	// NwdafInfo Information of a NWDAF NF Instance
-	NwdafInfo      *externalRef2.NwdafInfo `json:"nwdafInfo,omitempty"`
-	OlcHSupportInd *bool                   `json:"olcHSupportInd,omitempty"`
-
-	// PcfInfo Information of a PCF NF Instance
-	PcfInfo           *externalRef2.PcfInfo              `json:"pcfInfo,omitempty"`
-	PcfInfoList       *map[string]externalRef2.PcfInfo   `json:"pcfInfoList,omitempty"`
-	PcscfInfoList     *map[string]externalRef2.PcscfInfo `json:"pcscfInfoList,omitempty"`
-	PerPlmnSnssaiList []externalRef2.PlmnSnssai          `json:"perPlmnSnssaiList,omitempty"`
-	PlmnList          []externalRef1.PlmnId              `json:"plmnList,omitempty"`
-	Priority          *int                               `json:"priority,omitempty"`
-	RecoveryTime      *externalRef1.DateTime             `json:"recoveryTime,omitempty"`
-	SNssais           []externalRef1.ExtSnssai           `json:"sNssais,omitempty"`
-	ScpDomains        []string                           `json:"scpDomains,omitempty"`
-
-	// ScpInfo Information of an SCP Instance
-	ScpInfo                    *externalRef2.ScpInfo             `json:"scpInfo,omitempty"`
-	ServiceSetRecoveryTimeList *map[string]externalRef1.DateTime `json:"serviceSetRecoveryTimeList,omitempty"`
-	ServingScope               []string                          `json:"servingScope,omitempty"`
-
-	// SmfInfo Information of an SMF NF Instance
-	SmfInfo     *externalRef2.SmfInfo            `json:"smfInfo,omitempty"`
-	SmfInfoList *map[string]externalRef2.SmfInfo `json:"smfInfoList,omitempty"`
-	SnpnList    []externalRef1.PlmnIdNid         `json:"snpnList,omitempty"`
-
-	// UdmInfo Information of an UDM NF Instance
-	UdmInfo     *externalRef2.UdmInfo            `json:"udmInfo,omitempty"`
-	UdmInfoList *map[string]externalRef2.UdmInfo `json:"udmInfoList,omitempty"`
-
-	// UdrInfo Information of an UDR NF Instance
-	UdrInfo     *externalRef2.UdrInfo            `json:"udrInfo,omitempty"`
-	UdrInfoList *map[string]externalRef2.UdrInfo `json:"udrInfoList,omitempty"`
-
-	// UdsfInfo Information related to UDSF
-	UdsfInfo     *externalRef2.UdsfInfo            `json:"udsfInfo,omitempty"`
-	UdsfInfoList *map[string]externalRef2.UdsfInfo `json:"udsfInfoList,omitempty"`
-
-	// UpfInfo Information of an UPF NF Instance
-	UpfInfo              *externalRef2.UpfInfo            `json:"upfInfo,omitempty"`
-	UpfInfoList          *map[string]externalRef2.UpfInfo `json:"upfInfoList,omitempty"`
-	AdditionalProperties map[string]interface{}           `json:"-"`
-}
-
-// NFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance discovered by the NRF
-type NFService struct {
-	AllowedOperationsPerNfInstance   *map[string][]string                           `json:"allowedOperationsPerNfInstance,omitempty"`
-	AllowedOperationsPerNfType       *map[string][]string                           `json:"allowedOperationsPerNfType,omitempty"`
-	ApiPrefix                        *string                                        `json:"apiPrefix,omitempty"`
-	Capacity                         *int                                           `json:"capacity,omitempty"`
-	DefaultNotificationSubscriptions []externalRef2.DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
-
-	// Fqdn Fully Qualified Domain Name
-	Fqdn               *externalRef2.Fqdn            `json:"fqdn,omitempty"`
-	IpEndPoints        []externalRef2.IpEndPoint     `json:"ipEndPoints,omitempty"`
-	Load               *int                          `json:"load,omitempty"`
-	LoadTimeStamp      *externalRef1.DateTime        `json:"loadTimeStamp,omitempty"`
-	NfServiceSetIdList []externalRef1.NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
-
-	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF
-	NfServiceStatus   externalRef2.NFServiceStatus `json:"nfServiceStatus"`
-	Oauth2Required    *bool                        `json:"oauth2Required,omitempty"`
-	PerPlmnSnssaiList []externalRef2.PlmnSnssai    `json:"perPlmnSnssaiList,omitempty"`
-	Priority          *int                         `json:"priority,omitempty"`
-	RecoveryTime      *externalRef1.DateTime       `json:"recoveryTime,omitempty"`
-	SNssais           []externalRef1.ExtSnssai     `json:"sNssais,omitempty"`
-	Scheme            externalRef1.UriScheme       `json:"scheme"`
-	ServiceInstanceId string                       `json:"serviceInstanceId"`
-
-	// ServiceName Service names known to NRF
-	ServiceName                     externalRef2.ServiceName                         `json:"serviceName"`
-	SupportedFeatures               *externalRef1.SupportedFeatures                  `json:"supportedFeatures,omitempty"`
-	SupportedVendorSpecificFeatures *map[string][]externalRef2.VendorSpecificFeature `json:"supportedVendorSpecificFeatures,omitempty"`
-
-	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
-	VendorId             externalRef2.VendorId           `json:"vendorId,omitempty"`
-	Versions             []externalRef2.NFServiceVersion `json:"versions"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// PreferredSearch Contains information on whether the returned NFProfiles match the preferred query parameters
-type PreferredSearch struct {
-	OtherApiVersionsInd          *bool                  `json:"otherApiVersionsInd,omitempty"`
-	OtherLocalityInd             *bool                  `json:"otherLocalityInd,omitempty"`
-	PreferredApiVersionsMatchInd *bool                  `json:"preferredApiVersionsMatchInd,omitempty"`
-	PreferredFullPlmnMatchInd    *bool                  `json:"preferredFullPlmnMatchInd,omitempty"`
-	PreferredLocalityMatchInd    *bool                  `json:"preferredLocalityMatchInd,omitempty"`
-	PreferredTaiMatchInd         *bool                  `json:"preferredTaiMatchInd,omitempty"`
-	AdditionalProperties         map[string]interface{} `json:"-"`
-}
-
-// SearchResult Contains the list of NF Profiles returned in a Discovery response
-type SearchResult struct {
-	NfInstances          []NFProfile                     `json:"nfInstances"`
-	NrfSupportedFeatures *externalRef1.SupportedFeatures `json:"nrfSupportedFeatures,omitempty"`
-	NumNfInstComplete    *externalRef1.Uint32            `json:"numNfInstComplete,omitempty"`
-
-	// PreferredSearch Contains information on whether the returned NFProfiles match the preferred query parameters
-	PreferredSearch      *PreferredSearch       `json:"preferredSearch,omitempty"`
-	SearchId             *string                `json:"searchId,omitempty"`
-	ValidityPeriod       *int                   `json:"validityPeriod,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// StoredSearchResult Contains a complete search result (i.e. a number of discovered NF Instances), stored by NRF as a consequence of a prior search result
-type StoredSearchResult struct {
-	NfInstances          []NFProfile            `json:"nfInstances"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // SearchId defines model for searchId.
 type SearchId = string
 
 // N200 Contains a complete search result (i.e. a number of discovered NF Instances), stored by NRF as a consequence of a prior search result
-type N200 = StoredSearchResult
+type N200 = externalRef0.StoredSearchResult
 
 // SearchNFInstancesParams defines parameters for SearchNFInstances.
 type SearchNFInstancesParams struct {
 	// TargetNfType Type of the target NF
-	TargetNfType externalRef2.NFType `form:"target-nf-type" json:"target-nf-type"`
+	TargetNfType externalRef0.NFType `form:"target-nf-type" json:"target-nf-type"`
 
 	// RequesterNfType Type of the requester NF
-	RequesterNfType externalRef2.NFType `form:"requester-nf-type" json:"requester-nf-type"`
+	RequesterNfType externalRef0.NFType `form:"requester-nf-type" json:"requester-nf-type"`
 
 	// RequesterNfInstanceId NfInstanceId of the requester NF
-	RequesterNfInstanceId *externalRef1.NfInstanceId `form:"requester-nf-instance-id,omitempty" json:"requester-nf-instance-id,omitempty"`
+	RequesterNfInstanceId *externalRef0.NfInstanceId `form:"requester-nf-instance-id,omitempty" json:"requester-nf-instance-id,omitempty"`
 
 	// ServiceNames Names of the services offered by the NF
-	ServiceNames *[]externalRef2.ServiceName `form:"service-names,omitempty" json:"service-names,omitempty"`
+	ServiceNames *[]externalRef0.ServiceName `form:"service-names,omitempty" json:"service-names,omitempty"`
 
 	// RequesterNfInstanceFqdn FQDN of the requester NF
-	RequesterNfInstanceFqdn *externalRef2.Fqdn `form:"requester-nf-instance-fqdn,omitempty" json:"requester-nf-instance-fqdn,omitempty"`
+	RequesterNfInstanceFqdn *externalRef0.Fqdn `form:"requester-nf-instance-fqdn,omitempty" json:"requester-nf-instance-fqdn,omitempty"`
 
 	// TargetPlmnList Id of the PLMN of the target NF
-	TargetPlmnList *[]externalRef1.PlmnId `form:"target-plmn-list,omitempty" json:"target-plmn-list,omitempty"`
+	TargetPlmnList *[]externalRef0.PlmnId `form:"target-plmn-list,omitempty" json:"target-plmn-list,omitempty"`
 
 	// RequesterPlmnList Id of the PLMN where the NF issuing the Discovery request is located
-	RequesterPlmnList *[]externalRef1.PlmnId `form:"requester-plmn-list,omitempty" json:"requester-plmn-list,omitempty"`
+	RequesterPlmnList *[]externalRef0.PlmnId `form:"requester-plmn-list,omitempty" json:"requester-plmn-list,omitempty"`
 
 	// TargetNfInstanceId Identity of the NF instance being discovered
-	TargetNfInstanceId *externalRef1.NfInstanceId `form:"target-nf-instance-id,omitempty" json:"target-nf-instance-id,omitempty"`
+	TargetNfInstanceId *externalRef0.NfInstanceId `form:"target-nf-instance-id,omitempty" json:"target-nf-instance-id,omitempty"`
 
 	// TargetNfFqdn FQDN of the NF instance being discovered
-	TargetNfFqdn *externalRef2.Fqdn `form:"target-nf-fqdn,omitempty" json:"target-nf-fqdn,omitempty"`
+	TargetNfFqdn *externalRef0.Fqdn `form:"target-nf-fqdn,omitempty" json:"target-nf-fqdn,omitempty"`
 
 	// HnrfUri Uri of the home NRF
-	HnrfUri *externalRef1.Uri `form:"hnrf-uri,omitempty" json:"hnrf-uri,omitempty"`
+	HnrfUri *externalRef0.Uri `form:"hnrf-uri,omitempty" json:"hnrf-uri,omitempty"`
 
 	// Snssais Slice info of the target NF
-	Snssais *[]externalRef1.Snssai `form:"snssais,omitempty" json:"snssais,omitempty"`
+	Snssais *[]externalRef0.Snssai `form:"snssais,omitempty" json:"snssais,omitempty"`
 
 	// RequesterSnssais Slice info of the requester NF
-	RequesterSnssais *[]externalRef1.Snssai `form:"requester-snssais,omitempty" json:"requester-snssais,omitempty"`
+	RequesterSnssais *[]externalRef0.Snssai `form:"requester-snssais,omitempty" json:"requester-snssais,omitempty"`
 
 	// PlmnSpecificSnssaiList PLMN specific Slice info of the target NF
-	PlmnSpecificSnssaiList *[]externalRef2.PlmnSnssai `form:"plmn-specific-snssai-list,omitempty" json:"plmn-specific-snssai-list,omitempty"`
+	PlmnSpecificSnssaiList *[]externalRef0.PlmnSnssai `form:"plmn-specific-snssai-list,omitempty" json:"plmn-specific-snssai-list,omitempty"`
 
 	// RequesterPlmnSpecificSnssaiList PLMN-specific slice info of the NF issuing the Discovery request
-	RequesterPlmnSpecificSnssaiList *[]externalRef2.PlmnSnssai `form:"requester-plmn-specific-snssai-list,omitempty" json:"requester-plmn-specific-snssai-list,omitempty"`
+	RequesterPlmnSpecificSnssaiList *[]externalRef0.PlmnSnssai `form:"requester-plmn-specific-snssai-list,omitempty" json:"requester-plmn-specific-snssai-list,omitempty"`
 
 	// Dnn Dnn supported by the BSF, SMF or UPF
-	Dnn *externalRef1.Dnn `form:"dnn,omitempty" json:"dnn,omitempty"`
+	Dnn *externalRef0.Dnn `form:"dnn,omitempty" json:"dnn,omitempty"`
 
 	// NsiList NSI IDs that are served by the services being discovered
 	NsiList        *[]string `form:"nsi-list,omitempty" json:"nsi-list,omitempty"`
 	SmfServingArea *string   `form:"smf-serving-area,omitempty" json:"smf-serving-area,omitempty"`
 
 	// Tai Tracking Area Identity
-	Tai *externalRef1.Tai `form:"tai,omitempty" json:"tai,omitempty"`
+	Tai *externalRef0.Tai `form:"tai,omitempty" json:"tai,omitempty"`
 
 	// AmfRegionId AMF Region Identity
-	AmfRegionId *externalRef1.AmfRegionId `form:"amf-region-id,omitempty" json:"amf-region-id,omitempty"`
+	AmfRegionId *externalRef0.AmfRegionId `form:"amf-region-id,omitempty" json:"amf-region-id,omitempty"`
 
 	// AmfSetId AMF Set Identity
-	AmfSetId *externalRef1.AmfSetId `form:"amf-set-id,omitempty" json:"amf-set-id,omitempty"`
+	AmfSetId *externalRef0.AmfSetId `form:"amf-set-id,omitempty" json:"amf-set-id,omitempty"`
 
 	// Guami Guami used to search for an appropriate AMF
-	Guami *externalRef1.Guami `form:"guami,omitempty" json:"guami,omitempty"`
+	Guami *externalRef0.Guami `form:"guami,omitempty" json:"guami,omitempty"`
 
 	// Supi SUPI of the user
-	Supi *externalRef1.Supi `form:"supi,omitempty" json:"supi,omitempty"`
+	Supi *externalRef0.Supi `form:"supi,omitempty" json:"supi,omitempty"`
 
 	// UeIpv4Address IPv4 address of the UE
-	UeIpv4Address *externalRef1.Ipv4Addr `form:"ue-ipv4-address,omitempty" json:"ue-ipv4-address,omitempty"`
+	UeIpv4Address *externalRef0.Ipv4Addr `form:"ue-ipv4-address,omitempty" json:"ue-ipv4-address,omitempty"`
 
 	// IpDomain IP domain of the UE, which supported by BSF
 	IpDomain *string `form:"ip-domain,omitempty" json:"ip-domain,omitempty"`
 
 	// UeIpv6Prefix IPv6 prefix of the UE
-	UeIpv6Prefix *externalRef1.Ipv6Prefix `form:"ue-ipv6-prefix,omitempty" json:"ue-ipv6-prefix,omitempty"`
+	UeIpv6Prefix *externalRef0.Ipv6Prefix `form:"ue-ipv6-prefix,omitempty" json:"ue-ipv6-prefix,omitempty"`
 
 	// PgwInd Combined PGW-C and SMF or a standalone SMF
 	PgwInd *bool `form:"pgw-ind,omitempty" json:"pgw-ind,omitempty"`
 
 	// Pgw PGW FQDN of a combined PGW-C and SMF
-	Pgw *externalRef2.Fqdn `form:"pgw,omitempty" json:"pgw,omitempty"`
+	Pgw *externalRef0.Fqdn `form:"pgw,omitempty" json:"pgw,omitempty"`
 
 	// Gpsi GPSI of the user
-	Gpsi *externalRef1.Gpsi `form:"gpsi,omitempty" json:"gpsi,omitempty"`
+	Gpsi *externalRef0.Gpsi `form:"gpsi,omitempty" json:"gpsi,omitempty"`
 
 	// ExternalGroupIdentity external group identifier of the user
-	ExternalGroupIdentity *externalRef3.ExtGroupId `form:"external-group-identity,omitempty" json:"external-group-identity,omitempty"`
+	ExternalGroupIdentity *externalRef0.ExtGroupId `form:"external-group-identity,omitempty" json:"external-group-identity,omitempty"`
 
 	// InternalGroupIdentity internal group identifier of the user
-	InternalGroupIdentity *externalRef1.GroupId `form:"internal-group-identity,omitempty" json:"internal-group-identity,omitempty"`
+	InternalGroupIdentity *externalRef0.GroupId `form:"internal-group-identity,omitempty" json:"internal-group-identity,omitempty"`
 
 	// PfdData PFD data
-	PfdData *externalRef2.PfdData `form:"pfd-data,omitempty" json:"pfd-data,omitempty"`
+	PfdData *externalRef0.NRFPfdData `form:"pfd-data,omitempty" json:"pfd-data,omitempty"`
 
 	// DataSet data set supported by the NF
-	DataSet *externalRef2.DataSetId `form:"data-set,omitempty" json:"data-set,omitempty"`
+	DataSet *externalRef0.DataSetId `form:"data-set,omitempty" json:"data-set,omitempty"`
 
 	// RoutingIndicator routing indicator in SUCI
 	RoutingIndicator *string `form:"routing-indicator,omitempty" json:"routing-indicator,omitempty"`
 
 	// GroupIdList Group IDs of the NFs being discovered
-	GroupIdList *[]externalRef1.NfGroupId `form:"group-id-list,omitempty" json:"group-id-list,omitempty"`
+	GroupIdList *[]externalRef0.NfGroupId `form:"group-id-list,omitempty" json:"group-id-list,omitempty"`
 
 	// DnaiList Data network access identifiers of the NFs being discovered
-	DnaiList *[]externalRef1.Dnai `form:"dnai-list,omitempty" json:"dnai-list,omitempty"`
+	DnaiList *[]externalRef0.Dnai `form:"dnai-list,omitempty" json:"dnai-list,omitempty"`
 
 	// PduSessionTypes list of PDU Session Type required to be supported by the target NF
-	PduSessionTypes *[]externalRef1.PduSessionType `form:"pdu-session-types,omitempty" json:"pdu-session-types,omitempty"`
+	PduSessionTypes *[]externalRef0.PduSessionType `form:"pdu-session-types,omitempty" json:"pdu-session-types,omitempty"`
 
 	// EventIdList Analytics event(s) requested to be supported by the Nnwdaf_AnalyticsInfo service
 	EventIdList *[]string `form:"event-id-list,omitempty" json:"event-id-list,omitempty"`
@@ -310,28 +143,28 @@ type SearchNFInstancesParams struct {
 	NwdafEventList *[]string `form:"nwdaf-event-list,omitempty" json:"nwdaf-event-list,omitempty"`
 
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef1.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// UpfIwkEpsInd UPF supporting interworking with EPS or not
 	UpfIwkEpsInd *bool `form:"upf-iwk-eps-ind,omitempty" json:"upf-iwk-eps-ind,omitempty"`
 
 	// ChfSupportedPlmn PLMN ID supported by a CHF
-	ChfSupportedPlmn *externalRef1.PlmnId `form:"chf-supported-plmn,omitempty" json:"chf-supported-plmn,omitempty"`
+	ChfSupportedPlmn *externalRef0.PlmnId `form:"chf-supported-plmn,omitempty" json:"chf-supported-plmn,omitempty"`
 
 	// PreferredLocality preferred target NF location
 	PreferredLocality *string `form:"preferred-locality,omitempty" json:"preferred-locality,omitempty"`
 
 	// AccessType AccessType supported by the target NF
-	AccessType *externalRef1.AccessType `form:"access-type,omitempty" json:"access-type,omitempty"`
+	AccessType *externalRef0.AccessType `form:"access-type,omitempty" json:"access-type,omitempty"`
 
 	// Limit Maximum number of NFProfiles to return in the response
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
 
 	// RequiredFeatures Features required to be supported by the target NF
-	RequiredFeatures *[]externalRef1.SupportedFeatures `form:"required-features,omitempty" json:"required-features,omitempty"`
+	RequiredFeatures *[]externalRef0.SupportedFeatures `form:"required-features,omitempty" json:"required-features,omitempty"`
 
 	// ComplexQuery the complex query condition expression
-	ComplexQuery *externalRef1.ComplexQuery `form:"complex-query,omitempty" json:"complex-query,omitempty"`
+	ComplexQuery *externalRef0.ComplexQuery `form:"complex-query,omitempty" json:"complex-query,omitempty"`
 
 	// MaxPayloadSize Maximum payload size of the response expressed in kilo octets
 	MaxPayloadSize *int `form:"max-payload-size,omitempty" json:"max-payload-size,omitempty"`
@@ -340,7 +173,7 @@ type SearchNFInstancesParams struct {
 	MaxPayloadSizeExt *int `form:"max-payload-size-ext,omitempty" json:"max-payload-size-ext,omitempty"`
 
 	// AtsssCapability ATSSS Capability
-	AtsssCapability *externalRef1.AtsssCapability `form:"atsss-capability,omitempty" json:"atsss-capability,omitempty"`
+	AtsssCapability *externalRef0.AtsssCapability `form:"atsss-capability,omitempty" json:"atsss-capability,omitempty"`
 
 	// UpfUeIpAddrInd UPF supporting allocating UE IP addresses/prefixes
 	UpfUeIpAddrInd *bool `form:"upf-ue-ip-addr-ind,omitempty" json:"upf-ue-ip-addr-ind,omitempty"`
@@ -352,46 +185,46 @@ type SearchNFInstancesParams struct {
 	LmfId *string `form:"lmf-id,omitempty" json:"lmf-id,omitempty"`
 
 	// AnNodeType Requested AN node type served by the NF
-	AnNodeType *externalRef2.AnNodeType `form:"an-node-type,omitempty" json:"an-node-type,omitempty"`
+	AnNodeType *externalRef0.AnNodeType `form:"an-node-type,omitempty" json:"an-node-type,omitempty"`
 
 	// RatType Requested RAT type served by the NF
-	RatType *externalRef1.RatType `form:"rat-type,omitempty" json:"rat-type,omitempty"`
+	RatType *externalRef0.RatType `form:"rat-type,omitempty" json:"rat-type,omitempty"`
 
 	// PreferredTai preferred Tracking Area Identity
-	PreferredTai *externalRef1.Tai `form:"preferred-tai,omitempty" json:"preferred-tai,omitempty"`
+	PreferredTai *externalRef0.Tai `form:"preferred-tai,omitempty" json:"preferred-tai,omitempty"`
 
 	// PreferredNfInstances preferred NF Instances
-	PreferredNfInstances *[]externalRef1.NfInstanceId `form:"preferred-nf-instances,omitempty" json:"preferred-nf-instances,omitempty"`
+	PreferredNfInstances *[]externalRef0.NfInstanceId `form:"preferred-nf-instances,omitempty" json:"preferred-nf-instances,omitempty"`
 
 	// TargetSnpn Target SNPN Identity
-	TargetSnpn *externalRef1.PlmnIdNid `form:"target-snpn,omitempty" json:"target-snpn,omitempty"`
+	TargetSnpn *externalRef0.PlmnIdNid `form:"target-snpn,omitempty" json:"target-snpn,omitempty"`
 
 	// RequesterSnpnList SNPN ID(s) of the NF instance issuing the Discovery request
-	RequesterSnpnList *[]externalRef1.PlmnIdNid `form:"requester-snpn-list,omitempty" json:"requester-snpn-list,omitempty"`
+	RequesterSnpnList *[]externalRef0.PlmnIdNid `form:"requester-snpn-list,omitempty" json:"requester-snpn-list,omitempty"`
 
 	// AfEeData NEF exposured by the AF
-	AfEeData *externalRef2.AfEventExposureData `form:"af-ee-data,omitempty" json:"af-ee-data,omitempty"`
+	AfEeData *externalRef0.AfEventExposureData `form:"af-ee-data,omitempty" json:"af-ee-data,omitempty"`
 
 	// WAgfInfo UPF collocated with W-AGF
-	WAgfInfo *externalRef2.WAgfInfo `form:"w-agf-info,omitempty" json:"w-agf-info,omitempty"`
+	WAgfInfo *externalRef0.WAgfInfo `form:"w-agf-info,omitempty" json:"w-agf-info,omitempty"`
 
 	// TngfInfo UPF collocated with TNGF
-	TngfInfo *externalRef2.TngfInfo `form:"tngf-info,omitempty" json:"tngf-info,omitempty"`
+	TngfInfo *externalRef0.TngfInfo `form:"tngf-info,omitempty" json:"tngf-info,omitempty"`
 
 	// TwifInfo UPF collocated with TWIF
-	TwifInfo *externalRef2.TwifInfo `form:"twif-info,omitempty" json:"twif-info,omitempty"`
+	TwifInfo *externalRef0.TwifInfo `form:"twif-info,omitempty" json:"twif-info,omitempty"`
 
 	// TargetNfSetId Target NF Set ID
-	TargetNfSetId *externalRef1.NfSetId `form:"target-nf-set-id,omitempty" json:"target-nf-set-id,omitempty"`
+	TargetNfSetId *externalRef0.NfSetId `form:"target-nf-set-id,omitempty" json:"target-nf-set-id,omitempty"`
 
 	// TargetNfServiceSetId Target NF Service Set ID
-	TargetNfServiceSetId *externalRef1.NfServiceSetId `form:"target-nf-service-set-id,omitempty" json:"target-nf-service-set-id,omitempty"`
+	TargetNfServiceSetId *externalRef0.NfServiceSetId `form:"target-nf-service-set-id,omitempty" json:"target-nf-service-set-id,omitempty"`
 
 	// NefId NEF ID
-	NefId *externalRef2.NefId `form:"nef-id,omitempty" json:"nef-id,omitempty"`
+	NefId *externalRef0.NefId `form:"nef-id,omitempty" json:"nef-id,omitempty"`
 
 	// NotificationType Notification Type
-	NotificationType *externalRef2.NotificationType `form:"notification-type,omitempty" json:"notification-type,omitempty"`
+	NotificationType *externalRef0.NotificationType `form:"notification-type,omitempty" json:"notification-type,omitempty"`
 
 	// N1MsgClass N1 Message Class
 	N1MsgClass *externalRef0.N1MessageClass `form:"n1-msg-class,omitempty" json:"n1-msg-class,omitempty"`
@@ -433,19 +266,19 @@ type SearchNFInstancesParams struct {
 	ScpDomainList *[]string `form:"scp-domain-list,omitempty" json:"scp-domain-list,omitempty"`
 
 	// AddressDomain Address domain reachable through the SCP
-	AddressDomain *externalRef2.Fqdn `form:"address-domain,omitempty" json:"address-domain,omitempty"`
+	AddressDomain *externalRef0.Fqdn `form:"address-domain,omitempty" json:"address-domain,omitempty"`
 
 	// Ipv4Addr IPv4 address reachable through the SCP
-	Ipv4Addr *externalRef1.Ipv4Addr `form:"ipv4-addr,omitempty" json:"ipv4-addr,omitempty"`
+	Ipv4Addr *externalRef0.Ipv4Addr `form:"ipv4-addr,omitempty" json:"ipv4-addr,omitempty"`
 
 	// Ipv6Prefix IPv6 prefix reachable through the SCP
-	Ipv6Prefix *externalRef1.Ipv6Prefix `form:"ipv6-prefix,omitempty" json:"ipv6-prefix,omitempty"`
+	Ipv6Prefix *externalRef0.Ipv6Prefix `form:"ipv6-prefix,omitempty" json:"ipv6-prefix,omitempty"`
 
 	// ServedNfSetId NF Set ID served by the SCP
-	ServedNfSetId *externalRef1.NfSetId `form:"served-nf-set-id,omitempty" json:"served-nf-set-id,omitempty"`
+	ServedNfSetId *externalRef0.NfSetId `form:"served-nf-set-id,omitempty" json:"served-nf-set-id,omitempty"`
 
 	// RemotePlmnId Id of the PLMN reachable through the SCP
-	RemotePlmnId *externalRef1.PlmnId `form:"remote-plmn-id,omitempty" json:"remote-plmn-id,omitempty"`
+	RemotePlmnId *externalRef0.PlmnId `form:"remote-plmn-id,omitempty" json:"remote-plmn-id,omitempty"`
 
 	// DataForwarding UPF Instance(s) configured for data forwarding are requested
 	DataForwarding *bool `form:"data-forwarding,omitempty" json:"data-forwarding,omitempty"`
@@ -454,7 +287,7 @@ type SearchNFInstancesParams struct {
 	PreferredFullPlmn *bool `form:"preferred-full-plmn,omitempty" json:"preferred-full-plmn,omitempty"`
 
 	// RequesterFeatures Features supported by the NF Service Consumer that is invoking the Nnrf_NFDiscovery service
-	RequesterFeatures *externalRef1.SupportedFeatures `form:"requester-features,omitempty" json:"requester-features,omitempty"`
+	RequesterFeatures *externalRef0.SupportedFeatures `form:"requester-features,omitempty" json:"requester-features,omitempty"`
 
 	// RealmId realm-id to search for an appropriate UDSF
 	RealmId *string `form:"realm-id,omitempty" json:"realm-id,omitempty"`
@@ -485,1646 +318,6 @@ type RetrieveStoredSearchParams struct {
 type RetrieveCompleteSearchParams struct {
 	// AcceptEncoding Accept-Encoding, described in IETF RFC 7231
 	AcceptEncoding *string `json:"Accept-Encoding,omitempty"`
-}
-
-// Getter for additional properties for NFProfile. Returns the specified
-// element and whether it was found
-func (a NFProfile) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NFProfile
-func (a *NFProfile) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NFProfile to handle AdditionalProperties
-func (a *NFProfile) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfInfo"]; found {
-		err = json.Unmarshal(raw, &a.AmfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfInfo': %w", err)
-		}
-		delete(object, "amfInfo")
-	}
-
-	if raw, found := object["amfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.AmfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfInfoList': %w", err)
-		}
-		delete(object, "amfInfoList")
-	}
-
-	if raw, found := object["ausfInfo"]; found {
-		err = json.Unmarshal(raw, &a.AusfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'ausfInfo': %w", err)
-		}
-		delete(object, "ausfInfo")
-	}
-
-	if raw, found := object["ausfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.AusfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'ausfInfoList': %w", err)
-		}
-		delete(object, "ausfInfoList")
-	}
-
-	if raw, found := object["bsfInfo"]; found {
-		err = json.Unmarshal(raw, &a.BsfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'bsfInfo': %w", err)
-		}
-		delete(object, "bsfInfo")
-	}
-
-	if raw, found := object["bsfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.BsfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'bsfInfoList': %w", err)
-		}
-		delete(object, "bsfInfoList")
-	}
-
-	if raw, found := object["capacity"]; found {
-		err = json.Unmarshal(raw, &a.Capacity)
-		if err != nil {
-			return fmt.Errorf("error reading 'capacity': %w", err)
-		}
-		delete(object, "capacity")
-	}
-
-	if raw, found := object["chfInfo"]; found {
-		err = json.Unmarshal(raw, &a.ChfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'chfInfo': %w", err)
-		}
-		delete(object, "chfInfo")
-	}
-
-	if raw, found := object["chfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.ChfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'chfInfoList': %w", err)
-		}
-		delete(object, "chfInfoList")
-	}
-
-	if raw, found := object["customInfo"]; found {
-		err = json.Unmarshal(raw, &a.CustomInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'customInfo': %w", err)
-		}
-		delete(object, "customInfo")
-	}
-
-	if raw, found := object["defaultNotificationSubscriptions"]; found {
-		err = json.Unmarshal(raw, &a.DefaultNotificationSubscriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'defaultNotificationSubscriptions': %w", err)
-		}
-		delete(object, "defaultNotificationSubscriptions")
-	}
-
-	if raw, found := object["fqdn"]; found {
-		err = json.Unmarshal(raw, &a.Fqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'fqdn': %w", err)
-		}
-		delete(object, "fqdn")
-	}
-
-	if raw, found := object["gmlcInfo"]; found {
-		err = json.Unmarshal(raw, &a.GmlcInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'gmlcInfo': %w", err)
-		}
-		delete(object, "gmlcInfo")
-	}
-
-	if raw, found := object["hssInfoList"]; found {
-		err = json.Unmarshal(raw, &a.HssInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'hssInfoList': %w", err)
-		}
-		delete(object, "hssInfoList")
-	}
-
-	if raw, found := object["ipv4Addresses"]; found {
-		err = json.Unmarshal(raw, &a.Ipv4Addresses)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv4Addresses': %w", err)
-		}
-		delete(object, "ipv4Addresses")
-	}
-
-	if raw, found := object["ipv6Addresses"]; found {
-		err = json.Unmarshal(raw, &a.Ipv6Addresses)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv6Addresses': %w", err)
-		}
-		delete(object, "ipv6Addresses")
-	}
-
-	if raw, found := object["lcHSupportInd"]; found {
-		err = json.Unmarshal(raw, &a.LcHSupportInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'lcHSupportInd': %w", err)
-		}
-		delete(object, "lcHSupportInd")
-	}
-
-	if raw, found := object["lmfInfo"]; found {
-		err = json.Unmarshal(raw, &a.LmfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'lmfInfo': %w", err)
-		}
-		delete(object, "lmfInfo")
-	}
-
-	if raw, found := object["load"]; found {
-		err = json.Unmarshal(raw, &a.Load)
-		if err != nil {
-			return fmt.Errorf("error reading 'load': %w", err)
-		}
-		delete(object, "load")
-	}
-
-	if raw, found := object["loadTimeStamp"]; found {
-		err = json.Unmarshal(raw, &a.LoadTimeStamp)
-		if err != nil {
-			return fmt.Errorf("error reading 'loadTimeStamp': %w", err)
-		}
-		delete(object, "loadTimeStamp")
-	}
-
-	if raw, found := object["locality"]; found {
-		err = json.Unmarshal(raw, &a.Locality)
-		if err != nil {
-			return fmt.Errorf("error reading 'locality': %w", err)
-		}
-		delete(object, "locality")
-	}
-
-	if raw, found := object["nefInfo"]; found {
-		err = json.Unmarshal(raw, &a.NefInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'nefInfo': %w", err)
-		}
-		delete(object, "nefInfo")
-	}
-
-	if raw, found := object["nfInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.NfInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfInstanceId': %w", err)
-		}
-		delete(object, "nfInstanceId")
-	}
-
-	if raw, found := object["nfInstanceName"]; found {
-		err = json.Unmarshal(raw, &a.NfInstanceName)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfInstanceName': %w", err)
-		}
-		delete(object, "nfInstanceName")
-	}
-
-	if raw, found := object["nfServiceList"]; found {
-		err = json.Unmarshal(raw, &a.NfServiceList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfServiceList': %w", err)
-		}
-		delete(object, "nfServiceList")
-	}
-
-	if raw, found := object["nfServicePersistence"]; found {
-		err = json.Unmarshal(raw, &a.NfServicePersistence)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfServicePersistence': %w", err)
-		}
-		delete(object, "nfServicePersistence")
-	}
-
-	if raw, found := object["nfServices"]; found {
-		err = json.Unmarshal(raw, &a.NfServices)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfServices': %w", err)
-		}
-		delete(object, "nfServices")
-	}
-
-	if raw, found := object["nfSetIdList"]; found {
-		err = json.Unmarshal(raw, &a.NfSetIdList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfSetIdList': %w", err)
-		}
-		delete(object, "nfSetIdList")
-	}
-
-	if raw, found := object["nfSetRecoveryTimeList"]; found {
-		err = json.Unmarshal(raw, &a.NfSetRecoveryTimeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfSetRecoveryTimeList': %w", err)
-		}
-		delete(object, "nfSetRecoveryTimeList")
-	}
-
-	if raw, found := object["nfStatus"]; found {
-		err = json.Unmarshal(raw, &a.NfStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfStatus': %w", err)
-		}
-		delete(object, "nfStatus")
-	}
-
-	if raw, found := object["nfType"]; found {
-		err = json.Unmarshal(raw, &a.NfType)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfType': %w", err)
-		}
-		delete(object, "nfType")
-	}
-
-	if raw, found := object["nsiList"]; found {
-		err = json.Unmarshal(raw, &a.NsiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nsiList': %w", err)
-		}
-		delete(object, "nsiList")
-	}
-
-	if raw, found := object["nwdafInfo"]; found {
-		err = json.Unmarshal(raw, &a.NwdafInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'nwdafInfo': %w", err)
-		}
-		delete(object, "nwdafInfo")
-	}
-
-	if raw, found := object["olcHSupportInd"]; found {
-		err = json.Unmarshal(raw, &a.OlcHSupportInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'olcHSupportInd': %w", err)
-		}
-		delete(object, "olcHSupportInd")
-	}
-
-	if raw, found := object["pcfInfo"]; found {
-		err = json.Unmarshal(raw, &a.PcfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfInfo': %w", err)
-		}
-		delete(object, "pcfInfo")
-	}
-
-	if raw, found := object["pcfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.PcfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcfInfoList': %w", err)
-		}
-		delete(object, "pcfInfoList")
-	}
-
-	if raw, found := object["pcscfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.PcscfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'pcscfInfoList': %w", err)
-		}
-		delete(object, "pcscfInfoList")
-	}
-
-	if raw, found := object["perPlmnSnssaiList"]; found {
-		err = json.Unmarshal(raw, &a.PerPlmnSnssaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'perPlmnSnssaiList': %w", err)
-		}
-		delete(object, "perPlmnSnssaiList")
-	}
-
-	if raw, found := object["plmnList"]; found {
-		err = json.Unmarshal(raw, &a.PlmnList)
-		if err != nil {
-			return fmt.Errorf("error reading 'plmnList': %w", err)
-		}
-		delete(object, "plmnList")
-	}
-
-	if raw, found := object["priority"]; found {
-		err = json.Unmarshal(raw, &a.Priority)
-		if err != nil {
-			return fmt.Errorf("error reading 'priority': %w", err)
-		}
-		delete(object, "priority")
-	}
-
-	if raw, found := object["recoveryTime"]; found {
-		err = json.Unmarshal(raw, &a.RecoveryTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'recoveryTime': %w", err)
-		}
-		delete(object, "recoveryTime")
-	}
-
-	if raw, found := object["sNssais"]; found {
-		err = json.Unmarshal(raw, &a.SNssais)
-		if err != nil {
-			return fmt.Errorf("error reading 'sNssais': %w", err)
-		}
-		delete(object, "sNssais")
-	}
-
-	if raw, found := object["scpDomains"]; found {
-		err = json.Unmarshal(raw, &a.ScpDomains)
-		if err != nil {
-			return fmt.Errorf("error reading 'scpDomains': %w", err)
-		}
-		delete(object, "scpDomains")
-	}
-
-	if raw, found := object["scpInfo"]; found {
-		err = json.Unmarshal(raw, &a.ScpInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'scpInfo': %w", err)
-		}
-		delete(object, "scpInfo")
-	}
-
-	if raw, found := object["serviceSetRecoveryTimeList"]; found {
-		err = json.Unmarshal(raw, &a.ServiceSetRecoveryTimeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceSetRecoveryTimeList': %w", err)
-		}
-		delete(object, "serviceSetRecoveryTimeList")
-	}
-
-	if raw, found := object["servingScope"]; found {
-		err = json.Unmarshal(raw, &a.ServingScope)
-		if err != nil {
-			return fmt.Errorf("error reading 'servingScope': %w", err)
-		}
-		delete(object, "servingScope")
-	}
-
-	if raw, found := object["smfInfo"]; found {
-		err = json.Unmarshal(raw, &a.SmfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfInfo': %w", err)
-		}
-		delete(object, "smfInfo")
-	}
-
-	if raw, found := object["smfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.SmfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'smfInfoList': %w", err)
-		}
-		delete(object, "smfInfoList")
-	}
-
-	if raw, found := object["snpnList"]; found {
-		err = json.Unmarshal(raw, &a.SnpnList)
-		if err != nil {
-			return fmt.Errorf("error reading 'snpnList': %w", err)
-		}
-		delete(object, "snpnList")
-	}
-
-	if raw, found := object["udmInfo"]; found {
-		err = json.Unmarshal(raw, &a.UdmInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'udmInfo': %w", err)
-		}
-		delete(object, "udmInfo")
-	}
-
-	if raw, found := object["udmInfoList"]; found {
-		err = json.Unmarshal(raw, &a.UdmInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'udmInfoList': %w", err)
-		}
-		delete(object, "udmInfoList")
-	}
-
-	if raw, found := object["udrInfo"]; found {
-		err = json.Unmarshal(raw, &a.UdrInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'udrInfo': %w", err)
-		}
-		delete(object, "udrInfo")
-	}
-
-	if raw, found := object["udrInfoList"]; found {
-		err = json.Unmarshal(raw, &a.UdrInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'udrInfoList': %w", err)
-		}
-		delete(object, "udrInfoList")
-	}
-
-	if raw, found := object["udsfInfo"]; found {
-		err = json.Unmarshal(raw, &a.UdsfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'udsfInfo': %w", err)
-		}
-		delete(object, "udsfInfo")
-	}
-
-	if raw, found := object["udsfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.UdsfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'udsfInfoList': %w", err)
-		}
-		delete(object, "udsfInfoList")
-	}
-
-	if raw, found := object["upfInfo"]; found {
-		err = json.Unmarshal(raw, &a.UpfInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'upfInfo': %w", err)
-		}
-		delete(object, "upfInfo")
-	}
-
-	if raw, found := object["upfInfoList"]; found {
-		err = json.Unmarshal(raw, &a.UpfInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'upfInfoList': %w", err)
-		}
-		delete(object, "upfInfoList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NFProfile to handle AdditionalProperties
-func (a NFProfile) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AmfInfo != nil {
-		object["amfInfo"], err = json.Marshal(a.AmfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfInfo': %w", err)
-		}
-	}
-
-	if a.AmfInfoList != nil {
-		object["amfInfoList"], err = json.Marshal(a.AmfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfInfoList': %w", err)
-		}
-	}
-
-	if a.AusfInfo != nil {
-		object["ausfInfo"], err = json.Marshal(a.AusfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ausfInfo': %w", err)
-		}
-	}
-
-	if a.AusfInfoList != nil {
-		object["ausfInfoList"], err = json.Marshal(a.AusfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ausfInfoList': %w", err)
-		}
-	}
-
-	if a.BsfInfo != nil {
-		object["bsfInfo"], err = json.Marshal(a.BsfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'bsfInfo': %w", err)
-		}
-	}
-
-	if a.BsfInfoList != nil {
-		object["bsfInfoList"], err = json.Marshal(a.BsfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'bsfInfoList': %w", err)
-		}
-	}
-
-	if a.Capacity != nil {
-		object["capacity"], err = json.Marshal(a.Capacity)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'capacity': %w", err)
-		}
-	}
-
-	if a.ChfInfo != nil {
-		object["chfInfo"], err = json.Marshal(a.ChfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'chfInfo': %w", err)
-		}
-	}
-
-	if a.ChfInfoList != nil {
-		object["chfInfoList"], err = json.Marshal(a.ChfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'chfInfoList': %w", err)
-		}
-	}
-
-	if a.CustomInfo != nil {
-		object["customInfo"], err = json.Marshal(a.CustomInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'customInfo': %w", err)
-		}
-	}
-
-	if a.DefaultNotificationSubscriptions != nil {
-		object["defaultNotificationSubscriptions"], err = json.Marshal(a.DefaultNotificationSubscriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'defaultNotificationSubscriptions': %w", err)
-		}
-	}
-
-	if a.Fqdn != nil {
-		object["fqdn"], err = json.Marshal(a.Fqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'fqdn': %w", err)
-		}
-	}
-
-	if a.GmlcInfo != nil {
-		object["gmlcInfo"], err = json.Marshal(a.GmlcInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gmlcInfo': %w", err)
-		}
-	}
-
-	if a.HssInfoList != nil {
-		object["hssInfoList"], err = json.Marshal(a.HssInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'hssInfoList': %w", err)
-		}
-	}
-
-	if len(a.Ipv4Addresses) != 0 {
-		object["ipv4Addresses"], err = json.Marshal(a.Ipv4Addresses)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv4Addresses': %w", err)
-		}
-	}
-
-	if len(a.Ipv6Addresses) != 0 {
-		object["ipv6Addresses"], err = json.Marshal(a.Ipv6Addresses)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv6Addresses': %w", err)
-		}
-	}
-
-	if a.LcHSupportInd != nil {
-		object["lcHSupportInd"], err = json.Marshal(a.LcHSupportInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lcHSupportInd': %w", err)
-		}
-	}
-
-	if a.LmfInfo != nil {
-		object["lmfInfo"], err = json.Marshal(a.LmfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lmfInfo': %w", err)
-		}
-	}
-
-	if a.Load != nil {
-		object["load"], err = json.Marshal(a.Load)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'load': %w", err)
-		}
-	}
-
-	if a.LoadTimeStamp != nil {
-		object["loadTimeStamp"], err = json.Marshal(a.LoadTimeStamp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'loadTimeStamp': %w", err)
-		}
-	}
-
-	if a.Locality != nil {
-		object["locality"], err = json.Marshal(a.Locality)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'locality': %w", err)
-		}
-	}
-
-	if a.NefInfo != nil {
-		object["nefInfo"], err = json.Marshal(a.NefInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nefInfo': %w", err)
-		}
-	}
-
-	object["nfInstanceId"], err = json.Marshal(a.NfInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfInstanceId': %w", err)
-	}
-
-	if a.NfInstanceName != nil {
-		object["nfInstanceName"], err = json.Marshal(a.NfInstanceName)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfInstanceName': %w", err)
-		}
-	}
-
-	if a.NfServiceList != nil {
-		object["nfServiceList"], err = json.Marshal(a.NfServiceList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfServiceList': %w", err)
-		}
-	}
-
-	if a.NfServicePersistence != nil {
-		object["nfServicePersistence"], err = json.Marshal(a.NfServicePersistence)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfServicePersistence': %w", err)
-		}
-	}
-
-	if len(a.NfServices) != 0 {
-		object["nfServices"], err = json.Marshal(a.NfServices)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfServices': %w", err)
-		}
-	}
-
-	if len(a.NfSetIdList) != 0 {
-		object["nfSetIdList"], err = json.Marshal(a.NfSetIdList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfSetIdList': %w", err)
-		}
-	}
-
-	if a.NfSetRecoveryTimeList != nil {
-		object["nfSetRecoveryTimeList"], err = json.Marshal(a.NfSetRecoveryTimeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfSetRecoveryTimeList': %w", err)
-		}
-	}
-
-	object["nfStatus"], err = json.Marshal(a.NfStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfStatus': %w", err)
-	}
-
-	object["nfType"], err = json.Marshal(a.NfType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfType': %w", err)
-	}
-
-	if len(a.NsiList) != 0 {
-		object["nsiList"], err = json.Marshal(a.NsiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nsiList': %w", err)
-		}
-	}
-
-	if a.NwdafInfo != nil {
-		object["nwdafInfo"], err = json.Marshal(a.NwdafInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nwdafInfo': %w", err)
-		}
-	}
-
-	if a.OlcHSupportInd != nil {
-		object["olcHSupportInd"], err = json.Marshal(a.OlcHSupportInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'olcHSupportInd': %w", err)
-		}
-	}
-
-	if a.PcfInfo != nil {
-		object["pcfInfo"], err = json.Marshal(a.PcfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfInfo': %w", err)
-		}
-	}
-
-	if a.PcfInfoList != nil {
-		object["pcfInfoList"], err = json.Marshal(a.PcfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcfInfoList': %w", err)
-		}
-	}
-
-	if a.PcscfInfoList != nil {
-		object["pcscfInfoList"], err = json.Marshal(a.PcscfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pcscfInfoList': %w", err)
-		}
-	}
-
-	if len(a.PerPlmnSnssaiList) != 0 {
-		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
-		}
-	}
-
-	if len(a.PlmnList) != 0 {
-		object["plmnList"], err = json.Marshal(a.PlmnList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'plmnList': %w", err)
-		}
-	}
-
-	if a.Priority != nil {
-		object["priority"], err = json.Marshal(a.Priority)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'priority': %w", err)
-		}
-	}
-
-	if a.RecoveryTime != nil {
-		object["recoveryTime"], err = json.Marshal(a.RecoveryTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'recoveryTime': %w", err)
-		}
-	}
-
-	if len(a.SNssais) != 0 {
-		object["sNssais"], err = json.Marshal(a.SNssais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
-		}
-	}
-
-	if len(a.ScpDomains) != 0 {
-		object["scpDomains"], err = json.Marshal(a.ScpDomains)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scpDomains': %w", err)
-		}
-	}
-
-	if a.ScpInfo != nil {
-		object["scpInfo"], err = json.Marshal(a.ScpInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scpInfo': %w", err)
-		}
-	}
-
-	if a.ServiceSetRecoveryTimeList != nil {
-		object["serviceSetRecoveryTimeList"], err = json.Marshal(a.ServiceSetRecoveryTimeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'serviceSetRecoveryTimeList': %w", err)
-		}
-	}
-
-	if len(a.ServingScope) != 0 {
-		object["servingScope"], err = json.Marshal(a.ServingScope)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'servingScope': %w", err)
-		}
-	}
-
-	if a.SmfInfo != nil {
-		object["smfInfo"], err = json.Marshal(a.SmfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfInfo': %w", err)
-		}
-	}
-
-	if a.SmfInfoList != nil {
-		object["smfInfoList"], err = json.Marshal(a.SmfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'smfInfoList': %w", err)
-		}
-	}
-
-	if len(a.SnpnList) != 0 {
-		object["snpnList"], err = json.Marshal(a.SnpnList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snpnList': %w", err)
-		}
-	}
-
-	if a.UdmInfo != nil {
-		object["udmInfo"], err = json.Marshal(a.UdmInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'udmInfo': %w", err)
-		}
-	}
-
-	if a.UdmInfoList != nil {
-		object["udmInfoList"], err = json.Marshal(a.UdmInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'udmInfoList': %w", err)
-		}
-	}
-
-	if a.UdrInfo != nil {
-		object["udrInfo"], err = json.Marshal(a.UdrInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'udrInfo': %w", err)
-		}
-	}
-
-	if a.UdrInfoList != nil {
-		object["udrInfoList"], err = json.Marshal(a.UdrInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'udrInfoList': %w", err)
-		}
-	}
-
-	if a.UdsfInfo != nil {
-		object["udsfInfo"], err = json.Marshal(a.UdsfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'udsfInfo': %w", err)
-		}
-	}
-
-	if a.UdsfInfoList != nil {
-		object["udsfInfoList"], err = json.Marshal(a.UdsfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'udsfInfoList': %w", err)
-		}
-	}
-
-	if a.UpfInfo != nil {
-		object["upfInfo"], err = json.Marshal(a.UpfInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upfInfo': %w", err)
-		}
-	}
-
-	if a.UpfInfoList != nil {
-		object["upfInfoList"], err = json.Marshal(a.UpfInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upfInfoList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NFService. Returns the specified
-// element and whether it was found
-func (a NFService) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NFService
-func (a *NFService) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NFService to handle AdditionalProperties
-func (a *NFService) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["allowedOperationsPerNfInstance"]; found {
-		err = json.Unmarshal(raw, &a.AllowedOperationsPerNfInstance)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedOperationsPerNfInstance': %w", err)
-		}
-		delete(object, "allowedOperationsPerNfInstance")
-	}
-
-	if raw, found := object["allowedOperationsPerNfType"]; found {
-		err = json.Unmarshal(raw, &a.AllowedOperationsPerNfType)
-		if err != nil {
-			return fmt.Errorf("error reading 'allowedOperationsPerNfType': %w", err)
-		}
-		delete(object, "allowedOperationsPerNfType")
-	}
-
-	if raw, found := object["apiPrefix"]; found {
-		err = json.Unmarshal(raw, &a.ApiPrefix)
-		if err != nil {
-			return fmt.Errorf("error reading 'apiPrefix': %w", err)
-		}
-		delete(object, "apiPrefix")
-	}
-
-	if raw, found := object["capacity"]; found {
-		err = json.Unmarshal(raw, &a.Capacity)
-		if err != nil {
-			return fmt.Errorf("error reading 'capacity': %w", err)
-		}
-		delete(object, "capacity")
-	}
-
-	if raw, found := object["defaultNotificationSubscriptions"]; found {
-		err = json.Unmarshal(raw, &a.DefaultNotificationSubscriptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'defaultNotificationSubscriptions': %w", err)
-		}
-		delete(object, "defaultNotificationSubscriptions")
-	}
-
-	if raw, found := object["fqdn"]; found {
-		err = json.Unmarshal(raw, &a.Fqdn)
-		if err != nil {
-			return fmt.Errorf("error reading 'fqdn': %w", err)
-		}
-		delete(object, "fqdn")
-	}
-
-	if raw, found := object["ipEndPoints"]; found {
-		err = json.Unmarshal(raw, &a.IpEndPoints)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipEndPoints': %w", err)
-		}
-		delete(object, "ipEndPoints")
-	}
-
-	if raw, found := object["load"]; found {
-		err = json.Unmarshal(raw, &a.Load)
-		if err != nil {
-			return fmt.Errorf("error reading 'load': %w", err)
-		}
-		delete(object, "load")
-	}
-
-	if raw, found := object["loadTimeStamp"]; found {
-		err = json.Unmarshal(raw, &a.LoadTimeStamp)
-		if err != nil {
-			return fmt.Errorf("error reading 'loadTimeStamp': %w", err)
-		}
-		delete(object, "loadTimeStamp")
-	}
-
-	if raw, found := object["nfServiceSetIdList"]; found {
-		err = json.Unmarshal(raw, &a.NfServiceSetIdList)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfServiceSetIdList': %w", err)
-		}
-		delete(object, "nfServiceSetIdList")
-	}
-
-	if raw, found := object["nfServiceStatus"]; found {
-		err = json.Unmarshal(raw, &a.NfServiceStatus)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfServiceStatus': %w", err)
-		}
-		delete(object, "nfServiceStatus")
-	}
-
-	if raw, found := object["oauth2Required"]; found {
-		err = json.Unmarshal(raw, &a.Oauth2Required)
-		if err != nil {
-			return fmt.Errorf("error reading 'oauth2Required': %w", err)
-		}
-		delete(object, "oauth2Required")
-	}
-
-	if raw, found := object["perPlmnSnssaiList"]; found {
-		err = json.Unmarshal(raw, &a.PerPlmnSnssaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'perPlmnSnssaiList': %w", err)
-		}
-		delete(object, "perPlmnSnssaiList")
-	}
-
-	if raw, found := object["priority"]; found {
-		err = json.Unmarshal(raw, &a.Priority)
-		if err != nil {
-			return fmt.Errorf("error reading 'priority': %w", err)
-		}
-		delete(object, "priority")
-	}
-
-	if raw, found := object["recoveryTime"]; found {
-		err = json.Unmarshal(raw, &a.RecoveryTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'recoveryTime': %w", err)
-		}
-		delete(object, "recoveryTime")
-	}
-
-	if raw, found := object["sNssais"]; found {
-		err = json.Unmarshal(raw, &a.SNssais)
-		if err != nil {
-			return fmt.Errorf("error reading 'sNssais': %w", err)
-		}
-		delete(object, "sNssais")
-	}
-
-	if raw, found := object["scheme"]; found {
-		err = json.Unmarshal(raw, &a.Scheme)
-		if err != nil {
-			return fmt.Errorf("error reading 'scheme': %w", err)
-		}
-		delete(object, "scheme")
-	}
-
-	if raw, found := object["serviceInstanceId"]; found {
-		err = json.Unmarshal(raw, &a.ServiceInstanceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceInstanceId': %w", err)
-		}
-		delete(object, "serviceInstanceId")
-	}
-
-	if raw, found := object["serviceName"]; found {
-		err = json.Unmarshal(raw, &a.ServiceName)
-		if err != nil {
-			return fmt.Errorf("error reading 'serviceName': %w", err)
-		}
-		delete(object, "serviceName")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["supportedVendorSpecificFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedVendorSpecificFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedVendorSpecificFeatures': %w", err)
-		}
-		delete(object, "supportedVendorSpecificFeatures")
-	}
-
-	if raw, found := object["vendorId"]; found {
-		err = json.Unmarshal(raw, &a.VendorId)
-		if err != nil {
-			return fmt.Errorf("error reading 'vendorId': %w", err)
-		}
-		delete(object, "vendorId")
-	}
-
-	if raw, found := object["versions"]; found {
-		err = json.Unmarshal(raw, &a.Versions)
-		if err != nil {
-			return fmt.Errorf("error reading 'versions': %w", err)
-		}
-		delete(object, "versions")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NFService to handle AdditionalProperties
-func (a NFService) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AllowedOperationsPerNfInstance != nil {
-		object["allowedOperationsPerNfInstance"], err = json.Marshal(a.AllowedOperationsPerNfInstance)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedOperationsPerNfInstance': %w", err)
-		}
-	}
-
-	if a.AllowedOperationsPerNfType != nil {
-		object["allowedOperationsPerNfType"], err = json.Marshal(a.AllowedOperationsPerNfType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'allowedOperationsPerNfType': %w", err)
-		}
-	}
-
-	if a.ApiPrefix != nil {
-		object["apiPrefix"], err = json.Marshal(a.ApiPrefix)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'apiPrefix': %w", err)
-		}
-	}
-
-	if a.Capacity != nil {
-		object["capacity"], err = json.Marshal(a.Capacity)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'capacity': %w", err)
-		}
-	}
-
-	if len(a.DefaultNotificationSubscriptions) != 0 {
-		object["defaultNotificationSubscriptions"], err = json.Marshal(a.DefaultNotificationSubscriptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'defaultNotificationSubscriptions': %w", err)
-		}
-	}
-
-	if a.Fqdn != nil {
-		object["fqdn"], err = json.Marshal(a.Fqdn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'fqdn': %w", err)
-		}
-	}
-
-	if len(a.IpEndPoints) != 0 {
-		object["ipEndPoints"], err = json.Marshal(a.IpEndPoints)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipEndPoints': %w", err)
-		}
-	}
-
-	if a.Load != nil {
-		object["load"], err = json.Marshal(a.Load)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'load': %w", err)
-		}
-	}
-
-	if a.LoadTimeStamp != nil {
-		object["loadTimeStamp"], err = json.Marshal(a.LoadTimeStamp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'loadTimeStamp': %w", err)
-		}
-	}
-
-	if len(a.NfServiceSetIdList) != 0 {
-		object["nfServiceSetIdList"], err = json.Marshal(a.NfServiceSetIdList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nfServiceSetIdList': %w", err)
-		}
-	}
-
-	object["nfServiceStatus"], err = json.Marshal(a.NfServiceStatus)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfServiceStatus': %w", err)
-	}
-
-	if a.Oauth2Required != nil {
-		object["oauth2Required"], err = json.Marshal(a.Oauth2Required)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oauth2Required': %w", err)
-		}
-	}
-
-	if len(a.PerPlmnSnssaiList) != 0 {
-		object["perPlmnSnssaiList"], err = json.Marshal(a.PerPlmnSnssaiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'perPlmnSnssaiList': %w", err)
-		}
-	}
-
-	if a.Priority != nil {
-		object["priority"], err = json.Marshal(a.Priority)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'priority': %w", err)
-		}
-	}
-
-	if a.RecoveryTime != nil {
-		object["recoveryTime"], err = json.Marshal(a.RecoveryTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'recoveryTime': %w", err)
-		}
-	}
-
-	if len(a.SNssais) != 0 {
-		object["sNssais"], err = json.Marshal(a.SNssais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'sNssais': %w", err)
-		}
-	}
-
-	object["scheme"], err = json.Marshal(a.Scheme)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'scheme': %w", err)
-	}
-
-	object["serviceInstanceId"], err = json.Marshal(a.ServiceInstanceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'serviceInstanceId': %w", err)
-	}
-
-	object["serviceName"], err = json.Marshal(a.ServiceName)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'serviceName': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.SupportedVendorSpecificFeatures != nil {
-		object["supportedVendorSpecificFeatures"], err = json.Marshal(a.SupportedVendorSpecificFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedVendorSpecificFeatures': %w", err)
-		}
-	}
-
-	if len(a.VendorId) != 0 {
-		object["vendorId"], err = json.Marshal(a.VendorId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'vendorId': %w", err)
-		}
-	}
-
-	object["versions"], err = json.Marshal(a.Versions)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'versions': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PreferredSearch. Returns the specified
-// element and whether it was found
-func (a PreferredSearch) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PreferredSearch
-func (a *PreferredSearch) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PreferredSearch to handle AdditionalProperties
-func (a *PreferredSearch) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["otherApiVersionsInd"]; found {
-		err = json.Unmarshal(raw, &a.OtherApiVersionsInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'otherApiVersionsInd': %w", err)
-		}
-		delete(object, "otherApiVersionsInd")
-	}
-
-	if raw, found := object["otherLocalityInd"]; found {
-		err = json.Unmarshal(raw, &a.OtherLocalityInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'otherLocalityInd': %w", err)
-		}
-		delete(object, "otherLocalityInd")
-	}
-
-	if raw, found := object["preferredApiVersionsMatchInd"]; found {
-		err = json.Unmarshal(raw, &a.PreferredApiVersionsMatchInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'preferredApiVersionsMatchInd': %w", err)
-		}
-		delete(object, "preferredApiVersionsMatchInd")
-	}
-
-	if raw, found := object["preferredFullPlmnMatchInd"]; found {
-		err = json.Unmarshal(raw, &a.PreferredFullPlmnMatchInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'preferredFullPlmnMatchInd': %w", err)
-		}
-		delete(object, "preferredFullPlmnMatchInd")
-	}
-
-	if raw, found := object["preferredLocalityMatchInd"]; found {
-		err = json.Unmarshal(raw, &a.PreferredLocalityMatchInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'preferredLocalityMatchInd': %w", err)
-		}
-		delete(object, "preferredLocalityMatchInd")
-	}
-
-	if raw, found := object["preferredTaiMatchInd"]; found {
-		err = json.Unmarshal(raw, &a.PreferredTaiMatchInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'preferredTaiMatchInd': %w", err)
-		}
-		delete(object, "preferredTaiMatchInd")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PreferredSearch to handle AdditionalProperties
-func (a PreferredSearch) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.OtherApiVersionsInd != nil {
-		object["otherApiVersionsInd"], err = json.Marshal(a.OtherApiVersionsInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'otherApiVersionsInd': %w", err)
-		}
-	}
-
-	if a.OtherLocalityInd != nil {
-		object["otherLocalityInd"], err = json.Marshal(a.OtherLocalityInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'otherLocalityInd': %w", err)
-		}
-	}
-
-	if a.PreferredApiVersionsMatchInd != nil {
-		object["preferredApiVersionsMatchInd"], err = json.Marshal(a.PreferredApiVersionsMatchInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'preferredApiVersionsMatchInd': %w", err)
-		}
-	}
-
-	if a.PreferredFullPlmnMatchInd != nil {
-		object["preferredFullPlmnMatchInd"], err = json.Marshal(a.PreferredFullPlmnMatchInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'preferredFullPlmnMatchInd': %w", err)
-		}
-	}
-
-	if a.PreferredLocalityMatchInd != nil {
-		object["preferredLocalityMatchInd"], err = json.Marshal(a.PreferredLocalityMatchInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'preferredLocalityMatchInd': %w", err)
-		}
-	}
-
-	if a.PreferredTaiMatchInd != nil {
-		object["preferredTaiMatchInd"], err = json.Marshal(a.PreferredTaiMatchInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'preferredTaiMatchInd': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SearchResult. Returns the specified
-// element and whether it was found
-func (a SearchResult) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SearchResult
-func (a *SearchResult) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SearchResult to handle AdditionalProperties
-func (a *SearchResult) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["nfInstances"]; found {
-		err = json.Unmarshal(raw, &a.NfInstances)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfInstances': %w", err)
-		}
-		delete(object, "nfInstances")
-	}
-
-	if raw, found := object["nrfSupportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.NrfSupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrfSupportedFeatures': %w", err)
-		}
-		delete(object, "nrfSupportedFeatures")
-	}
-
-	if raw, found := object["numNfInstComplete"]; found {
-		err = json.Unmarshal(raw, &a.NumNfInstComplete)
-		if err != nil {
-			return fmt.Errorf("error reading 'numNfInstComplete': %w", err)
-		}
-		delete(object, "numNfInstComplete")
-	}
-
-	if raw, found := object["preferredSearch"]; found {
-		err = json.Unmarshal(raw, &a.PreferredSearch)
-		if err != nil {
-			return fmt.Errorf("error reading 'preferredSearch': %w", err)
-		}
-		delete(object, "preferredSearch")
-	}
-
-	if raw, found := object["searchId"]; found {
-		err = json.Unmarshal(raw, &a.SearchId)
-		if err != nil {
-			return fmt.Errorf("error reading 'searchId': %w", err)
-		}
-		delete(object, "searchId")
-	}
-
-	if raw, found := object["validityPeriod"]; found {
-		err = json.Unmarshal(raw, &a.ValidityPeriod)
-		if err != nil {
-			return fmt.Errorf("error reading 'validityPeriod': %w", err)
-		}
-		delete(object, "validityPeriod")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SearchResult to handle AdditionalProperties
-func (a SearchResult) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["nfInstances"], err = json.Marshal(a.NfInstances)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfInstances': %w", err)
-	}
-
-	if a.NrfSupportedFeatures != nil {
-		object["nrfSupportedFeatures"], err = json.Marshal(a.NrfSupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nrfSupportedFeatures': %w", err)
-		}
-	}
-
-	if a.NumNfInstComplete != nil {
-		object["numNfInstComplete"], err = json.Marshal(a.NumNfInstComplete)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'numNfInstComplete': %w", err)
-		}
-	}
-
-	if a.PreferredSearch != nil {
-		object["preferredSearch"], err = json.Marshal(a.PreferredSearch)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'preferredSearch': %w", err)
-		}
-	}
-
-	if a.SearchId != nil {
-		object["searchId"], err = json.Marshal(a.SearchId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'searchId': %w", err)
-		}
-	}
-
-	if a.ValidityPeriod != nil {
-		object["validityPeriod"], err = json.Marshal(a.ValidityPeriod)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validityPeriod': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for StoredSearchResult. Returns the specified
-// element and whether it was found
-func (a StoredSearchResult) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for StoredSearchResult
-func (a *StoredSearchResult) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for StoredSearchResult to handle AdditionalProperties
-func (a *StoredSearchResult) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["nfInstances"]; found {
-		err = json.Unmarshal(raw, &a.NfInstances)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfInstances': %w", err)
-		}
-		delete(object, "nfInstances")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for StoredSearchResult to handle AdditionalProperties
-func (a StoredSearchResult) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["nfInstances"], err = json.Marshal(a.NfInstances)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfInstances': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
 }
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
@@ -3757,21 +1950,21 @@ type ClientWithResponsesInterface interface {
 type SearchNFInstancesResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *SearchResult
-	JSON307                       *externalRef1.RedirectResponse
-	JSON308                       *externalRef1.RedirectResponse
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON401     *externalRef1.N401
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON501     *externalRef1.N501
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.Default
+	JSON200                       *externalRef0.SearchResult
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON401     *externalRef0.N401
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.Default
 }
 
 // Status returns HTTPResponse.Status
@@ -3794,9 +1987,9 @@ type RetrieveStoredSearchResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
 	JSON200                       *N200
-	JSON307                       *externalRef1.RedirectResponse
-	JSON308                       *externalRef1.RedirectResponse
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -3819,9 +2012,9 @@ type RetrieveCompleteSearchResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
 	JSON200                       *N200
-	JSON307                       *externalRef1.RedirectResponse
-	JSON308                       *externalRef1.RedirectResponse
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON307                       *externalRef0.RedirectResponse
+	JSON308                       *externalRef0.RedirectResponse
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -3882,49 +2075,49 @@ func ParseSearchNFInstancesResponse(rsp *http.Response) (*SearchNFInstancesRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SearchResult
+		var dest externalRef0.SearchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.RedirectResponse
+		var dest externalRef0.RedirectResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.RedirectResponse
+		var dest externalRef0.RedirectResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
-		var dest externalRef1.N401
+		var dest externalRef0.N401
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -3934,56 +2127,56 @@ func ParseSearchNFInstancesResponse(rsp *http.Response) (*SearchNFInstancesRespo
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 501:
-		var dest externalRef1.N501
+		var dest externalRef0.N501
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON501 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.Default
+		var dest externalRef0.Default
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4016,21 +2209,21 @@ func ParseRetrieveStoredSearchResponse(rsp *http.Response) (*RetrieveStoredSearc
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.RedirectResponse
+		var dest externalRef0.RedirectResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.RedirectResponse
+		var dest externalRef0.RedirectResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4063,21 +2256,21 @@ func ParseRetrieveCompleteSearchResponse(rsp *http.Response) (*RetrieveCompleteS
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.RedirectResponse
+		var dest externalRef0.RedirectResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.RedirectResponse
+		var dest externalRef0.RedirectResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4178,7 +2371,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("target-plmn-list"); paramValue != "" {
 
-		var value []externalRef1.PlmnId
+		var value []externalRef0.PlmnId
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'target-plmn-list' as JSON: %w", err), http.StatusBadRequest)
@@ -4193,7 +2386,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("requester-plmn-list"); paramValue != "" {
 
-		var value []externalRef1.PlmnId
+		var value []externalRef0.PlmnId
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'requester-plmn-list' as JSON: %w", err), http.StatusBadRequest)
@@ -4232,7 +2425,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("snssais"); paramValue != "" {
 
-		var value []externalRef1.Snssai
+		var value []externalRef0.Snssai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'snssais' as JSON: %w", err), http.StatusBadRequest)
@@ -4247,7 +2440,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("requester-snssais"); paramValue != "" {
 
-		var value []externalRef1.Snssai
+		var value []externalRef0.Snssai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'requester-snssais' as JSON: %w", err), http.StatusBadRequest)
@@ -4262,7 +2455,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("plmn-specific-snssai-list"); paramValue != "" {
 
-		var value []externalRef2.PlmnSnssai
+		var value []externalRef0.PlmnSnssai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'plmn-specific-snssai-list' as JSON: %w", err), http.StatusBadRequest)
@@ -4277,7 +2470,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("requester-plmn-specific-snssai-list"); paramValue != "" {
 
-		var value []externalRef2.PlmnSnssai
+		var value []externalRef0.PlmnSnssai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'requester-plmn-specific-snssai-list' as JSON: %w", err), http.StatusBadRequest)
@@ -4316,7 +2509,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("tai"); paramValue != "" {
 
-		var value externalRef1.Tai
+		var value externalRef0.Tai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'tai' as JSON: %w", err), http.StatusBadRequest)
@@ -4347,7 +2540,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("guami"); paramValue != "" {
 
-		var value externalRef1.Guami
+		var value externalRef0.Guami
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'guami' as JSON: %w", err), http.StatusBadRequest)
@@ -4434,7 +2627,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("pfd-data"); paramValue != "" {
 
-		var value externalRef2.PfdData
+		var value externalRef0.NRFPfdData
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'pfd-data' as JSON: %w", err), http.StatusBadRequest)
@@ -4521,7 +2714,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("chf-supported-plmn"); paramValue != "" {
 
-		var value externalRef1.PlmnId
+		var value externalRef0.PlmnId
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'chf-supported-plmn' as JSON: %w", err), http.StatusBadRequest)
@@ -4568,7 +2761,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("complex-query"); paramValue != "" {
 
-		var value externalRef1.ComplexQuery
+		var value externalRef0.ComplexQuery
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'complex-query' as JSON: %w", err), http.StatusBadRequest)
@@ -4599,7 +2792,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("atsss-capability"); paramValue != "" {
 
-		var value externalRef1.AtsssCapability
+		var value externalRef0.AtsssCapability
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'atsss-capability' as JSON: %w", err), http.StatusBadRequest)
@@ -4652,7 +2845,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("an-node-type"); paramValue != "" {
 
-		var value externalRef2.AnNodeType
+		var value externalRef0.AnNodeType
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'an-node-type' as JSON: %w", err), http.StatusBadRequest)
@@ -4667,7 +2860,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("rat-type"); paramValue != "" {
 
-		var value externalRef1.RatType
+		var value externalRef0.RatType
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'rat-type' as JSON: %w", err), http.StatusBadRequest)
@@ -4682,7 +2875,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("preferred-tai"); paramValue != "" {
 
-		var value externalRef1.Tai
+		var value externalRef0.Tai
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'preferred-tai' as JSON: %w", err), http.StatusBadRequest)
@@ -4705,7 +2898,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("target-snpn"); paramValue != "" {
 
-		var value externalRef1.PlmnIdNid
+		var value externalRef0.PlmnIdNid
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'target-snpn' as JSON: %w", err), http.StatusBadRequest)
@@ -4720,7 +2913,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("requester-snpn-list"); paramValue != "" {
 
-		var value []externalRef1.PlmnIdNid
+		var value []externalRef0.PlmnIdNid
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'requester-snpn-list' as JSON: %w", err), http.StatusBadRequest)
@@ -4735,7 +2928,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("af-ee-data"); paramValue != "" {
 
-		var value externalRef2.AfEventExposureData
+		var value externalRef0.AfEventExposureData
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'af-ee-data' as JSON: %w", err), http.StatusBadRequest)
@@ -4750,7 +2943,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("w-agf-info"); paramValue != "" {
 
-		var value externalRef2.WAgfInfo
+		var value externalRef0.WAgfInfo
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'w-agf-info' as JSON: %w", err), http.StatusBadRequest)
@@ -4765,7 +2958,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("tngf-info"); paramValue != "" {
 
-		var value externalRef2.TngfInfo
+		var value externalRef0.TngfInfo
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'tngf-info' as JSON: %w", err), http.StatusBadRequest)
@@ -4780,7 +2973,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("twif-info"); paramValue != "" {
 
-		var value externalRef2.TwifInfo
+		var value externalRef0.TwifInfo
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'twif-info' as JSON: %w", err), http.StatusBadRequest)
@@ -4970,7 +3163,7 @@ func (siw *ServerInterfaceWrapper) SearchNFInstances(c *gin.Context) {
 
 	if paramValue := c.Query("remote-plmn-id"); paramValue != "" {
 
-		var value externalRef1.PlmnId
+		var value externalRef0.PlmnId
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'remote-plmn-id' as JSON: %w", err), http.StatusBadRequest)
@@ -5225,7 +3418,7 @@ type N200ResponseHeaders struct {
 	ETag            *string
 }
 type N200JSONResponse struct {
-	Body StoredSearchResult
+	Body externalRef0.StoredSearchResult
 
 	Headers N200ResponseHeaders
 }
@@ -5245,7 +3438,7 @@ type SearchNFInstances200ResponseHeaders struct {
 }
 
 type SearchNFInstances200JSONResponse struct {
-	Body    SearchResult
+	Body    externalRef0.SearchResult
 	Headers SearchNFInstances200ResponseHeaders
 }
 
@@ -5270,7 +3463,7 @@ type SearchNFInstances307ResponseHeaders struct {
 }
 
 type SearchNFInstances307JSONResponse struct {
-	Body    externalRef1.RedirectResponse
+	Body    externalRef0.RedirectResponse
 	Headers SearchNFInstances307ResponseHeaders
 }
 
@@ -5287,7 +3480,7 @@ type SearchNFInstances308ResponseHeaders struct {
 }
 
 type SearchNFInstances308JSONResponse struct {
-	Body    externalRef1.RedirectResponse
+	Body    externalRef0.RedirectResponse
 	Headers SearchNFInstances308ResponseHeaders
 }
 
@@ -5300,50 +3493,50 @@ func (response SearchNFInstances308JSONResponse) VisitSearchNFInstancesResponse(
 }
 
 type SearchNFInstances400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances400ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances401ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N401ApplicationProblemPlusJSONResponse
+	externalRef0.N401ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances401ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(401)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N401ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances403ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances404ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
-type SearchNFInstances406Response externalRef1.N406Response
+type SearchNFInstances406Response externalRef0.N406Response
 
 func (response SearchNFInstances406Response) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.WriteHeader(406)
@@ -5351,84 +3544,84 @@ func (response SearchNFInstances406Response) VisitSearchNFInstancesResponse(w ht
 }
 
 type SearchNFInstances411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances411ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances413ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances415ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances429ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances500ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances501ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N501ApplicationProblemPlusJSONResponse
+	externalRef0.N501ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances501ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstances503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response SearchNFInstances503ApplicationProblemPlusJSONResponse) VisitSearchNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type SearchNFInstancesdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -5471,7 +3664,7 @@ type RetrieveStoredSearch307ResponseHeaders struct {
 }
 
 type RetrieveStoredSearch307JSONResponse struct {
-	Body    externalRef1.RedirectResponse
+	Body    externalRef0.RedirectResponse
 	Headers RetrieveStoredSearch307ResponseHeaders
 }
 
@@ -5488,7 +3681,7 @@ type RetrieveStoredSearch308ResponseHeaders struct {
 }
 
 type RetrieveStoredSearch308JSONResponse struct {
-	Body    externalRef1.RedirectResponse
+	Body    externalRef0.RedirectResponse
 	Headers RetrieveStoredSearch308ResponseHeaders
 }
 
@@ -5501,7 +3694,7 @@ func (response RetrieveStoredSearch308JSONResponse) VisitRetrieveStoredSearchRes
 }
 
 type RetrieveStoredSearchdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -5544,7 +3737,7 @@ type RetrieveCompleteSearch307ResponseHeaders struct {
 }
 
 type RetrieveCompleteSearch307JSONResponse struct {
-	Body    externalRef1.RedirectResponse
+	Body    externalRef0.RedirectResponse
 	Headers RetrieveCompleteSearch307ResponseHeaders
 }
 
@@ -5561,7 +3754,7 @@ type RetrieveCompleteSearch308ResponseHeaders struct {
 }
 
 type RetrieveCompleteSearch308JSONResponse struct {
-	Body    externalRef1.RedirectResponse
+	Body    externalRef0.RedirectResponse
 	Headers RetrieveCompleteSearch308ResponseHeaders
 }
 
@@ -5574,7 +3767,7 @@ func (response RetrieveCompleteSearch308JSONResponse) VisitRetrieveCompleteSearc
 }
 
 type RetrieveCompleteSearchdefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 

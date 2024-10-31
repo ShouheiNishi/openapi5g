@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
+	"github.com/ShouheiNishi/openapi5g/models"
 	"github.com/ShouheiNishi/openapi5g/utils/problem"
 )
 
@@ -39,7 +39,7 @@ func (e *WrappedOpenAPIError) Unwrap() error {
 
 type ProblemDetailsError struct {
 	Message        string
-	ProblemDetails commondata.ProblemDetails
+	ProblemDetails models.ProblemDetails
 }
 
 func (e *ProblemDetailsError) Error() string {
@@ -74,7 +74,7 @@ func ExtractAndWrapOpenAPIError(method string, res any, errIn error) (err error)
 		return fmt.Errorf("no problemDetails, status code = %d, content-type = %s", httpResponse.StatusCode, httpResponse.Header.Get("Content-Type"))
 	}
 
-	var pd commondata.ProblemDetails
+	var pd models.ProblemDetails
 	if err := json.Unmarshal(body, &pd); err != nil {
 		return fmt.Errorf("json.Unmarshal: %w, status code = %d", err, httpResponse.StatusCode)
 	}
@@ -85,7 +85,7 @@ func ExtractAndWrapOpenAPIError(method string, res any, errIn error) (err error)
 	}
 }
 
-func ErrorToProblemDetails(err error) commondata.ProblemDetails {
+func ErrorToProblemDetails(err error) models.ProblemDetails {
 	var pe *ProblemDetailsError
 	if errors.As(err, &pe) {
 		return pe.ProblemDetails

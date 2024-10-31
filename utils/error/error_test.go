@@ -22,7 +22,7 @@ import (
 	"github.com/samber/lo"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
+	"github.com/ShouheiNishi/openapi5g/models"
 	utils_error "github.com/ShouheiNishi/openapi5g/utils/error"
 )
 
@@ -41,7 +41,7 @@ func TestWrappedOpenAPIError(t *testing.T) {
 func TestProblemDetailsError(t *testing.T) {
 	var err error = &utils_error.ProblemDetailsError{
 		Message: "test",
-		ProblemDetails: commondata.ProblemDetails{
+		ProblemDetails: models.ProblemDetails{
 			Status: http.StatusInternalServerError,
 			Cause:  lo.ToPtr("TEST_TEST"),
 		},
@@ -87,7 +87,7 @@ func TestExtractAndWrapOpenAPIError(t *testing.T) {
 	err = utils_error.ExtractAndWrapOpenAPIError("test", &resDummy, nil)
 	assert.ErrorContains(t, err, "problemDetails received ")
 	assert.IsType(t, &utils_error.ProblemDetailsError{}, errors.Unwrap(err))
-	assert.Equal(t, commondata.ProblemDetails{
+	assert.Equal(t, models.ProblemDetails{
 		Status: 500,
 		Cause:  lo.ToPtr("TEST"),
 	}, errors.Unwrap(err).(*utils_error.ProblemDetailsError).ProblemDetails)
@@ -98,19 +98,19 @@ func TestErrorToProblemDetails(t *testing.T) {
 		Method: "Test",
 		BaseError: &utils_error.ProblemDetailsError{
 			Message: "TEST",
-			ProblemDetails: commondata.ProblemDetails{
+			ProblemDetails: models.ProblemDetails{
 				Status: 500,
 				Cause:  lo.ToPtr("TEST"),
 			},
 		},
 	})
-	assert.Equal(t, commondata.ProblemDetails{
+	assert.Equal(t, models.ProblemDetails{
 		Status: 500,
 		Cause:  lo.ToPtr("TEST"),
 	}, pd)
 
 	pd = utils_error.ErrorToProblemDetails(errors.New("TEST"))
-	assert.Equal(t, commondata.ProblemDetails{
+	assert.Equal(t, models.ProblemDetails{
 		Status: 500,
 		Title:  lo.ToPtr("System failure"),
 		Cause:  lo.ToPtr("SYSTEM_FAILURE"),

@@ -26,7 +26,7 @@ func main() {
 	}
 
 	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
-		FileName:      "setup_refs.go",
+		FileName:      "setup_refs_gen.go",
 		PkgName:       "generator",
 		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
 		Imports: writer.ImportSpecs{
@@ -44,10 +44,10 @@ func main() {
 		WalkPreHook: func(t *types.Named) string {
 			if t.Obj().Name() == "Ref" {
 				return `if v.HasRef() {
-					if v.RefFile == "" {
-						v.RefFile = s.curFile
+					if v.Ref.Path == "" {
+						v.Ref.Path = s.curFile
 					} else {
-						s.deps[v.RefFile] = struct{}{}
+						s.deps[v.Ref.Path] = struct{}{}
 					}
 					return nil
 				}
@@ -60,7 +60,7 @@ func main() {
 	}
 
 	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
-		FileName:      "resolve_refs.go",
+		FileName:      "resolve_refs_gen.go",
 		PkgName:       "generator",
 		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
 		Imports: writer.ImportSpecs{
@@ -78,8 +78,8 @@ func main() {
 		WalkPreHook: func(t *types.Named) string {
 			if t.Obj().Name() == "Ref" {
 				return `if v.HasRef() {
-					if vRes, err := ResolveRef[` + typeName(t.TypeArgs().At(0).(*types.Named)) + `](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-						return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
+					if vRes, err := ResolveRef[` + typeName(t.TypeArgs().At(0).(*types.Named)) + `](s.generatorState, v.Ref); err != nil {
+						return fmt.Errorf("ResolveRef(%s): %w", v.Ref, err)
 					} else {
 						v.Value = vRes
 						return nil
@@ -94,7 +94,7 @@ func main() {
 	}
 
 	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
-		FileName:      "post_refs.go",
+		FileName:      "post_refs_gen.go",
 		PkgName:       "generator",
 		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
 		Imports: writer.ImportSpecs{
@@ -124,7 +124,7 @@ func main() {
 	}
 
 	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
-		FileName:      "scan_refs.go",
+		FileName:      "rewrite_specs_gen.go",
 		PkgName:       "generator",
 		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
 		Imports: writer.ImportSpecs{
@@ -132,11 +132,11 @@ func main() {
 			{ImportPath: "gopkg.in/yaml.v3"},
 		},
 
-		RootFuncName:  "scanRef",
+		RootFuncName:  "walkRewriteSpecs",
 		ExtraRootArgs: ", refs map[string]struct{}, cutRefs map[string]struct{}",
 		ExtraInit:     "s.refs = refs\ns.cutRefs = cutRefs\n",
 
-		StateType:  "scanRefType",
+		StateType:  "walkRewriteSpecsType",
 		ExtraState: "refs map[string]struct{}\ncutRefs map[string]struct{}\n",
 
 		WalkPreHook: func(t *types.Named) string {
@@ -147,10 +147,10 @@ func main() {
 						cutOp = "if err := fixCutSchemaRef(v) ; err != nil{return err}\nreturn nil\n"
 					}
 					return `	if v.HasRef() {
-						if _, exist := s.cutRefs[v.RefFile]; exist {
+						if _, exist := s.cutRefs[v.Ref.Path]; exist {
 ` + cutOp +
 						`} else {
-							s.refs[v.RefFile] = struct{}{}
+							s.refs[v.Ref.Path] = struct{}{}
 							return nil
 						}
 					}
@@ -173,21 +173,68 @@ func main() {
 			}
 			return ""
 		},
+	}); err != nil {
+		panic(err)
+	}
 
-		// vRef := vObj.FieldByName("Ref")
-		// vValue := vObj.FieldByName("Value")
-		// if vRef.IsValid() && vValue.IsValid() {
-		// 	ref := vRef.String()
-		// 	if ref != "" {
-		// 		split := strings.SplitN(ref, "#", 2)
-		// 		if len(split) == 2 && split[0] != "" {
-		// 			if _, exist := cutRefs[split[0]]; !exist {
-		// 				refs[split[0]] = struct{}{}
-		// 				return
-		// 			}
-		// 		}
-		// 	}
-		// }
+	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
+		FileName:      "schema_ref_enumeration_gen.go",
+		PkgName:       "generator",
+		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
+		Imports: writer.ImportSpecs{
+			{ImportPath: "github.com/ShouheiNishi/openapi5g/internal/generator/openapi"},
+			{ImportPath: "gopkg.in/yaml.v3"},
+		},
+
+		RootFuncName:  "walkSchemaRefEnumeration",
+		ExtraRootArgs: ", schemasRefs map[openapi.Reference]struct{}",
+		ExtraInit:     "s.schemasRefs = schemasRefs\n",
+
+		StateType:  "walkSchemaRefEnumerationType",
+		ExtraState: "schemasRefs map[openapi.Reference]struct{}\n",
+
+		WalkPreHook: func(t *types.Named) string {
+			if t.Obj().Name() == "Components" {
+				return "return nil\n"
+			} else if t.Obj().Name() == "Ref" && t.TypeArgs().At(0).(*types.Named).Obj().Name() == "Schema" {
+				return `if v.HasRef() {
+							s.schemasRefs[v.Ref] = struct{}{}
+						}
+`
+			}
+			return ""
+		},
+	}); err != nil {
+		panic(err)
+	}
+
+	if err := OpenApi3WalkerGenerate(&OpenApi3WalkerGeneratorConfig{
+		FileName:      "schema_ref_remap_gen.go",
+		PkgName:       "generator",
+		GeneratorName: "github.com/ShouheiNishi/openapi5g/internal/generator/sub",
+		Imports: writer.ImportSpecs{
+			{ImportPath: "github.com/ShouheiNishi/openapi5g/internal/generator/openapi"},
+			{ImportPath: "gopkg.in/yaml.v3"},
+		},
+
+		RootFuncName:  "walkSchemaRefRemap",
+		ExtraRootArgs: ", refMap map[openapi.Reference]openapi.Reference",
+		ExtraInit:     "s.refMap = refMap\n",
+
+		StateType:  "walkSchemaRefRemapType",
+		ExtraState: "refMap map[openapi.Reference]openapi.Reference\n",
+
+		WalkPreHook: func(t *types.Named) string {
+			if t.Obj().Name() == "Ref" && t.TypeArgs().At(0).(*types.Named).Obj().Name() == "Schema" {
+				return `if v.HasRef() {
+							if newRef, exist := s.refMap[v.Ref]; exist {
+								v.Ref = newRef
+							}
+						}
+`
+			}
+			return ""
+		},
 	}); err != nil {
 		panic(err)
 	}

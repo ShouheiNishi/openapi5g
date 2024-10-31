@@ -13,8 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/nrf/management"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -23,88 +22,6 @@ import (
 const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
-
-// Defines values for NssfEventType.
-const (
-	SNSSAISTATUSCHANGEREPORT NssfEventType = "SNSSAI_STATUS_CHANGE_REPORT"
-)
-
-// AuthorizedNssaiAvailabilityData defines model for AuthorizedNssaiAvailabilityData.
-type AuthorizedNssaiAvailabilityData struct {
-	RestrictedSnssaiList []RestrictedSnssai       `json:"restrictedSnssaiList,omitempty"`
-	SupportedSnssaiList  []externalRef0.ExtSnssai `json:"supportedSnssaiList"`
-	Tai                  externalRef0.Tai         `json:"tai"`
-	TaiList              []externalRef0.Tai       `json:"taiList,omitempty"`
-	TaiRangeList         []externalRef1.TaiRange  `json:"taiRangeList,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
-}
-
-// AuthorizedNssaiAvailabilityInfo defines model for AuthorizedNssaiAvailabilityInfo.
-type AuthorizedNssaiAvailabilityInfo struct {
-	AuthorizedNssaiAvailabilityData []AuthorizedNssaiAvailabilityData `json:"authorizedNssaiAvailabilityData"`
-	SupportedFeatures               *externalRef0.SupportedFeatures   `json:"supportedFeatures,omitempty"`
-	AdditionalProperties            map[string]interface{}            `json:"-"`
-}
-
-// NssaiAvailabilityInfo defines model for NssaiAvailabilityInfo.
-type NssaiAvailabilityInfo struct {
-	AmfSetId                       string                           `json:"amfSetId,omitempty"`
-	SupportedFeatures              *externalRef0.SupportedFeatures  `json:"supportedFeatures,omitempty"`
-	SupportedNssaiAvailabilityData []SupportedNssaiAvailabilityData `json:"supportedNssaiAvailabilityData"`
-	AdditionalProperties           map[string]interface{}           `json:"-"`
-}
-
-// NssfEventNotification defines model for NssfEventNotification.
-type NssfEventNotification struct {
-	AuthorizedNssaiAvailabilityData []AuthorizedNssaiAvailabilityData `json:"authorizedNssaiAvailabilityData"`
-	SubscriptionId                  string                            `json:"subscriptionId"`
-	AdditionalProperties            map[string]interface{}            `json:"-"`
-}
-
-// NssfEventSubscriptionCreateData defines model for NssfEventSubscriptionCreateData.
-type NssfEventSubscriptionCreateData struct {
-	AmfSetId               string                          `json:"amfSetId,omitempty"`
-	Event                  NssfEventType                   `json:"event"`
-	Expiry                 *externalRef0.DateTime          `json:"expiry,omitempty"`
-	NfNssaiAvailabilityUri externalRef0.Uri                `json:"nfNssaiAvailabilityUri"`
-	SupportedFeatures      *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	TaiList                []externalRef0.Tai              `json:"taiList"`
-	TaiRangeList           []externalRef1.TaiRange         `json:"taiRangeList,omitempty"`
-	AdditionalProperties   map[string]interface{}          `json:"-"`
-}
-
-// NssfEventSubscriptionCreatedData defines model for NssfEventSubscriptionCreatedData.
-type NssfEventSubscriptionCreatedData struct {
-	AuthorizedNssaiAvailabilityData []AuthorizedNssaiAvailabilityData `json:"authorizedNssaiAvailabilityData,omitempty"`
-	Expiry                          *externalRef0.DateTime            `json:"expiry,omitempty"`
-	SubscriptionId                  string                            `json:"subscriptionId"`
-	SupportedFeatures               *externalRef0.SupportedFeatures   `json:"supportedFeatures,omitempty"`
-	AdditionalProperties            map[string]interface{}            `json:"-"`
-}
-
-// NssfEventType defines model for NssfEventType.
-type NssfEventType string
-
-// PatchDocument defines model for PatchDocument.
-type PatchDocument = []externalRef0.PatchItem
-
-// RestrictedSnssai defines model for RestrictedSnssai.
-type RestrictedSnssai struct {
-	HomePlmnId           externalRef0.PlmnId      `json:"homePlmnId"`
-	HomePlmnIdList       []externalRef0.PlmnId    `json:"homePlmnIdList,omitempty"`
-	RoamingRestriction   *bool                    `json:"roamingRestriction,omitempty"`
-	SNssaiList           []externalRef0.ExtSnssai `json:"sNssaiList"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
-}
-
-// SupportedNssaiAvailabilityData defines model for SupportedNssaiAvailabilityData.
-type SupportedNssaiAvailabilityData struct {
-	SupportedSnssaiList  []externalRef0.ExtSnssai `json:"supportedSnssaiList"`
-	Tai                  externalRef0.Tai         `json:"tai"`
-	TaiList              []externalRef0.Tai       `json:"taiList,omitempty"`
-	TaiRangeList         []externalRef1.TaiRange  `json:"taiRangeList,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
-}
 
 // NSSAIAvailabilityPostParams defines parameters for NSSAIAvailabilityPost.
 type NSSAIAvailabilityPostParams struct {
@@ -137,871 +54,10 @@ type NSSAIAvailabilityPutParams struct {
 }
 
 // NSSAIAvailabilityPostJSONRequestBody defines body for NSSAIAvailabilityPost for application/json ContentType.
-type NSSAIAvailabilityPostJSONRequestBody = NssfEventSubscriptionCreateData
+type NSSAIAvailabilityPostJSONRequestBody = externalRef0.NssfEventSubscriptionCreateData
 
 // NSSAIAvailabilityPutJSONRequestBody defines body for NSSAIAvailabilityPut for application/json ContentType.
-type NSSAIAvailabilityPutJSONRequestBody = NssaiAvailabilityInfo
-
-// Getter for additional properties for AuthorizedNssaiAvailabilityData. Returns the specified
-// element and whether it was found
-func (a AuthorizedNssaiAvailabilityData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AuthorizedNssaiAvailabilityData
-func (a *AuthorizedNssaiAvailabilityData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AuthorizedNssaiAvailabilityData to handle AdditionalProperties
-func (a *AuthorizedNssaiAvailabilityData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["restrictedSnssaiList"]; found {
-		err = json.Unmarshal(raw, &a.RestrictedSnssaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'restrictedSnssaiList': %w", err)
-		}
-		delete(object, "restrictedSnssaiList")
-	}
-
-	if raw, found := object["supportedSnssaiList"]; found {
-		err = json.Unmarshal(raw, &a.SupportedSnssaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedSnssaiList': %w", err)
-		}
-		delete(object, "supportedSnssaiList")
-	}
-
-	if raw, found := object["tai"]; found {
-		err = json.Unmarshal(raw, &a.Tai)
-		if err != nil {
-			return fmt.Errorf("error reading 'tai': %w", err)
-		}
-		delete(object, "tai")
-	}
-
-	if raw, found := object["taiList"]; found {
-		err = json.Unmarshal(raw, &a.TaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'taiList': %w", err)
-		}
-		delete(object, "taiList")
-	}
-
-	if raw, found := object["taiRangeList"]; found {
-		err = json.Unmarshal(raw, &a.TaiRangeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'taiRangeList': %w", err)
-		}
-		delete(object, "taiRangeList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AuthorizedNssaiAvailabilityData to handle AdditionalProperties
-func (a AuthorizedNssaiAvailabilityData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.RestrictedSnssaiList) != 0 {
-		object["restrictedSnssaiList"], err = json.Marshal(a.RestrictedSnssaiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'restrictedSnssaiList': %w", err)
-		}
-	}
-
-	object["supportedSnssaiList"], err = json.Marshal(a.SupportedSnssaiList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'supportedSnssaiList': %w", err)
-	}
-
-	object["tai"], err = json.Marshal(a.Tai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'tai': %w", err)
-	}
-
-	if len(a.TaiList) != 0 {
-		object["taiList"], err = json.Marshal(a.TaiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
-		}
-	}
-
-	if len(a.TaiRangeList) != 0 {
-		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for AuthorizedNssaiAvailabilityInfo. Returns the specified
-// element and whether it was found
-func (a AuthorizedNssaiAvailabilityInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AuthorizedNssaiAvailabilityInfo
-func (a *AuthorizedNssaiAvailabilityInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AuthorizedNssaiAvailabilityInfo to handle AdditionalProperties
-func (a *AuthorizedNssaiAvailabilityInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authorizedNssaiAvailabilityData"]; found {
-		err = json.Unmarshal(raw, &a.AuthorizedNssaiAvailabilityData)
-		if err != nil {
-			return fmt.Errorf("error reading 'authorizedNssaiAvailabilityData': %w", err)
-		}
-		delete(object, "authorizedNssaiAvailabilityData")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AuthorizedNssaiAvailabilityInfo to handle AdditionalProperties
-func (a AuthorizedNssaiAvailabilityInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["authorizedNssaiAvailabilityData"], err = json.Marshal(a.AuthorizedNssaiAvailabilityData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authorizedNssaiAvailabilityData': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NssaiAvailabilityInfo. Returns the specified
-// element and whether it was found
-func (a NssaiAvailabilityInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NssaiAvailabilityInfo
-func (a *NssaiAvailabilityInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NssaiAvailabilityInfo to handle AdditionalProperties
-func (a *NssaiAvailabilityInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfSetId"]; found {
-		err = json.Unmarshal(raw, &a.AmfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfSetId': %w", err)
-		}
-		delete(object, "amfSetId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["supportedNssaiAvailabilityData"]; found {
-		err = json.Unmarshal(raw, &a.SupportedNssaiAvailabilityData)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedNssaiAvailabilityData': %w", err)
-		}
-		delete(object, "supportedNssaiAvailabilityData")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NssaiAvailabilityInfo to handle AdditionalProperties
-func (a NssaiAvailabilityInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AmfSetId) != 0 {
-		object["amfSetId"], err = json.Marshal(a.AmfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfSetId': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["supportedNssaiAvailabilityData"], err = json.Marshal(a.SupportedNssaiAvailabilityData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'supportedNssaiAvailabilityData': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NssfEventNotification. Returns the specified
-// element and whether it was found
-func (a NssfEventNotification) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NssfEventNotification
-func (a *NssfEventNotification) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NssfEventNotification to handle AdditionalProperties
-func (a *NssfEventNotification) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authorizedNssaiAvailabilityData"]; found {
-		err = json.Unmarshal(raw, &a.AuthorizedNssaiAvailabilityData)
-		if err != nil {
-			return fmt.Errorf("error reading 'authorizedNssaiAvailabilityData': %w", err)
-		}
-		delete(object, "authorizedNssaiAvailabilityData")
-	}
-
-	if raw, found := object["subscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionId': %w", err)
-		}
-		delete(object, "subscriptionId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NssfEventNotification to handle AdditionalProperties
-func (a NssfEventNotification) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["authorizedNssaiAvailabilityData"], err = json.Marshal(a.AuthorizedNssaiAvailabilityData)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'authorizedNssaiAvailabilityData': %w", err)
-	}
-
-	object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NssfEventSubscriptionCreateData. Returns the specified
-// element and whether it was found
-func (a NssfEventSubscriptionCreateData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NssfEventSubscriptionCreateData
-func (a *NssfEventSubscriptionCreateData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NssfEventSubscriptionCreateData to handle AdditionalProperties
-func (a *NssfEventSubscriptionCreateData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["amfSetId"]; found {
-		err = json.Unmarshal(raw, &a.AmfSetId)
-		if err != nil {
-			return fmt.Errorf("error reading 'amfSetId': %w", err)
-		}
-		delete(object, "amfSetId")
-	}
-
-	if raw, found := object["event"]; found {
-		err = json.Unmarshal(raw, &a.Event)
-		if err != nil {
-			return fmt.Errorf("error reading 'event': %w", err)
-		}
-		delete(object, "event")
-	}
-
-	if raw, found := object["expiry"]; found {
-		err = json.Unmarshal(raw, &a.Expiry)
-		if err != nil {
-			return fmt.Errorf("error reading 'expiry': %w", err)
-		}
-		delete(object, "expiry")
-	}
-
-	if raw, found := object["nfNssaiAvailabilityUri"]; found {
-		err = json.Unmarshal(raw, &a.NfNssaiAvailabilityUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'nfNssaiAvailabilityUri': %w", err)
-		}
-		delete(object, "nfNssaiAvailabilityUri")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["taiList"]; found {
-		err = json.Unmarshal(raw, &a.TaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'taiList': %w", err)
-		}
-		delete(object, "taiList")
-	}
-
-	if raw, found := object["taiRangeList"]; found {
-		err = json.Unmarshal(raw, &a.TaiRangeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'taiRangeList': %w", err)
-		}
-		delete(object, "taiRangeList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NssfEventSubscriptionCreateData to handle AdditionalProperties
-func (a NssfEventSubscriptionCreateData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AmfSetId) != 0 {
-		object["amfSetId"], err = json.Marshal(a.AmfSetId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'amfSetId': %w", err)
-		}
-	}
-
-	object["event"], err = json.Marshal(a.Event)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'event': %w", err)
-	}
-
-	if a.Expiry != nil {
-		object["expiry"], err = json.Marshal(a.Expiry)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'expiry': %w", err)
-		}
-	}
-
-	object["nfNssaiAvailabilityUri"], err = json.Marshal(a.NfNssaiAvailabilityUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'nfNssaiAvailabilityUri': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	object["taiList"], err = json.Marshal(a.TaiList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
-	}
-
-	if len(a.TaiRangeList) != 0 {
-		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for NssfEventSubscriptionCreatedData. Returns the specified
-// element and whether it was found
-func (a NssfEventSubscriptionCreatedData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for NssfEventSubscriptionCreatedData
-func (a *NssfEventSubscriptionCreatedData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for NssfEventSubscriptionCreatedData to handle AdditionalProperties
-func (a *NssfEventSubscriptionCreatedData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["authorizedNssaiAvailabilityData"]; found {
-		err = json.Unmarshal(raw, &a.AuthorizedNssaiAvailabilityData)
-		if err != nil {
-			return fmt.Errorf("error reading 'authorizedNssaiAvailabilityData': %w", err)
-		}
-		delete(object, "authorizedNssaiAvailabilityData")
-	}
-
-	if raw, found := object["expiry"]; found {
-		err = json.Unmarshal(raw, &a.Expiry)
-		if err != nil {
-			return fmt.Errorf("error reading 'expiry': %w", err)
-		}
-		delete(object, "expiry")
-	}
-
-	if raw, found := object["subscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionId': %w", err)
-		}
-		delete(object, "subscriptionId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for NssfEventSubscriptionCreatedData to handle AdditionalProperties
-func (a NssfEventSubscriptionCreatedData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AuthorizedNssaiAvailabilityData) != 0 {
-		object["authorizedNssaiAvailabilityData"], err = json.Marshal(a.AuthorizedNssaiAvailabilityData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'authorizedNssaiAvailabilityData': %w", err)
-		}
-	}
-
-	if a.Expiry != nil {
-		object["expiry"], err = json.Marshal(a.Expiry)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'expiry': %w", err)
-		}
-	}
-
-	object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for RestrictedSnssai. Returns the specified
-// element and whether it was found
-func (a RestrictedSnssai) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for RestrictedSnssai
-func (a *RestrictedSnssai) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for RestrictedSnssai to handle AdditionalProperties
-func (a *RestrictedSnssai) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["homePlmnId"]; found {
-		err = json.Unmarshal(raw, &a.HomePlmnId)
-		if err != nil {
-			return fmt.Errorf("error reading 'homePlmnId': %w", err)
-		}
-		delete(object, "homePlmnId")
-	}
-
-	if raw, found := object["homePlmnIdList"]; found {
-		err = json.Unmarshal(raw, &a.HomePlmnIdList)
-		if err != nil {
-			return fmt.Errorf("error reading 'homePlmnIdList': %w", err)
-		}
-		delete(object, "homePlmnIdList")
-	}
-
-	if raw, found := object["roamingRestriction"]; found {
-		err = json.Unmarshal(raw, &a.RoamingRestriction)
-		if err != nil {
-			return fmt.Errorf("error reading 'roamingRestriction': %w", err)
-		}
-		delete(object, "roamingRestriction")
-	}
-
-	if raw, found := object["sNssaiList"]; found {
-		err = json.Unmarshal(raw, &a.SNssaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'sNssaiList': %w", err)
-		}
-		delete(object, "sNssaiList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for RestrictedSnssai to handle AdditionalProperties
-func (a RestrictedSnssai) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["homePlmnId"], err = json.Marshal(a.HomePlmnId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'homePlmnId': %w", err)
-	}
-
-	if len(a.HomePlmnIdList) != 0 {
-		object["homePlmnIdList"], err = json.Marshal(a.HomePlmnIdList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'homePlmnIdList': %w", err)
-		}
-	}
-
-	if a.RoamingRestriction != nil {
-		object["roamingRestriction"], err = json.Marshal(a.RoamingRestriction)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'roamingRestriction': %w", err)
-		}
-	}
-
-	object["sNssaiList"], err = json.Marshal(a.SNssaiList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'sNssaiList': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for SupportedNssaiAvailabilityData. Returns the specified
-// element and whether it was found
-func (a SupportedNssaiAvailabilityData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for SupportedNssaiAvailabilityData
-func (a *SupportedNssaiAvailabilityData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for SupportedNssaiAvailabilityData to handle AdditionalProperties
-func (a *SupportedNssaiAvailabilityData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["supportedSnssaiList"]; found {
-		err = json.Unmarshal(raw, &a.SupportedSnssaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedSnssaiList': %w", err)
-		}
-		delete(object, "supportedSnssaiList")
-	}
-
-	if raw, found := object["tai"]; found {
-		err = json.Unmarshal(raw, &a.Tai)
-		if err != nil {
-			return fmt.Errorf("error reading 'tai': %w", err)
-		}
-		delete(object, "tai")
-	}
-
-	if raw, found := object["taiList"]; found {
-		err = json.Unmarshal(raw, &a.TaiList)
-		if err != nil {
-			return fmt.Errorf("error reading 'taiList': %w", err)
-		}
-		delete(object, "taiList")
-	}
-
-	if raw, found := object["taiRangeList"]; found {
-		err = json.Unmarshal(raw, &a.TaiRangeList)
-		if err != nil {
-			return fmt.Errorf("error reading 'taiRangeList': %w", err)
-		}
-		delete(object, "taiRangeList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for SupportedNssaiAvailabilityData to handle AdditionalProperties
-func (a SupportedNssaiAvailabilityData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["supportedSnssaiList"], err = json.Marshal(a.SupportedSnssaiList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'supportedSnssaiList': %w", err)
-	}
-
-	object["tai"], err = json.Marshal(a.Tai)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'tai': %w", err)
-	}
-
-	if len(a.TaiList) != 0 {
-		object["taiList"], err = json.Marshal(a.TaiList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'taiList': %w", err)
-		}
-	}
-
-	if len(a.TaiRangeList) != 0 {
-		object["taiRangeList"], err = json.Marshal(a.TaiRangeList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'taiRangeList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type NSSAIAvailabilityPutJSONRequestBody = externalRef0.NssaiAvailabilityInfo
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1650,7 +706,7 @@ func (r NSSAIAvailabilityOptionsResponse) StatusCode() int {
 type NSSAIAvailabilityPostResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *NssfEventSubscriptionCreatedData
+	JSON201                       *externalRef0.NssfEventSubscriptionCreatedData
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -1715,7 +771,7 @@ func (r NSSAIAvailabilityUnsubscribeResponse) StatusCode() int {
 type NSSAIAvailabilitySubModifyPatchResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *NssfEventSubscriptionCreatedData
+	JSON200                       *externalRef0.NssfEventSubscriptionCreatedData
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -1780,7 +836,7 @@ func (r NSSAIAvailabilityDeleteResponse) StatusCode() int {
 type NSSAIAvailabilityPatchResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AuthorizedNssaiAvailabilityInfo
+	JSON200                       *externalRef0.AuthorizedNssaiAvailabilityInfo
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -1815,7 +871,7 @@ func (r NSSAIAvailabilityPatchResponse) StatusCode() int {
 type NSSAIAvailabilityPutResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *AuthorizedNssaiAvailabilityInfo
+	JSON200                       *externalRef0.AuthorizedNssaiAvailabilityInfo
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -2043,7 +1099,7 @@ func ParseNSSAIAvailabilityPostResponse(rsp *http.Response) (*NSSAIAvailabilityP
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest NssfEventSubscriptionCreatedData
+		var dest externalRef0.NssfEventSubscriptionCreatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2245,7 +1301,7 @@ func ParseNSSAIAvailabilitySubModifyPatchResponse(rsp *http.Response) (*NSSAIAva
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest NssfEventSubscriptionCreatedData
+		var dest externalRef0.NssfEventSubscriptionCreatedData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2447,7 +1503,7 @@ func ParseNSSAIAvailabilityPatchResponse(rsp *http.Response) (*NSSAIAvailability
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthorizedNssaiAvailabilityInfo
+		var dest externalRef0.AuthorizedNssaiAvailabilityInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2567,7 +1623,7 @@ func ParseNSSAIAvailabilityPutResponse(rsp *http.Response) (*NSSAIAvailabilityPu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AuthorizedNssaiAvailabilityInfo
+		var dest externalRef0.AuthorizedNssaiAvailabilityInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -3209,7 +2265,7 @@ type NSSAIAvailabilityPost201ResponseHeaders struct {
 }
 
 type NSSAIAvailabilityPost201JSONResponse struct {
-	Body    NssfEventSubscriptionCreatedData
+	Body    externalRef0.NssfEventSubscriptionCreatedData
 	Headers NSSAIAvailabilityPost201ResponseHeaders
 }
 
@@ -3507,7 +2563,7 @@ type NSSAIAvailabilitySubModifyPatch200ResponseHeaders struct {
 }
 
 type NSSAIAvailabilitySubModifyPatch200JSONResponse struct {
-	Body    NssfEventSubscriptionCreatedData
+	Body    externalRef0.NssfEventSubscriptionCreatedData
 	Headers NSSAIAvailabilitySubModifyPatch200ResponseHeaders
 }
 
@@ -3805,7 +2861,7 @@ type NSSAIAvailabilityPatch200ResponseHeaders struct {
 }
 
 type NSSAIAvailabilityPatch200JSONResponse struct {
-	Body    AuthorizedNssaiAvailabilityInfo
+	Body    externalRef0.AuthorizedNssaiAvailabilityInfo
 	Headers NSSAIAvailabilityPatch200ResponseHeaders
 }
 
@@ -3994,7 +3050,7 @@ type NSSAIAvailabilityPut200ResponseHeaders struct {
 }
 
 type NSSAIAvailabilityPut200JSONResponse struct {
-	Body    AuthorizedNssaiAvailabilityInfo
+	Body    externalRef0.AuthorizedNssaiAvailabilityInfo
 	Headers NSSAIAvailabilityPut200ResponseHeaders
 }
 

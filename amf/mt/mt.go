@@ -13,8 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/amf/event"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/commondata"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -24,717 +23,20 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// Defines values for UeContextInfoClass.
-const (
-	TADS UeContextInfoClass = "TADS"
-)
-
-// AdditionInfoEnableUeReachability defines model for AdditionInfoEnableUeReachability.
-type AdditionInfoEnableUeReachability struct {
-	MaxWaitingTime       *externalRef1.DurationSec `json:"maxWaitingTime,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// EnableUeReachabilityReqData defines model for EnableUeReachabilityReqData.
-type EnableUeReachabilityReqData struct {
-	ExtBufSupport        *bool                           `json:"extBufSupport,omitempty"`
-	OldGuami             *externalRef1.Guami             `json:"oldGuami,omitempty"`
-	Reachability         externalRef0.UeReachability     `json:"reachability"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// EnableUeReachabilityRspData defines model for EnableUeReachabilityRspData.
-type EnableUeReachabilityRspData struct {
-	Reachability         externalRef0.UeReachability     `json:"reachability"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// ProblemDetailsEnableUeReachability defines model for ProblemDetailsEnableUeReachability.
-type ProblemDetailsEnableUeReachability struct {
-	// AccessTokenError Error returned in the access token response message (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
-	AccessTokenError interface{} `json:"accessTokenError,omitempty"`
-
-	// AccessTokenRequest Contains information related to the access token request (Original reference TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
-	AccessTokenRequest   interface{}                     `json:"accessTokenRequest,omitempty"`
-	Cause                *string                         `json:"cause,omitempty"`
-	Detail               *string                         `json:"detail,omitempty"`
-	Instance             *externalRef1.Uri               `json:"instance,omitempty"`
-	InvalidParams        []externalRef1.InvalidParam     `json:"invalidParams,omitempty"`
-	MaxWaitingTime       *externalRef1.DurationSec       `json:"maxWaitingTime,omitempty"`
-	NrfId                *string                         `json:"nrfId,omitempty"`
-	Status               int                             `json:"status,omitempty"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	Title                *string                         `json:"title,omitempty"`
-	Type                 *externalRef1.Uri               `json:"type,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// UeContextInfo defines model for UeContextInfo.
-type UeContextInfo struct {
-	AccessType           externalRef1.AccessType         `json:"accessType,omitempty"`
-	LastActTime          *externalRef1.DateTime          `json:"lastActTime,omitempty"`
-	RatType              *externalRef1.RatType           `json:"ratType,omitempty"`
-	SupportVoPS          *bool                           `json:"supportVoPS,omitempty"`
-	SupportVoPSn3gpp     *bool                           `json:"supportVoPSn3gpp,omitempty"`
-	SupportedFeatures    *externalRef1.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// UeContextInfoClass defines model for UeContextInfoClass.
-type UeContextInfoClass string
-
 // ProvideDomainSelectionInfoParams defines parameters for ProvideDomainSelectionInfo.
 type ProvideDomainSelectionInfoParams struct {
 	// InfoClass UE Context Information Class
-	InfoClass *UeContextInfoClass `form:"info-class,omitempty" json:"info-class,omitempty"`
+	InfoClass *externalRef0.UeContextInfoClass `form:"info-class,omitempty" json:"info-class,omitempty"`
 
 	// SupportedFeatures Supported Features
-	SupportedFeatures *externalRef1.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 
 	// OldGuami Old GUAMI
-	OldGuami *externalRef1.Guami `form:"old-guami,omitempty" json:"old-guami,omitempty"`
+	OldGuami *externalRef0.Guami `form:"old-guami,omitempty" json:"old-guami,omitempty"`
 }
 
 // EnableUeReachabilityJSONRequestBody defines body for EnableUeReachability for application/json ContentType.
-type EnableUeReachabilityJSONRequestBody = EnableUeReachabilityReqData
-
-// Getter for additional properties for AdditionInfoEnableUeReachability. Returns the specified
-// element and whether it was found
-func (a AdditionInfoEnableUeReachability) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for AdditionInfoEnableUeReachability
-func (a *AdditionInfoEnableUeReachability) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for AdditionInfoEnableUeReachability to handle AdditionalProperties
-func (a *AdditionInfoEnableUeReachability) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["maxWaitingTime"]; found {
-		err = json.Unmarshal(raw, &a.MaxWaitingTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'maxWaitingTime': %w", err)
-		}
-		delete(object, "maxWaitingTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for AdditionInfoEnableUeReachability to handle AdditionalProperties
-func (a AdditionInfoEnableUeReachability) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.MaxWaitingTime != nil {
-		object["maxWaitingTime"], err = json.Marshal(a.MaxWaitingTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maxWaitingTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EnableUeReachabilityReqData. Returns the specified
-// element and whether it was found
-func (a EnableUeReachabilityReqData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EnableUeReachabilityReqData
-func (a *EnableUeReachabilityReqData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EnableUeReachabilityReqData to handle AdditionalProperties
-func (a *EnableUeReachabilityReqData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["extBufSupport"]; found {
-		err = json.Unmarshal(raw, &a.ExtBufSupport)
-		if err != nil {
-			return fmt.Errorf("error reading 'extBufSupport': %w", err)
-		}
-		delete(object, "extBufSupport")
-	}
-
-	if raw, found := object["oldGuami"]; found {
-		err = json.Unmarshal(raw, &a.OldGuami)
-		if err != nil {
-			return fmt.Errorf("error reading 'oldGuami': %w", err)
-		}
-		delete(object, "oldGuami")
-	}
-
-	if raw, found := object["reachability"]; found {
-		err = json.Unmarshal(raw, &a.Reachability)
-		if err != nil {
-			return fmt.Errorf("error reading 'reachability': %w", err)
-		}
-		delete(object, "reachability")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EnableUeReachabilityReqData to handle AdditionalProperties
-func (a EnableUeReachabilityReqData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.ExtBufSupport != nil {
-		object["extBufSupport"], err = json.Marshal(a.ExtBufSupport)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'extBufSupport': %w", err)
-		}
-	}
-
-	if a.OldGuami != nil {
-		object["oldGuami"], err = json.Marshal(a.OldGuami)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oldGuami': %w", err)
-		}
-	}
-
-	object["reachability"], err = json.Marshal(a.Reachability)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'reachability': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EnableUeReachabilityRspData. Returns the specified
-// element and whether it was found
-func (a EnableUeReachabilityRspData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EnableUeReachabilityRspData
-func (a *EnableUeReachabilityRspData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EnableUeReachabilityRspData to handle AdditionalProperties
-func (a *EnableUeReachabilityRspData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["reachability"]; found {
-		err = json.Unmarshal(raw, &a.Reachability)
-		if err != nil {
-			return fmt.Errorf("error reading 'reachability': %w", err)
-		}
-		delete(object, "reachability")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EnableUeReachabilityRspData to handle AdditionalProperties
-func (a EnableUeReachabilityRspData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["reachability"], err = json.Marshal(a.Reachability)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'reachability': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ProblemDetailsEnableUeReachability. Returns the specified
-// element and whether it was found
-func (a ProblemDetailsEnableUeReachability) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ProblemDetailsEnableUeReachability
-func (a *ProblemDetailsEnableUeReachability) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ProblemDetailsEnableUeReachability to handle AdditionalProperties
-func (a *ProblemDetailsEnableUeReachability) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessTokenError"]; found {
-		err = json.Unmarshal(raw, &a.AccessTokenError)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessTokenError': %w", err)
-		}
-		delete(object, "accessTokenError")
-	}
-
-	if raw, found := object["accessTokenRequest"]; found {
-		err = json.Unmarshal(raw, &a.AccessTokenRequest)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessTokenRequest': %w", err)
-		}
-		delete(object, "accessTokenRequest")
-	}
-
-	if raw, found := object["cause"]; found {
-		err = json.Unmarshal(raw, &a.Cause)
-		if err != nil {
-			return fmt.Errorf("error reading 'cause': %w", err)
-		}
-		delete(object, "cause")
-	}
-
-	if raw, found := object["detail"]; found {
-		err = json.Unmarshal(raw, &a.Detail)
-		if err != nil {
-			return fmt.Errorf("error reading 'detail': %w", err)
-		}
-		delete(object, "detail")
-	}
-
-	if raw, found := object["instance"]; found {
-		err = json.Unmarshal(raw, &a.Instance)
-		if err != nil {
-			return fmt.Errorf("error reading 'instance': %w", err)
-		}
-		delete(object, "instance")
-	}
-
-	if raw, found := object["invalidParams"]; found {
-		err = json.Unmarshal(raw, &a.InvalidParams)
-		if err != nil {
-			return fmt.Errorf("error reading 'invalidParams': %w", err)
-		}
-		delete(object, "invalidParams")
-	}
-
-	if raw, found := object["maxWaitingTime"]; found {
-		err = json.Unmarshal(raw, &a.MaxWaitingTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'maxWaitingTime': %w", err)
-		}
-		delete(object, "maxWaitingTime")
-	}
-
-	if raw, found := object["nrfId"]; found {
-		err = json.Unmarshal(raw, &a.NrfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'nrfId': %w", err)
-		}
-		delete(object, "nrfId")
-	}
-
-	if raw, found := object["status"]; found {
-		err = json.Unmarshal(raw, &a.Status)
-		if err != nil {
-			return fmt.Errorf("error reading 'status': %w", err)
-		}
-		delete(object, "status")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["title"]; found {
-		err = json.Unmarshal(raw, &a.Title)
-		if err != nil {
-			return fmt.Errorf("error reading 'title': %w", err)
-		}
-		delete(object, "title")
-	}
-
-	if raw, found := object["type"]; found {
-		err = json.Unmarshal(raw, &a.Type)
-		if err != nil {
-			return fmt.Errorf("error reading 'type': %w", err)
-		}
-		delete(object, "type")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ProblemDetailsEnableUeReachability to handle AdditionalProperties
-func (a ProblemDetailsEnableUeReachability) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AccessTokenError != nil {
-		object["accessTokenError"], err = json.Marshal(a.AccessTokenError)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessTokenError': %w", err)
-		}
-	}
-
-	if a.AccessTokenRequest != nil {
-		object["accessTokenRequest"], err = json.Marshal(a.AccessTokenRequest)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessTokenRequest': %w", err)
-		}
-	}
-
-	if a.Cause != nil {
-		object["cause"], err = json.Marshal(a.Cause)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cause': %w", err)
-		}
-	}
-
-	if a.Detail != nil {
-		object["detail"], err = json.Marshal(a.Detail)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'detail': %w", err)
-		}
-	}
-
-	if a.Instance != nil {
-		object["instance"], err = json.Marshal(a.Instance)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'instance': %w", err)
-		}
-	}
-
-	if len(a.InvalidParams) != 0 {
-		object["invalidParams"], err = json.Marshal(a.InvalidParams)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'invalidParams': %w", err)
-		}
-	}
-
-	if a.MaxWaitingTime != nil {
-		object["maxWaitingTime"], err = json.Marshal(a.MaxWaitingTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maxWaitingTime': %w", err)
-		}
-	}
-
-	if a.NrfId != nil {
-		object["nrfId"], err = json.Marshal(a.NrfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nrfId': %w", err)
-		}
-	}
-
-	if a.Status != 0 {
-		object["status"], err = json.Marshal(a.Status)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'status': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if a.Title != nil {
-		object["title"], err = json.Marshal(a.Title)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'title': %w", err)
-		}
-	}
-
-	if a.Type != nil {
-		object["type"], err = json.Marshal(a.Type)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'type': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for UeContextInfo. Returns the specified
-// element and whether it was found
-func (a UeContextInfo) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for UeContextInfo
-func (a *UeContextInfo) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for UeContextInfo to handle AdditionalProperties
-func (a *UeContextInfo) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accessType"]; found {
-		err = json.Unmarshal(raw, &a.AccessType)
-		if err != nil {
-			return fmt.Errorf("error reading 'accessType': %w", err)
-		}
-		delete(object, "accessType")
-	}
-
-	if raw, found := object["lastActTime"]; found {
-		err = json.Unmarshal(raw, &a.LastActTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'lastActTime': %w", err)
-		}
-		delete(object, "lastActTime")
-	}
-
-	if raw, found := object["ratType"]; found {
-		err = json.Unmarshal(raw, &a.RatType)
-		if err != nil {
-			return fmt.Errorf("error reading 'ratType': %w", err)
-		}
-		delete(object, "ratType")
-	}
-
-	if raw, found := object["supportVoPS"]; found {
-		err = json.Unmarshal(raw, &a.SupportVoPS)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportVoPS': %w", err)
-		}
-		delete(object, "supportVoPS")
-	}
-
-	if raw, found := object["supportVoPSn3gpp"]; found {
-		err = json.Unmarshal(raw, &a.SupportVoPSn3gpp)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportVoPSn3gpp': %w", err)
-		}
-		delete(object, "supportVoPSn3gpp")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for UeContextInfo to handle AdditionalProperties
-func (a UeContextInfo) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AccessType) != 0 {
-		object["accessType"], err = json.Marshal(a.AccessType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accessType': %w", err)
-		}
-	}
-
-	if a.LastActTime != nil {
-		object["lastActTime"], err = json.Marshal(a.LastActTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lastActTime': %w", err)
-		}
-	}
-
-	if a.RatType != nil {
-		object["ratType"], err = json.Marshal(a.RatType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ratType': %w", err)
-		}
-	}
-
-	if a.SupportVoPS != nil {
-		object["supportVoPS"], err = json.Marshal(a.SupportVoPS)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportVoPS': %w", err)
-		}
-	}
-
-	if a.SupportVoPSn3gpp != nil {
-		object["supportVoPSn3gpp"], err = json.Marshal(a.SupportVoPSn3gpp)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportVoPSn3gpp': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type EnableUeReachabilityJSONRequestBody = externalRef0.EnableUeReachabilityReqData
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1038,17 +340,17 @@ type ClientWithResponsesInterface interface {
 type ProvideDomainSelectionInfoResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *UeContextInfo
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON414     *externalRef1.N414
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.UeContextInfo
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON414     *externalRef0.N414
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1070,20 +372,20 @@ func (r ProvideDomainSelectionInfoResponse) StatusCode() int {
 type EnableUeReachabilityResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *EnableUeReachabilityRspData
-	JSON307                       *externalRef1.N307
-	JSON308                       *externalRef1.N308
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *ProblemDetailsEnableUeReachability
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON411     *externalRef1.N411
-	ApplicationproblemJSON413     *externalRef1.N413
-	ApplicationproblemJSON415     *externalRef1.N415
-	ApplicationproblemJSON429     *externalRef1.N429
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSON504     *ProblemDetailsEnableUeReachability
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.EnableUeReachabilityRspData
+	JSON307                       *externalRef0.N307
+	JSON308                       *externalRef0.N308
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.ProblemDetailsEnableUeReachability
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON411     *externalRef0.N411
+	ApplicationproblemJSON413     *externalRef0.N413
+	ApplicationproblemJSON415     *externalRef0.N415
+	ApplicationproblemJSON429     *externalRef0.N429
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSON504     *externalRef0.ProblemDetailsEnableUeReachability
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -1143,77 +445,77 @@ func ParseProvideDomainSelectionInfoResponse(rsp *http.Response) (*ProvideDomain
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UeContextInfo
+		var dest externalRef0.UeContextInfo
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 414:
-		var dest externalRef1.N414
+		var dest externalRef0.N414
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON414 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1239,98 +541,98 @@ func ParseEnableUeReachabilityResponse(rsp *http.Response) (*EnableUeReachabilit
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest EnableUeReachabilityRspData
+		var dest externalRef0.EnableUeReachabilityRspData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 307:
-		var dest externalRef1.N307
+		var dest externalRef0.N307
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON307 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 308:
-		var dest externalRef1.N308
+		var dest externalRef0.N308
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON308 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest ProblemDetailsEnableUeReachability
+		var dest externalRef0.ProblemDetailsEnableUeReachability
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 411:
-		var dest externalRef1.N411
+		var dest externalRef0.N411
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON411 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 413:
-		var dest externalRef1.N413
+		var dest externalRef0.N413
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON413 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 415:
-		var dest externalRef1.N415
+		var dest externalRef0.N415
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON415 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
-		var dest externalRef1.N429
+		var dest externalRef0.N429
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 504:
-		var dest ProblemDetailsEnableUeReachability
+		var dest externalRef0.ProblemDetailsEnableUeReachability
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON504 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -1399,7 +701,7 @@ func (siw *ServerInterfaceWrapper) ProvideDomainSelectionInfo(c *gin.Context) {
 
 	if paramValue := c.Query("old-guami"); paramValue != "" {
 
-		var value externalRef1.Guami
+		var value externalRef0.Guami
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'old-guami' as JSON: %w", err), http.StatusBadRequest)
@@ -1486,16 +788,16 @@ type ProvideDomainSelectionInfoResponseObject interface {
 	VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error
 }
 
-type ProvideDomainSelectionInfo200JSONResponse UeContextInfo
+type ProvideDomainSelectionInfo200JSONResponse externalRef0.UeContextInfo
 
 func (response ProvideDomainSelectionInfo200JSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(UeContextInfo(response))
+	return json.NewEncoder(w).Encode(externalRef0.UeContextInfo(response))
 }
 
-type ProvideDomainSelectionInfo307JSONResponse struct{ externalRef1.N307JSONResponse }
+type ProvideDomainSelectionInfo307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response ProvideDomainSelectionInfo307JSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -1508,7 +810,7 @@ func (response ProvideDomainSelectionInfo307JSONResponse) VisitProvideDomainSele
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type ProvideDomainSelectionInfo308JSONResponse struct{ externalRef1.N308JSONResponse }
+type ProvideDomainSelectionInfo308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response ProvideDomainSelectionInfo308JSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -1522,84 +824,84 @@ func (response ProvideDomainSelectionInfo308JSONResponse) VisitProvideDomainSele
 }
 
 type ProvideDomainSelectionInfo400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideDomainSelectionInfo400ApplicationProblemPlusJSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideDomainSelectionInfo403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideDomainSelectionInfo403ApplicationProblemPlusJSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideDomainSelectionInfo404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideDomainSelectionInfo404ApplicationProblemPlusJSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideDomainSelectionInfo414ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N414ApplicationProblemPlusJSONResponse
+	externalRef0.N414ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideDomainSelectionInfo414ApplicationProblemPlusJSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(414)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N414ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N414ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideDomainSelectionInfo429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideDomainSelectionInfo429ApplicationProblemPlusJSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideDomainSelectionInfo500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideDomainSelectionInfo500ApplicationProblemPlusJSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideDomainSelectionInfo503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response ProvideDomainSelectionInfo503ApplicationProblemPlusJSONResponse) VisitProvideDomainSelectionInfoResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type ProvideDomainSelectionInfodefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -1619,16 +921,16 @@ type EnableUeReachabilityResponseObject interface {
 	VisitEnableUeReachabilityResponse(w http.ResponseWriter) error
 }
 
-type EnableUeReachability200JSONResponse EnableUeReachabilityRspData
+type EnableUeReachability200JSONResponse externalRef0.EnableUeReachabilityRspData
 
 func (response EnableUeReachability200JSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(EnableUeReachabilityRspData(response))
+	return json.NewEncoder(w).Encode(externalRef0.EnableUeReachabilityRspData(response))
 }
 
-type EnableUeReachability307JSONResponse struct{ externalRef1.N307JSONResponse }
+type EnableUeReachability307JSONResponse struct{ externalRef0.N307JSONResponse }
 
 func (response EnableUeReachability307JSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -1641,7 +943,7 @@ func (response EnableUeReachability307JSONResponse) VisitEnableUeReachabilityRes
 	return json.NewEncoder(w).Encode(response.Body)
 }
 
-type EnableUeReachability308JSONResponse struct{ externalRef1.N308JSONResponse }
+type EnableUeReachability308JSONResponse struct{ externalRef0.N308JSONResponse }
 
 func (response EnableUeReachability308JSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -1655,113 +957,113 @@ func (response EnableUeReachability308JSONResponse) VisitEnableUeReachabilityRes
 }
 
 type EnableUeReachability400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response EnableUeReachability400ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
-type EnableUeReachability403ApplicationProblemPlusJSONResponse ProblemDetailsEnableUeReachability
+type EnableUeReachability403ApplicationProblemPlusJSONResponse externalRef0.ProblemDetailsEnableUeReachability
 
 func (response EnableUeReachability403ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(ProblemDetailsEnableUeReachability(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetailsEnableUeReachability(response))
 }
 
 type EnableUeReachability404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response EnableUeReachability404ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type EnableUeReachability411ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N411ApplicationProblemPlusJSONResponse
+	externalRef0.N411ApplicationProblemPlusJSONResponse
 }
 
 func (response EnableUeReachability411ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(411)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N411ApplicationProblemPlusJSONResponse))
 }
 
 type EnableUeReachability413ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N413ApplicationProblemPlusJSONResponse
+	externalRef0.N413ApplicationProblemPlusJSONResponse
 }
 
 func (response EnableUeReachability413ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(413)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N413ApplicationProblemPlusJSONResponse))
 }
 
 type EnableUeReachability415ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N415ApplicationProblemPlusJSONResponse
+	externalRef0.N415ApplicationProblemPlusJSONResponse
 }
 
 func (response EnableUeReachability415ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(415)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N415ApplicationProblemPlusJSONResponse))
 }
 
 type EnableUeReachability429ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N429ApplicationProblemPlusJSONResponse
+	externalRef0.N429ApplicationProblemPlusJSONResponse
 }
 
 func (response EnableUeReachability429ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(429)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N429ApplicationProblemPlusJSONResponse))
 }
 
 type EnableUeReachability500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response EnableUeReachability500ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type EnableUeReachability503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response EnableUeReachability503ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
-type EnableUeReachability504ApplicationProblemPlusJSONResponse ProblemDetailsEnableUeReachability
+type EnableUeReachability504ApplicationProblemPlusJSONResponse externalRef0.ProblemDetailsEnableUeReachability
 
 func (response EnableUeReachability504ApplicationProblemPlusJSONResponse) VisitEnableUeReachabilityResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(504)
 
-	return json.NewEncoder(w).Encode(ProblemDetailsEnableUeReachability(response))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetailsEnableUeReachability(response))
 }
 
 type EnableUeReachabilitydefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 

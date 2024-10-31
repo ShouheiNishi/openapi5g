@@ -7,7 +7,7 @@ import (
 
 	"github.com/samber/lo"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
+	"github.com/ShouheiNishi/openapi5g/models"
 )
 
 const (
@@ -43,8 +43,8 @@ const (
 	CauseUnspecifiedNFFailure         = "UNSPECIFIED_NF_FAILURE"
 )
 
-func AccessTokenDenied(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func AccessTokenDenied(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusForbidden,
 		Cause:  lo.ToPtr(CauseAccessTokenDenied),
 		Title:  lo.ToPtr("Access token denied"),
@@ -55,8 +55,8 @@ func AccessTokenDenied(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func CCAVerificationFailure(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func CCAVerificationFailure(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusForbidden,
 		Cause:  lo.ToPtr(CauseCCAVerificationFailure),
 		Title:  lo.ToPtr("CCA verification failure"),
@@ -67,8 +67,8 @@ func CCAVerificationFailure(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func IncorrectLength(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func IncorrectLength(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusLengthRequired,
 		Cause:  lo.ToPtr(CauseIncorrectLength),
 		Title:  lo.ToPtr("Incorrect length"),
@@ -79,8 +79,8 @@ func IncorrectLength(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func InsufficientResources(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func InsufficientResources(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseInsufficientResources),
 		Title:  lo.ToPtr("Insufficient resources"),
@@ -91,8 +91,8 @@ func InsufficientResources(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func InvalidAPI(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func InvalidAPI(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseInvalidAPI),
 		Title:  lo.ToPtr("Invalid API"),
@@ -103,8 +103,8 @@ func InvalidAPI(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func InvalidDiscoveryParam(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func InvalidDiscoveryParam(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseInvalidDiscoveryParam),
 		Title:  lo.ToPtr("Invalid discovery param"),
@@ -115,8 +115,8 @@ func InvalidDiscoveryParam(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func InvalidMsgFormat(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func InvalidMsgFormat(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseInvalidMsgFormat),
 		Title:  lo.ToPtr("Invalid msg format"),
@@ -127,8 +127,8 @@ func InvalidMsgFormat(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func InvalidQueryParam(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func InvalidQueryParam(invalidParams []models.InvalidParam, detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status:        http.StatusBadRequest,
 		Cause:         lo.ToPtr(CauseInvalidQueryParam),
 		Title:         lo.ToPtr("Invalid query param"),
@@ -140,8 +140,8 @@ func InvalidQueryParam(invalidParams []commondata.InvalidParam, detail string) c
 	return pd
 }
 
-func MandatoryIEIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func MandatoryIEIncorrect(invalidParams []models.InvalidParam, detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status:        http.StatusBadRequest,
 		Cause:         lo.ToPtr(CauseMandatoryIEIncorrect),
 		Title:         lo.ToPtr("Mandatory IE incorrect"),
@@ -153,8 +153,8 @@ func MandatoryIEIncorrect(invalidParams []commondata.InvalidParam, detail string
 	return pd
 }
 
-func MandatoryIEMissing(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func MandatoryIEMissing(invalidParams []models.InvalidParam, detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status:        http.StatusBadRequest,
 		Cause:         lo.ToPtr(CauseMandatoryIEMissing),
 		Title:         lo.ToPtr("Mandatory IE missing"),
@@ -166,8 +166,8 @@ func MandatoryIEMissing(invalidParams []commondata.InvalidParam, detail string) 
 	return pd
 }
 
-func MandatoryQueryParamIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func MandatoryQueryParamIncorrect(invalidParams []models.InvalidParam, detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status:        http.StatusBadRequest,
 		Cause:         lo.ToPtr(CauseMandatoryQueryParamIncorrect),
 		Title:         lo.ToPtr("Mandatory query param incorrect"),
@@ -179,8 +179,8 @@ func MandatoryQueryParamIncorrect(invalidParams []commondata.InvalidParam, detai
 	return pd
 }
 
-func MandatoryQueryParamMissing(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func MandatoryQueryParamMissing(invalidParams []models.InvalidParam, detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status:        http.StatusBadRequest,
 		Cause:         lo.ToPtr(CauseMandatoryQueryParamMissing),
 		Title:         lo.ToPtr("Mandatory query param missing"),
@@ -192,8 +192,8 @@ func MandatoryQueryParamMissing(invalidParams []commondata.InvalidParam, detail 
 	return pd
 }
 
-func MissingAccessTokenInfo(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func MissingAccessTokenInfo(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseMissingAccessTokenInfo),
 		Title:  lo.ToPtr("Missing access token info"),
@@ -204,8 +204,8 @@ func MissingAccessTokenInfo(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func ModificationNotAllowed(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func ModificationNotAllowed(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusForbidden,
 		Cause:  lo.ToPtr(CauseModificationNotAllowed),
 		Title:  lo.ToPtr("Modification not allowed"),
@@ -216,8 +216,8 @@ func ModificationNotAllowed(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func NFCongestion(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func NFCongestion(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusServiceUnavailable,
 		Cause:  lo.ToPtr(CauseNFCongestion),
 		Title:  lo.ToPtr("NF congestion"),
@@ -228,8 +228,8 @@ func NFCongestion(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func NFCongestionRisk(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func NFCongestionRisk(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusTooManyRequests,
 		Cause:  lo.ToPtr(CauseNFCongestionRisk),
 		Title:  lo.ToPtr("NF congestion risk"),
@@ -240,8 +240,8 @@ func NFCongestionRisk(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func NFDiscoveryFailure(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func NFDiscoveryFailure(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseNFDiscoveryFailure),
 		Title:  lo.ToPtr("NF discovery failure"),
@@ -252,8 +252,8 @@ func NFDiscoveryFailure(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func NFFailover(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func NFFailover(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseNFFailover),
 		Title:  lo.ToPtr("NF failover"),
@@ -264,8 +264,8 @@ func NFFailover(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func NFServiceFailover(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func NFServiceFailover(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseNFServiceFailover),
 		Title:  lo.ToPtr("NF service failover"),
@@ -276,8 +276,8 @@ func NFServiceFailover(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func OptionalIEIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func OptionalIEIncorrect(invalidParams []models.InvalidParam, detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status:        http.StatusBadRequest,
 		Cause:         lo.ToPtr(CauseOptionalIEIncorrect),
 		Title:         lo.ToPtr("Optional IE incorrect"),
@@ -289,8 +289,8 @@ func OptionalIEIncorrect(invalidParams []commondata.InvalidParam, detail string)
 	return pd
 }
 
-func OptionalQueryParamIncorrect(invalidParams []commondata.InvalidParam, detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func OptionalQueryParamIncorrect(invalidParams []models.InvalidParam, detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status:        http.StatusBadRequest,
 		Cause:         lo.ToPtr(CauseOptionalQueryParamIncorrect),
 		Title:         lo.ToPtr("Optional query param incorrect"),
@@ -302,8 +302,8 @@ func OptionalQueryParamIncorrect(invalidParams []commondata.InvalidParam, detail
 	return pd
 }
 
-func ResourceContextNotFound(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func ResourceContextNotFound(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseResourceContextNotFound),
 		Title:  lo.ToPtr("Resource context not found"),
@@ -314,8 +314,8 @@ func ResourceContextNotFound(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func ResourceURIStructureNotFound(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func ResourceURIStructureNotFound(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusNotFound,
 		Cause:  lo.ToPtr(CauseResourceURIStructureNotFound),
 		Title:  lo.ToPtr("Resource URI structure not found"),
@@ -326,8 +326,8 @@ func ResourceURIStructureNotFound(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func SubscriptionNotFound(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func SubscriptionNotFound(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusNotFound,
 		Cause:  lo.ToPtr(CauseSubscriptionNotFound),
 		Title:  lo.ToPtr("Subscription not found"),
@@ -338,8 +338,8 @@ func SubscriptionNotFound(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func SystemFailure(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func SystemFailure(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseSystemFailure),
 		Title:  lo.ToPtr("System failure"),
@@ -350,8 +350,8 @@ func SystemFailure(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func TargetNFNotReachable(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func TargetNFNotReachable(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusGatewayTimeout,
 		Cause:  lo.ToPtr(CauseTargetNFNotReachable),
 		Title:  lo.ToPtr("Target NF not reachable"),
@@ -362,8 +362,8 @@ func TargetNFNotReachable(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func TimedOutRequest(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func TimedOutRequest(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusGatewayTimeout,
 		Cause:  lo.ToPtr(CauseTimedOutRequest),
 		Title:  lo.ToPtr("Timed out request"),
@@ -374,8 +374,8 @@ func TimedOutRequest(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func TokenCCAMismatch(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func TokenCCAMismatch(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusForbidden,
 		Cause:  lo.ToPtr(CauseTokenCCAMismatch),
 		Title:  lo.ToPtr("Token CCA mismatch"),
@@ -386,8 +386,8 @@ func TokenCCAMismatch(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func UnspecifiedMsgFailure(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func UnspecifiedMsgFailure(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusBadRequest,
 		Cause:  lo.ToPtr(CauseUnspecifiedMsgFailure),
 		Title:  lo.ToPtr("Unspecified msg failure"),
@@ -398,8 +398,8 @@ func UnspecifiedMsgFailure(detail string) commondata.ProblemDetails {
 	return pd
 }
 
-func UnspecifiedNFFailure(detail string) commondata.ProblemDetails {
-	pd := commondata.ProblemDetails{
+func UnspecifiedNFFailure(detail string) models.ProblemDetails {
+	pd := models.ProblemDetails{
 		Status: http.StatusInternalServerError,
 		Cause:  lo.ToPtr(CauseUnspecifiedNFFailure),
 		Title:  lo.ToPtr("Unspecified NF failure"),

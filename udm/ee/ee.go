@@ -13,9 +13,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/amf/event"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef2 "github.com/ShouheiNishi/openapi5g/udm/sdm"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -25,2342 +23,20 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// Defines values for AssociationType.
-const (
-	IMEICHANGE   AssociationType = "IMEI_CHANGE"
-	IMEISVCHANGE AssociationType = "IMEISV_CHANGE"
-)
-
-// Defines values for CnType.
-const (
-	DUAL4G5G CnType = "DUAL_4G5G"
-	SINGLE4G CnType = "SINGLE_4G"
-	SINGLE5G CnType = "SINGLE_5G"
-)
-
-// Defines values for EventReportMode.
-const (
-	ONEVENTDETECTION EventReportMode = "ON_EVENT_DETECTION"
-	PERIODIC         EventReportMode = "PERIODIC"
-)
-
-// Defines values for EventType.
-const (
-	AVAILABILITYAFTERDDNFAILURE EventType = "AVAILABILITY_AFTER_DDN_FAILURE"
-	CHANGEOFSUPIPEIASSOCIATION  EventType = "CHANGE_OF_SUPI_PEI_ASSOCIATION"
-	CNTYPECHANGE                EventType = "CN_TYPE_CHANGE"
-	COMMUNICATIONFAILURE        EventType = "COMMUNICATION_FAILURE"
-	DLDATADELIVERYSTATUS        EventType = "DL_DATA_DELIVERY_STATUS"
-	LOCATIONREPORTING           EventType = "LOCATION_REPORTING"
-	LOSSOFCONNECTIVITY          EventType = "LOSS_OF_CONNECTIVITY"
-	PDNCONNECTIVITYSTATUS       EventType = "PDN_CONNECTIVITY_STATUS"
-	ROAMINGSTATUS               EventType = "ROAMING_STATUS"
-	UECONNECTIONMANAGEMENTSTATE EventType = "UE_CONNECTION_MANAGEMENT_STATE"
-	UEREACHABILITYFORDATA       EventType = "UE_REACHABILITY_FOR_DATA"
-	UEREACHABILITYFORSMS        EventType = "UE_REACHABILITY_FOR_SMS"
-)
-
-// Defines values for LocationAccuracy.
-const (
-	CELLLEVEL  LocationAccuracy = "CELL_LEVEL"
-	N3IWFLEVEL LocationAccuracy = "N3IWF_LEVEL"
-	TALEVEL    LocationAccuracy = "TA_LEVEL"
-	UEIP       LocationAccuracy = "UE_IP"
-	UEPORT     LocationAccuracy = "UE_PORT"
-)
-
-// Defines values for PdnConnectivityStatus.
-const (
-	ESTABLISHED PdnConnectivityStatus = "ESTABLISHED"
-	RELEASED    PdnConnectivityStatus = "RELEASED"
-)
-
-// Defines values for ReachabilityForSmsConfiguration.
-const (
-	REACHABILITYFORSMSOVERIP  ReachabilityForSmsConfiguration = "REACHABILITY_FOR_SMS_OVER_IP"
-	REACHABILITYFORSMSOVERNAS ReachabilityForSmsConfiguration = "REACHABILITY_FOR_SMS_OVER_NAS"
-)
-
-// AssociationType defines model for AssociationType.
-type AssociationType string
-
-// ChangeOfSupiPeiAssociationReport defines model for ChangeOfSupiPeiAssociationReport.
-type ChangeOfSupiPeiAssociationReport struct {
-	NewPei               externalRef1.Pei       `json:"newPei"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// CmInfoReport defines model for CmInfoReport.
-type CmInfoReport struct {
-	NewCmInfoList        []externalRef0.CmInfo  `json:"newCmInfoList"`
-	OldCmInfoList        []externalRef0.CmInfo  `json:"oldCmInfoList,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// CnType defines model for CnType.
-type CnType string
-
-// CnTypeChangeReport defines model for CnTypeChangeReport.
-type CnTypeChangeReport struct {
-	NewCnType            CnType                 `json:"newCnType"`
-	OldCnType            *CnType                `json:"oldCnType,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// CreatedEeSubscription defines model for CreatedEeSubscription.
-type CreatedEeSubscription struct {
-	EeSubscription       EeSubscription         `json:"eeSubscription"`
-	EpcStatusInd         *bool                  `json:"epcStatusInd,omitempty"`
-	EventReports         []MonitoringReport     `json:"eventReports,omitempty"`
-	NumberOfUes          *externalRef1.Uinteger `json:"numberOfUes,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// DatalinkReportingConfiguration defines model for DatalinkReportingConfiguration.
-type DatalinkReportingConfiguration struct {
-	DddStatusList        []externalRef1.DlDataDeliveryStatus `json:"dddStatusList,omitempty"`
-	DddTrafficDes        []externalRef1.DddTrafficDescriptor `json:"dddTrafficDes,omitempty"`
-	Dnn                  *externalRef1.Dnn                   `json:"dnn,omitempty"`
-	Slice                *externalRef1.Snssai                `json:"slice,omitempty"`
-	AdditionalProperties map[string]interface{}              `json:"-"`
-}
-
-// EeSubscription defines model for EeSubscription.
-type EeSubscription struct {
-	CallbackReference externalRef1.Uri          `json:"callbackReference"`
-	ContextInfo       *externalRef2.ContextInfo `json:"contextInfo,omitempty"`
-	EpcAppliedInd     *bool                     `json:"epcAppliedInd,omitempty"`
-
-	// MonitoringConfigurations A map (list of key-value pairs where ReferenceId serves as key) of MonitoringConfigurations
-	MonitoringConfigurations map[string]MonitoringConfiguration `json:"monitoringConfigurations"`
-	NotifyCorrelationId      *string                            `json:"notifyCorrelationId,omitempty"`
-	ReportingOptions         *ReportingOptions                  `json:"reportingOptions,omitempty"`
-	ScefDiamHost             externalRef1.DiameterIdentity      `json:"scefDiamHost,omitempty"`
-	ScefDiamRealm            externalRef1.DiameterIdentity      `json:"scefDiamRealm,omitempty"`
-	SubscriptionId           *string                            `json:"subscriptionId,omitempty"`
-	SupportedFeatures        *externalRef1.SupportedFeatures    `json:"supportedFeatures,omitempty"`
-	AdditionalProperties     map[string]interface{}             `json:"-"`
-}
-
-// EventReportMode defines model for EventReportMode.
-type EventReportMode string
-
-// EventType defines model for EventType.
-type EventType string
-
-// LocationAccuracy defines model for LocationAccuracy.
-type LocationAccuracy string
-
-// LocationReport defines model for LocationReport.
-type LocationReport struct {
-	Location             externalRef1.UserLocation `json:"location"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// LocationReportingConfiguration defines model for LocationReportingConfiguration.
-type LocationReportingConfiguration struct {
-	Accuracy             *LocationAccuracy      `json:"accuracy,omitempty"`
-	CurrentLocation      bool                   `json:"currentLocation"`
-	N3gppAccuracy        *LocationAccuracy      `json:"n3gppAccuracy,omitempty"`
-	OneTime              *bool                  `json:"oneTime,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// LossConnectivityCfg defines model for LossConnectivityCfg.
-type LossConnectivityCfg struct {
-	MaxDetectionTime     *externalRef1.DurationSec `json:"maxDetectionTime,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
-}
-
-// LossConnectivityReport defines model for LossConnectivityReport.
-type LossConnectivityReport struct {
-	LossOfConnectReason  externalRef0.LossOfConnectivityReason `json:"lossOfConnectReason"`
-	AdditionalProperties map[string]interface{}                `json:"-"`
-}
-
-// MaxNumOfReports defines model for MaxNumOfReports.
-type MaxNumOfReports = int
-
-// MonitoringConfiguration defines model for MonitoringConfiguration.
-type MonitoringConfiguration struct {
-	AfId                           *string                              `json:"afId,omitempty"`
-	AssociationType                *AssociationType                     `json:"associationType,omitempty"`
-	DatalinkReportCfg              *DatalinkReportingConfiguration      `json:"datalinkReportCfg,omitempty"`
-	EventType                      EventType                            `json:"eventType"`
-	IdleStatusInd                  *bool                                `json:"idleStatusInd,omitempty"`
-	ImmediateFlag                  *bool                                `json:"immediateFlag,omitempty"`
-	LocationReportingConfiguration *LocationReportingConfiguration      `json:"locationReportingConfiguration,omitempty"`
-	LossConnectivityCfg            *LossConnectivityCfg                 `json:"lossConnectivityCfg,omitempty"`
-	MaximumLatency                 *externalRef1.DurationSec            `json:"maximumLatency,omitempty"`
-	MaximumResponseTime            *externalRef1.DurationSec            `json:"maximumResponseTime,omitempty"`
-	MtcProviderInformation         *externalRef1.MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	PduSessionStatusCfg            *PduSessionStatusCfg                 `json:"pduSessionStatusCfg,omitempty"`
-	ReachabilityForSmsCfg          *ReachabilityForSmsConfiguration     `json:"reachabilityForSmsCfg,omitempty"`
-	SuggestedPacketNumDl           int                                  `json:"suggestedPacketNumDl,omitempty"`
-	AdditionalProperties           map[string]interface{}               `json:"-"`
-}
-
-// MonitoringReport defines model for MonitoringReport.
-type MonitoringReport struct {
-	EventType                EventType                 `json:"eventType"`
-	Gpsi                     externalRef1.Gpsi         `json:"gpsi,omitempty"`
-	ReachabilityForSmsReport *ReachabilityForSmsReport `json:"reachabilityForSmsReport,omitempty"`
-	ReferenceId              ReferenceId               `json:"referenceId"`
-	Report                   *Report                   `json:"report,omitempty"`
-	TimeStamp                externalRef1.DateTime     `json:"timeStamp"`
-	AdditionalProperties     map[string]interface{}    `json:"-"`
-}
-
-// PdnConnectivityStatReport defines model for PdnConnectivityStatReport.
-type PdnConnectivityStatReport struct {
-	Dnn                  *externalRef1.Dnn            `json:"dnn,omitempty"`
-	Ipv4Addr             externalRef1.Ipv4Addr        `json:"ipv4Addr,omitempty"`
-	Ipv6Addrs            []externalRef1.Ipv6Addr      `json:"ipv6Addrs,omitempty"`
-	Ipv6Prefixes         []externalRef1.Ipv6Prefix    `json:"ipv6Prefixes,omitempty"`
-	PdnConnStat          PdnConnectivityStatus        `json:"pdnConnStat"`
-	PduSeId              *externalRef1.PduSessionId   `json:"pduSeId,omitempty"`
-	PduSessType          *externalRef1.PduSessionType `json:"pduSessType,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"-"`
-}
-
-// PdnConnectivityStatus defines model for PdnConnectivityStatus.
-type PdnConnectivityStatus string
-
-// PduSessionStatusCfg defines model for PduSessionStatusCfg.
-type PduSessionStatusCfg struct {
-	Dnn                  *externalRef1.Dnn      `json:"dnn,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// ReachabilityForSmsConfiguration defines model for ReachabilityForSmsConfiguration.
-type ReachabilityForSmsConfiguration string
-
-// ReachabilityForSmsReport defines model for ReachabilityForSmsReport.
-type ReachabilityForSmsReport struct {
-	MaxAvailabilityTime  *externalRef1.DateTime  `json:"maxAvailabilityTime,omitempty"`
-	SmsfAccessType       externalRef1.AccessType `json:"smsfAccessType"`
-	AdditionalProperties map[string]interface{}  `json:"-"`
-}
-
-// ReferenceId defines model for ReferenceId.
-type ReferenceId = int
-
-// Report defines model for Report.
-type Report struct {
-	union json.RawMessage
-}
-
-// ReportingOptions defines model for ReportingOptions.
-type ReportingOptions struct {
-	Expiry               *externalRef1.DateTime     `json:"expiry,omitempty"`
-	GuardTime            *externalRef1.DurationSec  `json:"guardTime,omitempty"`
-	MaxNumOfReports      *MaxNumOfReports           `json:"maxNumOfReports,omitempty"`
-	ReportMode           *EventReportMode           `json:"reportMode,omitempty"`
-	ReportPeriod         *externalRef1.DurationSec  `json:"reportPeriod,omitempty"`
-	SamplingRatio        externalRef1.SamplingRatio `json:"samplingRatio,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
-}
-
-// RoamingStatusReport defines model for RoamingStatusReport.
-type RoamingStatusReport struct {
-	NewServingPlmn       externalRef1.PlmnId    `json:"newServingPlmn"`
-	Roaming              bool                   `json:"roaming"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
 // UpdateEeSubscriptionApplicationJSONPatchPlusJSONBody defines parameters for UpdateEeSubscription.
-type UpdateEeSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef1.PatchItem
+type UpdateEeSubscriptionApplicationJSONPatchPlusJSONBody = []externalRef0.PatchItem
 
 // UpdateEeSubscriptionParams defines parameters for UpdateEeSubscription.
 type UpdateEeSubscriptionParams struct {
 	// SupportedFeatures Features required to be supported by the target NF
-	SupportedFeatures *externalRef1.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
+	SupportedFeatures *externalRef0.SupportedFeatures `form:"supported-features,omitempty" json:"supported-features,omitempty"`
 }
 
 // CreateEeSubscriptionJSONRequestBody defines body for CreateEeSubscription for application/json ContentType.
-type CreateEeSubscriptionJSONRequestBody = EeSubscription
+type CreateEeSubscriptionJSONRequestBody = externalRef0.EeSubscription
 
 // UpdateEeSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for UpdateEeSubscription for application/json-patch+json ContentType.
 type UpdateEeSubscriptionApplicationJSONPatchPlusJSONRequestBody = UpdateEeSubscriptionApplicationJSONPatchPlusJSONBody
-
-// Getter for additional properties for ChangeOfSupiPeiAssociationReport. Returns the specified
-// element and whether it was found
-func (a ChangeOfSupiPeiAssociationReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ChangeOfSupiPeiAssociationReport
-func (a *ChangeOfSupiPeiAssociationReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ChangeOfSupiPeiAssociationReport to handle AdditionalProperties
-func (a *ChangeOfSupiPeiAssociationReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["newPei"]; found {
-		err = json.Unmarshal(raw, &a.NewPei)
-		if err != nil {
-			return fmt.Errorf("error reading 'newPei': %w", err)
-		}
-		delete(object, "newPei")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ChangeOfSupiPeiAssociationReport to handle AdditionalProperties
-func (a ChangeOfSupiPeiAssociationReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["newPei"], err = json.Marshal(a.NewPei)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'newPei': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for CmInfoReport. Returns the specified
-// element and whether it was found
-func (a CmInfoReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for CmInfoReport
-func (a *CmInfoReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for CmInfoReport to handle AdditionalProperties
-func (a *CmInfoReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["newCmInfoList"]; found {
-		err = json.Unmarshal(raw, &a.NewCmInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'newCmInfoList': %w", err)
-		}
-		delete(object, "newCmInfoList")
-	}
-
-	if raw, found := object["oldCmInfoList"]; found {
-		err = json.Unmarshal(raw, &a.OldCmInfoList)
-		if err != nil {
-			return fmt.Errorf("error reading 'oldCmInfoList': %w", err)
-		}
-		delete(object, "oldCmInfoList")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for CmInfoReport to handle AdditionalProperties
-func (a CmInfoReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["newCmInfoList"], err = json.Marshal(a.NewCmInfoList)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'newCmInfoList': %w", err)
-	}
-
-	if len(a.OldCmInfoList) != 0 {
-		object["oldCmInfoList"], err = json.Marshal(a.OldCmInfoList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oldCmInfoList': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for CnTypeChangeReport. Returns the specified
-// element and whether it was found
-func (a CnTypeChangeReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for CnTypeChangeReport
-func (a *CnTypeChangeReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for CnTypeChangeReport to handle AdditionalProperties
-func (a *CnTypeChangeReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["newCnType"]; found {
-		err = json.Unmarshal(raw, &a.NewCnType)
-		if err != nil {
-			return fmt.Errorf("error reading 'newCnType': %w", err)
-		}
-		delete(object, "newCnType")
-	}
-
-	if raw, found := object["oldCnType"]; found {
-		err = json.Unmarshal(raw, &a.OldCnType)
-		if err != nil {
-			return fmt.Errorf("error reading 'oldCnType': %w", err)
-		}
-		delete(object, "oldCnType")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for CnTypeChangeReport to handle AdditionalProperties
-func (a CnTypeChangeReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["newCnType"], err = json.Marshal(a.NewCnType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'newCnType': %w", err)
-	}
-
-	if a.OldCnType != nil {
-		object["oldCnType"], err = json.Marshal(a.OldCnType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oldCnType': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for CreatedEeSubscription. Returns the specified
-// element and whether it was found
-func (a CreatedEeSubscription) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for CreatedEeSubscription
-func (a *CreatedEeSubscription) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for CreatedEeSubscription to handle AdditionalProperties
-func (a *CreatedEeSubscription) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["eeSubscription"]; found {
-		err = json.Unmarshal(raw, &a.EeSubscription)
-		if err != nil {
-			return fmt.Errorf("error reading 'eeSubscription': %w", err)
-		}
-		delete(object, "eeSubscription")
-	}
-
-	if raw, found := object["epcStatusInd"]; found {
-		err = json.Unmarshal(raw, &a.EpcStatusInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'epcStatusInd': %w", err)
-		}
-		delete(object, "epcStatusInd")
-	}
-
-	if raw, found := object["eventReports"]; found {
-		err = json.Unmarshal(raw, &a.EventReports)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventReports': %w", err)
-		}
-		delete(object, "eventReports")
-	}
-
-	if raw, found := object["numberOfUes"]; found {
-		err = json.Unmarshal(raw, &a.NumberOfUes)
-		if err != nil {
-			return fmt.Errorf("error reading 'numberOfUes': %w", err)
-		}
-		delete(object, "numberOfUes")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for CreatedEeSubscription to handle AdditionalProperties
-func (a CreatedEeSubscription) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["eeSubscription"], err = json.Marshal(a.EeSubscription)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'eeSubscription': %w", err)
-	}
-
-	if a.EpcStatusInd != nil {
-		object["epcStatusInd"], err = json.Marshal(a.EpcStatusInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'epcStatusInd': %w", err)
-		}
-	}
-
-	if len(a.EventReports) != 0 {
-		object["eventReports"], err = json.Marshal(a.EventReports)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'eventReports': %w", err)
-		}
-	}
-
-	if a.NumberOfUes != nil {
-		object["numberOfUes"], err = json.Marshal(a.NumberOfUes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'numberOfUes': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for DatalinkReportingConfiguration. Returns the specified
-// element and whether it was found
-func (a DatalinkReportingConfiguration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for DatalinkReportingConfiguration
-func (a *DatalinkReportingConfiguration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for DatalinkReportingConfiguration to handle AdditionalProperties
-func (a *DatalinkReportingConfiguration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["dddStatusList"]; found {
-		err = json.Unmarshal(raw, &a.DddStatusList)
-		if err != nil {
-			return fmt.Errorf("error reading 'dddStatusList': %w", err)
-		}
-		delete(object, "dddStatusList")
-	}
-
-	if raw, found := object["dddTrafficDes"]; found {
-		err = json.Unmarshal(raw, &a.DddTrafficDes)
-		if err != nil {
-			return fmt.Errorf("error reading 'dddTrafficDes': %w", err)
-		}
-		delete(object, "dddTrafficDes")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["slice"]; found {
-		err = json.Unmarshal(raw, &a.Slice)
-		if err != nil {
-			return fmt.Errorf("error reading 'slice': %w", err)
-		}
-		delete(object, "slice")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for DatalinkReportingConfiguration to handle AdditionalProperties
-func (a DatalinkReportingConfiguration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.DddStatusList) != 0 {
-		object["dddStatusList"], err = json.Marshal(a.DddStatusList)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dddStatusList': %w", err)
-		}
-	}
-
-	if len(a.DddTrafficDes) != 0 {
-		object["dddTrafficDes"], err = json.Marshal(a.DddTrafficDes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dddTrafficDes': %w", err)
-		}
-	}
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if a.Slice != nil {
-		object["slice"], err = json.Marshal(a.Slice)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'slice': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for EeSubscription. Returns the specified
-// element and whether it was found
-func (a EeSubscription) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for EeSubscription
-func (a *EeSubscription) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for EeSubscription to handle AdditionalProperties
-func (a *EeSubscription) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["callbackReference"]; found {
-		err = json.Unmarshal(raw, &a.CallbackReference)
-		if err != nil {
-			return fmt.Errorf("error reading 'callbackReference': %w", err)
-		}
-		delete(object, "callbackReference")
-	}
-
-	if raw, found := object["contextInfo"]; found {
-		err = json.Unmarshal(raw, &a.ContextInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'contextInfo': %w", err)
-		}
-		delete(object, "contextInfo")
-	}
-
-	if raw, found := object["epcAppliedInd"]; found {
-		err = json.Unmarshal(raw, &a.EpcAppliedInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'epcAppliedInd': %w", err)
-		}
-		delete(object, "epcAppliedInd")
-	}
-
-	if raw, found := object["monitoringConfigurations"]; found {
-		err = json.Unmarshal(raw, &a.MonitoringConfigurations)
-		if err != nil {
-			return fmt.Errorf("error reading 'monitoringConfigurations': %w", err)
-		}
-		delete(object, "monitoringConfigurations")
-	}
-
-	if raw, found := object["notifyCorrelationId"]; found {
-		err = json.Unmarshal(raw, &a.NotifyCorrelationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'notifyCorrelationId': %w", err)
-		}
-		delete(object, "notifyCorrelationId")
-	}
-
-	if raw, found := object["reportingOptions"]; found {
-		err = json.Unmarshal(raw, &a.ReportingOptions)
-		if err != nil {
-			return fmt.Errorf("error reading 'reportingOptions': %w", err)
-		}
-		delete(object, "reportingOptions")
-	}
-
-	if raw, found := object["scefDiamHost"]; found {
-		err = json.Unmarshal(raw, &a.ScefDiamHost)
-		if err != nil {
-			return fmt.Errorf("error reading 'scefDiamHost': %w", err)
-		}
-		delete(object, "scefDiamHost")
-	}
-
-	if raw, found := object["scefDiamRealm"]; found {
-		err = json.Unmarshal(raw, &a.ScefDiamRealm)
-		if err != nil {
-			return fmt.Errorf("error reading 'scefDiamRealm': %w", err)
-		}
-		delete(object, "scefDiamRealm")
-	}
-
-	if raw, found := object["subscriptionId"]; found {
-		err = json.Unmarshal(raw, &a.SubscriptionId)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscriptionId': %w", err)
-		}
-		delete(object, "subscriptionId")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for EeSubscription to handle AdditionalProperties
-func (a EeSubscription) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["callbackReference"], err = json.Marshal(a.CallbackReference)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'callbackReference': %w", err)
-	}
-
-	if a.ContextInfo != nil {
-		object["contextInfo"], err = json.Marshal(a.ContextInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'contextInfo': %w", err)
-		}
-	}
-
-	if a.EpcAppliedInd != nil {
-		object["epcAppliedInd"], err = json.Marshal(a.EpcAppliedInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'epcAppliedInd': %w", err)
-		}
-	}
-
-	object["monitoringConfigurations"], err = json.Marshal(a.MonitoringConfigurations)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'monitoringConfigurations': %w", err)
-	}
-
-	if a.NotifyCorrelationId != nil {
-		object["notifyCorrelationId"], err = json.Marshal(a.NotifyCorrelationId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'notifyCorrelationId': %w", err)
-		}
-	}
-
-	if a.ReportingOptions != nil {
-		object["reportingOptions"], err = json.Marshal(a.ReportingOptions)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reportingOptions': %w", err)
-		}
-	}
-
-	if len(a.ScefDiamHost) != 0 {
-		object["scefDiamHost"], err = json.Marshal(a.ScefDiamHost)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scefDiamHost': %w", err)
-		}
-	}
-
-	if len(a.ScefDiamRealm) != 0 {
-		object["scefDiamRealm"], err = json.Marshal(a.ScefDiamRealm)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'scefDiamRealm': %w", err)
-		}
-	}
-
-	if a.SubscriptionId != nil {
-		object["subscriptionId"], err = json.Marshal(a.SubscriptionId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscriptionId': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LocationReport. Returns the specified
-// element and whether it was found
-func (a LocationReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LocationReport
-func (a *LocationReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LocationReport to handle AdditionalProperties
-func (a *LocationReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["location"]; found {
-		err = json.Unmarshal(raw, &a.Location)
-		if err != nil {
-			return fmt.Errorf("error reading 'location': %w", err)
-		}
-		delete(object, "location")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LocationReport to handle AdditionalProperties
-func (a LocationReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["location"], err = json.Marshal(a.Location)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'location': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LocationReportingConfiguration. Returns the specified
-// element and whether it was found
-func (a LocationReportingConfiguration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LocationReportingConfiguration
-func (a *LocationReportingConfiguration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LocationReportingConfiguration to handle AdditionalProperties
-func (a *LocationReportingConfiguration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["accuracy"]; found {
-		err = json.Unmarshal(raw, &a.Accuracy)
-		if err != nil {
-			return fmt.Errorf("error reading 'accuracy': %w", err)
-		}
-		delete(object, "accuracy")
-	}
-
-	if raw, found := object["currentLocation"]; found {
-		err = json.Unmarshal(raw, &a.CurrentLocation)
-		if err != nil {
-			return fmt.Errorf("error reading 'currentLocation': %w", err)
-		}
-		delete(object, "currentLocation")
-	}
-
-	if raw, found := object["n3gppAccuracy"]; found {
-		err = json.Unmarshal(raw, &a.N3gppAccuracy)
-		if err != nil {
-			return fmt.Errorf("error reading 'n3gppAccuracy': %w", err)
-		}
-		delete(object, "n3gppAccuracy")
-	}
-
-	if raw, found := object["oneTime"]; found {
-		err = json.Unmarshal(raw, &a.OneTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'oneTime': %w", err)
-		}
-		delete(object, "oneTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LocationReportingConfiguration to handle AdditionalProperties
-func (a LocationReportingConfiguration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Accuracy != nil {
-		object["accuracy"], err = json.Marshal(a.Accuracy)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'accuracy': %w", err)
-		}
-	}
-
-	object["currentLocation"], err = json.Marshal(a.CurrentLocation)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'currentLocation': %w", err)
-	}
-
-	if a.N3gppAccuracy != nil {
-		object["n3gppAccuracy"], err = json.Marshal(a.N3gppAccuracy)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'n3gppAccuracy': %w", err)
-		}
-	}
-
-	if a.OneTime != nil {
-		object["oneTime"], err = json.Marshal(a.OneTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'oneTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LossConnectivityCfg. Returns the specified
-// element and whether it was found
-func (a LossConnectivityCfg) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LossConnectivityCfg
-func (a *LossConnectivityCfg) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LossConnectivityCfg to handle AdditionalProperties
-func (a *LossConnectivityCfg) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["maxDetectionTime"]; found {
-		err = json.Unmarshal(raw, &a.MaxDetectionTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'maxDetectionTime': %w", err)
-		}
-		delete(object, "maxDetectionTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LossConnectivityCfg to handle AdditionalProperties
-func (a LossConnectivityCfg) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.MaxDetectionTime != nil {
-		object["maxDetectionTime"], err = json.Marshal(a.MaxDetectionTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maxDetectionTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for LossConnectivityReport. Returns the specified
-// element and whether it was found
-func (a LossConnectivityReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for LossConnectivityReport
-func (a *LossConnectivityReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for LossConnectivityReport to handle AdditionalProperties
-func (a *LossConnectivityReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["lossOfConnectReason"]; found {
-		err = json.Unmarshal(raw, &a.LossOfConnectReason)
-		if err != nil {
-			return fmt.Errorf("error reading 'lossOfConnectReason': %w", err)
-		}
-		delete(object, "lossOfConnectReason")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for LossConnectivityReport to handle AdditionalProperties
-func (a LossConnectivityReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["lossOfConnectReason"], err = json.Marshal(a.LossOfConnectReason)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'lossOfConnectReason': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for MonitoringConfiguration. Returns the specified
-// element and whether it was found
-func (a MonitoringConfiguration) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for MonitoringConfiguration
-func (a *MonitoringConfiguration) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for MonitoringConfiguration to handle AdditionalProperties
-func (a *MonitoringConfiguration) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afId"]; found {
-		err = json.Unmarshal(raw, &a.AfId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afId': %w", err)
-		}
-		delete(object, "afId")
-	}
-
-	if raw, found := object["associationType"]; found {
-		err = json.Unmarshal(raw, &a.AssociationType)
-		if err != nil {
-			return fmt.Errorf("error reading 'associationType': %w", err)
-		}
-		delete(object, "associationType")
-	}
-
-	if raw, found := object["datalinkReportCfg"]; found {
-		err = json.Unmarshal(raw, &a.DatalinkReportCfg)
-		if err != nil {
-			return fmt.Errorf("error reading 'datalinkReportCfg': %w", err)
-		}
-		delete(object, "datalinkReportCfg")
-	}
-
-	if raw, found := object["eventType"]; found {
-		err = json.Unmarshal(raw, &a.EventType)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventType': %w", err)
-		}
-		delete(object, "eventType")
-	}
-
-	if raw, found := object["idleStatusInd"]; found {
-		err = json.Unmarshal(raw, &a.IdleStatusInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'idleStatusInd': %w", err)
-		}
-		delete(object, "idleStatusInd")
-	}
-
-	if raw, found := object["immediateFlag"]; found {
-		err = json.Unmarshal(raw, &a.ImmediateFlag)
-		if err != nil {
-			return fmt.Errorf("error reading 'immediateFlag': %w", err)
-		}
-		delete(object, "immediateFlag")
-	}
-
-	if raw, found := object["locationReportingConfiguration"]; found {
-		err = json.Unmarshal(raw, &a.LocationReportingConfiguration)
-		if err != nil {
-			return fmt.Errorf("error reading 'locationReportingConfiguration': %w", err)
-		}
-		delete(object, "locationReportingConfiguration")
-	}
-
-	if raw, found := object["lossConnectivityCfg"]; found {
-		err = json.Unmarshal(raw, &a.LossConnectivityCfg)
-		if err != nil {
-			return fmt.Errorf("error reading 'lossConnectivityCfg': %w", err)
-		}
-		delete(object, "lossConnectivityCfg")
-	}
-
-	if raw, found := object["maximumLatency"]; found {
-		err = json.Unmarshal(raw, &a.MaximumLatency)
-		if err != nil {
-			return fmt.Errorf("error reading 'maximumLatency': %w", err)
-		}
-		delete(object, "maximumLatency")
-	}
-
-	if raw, found := object["maximumResponseTime"]; found {
-		err = json.Unmarshal(raw, &a.MaximumResponseTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'maximumResponseTime': %w", err)
-		}
-		delete(object, "maximumResponseTime")
-	}
-
-	if raw, found := object["mtcProviderInformation"]; found {
-		err = json.Unmarshal(raw, &a.MtcProviderInformation)
-		if err != nil {
-			return fmt.Errorf("error reading 'mtcProviderInformation': %w", err)
-		}
-		delete(object, "mtcProviderInformation")
-	}
-
-	if raw, found := object["pduSessionStatusCfg"]; found {
-		err = json.Unmarshal(raw, &a.PduSessionStatusCfg)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessionStatusCfg': %w", err)
-		}
-		delete(object, "pduSessionStatusCfg")
-	}
-
-	if raw, found := object["reachabilityForSmsCfg"]; found {
-		err = json.Unmarshal(raw, &a.ReachabilityForSmsCfg)
-		if err != nil {
-			return fmt.Errorf("error reading 'reachabilityForSmsCfg': %w", err)
-		}
-		delete(object, "reachabilityForSmsCfg")
-	}
-
-	if raw, found := object["suggestedPacketNumDl"]; found {
-		err = json.Unmarshal(raw, &a.SuggestedPacketNumDl)
-		if err != nil {
-			return fmt.Errorf("error reading 'suggestedPacketNumDl': %w", err)
-		}
-		delete(object, "suggestedPacketNumDl")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for MonitoringConfiguration to handle AdditionalProperties
-func (a MonitoringConfiguration) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AfId != nil {
-		object["afId"], err = json.Marshal(a.AfId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afId': %w", err)
-		}
-	}
-
-	if a.AssociationType != nil {
-		object["associationType"], err = json.Marshal(a.AssociationType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'associationType': %w", err)
-		}
-	}
-
-	if a.DatalinkReportCfg != nil {
-		object["datalinkReportCfg"], err = json.Marshal(a.DatalinkReportCfg)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'datalinkReportCfg': %w", err)
-		}
-	}
-
-	object["eventType"], err = json.Marshal(a.EventType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'eventType': %w", err)
-	}
-
-	if a.IdleStatusInd != nil {
-		object["idleStatusInd"], err = json.Marshal(a.IdleStatusInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'idleStatusInd': %w", err)
-		}
-	}
-
-	if a.ImmediateFlag != nil {
-		object["immediateFlag"], err = json.Marshal(a.ImmediateFlag)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'immediateFlag': %w", err)
-		}
-	}
-
-	if a.LocationReportingConfiguration != nil {
-		object["locationReportingConfiguration"], err = json.Marshal(a.LocationReportingConfiguration)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'locationReportingConfiguration': %w", err)
-		}
-	}
-
-	if a.LossConnectivityCfg != nil {
-		object["lossConnectivityCfg"], err = json.Marshal(a.LossConnectivityCfg)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'lossConnectivityCfg': %w", err)
-		}
-	}
-
-	if a.MaximumLatency != nil {
-		object["maximumLatency"], err = json.Marshal(a.MaximumLatency)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maximumLatency': %w", err)
-		}
-	}
-
-	if a.MaximumResponseTime != nil {
-		object["maximumResponseTime"], err = json.Marshal(a.MaximumResponseTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maximumResponseTime': %w", err)
-		}
-	}
-
-	if a.MtcProviderInformation != nil {
-		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
-		}
-	}
-
-	if a.PduSessionStatusCfg != nil {
-		object["pduSessionStatusCfg"], err = json.Marshal(a.PduSessionStatusCfg)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pduSessionStatusCfg': %w", err)
-		}
-	}
-
-	if a.ReachabilityForSmsCfg != nil {
-		object["reachabilityForSmsCfg"], err = json.Marshal(a.ReachabilityForSmsCfg)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reachabilityForSmsCfg': %w", err)
-		}
-	}
-
-	if a.SuggestedPacketNumDl != 0 {
-		object["suggestedPacketNumDl"], err = json.Marshal(a.SuggestedPacketNumDl)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'suggestedPacketNumDl': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for MonitoringReport. Returns the specified
-// element and whether it was found
-func (a MonitoringReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for MonitoringReport
-func (a *MonitoringReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for MonitoringReport to handle AdditionalProperties
-func (a *MonitoringReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["eventType"]; found {
-		err = json.Unmarshal(raw, &a.EventType)
-		if err != nil {
-			return fmt.Errorf("error reading 'eventType': %w", err)
-		}
-		delete(object, "eventType")
-	}
-
-	if raw, found := object["gpsi"]; found {
-		err = json.Unmarshal(raw, &a.Gpsi)
-		if err != nil {
-			return fmt.Errorf("error reading 'gpsi': %w", err)
-		}
-		delete(object, "gpsi")
-	}
-
-	if raw, found := object["reachabilityForSmsReport"]; found {
-		err = json.Unmarshal(raw, &a.ReachabilityForSmsReport)
-		if err != nil {
-			return fmt.Errorf("error reading 'reachabilityForSmsReport': %w", err)
-		}
-		delete(object, "reachabilityForSmsReport")
-	}
-
-	if raw, found := object["referenceId"]; found {
-		err = json.Unmarshal(raw, &a.ReferenceId)
-		if err != nil {
-			return fmt.Errorf("error reading 'referenceId': %w", err)
-		}
-		delete(object, "referenceId")
-	}
-
-	if raw, found := object["report"]; found {
-		err = json.Unmarshal(raw, &a.Report)
-		if err != nil {
-			return fmt.Errorf("error reading 'report': %w", err)
-		}
-		delete(object, "report")
-	}
-
-	if raw, found := object["timeStamp"]; found {
-		err = json.Unmarshal(raw, &a.TimeStamp)
-		if err != nil {
-			return fmt.Errorf("error reading 'timeStamp': %w", err)
-		}
-		delete(object, "timeStamp")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for MonitoringReport to handle AdditionalProperties
-func (a MonitoringReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["eventType"], err = json.Marshal(a.EventType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'eventType': %w", err)
-	}
-
-	if len(a.Gpsi) != 0 {
-		object["gpsi"], err = json.Marshal(a.Gpsi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'gpsi': %w", err)
-		}
-	}
-
-	if a.ReachabilityForSmsReport != nil {
-		object["reachabilityForSmsReport"], err = json.Marshal(a.ReachabilityForSmsReport)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reachabilityForSmsReport': %w", err)
-		}
-	}
-
-	object["referenceId"], err = json.Marshal(a.ReferenceId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'referenceId': %w", err)
-	}
-
-	if a.Report != nil {
-		object["report"], err = json.Marshal(a.Report)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'report': %w", err)
-		}
-	}
-
-	object["timeStamp"], err = json.Marshal(a.TimeStamp)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'timeStamp': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PdnConnectivityStatReport. Returns the specified
-// element and whether it was found
-func (a PdnConnectivityStatReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PdnConnectivityStatReport
-func (a *PdnConnectivityStatReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PdnConnectivityStatReport to handle AdditionalProperties
-func (a *PdnConnectivityStatReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["ipv4Addr"]; found {
-		err = json.Unmarshal(raw, &a.Ipv4Addr)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv4Addr': %w", err)
-		}
-		delete(object, "ipv4Addr")
-	}
-
-	if raw, found := object["ipv6Addrs"]; found {
-		err = json.Unmarshal(raw, &a.Ipv6Addrs)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv6Addrs': %w", err)
-		}
-		delete(object, "ipv6Addrs")
-	}
-
-	if raw, found := object["ipv6Prefixes"]; found {
-		err = json.Unmarshal(raw, &a.Ipv6Prefixes)
-		if err != nil {
-			return fmt.Errorf("error reading 'ipv6Prefixes': %w", err)
-		}
-		delete(object, "ipv6Prefixes")
-	}
-
-	if raw, found := object["pdnConnStat"]; found {
-		err = json.Unmarshal(raw, &a.PdnConnStat)
-		if err != nil {
-			return fmt.Errorf("error reading 'pdnConnStat': %w", err)
-		}
-		delete(object, "pdnConnStat")
-	}
-
-	if raw, found := object["pduSeId"]; found {
-		err = json.Unmarshal(raw, &a.PduSeId)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSeId': %w", err)
-		}
-		delete(object, "pduSeId")
-	}
-
-	if raw, found := object["pduSessType"]; found {
-		err = json.Unmarshal(raw, &a.PduSessType)
-		if err != nil {
-			return fmt.Errorf("error reading 'pduSessType': %w", err)
-		}
-		delete(object, "pduSessType")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PdnConnectivityStatReport to handle AdditionalProperties
-func (a PdnConnectivityStatReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if len(a.Ipv4Addr) != 0 {
-		object["ipv4Addr"], err = json.Marshal(a.Ipv4Addr)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv4Addr': %w", err)
-		}
-	}
-
-	if len(a.Ipv6Addrs) != 0 {
-		object["ipv6Addrs"], err = json.Marshal(a.Ipv6Addrs)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv6Addrs': %w", err)
-		}
-	}
-
-	if len(a.Ipv6Prefixes) != 0 {
-		object["ipv6Prefixes"], err = json.Marshal(a.Ipv6Prefixes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ipv6Prefixes': %w", err)
-		}
-	}
-
-	object["pdnConnStat"], err = json.Marshal(a.PdnConnStat)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pdnConnStat': %w", err)
-	}
-
-	if a.PduSeId != nil {
-		object["pduSeId"], err = json.Marshal(a.PduSeId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pduSeId': %w", err)
-		}
-	}
-
-	if a.PduSessType != nil {
-		object["pduSessType"], err = json.Marshal(a.PduSessType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pduSessType': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PduSessionStatusCfg. Returns the specified
-// element and whether it was found
-func (a PduSessionStatusCfg) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PduSessionStatusCfg
-func (a *PduSessionStatusCfg) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PduSessionStatusCfg to handle AdditionalProperties
-func (a *PduSessionStatusCfg) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PduSessionStatusCfg to handle AdditionalProperties
-func (a PduSessionStatusCfg) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ReachabilityForSmsReport. Returns the specified
-// element and whether it was found
-func (a ReachabilityForSmsReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ReachabilityForSmsReport
-func (a *ReachabilityForSmsReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ReachabilityForSmsReport to handle AdditionalProperties
-func (a *ReachabilityForSmsReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["maxAvailabilityTime"]; found {
-		err = json.Unmarshal(raw, &a.MaxAvailabilityTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'maxAvailabilityTime': %w", err)
-		}
-		delete(object, "maxAvailabilityTime")
-	}
-
-	if raw, found := object["smsfAccessType"]; found {
-		err = json.Unmarshal(raw, &a.SmsfAccessType)
-		if err != nil {
-			return fmt.Errorf("error reading 'smsfAccessType': %w", err)
-		}
-		delete(object, "smsfAccessType")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ReachabilityForSmsReport to handle AdditionalProperties
-func (a ReachabilityForSmsReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.MaxAvailabilityTime != nil {
-		object["maxAvailabilityTime"], err = json.Marshal(a.MaxAvailabilityTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maxAvailabilityTime': %w", err)
-		}
-	}
-
-	object["smsfAccessType"], err = json.Marshal(a.SmsfAccessType)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'smsfAccessType': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ReportingOptions. Returns the specified
-// element and whether it was found
-func (a ReportingOptions) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ReportingOptions
-func (a *ReportingOptions) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ReportingOptions to handle AdditionalProperties
-func (a *ReportingOptions) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["expiry"]; found {
-		err = json.Unmarshal(raw, &a.Expiry)
-		if err != nil {
-			return fmt.Errorf("error reading 'expiry': %w", err)
-		}
-		delete(object, "expiry")
-	}
-
-	if raw, found := object["guardTime"]; found {
-		err = json.Unmarshal(raw, &a.GuardTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'guardTime': %w", err)
-		}
-		delete(object, "guardTime")
-	}
-
-	if raw, found := object["maxNumOfReports"]; found {
-		err = json.Unmarshal(raw, &a.MaxNumOfReports)
-		if err != nil {
-			return fmt.Errorf("error reading 'maxNumOfReports': %w", err)
-		}
-		delete(object, "maxNumOfReports")
-	}
-
-	if raw, found := object["reportMode"]; found {
-		err = json.Unmarshal(raw, &a.ReportMode)
-		if err != nil {
-			return fmt.Errorf("error reading 'reportMode': %w", err)
-		}
-		delete(object, "reportMode")
-	}
-
-	if raw, found := object["reportPeriod"]; found {
-		err = json.Unmarshal(raw, &a.ReportPeriod)
-		if err != nil {
-			return fmt.Errorf("error reading 'reportPeriod': %w", err)
-		}
-		delete(object, "reportPeriod")
-	}
-
-	if raw, found := object["samplingRatio"]; found {
-		err = json.Unmarshal(raw, &a.SamplingRatio)
-		if err != nil {
-			return fmt.Errorf("error reading 'samplingRatio': %w", err)
-		}
-		delete(object, "samplingRatio")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ReportingOptions to handle AdditionalProperties
-func (a ReportingOptions) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.Expiry != nil {
-		object["expiry"], err = json.Marshal(a.Expiry)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'expiry': %w", err)
-		}
-	}
-
-	if a.GuardTime != nil {
-		object["guardTime"], err = json.Marshal(a.GuardTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'guardTime': %w", err)
-		}
-	}
-
-	if a.MaxNumOfReports != nil {
-		object["maxNumOfReports"], err = json.Marshal(a.MaxNumOfReports)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'maxNumOfReports': %w", err)
-		}
-	}
-
-	if a.ReportMode != nil {
-		object["reportMode"], err = json.Marshal(a.ReportMode)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reportMode': %w", err)
-		}
-	}
-
-	if a.ReportPeriod != nil {
-		object["reportPeriod"], err = json.Marshal(a.ReportPeriod)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'reportPeriod': %w", err)
-		}
-	}
-
-	if a.SamplingRatio != 0 {
-		object["samplingRatio"], err = json.Marshal(a.SamplingRatio)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'samplingRatio': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for RoamingStatusReport. Returns the specified
-// element and whether it was found
-func (a RoamingStatusReport) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for RoamingStatusReport
-func (a *RoamingStatusReport) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for RoamingStatusReport to handle AdditionalProperties
-func (a *RoamingStatusReport) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["newServingPlmn"]; found {
-		err = json.Unmarshal(raw, &a.NewServingPlmn)
-		if err != nil {
-			return fmt.Errorf("error reading 'newServingPlmn': %w", err)
-		}
-		delete(object, "newServingPlmn")
-	}
-
-	if raw, found := object["roaming"]; found {
-		err = json.Unmarshal(raw, &a.Roaming)
-		if err != nil {
-			return fmt.Errorf("error reading 'roaming': %w", err)
-		}
-		delete(object, "roaming")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for RoamingStatusReport to handle AdditionalProperties
-func (a RoamingStatusReport) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["newServingPlmn"], err = json.Marshal(a.NewServingPlmn)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'newServingPlmn': %w", err)
-	}
-
-	object["roaming"], err = json.Marshal(a.Roaming)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'roaming': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// AsChangeOfSupiPeiAssociationReport returns the union data inside the Report as a ChangeOfSupiPeiAssociationReport
-func (t Report) AsChangeOfSupiPeiAssociationReport() (ChangeOfSupiPeiAssociationReport, error) {
-	var body ChangeOfSupiPeiAssociationReport
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromChangeOfSupiPeiAssociationReport overwrites any union data inside the Report as the provided ChangeOfSupiPeiAssociationReport
-func (t *Report) FromChangeOfSupiPeiAssociationReport(v ChangeOfSupiPeiAssociationReport) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeChangeOfSupiPeiAssociationReport performs a merge with any union data inside the Report, using the provided ChangeOfSupiPeiAssociationReport
-func (t *Report) MergeChangeOfSupiPeiAssociationReport(v ChangeOfSupiPeiAssociationReport) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRoamingStatusReport returns the union data inside the Report as a RoamingStatusReport
-func (t Report) AsRoamingStatusReport() (RoamingStatusReport, error) {
-	var body RoamingStatusReport
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRoamingStatusReport overwrites any union data inside the Report as the provided RoamingStatusReport
-func (t *Report) FromRoamingStatusReport(v RoamingStatusReport) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRoamingStatusReport performs a merge with any union data inside the Report, using the provided RoamingStatusReport
-func (t *Report) MergeRoamingStatusReport(v RoamingStatusReport) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsCnTypeChangeReport returns the union data inside the Report as a CnTypeChangeReport
-func (t Report) AsCnTypeChangeReport() (CnTypeChangeReport, error) {
-	var body CnTypeChangeReport
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCnTypeChangeReport overwrites any union data inside the Report as the provided CnTypeChangeReport
-func (t *Report) FromCnTypeChangeReport(v CnTypeChangeReport) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCnTypeChangeReport performs a merge with any union data inside the Report, using the provided CnTypeChangeReport
-func (t *Report) MergeCnTypeChangeReport(v CnTypeChangeReport) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsCmInfoReport returns the union data inside the Report as a CmInfoReport
-func (t Report) AsCmInfoReport() (CmInfoReport, error) {
-	var body CmInfoReport
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCmInfoReport overwrites any union data inside the Report as the provided CmInfoReport
-func (t *Report) FromCmInfoReport(v CmInfoReport) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCmInfoReport performs a merge with any union data inside the Report, using the provided CmInfoReport
-func (t *Report) MergeCmInfoReport(v CmInfoReport) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsLossConnectivityReport returns the union data inside the Report as a LossConnectivityReport
-func (t Report) AsLossConnectivityReport() (LossConnectivityReport, error) {
-	var body LossConnectivityReport
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromLossConnectivityReport overwrites any union data inside the Report as the provided LossConnectivityReport
-func (t *Report) FromLossConnectivityReport(v LossConnectivityReport) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeLossConnectivityReport performs a merge with any union data inside the Report, using the provided LossConnectivityReport
-func (t *Report) MergeLossConnectivityReport(v LossConnectivityReport) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsLocationReport returns the union data inside the Report as a LocationReport
-func (t Report) AsLocationReport() (LocationReport, error) {
-	var body LocationReport
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromLocationReport overwrites any union data inside the Report as the provided LocationReport
-func (t *Report) FromLocationReport(v LocationReport) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeLocationReport performs a merge with any union data inside the Report, using the provided LocationReport
-func (t *Report) MergeLocationReport(v LocationReport) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsPdnConnectivityStatReport returns the union data inside the Report as a PdnConnectivityStatReport
-func (t Report) AsPdnConnectivityStatReport() (PdnConnectivityStatReport, error) {
-	var body PdnConnectivityStatReport
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPdnConnectivityStatReport overwrites any union data inside the Report as the provided PdnConnectivityStatReport
-func (t *Report) FromPdnConnectivityStatReport(v PdnConnectivityStatReport) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePdnConnectivityStatReport performs a merge with any union data inside the Report, using the provided PdnConnectivityStatReport
-func (t *Report) MergePdnConnectivityStatReport(v PdnConnectivityStatReport) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t Report) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *Report) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -2733,14 +409,14 @@ type ClientWithResponsesInterface interface {
 type CreateEeSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *CreatedEeSubscription
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON501     *externalRef1.N501
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON201                       *externalRef0.CreatedEeSubscription
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON501     *externalRef0.N501
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2762,11 +438,11 @@ func (r CreateEeSubscriptionResponse) StatusCode() int {
 type DeleteEeSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	ApplicationproblemJSON400     *externalRef1.N400
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSON500     *externalRef1.N500
-	ApplicationproblemJSON503     *externalRef1.N503
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	ApplicationproblemJSON400     *externalRef0.N400
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSON500     *externalRef0.N500
+	ApplicationproblemJSON503     *externalRef0.N503
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2788,10 +464,10 @@ func (r DeleteEeSubscriptionResponse) StatusCode() int {
 type UpdateEeSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *externalRef1.PatchResult
-	ApplicationproblemJSON403     *externalRef1.N403
-	ApplicationproblemJSON404     *externalRef1.N404
-	ApplicationproblemJSONDefault *externalRef1.ProblemDetails
+	JSON200                       *externalRef0.PatchResult
+	ApplicationproblemJSON403     *externalRef0.N403
+	ApplicationproblemJSON404     *externalRef0.N404
+	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -2868,56 +544,56 @@ func ParseCreateEeSubscriptionResponse(rsp *http.Response) (*CreateEeSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest CreatedEeSubscription
+		var dest externalRef0.CreatedEeSubscription
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON201 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 501:
-		var dest externalRef1.N501
+		var dest externalRef0.N501
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON501 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2946,35 +622,35 @@ func ParseDeleteEeSubscriptionResponse(rsp *http.Response) (*DeleteEeSubscriptio
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest externalRef1.N400
+		var dest externalRef0.N400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest externalRef1.N500
+		var dest externalRef0.N500
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON500 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
-		var dest externalRef1.N503
+		var dest externalRef0.N503
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON503 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -3000,7 +676,7 @@ func ParseUpdateEeSubscriptionResponse(rsp *http.Response) (*UpdateEeSubscriptio
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest externalRef1.PatchResult
+		var dest externalRef0.PatchResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -3010,21 +686,21 @@ func ParseUpdateEeSubscriptionResponse(rsp *http.Response) (*UpdateEeSubscriptio
 		break // No content-type
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest externalRef1.N403
+		var dest externalRef0.N403
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON403 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest externalRef1.N404
+		var dest externalRef0.N404
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
-		var dest externalRef1.ProblemDetails
+		var dest externalRef0.ProblemDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -3210,7 +886,7 @@ type CreateEeSubscription201ResponseHeaders struct {
 }
 
 type CreateEeSubscription201JSONResponse struct {
-	Body    CreatedEeSubscription
+	Body    externalRef0.CreatedEeSubscription
 	Headers CreateEeSubscription201ResponseHeaders
 }
 
@@ -3223,73 +899,73 @@ func (response CreateEeSubscription201JSONResponse) VisitCreateEeSubscriptionRes
 }
 
 type CreateEeSubscription400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateEeSubscription400ApplicationProblemPlusJSONResponse) VisitCreateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateEeSubscription403ApplicationProblemPlusJSONResponse) VisitCreateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateEeSubscription404ApplicationProblemPlusJSONResponse) VisitCreateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateEeSubscription500ApplicationProblemPlusJSONResponse) VisitCreateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription501ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N501ApplicationProblemPlusJSONResponse
+	externalRef0.N501ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateEeSubscription501ApplicationProblemPlusJSONResponse) VisitCreateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(501)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N501ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscription503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response CreateEeSubscription503ApplicationProblemPlusJSONResponse) VisitCreateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type CreateEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -3318,51 +994,51 @@ func (response DeleteEeSubscription204Response) VisitDeleteEeSubscriptionRespons
 }
 
 type DeleteEeSubscription400ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N400ApplicationProblemPlusJSONResponse
+	externalRef0.N400ApplicationProblemPlusJSONResponse
 }
 
 func (response DeleteEeSubscription400ApplicationProblemPlusJSONResponse) VisitDeleteEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(400)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N400ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteEeSubscription404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response DeleteEeSubscription404ApplicationProblemPlusJSONResponse) VisitDeleteEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteEeSubscription500ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N500ApplicationProblemPlusJSONResponse
+	externalRef0.N500ApplicationProblemPlusJSONResponse
 }
 
 func (response DeleteEeSubscription500ApplicationProblemPlusJSONResponse) VisitDeleteEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(500)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N500ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteEeSubscription503ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N503ApplicationProblemPlusJSONResponse
+	externalRef0.N503ApplicationProblemPlusJSONResponse
 }
 
 func (response DeleteEeSubscription503ApplicationProblemPlusJSONResponse) VisitDeleteEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(503)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N503ApplicationProblemPlusJSONResponse))
 }
 
 type DeleteEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 
@@ -3384,13 +1060,13 @@ type UpdateEeSubscriptionResponseObject interface {
 	VisitUpdateEeSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type UpdateEeSubscription200JSONResponse externalRef1.PatchResult
+type UpdateEeSubscription200JSONResponse externalRef0.PatchResult
 
 func (response UpdateEeSubscription200JSONResponse) VisitUpdateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(externalRef1.PatchResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.PatchResult(response))
 }
 
 type UpdateEeSubscription204Response struct {
@@ -3402,29 +1078,29 @@ func (response UpdateEeSubscription204Response) VisitUpdateEeSubscriptionRespons
 }
 
 type UpdateEeSubscription403ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N403ApplicationProblemPlusJSONResponse
+	externalRef0.N403ApplicationProblemPlusJSONResponse
 }
 
 func (response UpdateEeSubscription403ApplicationProblemPlusJSONResponse) VisitUpdateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N403ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateEeSubscription404ApplicationProblemPlusJSONResponse struct {
-	externalRef1.N404ApplicationProblemPlusJSONResponse
+	externalRef0.N404ApplicationProblemPlusJSONResponse
 }
 
 func (response UpdateEeSubscription404ApplicationProblemPlusJSONResponse) VisitUpdateEeSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 
-	return json.NewEncoder(w).Encode(externalRef1.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
+	return json.NewEncoder(w).Encode(externalRef0.ProblemDetails(response.N404ApplicationProblemPlusJSONResponse))
 }
 
 type UpdateEeSubscriptiondefaultApplicationProblemPlusJSONResponse struct {
-	Body       externalRef1.ProblemDetails
+	Body       externalRef0.ProblemDetails
 	StatusCode int
 }
 

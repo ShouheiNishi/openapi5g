@@ -3,32 +3,29 @@
 package generator
 
 import (
-	"fmt"
 	"sort"
-
-	"gopkg.in/yaml.v3"
 
 	"github.com/ShouheiNishi/openapi5g/internal/generator/openapi"
 )
 
-type resolveRefsType struct {
-	visited        map[interface{}]struct{}
-	doc            *openapi.Document
-	generatorState *GeneratorState
+type walkSchemaRefRemapType struct {
+	visited map[interface{}]struct{}
+	doc     *openapi.Document
+	refMap  map[openapi.Reference]openapi.Reference
 }
 
-func resolveRefs(d *openapi.Document, gs *GeneratorState) error {
-	s := &resolveRefsType{
+func walkSchemaRefRemap(d *openapi.Document, refMap map[openapi.Reference]openapi.Reference) error {
+	s := &walkSchemaRefRemapType{
 		visited: make(map[interface{}]struct{}),
 		doc:     d,
 	}
 
-	s.generatorState = gs
+	s.refMap = refMap
 
 	return s.walkDocument(s.doc)
 }
 
-func (s *resolveRefsType) walkAdditionalProperties(v *openapi.AdditionalProperties) error {
+func (s *walkSchemaRefRemapType) walkAdditionalProperties(v *openapi.AdditionalProperties) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -43,28 +40,19 @@ func (s *resolveRefsType) walkAdditionalProperties(v *openapi.AdditionalProperti
 	return nil
 }
 
-func (s *resolveRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
+func (s *walkSchemaRefRemapType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
-	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.Callback](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
-
 	if v.Value != nil {
-		k1s5 := make([]string, 0, len(*v.Value))
+		k1s4 := make([]string, 0, len(*v.Value))
 		for k1 := range *v.Value {
-			k1s5 = append(k1s5, k1)
+			k1s4 = append(k1s4, k1)
 		}
-		sort.Strings(k1s5)
-		for _, k1 := range k1s5 {
+		sort.Strings(k1s4)
+		for _, k1 := range k1s4 {
 			if (*v.Value)[k1] != nil {
 				if err := s.walkPathItemBaseRef((*v.Value)[k1]); err != nil {
 					return err
@@ -76,7 +64,7 @@ func (s *resolveRefsType) walkCallbackRef(v *openapi.Ref[openapi.Callback]) erro
 	return nil
 }
 
-func (s *resolveRefsType) walkComponents(v *openapi.Components) error {
+func (s *walkSchemaRefRemapType) walkComponents(v *openapi.Components) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -95,19 +83,6 @@ func (s *resolveRefsType) walkComponents(v *openapi.Components) error {
 		}
 	}
 
-	k0s1 := make([]string, 0, len(v.Examples))
-	for k0 := range v.Examples {
-		k0s1 = append(k0s1, k0)
-	}
-	sort.Strings(k0s1)
-	for _, k0 := range k0s1 {
-		if v.Examples[k0] != nil {
-			if err := s.walkExampleRef(v.Examples[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	k0s2 := make([]string, 0, len(v.Headers))
 	for k0 := range v.Headers {
 		k0s2 = append(k0s2, k0)
@@ -116,19 +91,6 @@ func (s *resolveRefsType) walkComponents(v *openapi.Components) error {
 	for _, k0 := range k0s2 {
 		if v.Headers[k0] != nil {
 			if err := s.walkHeaderRef(v.Headers[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
-	k0s3 := make([]string, 0, len(v.Links))
-	for k0 := range v.Links {
-		k0s3 = append(k0s3, k0)
-	}
-	sort.Strings(k0s3)
-	for _, k0 := range k0s3 {
-		if v.Links[k0] != nil {
-			if err := s.walkLinkRef(v.Links[k0]); err != nil {
 				return err
 			}
 		}
@@ -186,23 +148,10 @@ func (s *resolveRefsType) walkComponents(v *openapi.Components) error {
 		}
 	}
 
-	k0s8 := make([]string, 0, len(v.SecuritySchemes))
-	for k0 := range v.SecuritySchemes {
-		k0s8 = append(k0s8, k0)
-	}
-	sort.Strings(k0s8)
-	for _, k0 := range k0s8 {
-		if v.SecuritySchemes[k0] != nil {
-			if err := s.walkNodeRef(v.SecuritySchemes[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	return nil
 }
 
-func (s *resolveRefsType) walkDocument(v *openapi.Document) error {
+func (s *walkSchemaRefRemapType) walkDocument(v *openapi.Document) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -230,7 +179,7 @@ func (s *resolveRefsType) walkDocument(v *openapi.Document) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkEncoding(v *openapi.Encoding) error {
+func (s *walkSchemaRefRemapType) walkEncoding(v *openapi.Encoding) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -252,25 +201,7 @@ func (s *resolveRefsType) walkEncoding(v *openapi.Encoding) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkExampleRef(v *openapi.Ref[openapi.Example]) error {
-	if _, exist := s.visited[v]; exist {
-		return nil
-	}
-	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.Example](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
-
-	return nil
-}
-
-func (s *resolveRefsType) walkHeader(v *openapi.Header) error {
+func (s *walkSchemaRefRemapType) walkHeader(v *openapi.Header) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -289,19 +220,6 @@ func (s *resolveRefsType) walkHeader(v *openapi.Header) error {
 		}
 	}
 
-	k0s6 := make([]string, 0, len(v.Examples))
-	for k0 := range v.Examples {
-		k0s6 = append(k0s6, k0)
-	}
-	sort.Strings(k0s6)
-	for _, k0 := range k0s6 {
-		if v.Examples[k0] != nil {
-			if err := s.walkExampleRef(v.Examples[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	if err := s.walkSchemaRef(&v.Schema); err != nil {
 		return err
 	}
@@ -309,20 +227,11 @@ func (s *resolveRefsType) walkHeader(v *openapi.Header) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
+func (s *walkSchemaRefRemapType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.Header](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkHeader(v.Value); err != nil {
@@ -333,25 +242,7 @@ func (s *resolveRefsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
-	if _, exist := s.visited[v]; exist {
-		return nil
-	}
-	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.Link](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
-
-	return nil
-}
-
-func (s *resolveRefsType) walkMediaType(v *openapi.MediaType) error {
+func (s *walkSchemaRefRemapType) walkMediaType(v *openapi.MediaType) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -370,19 +261,6 @@ func (s *resolveRefsType) walkMediaType(v *openapi.MediaType) error {
 		}
 	}
 
-	k0s2 := make([]string, 0, len(v.Examples))
-	for k0 := range v.Examples {
-		k0s2 = append(k0s2, k0)
-	}
-	sort.Strings(k0s2)
-	for _, k0 := range k0s2 {
-		if v.Examples[k0] != nil {
-			if err := s.walkExampleRef(v.Examples[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	if err := s.walkSchemaRef(&v.Schema); err != nil {
 		return err
 	}
@@ -390,25 +268,7 @@ func (s *resolveRefsType) walkMediaType(v *openapi.MediaType) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
-	if _, exist := s.visited[v]; exist {
-		return nil
-	}
-	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if vRes, err := ResolveRef[yaml.Node](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
-
-	return nil
-}
-
-func (s *resolveRefsType) walkOperation(v *openapi.Operation) error {
+func (s *walkSchemaRefRemapType) walkOperation(v *openapi.Operation) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -453,7 +313,7 @@ func (s *resolveRefsType) walkOperation(v *openapi.Operation) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkParameter(v *openapi.Parameter) error {
+func (s *walkSchemaRefRemapType) walkParameter(v *openapi.Parameter) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -472,19 +332,6 @@ func (s *resolveRefsType) walkParameter(v *openapi.Parameter) error {
 		}
 	}
 
-	k0s6 := make([]string, 0, len(v.Examples))
-	for k0 := range v.Examples {
-		k0s6 = append(k0s6, k0)
-	}
-	sort.Strings(k0s6)
-	for _, k0 := range k0s6 {
-		if v.Examples[k0] != nil {
-			if err := s.walkExampleRef(v.Examples[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	if err := s.walkSchemaRef(&v.Schema); err != nil {
 		return err
 	}
@@ -492,20 +339,11 @@ func (s *resolveRefsType) walkParameter(v *openapi.Parameter) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error {
+func (s *walkSchemaRefRemapType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.Parameter](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkParameter(v.Value); err != nil {
@@ -516,7 +354,7 @@ func (s *resolveRefsType) walkParameterRef(v *openapi.Ref[openapi.Parameter]) er
 	return nil
 }
 
-func (s *resolveRefsType) walkPathItemBase(v *openapi.PathItemBase) error {
+func (s *walkSchemaRefRemapType) walkPathItemBase(v *openapi.PathItemBase) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -579,20 +417,11 @@ func (s *resolveRefsType) walkPathItemBase(v *openapi.PathItemBase) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) error {
+func (s *walkSchemaRefRemapType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBase]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.PathItemBase](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkPathItemBase(v.Value); err != nil {
@@ -603,7 +432,7 @@ func (s *resolveRefsType) walkPathItemBaseRef(v *openapi.Ref[openapi.PathItemBas
 	return nil
 }
 
-func (s *resolveRefsType) walkRequestBody(v *openapi.RequestBody) error {
+func (s *walkSchemaRefRemapType) walkRequestBody(v *openapi.RequestBody) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -625,20 +454,11 @@ func (s *resolveRefsType) walkRequestBody(v *openapi.RequestBody) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) error {
+func (s *walkSchemaRefRemapType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.RequestBody](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkRequestBody(v.Value); err != nil {
@@ -649,7 +469,7 @@ func (s *resolveRefsType) walkRequestBodyRef(v *openapi.Ref[openapi.RequestBody]
 	return nil
 }
 
-func (s *resolveRefsType) walkResponse(v *openapi.Response) error {
+func (s *walkSchemaRefRemapType) walkResponse(v *openapi.Response) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -681,36 +501,14 @@ func (s *resolveRefsType) walkResponse(v *openapi.Response) error {
 		}
 	}
 
-	k0s3 := make([]string, 0, len(v.Links))
-	for k0 := range v.Links {
-		k0s3 = append(k0s3, k0)
-	}
-	sort.Strings(k0s3)
-	for _, k0 := range k0s3 {
-		if v.Links[k0] != nil {
-			if err := s.walkLinkRef(v.Links[k0]); err != nil {
-				return err
-			}
-		}
-	}
-
 	return nil
 }
 
-func (s *resolveRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
+func (s *walkSchemaRefRemapType) walkResponseRef(v *openapi.Ref[openapi.Response]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
-
-	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.Response](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
-		}
-	}
 
 	if v.Value != nil {
 		if err := s.walkResponse(v.Value); err != nil {
@@ -721,7 +519,7 @@ func (s *resolveRefsType) walkResponseRef(v *openapi.Ref[openapi.Response]) erro
 	return nil
 }
 
-func (s *resolveRefsType) walkSchema(v *openapi.Schema) error {
+func (s *walkSchemaRefRemapType) walkSchema(v *openapi.Schema) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
@@ -773,18 +571,15 @@ func (s *resolveRefsType) walkSchema(v *openapi.Schema) error {
 	return nil
 }
 
-func (s *resolveRefsType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
+func (s *walkSchemaRefRemapType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) error {
 	if _, exist := s.visited[v]; exist {
 		return nil
 	}
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if vRes, err := ResolveRef[openapi.Schema](s.generatorState, v.RefFile, v.RefPointer); err != nil {
-			return fmt.Errorf("ResolveRef(%s): %w", v.Ref(), err)
-		} else {
-			v.Value = vRes
-			return nil
+		if newRef, exist := s.refMap[v.Ref]; exist {
+			v.Ref = newRef
 		}
 	}
 

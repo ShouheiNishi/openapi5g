@@ -13,240 +13,11 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/influence"
-	externalRef2 "github.com/ShouheiNishi/openapi5g/nef/management"
-	externalRef3 "github.com/ShouheiNishi/openapi5g/northbound/commondata"
-	externalRef4 "github.com/ShouheiNishi/openapi5g/pcf/BDTpolicy"
-	externalRef5 "github.com/ShouheiNishi/openapi5g/pcf/authorization"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
 )
-
-// Defines values for DataInd.
-const (
-	BDT      DataInd = "BDT"
-	IPTV     DataInd = "IPTV"
-	PFD      DataInd = "PFD"
-	SVCPARAM DataInd = "SVC_PARAM"
-)
-
-// ApplicationDataChangeNotif Contains changed application data for which notification was requested.
-type ApplicationDataChangeNotif struct {
-	BdtPolicyData        *BdtPolicyData                      `json:"bdtPolicyData,omitempty"`
-	IptvConfigData       *IptvConfigData                     `json:"iptvConfigData,omitempty"`
-	PfdData              *externalRef2.PfdChangeNotification `json:"pfdData,omitempty"`
-	ResUri               externalRef0.Uri                    `json:"resUri"`
-	SerParamData         *ServiceParameterData               `json:"serParamData,omitempty"`
-	AdditionalProperties map[string]interface{}              `json:"-"`
-}
-
-// ApplicationDataSubs Identifies a subscription to application data change notification.
-type ApplicationDataSubs struct {
-	DataFilters          []DataFilter                    `json:"dataFilters,omitempty"`
-	Expiry               *externalRef0.DateTime          `json:"expiry,omitempty"`
-	NotificationUri      externalRef0.Uri                `json:"notificationUri"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// BdtPolicyData defines model for BdtPolicyData.
-type BdtPolicyData struct {
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
-	BdtRefId             externalRef3.BdtReferenceId `json:"bdtRefId"`
-	Dnn                  *externalRef0.Dnn           `json:"dnn,omitempty"`
-	InterGroupId         externalRef0.GroupId        `json:"interGroupId,omitempty"`
-	ResUri               *externalRef0.Uri           `json:"resUri,omitempty"`
-	Snssai               *externalRef0.Snssai        `json:"snssai,omitempty"`
-	Supi                 externalRef0.Supi           `json:"supi,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// BdtPolicyDataPatch defines model for BdtPolicyDataPatch.
-type BdtPolicyDataPatch struct {
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
-	BdtRefId             externalRef3.BdtReferenceId `json:"bdtRefId"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
-}
-
-// DataFilter Identifies a data filter.
-type DataFilter struct {
-	AppIds []externalRef0.ApplicationId `json:"appIds,omitempty"`
-
-	// DataInd Possible values are - PFD - IPTV - BDT - SVC_PARAM
-	DataInd              DataInd                  `json:"dataInd"`
-	Dnns                 []externalRef0.Dnn       `json:"dnns,omitempty"`
-	InternalGroupIds     []externalRef0.GroupId   `json:"internalGroupIds,omitempty"`
-	Snssais              []externalRef0.Snssai    `json:"snssais,omitempty"`
-	Supis                []externalRef0.Supi      `json:"supis,omitempty"`
-	UeIpv4s              []externalRef0.Ipv4Addr  `json:"ueIpv4s,omitempty"`
-	UeIpv6s              []externalRef0.Ipv6Addr  `json:"ueIpv6s,omitempty"`
-	UeMacs               []externalRef0.MacAddr48 `json:"ueMacs,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
-}
-
-// DataInd Possible values are - PFD - IPTV - BDT - SVC_PARAM
-type DataInd string
-
-// IptvConfigData defines model for IptvConfigData.
-type IptvConfigData struct {
-	AfAppId              string                          `json:"afAppId"`
-	Dnn                  *externalRef0.Dnn               `json:"dnn,omitempty"`
-	InterGroupId         externalRef0.GroupId            `json:"interGroupId,omitempty"`
-	MultiAccCtrls        map[string]interface{}          `json:"multiAccCtrls"`
-	ResUri               *externalRef0.Uri               `json:"resUri,omitempty"`
-	Snssai               *externalRef0.Snssai            `json:"snssai,omitempty"`
-	Supi                 externalRef0.Supi               `json:"supi,omitempty"`
-	SuppFeat             *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// PfdDataForAppExt defines model for PfdDataForAppExt.
-type PfdDataForAppExt struct {
-	ApplicationId        externalRef0.ApplicationId      `json:"applicationId"`
-	CachingTime          *externalRef0.DateTime          `json:"cachingTime,omitempty"`
-	Pfds                 []externalRef2.PfdContent       `json:"pfds"`
-	SuppFeat             *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
-
-// ServiceParameterData defines model for ServiceParameterData.
-type ServiceParameterData struct {
-	AnyUeInd *bool `json:"anyUeInd,omitempty"`
-
-	// AppId Identifies an application.
-	AppId        *string              `json:"appId,omitempty"`
-	Dnn          *externalRef0.Dnn    `json:"dnn,omitempty"`
-	InterGroupId externalRef0.GroupId `json:"interGroupId,omitempty"`
-
-	// ParamOverPc5 Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
-	ParamOverPc5 *string `json:"paramOverPc5,omitempty"`
-
-	// ParamOverUu Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
-	ParamOverUu *string                         `json:"paramOverUu,omitempty"`
-	ResUri      *externalRef0.Uri               `json:"resUri,omitempty"`
-	Snssai      *externalRef0.Snssai            `json:"snssai,omitempty"`
-	Supi        externalRef0.Supi               `json:"supi,omitempty"`
-	SuppFeat    *externalRef0.SupportedFeatures `json:"suppFeat,omitempty"`
-
-	// UeIpv4 string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
-	UeIpv4 *externalRef3.Ipv4Addr `json:"ueIpv4,omitempty"`
-
-	// UeIpv6 string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used.
-	UeIpv6               *externalRef3.Ipv6Addr `json:"ueIpv6,omitempty"`
-	UeMac                externalRef0.MacAddr48 `json:"ueMac,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// TrafficInfluData defines model for TrafficInfluData.
-type TrafficInfluData struct {
-	AddrPreserInd *bool `json:"addrPreserInd,omitempty"`
-	AfAckInd      *bool `json:"afAckInd,omitempty"`
-
-	// AfAppId Identifies an application.
-	AfAppId *string `json:"afAppId,omitempty"`
-
-	// AppReloInd Identifies whether an application can be relocated once a location of the application has been selected.
-	AppReloInd *bool `json:"appReloInd,omitempty"`
-
-	// DnaiChgType Possible values are - EARLY: Early notification of UP path reconfiguration. - EARLY_LATE: Early and late notification of UP path reconfiguration. This value shall only be present in the subscription to the DNAI change event. - LATE: Late notification of UP path reconfiguration.
-	DnaiChgType *externalRef0.DnaiChangeType `json:"dnaiChgType,omitempty"`
-	Dnn         *externalRef0.Dnn            `json:"dnn,omitempty"`
-
-	// EthTrafficFilters Identifies Ethernet packet filters. Either "trafficFilters" or "ethTrafficFilters" shall be included if applicable.
-	EthTrafficFilters []externalRef5.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
-	Headers           []string                          `json:"headers,omitempty"`
-	InterGroupId      externalRef0.GroupId              `json:"interGroupId,omitempty"`
-
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo        *externalRef4.NetworkAreaInfo   `json:"nwAreaInfo,omitempty"`
-	ResUri            *externalRef0.Uri               `json:"resUri,omitempty"`
-	Snssai            *externalRef0.Snssai            `json:"snssai,omitempty"`
-	SubscribedEvents  []externalRef1.SubscribedEvent  `json:"subscribedEvents,omitempty"`
-	Supi              externalRef0.Supi               `json:"supi,omitempty"`
-	SupportedFeatures *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-
-	// TempValidities Identifies the temporal validities for the N6 traffic routing requirement.
-	TempValidities []externalRef5.TemporalValidity `json:"tempValidities,omitempty"`
-	TraffCorreInd  *bool                           `json:"traffCorreInd,omitempty"`
-
-	// TrafficFilters Identifies IP packet filters. Either "trafficFilters" or "ethTrafficFilters" shall be included if applicable.
-	TrafficFilters []externalRef3.FlowInfo `json:"trafficFilters,omitempty"`
-
-	// TrafficRoutes Identifies the N6 traffic routing requirement.
-	TrafficRoutes []externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
-
-	// UpPathChgNotifCorreId Contains the Notification Correlation Id allocated by the NEF for the UP path change notification.
-	UpPathChgNotifCorreId *string                `json:"upPathChgNotifCorreId,omitempty"`
-	UpPathChgNotifUri     *externalRef0.Uri      `json:"upPathChgNotifUri,omitempty"`
-	ValidEndTime          *externalRef0.DateTime `json:"validEndTime,omitempty"`
-	ValidStartTime        *externalRef0.DateTime `json:"validStartTime,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
-}
-
-// TrafficInfluDataNotif defines model for TrafficInfluDataNotif.
-type TrafficInfluDataNotif struct {
-	ResUri               externalRef0.Uri       `json:"resUri"`
-	TrafficInfluData     *TrafficInfluData      `json:"trafficInfluData,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
-}
-
-// TrafficInfluDataPatch defines model for TrafficInfluDataPatch.
-type TrafficInfluDataPatch struct {
-	AddrPreserInd *bool `json:"addrPreserInd,omitempty"`
-	AfAckInd      *bool `json:"afAckInd,omitempty"`
-
-	// AppReloInd Identifies whether an application can be relocated once a location of the application has been selected.
-	AppReloInd *bool             `json:"appReloInd,omitempty"`
-	Dnn        *externalRef0.Dnn `json:"dnn,omitempty"`
-
-	// EthTrafficFilters Identifies Ethernet packet filters. Either "trafficFilters" or "ethTrafficFilters" shall be included if applicable.
-	EthTrafficFilters []externalRef5.EthFlowDescription `json:"ethTrafficFilters,omitempty"`
-	Headers           []string                          `json:"headers,omitempty"`
-	InternalGroupId   externalRef0.GroupId              `json:"internalGroupId,omitempty"`
-
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo *externalRef4.NetworkAreaInfo `json:"nwAreaInfo,omitempty"`
-	Snssai     *externalRef0.Snssai          `json:"snssai,omitempty"`
-	Supi       externalRef0.Supi             `json:"supi,omitempty"`
-
-	// TempValidities Identifies the temporal validities for the N6 traffic routing requirement.
-	TempValidities *[]externalRef5.TemporalValidity `json:"tempValidities"`
-	TraffCorreInd  *bool                            `json:"traffCorreInd,omitempty"`
-
-	// TrafficFilters Identifies IP packet filters. Either "trafficFilters" or "ethTrafficFilters" shall be included if applicable.
-	TrafficFilters []externalRef3.FlowInfo `json:"trafficFilters,omitempty"`
-
-	// TrafficRoutes Identifies the N6 traffic routing requirement.
-	TrafficRoutes []externalRef0.RouteToLocation `json:"trafficRoutes,omitempty"`
-
-	// UpPathChgNotifCorreId Contains the Notification Correlation Id allocated by the NEF for the UP path change notification.
-	UpPathChgNotifCorreId *string                `json:"upPathChgNotifCorreId,omitempty"`
-	UpPathChgNotifUri     *externalRef0.Uri      `json:"upPathChgNotifUri,omitempty"`
-	ValidEndTime          *externalRef0.DateTime `json:"validEndTime,omitempty"`
-	ValidStartTime        *externalRef0.DateTime `json:"validStartTime,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
-}
-
-// TrafficInfluSub defines model for TrafficInfluSub.
-type TrafficInfluSub struct {
-	// Dnns Each element identifies a DNN.
-	Dnns   []externalRef0.Dnn     `json:"dnns,omitempty"`
-	Expiry *externalRef0.DateTime `json:"expiry,omitempty"`
-
-	// InternalGroupIds Each element identifies a group of users.
-	InternalGroupIds []externalRef0.GroupId `json:"internalGroupIds,omitempty"`
-	NotificationUri  externalRef0.Uri       `json:"notificationUri"`
-
-	// Snssais Each element identifies a slice.
-	Snssais []externalRef0.Snssai `json:"snssais,omitempty"`
-
-	// Supis Each element identifies the user.
-	Supis                []externalRef0.Supi             `json:"supis,omitempty"`
-	SupportedFeatures    *externalRef0.SupportedFeatures `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"-"`
-}
 
 // ReadBdtPolicyDataParams defines parameters for ReadBdtPolicyData.
 type ReadBdtPolicyDataParams struct {
@@ -359,2159 +130,47 @@ type UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONBody = int
 // ReadApplicationDataChangeSubscriptionsParams defines parameters for ReadApplicationDataChangeSubscriptions.
 type ReadApplicationDataChangeSubscriptionsParams struct {
 	// DataFilter The data filter for the query.
-	DataFilter *DataFilter `form:"data-filter,omitempty" json:"data-filter,omitempty"`
+	DataFilter *externalRef0.DataFilter `form:"data-filter,omitempty" json:"data-filter,omitempty"`
 }
 
 // UpdateIndividualAppliedBdtPolicyDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndividualAppliedBdtPolicyData for application/merge-patch+json ContentType.
-type UpdateIndividualAppliedBdtPolicyDataApplicationMergePatchPlusJSONRequestBody = BdtPolicyDataPatch
+type UpdateIndividualAppliedBdtPolicyDataApplicationMergePatchPlusJSONRequestBody = externalRef0.BdtPolicyDataPatch
 
 // CreateIndividualAppliedBdtPolicyDataJSONRequestBody defines body for CreateIndividualAppliedBdtPolicyData for application/json ContentType.
-type CreateIndividualAppliedBdtPolicyDataJSONRequestBody = BdtPolicyData
+type CreateIndividualAppliedBdtPolicyDataJSONRequestBody = externalRef0.BdtPolicyData
 
 // CreateIndividualInfluenceDataSubscriptionJSONRequestBody defines body for CreateIndividualInfluenceDataSubscription for application/json ContentType.
-type CreateIndividualInfluenceDataSubscriptionJSONRequestBody = TrafficInfluSub
+type CreateIndividualInfluenceDataSubscriptionJSONRequestBody = externalRef0.TrafficInfluSub
 
 // ReplaceIndividualInfluenceDataSubscriptionJSONRequestBody defines body for ReplaceIndividualInfluenceDataSubscription for application/json ContentType.
-type ReplaceIndividualInfluenceDataSubscriptionJSONRequestBody = TrafficInfluSub
+type ReplaceIndividualInfluenceDataSubscriptionJSONRequestBody = externalRef0.TrafficInfluSub
 
 // UpdateIndividualInfluenceDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndividualInfluenceData for application/merge-patch+json ContentType.
-type UpdateIndividualInfluenceDataApplicationMergePatchPlusJSONRequestBody = TrafficInfluDataPatch
+type UpdateIndividualInfluenceDataApplicationMergePatchPlusJSONRequestBody = externalRef0.TrafficInfluDataPatch
 
 // CreateOrReplaceIndividualInfluenceDataJSONRequestBody defines body for CreateOrReplaceIndividualInfluenceData for application/json ContentType.
-type CreateOrReplaceIndividualInfluenceDataJSONRequestBody = TrafficInfluData
+type CreateOrReplaceIndividualInfluenceDataJSONRequestBody = externalRef0.TrafficInfluData
 
 // PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONRequestBody defines body for PartialReplaceIndividualIPTVConfigurationData for application/merge-patch+json ContentType.
 type PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONRequestBody = PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONBody
 
 // CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody defines body for CreateOrReplaceIndividualIPTVConfigurationData for application/json ContentType.
-type CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody = IptvConfigData
+type CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody = externalRef0.IptvConfigData
 
 // CreateOrReplaceIndividualPFDDataJSONRequestBody defines body for CreateOrReplaceIndividualPFDData for application/json ContentType.
-type CreateOrReplaceIndividualPFDDataJSONRequestBody = PfdDataForAppExt
+type CreateOrReplaceIndividualPFDDataJSONRequestBody = externalRef0.PfdDataForAppExt
 
 // UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndividualServiceParameterData for application/merge-patch+json ContentType.
 type UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONRequestBody = UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONBody
 
 // CreateOrReplaceServiceParameterDataJSONRequestBody defines body for CreateOrReplaceServiceParameterData for application/json ContentType.
-type CreateOrReplaceServiceParameterDataJSONRequestBody = ServiceParameterData
+type CreateOrReplaceServiceParameterDataJSONRequestBody = externalRef0.ServiceParameterData
 
 // CreateIndividualApplicationDataSubscriptionJSONRequestBody defines body for CreateIndividualApplicationDataSubscription for application/json ContentType.
-type CreateIndividualApplicationDataSubscriptionJSONRequestBody = ApplicationDataSubs
+type CreateIndividualApplicationDataSubscriptionJSONRequestBody = externalRef0.ApplicationDataSubs
 
 // ReplaceIndividualApplicationDataSubscriptionJSONRequestBody defines body for ReplaceIndividualApplicationDataSubscription for application/json ContentType.
-type ReplaceIndividualApplicationDataSubscriptionJSONRequestBody = ApplicationDataSubs
-
-// Getter for additional properties for ApplicationDataChangeNotif. Returns the specified
-// element and whether it was found
-func (a ApplicationDataChangeNotif) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ApplicationDataChangeNotif
-func (a *ApplicationDataChangeNotif) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ApplicationDataChangeNotif to handle AdditionalProperties
-func (a *ApplicationDataChangeNotif) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["bdtPolicyData"]; found {
-		err = json.Unmarshal(raw, &a.BdtPolicyData)
-		if err != nil {
-			return fmt.Errorf("error reading 'bdtPolicyData': %w", err)
-		}
-		delete(object, "bdtPolicyData")
-	}
-
-	if raw, found := object["iptvConfigData"]; found {
-		err = json.Unmarshal(raw, &a.IptvConfigData)
-		if err != nil {
-			return fmt.Errorf("error reading 'iptvConfigData': %w", err)
-		}
-		delete(object, "iptvConfigData")
-	}
-
-	if raw, found := object["pfdData"]; found {
-		err = json.Unmarshal(raw, &a.PfdData)
-		if err != nil {
-			return fmt.Errorf("error reading 'pfdData': %w", err)
-		}
-		delete(object, "pfdData")
-	}
-
-	if raw, found := object["resUri"]; found {
-		err = json.Unmarshal(raw, &a.ResUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'resUri': %w", err)
-		}
-		delete(object, "resUri")
-	}
-
-	if raw, found := object["serParamData"]; found {
-		err = json.Unmarshal(raw, &a.SerParamData)
-		if err != nil {
-			return fmt.Errorf("error reading 'serParamData': %w", err)
-		}
-		delete(object, "serParamData")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ApplicationDataChangeNotif to handle AdditionalProperties
-func (a ApplicationDataChangeNotif) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.BdtPolicyData != nil {
-		object["bdtPolicyData"], err = json.Marshal(a.BdtPolicyData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'bdtPolicyData': %w", err)
-		}
-	}
-
-	if a.IptvConfigData != nil {
-		object["iptvConfigData"], err = json.Marshal(a.IptvConfigData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'iptvConfigData': %w", err)
-		}
-	}
-
-	if a.PfdData != nil {
-		object["pfdData"], err = json.Marshal(a.PfdData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'pfdData': %w", err)
-		}
-	}
-
-	object["resUri"], err = json.Marshal(a.ResUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'resUri': %w", err)
-	}
-
-	if a.SerParamData != nil {
-		object["serParamData"], err = json.Marshal(a.SerParamData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'serParamData': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ApplicationDataSubs. Returns the specified
-// element and whether it was found
-func (a ApplicationDataSubs) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ApplicationDataSubs
-func (a *ApplicationDataSubs) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ApplicationDataSubs to handle AdditionalProperties
-func (a *ApplicationDataSubs) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["dataFilters"]; found {
-		err = json.Unmarshal(raw, &a.DataFilters)
-		if err != nil {
-			return fmt.Errorf("error reading 'dataFilters': %w", err)
-		}
-		delete(object, "dataFilters")
-	}
-
-	if raw, found := object["expiry"]; found {
-		err = json.Unmarshal(raw, &a.Expiry)
-		if err != nil {
-			return fmt.Errorf("error reading 'expiry': %w", err)
-		}
-		delete(object, "expiry")
-	}
-
-	if raw, found := object["notificationUri"]; found {
-		err = json.Unmarshal(raw, &a.NotificationUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'notificationUri': %w", err)
-		}
-		delete(object, "notificationUri")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ApplicationDataSubs to handle AdditionalProperties
-func (a ApplicationDataSubs) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.DataFilters) != 0 {
-		object["dataFilters"], err = json.Marshal(a.DataFilters)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dataFilters': %w", err)
-		}
-	}
-
-	if a.Expiry != nil {
-		object["expiry"], err = json.Marshal(a.Expiry)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'expiry': %w", err)
-		}
-	}
-
-	object["notificationUri"], err = json.Marshal(a.NotificationUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'notificationUri': %w", err)
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for BdtPolicyData. Returns the specified
-// element and whether it was found
-func (a BdtPolicyData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for BdtPolicyData
-func (a *BdtPolicyData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for BdtPolicyData to handle AdditionalProperties
-func (a *BdtPolicyData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["bdtRefId"]; found {
-		err = json.Unmarshal(raw, &a.BdtRefId)
-		if err != nil {
-			return fmt.Errorf("error reading 'bdtRefId': %w", err)
-		}
-		delete(object, "bdtRefId")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["interGroupId"]; found {
-		err = json.Unmarshal(raw, &a.InterGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'interGroupId': %w", err)
-		}
-		delete(object, "interGroupId")
-	}
-
-	if raw, found := object["resUri"]; found {
-		err = json.Unmarshal(raw, &a.ResUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'resUri': %w", err)
-		}
-		delete(object, "resUri")
-	}
-
-	if raw, found := object["snssai"]; found {
-		err = json.Unmarshal(raw, &a.Snssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssai': %w", err)
-		}
-		delete(object, "snssai")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for BdtPolicyData to handle AdditionalProperties
-func (a BdtPolicyData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["bdtRefId"], err = json.Marshal(a.BdtRefId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'bdtRefId': %w", err)
-	}
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if len(a.InterGroupId) != 0 {
-		object["interGroupId"], err = json.Marshal(a.InterGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
-		}
-	}
-
-	if a.ResUri != nil {
-		object["resUri"], err = json.Marshal(a.ResUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'resUri': %w", err)
-		}
-	}
-
-	if a.Snssai != nil {
-		object["snssai"], err = json.Marshal(a.Snssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for BdtPolicyDataPatch. Returns the specified
-// element and whether it was found
-func (a BdtPolicyDataPatch) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for BdtPolicyDataPatch
-func (a *BdtPolicyDataPatch) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for BdtPolicyDataPatch to handle AdditionalProperties
-func (a *BdtPolicyDataPatch) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["bdtRefId"]; found {
-		err = json.Unmarshal(raw, &a.BdtRefId)
-		if err != nil {
-			return fmt.Errorf("error reading 'bdtRefId': %w", err)
-		}
-		delete(object, "bdtRefId")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for BdtPolicyDataPatch to handle AdditionalProperties
-func (a BdtPolicyDataPatch) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["bdtRefId"], err = json.Marshal(a.BdtRefId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'bdtRefId': %w", err)
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for DataFilter. Returns the specified
-// element and whether it was found
-func (a DataFilter) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for DataFilter
-func (a *DataFilter) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for DataFilter to handle AdditionalProperties
-func (a *DataFilter) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["appIds"]; found {
-		err = json.Unmarshal(raw, &a.AppIds)
-		if err != nil {
-			return fmt.Errorf("error reading 'appIds': %w", err)
-		}
-		delete(object, "appIds")
-	}
-
-	if raw, found := object["dataInd"]; found {
-		err = json.Unmarshal(raw, &a.DataInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'dataInd': %w", err)
-		}
-		delete(object, "dataInd")
-	}
-
-	if raw, found := object["dnns"]; found {
-		err = json.Unmarshal(raw, &a.Dnns)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnns': %w", err)
-		}
-		delete(object, "dnns")
-	}
-
-	if raw, found := object["internalGroupIds"]; found {
-		err = json.Unmarshal(raw, &a.InternalGroupIds)
-		if err != nil {
-			return fmt.Errorf("error reading 'internalGroupIds': %w", err)
-		}
-		delete(object, "internalGroupIds")
-	}
-
-	if raw, found := object["snssais"]; found {
-		err = json.Unmarshal(raw, &a.Snssais)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssais': %w", err)
-		}
-		delete(object, "snssais")
-	}
-
-	if raw, found := object["supis"]; found {
-		err = json.Unmarshal(raw, &a.Supis)
-		if err != nil {
-			return fmt.Errorf("error reading 'supis': %w", err)
-		}
-		delete(object, "supis")
-	}
-
-	if raw, found := object["ueIpv4s"]; found {
-		err = json.Unmarshal(raw, &a.UeIpv4s)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueIpv4s': %w", err)
-		}
-		delete(object, "ueIpv4s")
-	}
-
-	if raw, found := object["ueIpv6s"]; found {
-		err = json.Unmarshal(raw, &a.UeIpv6s)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueIpv6s': %w", err)
-		}
-		delete(object, "ueIpv6s")
-	}
-
-	if raw, found := object["ueMacs"]; found {
-		err = json.Unmarshal(raw, &a.UeMacs)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueMacs': %w", err)
-		}
-		delete(object, "ueMacs")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for DataFilter to handle AdditionalProperties
-func (a DataFilter) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.AppIds) != 0 {
-		object["appIds"], err = json.Marshal(a.AppIds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'appIds': %w", err)
-		}
-	}
-
-	object["dataInd"], err = json.Marshal(a.DataInd)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'dataInd': %w", err)
-	}
-
-	if len(a.Dnns) != 0 {
-		object["dnns"], err = json.Marshal(a.Dnns)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnns': %w", err)
-		}
-	}
-
-	if len(a.InternalGroupIds) != 0 {
-		object["internalGroupIds"], err = json.Marshal(a.InternalGroupIds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'internalGroupIds': %w", err)
-		}
-	}
-
-	if len(a.Snssais) != 0 {
-		object["snssais"], err = json.Marshal(a.Snssais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snssais': %w", err)
-		}
-	}
-
-	if len(a.Supis) != 0 {
-		object["supis"], err = json.Marshal(a.Supis)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supis': %w", err)
-		}
-	}
-
-	if len(a.UeIpv4s) != 0 {
-		object["ueIpv4s"], err = json.Marshal(a.UeIpv4s)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueIpv4s': %w", err)
-		}
-	}
-
-	if len(a.UeIpv6s) != 0 {
-		object["ueIpv6s"], err = json.Marshal(a.UeIpv6s)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueIpv6s': %w", err)
-		}
-	}
-
-	if len(a.UeMacs) != 0 {
-		object["ueMacs"], err = json.Marshal(a.UeMacs)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueMacs': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for IptvConfigData. Returns the specified
-// element and whether it was found
-func (a IptvConfigData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for IptvConfigData
-func (a *IptvConfigData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for IptvConfigData to handle AdditionalProperties
-func (a *IptvConfigData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["afAppId"]; found {
-		err = json.Unmarshal(raw, &a.AfAppId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afAppId': %w", err)
-		}
-		delete(object, "afAppId")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["interGroupId"]; found {
-		err = json.Unmarshal(raw, &a.InterGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'interGroupId': %w", err)
-		}
-		delete(object, "interGroupId")
-	}
-
-	if raw, found := object["multiAccCtrls"]; found {
-		err = json.Unmarshal(raw, &a.MultiAccCtrls)
-		if err != nil {
-			return fmt.Errorf("error reading 'multiAccCtrls': %w", err)
-		}
-		delete(object, "multiAccCtrls")
-	}
-
-	if raw, found := object["resUri"]; found {
-		err = json.Unmarshal(raw, &a.ResUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'resUri': %w", err)
-		}
-		delete(object, "resUri")
-	}
-
-	if raw, found := object["snssai"]; found {
-		err = json.Unmarshal(raw, &a.Snssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssai': %w", err)
-		}
-		delete(object, "snssai")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["suppFeat"]; found {
-		err = json.Unmarshal(raw, &a.SuppFeat)
-		if err != nil {
-			return fmt.Errorf("error reading 'suppFeat': %w", err)
-		}
-		delete(object, "suppFeat")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for IptvConfigData to handle AdditionalProperties
-func (a IptvConfigData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["afAppId"], err = json.Marshal(a.AfAppId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'afAppId': %w", err)
-	}
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if len(a.InterGroupId) != 0 {
-		object["interGroupId"], err = json.Marshal(a.InterGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
-		}
-	}
-
-	object["multiAccCtrls"], err = json.Marshal(a.MultiAccCtrls)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'multiAccCtrls': %w", err)
-	}
-
-	if a.ResUri != nil {
-		object["resUri"], err = json.Marshal(a.ResUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'resUri': %w", err)
-		}
-	}
-
-	if a.Snssai != nil {
-		object["snssai"], err = json.Marshal(a.Snssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SuppFeat != nil {
-		object["suppFeat"], err = json.Marshal(a.SuppFeat)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'suppFeat': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for PfdDataForAppExt. Returns the specified
-// element and whether it was found
-func (a PfdDataForAppExt) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for PfdDataForAppExt
-func (a *PfdDataForAppExt) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for PfdDataForAppExt to handle AdditionalProperties
-func (a *PfdDataForAppExt) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["applicationId"]; found {
-		err = json.Unmarshal(raw, &a.ApplicationId)
-		if err != nil {
-			return fmt.Errorf("error reading 'applicationId': %w", err)
-		}
-		delete(object, "applicationId")
-	}
-
-	if raw, found := object["cachingTime"]; found {
-		err = json.Unmarshal(raw, &a.CachingTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'cachingTime': %w", err)
-		}
-		delete(object, "cachingTime")
-	}
-
-	if raw, found := object["pfds"]; found {
-		err = json.Unmarshal(raw, &a.Pfds)
-		if err != nil {
-			return fmt.Errorf("error reading 'pfds': %w", err)
-		}
-		delete(object, "pfds")
-	}
-
-	if raw, found := object["suppFeat"]; found {
-		err = json.Unmarshal(raw, &a.SuppFeat)
-		if err != nil {
-			return fmt.Errorf("error reading 'suppFeat': %w", err)
-		}
-		delete(object, "suppFeat")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for PfdDataForAppExt to handle AdditionalProperties
-func (a PfdDataForAppExt) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["applicationId"], err = json.Marshal(a.ApplicationId)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'applicationId': %w", err)
-	}
-
-	if a.CachingTime != nil {
-		object["cachingTime"], err = json.Marshal(a.CachingTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'cachingTime': %w", err)
-		}
-	}
-
-	object["pfds"], err = json.Marshal(a.Pfds)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'pfds': %w", err)
-	}
-
-	if a.SuppFeat != nil {
-		object["suppFeat"], err = json.Marshal(a.SuppFeat)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'suppFeat': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for ServiceParameterData. Returns the specified
-// element and whether it was found
-func (a ServiceParameterData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for ServiceParameterData
-func (a *ServiceParameterData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for ServiceParameterData to handle AdditionalProperties
-func (a *ServiceParameterData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["anyUeInd"]; found {
-		err = json.Unmarshal(raw, &a.AnyUeInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'anyUeInd': %w", err)
-		}
-		delete(object, "anyUeInd")
-	}
-
-	if raw, found := object["appId"]; found {
-		err = json.Unmarshal(raw, &a.AppId)
-		if err != nil {
-			return fmt.Errorf("error reading 'appId': %w", err)
-		}
-		delete(object, "appId")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["interGroupId"]; found {
-		err = json.Unmarshal(raw, &a.InterGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'interGroupId': %w", err)
-		}
-		delete(object, "interGroupId")
-	}
-
-	if raw, found := object["paramOverPc5"]; found {
-		err = json.Unmarshal(raw, &a.ParamOverPc5)
-		if err != nil {
-			return fmt.Errorf("error reading 'paramOverPc5': %w", err)
-		}
-		delete(object, "paramOverPc5")
-	}
-
-	if raw, found := object["paramOverUu"]; found {
-		err = json.Unmarshal(raw, &a.ParamOverUu)
-		if err != nil {
-			return fmt.Errorf("error reading 'paramOverUu': %w", err)
-		}
-		delete(object, "paramOverUu")
-	}
-
-	if raw, found := object["resUri"]; found {
-		err = json.Unmarshal(raw, &a.ResUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'resUri': %w", err)
-		}
-		delete(object, "resUri")
-	}
-
-	if raw, found := object["snssai"]; found {
-		err = json.Unmarshal(raw, &a.Snssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssai': %w", err)
-		}
-		delete(object, "snssai")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["suppFeat"]; found {
-		err = json.Unmarshal(raw, &a.SuppFeat)
-		if err != nil {
-			return fmt.Errorf("error reading 'suppFeat': %w", err)
-		}
-		delete(object, "suppFeat")
-	}
-
-	if raw, found := object["ueIpv4"]; found {
-		err = json.Unmarshal(raw, &a.UeIpv4)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueIpv4': %w", err)
-		}
-		delete(object, "ueIpv4")
-	}
-
-	if raw, found := object["ueIpv6"]; found {
-		err = json.Unmarshal(raw, &a.UeIpv6)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueIpv6': %w", err)
-		}
-		delete(object, "ueIpv6")
-	}
-
-	if raw, found := object["ueMac"]; found {
-		err = json.Unmarshal(raw, &a.UeMac)
-		if err != nil {
-			return fmt.Errorf("error reading 'ueMac': %w", err)
-		}
-		delete(object, "ueMac")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for ServiceParameterData to handle AdditionalProperties
-func (a ServiceParameterData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AnyUeInd != nil {
-		object["anyUeInd"], err = json.Marshal(a.AnyUeInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'anyUeInd': %w", err)
-		}
-	}
-
-	if a.AppId != nil {
-		object["appId"], err = json.Marshal(a.AppId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'appId': %w", err)
-		}
-	}
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if len(a.InterGroupId) != 0 {
-		object["interGroupId"], err = json.Marshal(a.InterGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
-		}
-	}
-
-	if a.ParamOverPc5 != nil {
-		object["paramOverPc5"], err = json.Marshal(a.ParamOverPc5)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'paramOverPc5': %w", err)
-		}
-	}
-
-	if a.ParamOverUu != nil {
-		object["paramOverUu"], err = json.Marshal(a.ParamOverUu)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'paramOverUu': %w", err)
-		}
-	}
-
-	if a.ResUri != nil {
-		object["resUri"], err = json.Marshal(a.ResUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'resUri': %w", err)
-		}
-	}
-
-	if a.Snssai != nil {
-		object["snssai"], err = json.Marshal(a.Snssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SuppFeat != nil {
-		object["suppFeat"], err = json.Marshal(a.SuppFeat)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'suppFeat': %w", err)
-		}
-	}
-
-	if a.UeIpv4 != nil {
-		object["ueIpv4"], err = json.Marshal(a.UeIpv4)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueIpv4': %w", err)
-		}
-	}
-
-	if a.UeIpv6 != nil {
-		object["ueIpv6"], err = json.Marshal(a.UeIpv6)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueIpv6': %w", err)
-		}
-	}
-
-	if len(a.UeMac) != 0 {
-		object["ueMac"], err = json.Marshal(a.UeMac)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ueMac': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for TrafficInfluData. Returns the specified
-// element and whether it was found
-func (a TrafficInfluData) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for TrafficInfluData
-func (a *TrafficInfluData) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for TrafficInfluData to handle AdditionalProperties
-func (a *TrafficInfluData) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["addrPreserInd"]; found {
-		err = json.Unmarshal(raw, &a.AddrPreserInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'addrPreserInd': %w", err)
-		}
-		delete(object, "addrPreserInd")
-	}
-
-	if raw, found := object["afAckInd"]; found {
-		err = json.Unmarshal(raw, &a.AfAckInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'afAckInd': %w", err)
-		}
-		delete(object, "afAckInd")
-	}
-
-	if raw, found := object["afAppId"]; found {
-		err = json.Unmarshal(raw, &a.AfAppId)
-		if err != nil {
-			return fmt.Errorf("error reading 'afAppId': %w", err)
-		}
-		delete(object, "afAppId")
-	}
-
-	if raw, found := object["appReloInd"]; found {
-		err = json.Unmarshal(raw, &a.AppReloInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'appReloInd': %w", err)
-		}
-		delete(object, "appReloInd")
-	}
-
-	if raw, found := object["dnaiChgType"]; found {
-		err = json.Unmarshal(raw, &a.DnaiChgType)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnaiChgType': %w", err)
-		}
-		delete(object, "dnaiChgType")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["ethTrafficFilters"]; found {
-		err = json.Unmarshal(raw, &a.EthTrafficFilters)
-		if err != nil {
-			return fmt.Errorf("error reading 'ethTrafficFilters': %w", err)
-		}
-		delete(object, "ethTrafficFilters")
-	}
-
-	if raw, found := object["headers"]; found {
-		err = json.Unmarshal(raw, &a.Headers)
-		if err != nil {
-			return fmt.Errorf("error reading 'headers': %w", err)
-		}
-		delete(object, "headers")
-	}
-
-	if raw, found := object["interGroupId"]; found {
-		err = json.Unmarshal(raw, &a.InterGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'interGroupId': %w", err)
-		}
-		delete(object, "interGroupId")
-	}
-
-	if raw, found := object["nwAreaInfo"]; found {
-		err = json.Unmarshal(raw, &a.NwAreaInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'nwAreaInfo': %w", err)
-		}
-		delete(object, "nwAreaInfo")
-	}
-
-	if raw, found := object["resUri"]; found {
-		err = json.Unmarshal(raw, &a.ResUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'resUri': %w", err)
-		}
-		delete(object, "resUri")
-	}
-
-	if raw, found := object["snssai"]; found {
-		err = json.Unmarshal(raw, &a.Snssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssai': %w", err)
-		}
-		delete(object, "snssai")
-	}
-
-	if raw, found := object["subscribedEvents"]; found {
-		err = json.Unmarshal(raw, &a.SubscribedEvents)
-		if err != nil {
-			return fmt.Errorf("error reading 'subscribedEvents': %w", err)
-		}
-		delete(object, "subscribedEvents")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if raw, found := object["tempValidities"]; found {
-		err = json.Unmarshal(raw, &a.TempValidities)
-		if err != nil {
-			return fmt.Errorf("error reading 'tempValidities': %w", err)
-		}
-		delete(object, "tempValidities")
-	}
-
-	if raw, found := object["traffCorreInd"]; found {
-		err = json.Unmarshal(raw, &a.TraffCorreInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'traffCorreInd': %w", err)
-		}
-		delete(object, "traffCorreInd")
-	}
-
-	if raw, found := object["trafficFilters"]; found {
-		err = json.Unmarshal(raw, &a.TrafficFilters)
-		if err != nil {
-			return fmt.Errorf("error reading 'trafficFilters': %w", err)
-		}
-		delete(object, "trafficFilters")
-	}
-
-	if raw, found := object["trafficRoutes"]; found {
-		err = json.Unmarshal(raw, &a.TrafficRoutes)
-		if err != nil {
-			return fmt.Errorf("error reading 'trafficRoutes': %w", err)
-		}
-		delete(object, "trafficRoutes")
-	}
-
-	if raw, found := object["upPathChgNotifCorreId"]; found {
-		err = json.Unmarshal(raw, &a.UpPathChgNotifCorreId)
-		if err != nil {
-			return fmt.Errorf("error reading 'upPathChgNotifCorreId': %w", err)
-		}
-		delete(object, "upPathChgNotifCorreId")
-	}
-
-	if raw, found := object["upPathChgNotifUri"]; found {
-		err = json.Unmarshal(raw, &a.UpPathChgNotifUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'upPathChgNotifUri': %w", err)
-		}
-		delete(object, "upPathChgNotifUri")
-	}
-
-	if raw, found := object["validEndTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidEndTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validEndTime': %w", err)
-		}
-		delete(object, "validEndTime")
-	}
-
-	if raw, found := object["validStartTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidStartTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validStartTime': %w", err)
-		}
-		delete(object, "validStartTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for TrafficInfluData to handle AdditionalProperties
-func (a TrafficInfluData) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AddrPreserInd != nil {
-		object["addrPreserInd"], err = json.Marshal(a.AddrPreserInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'addrPreserInd': %w", err)
-		}
-	}
-
-	if a.AfAckInd != nil {
-		object["afAckInd"], err = json.Marshal(a.AfAckInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afAckInd': %w", err)
-		}
-	}
-
-	if a.AfAppId != nil {
-		object["afAppId"], err = json.Marshal(a.AfAppId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afAppId': %w", err)
-		}
-	}
-
-	if a.AppReloInd != nil {
-		object["appReloInd"], err = json.Marshal(a.AppReloInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'appReloInd': %w", err)
-		}
-	}
-
-	if a.DnaiChgType != nil {
-		object["dnaiChgType"], err = json.Marshal(a.DnaiChgType)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnaiChgType': %w", err)
-		}
-	}
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if len(a.EthTrafficFilters) != 0 {
-		object["ethTrafficFilters"], err = json.Marshal(a.EthTrafficFilters)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ethTrafficFilters': %w", err)
-		}
-	}
-
-	if len(a.Headers) != 0 {
-		object["headers"], err = json.Marshal(a.Headers)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'headers': %w", err)
-		}
-	}
-
-	if len(a.InterGroupId) != 0 {
-		object["interGroupId"], err = json.Marshal(a.InterGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'interGroupId': %w", err)
-		}
-	}
-
-	if a.NwAreaInfo != nil {
-		object["nwAreaInfo"], err = json.Marshal(a.NwAreaInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nwAreaInfo': %w", err)
-		}
-	}
-
-	if a.ResUri != nil {
-		object["resUri"], err = json.Marshal(a.ResUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'resUri': %w", err)
-		}
-	}
-
-	if a.Snssai != nil {
-		object["snssai"], err = json.Marshal(a.Snssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
-		}
-	}
-
-	if len(a.SubscribedEvents) != 0 {
-		object["subscribedEvents"], err = json.Marshal(a.SubscribedEvents)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'subscribedEvents': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	if len(a.TempValidities) != 0 {
-		object["tempValidities"], err = json.Marshal(a.TempValidities)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'tempValidities': %w", err)
-		}
-	}
-
-	if a.TraffCorreInd != nil {
-		object["traffCorreInd"], err = json.Marshal(a.TraffCorreInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'traffCorreInd': %w", err)
-		}
-	}
-
-	if len(a.TrafficFilters) != 0 {
-		object["trafficFilters"], err = json.Marshal(a.TrafficFilters)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'trafficFilters': %w", err)
-		}
-	}
-
-	if len(a.TrafficRoutes) != 0 {
-		object["trafficRoutes"], err = json.Marshal(a.TrafficRoutes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'trafficRoutes': %w", err)
-		}
-	}
-
-	if a.UpPathChgNotifCorreId != nil {
-		object["upPathChgNotifCorreId"], err = json.Marshal(a.UpPathChgNotifCorreId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upPathChgNotifCorreId': %w", err)
-		}
-	}
-
-	if a.UpPathChgNotifUri != nil {
-		object["upPathChgNotifUri"], err = json.Marshal(a.UpPathChgNotifUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upPathChgNotifUri': %w", err)
-		}
-	}
-
-	if a.ValidEndTime != nil {
-		object["validEndTime"], err = json.Marshal(a.ValidEndTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validEndTime': %w", err)
-		}
-	}
-
-	if a.ValidStartTime != nil {
-		object["validStartTime"], err = json.Marshal(a.ValidStartTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validStartTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for TrafficInfluDataNotif. Returns the specified
-// element and whether it was found
-func (a TrafficInfluDataNotif) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for TrafficInfluDataNotif
-func (a *TrafficInfluDataNotif) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for TrafficInfluDataNotif to handle AdditionalProperties
-func (a *TrafficInfluDataNotif) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["resUri"]; found {
-		err = json.Unmarshal(raw, &a.ResUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'resUri': %w", err)
-		}
-		delete(object, "resUri")
-	}
-
-	if raw, found := object["trafficInfluData"]; found {
-		err = json.Unmarshal(raw, &a.TrafficInfluData)
-		if err != nil {
-			return fmt.Errorf("error reading 'trafficInfluData': %w", err)
-		}
-		delete(object, "trafficInfluData")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for TrafficInfluDataNotif to handle AdditionalProperties
-func (a TrafficInfluDataNotif) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	object["resUri"], err = json.Marshal(a.ResUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'resUri': %w", err)
-	}
-
-	if a.TrafficInfluData != nil {
-		object["trafficInfluData"], err = json.Marshal(a.TrafficInfluData)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'trafficInfluData': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for TrafficInfluDataPatch. Returns the specified
-// element and whether it was found
-func (a TrafficInfluDataPatch) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for TrafficInfluDataPatch
-func (a *TrafficInfluDataPatch) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for TrafficInfluDataPatch to handle AdditionalProperties
-func (a *TrafficInfluDataPatch) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["addrPreserInd"]; found {
-		err = json.Unmarshal(raw, &a.AddrPreserInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'addrPreserInd': %w", err)
-		}
-		delete(object, "addrPreserInd")
-	}
-
-	if raw, found := object["afAckInd"]; found {
-		err = json.Unmarshal(raw, &a.AfAckInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'afAckInd': %w", err)
-		}
-		delete(object, "afAckInd")
-	}
-
-	if raw, found := object["appReloInd"]; found {
-		err = json.Unmarshal(raw, &a.AppReloInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'appReloInd': %w", err)
-		}
-		delete(object, "appReloInd")
-	}
-
-	if raw, found := object["dnn"]; found {
-		err = json.Unmarshal(raw, &a.Dnn)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnn': %w", err)
-		}
-		delete(object, "dnn")
-	}
-
-	if raw, found := object["ethTrafficFilters"]; found {
-		err = json.Unmarshal(raw, &a.EthTrafficFilters)
-		if err != nil {
-			return fmt.Errorf("error reading 'ethTrafficFilters': %w", err)
-		}
-		delete(object, "ethTrafficFilters")
-	}
-
-	if raw, found := object["headers"]; found {
-		err = json.Unmarshal(raw, &a.Headers)
-		if err != nil {
-			return fmt.Errorf("error reading 'headers': %w", err)
-		}
-		delete(object, "headers")
-	}
-
-	if raw, found := object["internalGroupId"]; found {
-		err = json.Unmarshal(raw, &a.InternalGroupId)
-		if err != nil {
-			return fmt.Errorf("error reading 'internalGroupId': %w", err)
-		}
-		delete(object, "internalGroupId")
-	}
-
-	if raw, found := object["nwAreaInfo"]; found {
-		err = json.Unmarshal(raw, &a.NwAreaInfo)
-		if err != nil {
-			return fmt.Errorf("error reading 'nwAreaInfo': %w", err)
-		}
-		delete(object, "nwAreaInfo")
-	}
-
-	if raw, found := object["snssai"]; found {
-		err = json.Unmarshal(raw, &a.Snssai)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssai': %w", err)
-		}
-		delete(object, "snssai")
-	}
-
-	if raw, found := object["supi"]; found {
-		err = json.Unmarshal(raw, &a.Supi)
-		if err != nil {
-			return fmt.Errorf("error reading 'supi': %w", err)
-		}
-		delete(object, "supi")
-	}
-
-	if raw, found := object["tempValidities"]; found {
-		err = json.Unmarshal(raw, &a.TempValidities)
-		if err != nil {
-			return fmt.Errorf("error reading 'tempValidities': %w", err)
-		}
-		delete(object, "tempValidities")
-	}
-
-	if raw, found := object["traffCorreInd"]; found {
-		err = json.Unmarshal(raw, &a.TraffCorreInd)
-		if err != nil {
-			return fmt.Errorf("error reading 'traffCorreInd': %w", err)
-		}
-		delete(object, "traffCorreInd")
-	}
-
-	if raw, found := object["trafficFilters"]; found {
-		err = json.Unmarshal(raw, &a.TrafficFilters)
-		if err != nil {
-			return fmt.Errorf("error reading 'trafficFilters': %w", err)
-		}
-		delete(object, "trafficFilters")
-	}
-
-	if raw, found := object["trafficRoutes"]; found {
-		err = json.Unmarshal(raw, &a.TrafficRoutes)
-		if err != nil {
-			return fmt.Errorf("error reading 'trafficRoutes': %w", err)
-		}
-		delete(object, "trafficRoutes")
-	}
-
-	if raw, found := object["upPathChgNotifCorreId"]; found {
-		err = json.Unmarshal(raw, &a.UpPathChgNotifCorreId)
-		if err != nil {
-			return fmt.Errorf("error reading 'upPathChgNotifCorreId': %w", err)
-		}
-		delete(object, "upPathChgNotifCorreId")
-	}
-
-	if raw, found := object["upPathChgNotifUri"]; found {
-		err = json.Unmarshal(raw, &a.UpPathChgNotifUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'upPathChgNotifUri': %w", err)
-		}
-		delete(object, "upPathChgNotifUri")
-	}
-
-	if raw, found := object["validEndTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidEndTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validEndTime': %w", err)
-		}
-		delete(object, "validEndTime")
-	}
-
-	if raw, found := object["validStartTime"]; found {
-		err = json.Unmarshal(raw, &a.ValidStartTime)
-		if err != nil {
-			return fmt.Errorf("error reading 'validStartTime': %w", err)
-		}
-		delete(object, "validStartTime")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for TrafficInfluDataPatch to handle AdditionalProperties
-func (a TrafficInfluDataPatch) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.AddrPreserInd != nil {
-		object["addrPreserInd"], err = json.Marshal(a.AddrPreserInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'addrPreserInd': %w", err)
-		}
-	}
-
-	if a.AfAckInd != nil {
-		object["afAckInd"], err = json.Marshal(a.AfAckInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'afAckInd': %w", err)
-		}
-	}
-
-	if a.AppReloInd != nil {
-		object["appReloInd"], err = json.Marshal(a.AppReloInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'appReloInd': %w", err)
-		}
-	}
-
-	if a.Dnn != nil {
-		object["dnn"], err = json.Marshal(a.Dnn)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnn': %w", err)
-		}
-	}
-
-	if len(a.EthTrafficFilters) != 0 {
-		object["ethTrafficFilters"], err = json.Marshal(a.EthTrafficFilters)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'ethTrafficFilters': %w", err)
-		}
-	}
-
-	if len(a.Headers) != 0 {
-		object["headers"], err = json.Marshal(a.Headers)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'headers': %w", err)
-		}
-	}
-
-	if len(a.InternalGroupId) != 0 {
-		object["internalGroupId"], err = json.Marshal(a.InternalGroupId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'internalGroupId': %w", err)
-		}
-	}
-
-	if a.NwAreaInfo != nil {
-		object["nwAreaInfo"], err = json.Marshal(a.NwAreaInfo)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'nwAreaInfo': %w", err)
-		}
-	}
-
-	if a.Snssai != nil {
-		object["snssai"], err = json.Marshal(a.Snssai)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snssai': %w", err)
-		}
-	}
-
-	if len(a.Supi) != 0 {
-		object["supi"], err = json.Marshal(a.Supi)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supi': %w", err)
-		}
-	}
-
-	object["tempValidities"], err = json.Marshal(a.TempValidities)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'tempValidities': %w", err)
-	}
-
-	if a.TraffCorreInd != nil {
-		object["traffCorreInd"], err = json.Marshal(a.TraffCorreInd)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'traffCorreInd': %w", err)
-		}
-	}
-
-	if len(a.TrafficFilters) != 0 {
-		object["trafficFilters"], err = json.Marshal(a.TrafficFilters)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'trafficFilters': %w", err)
-		}
-	}
-
-	if len(a.TrafficRoutes) != 0 {
-		object["trafficRoutes"], err = json.Marshal(a.TrafficRoutes)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'trafficRoutes': %w", err)
-		}
-	}
-
-	if a.UpPathChgNotifCorreId != nil {
-		object["upPathChgNotifCorreId"], err = json.Marshal(a.UpPathChgNotifCorreId)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upPathChgNotifCorreId': %w", err)
-		}
-	}
-
-	if a.UpPathChgNotifUri != nil {
-		object["upPathChgNotifUri"], err = json.Marshal(a.UpPathChgNotifUri)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'upPathChgNotifUri': %w", err)
-		}
-	}
-
-	if a.ValidEndTime != nil {
-		object["validEndTime"], err = json.Marshal(a.ValidEndTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validEndTime': %w", err)
-		}
-	}
-
-	if a.ValidStartTime != nil {
-		object["validStartTime"], err = json.Marshal(a.ValidStartTime)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'validStartTime': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
-
-// Getter for additional properties for TrafficInfluSub. Returns the specified
-// element and whether it was found
-func (a TrafficInfluSub) Get(fieldName string) (value interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for TrafficInfluSub
-func (a *TrafficInfluSub) Set(fieldName string, value interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for TrafficInfluSub to handle AdditionalProperties
-func (a *TrafficInfluSub) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["dnns"]; found {
-		err = json.Unmarshal(raw, &a.Dnns)
-		if err != nil {
-			return fmt.Errorf("error reading 'dnns': %w", err)
-		}
-		delete(object, "dnns")
-	}
-
-	if raw, found := object["expiry"]; found {
-		err = json.Unmarshal(raw, &a.Expiry)
-		if err != nil {
-			return fmt.Errorf("error reading 'expiry': %w", err)
-		}
-		delete(object, "expiry")
-	}
-
-	if raw, found := object["internalGroupIds"]; found {
-		err = json.Unmarshal(raw, &a.InternalGroupIds)
-		if err != nil {
-			return fmt.Errorf("error reading 'internalGroupIds': %w", err)
-		}
-		delete(object, "internalGroupIds")
-	}
-
-	if raw, found := object["notificationUri"]; found {
-		err = json.Unmarshal(raw, &a.NotificationUri)
-		if err != nil {
-			return fmt.Errorf("error reading 'notificationUri': %w", err)
-		}
-		delete(object, "notificationUri")
-	}
-
-	if raw, found := object["snssais"]; found {
-		err = json.Unmarshal(raw, &a.Snssais)
-		if err != nil {
-			return fmt.Errorf("error reading 'snssais': %w", err)
-		}
-		delete(object, "snssais")
-	}
-
-	if raw, found := object["supis"]; found {
-		err = json.Unmarshal(raw, &a.Supis)
-		if err != nil {
-			return fmt.Errorf("error reading 'supis': %w", err)
-		}
-		delete(object, "supis")
-	}
-
-	if raw, found := object["supportedFeatures"]; found {
-		err = json.Unmarshal(raw, &a.SupportedFeatures)
-		if err != nil {
-			return fmt.Errorf("error reading 'supportedFeatures': %w", err)
-		}
-		delete(object, "supportedFeatures")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for TrafficInfluSub to handle AdditionalProperties
-func (a TrafficInfluSub) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if len(a.Dnns) != 0 {
-		object["dnns"], err = json.Marshal(a.Dnns)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'dnns': %w", err)
-		}
-	}
-
-	if a.Expiry != nil {
-		object["expiry"], err = json.Marshal(a.Expiry)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'expiry': %w", err)
-		}
-	}
-
-	if len(a.InternalGroupIds) != 0 {
-		object["internalGroupIds"], err = json.Marshal(a.InternalGroupIds)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'internalGroupIds': %w", err)
-		}
-	}
-
-	object["notificationUri"], err = json.Marshal(a.NotificationUri)
-	if err != nil {
-		return nil, fmt.Errorf("error marshaling 'notificationUri': %w", err)
-	}
-
-	if len(a.Snssais) != 0 {
-		object["snssais"], err = json.Marshal(a.Snssais)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'snssais': %w", err)
-		}
-	}
-
-	if len(a.Supis) != 0 {
-		object["supis"], err = json.Marshal(a.Supis)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supis': %w", err)
-		}
-	}
-
-	if a.SupportedFeatures != nil {
-		object["supportedFeatures"], err = json.Marshal(a.SupportedFeatures)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'supportedFeatures': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
-}
+type ReplaceIndividualApplicationDataSubscriptionJSONRequestBody = externalRef0.ApplicationDataSubs
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -4984,7 +2643,7 @@ type ClientWithResponsesInterface interface {
 type ReadBdtPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]BdtPolicyData
+	JSON200                       *[]externalRef0.BdtPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5044,7 +2703,7 @@ func (r DeleteIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 type UpdateIndividualAppliedBdtPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *BdtPolicyData
+	JSON200                       *externalRef0.BdtPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5077,7 +2736,7 @@ func (r UpdateIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 type CreateIndividualAppliedBdtPolicyDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *BdtPolicyData
+	JSON201                       *externalRef0.BdtPolicyData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5111,7 +2770,7 @@ func (r CreateIndividualAppliedBdtPolicyDataResponse) StatusCode() int {
 type ReadInfluenceDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]TrafficInfluData
+	JSON200                       *[]externalRef0.TrafficInfluData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5142,7 +2801,7 @@ func (r ReadInfluenceDataResponse) StatusCode() int {
 type ReadInfluenceDataSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]TrafficInfluSub
+	JSON200                       *[]externalRef0.TrafficInfluSub
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5173,7 +2832,7 @@ func (r ReadInfluenceDataSubscriptionsResponse) StatusCode() int {
 type CreateIndividualInfluenceDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *TrafficInfluSub
+	JSON201                       *externalRef0.TrafficInfluSub
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5235,7 +2894,7 @@ func (r DeleteIndividualInfluenceDataSubscriptionResponse) StatusCode() int {
 type ReadIndividualInfluenceDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *TrafficInfluSub
+	JSON200                       *externalRef0.TrafficInfluSub
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5266,7 +2925,7 @@ func (r ReadIndividualInfluenceDataSubscriptionResponse) StatusCode() int {
 type ReplaceIndividualInfluenceDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *TrafficInfluSub
+	JSON200                       *externalRef0.TrafficInfluSub
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5328,7 +2987,7 @@ func (r DeleteIndividualInfluenceDataResponse) StatusCode() int {
 type UpdateIndividualInfluenceDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *TrafficInfluData
+	JSON200                       *externalRef0.TrafficInfluData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5361,8 +3020,8 @@ func (r UpdateIndividualInfluenceDataResponse) StatusCode() int {
 type CreateOrReplaceIndividualInfluenceDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *TrafficInfluData
-	JSON201                       *TrafficInfluData
+	JSON200                       *externalRef0.TrafficInfluData
+	JSON201                       *externalRef0.TrafficInfluData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5396,7 +3055,7 @@ func (r CreateOrReplaceIndividualInfluenceDataResponse) StatusCode() int {
 type ReadIPTVCongifurationDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]IptvConfigData
+	JSON200                       *[]externalRef0.IptvConfigData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5456,7 +3115,7 @@ func (r DeleteIndividualIPTVConfigurationDataResponse) StatusCode() int {
 type PartialReplaceIndividualIPTVConfigurationDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *IptvConfigData
+	JSON200                       *externalRef0.IptvConfigData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5490,8 +3149,8 @@ func (r PartialReplaceIndividualIPTVConfigurationDataResponse) StatusCode() int 
 type CreateOrReplaceIndividualIPTVConfigurationDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *IptvConfigData
-	JSON201                       *IptvConfigData
+	JSON200                       *externalRef0.IptvConfigData
+	JSON201                       *externalRef0.IptvConfigData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5525,7 +3184,7 @@ func (r CreateOrReplaceIndividualIPTVConfigurationDataResponse) StatusCode() int
 type ReadPFDDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]PfdDataForAppExt
+	JSON200                       *[]externalRef0.PfdDataForAppExt
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5585,7 +3244,7 @@ func (r DeleteIndividualPFDDataResponse) StatusCode() int {
 type ReadIndividualPFDDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *PfdDataForAppExt
+	JSON200                       *externalRef0.PfdDataForAppExt
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5615,8 +3274,8 @@ func (r ReadIndividualPFDDataResponse) StatusCode() int {
 type CreateOrReplaceIndividualPFDDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *PfdDataForAppExt
-	JSON201                       *PfdDataForAppExt
+	JSON200                       *externalRef0.PfdDataForAppExt
+	JSON201                       *externalRef0.PfdDataForAppExt
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5650,7 +3309,7 @@ func (r CreateOrReplaceIndividualPFDDataResponse) StatusCode() int {
 type ReadServiceParameterDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]ServiceParameterData
+	JSON200                       *[]externalRef0.ServiceParameterData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5710,7 +3369,7 @@ func (r DeleteIndividualServiceParameterDataResponse) StatusCode() int {
 type UpdateIndividualServiceParameterDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *ServiceParameterData
+	JSON200                       *externalRef0.ServiceParameterData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5743,8 +3402,8 @@ func (r UpdateIndividualServiceParameterDataResponse) StatusCode() int {
 type CreateOrReplaceServiceParameterDataResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *ServiceParameterData
-	JSON201                       *ServiceParameterData
+	JSON200                       *externalRef0.ServiceParameterData
+	JSON201                       *externalRef0.ServiceParameterData
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5778,7 +3437,7 @@ func (r CreateOrReplaceServiceParameterDataResponse) StatusCode() int {
 type ReadApplicationDataChangeSubscriptionsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *[]ApplicationDataSubs
+	JSON200                       *[]externalRef0.ApplicationDataSubs
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5809,7 +3468,7 @@ func (r ReadApplicationDataChangeSubscriptionsResponse) StatusCode() int {
 type CreateIndividualApplicationDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON201                       *ApplicationDataSubs
+	JSON201                       *externalRef0.ApplicationDataSubs
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5871,7 +3530,7 @@ func (r DeleteIndividualApplicationDataSubscriptionResponse) StatusCode() int {
 type ReadIndividualApplicationDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *ApplicationDataSubs
+	JSON200                       *externalRef0.ApplicationDataSubs
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -5902,7 +3561,7 @@ func (r ReadIndividualApplicationDataSubscriptionResponse) StatusCode() int {
 type ReplaceIndividualApplicationDataSubscriptionResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *ApplicationDataSubs
+	JSON200                       *externalRef0.ApplicationDataSubs
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON401     *externalRef0.N401
 	ApplicationproblemJSON403     *externalRef0.N403
@@ -6321,7 +3980,7 @@ func ParseReadBdtPolicyDataResponse(rsp *http.Response) (*ReadBdtPolicyDataRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []BdtPolicyData
+		var dest []externalRef0.BdtPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6491,7 +4150,7 @@ func ParseUpdateIndividualAppliedBdtPolicyDataResponse(rsp *http.Response) (*Upd
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest BdtPolicyData
+		var dest externalRef0.BdtPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6597,7 +4256,7 @@ func ParseCreateIndividualAppliedBdtPolicyDataResponse(rsp *http.Response) (*Cre
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest BdtPolicyData
+		var dest externalRef0.BdtPolicyData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6707,7 +4366,7 @@ func ParseReadInfluenceDataResponse(rsp *http.Response) (*ReadInfluenceDataRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []TrafficInfluData
+		var dest []externalRef0.TrafficInfluData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6799,7 +4458,7 @@ func ParseReadInfluenceDataSubscriptionsResponse(rsp *http.Response) (*ReadInflu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []TrafficInfluSub
+		var dest []externalRef0.TrafficInfluSub
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6891,7 +4550,7 @@ func ParseCreateIndividualInfluenceDataSubscriptionResponse(rsp *http.Response) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest TrafficInfluSub
+		var dest externalRef0.TrafficInfluSub
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7072,7 +4731,7 @@ func ParseReadIndividualInfluenceDataSubscriptionResponse(rsp *http.Response) (*
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TrafficInfluSub
+		var dest externalRef0.TrafficInfluSub
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7164,7 +4823,7 @@ func ParseReplaceIndividualInfluenceDataSubscriptionResponse(rsp *http.Response)
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TrafficInfluSub
+		var dest externalRef0.TrafficInfluSub
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7348,7 +5007,7 @@ func ParseUpdateIndividualInfluenceDataResponse(rsp *http.Response) (*UpdateIndi
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TrafficInfluData
+		var dest externalRef0.TrafficInfluData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7454,14 +5113,14 @@ func ParseCreateOrReplaceIndividualInfluenceDataResponse(rsp *http.Response) (*C
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TrafficInfluData
+		var dest externalRef0.TrafficInfluData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest TrafficInfluData
+		var dest externalRef0.TrafficInfluData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7574,7 +5233,7 @@ func ParseReadIPTVCongifurationDataResponse(rsp *http.Response) (*ReadIPTVCongif
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []IptvConfigData
+		var dest []externalRef0.IptvConfigData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7744,7 +5403,7 @@ func ParsePartialReplaceIndividualIPTVConfigurationDataResponse(rsp *http.Respon
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IptvConfigData
+		var dest externalRef0.IptvConfigData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7857,14 +5516,14 @@ func ParseCreateOrReplaceIndividualIPTVConfigurationDataResponse(rsp *http.Respo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IptvConfigData
+		var dest externalRef0.IptvConfigData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest IptvConfigData
+		var dest externalRef0.IptvConfigData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7977,7 +5636,7 @@ func ParseReadPFDDataResponse(rsp *http.Response) (*ReadPFDDataResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []PfdDataForAppExt
+		var dest []externalRef0.PfdDataForAppExt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8147,7 +5806,7 @@ func ParseReadIndividualPFDDataResponse(rsp *http.Response) (*ReadIndividualPFDD
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PfdDataForAppExt
+		var dest externalRef0.PfdDataForAppExt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8232,14 +5891,14 @@ func ParseCreateOrReplaceIndividualPFDDataResponse(rsp *http.Response) (*CreateO
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PfdDataForAppExt
+		var dest externalRef0.PfdDataForAppExt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest PfdDataForAppExt
+		var dest externalRef0.PfdDataForAppExt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8352,7 +6011,7 @@ func ParseReadServiceParameterDataResponse(rsp *http.Response) (*ReadServicePara
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ServiceParameterData
+		var dest []externalRef0.ServiceParameterData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8522,7 +6181,7 @@ func ParseUpdateIndividualServiceParameterDataResponse(rsp *http.Response) (*Upd
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ServiceParameterData
+		var dest externalRef0.ServiceParameterData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8628,14 +6287,14 @@ func ParseCreateOrReplaceServiceParameterDataResponse(rsp *http.Response) (*Crea
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ServiceParameterData
+		var dest externalRef0.ServiceParameterData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest ServiceParameterData
+		var dest externalRef0.ServiceParameterData
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8748,7 +6407,7 @@ func ParseReadApplicationDataChangeSubscriptionsResponse(rsp *http.Response) (*R
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ApplicationDataSubs
+		var dest []externalRef0.ApplicationDataSubs
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8840,7 +6499,7 @@ func ParseCreateIndividualApplicationDataSubscriptionResponse(rsp *http.Response
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest ApplicationDataSubs
+		var dest externalRef0.ApplicationDataSubs
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -9021,7 +6680,7 @@ func ParseReadIndividualApplicationDataSubscriptionResponse(rsp *http.Response) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ApplicationDataSubs
+		var dest externalRef0.ApplicationDataSubs
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -9113,7 +6772,7 @@ func ParseReplaceIndividualApplicationDataSubscriptionResponse(rsp *http.Respons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ApplicationDataSubs
+		var dest externalRef0.ApplicationDataSubs
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -10124,7 +7783,7 @@ func (siw *ServerInterfaceWrapper) ReadApplicationDataChangeSubscriptions(c *gin
 
 	if paramValue := c.Query("data-filter"); paramValue != "" {
 
-		var value DataFilter
+		var value externalRef0.DataFilter
 		err = json.Unmarshal([]byte(paramValue), &value)
 		if err != nil {
 			siw.ErrorHandler(c, fmt.Errorf("Error unmarshaling parameter 'data-filter' as JSON: %w", err), http.StatusBadRequest)
@@ -10297,7 +7956,7 @@ type ReadBdtPolicyDataResponseObject interface {
 	VisitReadBdtPolicyDataResponse(w http.ResponseWriter) error
 }
 
-type ReadBdtPolicyData200JSONResponse []BdtPolicyData
+type ReadBdtPolicyData200JSONResponse []externalRef0.BdtPolicyData
 
 func (response ReadBdtPolicyData200JSONResponse) VisitReadBdtPolicyDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -10527,13 +8186,13 @@ type UpdateIndividualAppliedBdtPolicyDataResponseObject interface {
 	VisitUpdateIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error
 }
 
-type UpdateIndividualAppliedBdtPolicyData200JSONResponse BdtPolicyData
+type UpdateIndividualAppliedBdtPolicyData200JSONResponse externalRef0.BdtPolicyData
 
 func (response UpdateIndividualAppliedBdtPolicyData200JSONResponse) VisitUpdateIndividualAppliedBdtPolicyDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(BdtPolicyData(response))
+	return json.NewEncoder(w).Encode(externalRef0.BdtPolicyData(response))
 }
 
 type UpdateIndividualAppliedBdtPolicyData204Response struct {
@@ -10680,7 +8339,7 @@ type CreateIndividualAppliedBdtPolicyData201ResponseHeaders struct {
 }
 
 type CreateIndividualAppliedBdtPolicyData201JSONResponse struct {
-	Body    BdtPolicyData
+	Body    externalRef0.BdtPolicyData
 	Headers CreateIndividualAppliedBdtPolicyData201ResponseHeaders
 }
 
@@ -10833,7 +8492,7 @@ type ReadInfluenceDataResponseObject interface {
 	VisitReadInfluenceDataResponse(w http.ResponseWriter) error
 }
 
-type ReadInfluenceData200JSONResponse []TrafficInfluData
+type ReadInfluenceData200JSONResponse []externalRef0.TrafficInfluData
 
 func (response ReadInfluenceData200JSONResponse) VisitReadInfluenceDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -10957,7 +8616,7 @@ type ReadInfluenceDataSubscriptionsResponseObject interface {
 	VisitReadInfluenceDataSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type ReadInfluenceDataSubscriptions200JSONResponse []TrafficInfluSub
+type ReadInfluenceDataSubscriptions200JSONResponse []externalRef0.TrafficInfluSub
 
 func (response ReadInfluenceDataSubscriptions200JSONResponse) VisitReadInfluenceDataSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -11086,7 +8745,7 @@ type CreateIndividualInfluenceDataSubscription201ResponseHeaders struct {
 }
 
 type CreateIndividualInfluenceDataSubscription201JSONResponse struct {
-	Body    TrafficInfluSub
+	Body    externalRef0.TrafficInfluSub
 	Headers CreateIndividualInfluenceDataSubscription201ResponseHeaders
 }
 
@@ -11333,13 +8992,13 @@ type ReadIndividualInfluenceDataSubscriptionResponseObject interface {
 	VisitReadIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReadIndividualInfluenceDataSubscription200JSONResponse TrafficInfluSub
+type ReadIndividualInfluenceDataSubscription200JSONResponse externalRef0.TrafficInfluSub
 
 func (response ReadIndividualInfluenceDataSubscription200JSONResponse) VisitReadIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(TrafficInfluSub(response))
+	return json.NewEncoder(w).Encode(externalRef0.TrafficInfluSub(response))
 }
 
 type ReadIndividualInfluenceDataSubscription400ApplicationProblemPlusJSONResponse struct {
@@ -11458,13 +9117,13 @@ type ReplaceIndividualInfluenceDataSubscriptionResponseObject interface {
 	VisitReplaceIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReplaceIndividualInfluenceDataSubscription200JSONResponse TrafficInfluSub
+type ReplaceIndividualInfluenceDataSubscription200JSONResponse externalRef0.TrafficInfluSub
 
 func (response ReplaceIndividualInfluenceDataSubscription200JSONResponse) VisitReplaceIndividualInfluenceDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(TrafficInfluSub(response))
+	return json.NewEncoder(w).Encode(externalRef0.TrafficInfluSub(response))
 }
 
 type ReplaceIndividualInfluenceDataSubscription204Response struct {
@@ -11711,13 +9370,13 @@ type UpdateIndividualInfluenceDataResponseObject interface {
 	VisitUpdateIndividualInfluenceDataResponse(w http.ResponseWriter) error
 }
 
-type UpdateIndividualInfluenceData200JSONResponse TrafficInfluData
+type UpdateIndividualInfluenceData200JSONResponse externalRef0.TrafficInfluData
 
 func (response UpdateIndividualInfluenceData200JSONResponse) VisitUpdateIndividualInfluenceDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(TrafficInfluData(response))
+	return json.NewEncoder(w).Encode(externalRef0.TrafficInfluData(response))
 }
 
 type UpdateIndividualInfluenceData204Response struct {
@@ -11859,13 +9518,13 @@ type CreateOrReplaceIndividualInfluenceDataResponseObject interface {
 	VisitCreateOrReplaceIndividualInfluenceDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceIndividualInfluenceData200JSONResponse TrafficInfluData
+type CreateOrReplaceIndividualInfluenceData200JSONResponse externalRef0.TrafficInfluData
 
 func (response CreateOrReplaceIndividualInfluenceData200JSONResponse) VisitCreateOrReplaceIndividualInfluenceDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(TrafficInfluData(response))
+	return json.NewEncoder(w).Encode(externalRef0.TrafficInfluData(response))
 }
 
 type CreateOrReplaceIndividualInfluenceData201ResponseHeaders struct {
@@ -11873,7 +9532,7 @@ type CreateOrReplaceIndividualInfluenceData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceIndividualInfluenceData201JSONResponse struct {
-	Body    TrafficInfluData
+	Body    externalRef0.TrafficInfluData
 	Headers CreateOrReplaceIndividualInfluenceData201ResponseHeaders
 }
 
@@ -12034,7 +9693,7 @@ type ReadIPTVCongifurationDataResponseObject interface {
 	VisitReadIPTVCongifurationDataResponse(w http.ResponseWriter) error
 }
 
-type ReadIPTVCongifurationData200JSONResponse []IptvConfigData
+type ReadIPTVCongifurationData200JSONResponse []externalRef0.IptvConfigData
 
 func (response ReadIPTVCongifurationData200JSONResponse) VisitReadIPTVCongifurationDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -12264,13 +9923,13 @@ type PartialReplaceIndividualIPTVConfigurationDataResponseObject interface {
 	VisitPartialReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error
 }
 
-type PartialReplaceIndividualIPTVConfigurationData200JSONResponse IptvConfigData
+type PartialReplaceIndividualIPTVConfigurationData200JSONResponse externalRef0.IptvConfigData
 
 func (response PartialReplaceIndividualIPTVConfigurationData200JSONResponse) VisitPartialReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(IptvConfigData(response))
+	return json.NewEncoder(w).Encode(externalRef0.IptvConfigData(response))
 }
 
 type PartialReplaceIndividualIPTVConfigurationData204Response struct {
@@ -12423,13 +10082,13 @@ type CreateOrReplaceIndividualIPTVConfigurationDataResponseObject interface {
 	VisitCreateOrReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceIndividualIPTVConfigurationData200JSONResponse IptvConfigData
+type CreateOrReplaceIndividualIPTVConfigurationData200JSONResponse externalRef0.IptvConfigData
 
 func (response CreateOrReplaceIndividualIPTVConfigurationData200JSONResponse) VisitCreateOrReplaceIndividualIPTVConfigurationDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(IptvConfigData(response))
+	return json.NewEncoder(w).Encode(externalRef0.IptvConfigData(response))
 }
 
 type CreateOrReplaceIndividualIPTVConfigurationData201ResponseHeaders struct {
@@ -12437,7 +10096,7 @@ type CreateOrReplaceIndividualIPTVConfigurationData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceIndividualIPTVConfigurationData201JSONResponse struct {
-	Body    IptvConfigData
+	Body    externalRef0.IptvConfigData
 	Headers CreateOrReplaceIndividualIPTVConfigurationData201ResponseHeaders
 }
 
@@ -12598,7 +10257,7 @@ type ReadPFDDataResponseObject interface {
 	VisitReadPFDDataResponse(w http.ResponseWriter) error
 }
 
-type ReadPFDData200JSONResponse []PfdDataForAppExt
+type ReadPFDData200JSONResponse []externalRef0.PfdDataForAppExt
 
 func (response ReadPFDData200JSONResponse) VisitReadPFDDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -12827,13 +10486,13 @@ type ReadIndividualPFDDataResponseObject interface {
 	VisitReadIndividualPFDDataResponse(w http.ResponseWriter) error
 }
 
-type ReadIndividualPFDData200JSONResponse PfdDataForAppExt
+type ReadIndividualPFDData200JSONResponse externalRef0.PfdDataForAppExt
 
 func (response ReadIndividualPFDData200JSONResponse) VisitReadIndividualPFDDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(PfdDataForAppExt(response))
+	return json.NewEncoder(w).Encode(externalRef0.PfdDataForAppExt(response))
 }
 
 type ReadIndividualPFDData400ApplicationProblemPlusJSONResponse struct {
@@ -12941,13 +10600,13 @@ type CreateOrReplaceIndividualPFDDataResponseObject interface {
 	VisitCreateOrReplaceIndividualPFDDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceIndividualPFDData200JSONResponse PfdDataForAppExt
+type CreateOrReplaceIndividualPFDData200JSONResponse externalRef0.PfdDataForAppExt
 
 func (response CreateOrReplaceIndividualPFDData200JSONResponse) VisitCreateOrReplaceIndividualPFDDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(PfdDataForAppExt(response))
+	return json.NewEncoder(w).Encode(externalRef0.PfdDataForAppExt(response))
 }
 
 type CreateOrReplaceIndividualPFDData201ResponseHeaders struct {
@@ -12955,7 +10614,7 @@ type CreateOrReplaceIndividualPFDData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceIndividualPFDData201JSONResponse struct {
-	Body    PfdDataForAppExt
+	Body    externalRef0.PfdDataForAppExt
 	Headers CreateOrReplaceIndividualPFDData201ResponseHeaders
 }
 
@@ -13116,7 +10775,7 @@ type ReadServiceParameterDataResponseObject interface {
 	VisitReadServiceParameterDataResponse(w http.ResponseWriter) error
 }
 
-type ReadServiceParameterData200JSONResponse []ServiceParameterData
+type ReadServiceParameterData200JSONResponse []externalRef0.ServiceParameterData
 
 func (response ReadServiceParameterData200JSONResponse) VisitReadServiceParameterDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -13346,13 +11005,13 @@ type UpdateIndividualServiceParameterDataResponseObject interface {
 	VisitUpdateIndividualServiceParameterDataResponse(w http.ResponseWriter) error
 }
 
-type UpdateIndividualServiceParameterData200JSONResponse ServiceParameterData
+type UpdateIndividualServiceParameterData200JSONResponse externalRef0.ServiceParameterData
 
 func (response UpdateIndividualServiceParameterData200JSONResponse) VisitUpdateIndividualServiceParameterDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(ServiceParameterData(response))
+	return json.NewEncoder(w).Encode(externalRef0.ServiceParameterData(response))
 }
 
 type UpdateIndividualServiceParameterData204Response struct {
@@ -13494,13 +11153,13 @@ type CreateOrReplaceServiceParameterDataResponseObject interface {
 	VisitCreateOrReplaceServiceParameterDataResponse(w http.ResponseWriter) error
 }
 
-type CreateOrReplaceServiceParameterData200JSONResponse ServiceParameterData
+type CreateOrReplaceServiceParameterData200JSONResponse externalRef0.ServiceParameterData
 
 func (response CreateOrReplaceServiceParameterData200JSONResponse) VisitCreateOrReplaceServiceParameterDataResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(ServiceParameterData(response))
+	return json.NewEncoder(w).Encode(externalRef0.ServiceParameterData(response))
 }
 
 type CreateOrReplaceServiceParameterData201ResponseHeaders struct {
@@ -13508,7 +11167,7 @@ type CreateOrReplaceServiceParameterData201ResponseHeaders struct {
 }
 
 type CreateOrReplaceServiceParameterData201JSONResponse struct {
-	Body    ServiceParameterData
+	Body    externalRef0.ServiceParameterData
 	Headers CreateOrReplaceServiceParameterData201ResponseHeaders
 }
 
@@ -13669,7 +11328,7 @@ type ReadApplicationDataChangeSubscriptionsResponseObject interface {
 	VisitReadApplicationDataChangeSubscriptionsResponse(w http.ResponseWriter) error
 }
 
-type ReadApplicationDataChangeSubscriptions200JSONResponse []ApplicationDataSubs
+type ReadApplicationDataChangeSubscriptions200JSONResponse []externalRef0.ApplicationDataSubs
 
 func (response ReadApplicationDataChangeSubscriptions200JSONResponse) VisitReadApplicationDataChangeSubscriptionsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
@@ -13798,7 +11457,7 @@ type CreateIndividualApplicationDataSubscription201ResponseHeaders struct {
 }
 
 type CreateIndividualApplicationDataSubscription201JSONResponse struct {
-	Body    ApplicationDataSubs
+	Body    externalRef0.ApplicationDataSubs
 	Headers CreateIndividualApplicationDataSubscription201ResponseHeaders
 }
 
@@ -14045,13 +11704,13 @@ type ReadIndividualApplicationDataSubscriptionResponseObject interface {
 	VisitReadIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReadIndividualApplicationDataSubscription200JSONResponse ApplicationDataSubs
+type ReadIndividualApplicationDataSubscription200JSONResponse externalRef0.ApplicationDataSubs
 
 func (response ReadIndividualApplicationDataSubscription200JSONResponse) VisitReadIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(ApplicationDataSubs(response))
+	return json.NewEncoder(w).Encode(externalRef0.ApplicationDataSubs(response))
 }
 
 type ReadIndividualApplicationDataSubscription400ApplicationProblemPlusJSONResponse struct {
@@ -14170,13 +11829,13 @@ type ReplaceIndividualApplicationDataSubscriptionResponseObject interface {
 	VisitReplaceIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error
 }
 
-type ReplaceIndividualApplicationDataSubscription200JSONResponse ApplicationDataSubs
+type ReplaceIndividualApplicationDataSubscription200JSONResponse externalRef0.ApplicationDataSubs
 
 func (response ReplaceIndividualApplicationDataSubscription200JSONResponse) VisitReplaceIndividualApplicationDataSubscriptionResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(ApplicationDataSubs(response))
+	return json.NewEncoder(w).Encode(externalRef0.ApplicationDataSubs(response))
 }
 
 type ReplaceIndividualApplicationDataSubscription204Response struct {

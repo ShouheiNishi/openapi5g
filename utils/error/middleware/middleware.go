@@ -25,12 +25,12 @@ import (
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
 	"github.com/samber/lo"
 
-	"github.com/ShouheiNishi/openapi5g/commondata"
+	"github.com/ShouheiNishi/openapi5g/models"
 	utils_error "github.com/ShouheiNishi/openapi5g/utils/error"
 	"github.com/ShouheiNishi/openapi5g/utils/problem"
 )
 
-func writeProblemDetails(ctx *gin.Context, pd commondata.ProblemDetails, removeHeader bool) error {
+func writeProblemDetails(ctx *gin.Context, pd models.ProblemDetails, removeHeader bool) error {
 	if buf, err := json.Marshal(pd); err != nil {
 		return err
 	} else {
@@ -48,14 +48,14 @@ func writeProblemDetails(ctx *gin.Context, pd commondata.ProblemDetails, removeH
 }
 
 func GinServerErrorHandler(ctx *gin.Context, errIn error, statusCode int) {
-	var pd commondata.ProblemDetails
+	var pd models.ProblemDetails
 	switch statusCode {
 	case http.StatusBadRequest:
 		pd = problem.UnspecifiedMsgFailure(errIn.Error())
 	case http.StatusInternalServerError:
 		pd = problem.UnspecifiedNFFailure(errIn.Error())
 	default:
-		pd = commondata.ProblemDetails{
+		pd = models.ProblemDetails{
 			Status: statusCode,
 			Detail: lo.ToPtr(errIn.Error()),
 		}
@@ -76,7 +76,7 @@ func GinMiddleWare(ctx *gin.Context) {
 	}
 
 	if errFromHandler := ctx.Errors.Last(); errFromHandler != nil {
-		var pd commondata.ProblemDetails
+		var pd models.ProblemDetails
 		switch ctx.Writer.Status() {
 		case http.StatusBadRequest:
 			pd = problem.UnspecifiedMsgFailure(errFromHandler.Error())

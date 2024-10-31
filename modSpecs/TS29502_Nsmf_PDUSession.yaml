@@ -6,14 +6,14 @@ components:
             content:
                 application/json:
                     schema:
-                        $ref: '#/components/schemas/StatusNotification'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/StatusNotification
             description: representation of the status notification
             required: true
         VsmfUpdateRequestBody:
             content:
                 application/+json:
                     schema:
-                        $ref: '#/components/schemas/VsmfUpdateData'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdateData
                 multipart/related:
                     encoding:
                         binaryDataN1SmInfoToUe:
@@ -58,7 +58,7 @@ components:
                                 format: binary
                                 type: string
                             jsonData:
-                                $ref: '#/components/schemas/VsmfUpdateData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdateData
                         type: object
             description: representation of updates to apply to the PDU session
             required: true
@@ -67,61 +67,61 @@ components:
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Bad request
         "401":
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Unauthorized
         "403":
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Forbidden
         "404":
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Not Found
         "413":
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Payload Too Large
         "415":
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Unsupported Media Type
         "429":
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Too Many Requests
         "500":
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Internal Server Error
         "503":
             content:
                 application/problem+json:
                     schema:
-                        $ref: '#/components/schemas/ExtProblemDetails'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/ExtProblemDetails
             description: Service Unavailable
         HsmfUpdateError:
             content:
                 application/json:
                     schema:
-                        $ref: '#/components/schemas/HsmfUpdateError'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdateError
                 application/problem+json:
                     schema:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -142,14 +142,14 @@ components:
                                 format: binary
                                 type: string
                             jsonData:
-                                $ref: '#/components/schemas/HsmfUpdateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdateError
                         type: object
             description: unsuccessful update of a PDU session
         PduSessionCreateError:
             content:
                 application/json:
                     schema:
-                        $ref: '#/components/schemas/PduSessionCreateError'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreateError
                 application/problem+json:
                     schema:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -170,14 +170,14 @@ components:
                                 format: binary
                                 type: string
                             jsonData:
-                                $ref: '#/components/schemas/PduSessionCreateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreateError
                         type: object
             description: unsuccessful creation of a PDU session
         VsmfUpdateError:
             content:
                 application/json:
                     schema:
-                        $ref: '#/components/schemas/VsmfUpdateError'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdateError
                 application/problem+json:
                     schema:
                         $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -234,14 +234,14 @@ components:
                                 format: binary
                                 type: string
                             jsonData:
-                                $ref: '#/components/schemas/VsmfUpdateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdateError
                         type: object
             description: unsuccessful update of a PDU session
         VsmfUpdateResponse200:
             content:
                 application/json:
                     schema:
-                        $ref: '#/components/schemas/VsmfUpdatedData'
+                        $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdatedData
                 multipart/related:
                     encoding:
                         binaryDataN1SmInfoFromUe:
@@ -295,2305 +295,9 @@ components:
                                 format: binary
                                 type: string
                             jsonData:
-                                $ref: '#/components/schemas/VsmfUpdatedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdatedData
                         type: object
             description: successful update of a PDU session with content in the response
-    schemas:
-        AdditionalTnlNb:
-            maximum: 3
-            minimum: 1
-            type: integer
-            x-go-type-skip-optional-pointer: true
-        AlternativeQosProfile:
-            additionalProperties: true
-            properties:
-                guaFbrDl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                guaFbrUl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                index:
-                    maximum: 8
-                    minimum: 1
-                    type: integer
-                    x-go-type-skip-optional-pointer: true
-                packetDelayBudget:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PacketDelBudget
-                packetErrRate:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PacketErrRate
-            required:
-                - index
-            type: object
-        AnchorSmfFeatures:
-            additionalProperties: true
-            properties:
-                psetrSupportInd:
-                    type: boolean
-            type: object
-        Cause:
-            description: |
-                Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
-            enum:
-                - REL_DUE_TO_HO
-                - EPS_FALLBACK
-                - REL_DUE_TO_UP_SEC
-                - DNN_CONGESTION
-                - S_NSSAI_CONGESTION
-                - REL_DUE_TO_REACTIVATION
-                - 5G_AN_NOT_RESPONDING
-                - REL_DUE_TO_SLICE_NOT_AVAILABLE
-                - REL_DUE_TO_DUPLICATE_SESSION_ID
-                - PDU_SESSION_STATUS_MISMATCH
-                - HO_FAILURE
-                - INSUFFICIENT_UP_RESOURCES
-                - PDU_SESSION_HANDED_OVER
-                - PDU_SESSION_RESUMED
-                - CN_ASSISTED_RAN_PARAMETER_TUNING
-                - ISMF_CONTEXT_TRANSFER
-                - SMF_CONTEXT_TRANSFER
-                - REL_DUE_TO_PS_TO_CS_HO
-                - REL_DUE_TO_SUBSCRIPTION_CHANGE
-                - HO_CANCEL
-                - REL_DUE_TO_SLICE_NOT_AUTHORIZED
-                - PDU_SESSION_HAND_OVER_FAILURE
-                - DDN_FAILURE_STATUS
-                - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE
-                - NOT_SUPPORTED_WITH_ISMF
-                - CHANGED_ANCHOR_SMF
-                - CHANGED_INTERMEDIATE_SMF
-                - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
-            type: string
-        CnAssistedRanPara:
-            additionalProperties: true
-            properties:
-                batteryIndication:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BatteryIndication
-                communicationDurationTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                periodicTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                scheduledCommunicationTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ScheduledCommunicationTime
-                scheduledCommunicationType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ScheduledCommunicationType
-                stationaryIndication:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/StationaryIndication
-                trafficProfile:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TrafficProfile
-            type: object
-        DdnFailureSubInfo:
-            additionalProperties: true
-            properties:
-                dddTrafficDescriptorList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                notifyCorrelationId:
-                    type: string
-            required:
-                - notifyCorrelationId
-            type: object
-        DdnFailureSubs:
-            additionalProperties: true
-            properties:
-                ddnFailureSubsInd:
-                    default: false
-                    type: boolean
-                ddnFailureSubsInfoList:
-                    items:
-                        $ref: '#/components/schemas/DdnFailureSubInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            type: object
-        DnaiInformation:
-            additionalProperties: true
-            properties:
-                dnai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                noDnaiChangeInd:
-                    type: boolean
-                noLocalPsaChangeInd:
-                    type: boolean
-            required:
-                - dnai
-            type: object
-        DnnSelectionMode:
-            description: |
-                Possible values are - VERIFIED - UE_DNN_NOT_VERIFIED - NW_DNN_NOT_VERIFIED
-            enum:
-                - VERIFIED
-                - UE_DNN_NOT_VERIFIED
-                - NW_DNN_NOT_VERIFIED
-            type: string
-        DrbId:
-            maximum: 32
-            minimum: 1
-            type: integer
-            x-go-type-skip-optional-pointer: true
-        EbiArpMapping:
-            additionalProperties: true
-            properties:
-                arp:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Arp
-                epsBearerId:
-                    $ref: '#/components/schemas/EpsBearerId'
-            required:
-                - epsBearerId
-                - arp
-            type: object
-        EpsBearerContainer:
-            type: string
-        EpsBearerContextStatus:
-            pattern: ^[A-Fa-f0-9]{4}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        EpsBearerId:
-            maximum: 15
-            minimum: 0
-            type: integer
-        EpsBearerInfo:
-            additionalProperties: true
-            properties:
-                bearerLevelQoS:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-                ebi:
-                    $ref: '#/components/schemas/EpsBearerId'
-                pgwS8uFteid:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-            required:
-                - ebi
-                - pgwS8uFteid
-                - bearerLevelQoS
-            type: object
-        EpsInterworkingIndication:
-            description: |
-                Possible values are - NONE - WITH_N26 - WITHOUT_N26 - IWK_NON_3GPP
-            enum:
-                - NONE
-                - WITH_N26
-                - WITHOUT_N26
-                - IWK_NON_3GPP
-            type: string
-        EpsPdnCnxContainer:
-            type: string
-        EpsPdnCnxInfo:
-            additionalProperties: true
-            properties:
-                linkedBearerId:
-                    $ref: '#/components/schemas/EpsBearerId'
-                pgwNodeName:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-                pgwS8cFteid:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-            required:
-                - pgwS8cFteid
-            type: object
-        ExemptionInd:
-            additionalProperties: true
-            properties:
-                dnnCongestion:
-                    default: false
-                    type: boolean
-                snssaiDnnCongestion:
-                    default: false
-                    type: boolean
-                snssaiOnlyCongestion:
-                    default: false
-                    type: boolean
-            type: object
-        ExtProblemDetails:
-            allOf:
-                - $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                - $ref: '#/components/schemas/ProblemDetailsAddInfo'
-        ForwardingBearerContainer:
-            type: string
-        GbrQosFlowInformation:
-            additionalProperties: true
-            properties:
-                alternativeQosProfileList:
-                    items:
-                        $ref: '#/components/schemas/AlternativeQosProfile'
-                    type: array
-                guaFbrDl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                guaFbrUl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                maxFbrDl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                maxFbrUl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                maxPacketLossRateDl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PacketLossRate
-                maxPacketLossRateUl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PacketLossRate
-                notifControl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NotificationControl
-            required:
-                - maxFbrDl
-                - maxFbrUl
-                - guaFbrDl
-                - guaFbrUl
-            type: object
-        HoState:
-            description: |
-                Possible values are - NONE - PREPARING - PREPARED - COMPLETED - CANCELLED
-            enum:
-                - NONE
-                - PREPARING
-                - PREPARED
-                - COMPLETED
-                - CANCELLED
-            type: string
-        HsmfUpdateData:
-            additionalProperties: true
-            properties:
-                5gMmCauseValue:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/5GMmCause
-                NotifyList:
-                    items:
-                        $ref: '#/components/schemas/PduSessionNotifyItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                addUeLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                additionalAnType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                additionalCnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                alwaysOnRequested:
-                    default: false
-                    type: boolean
-                amfNfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                anType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                anTypeCanBeChanged:
-                    default: false
-                    type: boolean
-                cause:
-                    $ref: '#/components/schemas/Cause'
-                dlServingPlmnRateCtl:
-                    minimum: 10
-                    nullable: true
-                    type: integer
-                dnaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                epsBearerId:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerId'
-                    minItems: 0
-                    type: array
-                epsInterworkingInd:
-                    $ref: '#/components/schemas/EpsInterworkingIndication'
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                hoPreparationIndication:
-                    type: boolean
-                iSmfServiceInstanceId:
-                    type: string
-                icnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                ismfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                ismfPduSessionUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                maNwUpgradeInd:
-                    default: false
-                    type: boolean
-                maReleaseInd:
-                    $ref: '#/components/schemas/MaReleaseIndication'
-                maRequestInd:
-                    default: false
-                    type: boolean
-                maxIntegrityProtectedDataRateDl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                maxIntegrityProtectedDataRateUl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                moExpDataCounter:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MoExpDataCounter
-                n1SmInfoFromUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n4Info:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt1:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt2:
-                    $ref: '#/components/schemas/N4Information'
-                ngApCause:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NgApCause
-                pauseCharging:
-                    type: boolean
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                presenceInLadn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PresenceState
-                psaInfo:
-                    items:
-                        $ref: '#/components/schemas/PsaInformation'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                pti:
-                    $ref: '#/components/schemas/ProcedureTransactionId'
-                qosFlowsNotifyList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowNotifyItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                qosFlowsRelNotifyList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                requestIndication:
-                    $ref: '#/components/schemas/RequestIndication'
-                revokeEbiList:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
-                secondaryRatUsageInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/SecondaryRatUsageInfo
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                secondaryRatUsageReport:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/SecondaryRatUsageReport
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                securityResult:
-                    $ref: '#/components/schemas/SecurityResult'
-                servingNetwork:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                ueTimeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                ulclBpInfo:
-                    $ref: '#/components/schemas/UlclBpInformation'
-                unavailableAccessInd:
-                    $ref: '#/components/schemas/UnavailableAccessIndication'
-                unknownN1SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                upCnxState:
-                    $ref: '#/components/schemas/UpCnxState'
-                upSecurityInfo:
-                    $ref: '#/components/schemas/UpSecurityInfo'
-                vSmfServiceInstanceId:
-                    type: string
-                vcnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                vplmnQos:
-                    $ref: '#/components/schemas/VplmnQos'
-                vsmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                vsmfPduSessionUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-            required:
-                - requestIndication
-            type: object
-        HsmfUpdateError:
-            additionalProperties: true
-            properties:
-                backOffTimer:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                error:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                n1SmInfoToUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n1smCause:
-                    pattern: ^[A-F0-9]{2}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                pti:
-                    $ref: '#/components/schemas/ProcedureTransactionId'
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - error
-            type: object
-        HsmfUpdatedData:
-            additionalProperties: true
-            properties:
-                dnaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                epsBearerInfo:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                epsPdnCnxInfo:
-                    $ref: '#/components/schemas/EpsPdnCnxInfo'
-                ipv6MultiHomingInd:
-                    default: false
-                    type: boolean
-                maxIntegrityProtectedDataRateDl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                maxIntegrityProtectedDataRateUl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                n1SmInfoToUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n4Info:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt1:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt2:
-                    $ref: '#/components/schemas/N4Information'
-                pti:
-                    $ref: '#/components/schemas/ProcedureTransactionId'
-                qosFlowsSetupList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowSetupItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
-                sessionAmbr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ambr
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                upSecurity:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UpSecurity
-            type: object
-        IndirectDataForwardingTunnelInfo:
-            additionalProperties: true
-            not:
-                required:
-                    - drbId
-                    - additionalTnlNb
-            properties:
-                additionalTnlNb:
-                    $ref: '#/components/schemas/AdditionalTnlNb'
-                drbId:
-                    $ref: '#/components/schemas/DrbId'
-                gtpTeid:
-                    $ref: '#/components/schemas/Teid'
-                ipv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ipv6Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-            required:
-                - gtpTeid
-            type: object
-        IpAddress:
-            additionalProperties: true
-            properties:
-                ipv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ipv6Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-                ipv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-            type: object
-        MaReleaseIndication:
-            description: |
-                Possible values are
-                  - REL_MAPDU_OVER_3GPP
-                  - REL_MAPDU_OVER_N3GPP
-            enum:
-                - REL_MAPDU_OVER_3GPP
-                - REL_MAPDU_OVER_N3GPP
-            type: string
-        MaxIntegrityProtectedDataRate:
-            description: |
-                Possible values are
-                  - 64_KBPS
-                  - MAX_UE_RATE
-            enum:
-                - 64_KBPS
-                - MAX_UE_RATE
-            type: string
-        MmeCapabilities:
-            additionalProperties: true
-            properties:
-                ethernetSupported:
-                    default: false
-                    type: boolean
-                nonIpSupported:
-                    default: false
-                    type: boolean
-            type: object
-        N2SmInfoType:
-            description: |
-                Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
-            enum:
-                - PDU_RES_SETUP_REQ
-                - PDU_RES_SETUP_RSP
-                - PDU_RES_SETUP_FAIL
-                - PDU_RES_REL_CMD
-                - PDU_RES_REL_RSP
-                - PDU_RES_MOD_REQ
-                - PDU_RES_MOD_RSP
-                - PDU_RES_MOD_FAIL
-                - PDU_RES_NTY
-                - PDU_RES_NTY_REL
-                - PDU_RES_MOD_IND
-                - PDU_RES_MOD_CFM
-                - PATH_SWITCH_REQ
-                - PATH_SWITCH_SETUP_FAIL
-                - PATH_SWITCH_REQ_ACK
-                - PATH_SWITCH_REQ_FAIL
-                - HANDOVER_REQUIRED
-                - HANDOVER_CMD
-                - HANDOVER_PREP_FAIL
-                - HANDOVER_REQ_ACK
-                - HANDOVER_RES_ALLOC_FAIL
-                - SECONDARY_RAT_USAGE
-                - PDU_RES_MOD_IND_FAIL
-                - UE_CONTEXT_RESUME_REQ
-                - UE_CONTEXT_RESUME_RSP
-                - UE_CONTEXT_SUSPEND_REQ
-            type: string
-        N4Information:
-            additionalProperties: true
-            properties:
-                n4DnaiInfo:
-                    $ref: '#/components/schemas/DnaiInformation'
-                n4MessagePayload:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n4MessageType:
-                    $ref: '#/components/schemas/N4MessageType'
-            required:
-                - n4MessageType
-                - n4MessagePayload
-            type: object
-        N4MessageType:
-            description: |
-                Possible values are
-                  - PFCP_SES_EST_REQ
-                  - PFCP_SES_EST_RSP
-                  - PFCP_SES_MOD_REQ
-                  - PFCP_SES_MOD_RSP
-                  - PFCP_SES_DEL_REQ
-                  - PFCP_SES_DEL_RSP
-                  - PFCP_SES_REP_REQ
-                  - PFCP_SES_REP_RSP
-            enum:
-                - PFCP_SES_EST_REQ
-                - PFCP_SES_EST_RSP
-                - PFCP_SES_MOD_REQ
-                - PFCP_SES_MOD_RSP
-                - PFCP_SES_DEL_REQ
-                - PFCP_SES_DEL_RSP
-                - PFCP_SES_REP_REQ
-                - PFCP_SES_REP_RSP
-            type: string
-        NotificationCause:
-            description: |
-                Possible values are - QOS_FULFILLED - QOS_NOT_FULFILLED - UP_SEC_FULFILLED - UP_SEC_NOT_FULFILLED
-            enum:
-                - QOS_FULFILLED
-                - QOS_NOT_FULFILLED
-                - UP_SEC_FULFILLED
-                - UP_SEC_NOT_FULFILLED
-            type: string
-        PduSessionCreateData:
-            additionalProperties: true
-            properties:
-                addUeLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                additionalAnType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                additionalCnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                alwaysOnRequested:
-                    default: false
-                    type: boolean
-                amfNfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                anType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                apnRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApnRateStatus
-                chargingId:
-                    pattern: ^(0|([1-9]{1}[0-9]{0,9}))$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                cpCiotEnabled:
-                    default: false
-                    type: boolean
-                cpOnlyInd:
-                    default: false
-                    type: boolean
-                dlServingPlmnRateCtl:
-                    minimum: 10
-                    type: integer
-                    x-go-type-skip-optional-pointer: true
-                dnaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                epsBearerCtxStatus:
-                    $ref: '#/components/schemas/EpsBearerContextStatus'
-                epsBearerId:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                epsInterworkingInd:
-                    $ref: '#/components/schemas/EpsInterworkingIndication'
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                hPcfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                hoPreparationIndication:
-                    type: boolean
-                iSmfServiceInstanceId:
-                    type: string
-                icnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                invokeNef:
-                    default: false
-                    type: boolean
-                ismfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                ismfPduSessionUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                maNwUpgradeInd:
-                    default: false
-                    type: boolean
-                maRequestInd:
-                    default: false
-                    type: boolean
-                maxIntegrityProtectedDataRateDl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                maxIntegrityProtectedDataRateUl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                n1SmInfoFromUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n9ForwardingTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                oldPduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                pcfGroupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
-                pcfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                pcfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                pduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                pgwS8cFteid:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-                presenceInLadn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PresenceState
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                requestType:
-                    $ref: '#/components/schemas/RequestType'
-                roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
-                routingIndicator:
-                    type: string
-                sNssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                secondaryRatUsageInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/SecondaryRatUsageInfo
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                selMode:
-                    $ref: '#/components/schemas/DnnSelectionMode'
-                selectedDnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                servingNetwork:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
-                smallDataRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                udmGroupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                ueTimeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                unauthenticatedSupi:
-                    default: false
-                    type: boolean
-                unknownN1SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                upCnxState:
-                    $ref: '#/components/schemas/UpCnxState'
-                upSecurityInfo:
-                    $ref: '#/components/schemas/UpSecurityInfo'
-                vSmfServiceInstanceId:
-                    type: string
-                vcnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                vplmnQos:
-                    $ref: '#/components/schemas/VplmnQos'
-                vsmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                vsmfPduSessionUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-            required:
-                - dnn
-                - servingNetwork
-                - anType
-            type: object
-        PduSessionCreateError:
-            additionalProperties: true
-            properties:
-                backOffTimer:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                error:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                n1SmInfoToUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n1smCause:
-                    pattern: ^[A-F0-9]{2}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - error
-            type: object
-        PduSessionCreatedData:
-            additionalProperties: true
-            properties:
-                additionalCnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                alwaysOnGranted:
-                    default: false
-                    type: boolean
-                cnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                dnAaaAddress:
-                    $ref: '#/components/schemas/IpAddress'
-                dnaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                enablePauseCharging:
-                    default: false
-                    type: boolean
-                epsBearerInfo:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                epsPdnCnxInfo:
-                    $ref: '#/components/schemas/EpsPdnCnxInfo'
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                hSmfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                hSmfServiceInstanceId:
-                    type: string
-                hcnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                homeProvidedChargingId:
-                    pattern: ^(0|([1-9]{1}[0-9]{0,9}))$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                ipv6Index:
-                    $ref: TS29519_Policy_Data.yaml#/components/schemas/IpIndex
-                ipv6MultiHomingInd:
-                    default: false
-                    type: boolean
-                maAcceptedInd:
-                    default: false
-                    type: boolean
-                maxIntegrityProtectedDataRate:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                maxIntegrityProtectedDataRateDl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                n1SmInfoToUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                nefExtBufSupportInd:
-                    default: false
-                    type: boolean
-                pduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                pduSessionType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
-                qosFlowsSetupList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowSetupItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                redundantPduSessionInfo:
-                    $ref: '#/components/schemas/RedundantPduSessionInformation'
-                roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
-                sNssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                sessionAmbr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ambr
-                smallDataRateControlEnabled:
-                    default: false
-                    type: boolean
-                smfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smfServiceInstanceId:
-                    type: string
-                sscMode:
-                    pattern: ^[0-7]$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                ueIpv4Address:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ueIpv6InterfaceId:
-                    pattern: ^[A-Fa-f0-9]{16}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                ueIpv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                upSecurity:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UpSecurity
-            required:
-                - pduSessionType
-                - sscMode
-            type: object
-        PduSessionNotifyItem:
-            additionalProperties: true
-            properties:
-                notificationCause:
-                    $ref: '#/components/schemas/NotificationCause'
-            required:
-                - notificationCause
-            type: object
-        ProblemDetailsAddInfo:
-            additionalProperties: true
-            properties:
-                remoteError:
-                    type: boolean
-            type: object
-        ProcedureTransactionId:
-            maximum: 255
-            minimum: 0
-            type: integer
-        ProtectionResult:
-            description: |
-                Possible values are
-                  - PERFORMED
-                  - NOT_PERFORMED
-            enum:
-                - PERFORMED
-                - NOT_PERFORMED
-            type: string
-        PsaIndication:
-            description: |
-                Possible values are
-                  - PSA_INSERTED
-                  - PSA_REMOVED
-                  - PSA_INSERTED_ONLY
-                  - PSA_REMOVED_ONLY
-            enum:
-                - PSA_INSERTED
-                - PSA_REMOVED
-                - PSA_INSERTED_ONLY
-                - PSA_REMOVED_ONLY
-            type: string
-        PsaInformation:
-            additionalProperties: true
-            properties:
-                dnaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                psaInd:
-                    $ref: '#/components/schemas/PsaIndication'
-                psaUpfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                ueIpv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-            type: object
-        QosFlowAccessType:
-            description: |
-                Possible values are
-                  - 3GPP
-                  - NON_3GPP
-                  - 3GPP_AND_NON_3GPP
-            enum:
-                - 3GPP
-                - NON_3GPP
-                - 3GPP_AND_NON_3GPP
-            type: string
-        QosFlowAddModifyRequestItem:
-            additionalProperties: true
-            properties:
-                associatedAnType:
-                    $ref: '#/components/schemas/QosFlowAccessType'
-                ebi:
-                    $ref: '#/components/schemas/EpsBearerId'
-                qfi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Qfi
-                qosFlowDescription:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-                qosFlowProfile:
-                    $ref: '#/components/schemas/QosFlowProfile'
-                qosRules:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-            required:
-                - qfi
-            type: object
-        QosFlowItem:
-            additionalProperties: true
-            properties:
-                cause:
-                    $ref: '#/components/schemas/Cause'
-                currentQosProfileIndex:
-                    maximum: 8
-                    minimum: 1
-                    type: integer
-                    x-go-type-skip-optional-pointer: true
-                nullQoSProfileIndex:
-                    type: boolean
-                qfi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Qfi
-            required:
-                - qfi
-            type: object
-        QosFlowNotifyItem:
-            additionalProperties: true
-            properties:
-                currentQosProfileIndex:
-                    maximum: 8
-                    minimum: 1
-                    type: integer
-                    x-go-type-skip-optional-pointer: true
-                notificationCause:
-                    $ref: '#/components/schemas/NotificationCause'
-                nullQoSProfileIndex:
-                    type: boolean
-                qfi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Qfi
-            required:
-                - qfi
-                - notificationCause
-            type: object
-        QosFlowProfile:
-            additionalProperties: true
-            properties:
-                5qi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/5Qi
-                additionalQosFlowInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AdditionalQosFlowInfo
-                arp:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Arp
-                dynamic5Qi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dynamic5Qi
-                gbrQosFlowInfo:
-                    $ref: '#/components/schemas/GbrQosFlowInformation'
-                nonDynamic5Qi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NonDynamic5Qi
-                qosMonitoringReq:
-                    $ref: '#/components/schemas/QosMonitoringReq'
-                qosRepPeriod:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                rqa:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ReflectiveQoSAttribute
-            required:
-                - 5qi
-            type: object
-        QosFlowReleaseRequestItem:
-            additionalProperties: true
-            properties:
-                qfi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Qfi
-                qosFlowDescription:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-                qosRules:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-            required:
-                - qfi
-            type: object
-        QosFlowSetupItem:
-            additionalProperties: true
-            properties:
-                associatedAnType:
-                    $ref: '#/components/schemas/QosFlowAccessType'
-                defaultQosRuleInd:
-                    type: boolean
-                ebi:
-                    $ref: '#/components/schemas/EpsBearerId'
-                qfi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Qfi
-                qosFlowDescription:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-                qosFlowProfile:
-                    $ref: '#/components/schemas/QosFlowProfile'
-                qosRules:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-            required:
-                - qfi
-                - qosRules
-            type: object
-        QosFlowTunnel:
-            additionalProperties: true
-            description: Tunnel Information per QoS Flow
-            properties:
-                qfiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Qfi
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                tunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-            required:
-                - qfiList
-                - tunnelInfo
-            type: object
-        QosMonitoringInfo:
-            additionalProperties: true
-            properties:
-                qosMonitoringInd:
-                    default: false
-                    type: boolean
-            type: object
-        QosMonitoringReq:
-            description: |
-                Possible values are
-                  - UL
-                  - DL
-                  - BOTH
-                  - NONE
-            enum:
-                - UL
-                - DL
-                - BOTH
-                - NONE
-            type: string
-        RedundantPduSessionInformation:
-            additionalProperties: true
-            description: Redundant PDU Session Information
-            properties:
-                rsn:
-                    $ref: '#/components/schemas/Rsn'
-            required:
-                - rsn
-            type: object
-        ReleaseData:
-            additionalProperties: true
-            properties:
-                5gMmCauseValue:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/5GMmCause
-                addUeLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                cause:
-                    $ref: '#/components/schemas/Cause'
-                n4Info:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt1:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt2:
-                    $ref: '#/components/schemas/N4Information'
-                ngApCause:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NgApCause
-                secondaryRatUsageInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/SecondaryRatUsageInfo
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                secondaryRatUsageReport:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/SecondaryRatUsageReport
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                ueTimeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-            type: object
-        ReleasedData:
-            additionalProperties: true
-            properties:
-                apnRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApnRateStatus
-                n4Info:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt1:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt2:
-                    $ref: '#/components/schemas/N4Information'
-                smallDataRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus
-            type: object
-        RequestIndication:
-            description: |
-                Possible values are - UE_REQ_PDU_SES_MOD - UE_REQ_PDU_SES_REL - PDU_SES_MOB - NW_REQ_PDU_SES_AUTH - NW_REQ_PDU_SES_MOD - NW_REQ_PDU_SES_REL - EBI_ASSIGNMENT_REQ - REL_DUE_TO_5G_AN_REQUEST
-            enum:
-                - UE_REQ_PDU_SES_MOD
-                - UE_REQ_PDU_SES_REL
-                - PDU_SES_MOB
-                - NW_REQ_PDU_SES_AUTH
-                - NW_REQ_PDU_SES_MOD
-                - NW_REQ_PDU_SES_REL
-                - EBI_ASSIGNMENT_REQ
-                - REL_DUE_TO_5G_AN_REQUEST
-            type: string
-        RequestType:
-            description: |
-                Possible values are - INITIAL_REQUEST - EXISTING_PDU_SESSION - INITIAL_EMERGENCY_REQUEST - EXISTING_EMERGENCY_PDU_SESSION
-            enum:
-                - INITIAL_REQUEST
-                - EXISTING_PDU_SESSION
-                - INITIAL_EMERGENCY_REQUEST
-                - EXISTING_EMERGENCY_PDU_SESSION
-            type: string
-        ResourceStatus:
-            description: |
-                Possible values are - RELEASED - UNCHANGED - TRANSFERRED - UPDATED - ALT_ANCHOR_SMF
-            enum:
-                - RELEASED
-                - UNCHANGED
-                - TRANSFERRED
-                - UPDATED
-                - ALT_ANCHOR_SMF
-            type: string
-        RetrieveData:
-            additionalProperties: true
-            properties:
-                smallDataRateStatusReq:
-                    default: false
-                    type: boolean
-            type: object
-        RetrievedData:
-            additionalProperties: true
-            properties:
-                smallDataRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus
-            type: object
-        Rsn:
-            description: |
-                Redundancy Sequence Number. Possible values are
-                  - V1
-                  - V2
-            enum:
-                - V1
-                - V2
-            type: string
-        SecurityResult:
-            additionalProperties: true
-            properties:
-                confidentialityProtectionResult:
-                    $ref: '#/components/schemas/ProtectionResult'
-                integrityProtectionResult:
-                    $ref: '#/components/schemas/ProtectionResult'
-            type: object
-        SendMoDataReqData:
-            additionalProperties: true
-            properties:
-                moData:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                moExpDataCounter:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MoExpDataCounter
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-            required:
-                - moData
-            type: object
-        SmContext:
-            additionalProperties: true
-            properties:
-                addRanTunnelInfo:
-                    items:
-                        $ref: '#/components/schemas/QosFlowTunnel'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                addRedRanTunnelInfo:
-                    items:
-                        $ref: '#/components/schemas/QosFlowTunnel'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                alwaysOnGranted:
-                    default: false
-                    type: boolean
-                chargingId:
-                    pattern: ^(0|([1-9]{1}[0-9]{0,9}))$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                chargingInfo:
-                    description: Original reference TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingInformation
-                    x-go-type-skip-optional-pointer: true
-                dlsetSupportInd:
-                    type: boolean
-                dnAaaAddress:
-                    $ref: '#/components/schemas/IpAddress'
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                enablePauseCharging:
-                    default: false
-                    type: boolean
-                epsBearerInfo:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                epsPdnCnxInfo:
-                    $ref: '#/components/schemas/EpsPdnCnxInfo'
-                forwardingInd:
-                    default: false
-                    type: boolean
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                hSmfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                hSmfServiceInstanceId:
-                    type: string
-                hSmfUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                hplmnSnssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                ipv6Index:
-                    $ref: TS29519_Policy_Data.yaml#/components/schemas/IpIndex
-                maxIntegrityProtectedDataRate:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                maxIntegrityProtectedDataRateDl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                nefExtBufSupportInd:
-                    default: false
-                    type: boolean
-                pcfGroupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
-                pcfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                pcfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                pduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                pduSessionRef:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                pduSessionSmfBinding:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
-                pduSessionSmfServiceSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfServiceSetId
-                pduSessionSmfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                pduSessionType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
-                psaTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                qosFlowsList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowSetupItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ranTunnelInfo:
-                    $ref: '#/components/schemas/QosFlowTunnel'
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                redRanTunnelInfo:
-                    $ref: '#/components/schemas/QosFlowTunnel'
-                redundantPduSessionInfo:
-                    $ref: '#/components/schemas/RedundantPduSessionInformation'
-                roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
-                routingIndicator:
-                    type: string
-                sNssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                selMode:
-                    $ref: '#/components/schemas/DnnSelectionMode'
-                selectedDnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                sessionAmbr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ambr
-                smfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smfServiceInstanceId:
-                    type: string
-                smfUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                udmGroupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
-                ueIpv4Address:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ueIpv6Prefix:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                upSecurity:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UpSecurity
-            required:
-                - pduSessionId
-                - dnn
-                - sNssai
-                - pduSessionType
-                - sessionAmbr
-                - qosFlowsList
-            type: object
-        SmContextCreateData:
-            additionalProperties: true
-            properties:
-                addUeLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                additionalAnType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                additionalHsmfId:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                additionalHsmfUri:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                additionalSmfId:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                additionalSmfUri:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                anType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                apnRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApnRateStatus
-                backupAmfInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/BackupAmfInfo
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                cpCiotEnabled:
-                    default: false
-                    type: boolean
-                cpOnlyInd:
-                    default: false
-                    type: boolean
-                ddnFailureSubs:
-                    $ref: '#/components/schemas/DdnFailureSubs'
-                directForwardingFlag:
-                    type: boolean
-                dlDataWaitingInd:
-                    default: false
-                    type: boolean
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                epsBearerCtxStatus:
-                    $ref: '#/components/schemas/EpsBearerContextStatus'
-                epsInterworkingInd:
-                    $ref: '#/components/schemas/EpsInterworkingIndication'
-                extendedNasSmTimerInd:
-                    default: false
-                    type: boolean
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                hSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                hSmfUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                hoState:
-                    $ref: '#/components/schemas/HoState'
-                hplmnSnssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                indirectForwardingFlag:
-                    type: boolean
-                invokeNef:
-                    default: false
-                    type: boolean
-                maNwUpgradeInd:
-                    default: false
-                    type: boolean
-                maRequestInd:
-                    default: false
-                    type: boolean
-                n1SmMsg:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoExt1:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoType:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                n2SmInfoTypeExt1:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                nrfUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                oldPduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                oldSmContextRef:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                oldSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                pcfGroupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
-                pcfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                pcfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                pduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                pduSessionsActivateList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                presenceInLadn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PresenceState
-                ranUnchangedInd:
-                    type: boolean
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                requestType:
-                    $ref: '#/components/schemas/RequestType'
-                routingIndicator:
-                    type: string
-                sNssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                selMode:
-                    $ref: '#/components/schemas/DnnSelectionMode'
-                selectedDnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                serviceName:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
-                servingNetwork:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
-                servingNfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smContextRef:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                smContextSmfBinding:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
-                smContextSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smContextSmfServiceSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfServiceSetId
-                smContextSmfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                smContextStatusUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                smallDataRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus
-                smfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smfTransferInd:
-                    default: false
-                    type: boolean
-                smfUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                targetId:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/NgRanTargetId
-                tngfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TngfInfo
-                traceData:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TraceData
-                twifInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/TwifInfo
-                udmGroupId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfGroupId
-                ueEpsPdnConnection:
-                    $ref: '#/components/schemas/EpsPdnCnxContainer'
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                ueTimeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                unauthenticatedSupi:
-                    default: false
-                    type: boolean
-                upCnxState:
-                    $ref: '#/components/schemas/UpCnxState'
-                wAgfInfo:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/WAgfInfo
-            required:
-                - servingNfId
-                - servingNetwork
-                - anType
-                - smContextStatusUri
-            type: object
-        SmContextCreateError:
-            additionalProperties: true
-            properties:
-                error:
-                    $ref: '#/components/schemas/ExtProblemDetails'
-                n1SmMsg:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoType:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - error
-            type: object
-        SmContextCreatedData:
-            additionalProperties: true
-            properties:
-                allocatedEbiList:
-                    items:
-                        $ref: '#/components/schemas/EbiArpMapping'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                hSmfUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                hoState:
-                    $ref: '#/components/schemas/HoState'
-                n2SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoType:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                pduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                sNssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                selectedOldSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                selectedSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smfServiceInstanceId:
-                    type: string
-                smfUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                upCnxState:
-                    $ref: '#/components/schemas/UpCnxState'
-            type: object
-        SmContextReleaseData:
-            additionalProperties: true
-            properties:
-                5gMmCauseValue:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/5GMmCause
-                addUeLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                cause:
-                    $ref: '#/components/schemas/Cause'
-                ismfReleaseOnly:
-                    default: false
-                    type: boolean
-                n2SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoType:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                ngApCause:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NgApCause
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                ueTimeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                vsmfReleaseOnly:
-                    default: false
-                    type: boolean
-            type: object
-        SmContextReleasedData:
-            additionalProperties: true
-            properties:
-                apnRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApnRateStatus
-                smallDataRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus
-            type: object
-        SmContextRetrieveData:
-            additionalProperties: true
-            properties:
-                notToTransferEbiList:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ranUnchangedInd:
-                    default: false
-                    type: boolean
-                servingNetwork:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                smContextType:
-                    $ref: '#/components/schemas/SmContextType'
-                targetMmeCap:
-                    $ref: '#/components/schemas/MmeCapabilities'
-            type: object
-        SmContextRetrievedData:
-            additionalProperties: true
-            properties:
-                apnRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApnRateStatus
-                dlDataWaitingInd:
-                    default: false
-                    type: boolean
-                smContext:
-                    $ref: '#/components/schemas/SmContext'
-                smallDataRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus
-                ueEpsPdnConnection:
-                    $ref: '#/components/schemas/EpsPdnCnxContainer'
-            required:
-                - ueEpsPdnConnection
-            type: object
-        SmContextStatusNotification:
-            additionalProperties: true
-            properties:
-                altAnchorSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                altAnchorSmfUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                apnRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApnRateStatus
-                ddnFailureStatus:
-                    default: false
-                    type: boolean
-                newIntermediateSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                newSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                newSmfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                notifyCorrelationIdsForddnFailure:
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                oldSmContextRef:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                oldSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smallDataRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus
-                statusInfo:
-                    $ref: '#/components/schemas/StatusInfo'
-            required:
-                - statusInfo
-            type: object
-        SmContextType:
-            description: |
-                Possible values are
-                  - EPS_PDN_CONNECTION
-                  - SM_CONTEXT
-            enum:
-                - EPS_PDN_CONNECTION
-                - SM_CONTEXT
-            type: string
-        SmContextUpdateData:
-            additionalProperties: true
-            properties:
-                5gMmCauseValue:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/5GMmCause
-                addUeLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                additionalAnType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                anType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                anTypeCanBeChanged:
-                    default: false
-                    type: boolean
-                anTypeToReactivate:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                backupAmfInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/BackupAmfInfo
-                    minItems: 1
-                    nullable: true
-                    type: array
-                cause:
-                    $ref: '#/components/schemas/Cause'
-                dataForwarding:
-                    default: false
-                    type: boolean
-                ddnFailureSubs:
-                    $ref: '#/components/schemas/DdnFailureSubs'
-                epsBearerSetup:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerContainer'
-                    minItems: 0
-                    type: array
-                epsInterworkingInd:
-                    $ref: '#/components/schemas/EpsInterworkingIndication'
-                exemptionInd:
-                    $ref: '#/components/schemas/ExemptionInd'
-                extendedNasSmTimerInd:
-                    type: boolean
-                failedToBeSwitched:
-                    type: boolean
-                forwardingBearerContexts:
-                    items:
-                        $ref: '#/components/schemas/ForwardingBearerContainer'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                forwardingFTeid:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                hoState:
-                    $ref: '#/components/schemas/HoState'
-                maNwUpgradeInd:
-                    default: false
-                    type: boolean
-                maReleaseInd:
-                    $ref: '#/components/schemas/MaReleaseIndication'
-                maRequestInd:
-                    default: false
-                    type: boolean
-                moExpDataCounter:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MoExpDataCounter
-                n1SmMsg:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoExt1:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoType:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                n2SmInfoTypeExt1:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                n9DlForwardingTnlList:
-                    items:
-                        $ref: '#/components/schemas/IndirectDataForwardingTunnelInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n9ForwardingTunnel:
-                    $ref: '#/components/schemas/TunnelInfo'
-                n9UlForwardingTnlList:
-                    items:
-                        $ref: '#/components/schemas/IndirectDataForwardingTunnelInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ngApCause:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NgApCause
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                presenceInLadn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PresenceState
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                release:
-                    default: false
-                    type: boolean
-                revokeEbiList:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                sNssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                servingNetwork:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnIdNid
-                servingNfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                skipN2PduSessionResRelInd:
-                    default: false
-                    type: boolean
-                smContextStatusUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                targetId:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/NgRanTargetId
-                targetServingNfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                toBeSwitched:
-                    default: false
-                    type: boolean
-                traceData:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TraceData
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                ueTimeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                upCnxState:
-                    $ref: '#/components/schemas/UpCnxState'
-            type: object
-        SmContextUpdateError:
-            additionalProperties: true
-            properties:
-                error:
-                    $ref: '#/components/schemas/ExtProblemDetails'
-                n1SmMsg:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoType:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                upCnxState:
-                    $ref: '#/components/schemas/UpCnxState'
-            required:
-                - error
-            type: object
-        SmContextUpdatedData:
-            additionalProperties: true
-            properties:
-                allocatedEbiList:
-                    items:
-                        $ref: '#/components/schemas/EbiArpMapping'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                anchorSmfFeatures:
-                    $ref: '#/components/schemas/AnchorSmfFeatures'
-                cause:
-                    $ref: '#/components/schemas/Cause'
-                dataForwarding:
-                    type: boolean
-                epsBearerSetup:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerContainer'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                forwardingBearerContexts:
-                    items:
-                        $ref: '#/components/schemas/ForwardingBearerContainer'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                forwardingFTeid:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Bytes
-                hoState:
-                    $ref: '#/components/schemas/HoState'
-                maAcceptedInd:
-                    default: false
-                    type: boolean
-                modifiedEbiList:
-                    items:
-                        $ref: '#/components/schemas/EbiArpMapping'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n1SmMsg:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n2SmInfoType:
-                    $ref: '#/components/schemas/N2SmInfoType'
-                n3DlForwardingTnlList:
-                    items:
-                        $ref: '#/components/schemas/IndirectDataForwardingTunnelInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n3UlForwardingTnlList:
-                    items:
-                        $ref: '#/components/schemas/IndirectDataForwardingTunnelInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                releaseEbiList:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                selectedOldSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                selectedSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                upCnxState:
-                    $ref: '#/components/schemas/UpCnxState'
-            type: object
-        StatusInfo:
-            additionalProperties: true
-            properties:
-                anType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                cause:
-                    $ref: '#/components/schemas/Cause'
-                cnAssistedRanPara:
-                    $ref: '#/components/schemas/CnAssistedRanPara'
-                resourceStatus:
-                    $ref: '#/components/schemas/ResourceStatus'
-            required:
-                - resourceStatus
-            type: object
-        StatusNotification:
-            additionalProperties: true
-            properties:
-                apnRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ApnRateStatus
-                epsPdnCnxInfo:
-                    $ref: '#/components/schemas/EpsPdnCnxInfo'
-                newSmfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smallDataRateStatus:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus
-                statusInfo:
-                    $ref: '#/components/schemas/StatusInfo'
-            required:
-                - statusInfo
-            type: object
-        Teid:
-            pattern: ^[A-Fa-f0-9]{8}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        TransferMoDataReqData:
-            additionalProperties: true
-            properties:
-                moData:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                moExpDataCounter:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/MoExpDataCounter
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-            required:
-                - moData
-            type: object
-        TransferMtDataAddInfo:
-            additionalProperties: true
-            properties:
-                maxWaitingTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-            type: object
-        TransferMtDataError:
-            allOf:
-                - $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                - $ref: '#/components/schemas/TransferMtDataAddInfo'
-        TransferMtDataReqData:
-            additionalProperties: true
-            properties:
-                mtData:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-            required:
-                - mtData
-            type: object
-        TunnelInfo:
-            additionalProperties: true
-            properties:
-                anType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                gtpTeid:
-                    $ref: '#/components/schemas/Teid'
-                ipv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ipv6Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-            required:
-                - gtpTeid
-            type: object
-        UlclBpInformation:
-            additionalProperties: true
-            properties:
-                ulclBpUpfId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-            type: object
-        UnavailableAccessIndication:
-            description: |
-                Possible values are
-                  - 3GA_UNAVAILABLE
-                  - N3GA_UNAVAILABLE
-            enum:
-                - 3GA_UNAVAILABLE
-                - N3GA_UNAVAILABLE
-            type: string
-        UpCnxState:
-            description: |
-                Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
-            enum:
-                - ACTIVATED
-                - DEACTIVATED
-                - ACTIVATING
-                - SUSPENDED
-            type: string
-        UpSecurityInfo:
-            additionalProperties: true
-            properties:
-                maxIntegrityProtectedDataRateDl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                maxIntegrityProtectedDataRateUl:
-                    $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
-                securityResult:
-                    $ref: '#/components/schemas/SecurityResult'
-                upSecurity:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UpSecurity
-            required:
-                - upSecurity
-            type: object
-        VplmnQos:
-            additionalProperties: true
-            properties:
-                5qi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/5Qi
-                arp:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Arp
-                guaFbrDl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                guaFbrUl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                maxFbrDl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                maxFbrUl:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/BitRate
-                sessionAmbr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ambr
-            type: object
-        VsmfUpdateData:
-            additionalProperties: true
-            properties:
-                additionalCnTunnelInfo:
-                    $ref: '#/components/schemas/TunnelInfo'
-                alwaysOnGranted:
-                    default: false
-                    type: boolean
-                assignEbiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Arp
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                backOffTimer:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DurationSec
-                cause:
-                    $ref: '#/components/schemas/Cause'
-                dnaiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                    type: array
-                epsBearerInfo:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerInfo'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                epsPdnCnxInfo:
-                    $ref: '#/components/schemas/EpsPdnCnxInfo'
-                hsmfPduSessionUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                maAcceptedInd:
-                    default: false
-                    type: boolean
-                maReleaseInd:
-                    $ref: '#/components/schemas/MaReleaseIndication'
-                modifiedEbiList:
-                    items:
-                        $ref: '#/components/schemas/EbiArpMapping'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n1SmInfoToUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n1smCause:
-                    type: string
-                n4Info:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt1:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt2:
-                    $ref: '#/components/schemas/N4Information'
-                pti:
-                    $ref: '#/components/schemas/ProcedureTransactionId'
-                qosFlowsAddModRequestList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowAddModifyRequestItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                qosFlowsRelRequestList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowReleaseRequestItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                qosMonitoringInfo:
-                    $ref: '#/components/schemas/QosMonitoringInfo'
-                requestIndication:
-                    $ref: '#/components/schemas/RequestIndication'
-                revokeEbiList:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                sessionAmbr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ambr
-                smallDataRateControlEnabled:
-                    type: boolean
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - requestIndication
-            type: object
-        VsmfUpdateError:
-            additionalProperties: true
-            properties:
-                5gMmCauseValue:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/5GMmCause
-                error:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                failedToAssignEbiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Arp
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n1SmInfoFromUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n1smCause:
-                    pattern: ^[A-F0-9]{2}$
-                    type: string
-                    x-go-type-skip-optional-pointer: true
-                n4Info:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt1:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt2:
-                    $ref: '#/components/schemas/N4Information'
-                ngApCause:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NgApCause
-                pti:
-                    $ref: '#/components/schemas/ProcedureTransactionId'
-                recoveryTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                unknownN1SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-            required:
-                - error
-            type: object
-        VsmfUpdatedData:
-            additionalProperties: true
-            properties:
-                addUeLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                assignedEbiList:
-                    items:
-                        $ref: '#/components/schemas/EbiArpMapping'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                failedToAssignEbiList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Arp
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n1SmInfoFromUe:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-                n4Info:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt1:
-                    $ref: '#/components/schemas/N4Information'
-                n4InfoExt2:
-                    $ref: '#/components/schemas/N4Information'
-                qosFlowsAddModList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                qosFlowsFailedtoAddModList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                qosFlowsFailedtoRelList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                qosFlowsRelList:
-                    items:
-                        $ref: '#/components/schemas/QosFlowItem'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                releasedEbiList:
-                    items:
-                        $ref: '#/components/schemas/EpsBearerId'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                secondaryRatUsageInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/SecondaryRatUsageInfo
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                secondaryRatUsageReport:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/SecondaryRatUsageReport
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ueLocation:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                ueTimeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                unknownN1SmInfo:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RefToBinaryData
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -2712,7 +416,7 @@ paths:
                                                     format: binary
                                                     type: string
                                                 jsonData:
-                                                    $ref: '#/components/schemas/TransferMtDataReqData'
+                                                    $ref: TS29571_CommonData.yaml#/components/schemas/TransferMtDataReqData
                                             type: object
                                 description: representation of the payload of Transfer MT Data Request
                                 required: true
@@ -2747,7 +451,7 @@ paths:
                                     content:
                                         application/json:
                                             schema:
-                                                $ref: '#/components/schemas/TransferMtDataError'
+                                                $ref: TS29571_CommonData.yaml#/components/schemas/TransferMtDataError
                                     description: unsuccessful delivery of mobile terminated data - gateway timeout
                                 default:
                                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2777,7 +481,7 @@ paths:
                                                     format: binary
                                                     type: string
                                                 jsonData:
-                                                    $ref: '#/components/schemas/TransferMtDataReqData'
+                                                    $ref: TS29571_CommonData.yaml#/components/schemas/TransferMtDataReqData
                                             type: object
                                 description: representation of the payload of Transfer MT Data Request
                                 required: true
@@ -2812,7 +516,7 @@ paths:
                                     content:
                                         application/json:
                                             schema:
-                                                $ref: '#/components/schemas/TransferMtDataError'
+                                                $ref: TS29571_CommonData.yaml#/components/schemas/TransferMtDataError
                                     description: unsuccessful delivery of mobile terminated data - gateway timeout
                                 default:
                                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -2908,7 +612,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PduSessionCreateData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreateData
                     multipart/related:
                         encoding:
                             binaryDataN1SmInfoFromUe:
@@ -2935,7 +639,7 @@ paths:
                                     format: binary
                                     type: string
                                 jsonData:
-                                    $ref: '#/components/schemas/PduSessionCreateData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreateData
                             type: object
                 description: representation of the PDU session to be created in the H-SMF or SMF
                 required: true
@@ -2944,7 +648,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PduSessionCreatedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreatedData
                         multipart/related:
                             encoding:
                                 binaryDataN1SmInfoToUe:
@@ -2962,7 +666,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/PduSessionCreatedData'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreatedData
                                 type: object
                     description: successful creation of a PDU session
                     headers:
@@ -3012,7 +716,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/HsmfUpdateData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdateData
                     multipart/related:
                         encoding:
                             binaryDataN1SmInfoFromUe:
@@ -3066,7 +770,7 @@ paths:
                                     format: binary
                                     type: string
                                 jsonData:
-                                    $ref: '#/components/schemas/HsmfUpdateData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdateData
                             type: object
                 description: representation of the updates to apply to the PDU session
                 required: true
@@ -3075,7 +779,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/HsmfUpdatedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdatedData
                         multipart/related:
                             encoding:
                                 binaryDataN1SmInfoToUe:
@@ -3120,7 +824,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/HsmfUpdatedData'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdatedData
                                 type: object
                     description: successful update of a PDU session with content in the response
                 "204":
@@ -3166,7 +870,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/ReleaseData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/ReleaseData
                     multipart/related:
                         encoding:
                             binaryDataN4Information:
@@ -3202,7 +906,7 @@ paths:
                                     format: binary
                                     type: string
                                 jsonData:
-                                    $ref: '#/components/schemas/ReleaseData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/ReleaseData
                             type: object
                 description: data sent to H-SMF or SMF when releasing the PDU session
                 required: false
@@ -3211,7 +915,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ReleasedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ReleasedData
                         multipart/related:
                             encoding:
                                 binaryDataN4Information:
@@ -3247,7 +951,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/ReleasedData'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/ReleasedData
                                 type: object
                     description: successful release of a PDU session with content in the response
                 "204":
@@ -3293,7 +997,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/RetrieveData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/RetrieveData
                 description: representation of the payload of the Retrieve Request
                 required: true
             responses:
@@ -3301,7 +1005,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/RetrievedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/RetrievedData
                     description: successful information retrieval
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -3361,7 +1065,7 @@ paths:
                                     format: binary
                                     type: string
                                 jsonData:
-                                    $ref: '#/components/schemas/TransferMoDataReqData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/TransferMoDataReqData
                             type: object
                 description: representation of the payload of Transfer MO Data Request
                 required: true
@@ -3407,7 +1111,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/SmContextStatusNotification'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/SmContextStatusNotification
                                 required: true
                             responses:
                                 "204":
@@ -3472,7 +1176,7 @@ paths:
                                     format: binary
                                     type: string
                                 jsonData:
-                                    $ref: '#/components/schemas/SmContextCreateData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateData
                             type: object
                 description: representation of the SM context to be created in the SMF
                 required: true
@@ -3481,7 +1185,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextCreatedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreatedData
                         multipart/related:
                             encoding:
                                 binaryDataN2SmInformation:
@@ -3499,7 +1203,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextCreatedData'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreatedData
                                 type: object
                     description: successful creation of an SM context
                     headers:
@@ -3516,7 +1220,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextCreateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -3546,14 +1250,14 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextCreateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                                 type: object
                     description: unsuccessful creation of an SM context - bad request
                 "403":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextCreateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -3583,14 +1287,14 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextCreateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                                 type: object
                     description: unsuccessful creation of an SM context - forbidden
                 "404":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextCreateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                         multipart/related:
                             encoding:
                                 binaryDataN1SmMessage:
@@ -3617,7 +1321,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextCreateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                                 type: object
                     description: unsuccessful creation of an SM context - not found
                 "411":
@@ -3632,7 +1336,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextCreateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -3662,14 +1366,14 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextCreateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                                 type: object
                     description: unsuccessful creation of an SM context - internal server error
                 "503":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextCreateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -3699,14 +1403,14 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextCreateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                                 type: object
                     description: unsuccessful creation of an SM context - service unavailable
                 "504":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextCreateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -3736,7 +1440,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextCreateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
                                 type: object
                     description: unsuccessful creation of an SM context - gateway timeout
                 default:
@@ -3758,7 +1462,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmContextUpdateData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateData
                     multipart/related:
                         encoding:
                             binaryDataN1SmMessage:
@@ -3794,7 +1498,7 @@ paths:
                                     format: binary
                                     type: string
                                 jsonData:
-                                    $ref: '#/components/schemas/SmContextUpdateData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateData
                             type: object
                 description: representation of the updates to apply to the SM context
                 required: true
@@ -3803,7 +1507,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextUpdatedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdatedData
                         multipart/related:
                             encoding:
                                 binaryDataN1SmMessage:
@@ -3830,7 +1534,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextUpdatedData'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdatedData
                                 type: object
                     description: successful update of an SM context with content in the response
                 "204":
@@ -3843,7 +1547,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextUpdateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -3873,14 +1577,14 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextUpdateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                                 type: object
                     description: unsuccessful update of an SM context - bad request
                 "403":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextUpdateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -3910,14 +1614,14 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextUpdateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                                 type: object
                     description: unsuccessful update of an SM context - forbidden
                 "404":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextUpdateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                         multipart/related:
                             encoding:
                                 binaryDataN1SmMessage:
@@ -3944,7 +1648,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextUpdateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                                 type: object
                     description: unsuccessful update of an SM context - not found
                 "411":
@@ -3959,7 +1663,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextUpdateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -3989,14 +1693,14 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextUpdateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                                 type: object
                     description: unsuccessful update of an SM context - Internal server error
                 "503":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextUpdateError'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                         application/problem+json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/ProblemDetails
@@ -4026,7 +1730,7 @@ paths:
                                         format: binary
                                         type: string
                                     jsonData:
-                                        $ref: '#/components/schemas/SmContextUpdateError'
+                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
                                 type: object
                     description: unsuccessful update of an SM context - Service Unavailable
                 default:
@@ -4048,7 +1752,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmContextReleaseData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmContextReleaseData
                     multipart/related:
                         encoding:
                             binaryDataN2SmInformation:
@@ -4066,7 +1770,7 @@ paths:
                                     format: binary
                                     type: string
                                 jsonData:
-                                    $ref: '#/components/schemas/SmContextReleaseData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextReleaseData
                             type: object
                 description: representation of the data to be sent to the SMF when releasing the SM context
                 required: false
@@ -4075,7 +1779,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextReleasedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextReleasedData
                     description: successful release of a PDU session with content in the response
                 "204":
                     description: successful release of an SM context without content in the response
@@ -4120,7 +1824,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmContextRetrieveData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmContextRetrieveData
                 description: parameters used to retrieve the SM context
                 required: false
             responses:
@@ -4128,7 +1832,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmContextRetrievedData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmContextRetrievedData
                     description: successful retrieval of an SM context
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307
@@ -4188,7 +1892,7 @@ paths:
                                     format: binary
                                     type: string
                                 jsonData:
-                                    $ref: '#/components/schemas/SendMoDataReqData'
+                                    $ref: TS29571_CommonData.yaml#/components/schemas/SendMoDataReqData
                             type: object
                 description: representation of the payload of Send MO Data Request
                 required: true

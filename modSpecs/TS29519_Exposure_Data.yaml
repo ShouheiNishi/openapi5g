@@ -1,147 +1,6 @@
 # This is generated file.
 
-components:
-    schemas:
-        AccessAndMobilityData:
-            additionalProperties: true
-            properties:
-                accessType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                connStates:
-                    items:
-                        $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/CmInfo
-                    type: array
-                connStatesTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                currentPlmn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                currentPlmnTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                location:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/UserLocation
-                locationTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                ratType:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                    type: array
-                ratTypesTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                reachabilityStatus:
-                    $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
-                reachabilityStatusTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                regStates:
-                    items:
-                        $ref: TS29518_Namf_EventExposure.yaml#/components/schemas/RmInfo
-                    type: array
-                regStatesTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                roamingStatus:
-                    description: True  The serving PLMN of the UE is different from the HPLMN of the UE; False  The serving PLMN of the UE is the HPLMN of the UE.
-                    type: boolean
-                roamingStatusTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                smsOverNasStatus:
-                    $ref: TS29518_Namf_Communication.yaml#/components/schemas/SmsSupport
-                smsOverNasStatusTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                suppFeat:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                timeZone:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/TimeZone
-                timeZoneTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            type: object
-        ExposureDataChangeNotification:
-            additionalProperties: true
-            properties:
-                accessAndMobilityData:
-                    $ref: '#/components/schemas/AccessAndMobilityData'
-                delResources:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                pduSessionManagementData:
-                    items:
-                        $ref: '#/components/schemas/PduSessionManagementData'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ueId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/VarUeId
-            type: object
-        ExposureDataSubscription:
-            additionalProperties: true
-            properties:
-                expiry:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                monitoredResourceUris:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                notificationUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - notificationUri
-                - monitoredResourceUris
-            type: object
-        PduSessionManagementData:
-            additionalProperties: true
-            properties:
-                dnai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnai
-                dnaiTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                ipAddrTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                ipv4Addr:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                ipv6Addrs:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                ipv6Prefix:
-                    description: UE IPv6 prefix.
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n6TrafficRoutingInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/RouteToLocation
-                    type: array
-                n6TrafficRoutingInfoTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                pduSessType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionType
-                pduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                pduSessionStatus:
-                    $ref: '#/components/schemas/PduSessionStatus'
-                pduSessionStatusTs:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                suppFeat:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            type: object
-        PduSessionStatus:
-            description: |
-                Possible values are - "ACTIVE" - "RELEASED"
-            enum:
-                - "ACTIVE"
-                - "RELEASED"
-            type: string
+components: {}
 externalDocs:
     description: 3GPP TS 29.519 V16.10.0; 5G System; Usage of the Unified Data Repository Service for Policy Data, Application Data and Structured Data for Exposure.
     url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.519/
@@ -175,7 +34,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AccessAndMobilityData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AccessAndMobilityData
                     description: The response body contains the access and mobility data
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -213,20 +72,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AccessAndMobilityData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AccessAndMobilityData
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AccessAndMobilityData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AccessAndMobilityData
                     description: Successful case. The resource has been successfully updated and a response body containing a representation of the access and mobility data shall be returned.
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AccessAndMobilityData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AccessAndMobilityData
                     description: Successful case. The resource has been successfully created and a response body containing a representation of the access and mobility data shall be returned.
                     headers:
                         Location:
@@ -305,7 +164,7 @@ paths:
                 content:
                     application/merge-patch+json:
                         schema:
-                            $ref: '#/components/schemas/AccessAndMobilityData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AccessAndMobilityData
                 required: true
             responses:
                 "204":
@@ -390,7 +249,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PduSessionManagementData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionManagementData
                     description: The response body contains the session management data
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -434,20 +293,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PduSessionManagementData'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionManagementData
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AccessAndMobilityData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AccessAndMobilityData
                     description: Successful case. The resource has been successfully updated and a response body containing a representation of the access and mobility data shall be returned.
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/PduSessionManagementData'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionManagementData
                     description: Successful case. The resource has been successfully created and a response body containing a representation of the access and mobility data shall be returned.
                     headers:
                         Location:
@@ -530,7 +389,7 @@ paths:
                                     application/json:
                                         schema:
                                             items:
-                                                $ref: '#/components/schemas/ExposureDataChangeNotification'
+                                                $ref: TS29571_CommonData.yaml#/components/schemas/ExposureDataChangeNotification
                                             minItems: 1
                                             type: array
                                             x-go-type-skip-optional-pointer: true
@@ -565,14 +424,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/ExposureDataSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/ExposureDataSubscription
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ExposureDataSubscription'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ExposureDataSubscription
                     description: Created
                     headers:
                         Location:
@@ -619,14 +478,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/ExposureDataSubscription'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/ExposureDataSubscription
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ExposureDataSubscription'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/ExposureDataSubscription
                     description: Resource was successfully modified and a body with the modified subscription to notifications about exposure data is returned..
                 "204":
                     description: The individual subscription resource was successfully modified.

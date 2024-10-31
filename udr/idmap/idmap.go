@@ -12,8 +12,7 @@ import (
 	"net/url"
 	"strings"
 
-	externalRef0 "github.com/ShouheiNishi/openapi5g/commondata"
-	externalRef1 "github.com/ShouheiNishi/openapi5g/nrf/management"
+	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 	"github.com/gin-gonic/gin"
 	"github.com/oapi-codegen/runtime"
 	strictgin "github.com/oapi-codegen/runtime/strictmiddleware/gin"
@@ -23,19 +22,13 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
-// NfGroupIdMapResult defines model for NfGroupIdMapResult.
-type NfGroupIdMapResult map[string]externalRef0.NfGroupId
-
-// SubscriberId defines model for SubscriberId.
-type SubscriberId = string
-
 // GetNfGroupIDsParams defines parameters for GetNfGroupIDs.
 type GetNfGroupIDsParams struct {
 	// NfType Type of NF
-	NfType []externalRef1.NFType `form:"nf-type" json:"nf-type"`
+	NfType []externalRef0.NFType `form:"nf-type" json:"nf-type"`
 
 	// SubscriberId Identifier of the subscriber
-	SubscriberId SubscriberId `form:"subscriberId" json:"subscriberId"`
+	SubscriberId externalRef0.SubscriberId `form:"subscriberId" json:"subscriberId"`
 }
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
@@ -234,7 +227,7 @@ type ClientWithResponsesInterface interface {
 type GetNfGroupIDsResponse struct {
 	Body                          []byte
 	HTTPResponse                  *http.Response
-	JSON200                       *NfGroupIdMapResult
+	JSON200                       *externalRef0.NfGroupIdMapResult
 	ApplicationproblemJSON404     *externalRef0.N404
 	ApplicationproblemJSONDefault *externalRef0.ProblemDetails
 }
@@ -279,7 +272,7 @@ func ParseGetNfGroupIDsResponse(rsp *http.Response) (*GetNfGroupIDsResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest NfGroupIdMapResult
+		var dest externalRef0.NfGroupIdMapResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -408,13 +401,13 @@ type GetNfGroupIDsResponseObject interface {
 	VisitGetNfGroupIDsResponse(w http.ResponseWriter) error
 }
 
-type GetNfGroupIDs200JSONResponse NfGroupIdMapResult
+type GetNfGroupIDs200JSONResponse externalRef0.NfGroupIdMapResult
 
 func (response GetNfGroupIDs200JSONResponse) VisitGetNfGroupIDsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(NfGroupIdMapResult(response))
+	return json.NewEncoder(w).Encode(externalRef0.NfGroupIdMapResult(response))
 }
 
 type GetNfGroupIDs404ApplicationProblemPlusJSONResponse struct {

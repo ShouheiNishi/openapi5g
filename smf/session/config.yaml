@@ -8,8 +8,5 @@ generate:
 output-options:
   skip-prune: true
 import-mapping:
-  TS29510_Nnrf_NFManagement.yaml: github.com/ShouheiNishi/openapi5g/nrf/management
-  TS29518_Namf_Communication.yaml: github.com/ShouheiNishi/openapi5g/amf/communication
-  TS29519_Policy_Data.yaml: github.com/ShouheiNishi/openapi5g/udr/policy
-  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/commondata
+  TS29571_CommonData.yaml: github.com/ShouheiNishi/openapi5g/models
 output: session.go

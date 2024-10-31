@@ -1,351 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        AccessNetworkId:
-            enum:
-                - HRPD
-                - WIMAX
-                - WLAN
-                - ETHERNET
-            type: string
-        AuthEvent:
-            additionalProperties: true
-            properties:
-                authRemovalInd:
-                    default: false
-                    type: boolean
-                authType:
-                    $ref: '#/components/schemas/AuthType'
-                nfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                nfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                servingNetworkName:
-                    $ref: '#/components/schemas/ServingNetworkName'
-                success:
-                    $ref: '#/components/schemas/Success'
-                timeStamp:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-            required:
-                - nfInstanceId
-                - success
-                - timeStamp
-                - authType
-                - servingNetworkName
-            type: object
-        AuthType:
-            enum:
-                - 5G_AKA
-                - EAP_AKA_PRIME
-                - EAP_TLS
-            type: string
-        AuthenticatedInd:
-            type: boolean
-        AuthenticationInfoRequest:
-            additionalProperties: true
-            properties:
-                ausfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                cellCagInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/CagId
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                n5gcInd:
-                    default: false
-                    type: boolean
-                resynchronizationInfo:
-                    $ref: '#/components/schemas/ResynchronizationInfo'
-                servingNetworkName:
-                    $ref: '#/components/schemas/ServingNetworkName'
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - servingNetworkName
-                - ausfInstanceId
-            type: object
-        AuthenticationInfoResult:
-            additionalProperties: true
-            properties:
-                authType:
-                    $ref: '#/components/schemas/AuthType'
-                authenticationVector:
-                    $ref: '#/components/schemas/AuthenticationVector'
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - authType
-            type: object
-        AuthenticationVector:
-            discriminator:
-                mapping:
-                    5G_HE_AKA: '#/components/schemas/Av5GHeAka'
-                    EAP_AKA_PRIME: '#/components/schemas/AvEapAkaPrime'
-                propertyName: avType
-            oneOf:
-                - $ref: '#/components/schemas/AvEapAkaPrime'
-                - $ref: '#/components/schemas/Av5GHeAka'
-        Autn:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        Auts:
-            pattern: ^[A-Fa-f0-9]{28}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        Av5GHeAka:
-            additionalProperties: true
-            properties:
-                autn:
-                    $ref: '#/components/schemas/Autn'
-                avType:
-                    $ref: '#/components/schemas/AvType'
-                kausf:
-                    $ref: '#/components/schemas/Kausf'
-                rand:
-                    $ref: '#/components/schemas/Rand'
-                xresStar:
-                    $ref: '#/components/schemas/XresStar'
-            required:
-                - avType
-                - rand
-                - xresStar
-                - autn
-                - kausf
-            type: object
-        AvEapAkaPrime:
-            additionalProperties: true
-            properties:
-                autn:
-                    $ref: '#/components/schemas/Autn'
-                avType:
-                    $ref: '#/components/schemas/AvType'
-                ckPrime:
-                    $ref: '#/components/schemas/CkPrime'
-                ikPrime:
-                    $ref: '#/components/schemas/IkPrime'
-                rand:
-                    $ref: '#/components/schemas/Rand'
-                xres:
-                    $ref: '#/components/schemas/Xres'
-            required:
-                - avType
-                - rand
-                - xres
-                - autn
-                - ckPrime
-                - ikPrime
-            type: object
-        AvEpsAka:
-            additionalProperties: true
-            properties:
-                autn:
-                    $ref: '#/components/schemas/Autn'
-                avType:
-                    $ref: '#/components/schemas/HssAvType'
-                kasme:
-                    $ref: '#/components/schemas/Kasme'
-                rand:
-                    $ref: '#/components/schemas/Rand'
-                xres:
-                    $ref: '#/components/schemas/Xres'
-            required:
-                - avType
-                - rand
-                - xres
-                - autn
-                - kasme
-            type: object
-        AvImsGbaEapAka:
-            additionalProperties: true
-            properties:
-                autn:
-                    $ref: '#/components/schemas/Autn'
-                avType:
-                    $ref: '#/components/schemas/HssAvType'
-                ck:
-                    $ref: '#/components/schemas/ConfidentialityKey'
-                ik:
-                    $ref: '#/components/schemas/IntegrityKey'
-                rand:
-                    $ref: '#/components/schemas/Rand'
-                xres:
-                    $ref: '#/components/schemas/Xres'
-            required:
-                - avType
-                - rand
-                - xres
-                - autn
-                - ck
-                - ik
-            type: object
-        AvType:
-            enum:
-                - 5G_HE_AKA
-                - EAP_AKA_PRIME
-            type: string
-        CkPrime:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        ConfidentialityKey:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        HssAuthType:
-            enum:
-                - EPS_AKA
-                - EAP_AKA
-                - EAP_AKA_PRIME
-                - IMS_AKA
-                - GBA_AKA
-                - UMTS_AKA
-            type: string
-        HssAuthTypeInUri:
-            enum:
-                - eps-aka
-                - eap-aka
-                - eap-aka-prime
-                - ims-aka
-                - gba-aka
-            type: string
-        HssAuthenticationInfoRequest:
-            additionalProperties: true
-            properties:
-                anId:
-                    $ref: '#/components/schemas/AccessNetworkId'
-                hssAuthType:
-                    $ref: '#/components/schemas/HssAuthType'
-                numOfRequestedVectors:
-                    $ref: '#/components/schemas/NumOfRequestedVectors'
-                requestingNodeType:
-                    $ref: '#/components/schemas/NodeType'
-                resynchronizationInfo:
-                    $ref: '#/components/schemas/ResynchronizationInfo'
-                servingNetworkId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - hssAuthType
-                - numOfRequestedVectors
-            type: object
-        HssAuthenticationInfoResult:
-            additionalProperties: true
-            properties:
-                hssAuthenticationVectors:
-                    $ref: '#/components/schemas/HssAuthenticationVectors'
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - hssAuthenticationVectors
-            type: object
-        HssAuthenticationVectors:
-            oneOf:
-                - items:
-                    $ref: '#/components/schemas/AvEpsAka'
-                  maxItems: 5
-                  minItems: 1
-                  type: array
-                  x-go-type-skip-optional-pointer: true
-                - items:
-                    $ref: '#/components/schemas/AvImsGbaEapAka'
-                  maxItems: 5
-                  minItems: 1
-                  type: array
-                  x-go-type-skip-optional-pointer: true
-                - items:
-                    $ref: '#/components/schemas/AvEapAkaPrime'
-                  maxItems: 5
-                  minItems: 1
-                  type: array
-                  x-go-type-skip-optional-pointer: true
-        HssAvType:
-            enum:
-                - EPS_AKA
-                - EAP_AKA
-                - IMS_AKA
-                - GBA_AKA
-                - UMTS_AKA
-            type: string
-        IkPrime:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        IntegrityKey:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        Kasme:
-            pattern: ^[A-Fa-f0-9]{64}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        Kausf:
-            pattern: ^[A-Fa-f0-9]{64}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        NodeType:
-            enum:
-                - AUSF
-                - VLR
-                - SGSN
-                - S_CSCF
-                - BSF
-                - GAN_AAA_SERVER
-                - WLAN_AAA_SERVER
-                - MME
-            type: string
-        NumOfRequestedVectors:
-            maximum: 5
-            minimum: 1
-            type: integer
-            x-go-type-skip-optional-pointer: true
-        Rand:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        ResynchronizationInfo:
-            additionalProperties: true
-            properties:
-                auts:
-                    $ref: '#/components/schemas/Auts'
-                rand:
-                    $ref: '#/components/schemas/Rand'
-            required:
-                - rand
-                - auts
-            type: object
-        RgAuthCtx:
-            additionalProperties: true
-            properties:
-                authInd:
-                    default: false
-                    type: boolean
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - authInd
-            type: object
-        ServingNetworkName:
-            pattern: ^5G:mnc[0-9]{3}[.]mcc[0-9]{3}[.]3gppnetwork[.]org(:[A-F0-9]{11})?$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        Success:
-            type: boolean
-        Xres:
-            pattern: ^[A-Fa-f0-9]{8,32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        XresStar:
-            pattern: ^[A-Fa-f0-9]{32}$
-            type: string
-            x-go-type-skip-optional-pointer: true
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -377,14 +32,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AuthEvent'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AuthEvent
                 required: true
             responses:
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuthEvent'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthEvent
                     description: Expected response to a valid request
                     headers:
                         Location:
@@ -429,7 +84,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AuthEvent'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AuthEvent
                 required: true
             responses:
                 "204":
@@ -462,19 +117,19 @@ paths:
                   name: hssAuthType
                   required: true
                   schema:
-                    $ref: '#/components/schemas/HssAuthTypeInUri'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/HssAuthTypeInUri
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/HssAuthenticationInfoRequest'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/HssAuthenticationInfoRequest
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/HssAuthenticationInfoResult'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/HssAuthenticationInfoResult
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -512,7 +167,7 @@ paths:
                   name: authenticated-ind
                   required: true
                   schema:
-                    $ref: '#/components/schemas/AuthenticatedInd'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/AuthenticatedInd
                 - description: Supported Features
                   in: query
                   name: supported-features
@@ -540,7 +195,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/RgAuthCtx'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/RgAuthCtx
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -575,14 +230,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AuthenticationInfoRequest'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AuthenticationInfoRequest
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuthenticationInfoResult'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AuthenticationInfoResult
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400

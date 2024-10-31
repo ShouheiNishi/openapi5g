@@ -1,430 +1,6 @@
 # This is generated file.
 
 components:
-    schemas:
-        Amf3GppAccessRegistration:
-            additionalProperties: true
-            properties:
-                amfEeSubscriptionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                amfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                amfServiceNameDereg:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
-                amfServiceNamePcscfRest:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
-                backupAmfInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/BackupAmfInfo
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                contextInfo:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
-                deregCallbackUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                drFlag:
-                    $ref: '#/components/schemas/DualRegistrationFlag'
-                epsInterworkingInfo:
-                    $ref: '#/components/schemas/EpsInterworkingInfo'
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                imsVoPs:
-                    $ref: '#/components/schemas/ImsVoPs'
-                initialRegistrationInd:
-                    type: boolean
-                noEeSubscriptionInd:
-                    type: boolean
-                pcscfRestorationCallbackUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                purgeFlag:
-                    $ref: '#/components/schemas/PurgeFlag'
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                registrationTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                ueSrvccCapability:
-                    type: boolean
-                urrpIndicator:
-                    type: boolean
-                vgmlcAddress:
-                    $ref: '#/components/schemas/VgmlcAddress'
-            required:
-                - amfInstanceId
-                - deregCallbackUri
-                - guami
-                - ratType
-            type: object
-        Amf3GppAccessRegistrationModification:
-            additionalProperties: true
-            properties:
-                backupAmfInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/BackupAmfInfo
-                    type: array
-                epsInterworkingInfo:
-                    $ref: '#/components/schemas/EpsInterworkingInfo'
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                imsVoPs:
-                    $ref: '#/components/schemas/ImsVoPs'
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                purgeFlag:
-                    $ref: '#/components/schemas/PurgeFlag'
-                ueSrvccCapability:
-                    nullable: true
-                    type: boolean
-            required:
-                - guami
-            type: object
-        AmfDeregInfo:
-            additionalProperties: true
-            properties:
-                deregReason:
-                    $ref: '#/components/schemas/DeregistrationReason'
-            required:
-                - deregReason
-            type: object
-        AmfNon3GppAccessRegistration:
-            additionalProperties: true
-            properties:
-                amfEeSubscriptionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                amfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                amfServiceNameDereg:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
-                amfServiceNamePcscfRest:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName
-                backupAmfInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/BackupAmfInfo
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                contextInfo:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
-                deregCallbackUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                imsVoPs:
-                    $ref: '#/components/schemas/ImsVoPs'
-                noEeSubscriptionInd:
-                    type: boolean
-                pcscfRestorationCallbackUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                purgeFlag:
-                    $ref: '#/components/schemas/PurgeFlag'
-                ratType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/RatType
-                registrationTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-                urrpIndicator:
-                    type: boolean
-                vgmlcAddress:
-                    $ref: '#/components/schemas/VgmlcAddress'
-            required:
-                - amfInstanceId
-                - imsVoPs
-                - deregCallbackUri
-                - guami
-                - ratType
-            type: object
-        AmfNon3GppAccessRegistrationModification:
-            additionalProperties: true
-            properties:
-                backupAmfInfo:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/BackupAmfInfo
-                    type: array
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                imsVoPs:
-                    $ref: '#/components/schemas/ImsVoPs'
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-                purgeFlag:
-                    $ref: '#/components/schemas/PurgeFlag'
-            required:
-                - guami
-            type: object
-        DeregistrationData:
-            additionalProperties: true
-            properties:
-                accessType:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                deregReason:
-                    $ref: '#/components/schemas/DeregistrationReason'
-                newSmfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                pduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-            required:
-                - deregReason
-            type: object
-        DeregistrationReason:
-            enum:
-                - UE_INITIAL_REGISTRATION
-                - UE_REGISTRATION_AREA_CHANGE
-                - SUBSCRIPTION_WITHDRAWN
-                - 5GS_TO_EPS_MOBILITY
-                - 5GS_TO_EPS_MOBILITY_UE_INITIAL_REGISTRATION
-                - REREGISTRATION_REQUIRED
-                - SMF_CONTEXT_TRANSFERRED
-            type: string
-        DualRegistrationFlag:
-            type: boolean
-        E164Number:
-            pattern: ^[0-9]{1,15}$
-            type: string
-            x-go-type-skip-optional-pointer: true
-        EpsInterworkingInfo:
-            additionalProperties: true
-            properties:
-                epsIwkPgws:
-                    additionalProperties:
-                        $ref: '#/components/schemas/EpsIwkPgw'
-                    description: A map (list of key-value pairs where Dnn serves as key) of EpsIwkPgws
-                    type: object
-            type: object
-        EpsIwkPgw:
-            additionalProperties: true
-            properties:
-                pgwFqdn:
-                    type: string
-                smfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-            required:
-                - pgwFqdn
-                - smfInstanceId
-            type: object
-        ImsVoPs:
-            enum:
-                - HOMOGENEOUS_SUPPORT
-                - HOMOGENEOUS_NON_SUPPORT
-                - NON_HOMOGENEOUS_OR_UNKNOWN
-            type: string
-        IpSmGwRegistration:
-            additionalProperties: true
-            properties:
-                ipSmGwDiameterAddress:
-                    $ref: '#/components/schemas/NetworkNodeDiameterAddress'
-                ipSmGwMapAddress:
-                    $ref: '#/components/schemas/E164Number'
-                unriIndicator:
-                    default: false
-                    type: boolean
-            type: object
-        LocationInfo:
-            additionalProperties: true
-            properties:
-                gpsi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Gpsi
-                registrationLocationInfoList:
-                    items:
-                        $ref: '#/components/schemas/RegistrationLocationInfo'
-                    maxItems: 2
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - registrationLocationInfoList
-            type: object
-        NetworkNodeDiameterAddress:
-            additionalProperties: true
-            properties:
-                name:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-                realm:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DiameterIdentity
-            required:
-                - name
-                - realm
-            type: object
-        PcscfRestorationNotification:
-            additionalProperties: true
-            properties:
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-            required:
-                - supi
-            type: object
-        PeiUpdateInfo:
-            additionalProperties: true
-            properties:
-                pei:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Pei
-            required:
-                - pei
-            type: object
-        PurgeFlag:
-            type: boolean
-        RegistrationDataSetName:
-            enum:
-                - AMF_3GPP
-                - AMF_NON_3GPP
-                - SMF_PDU_SESSIONS
-                - SMSF_3GPP
-                - SMSF_NON_3GPP
-            type: string
-        RegistrationDataSets:
-            additionalProperties: true
-            properties:
-                amf3Gpp:
-                    $ref: '#/components/schemas/Amf3GppAccessRegistration'
-                amfNon3Gpp:
-                    $ref: '#/components/schemas/AmfNon3GppAccessRegistration'
-                smfRegistration:
-                    $ref: '#/components/schemas/SmfRegistrationInfo'
-                smsf3Gpp:
-                    $ref: '#/components/schemas/SmsfRegistration'
-                smsfNon3Gpp:
-                    $ref: '#/components/schemas/SmsfRegistration'
-            type: object
-        RegistrationDatasetNames:
-            items:
-                $ref: '#/components/schemas/RegistrationDataSetName'
-            minItems: 2
-            type: array
-            uniqueItems: true
-            x-go-type-skip-optional-pointer: true
-        RegistrationLocationInfo:
-            additionalProperties: true
-            properties:
-                accessTypeList:
-                    items:
-                        $ref: TS29571_CommonData.yaml#/components/schemas/AccessType
-                    maxItems: 2
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-                amfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                guami:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Guami
-                plmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                vgmlcAddress:
-                    $ref: '#/components/schemas/VgmlcAddress'
-            required:
-                - amfInstanceId
-                - accessTypeList
-            type: object
-        RegistrationReason:
-            enum:
-                - SMF_CONTEXT_TRANSFERRED
-            type: string
-        SmfRegistration:
-            additionalProperties: true
-            properties:
-                contextInfo:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
-                deregCallbackUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                dnn:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Dnn
-                emergencyServices:
-                    type: boolean
-                epdgInd:
-                    default: false
-                    type: boolean
-                pcscfRestorationCallbackUri:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Uri
-                pduSessionId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionId
-                pgwFqdn:
-                    type: string
-                plmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                registrationReason:
-                    $ref: '#/components/schemas/RegistrationReason'
-                registrationTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                singleNssai:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Snssai
-                smfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - smfInstanceId
-                - pduSessionId
-                - singleNssai
-                - plmnId
-            type: object
-        SmfRegistrationInfo:
-            additionalProperties: true
-            properties:
-                smfRegistrationList:
-                    items:
-                        $ref: '#/components/schemas/SmfRegistration'
-                    minItems: 1
-                    type: array
-                    x-go-type-skip-optional-pointer: true
-            required:
-                - smfRegistrationList
-            type: object
-        SmsfRegistration:
-            additionalProperties: true
-            properties:
-                contextInfo:
-                    $ref: TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
-                plmnId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/PlmnId
-                registrationTime:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/DateTime
-                smsfDiameterAddress:
-                    $ref: '#/components/schemas/NetworkNodeDiameterAddress'
-                smsfInstanceId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfInstanceId
-                smsfMAPAddress:
-                    $ref: '#/components/schemas/E164Number'
-                smsfSetId:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/NfSetId
-                supportedFeatures:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/SupportedFeatures
-            required:
-                - smsfInstanceId
-                - plmnId
-            type: object
-        TriggerRequest:
-            additionalProperties: true
-            properties:
-                supi:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Supi
-            required:
-                - supi
-            type: object
-        VgmlcAddress:
-            additionalProperties: true
-            properties:
-                vgmlcAddressIpv4:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv4Addr
-                vgmlcAddressIpv6:
-                    $ref: TS29571_CommonData.yaml#/components/schemas/Ipv6Addr
-                vgmlcFqdn:
-                    $ref: TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn
-            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -462,7 +38,7 @@ paths:
                   name: registration-dataset-names
                   required: true
                   schema:
-                    $ref: '#/components/schemas/RegistrationDatasetNames'
+                    $ref: TS29571_CommonData.yaml#/components/schemas/RegistrationDatasetNames
                   style: form
                 - content:
                     application/json:
@@ -479,7 +55,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/RegistrationDataSets'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/RegistrationDataSets
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -519,7 +95,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Amf3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistration
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -549,7 +125,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/DeregistrationData'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/DeregistrationData
                                 required: true
                             responses:
                                 "204":
@@ -575,7 +151,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/PcscfRestorationNotification'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/PcscfRestorationNotification
                                 required: true
                             responses:
                                 "204":
@@ -608,20 +184,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Amf3GppAccessRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistration
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Amf3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistration
                     description: OK
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Amf3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistration
                     description: Created
                     headers:
                         Location:
@@ -668,7 +244,7 @@ paths:
                 content:
                     application/merge-patch+json:
                         schema:
-                            $ref: '#/components/schemas/Amf3GppAccessRegistrationModification'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/Amf3GppAccessRegistrationModification
                 required: true
             responses:
                 "200":
@@ -718,7 +294,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AmfDeregInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AmfDeregInfo
                 required: true
             responses:
                 "204":
@@ -756,7 +332,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/PeiUpdateInfo'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/PeiUpdateInfo
                 required: true
             responses:
                 "204":
@@ -799,7 +375,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AmfNon3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AmfNon3GppAccessRegistration
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -829,7 +405,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/DeregistrationData'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/DeregistrationData
                                 required: true
                             responses:
                                 "204":
@@ -855,7 +431,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/PcscfRestorationNotification'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/PcscfRestorationNotification
                                 required: true
                             responses:
                                 "204":
@@ -886,20 +462,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AmfNon3GppAccessRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AmfNon3GppAccessRegistration
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AmfNon3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AmfNon3GppAccessRegistration
                     description: OK
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AmfNon3GppAccessRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/AmfNon3GppAccessRegistration
                     description: Created
                     headers:
                         Location:
@@ -946,7 +522,7 @@ paths:
                 content:
                     application/merge-patch+json:
                         schema:
-                            $ref: '#/components/schemas/AmfNon3GppAccessRegistrationModification'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/AmfNon3GppAccessRegistrationModification
                 required: true
             responses:
                 "200":
@@ -997,7 +573,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/IpSmGwRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/IpSmGwRegistration
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -1031,20 +607,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/IpSmGwRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/IpSmGwRegistration
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/IpSmGwRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/IpSmGwRegistration
                     description: Expected response to a valid request
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/IpSmGwRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/IpSmGwRegistration
                     description: Created
                     headers:
                         Location:
@@ -1121,7 +697,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/LocationInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/LocationInfo
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -1171,7 +747,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfRegistrationInfo'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegistrationInfo
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -1213,7 +789,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegistration
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -1243,7 +819,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/DeregistrationData'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/DeregistrationData
                                 required: true
                             responses:
                                 "204":
@@ -1269,7 +845,7 @@ paths:
                                 content:
                                     application/json:
                                         schema:
-                                            $ref: '#/components/schemas/PcscfRestorationNotification'
+                                            $ref: TS29571_CommonData.yaml#/components/schemas/PcscfRestorationNotification
                                 required: true
                             responses:
                                 "204":
@@ -1306,20 +882,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmfRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegistration
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegistration
                     description: Expected response to a valid request
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmfRegistration
                     description: Created
                     headers:
                         Location:
@@ -1416,7 +992,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -1450,20 +1026,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmsfRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Expected response to a valid request
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Created
                     headers:
                         Location:
@@ -1550,7 +1126,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -1584,20 +1160,20 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SmsfRegistration'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                 required: true
             responses:
                 "200":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Expected response to a valid request
                 "201":
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SmsfRegistration'
+                                $ref: TS29571_CommonData.yaml#/components/schemas/SmsfRegistration
                     description: Created
                     headers:
                         Location:
@@ -1672,7 +1248,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/TriggerRequest'
+                            $ref: TS29571_CommonData.yaml#/components/schemas/TriggerRequest
                 required: true
             responses:
                 "204":

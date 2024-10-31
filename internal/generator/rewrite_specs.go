@@ -516,7 +516,12 @@ func fixAnyOfString(v *openapi.Schema) error {
 				}
 			}
 			if !vRef.Value.GoTypeSkipOptionalPointer {
-				newSkipOptionalPointer = false
+				if err := fixSkipOptionalPointer(vRef.Value); err != nil {
+					return err
+				}
+				if !vRef.Value.GoTypeSkipOptionalPointer {
+					newSkipOptionalPointer = false
+				}
 			}
 		}
 		*v = openapi.Schema{

@@ -133,11 +133,11 @@ func main() {
 		},
 
 		RootFuncName:  "walkRewriteSpecs",
-		ExtraRootArgs: ", state *GeneratorState, refs map[string]struct{}, cutRefs map[string]struct{}",
-		ExtraInit:     "s.state = state\ns.refs = refs\ns.cutRefs = cutRefs\n",
+		ExtraRootArgs: ", refs map[string]struct{}, cutRefs map[string]struct{}",
+		ExtraInit:     "s.refs = refs\ns.cutRefs = cutRefs\n",
 
 		StateType:  "walkRewriteSpecsType",
-		ExtraState: "state *GeneratorState\nrefs map[string]struct{}\ncutRefs map[string]struct{}\n",
+		ExtraState: "refs map[string]struct{}\ncutRefs map[string]struct{}\n",
 
 		WalkPreHook: func(t *types.Named) string {
 			if t.Obj().Name() == "Ref" {
@@ -165,7 +165,7 @@ func main() {
 				return "if err := fixSkipOptionalPointer(v) ; err != nil{return err}\n" +
 					"\nif err := fixIntegerFormat(v) ; err != nil{return err}\n" +
 					"\nif err := fixAnyOfEnum(v) ; err != nil{return err}\n" +
-					"\nif err := s.state.fixAnyOfString(v) ; err != nil{return err}\n" +
+					"\nif err := fixAnyOfString(v) ; err != nil{return err}\n" +
 					"\nif err := fixNullable(v) ; err != nil{return err}\n" +
 					"\nif err := fixImplicitArray(v) ; err != nil{return err}\n" +
 					"\nif err := fixEliminateCheckerUnion(v) ; err != nil{return err}\n" +

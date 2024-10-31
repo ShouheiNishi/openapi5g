@@ -49,7 +49,7 @@ func (s *GeneratorState) RewriteSpecs() error {
 			cutRefs[s] = struct{}{}
 		}
 
-		if err := walkRewriteSpecs(doc, s, refs, cutRefs); err != nil {
+		if err := walkRewriteSpecs(doc, refs, cutRefs); err != nil {
 			return err
 		}
 
@@ -212,11 +212,6 @@ type refInfo struct {
 	refs    map[openapi.Reference]struct{}
 }
 
-func (s *GeneratorState) GetOrigSchemaReference(ref *openapi.Ref[openapi.Schema]) string {
-	info := s.schemaInfo[ref.Value]
-	return info.spec + "#" + schemasPrefix + "/" + info.oldName
-}
-
 func (s *GeneratorState) MoveSchemas() error {
 	usedSchemaRefs := make(map[openapi.Reference]struct{})
 	for spec := range pkgList {
@@ -225,7 +220,7 @@ func (s *GeneratorState) MoveSchemas() error {
 		}
 	}
 
-	s.schemaInfo = make(map[*openapi.Schema]*schemaInfo)
+	schemas := make(map[*openapi.Schema]*schemaInfo)
 	for spec := range pkgList {
 		if components := s.Specs[spec].Components; components != nil {
 			for name, ref := range components.Schemas {
@@ -235,7 +230,7 @@ func (s *GeneratorState) MoveSchemas() error {
 						oldName: name,
 						schema:  ref.Value,
 					}
-					s.schemaInfo[ref.Value] = info
+					schemas[ref.Value] = info
 					info.refs = map[string]*refInfo{
 						name: {
 							isAlias: false,
@@ -266,7 +261,7 @@ func (s *GeneratorState) MoveSchemas() error {
 		if schemaRef == nil {
 			return fmt.Errorf("%s is not exist", ref)
 		}
-		info := s.schemaInfo[schemaRef.Value]
+		info := schemas[schemaRef.Value]
 		if info == nil {
 			// return fmt.Errorf("%s has no info", ref)
 			continue
@@ -283,7 +278,7 @@ func (s *GeneratorState) MoveSchemas() error {
 	}
 
 	newNames := make(map[string]*refInfo)
-	for _, schemaInfo := range s.schemaInfo {
+	for _, schemaInfo := range schemas {
 		if len(schemaInfo.refs) == 1 && len(schemaInfo.refs[schemaInfo.oldName].refs) == 0 {
 			continue
 		}
@@ -497,7 +492,7 @@ func fixAnyOfEnum(v *openapi.Schema) error {
 	return nil
 }
 
-func (s *GeneratorState) fixAnyOfString(v *openapi.Schema) error {
+func fixAnyOfString(v *openapi.Schema) error {
 	if len(v.AnyOf) > 0 {
 		for _, vRef := range v.AnyOf {
 			if vRef.Value.Type == nil || *vRef.Value.Type != openapi.SchemaTypeString {
@@ -515,9 +510,9 @@ func (s *GeneratorState) fixAnyOfString(v *openapi.Schema) error {
 				}
 			} else {
 				if vRef.Value.Description == "" {
-					newDescription = append(newDescription, "  string in "+s.GetOrigSchemaReference(&vRef))
+					newDescription = append(newDescription, "  string in "+vRef.Ref.String())
 				} else {
-					newDescription = append(newDescription, "  "+vRef.Value.Description+" in "+s.GetOrigSchemaReference(&vRef))
+					newDescription = append(newDescription, "  "+vRef.Value.Description+" in "+vRef.Ref.String())
 				}
 			}
 			if !vRef.Value.GoTypeSkipOptionalPointer {

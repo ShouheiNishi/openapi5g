@@ -2123,7 +2123,7 @@ const (
 	UdmDataSetNameV2X        UdmDataSetName = "V2X"
 )
 
-// N3GppChargingCharacteristics defines model for 3GppChargingCharacteristics.
+// N3GppChargingCharacteristics Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/3GppChargingCharacteristics
 type N3GppChargingCharacteristics = string
 
 // N5GMmCapability defines model for 5GMmCapability.
@@ -2135,7 +2135,7 @@ type N5GMmCause = Uinteger
 // N5GSmCause defines model for 5GSmCause.
 type N5GSmCause = Uinteger
 
-// N5GSrvccInfo defines model for 5GSrvccInfo.
+// N5GSrvccInfo Original definition in TS29503_Nudm_MT.yaml#/components/schemas/5GSrvccInfo
 type N5GSrvccInfo struct {
 	CMsisdn              CMsisdn                `json:"cMsisdn,omitempty"`
 	StnSr                *StnSr                 `json:"stnSr,omitempty"`
@@ -2143,20 +2143,25 @@ type N5GSrvccInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N5GVnGroupConfiguration defines model for 5GVnGroupConfiguration.
+// N5GVnGroupConfiguration Original definition in TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupConfiguration
 type N5GVnGroupConfiguration struct {
+	// N5gVnGroupData Original definition in TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupData
 	N5gVnGroupData          *N5GVnGroupData         `json:"5gVnGroupData,omitempty"`
 	AfInstanceId            *string                 `json:"afInstanceId,omitempty"`
 	InternalGroupIdentifier GroupId                 `json:"internalGroupIdentifier,omitempty"`
 	Members                 []Gpsi                  `json:"members,omitempty"`
 	MtcProviderInformation  *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId             *UdmPPReferenceId       `json:"referenceId,omitempty"`
-	AdditionalProperties    map[string]interface{}  `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
+	ReferenceId          *UdmPPReferenceId      `json:"referenceId,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N5GVnGroupData defines model for 5GVnGroupData.
+// N5GVnGroupData Original definition in TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupData
 type N5GVnGroupData struct {
-	AppDescriptors       []AppDescriptor        `json:"appDescriptors,omitempty"`
+	AppDescriptors []AppDescriptor `json:"appDescriptors,omitempty"`
+
+	// DnAaaAddress Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress
 	DnAaaAddress         *IpAddress             `json:"dnAaaAddress,omitempty"`
 	Dnn                  Dnn                    `json:"dnn"`
 	PduSessionTypes      []PduSessionType       `json:"pduSessionTypes,omitempty"`
@@ -2165,11 +2170,12 @@ type N5GVnGroupData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N5GsUserState defines model for 5GsUserState.
+// N5GsUserState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/5GsUserState
 type N5GsUserState string
 
-// N5GsUserStateInfo defines model for 5GsUserStateInfo.
+// N5GsUserStateInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/5GsUserStateInfo
 type N5GsUserStateInfo struct {
+	// N5gsUserState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/5GsUserState
 	N5gsUserState        N5GsUserState          `json:"5gsUserState"`
 	AccessType           AccessType             `json:"accessType"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -2184,16 +2190,18 @@ type N5QiPriorityLevel = int
 // N5QiPriorityLevelRm defines model for 5QiPriorityLevelRm.
 type N5QiPriorityLevelRm = int
 
-// AMPolicyPolicyAssociation defines model for AMPolicy-PolicyAssociation.
+// AMPolicyPolicyAssociation Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/PolicyAssociation
 type AMPolicyPolicyAssociation struct {
 	Pras *map[string]PresenceInfo `json:"pras,omitempty"`
 
-	// Request Information which the NF service consumer provides when requesting the creation of a policy association. The serviveName property corresponds to the serviceName in the main body of the specification.
+	// Request Information which the NF service consumer provides when requesting the creation of a policy association. The serviveName property corresponds to the serviceName in the main body of the specification. (Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/PolicyAssociationRequest)
 	Request     *AMPolicyPolicyAssociationRequest `json:"request,omitempty"`
 	Rfsp        RfspIndex                         `json:"rfsp,omitempty"`
 	ServAreaRes *ServiceAreaRestriction           `json:"servAreaRes,omitempty"`
-	SmfSelInfo  *SmfSelectionData                 `json:"smfSelInfo"`
-	SuppFeat    SupportedFeatures                 `json:"suppFeat"`
+
+	// SmfSelInfo Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/SmfSelectionData
+	SmfSelInfo *SmfSelectionData `json:"smfSelInfo"`
+	SuppFeat   SupportedFeatures `json:"suppFeat"`
 
 	// Triggers Request Triggers that the PCF subscribes.
 	Triggers             []AMPolicyRequestTrigger        `json:"triggers,omitempty"`
@@ -2203,9 +2211,11 @@ type AMPolicyPolicyAssociation struct {
 }
 
 // AMPolicyPolicyAssociationReleaseCause Possible values are - UNSPECIFIED: This value is used for unspecified reasons. - UE_SUBSCRIPTION: This value is used to indicate that the session needs to be terminated because the subscription of UE has changed (e.g. was removed). - INSUFFICIENT_RES: This value is used to indicate that the server is overloaded and needs to abort the session.
+//
+//	(Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/PolicyAssociationReleaseCause)
 type AMPolicyPolicyAssociationReleaseCause string
 
-// AMPolicyPolicyAssociationRequest Information which the NF service consumer provides when requesting the creation of a policy association. The serviveName property corresponds to the serviceName in the main body of the specification.
+// AMPolicyPolicyAssociationRequest Information which the NF service consumer provides when requesting the creation of a policy association. The serviveName property corresponds to the serviceName in the main body of the specification. (Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/PolicyAssociationRequest)
 type AMPolicyPolicyAssociationRequest struct {
 	AccessType  AccessType   `json:"accessType,omitempty"`
 	AccessTypes []AccessType `json:"accessTypes,omitempty"`
@@ -2238,7 +2248,7 @@ type AMPolicyPolicyAssociationRequest struct {
 	ServAreaRes       *ServiceAreaRestriction `json:"servAreaRes,omitempty"`
 	ServingPlmn       *PlmnIdNid              `json:"servingPlmn,omitempty"`
 
-	// ServiveName Service names known to NRF
+	// ServiveName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 	ServiveName          *ServiceName                    `json:"serviveName,omitempty"`
 	Supi                 Supi                            `json:"supi"`
 	SuppFeat             SupportedFeatures               `json:"suppFeat"`
@@ -2250,7 +2260,7 @@ type AMPolicyPolicyAssociationRequest struct {
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
 
-// AMPolicyPolicyAssociationUpdateRequest defines model for AMPolicy-PolicyAssociationUpdateRequest.
+// AMPolicyPolicyAssociationUpdateRequest Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/PolicyAssociationUpdateRequest
 type AMPolicyPolicyAssociationUpdateRequest struct {
 	AccessTypes []AccessType `json:"accessTypes,omitempty"`
 
@@ -2279,8 +2289,10 @@ type AMPolicyPolicyAssociationUpdateRequest struct {
 	RatTypes    []RatType                `json:"ratTypes,omitempty"`
 	Rfsp        RfspIndex                `json:"rfsp,omitempty"`
 	ServAreaRes *ServiceAreaRestriction  `json:"servAreaRes,omitempty"`
-	SmfSelInfo  *SmfSelectionData        `json:"smfSelInfo"`
-	TraceReq    *TraceData               `json:"traceReq"`
+
+	// SmfSelInfo Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/SmfSelectionData
+	SmfSelInfo *SmfSelectionData `json:"smfSelInfo"`
+	TraceReq   *TraceData        `json:"traceReq"`
 
 	// Triggers Request Triggers that the NF service consumer observes.
 	Triggers             []AMPolicyRequestTrigger        `json:"triggers,omitempty"`
@@ -2290,14 +2302,16 @@ type AMPolicyPolicyAssociationUpdateRequest struct {
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
 
-// AMPolicyPolicyUpdate defines model for AMPolicy-PolicyUpdate.
+// AMPolicyPolicyUpdate Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/PolicyUpdate
 type AMPolicyPolicyUpdate struct {
 	// Pras Map of PRA information.
 	Pras        *map[string]*PresenceInfoRm `json:"pras"`
 	ResourceUri Uri                         `json:"resourceUri"`
 	Rfsp        RfspIndex                   `json:"rfsp,omitempty"`
 	ServAreaRes *ServiceAreaRestriction     `json:"servAreaRes,omitempty"`
-	SmfSelInfo  *SmfSelectionData           `json:"smfSelInfo"`
+
+	// SmfSelInfo Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/SmfSelectionData
+	SmfSelInfo *SmfSelectionData `json:"smfSelInfo"`
 
 	// Triggers Request Triggers that the PCF subscribes.
 	Triggers             *[]AMPolicyRequestTrigger       `json:"triggers"`
@@ -2307,17 +2321,20 @@ type AMPolicyPolicyUpdate struct {
 }
 
 // AMPolicyRequestTrigger Possible values are - LOC_CH: Location change (tracking area). The tracking area of the UE has changed. - PRA_CH: Change of UE presence in PRA. The AMF reports the current presence status of the UE in a Presence Reporting Area, and notifies that the UE enters/leaves the Presence Reporting Area. - SERV_AREA_CH: Service Area Restriction change. The UDM notifies the AMF that the subscribed service area restriction information has changed. - RFSP_CH: RFSP index change. The UDM notifies the AMF that the subscribed RFSP index has changed. - ALLOWED_NSSAI_CH: Allowed NSSAI change. The AMF notifies that the set of UE allowed S-NSSAIs has changed. - UE_AMBR_CH: UE-AMBR change. The UDM notifies the AMF that the subscribed UE-AMBR has changed. - SMF_SELECT_CH: SMF selection information change. The UE requested for an unsupported DNN or UE requested for a DNN within the list of DNN candidates for replacement per S-NSSAI. - ACCESS_TYPE_CH: Access Type change. The AMF notifies that the access type and the RAT type combinations available in the AMF for a UE with simultaneous 3GPP and non-3GPP connectivity has changed.
+//
+//	(Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/RequestTrigger)
 type AMPolicyRequestTrigger string
 
-// AMPolicyTerminationNotification defines model for AMPolicy-TerminationNotification.
+// AMPolicyTerminationNotification Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/TerminationNotification
 type AMPolicyTerminationNotification struct {
 	// Cause Possible values are - UNSPECIFIED: This value is used for unspecified reasons. - UE_SUBSCRIPTION: This value is used to indicate that the session needs to be terminated because the subscription of UE has changed (e.g. was removed). - INSUFFICIENT_RES: This value is used to indicate that the server is overloaded and needs to abort the session.
+	//  (Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/PolicyAssociationReleaseCause)
 	Cause                AMPolicyPolicyAssociationReleaseCause `json:"cause"`
 	ResourceUri          Uri                                   `json:"resourceUri"`
 	AdditionalProperties map[string]interface{}                `json:"-"`
 }
 
-// AccNetChId defines model for AccNetChId.
+// AccNetChId Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AccNetChId
 type AccNetChId struct {
 	AccNetChaIdValue ChargingId `json:"accNetChaIdValue"`
 
@@ -2329,14 +2346,14 @@ type AccNetChId struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AccNetChargingAddress Describes the network entity within the access network performing charging
+// AccNetChargingAddress Describes the network entity within the access network performing charging (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AccNetChargingAddress)
 type AccNetChargingAddress struct {
 	AnChargIpv4Addr      Ipv4Addr               `json:"anChargIpv4Addr,omitempty"`
 	AnChargIpv6Addr      *Ipv6Addr              `json:"anChargIpv6Addr,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AcceptableServiceInfo Indicates the maximum bandwidth that shall be authorized by the PCF.
+// AcceptableServiceInfo Indicates the maximum bandwidth that shall be authorized by the PCF. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AcceptableServiceInfo)
 type AcceptableServiceInfo struct {
 	AccBwMedComps        *map[string]MediaComponent `json:"accBwMedComps,omitempty"`
 	MarBwDl              BitRate                    `json:"marBwDl,omitempty"`
@@ -2344,25 +2361,29 @@ type AcceptableServiceInfo struct {
 	AdditionalProperties map[string]interface{}     `json:"-"`
 }
 
-// AccessAndMobilityData defines model for AccessAndMobilityData.
+// AccessAndMobilityData Original definition in TS29519_Exposure_Data.yaml#/components/schemas/AccessAndMobilityData
 type AccessAndMobilityData struct {
-	AccessType           AccessType      `json:"accessType,omitempty"`
-	ConnStates           *[]CmInfo       `json:"connStates,omitempty"`
-	ConnStatesTs         *DateTime       `json:"connStatesTs,omitempty"`
-	CurrentPlmn          *PlmnId         `json:"currentPlmn,omitempty"`
-	CurrentPlmnTs        *DateTime       `json:"currentPlmnTs,omitempty"`
-	Location             *UserLocation   `json:"location,omitempty"`
-	LocationTs           *DateTime       `json:"locationTs,omitempty"`
-	RatType              *[]RatType      `json:"ratType,omitempty"`
-	RatTypesTs           *DateTime       `json:"ratTypesTs,omitempty"`
+	AccessType    AccessType    `json:"accessType,omitempty"`
+	ConnStates    *[]CmInfo     `json:"connStates,omitempty"`
+	ConnStatesTs  *DateTime     `json:"connStatesTs,omitempty"`
+	CurrentPlmn   *PlmnId       `json:"currentPlmn,omitempty"`
+	CurrentPlmnTs *DateTime     `json:"currentPlmnTs,omitempty"`
+	Location      *UserLocation `json:"location,omitempty"`
+	LocationTs    *DateTime     `json:"locationTs,omitempty"`
+	RatType       *[]RatType    `json:"ratType,omitempty"`
+	RatTypesTs    *DateTime     `json:"ratTypesTs,omitempty"`
+
+	// ReachabilityStatus Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
 	ReachabilityStatus   *UeReachability `json:"reachabilityStatus,omitempty"`
 	ReachabilityStatusTs *DateTime       `json:"reachabilityStatusTs,omitempty"`
 	RegStates            *[]RmInfo       `json:"regStates,omitempty"`
 	RegStatesTs          *DateTime       `json:"regStatesTs,omitempty"`
 
 	// RoamingStatus True  The serving PLMN of the UE is different from the HPLMN of the UE; False  The serving PLMN of the UE is the HPLMN of the UE.
-	RoamingStatus        *bool                  `json:"roamingStatus,omitempty"`
-	RoamingStatusTs      *DateTime              `json:"roamingStatusTs,omitempty"`
+	RoamingStatus   *bool     `json:"roamingStatus,omitempty"`
+	RoamingStatusTs *DateTime `json:"roamingStatusTs,omitempty"`
+
+	// SmsOverNasStatus Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SmsSupport
 	SmsOverNasStatus     *SmsSupport            `json:"smsOverNasStatus,omitempty"`
 	SmsOverNasStatusTs   *DateTime              `json:"smsOverNasStatusTs,omitempty"`
 	SuppFeat             *SupportedFeatures     `json:"suppFeat,omitempty"`
@@ -2371,70 +2392,94 @@ type AccessAndMobilityData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AccessAndMobilitySubscriptionData defines model for AccessAndMobilitySubscriptionData.
+// AccessAndMobilitySubscriptionData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AccessAndMobilitySubscriptionData
 type AccessAndMobilitySubscriptionData struct {
-	ActiveTime                     *DurationSecRm                  `json:"activeTime"`
-	CMsisdn                        CMsisdn                         `json:"cMsisdn,omitempty"`
-	CagData                        *CagData                        `json:"cagData,omitempty"`
-	CoreNetworkTypeRestrictions    *[]CoreNetworkType              `json:"coreNetworkTypeRestrictions,omitempty"`
-	EcRestrictionDataNb            *bool                           `json:"ecRestrictionDataNb,omitempty"`
-	EcRestrictionDataWb            *UdmEcRestrictionDataWb         `json:"ecRestrictionDataWb,omitempty"`
-	EdrxParametersList             []EdrxParameters                `json:"edrxParametersList,omitempty"`
-	ExpectedUeBehaviourList        *ExpectedUeBehaviourData        `json:"expectedUeBehaviourList,omitempty"`
-	ForbiddenAreas                 *[]Area                         `json:"forbiddenAreas,omitempty"`
-	Gpsis                          *[]Gpsi                         `json:"gpsis,omitempty"`
-	IabOperationAllowed            *bool                           `json:"iabOperationAllowed,omitempty"`
-	InternalGroupIds               []GroupId                       `json:"internalGroupIds,omitempty"`
-	McsPriority                    *McsPriorityIndicator           `json:"mcsPriority,omitempty"`
-	MdtConfiguration               *MdtConfiguration               `json:"mdtConfiguration,omitempty"`
-	MdtUserConsent                 *MdtUserConsent                 `json:"mdtUserConsent,omitempty"`
-	MicoAllowed                    *MicoAllowed                    `json:"micoAllowed,omitempty"`
-	MpsPriority                    *MpsPriorityIndicator           `json:"mpsPriority,omitempty"`
-	NbIoTUePriority                *NbIoTUePriority                `json:"nbIoTUePriority,omitempty"`
-	Nssai                          *Nssai                          `json:"nssai"`
-	NssaiInclusionAllowed          *bool                           `json:"nssaiInclusionAllowed,omitempty"`
-	OdbPacketServices              *OdbPacketServices              `json:"odbPacketServices,omitempty"`
-	PrimaryRatRestrictions         *[]RatType                      `json:"primaryRatRestrictions,omitempty"`
-	PtwParametersList              []PtwParameters                 `json:"ptwParametersList,omitempty"`
-	RatRestrictions                *[]RatType                      `json:"ratRestrictions,omitempty"`
-	RfspIndex                      *RfspIndexRm                    `json:"rfspIndex"`
-	RgWirelineCharacteristics      *RgWirelineCharacteristics      `json:"rgWirelineCharacteristics,omitempty"`
-	SecondaryRatRestrictions       *[]RatType                      `json:"secondaryRatRestrictions,omitempty"`
-	ServiceAreaRestriction         *ServiceAreaRestriction         `json:"serviceAreaRestriction,omitempty"`
-	ServiceGapTime                 *DurationSec                    `json:"serviceGapTime,omitempty"`
-	SharedAmDataIds                []SharedDataId                  `json:"sharedAmDataIds,omitempty"`
-	SharedVnGroupDataIds           *map[string]SharedDataId        `json:"sharedVnGroupDataIds,omitempty"`
-	SorInfo                        *SorInfo                        `json:"sorInfo,omitempty"`
-	SorInfoExpectInd               *bool                           `json:"sorInfoExpectInd,omitempty"`
-	SorUpdateIndicatorList         []SorUpdateIndicator            `json:"sorUpdateIndicatorList,omitempty"`
-	SorafRetrieval                 *bool                           `json:"sorafRetrieval,omitempty"`
-	StnSr                          *StnSr                          `json:"stnSr,omitempty"`
-	SubsRegTimer                   *DurationSecRm                  `json:"subsRegTimer"`
-	SubscribedDnnList              *[]string                       `json:"subscribedDnnList,omitempty"`
-	SubscribedUeAmbr               *AmbrRm                         `json:"subscribedUeAmbr,omitempty"`
-	SupportedFeatures              *SupportedFeatures              `json:"supportedFeatures,omitempty"`
-	TraceData                      *TraceData                      `json:"traceData"`
-	UeUsageType                    *UeUsageType                    `json:"ueUsageType,omitempty"`
+	ActiveTime *DurationSecRm `json:"activeTime"`
+	CMsisdn    CMsisdn        `json:"cMsisdn,omitempty"`
+
+	// CagData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CagData
+	CagData                     *CagData           `json:"cagData,omitempty"`
+	CoreNetworkTypeRestrictions *[]CoreNetworkType `json:"coreNetworkTypeRestrictions,omitempty"`
+	EcRestrictionDataNb         *bool              `json:"ecRestrictionDataNb,omitempty"`
+
+	// EcRestrictionDataWb Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EcRestrictionDataWb
+	EcRestrictionDataWb *UdmEcRestrictionDataWb `json:"ecRestrictionDataWb,omitempty"`
+	EdrxParametersList  []EdrxParameters        `json:"edrxParametersList,omitempty"`
+
+	// ExpectedUeBehaviourList Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExpectedUeBehaviourData
+	ExpectedUeBehaviourList *ExpectedUeBehaviourData `json:"expectedUeBehaviourList,omitempty"`
+	ForbiddenAreas          *[]Area                  `json:"forbiddenAreas,omitempty"`
+	Gpsis                   *[]Gpsi                  `json:"gpsis,omitempty"`
+	IabOperationAllowed     *bool                    `json:"iabOperationAllowed,omitempty"`
+	InternalGroupIds        []GroupId                `json:"internalGroupIds,omitempty"`
+
+	// McsPriority Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/McsPriorityIndicator
+	McsPriority      *McsPriorityIndicator `json:"mcsPriority,omitempty"`
+	MdtConfiguration *MdtConfiguration     `json:"mdtConfiguration,omitempty"`
+
+	// MdtUserConsent Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MdtUserConsent
+	MdtUserConsent *MdtUserConsent `json:"mdtUserConsent,omitempty"`
+
+	// MicoAllowed Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MicoAllowed
+	MicoAllowed *MicoAllowed `json:"micoAllowed,omitempty"`
+
+	// MpsPriority Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MpsPriorityIndicator
+	MpsPriority *MpsPriorityIndicator `json:"mpsPriority,omitempty"`
+
+	// NbIoTUePriority Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/NbIoTUePriority
+	NbIoTUePriority *NbIoTUePriority `json:"nbIoTUePriority,omitempty"`
+
+	// Nssai Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/Nssai
+	Nssai                     *Nssai                     `json:"nssai"`
+	NssaiInclusionAllowed     *bool                      `json:"nssaiInclusionAllowed,omitempty"`
+	OdbPacketServices         *OdbPacketServices         `json:"odbPacketServices,omitempty"`
+	PrimaryRatRestrictions    *[]RatType                 `json:"primaryRatRestrictions,omitempty"`
+	PtwParametersList         []PtwParameters            `json:"ptwParametersList,omitempty"`
+	RatRestrictions           *[]RatType                 `json:"ratRestrictions,omitempty"`
+	RfspIndex                 *RfspIndexRm               `json:"rfspIndex"`
+	RgWirelineCharacteristics *RgWirelineCharacteristics `json:"rgWirelineCharacteristics,omitempty"`
+	SecondaryRatRestrictions  *[]RatType                 `json:"secondaryRatRestrictions,omitempty"`
+	ServiceAreaRestriction    *ServiceAreaRestriction    `json:"serviceAreaRestriction,omitempty"`
+	ServiceGapTime            *DurationSec               `json:"serviceGapTime,omitempty"`
+	SharedAmDataIds           []SharedDataId             `json:"sharedAmDataIds,omitempty"`
+	SharedVnGroupDataIds      *map[string]SharedDataId   `json:"sharedVnGroupDataIds,omitempty"`
+
+	// SorInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SorInfo
+	SorInfo                *SorInfo             `json:"sorInfo,omitempty"`
+	SorInfoExpectInd       *bool                `json:"sorInfoExpectInd,omitempty"`
+	SorUpdateIndicatorList []SorUpdateIndicator `json:"sorUpdateIndicatorList,omitempty"`
+	SorafRetrieval         *bool                `json:"sorafRetrieval,omitempty"`
+	StnSr                  *StnSr               `json:"stnSr,omitempty"`
+	SubsRegTimer           *DurationSecRm       `json:"subsRegTimer"`
+	SubscribedDnnList      *[]string            `json:"subscribedDnnList,omitempty"`
+	SubscribedUeAmbr       *AmbrRm              `json:"subscribedUeAmbr,omitempty"`
+	SupportedFeatures      *SupportedFeatures   `json:"supportedFeatures,omitempty"`
+	TraceData              *TraceData           `json:"traceData"`
+
+	// UeUsageType Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeUsageType
+	UeUsageType *UeUsageType `json:"ueUsageType,omitempty"`
+
+	// UpuInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UpuInfo
 	UpuInfo                        *UpuInfo                        `json:"upuInfo,omitempty"`
 	WirelineForbiddenAreas         *[]WirelineArea                 `json:"wirelineForbiddenAreas,omitempty"`
 	WirelineServiceAreaRestriction *WirelineServiceAreaRestriction `json:"wirelineServiceAreaRestriction,omitempty"`
 	AdditionalProperties           map[string]interface{}          `json:"-"`
 }
 
-// AccessNetChargingIdentifier Describes the access network charging identifier.
+// AccessNetChargingIdentifier Describes the access network charging identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AccessNetChargingIdentifier)
 type AccessNetChargingIdentifier struct {
 	AccNetChaIdValue     ChargingId             `json:"accNetChaIdValue"`
 	Flows                []Flows                `json:"flows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AccessNetworkId defines model for AccessNetworkId.
+// AccessNetworkId Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AccessNetworkId
 type AccessNetworkId string
 
-// AccessTech defines model for AccessTech.
+// AccessTech Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/AccessTech
 type AccessTech string
 
-// AccessTokenErr Error returned in the access token response message
+// AccessTokenErr Error returned in the access token response message (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
 type AccessTokenErr struct {
 	Error                AccessTokenErrError    `json:"error"`
 	ErrorDescription     *string                `json:"error_description,omitempty"`
@@ -2445,15 +2490,15 @@ type AccessTokenErr struct {
 // AccessTokenErrError defines model for AccessTokenErr.Error.
 type AccessTokenErrError string
 
-// AccessTokenReq Contains information related to the access token request
+// AccessTokenReq Contains information related to the access token request (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
 type AccessTokenReq struct {
 	GrantType    AccessTokenReqGrantType `json:"grant_type"`
 	NfInstanceId NfInstanceId            `json:"nfInstanceId"`
 
-	// NfType NF types known to NRF
+	// NfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	NfType *NFType `json:"nfType,omitempty"`
 
-	// RequesterFqdn Fully Qualified Domain Name
+	// RequesterFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	RequesterFqdn        *Fqdn           `json:"requesterFqdn,omitempty"`
 	RequesterPlmn        *PlmnId         `json:"requesterPlmn,omitempty"`
 	RequesterPlmnList    []PlmnId        `json:"requesterPlmnList,omitempty"`
@@ -2464,7 +2509,7 @@ type AccessTokenReq struct {
 	TargetNfServiceSetId *NfServiceSetId `json:"targetNfServiceSetId,omitempty"`
 	TargetNfSetId        *NfSetId        `json:"targetNfSetId,omitempty"`
 
-	// TargetNfType NF types known to NRF
+	// TargetNfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	TargetNfType         *NFType                `json:"targetNfType,omitempty"`
 	TargetNsiList        []string               `json:"targetNsiList,omitempty"`
 	TargetPlmn           *PlmnId                `json:"targetPlmn,omitempty"`
@@ -2475,7 +2520,7 @@ type AccessTokenReq struct {
 // AccessTokenReqGrantType defines model for AccessTokenReq.GrantType.
 type AccessTokenReqGrantType string
 
-// AccessTokenRsp Contains information related to the access token response
+// AccessTokenRsp Contains information related to the access token response (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenRsp)
 type AccessTokenRsp struct {
 	// AccessToken JWS Compact Serialized representation of JWS signed JSON object (AccessTokenClaims)
 	AccessToken          string                  `json:"access_token"`
@@ -2494,55 +2539,56 @@ type AccessType string
 // AccessTypeRm defines model for AccessTypeRm.
 type AccessTypeRm string
 
-// AccuUsageReport defines model for AccuUsageReport.
+// AccuUsageReport Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AccuUsageReport
 type AccuUsageReport struct {
 	NextTimeUsage *DurationSec `json:"nextTimeUsage,omitempty"`
 
-	// NextVolUsage Unsigned integer identifying a volume in units of bytes.
+	// NextVolUsage Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	NextVolUsage *Volume `json:"nextVolUsage,omitempty"`
 
-	// NextVolUsageDownlink Unsigned integer identifying a volume in units of bytes.
+	// NextVolUsageDownlink Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	NextVolUsageDownlink *Volume `json:"nextVolUsageDownlink,omitempty"`
 
-	// NextVolUsageUplink Unsigned integer identifying a volume in units of bytes.
+	// NextVolUsageUplink Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	NextVolUsageUplink *Volume `json:"nextVolUsageUplink,omitempty"`
 
 	// RefUmIds An id referencing UsageMonitoringData objects associated with this usage report.
 	RefUmIds  string       `json:"refUmIds"`
 	TimeUsage *DurationSec `json:"timeUsage,omitempty"`
 
-	// VolUsage Unsigned integer identifying a volume in units of bytes.
+	// VolUsage Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	VolUsage *Volume `json:"volUsage,omitempty"`
 
-	// VolUsageDownlink Unsigned integer identifying a volume in units of bytes.
+	// VolUsageDownlink Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	VolUsageDownlink *Volume `json:"volUsageDownlink,omitempty"`
 
-	// VolUsageUplink Unsigned integer identifying a volume in units of bytes.
+	// VolUsageUplink Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	VolUsageUplink       *Volume                `json:"volUsageUplink,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AccumulatedUsage defines model for AccumulatedUsage.
+// AccumulatedUsage Original definition in TS29122_CommonData.yaml#/components/schemas/AccumulatedUsage
 type AccumulatedUsage struct {
-	// DownlinkVolume Unsigned integer identifying a volume in units of bytes.
+	// DownlinkVolume Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	DownlinkVolume *Volume `json:"downlinkVolume,omitempty"`
 
-	// Duration Unsigned integer identifying a period of time in units of seconds.
+	// Duration Unsigned integer identifying a period of time in units of seconds. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSec)
 	Duration *TS29122DurationSec `json:"duration,omitempty"`
 
-	// TotalVolume Unsigned integer identifying a volume in units of bytes.
+	// TotalVolume Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	TotalVolume *Volume `json:"totalVolume,omitempty"`
 
-	// UplinkVolume Unsigned integer identifying a volume in units of bytes.
+	// UplinkVolume Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	UplinkVolume         *Volume                `json:"uplinkVolume,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AckInd defines model for AckInd.
+// AckInd Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/AckInd
 type AckInd = bool
 
-// AckOfNotify defines model for AckOfNotify.
+// AckOfNotify Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/AckOfNotify
 type AckOfNotify struct {
+	// AckResult Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/AfResultInfo
 	AckResult            AfResultInfo           `json:"ackResult"`
 	Gpsi                 Gpsi                   `json:"gpsi,omitempty"`
 	NotifId              string                 `json:"notifId"`
@@ -2550,12 +2596,18 @@ type AckOfNotify struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AcknowledgeInfo defines model for AcknowledgeInfo.
+// AcknowledgeInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AcknowledgeInfo
 type AcknowledgeInfo struct {
-	ProvisioningTime     DateTime               `json:"provisioningTime"`
-	SecuredPacket        *SecuredPacket         `json:"securedPacket,omitempty"`
-	SorMacIue            SorMac                 `json:"sorMacIue,omitempty"`
-	UeNotReachable       *bool                  `json:"ueNotReachable,omitempty"`
+	ProvisioningTime DateTime `json:"provisioningTime"`
+
+	// SecuredPacket Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SecuredPacket
+	SecuredPacket *SecuredPacket `json:"securedPacket,omitempty"`
+
+	// SorMacIue Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
+	SorMacIue      SorMac `json:"sorMacIue,omitempty"`
+	UeNotReachable *bool  `json:"ueNotReachable,omitempty"`
+
+	// UpuMacIue Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
 	UpuMacIue            UpuMac                 `json:"upuMacIue,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -2576,13 +2628,13 @@ type AcsInfoRm struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AdditionInfoEnableUeReachability defines model for AdditionInfoEnableUeReachability.
+// AdditionInfoEnableUeReachability Original definition in TS29518_Namf_MT.yaml#/components/schemas/AdditionInfoEnableUeReachability
 type AdditionInfoEnableUeReachability struct {
 	MaxWaitingTime       *DurationSec           `json:"maxWaitingTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AdditionalAccessInfo defines model for AdditionalAccessInfo.
+// AdditionalAccessInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
 type AdditionalAccessInfo struct {
 	AccessType           AccessType             `json:"accessType"`
 	RatType              *RatType               `json:"ratType,omitempty"`
@@ -2592,30 +2644,31 @@ type AdditionalAccessInfo struct {
 // AdditionalQosFlowInfo defines model for AdditionalQosFlowInfo.
 type AdditionalQosFlowInfo string
 
-// AdditionalSnssaiData defines model for AdditionalSnssaiData.
+// AdditionalSnssaiData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AdditionalSnssaiData
 type AdditionalSnssaiData struct {
 	RequiredAuthnAuthz   *bool                  `json:"requiredAuthnAuthz,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AdditionalTnlNb defines model for AdditionalTnlNb.
+// AdditionalTnlNb Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/AdditionalTnlNb
 type AdditionalTnlNb = int
 
-// AfAckInfo defines model for AfAckInfo.
+// AfAckInfo Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/AfAckInfo
 type AfAckInfo struct {
+	// AckResult Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/AfResultInfo
 	AckResult            AfResultInfo           `json:"ackResult"`
 	AfTransId            *string                `json:"afTransId,omitempty"`
 	Gpsi                 Gpsi                   `json:"gpsi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AfAppId Contains an AF application identifier.
+// AfAppId Contains an AF application identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId)
 type AfAppId = string
 
-// AfEvent defines model for AfEvent.
+// AfEvent Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
 type AfEvent string
 
-// AfEventExposureData AF Event Exposure data managed by a given NEF Instance
+// AfEventExposureData AF Event Exposure data managed by a given NEF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AfEventExposureData)
 type AfEventExposureData struct {
 	AfEvents             []string               `json:"afEvents"`
 	AfIds                []string               `json:"afIds,omitempty"`
@@ -2623,78 +2676,96 @@ type AfEventExposureData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AfEventNotification describes the event information delivered in the notification
+// AfEventNotification describes the event information delivered in the notification (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEventNotification)
 type AfEventNotification struct {
+	// Event Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
 	Event                AfEvent                `json:"event"`
 	Flows                []Flows                `json:"flows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AfEventSubscription describes the event information delivered in the subscription
+// AfEventSubscription describes the event information delivered in the subscription (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEventSubscription)
 type AfEventSubscription struct {
-	Event                AfEvent                `json:"event"`
+	// Event Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
+	Event AfEvent `json:"event"`
+
+	// NotifMethod Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfNotifMethod
 	NotifMethod          *AfNotifMethod         `json:"notifMethod,omitempty"`
 	RepPeriod            *DurationSec           `json:"repPeriod,omitempty"`
 	WaitTime             *DurationSec           `json:"waitTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AfExternal defines model for AfExternal.
+// AfExternal Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AfExternal
 type AfExternal struct {
-	AfId                      *AfId                      `json:"afId,omitempty"`
-	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
+	// AfId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AfId
+	AfId                  *AfId         `json:"afId,omitempty"`
+	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+
+	// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
-	ValidTimePeriod           *ValidTimePeriod           `json:"validTimePeriod,omitempty"`
-	AdditionalProperties      map[string]interface{}     `json:"-"`
+
+	// ValidTimePeriod Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ValidTimePeriod
+	ValidTimePeriod      *ValidTimePeriod       `json:"validTimePeriod,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AfId defines model for AfId.
+// AfId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AfId
 type AfId = string
 
-// AfNotifMethod defines model for AfNotifMethod.
+// AfNotifMethod Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfNotifMethod
 type AfNotifMethod string
 
-// AfRequestedData defines model for AfRequestedData.
+// AfRequestedData Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfRequestedData
 type AfRequestedData string
 
-// AfResultInfo defines model for AfResultInfo.
+// AfResultInfo Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/AfResultInfo
 type AfResultInfo struct {
 	// AfStatus Possible values are - SUCCESS: The application layer is ready or the relocation is completed. - TEMPORARY_CONGESTION: The application relocation fails due to temporary congestion. - RELOC_NO_ALLOWED: The application relocation fails because application relocation is not allowed. - OTHER: The application relocation fails due to other reason.
+	//  (Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/AfResultStatus)
 	AfStatus             AfResultStatus         `json:"afStatus"`
 	TrafficRoute         *RouteToLocation       `json:"trafficRoute"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AfResultStatus Possible values are - SUCCESS: The application layer is ready or the relocation is completed. - TEMPORARY_CONGESTION: The application relocation fails due to temporary congestion. - RELOC_NO_ALLOWED: The application relocation fails because application relocation is not allowed. - OTHER: The application relocation fails due to other reason.
+//
+//	(Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/AfResultStatus)
 type AfResultStatus string
 
-// AfRoutingRequirement describes the event information delivered in the subscription
+// AfRoutingRequirement describes the event information delivered in the subscription (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfRoutingRequirement)
 type AfRoutingRequirement struct {
 	AddrPreserInd *bool             `json:"addrPreserInd,omitempty"`
 	AppReloc      *bool             `json:"appReloc,omitempty"`
 	RouteToLocs   []RouteToLocation `json:"routeToLocs,omitempty"`
 
-	// SpVal describes explicitly the route to an Application location
-	SpVal                *SpatialValidity       `json:"spVal,omitempty"`
-	TempVals             []TemporalValidity     `json:"tempVals,omitempty"`
+	// SpVal describes explicitly the route to an Application location (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SpatialValidity)
+	SpVal    *SpatialValidity   `json:"spVal,omitempty"`
+	TempVals []TemporalValidity `json:"tempVals,omitempty"`
+
+	// UpPathChgSub Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent
 	UpPathChgSub         *UpPathChgEvent        `json:"upPathChgSub"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AfRoutingRequirementRm this data type is defined in the same way as the AfRoutingRequirement data type, but with the OpenAPI nullable property set to true and the spVal and tempVals attributes defined as removable.
+// AfRoutingRequirementRm this data type is defined in the same way as the AfRoutingRequirement data type, but with the OpenAPI nullable property set to true and the spVal and tempVals attributes defined as removable. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfRoutingRequirementRm)
 type AfRoutingRequirementRm struct {
 	AddrPreserInd *bool              `json:"addrPreserInd"`
 	AppReloc      *bool              `json:"appReloc,omitempty"`
 	RouteToLocs   *[]RouteToLocation `json:"routeToLocs"`
 
-	// SpVal this data type is defined in the same way as the SpatialValidity data type, but with the OpenAPI nullable property set to true
-	SpVal                *SpatialValidityRm     `json:"spVal"`
-	TempVals             *[]TemporalValidity    `json:"tempVals"`
+	// SpVal this data type is defined in the same way as the SpatialValidity data type, but with the OpenAPI nullable property set to true (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SpatialValidityRm)
+	SpVal    *SpatialValidityRm  `json:"spVal"`
+	TempVals *[]TemporalValidity `json:"tempVals"`
+
+	// UpPathChgSub Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent
 	UpPathChgSub         *UpPathChgEvent        `json:"upPathChgSub"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AfSigProtocol Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
 type AfSigProtocol struct {
 	union json.RawMessage
 }
@@ -2705,21 +2776,21 @@ type AfSigProtocol0 string
 // AfSigProtocol2 This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
 type AfSigProtocol2 = string
 
-// AllowedMtcProviderInfo defines model for AllowedMtcProviderInfo.
+// AllowedMtcProviderInfo Original definition in TS29505_Subscription_Data.yaml#/components/schemas/AllowedMtcProviderInfo
 type AllowedMtcProviderInfo struct {
 	AfId                   *string                 `json:"afId,omitempty"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
 	AdditionalProperties   map[string]interface{}  `json:"-"`
 }
 
-// AllowedNssai defines model for AllowedNssai.
+// AllowedNssai Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/AllowedNssai
 type AllowedNssai struct {
 	AccessType           AccessType             `json:"accessType"`
 	AllowedSnssaiList    []AllowedSnssai        `json:"allowedSnssaiList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AllowedSnssai defines model for AllowedSnssai.
+// AllowedSnssai Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/AllowedSnssai
 type AllowedSnssai struct {
 	AllowedSnssai        Snssai                 `json:"allowedSnssai"`
 	MappedHomeSnssai     *Snssai                `json:"mappedHomeSnssai,omitempty"`
@@ -2727,7 +2798,7 @@ type AllowedSnssai struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AlternativeQosProfile defines model for AlternativeQosProfile.
+// AlternativeQosProfile Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/AlternativeQosProfile
 type AlternativeQosProfile struct {
 	GuaFbrDl             BitRate                `json:"guaFbrDl,omitempty"`
 	GuaFbrUl             BitRate                `json:"guaFbrUl,omitempty"`
@@ -2737,7 +2808,7 @@ type AlternativeQosProfile struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmPolicyData Contains the AM policy data for a given subscriber.
+// AmPolicyData Contains the AM policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/AmPolicyData)
 type AmPolicyData struct {
 	PraInfos             *map[string]PresenceInfo `json:"praInfos,omitempty"`
 	SubscCats            []string                 `json:"subscCats,omitempty"`
@@ -2758,118 +2829,153 @@ type AmbrRm struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Amf3GppAccessRegistration defines model for Amf3GppAccessRegistration.
+// Amf3GppAccessRegistration Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/Amf3GppAccessRegistration
 type Amf3GppAccessRegistration struct {
 	AmfEeSubscriptionId *Uri         `json:"amfEeSubscriptionId,omitempty"`
 	AmfInstanceId       NfInstanceId `json:"amfInstanceId"`
 
-	// AmfServiceNameDereg Service names known to NRF
+	// AmfServiceNameDereg Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 	AmfServiceNameDereg *ServiceName `json:"amfServiceNameDereg,omitempty"`
 
-	// AmfServiceNamePcscfRest Service names known to NRF
-	AmfServiceNamePcscfRest     *ServiceName           `json:"amfServiceNamePcscfRest,omitempty"`
-	BackupAmfInfo               []BackupAmfInfo        `json:"backupAmfInfo,omitempty"`
-	ContextInfo                 *ContextInfo           `json:"contextInfo,omitempty"`
-	DeregCallbackUri            Uri                    `json:"deregCallbackUri"`
-	DrFlag                      *DualRegistrationFlag  `json:"drFlag,omitempty"`
-	EpsInterworkingInfo         *EpsInterworkingInfo   `json:"epsInterworkingInfo,omitempty"`
-	Guami                       Guami                  `json:"guami"`
-	ImsVoPs                     *ImsVoPs               `json:"imsVoPs,omitempty"`
-	InitialRegistrationInd      *bool                  `json:"initialRegistrationInd,omitempty"`
-	NoEeSubscriptionInd         *bool                  `json:"noEeSubscriptionInd,omitempty"`
-	PcscfRestorationCallbackUri *Uri                   `json:"pcscfRestorationCallbackUri,omitempty"`
-	Pei                         Pei                    `json:"pei,omitempty"`
-	PurgeFlag                   *PurgeFlag             `json:"purgeFlag,omitempty"`
-	RatType                     RatType                `json:"ratType"`
-	RegistrationTime            *DateTime              `json:"registrationTime,omitempty"`
-	Supi                        Supi                   `json:"supi,omitempty"`
-	SupportedFeatures           *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UeSrvccCapability           *bool                  `json:"ueSrvccCapability,omitempty"`
-	UrrpIndicator               *bool                  `json:"urrpIndicator,omitempty"`
-	VgmlcAddress                *VgmlcAddress          `json:"vgmlcAddress,omitempty"`
-	AdditionalProperties        map[string]interface{} `json:"-"`
+	// AmfServiceNamePcscfRest Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
+	AmfServiceNamePcscfRest *ServiceName    `json:"amfServiceNamePcscfRest,omitempty"`
+	BackupAmfInfo           []BackupAmfInfo `json:"backupAmfInfo,omitempty"`
+
+	// ContextInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
+	ContextInfo      *ContextInfo `json:"contextInfo,omitempty"`
+	DeregCallbackUri Uri          `json:"deregCallbackUri"`
+
+	// DrFlag Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/DualRegistrationFlag
+	DrFlag *DualRegistrationFlag `json:"drFlag,omitempty"`
+
+	// EpsInterworkingInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/EpsInterworkingInfo
+	EpsInterworkingInfo *EpsInterworkingInfo `json:"epsInterworkingInfo,omitempty"`
+	Guami               Guami                `json:"guami"`
+
+	// ImsVoPs Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/ImsVoPs
+	ImsVoPs                     *ImsVoPs `json:"imsVoPs,omitempty"`
+	InitialRegistrationInd      *bool    `json:"initialRegistrationInd,omitempty"`
+	NoEeSubscriptionInd         *bool    `json:"noEeSubscriptionInd,omitempty"`
+	PcscfRestorationCallbackUri *Uri     `json:"pcscfRestorationCallbackUri,omitempty"`
+	Pei                         Pei      `json:"pei,omitempty"`
+
+	// PurgeFlag Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/PurgeFlag
+	PurgeFlag         *PurgeFlag         `json:"purgeFlag,omitempty"`
+	RatType           RatType            `json:"ratType"`
+	RegistrationTime  *DateTime          `json:"registrationTime,omitempty"`
+	Supi              Supi               `json:"supi,omitempty"`
+	SupportedFeatures *SupportedFeatures `json:"supportedFeatures,omitempty"`
+	UeSrvccCapability *bool              `json:"ueSrvccCapability,omitempty"`
+	UrrpIndicator     *bool              `json:"urrpIndicator,omitempty"`
+
+	// VgmlcAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/VgmlcAddress
+	VgmlcAddress         *VgmlcAddress          `json:"vgmlcAddress,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Amf3GppAccessRegistrationModification defines model for Amf3GppAccessRegistrationModification.
+// Amf3GppAccessRegistrationModification Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/Amf3GppAccessRegistrationModification
 type Amf3GppAccessRegistrationModification struct {
-	BackupAmfInfo        *[]BackupAmfInfo       `json:"backupAmfInfo,omitempty"`
-	EpsInterworkingInfo  *EpsInterworkingInfo   `json:"epsInterworkingInfo,omitempty"`
-	Guami                Guami                  `json:"guami"`
-	ImsVoPs              *ImsVoPs               `json:"imsVoPs,omitempty"`
-	Pei                  Pei                    `json:"pei,omitempty"`
+	BackupAmfInfo *[]BackupAmfInfo `json:"backupAmfInfo,omitempty"`
+
+	// EpsInterworkingInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/EpsInterworkingInfo
+	EpsInterworkingInfo *EpsInterworkingInfo `json:"epsInterworkingInfo,omitempty"`
+	Guami               Guami                `json:"guami"`
+
+	// ImsVoPs Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/ImsVoPs
+	ImsVoPs *ImsVoPs `json:"imsVoPs,omitempty"`
+	Pei     Pei      `json:"pei,omitempty"`
+
+	// PurgeFlag Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/PurgeFlag
 	PurgeFlag            *PurgeFlag             `json:"purgeFlag,omitempty"`
 	UeSrvccCapability    *bool                  `json:"ueSrvccCapability"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfCond Subscription to a set of AMFs, based on AMF Set Id and/or AMF Region Id
+// AmfCond Subscription to a set of AMFs, based on AMF Set Id and/or AMF Region Id (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AmfCond)
 type AmfCond struct {
 	AmfRegionId          AmfRegionId            `json:"amfRegionId,omitempty"`
 	AmfSetId             AmfSetId               `json:"amfSetId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfCreateEventSubscription defines model for AmfCreateEventSubscription.
+// AmfCreateEventSubscription Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfCreateEventSubscription
 type AmfCreateEventSubscription struct {
-	OldGuami             *Guami                 `json:"oldGuami,omitempty"`
+	OldGuami *Guami `json:"oldGuami,omitempty"`
+
+	// Subscription Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventSubscription
 	Subscription         AmfEventSubscription   `json:"subscription"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfCreatedEventSubscription defines model for AmfCreatedEventSubscription.
+// AmfCreatedEventSubscription Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfCreatedEventSubscription
 type AmfCreatedEventSubscription struct {
-	ReportList           []AmfEventReport       `json:"reportList,omitempty"`
+	ReportList []AmfEventReport `json:"reportList,omitempty"`
+
+	// Subscription Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventSubscription
 	Subscription         AmfEventSubscription   `json:"subscription"`
 	SubscriptionId       Uri                    `json:"subscriptionId"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfDeregInfo defines model for AmfDeregInfo.
+// AmfDeregInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/AmfDeregInfo
 type AmfDeregInfo struct {
+	// DeregReason Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/DeregistrationReason
 	DeregReason          DeregistrationReason   `json:"deregReason"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfEvent defines model for AmfEvent.
+// AmfEvent Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEvent
 type AmfEvent struct {
-	AreaList               []AmfEventArea         `json:"areaList,omitempty"`
-	IdleStatusInd          *bool                  `json:"idleStatusInd,omitempty"`
-	ImmediateFlag          *bool                  `json:"immediateFlag,omitempty"`
-	LocationFilterList     []LocationFilter       `json:"locationFilterList,omitempty"`
-	MaxReports             *int                   `json:"maxReports,omitempty"`
-	MaxResponseTime        *DurationSec           `json:"maxResponseTime,omitempty"`
-	NextPeriodicReportTime *DateTime              `json:"nextPeriodicReportTime,omitempty"`
-	ReachabilityFilter     *ReachabilityFilter    `json:"reachabilityFilter,omitempty"`
-	RefId                  *UdmEEReferenceId      `json:"refId,omitempty"`
-	ReportUeReachable      *bool                  `json:"reportUeReachable,omitempty"`
-	TrafficDescriptorList  []TrafficDescriptor    `json:"trafficDescriptorList,omitempty"`
-	Type                   AmfEventType           `json:"type"`
-	AdditionalProperties   map[string]interface{} `json:"-"`
+	AreaList               []AmfEventArea   `json:"areaList,omitempty"`
+	IdleStatusInd          *bool            `json:"idleStatusInd,omitempty"`
+	ImmediateFlag          *bool            `json:"immediateFlag,omitempty"`
+	LocationFilterList     []LocationFilter `json:"locationFilterList,omitempty"`
+	MaxReports             *int             `json:"maxReports,omitempty"`
+	MaxResponseTime        *DurationSec     `json:"maxResponseTime,omitempty"`
+	NextPeriodicReportTime *DateTime        `json:"nextPeriodicReportTime,omitempty"`
+
+	// ReachabilityFilter Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/ReachabilityFilter
+	ReachabilityFilter *ReachabilityFilter `json:"reachabilityFilter,omitempty"`
+
+	// RefId Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
+	RefId                 *UdmEEReferenceId   `json:"refId,omitempty"`
+	ReportUeReachable     *bool               `json:"reportUeReachable,omitempty"`
+	TrafficDescriptorList []TrafficDescriptor `json:"trafficDescriptorList,omitempty"`
+
+	// Type Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventType
+	Type                 AmfEventType           `json:"type"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfEventArea defines model for AmfEventArea.
+// AmfEventArea Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventArea
 type AmfEventArea struct {
-	LadnInfo             *LadnInfo              `json:"ladnInfo,omitempty"`
+	// LadnInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/LadnInfo
+	LadnInfo *LadnInfo `json:"ladnInfo,omitempty"`
+
+	// NsiId Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId
 	NsiId                *NsiId                 `json:"nsiId,omitempty"`
 	PresenceInfo         *PresenceInfo          `json:"presenceInfo,omitempty"`
 	SNssai               *Snssai                `json:"sNssai,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfEventMode defines model for AmfEventMode.
+// AmfEventMode Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventMode
 type AmfEventMode struct {
-	Expiry               *DateTime              `json:"expiry,omitempty"`
-	MaxReports           *int                   `json:"maxReports,omitempty"`
-	RepPeriod            *DurationSec           `json:"repPeriod,omitempty"`
-	SampRatio            SamplingRatio          `json:"sampRatio,omitempty"`
+	Expiry     *DateTime     `json:"expiry,omitempty"`
+	MaxReports *int          `json:"maxReports,omitempty"`
+	RepPeriod  *DurationSec  `json:"repPeriod,omitempty"`
+	SampRatio  SamplingRatio `json:"sampRatio,omitempty"`
+
+	// Trigger Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventTrigger
 	Trigger              AmfEventTrigger        `json:"trigger"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfEventNotification defines model for AmfEventNotification.
+// AmfEventNotification Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventNotification
 type AmfEventNotification struct {
+	// EventSubsSyncInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventSubsSyncInfo
 	EventSubsSyncInfo             *AmfEventSubsSyncInfo  `json:"eventSubsSyncInfo,omitempty"`
 	NotifyCorrelationId           *string                `json:"notifyCorrelationId,omitempty"`
 	ReportList                    []AmfEventReport       `json:"reportList,omitempty"`
@@ -2877,38 +2983,52 @@ type AmfEventNotification struct {
 	AdditionalProperties          map[string]interface{} `json:"-"`
 }
 
-// AmfEventReport defines model for AmfEventReport.
+// AmfEventReport Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventReport
 type AmfEventReport struct {
-	N5gsUserStateList    []N5GsUserStateInfo       `json:"5gsUserStateList,omitempty"`
-	AccessTypeList       []AccessType              `json:"accessTypeList,omitempty"`
-	AdditionalLocation   *UserLocation             `json:"additionalLocation,omitempty"`
-	AnyUe                *bool                     `json:"anyUe,omitempty"`
-	AreaList             []AmfEventArea            `json:"areaList,omitempty"`
-	CmInfoList           []CmInfo                  `json:"cmInfoList,omitempty"`
-	CommFailure          *CommunicationFailure     `json:"commFailure,omitempty"`
-	Gpsi                 Gpsi                      `json:"gpsi,omitempty"`
-	IdleStatusIndication *IdleStatusIndication     `json:"idleStatusIndication,omitempty"`
-	Location             *UserLocation             `json:"location,omitempty"`
-	LossOfConnectReason  *LossOfConnectivityReason `json:"lossOfConnectReason,omitempty"`
-	MaxAvailabilityTime  *DateTime                 `json:"maxAvailabilityTime,omitempty"`
-	NumberOfUes          *int                      `json:"numberOfUes,omitempty"`
-	Pei                  Pei                       `json:"pei,omitempty"`
-	Reachability         *UeReachability           `json:"reachability,omitempty"`
-	RefId                *UdmEEReferenceId         `json:"refId,omitempty"`
-	RegistrationNumber   *int                      `json:"registrationNumber,omitempty"`
-	RmInfoList           []RmInfo                  `json:"rmInfoList,omitempty"`
-	State                AmfEventState             `json:"state"`
-	SubscriptionId       *Uri                      `json:"subscriptionId,omitempty"`
-	Supi                 Supi                      `json:"supi,omitempty"`
-	TimeStamp            DateTime                  `json:"timeStamp"`
-	Timezone             *TimeZone                 `json:"timezone,omitempty"`
-	Type                 AmfEventType              `json:"type"`
-	TypeCode             string                    `json:"typeCode,omitempty"`
-	UeIdExt              []UEIdExt                 `json:"ueIdExt,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"-"`
+	N5gsUserStateList  []N5GsUserStateInfo `json:"5gsUserStateList,omitempty"`
+	AccessTypeList     []AccessType        `json:"accessTypeList,omitempty"`
+	AdditionalLocation *UserLocation       `json:"additionalLocation,omitempty"`
+	AnyUe              *bool               `json:"anyUe,omitempty"`
+	AreaList           []AmfEventArea      `json:"areaList,omitempty"`
+	CmInfoList         []CmInfo            `json:"cmInfoList,omitempty"`
+
+	// CommFailure Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/CommunicationFailure
+	CommFailure *CommunicationFailure `json:"commFailure,omitempty"`
+	Gpsi        Gpsi                  `json:"gpsi,omitempty"`
+
+	// IdleStatusIndication Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/IdleStatusIndication
+	IdleStatusIndication *IdleStatusIndication `json:"idleStatusIndication,omitempty"`
+	Location             *UserLocation         `json:"location,omitempty"`
+
+	// LossOfConnectReason Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/LossOfConnectivityReason
+	LossOfConnectReason *LossOfConnectivityReason `json:"lossOfConnectReason,omitempty"`
+	MaxAvailabilityTime *DateTime                 `json:"maxAvailabilityTime,omitempty"`
+	NumberOfUes         *int                      `json:"numberOfUes,omitempty"`
+	Pei                 Pei                       `json:"pei,omitempty"`
+
+	// Reachability Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
+	Reachability *UeReachability `json:"reachability,omitempty"`
+
+	// RefId Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
+	RefId              *UdmEEReferenceId `json:"refId,omitempty"`
+	RegistrationNumber *int              `json:"registrationNumber,omitempty"`
+	RmInfoList         []RmInfo          `json:"rmInfoList,omitempty"`
+
+	// State Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventState
+	State          AmfEventState `json:"state"`
+	SubscriptionId *Uri          `json:"subscriptionId,omitempty"`
+	Supi           Supi          `json:"supi,omitempty"`
+	TimeStamp      DateTime      `json:"timeStamp"`
+	Timezone       *TimeZone     `json:"timezone,omitempty"`
+
+	// Type Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventType
+	Type                 AmfEventType           `json:"type"`
+	TypeCode             string                 `json:"typeCode,omitempty"`
+	UeIdExt              []UEIdExt              `json:"ueIdExt,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfEventState defines model for AmfEventState.
+// AmfEventState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventState
 type AmfEventState struct {
 	Active               bool                   `json:"active"`
 	RemainDuration       *DurationSec           `json:"remainDuration,omitempty"`
@@ -2916,25 +3036,27 @@ type AmfEventState struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfEventSubsSyncInfo defines model for AmfEventSubsSyncInfo.
+// AmfEventSubsSyncInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventSubsSyncInfo
 type AmfEventSubsSyncInfo struct {
 	SubscriptionList     []AmfEventSubscriptionInfo `json:"subscriptionList"`
 	AdditionalProperties map[string]interface{}     `json:"-"`
 }
 
-// AmfEventSubscription defines model for AmfEventSubscription.
+// AmfEventSubscription Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventSubscription
 type AmfEventSubscription struct {
-	AnyUE               *bool         `json:"anyUE,omitempty"`
-	EventList           []AmfEvent    `json:"eventList"`
-	EventNotifyUri      Uri           `json:"eventNotifyUri"`
-	Gpsi                Gpsi          `json:"gpsi,omitempty"`
-	GroupId             GroupId       `json:"groupId,omitempty"`
-	NfId                NfInstanceId  `json:"nfId"`
-	NotifyCorrelationId string        `json:"notifyCorrelationId"`
-	Options             *AmfEventMode `json:"options,omitempty"`
-	Pei                 Pei           `json:"pei,omitempty"`
+	AnyUE               *bool        `json:"anyUE,omitempty"`
+	EventList           []AmfEvent   `json:"eventList"`
+	EventNotifyUri      Uri          `json:"eventNotifyUri"`
+	Gpsi                Gpsi         `json:"gpsi,omitempty"`
+	GroupId             GroupId      `json:"groupId,omitempty"`
+	NfId                NfInstanceId `json:"nfId"`
+	NotifyCorrelationId string       `json:"notifyCorrelationId"`
 
-	// SourceNfType NF types known to NRF
+	// Options Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventMode
+	Options *AmfEventMode `json:"options,omitempty"`
+	Pei     Pei           `json:"pei,omitempty"`
+
+	// SourceNfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	SourceNfType                  *NFType                `json:"sourceNfType,omitempty"`
 	SubsChangeNotifyCorrelationId *string                `json:"subsChangeNotifyCorrelationId,omitempty"`
 	SubsChangeNotifyUri           *Uri                   `json:"subsChangeNotifyUri,omitempty"`
@@ -2942,19 +3064,19 @@ type AmfEventSubscription struct {
 	AdditionalProperties          map[string]interface{} `json:"-"`
 }
 
-// AmfEventSubscriptionAddInfo defines model for AmfEventSubscriptionAddInfo.
+// AmfEventSubscriptionAddInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AmfEventSubscriptionAddInfo
 type AmfEventSubscriptionAddInfo struct {
 	// AoiStateList Map of subscribed Area of Interest (AoI) Event State in the old AMF. The JSON pointer to an AmfEventArea element in the areaList IE of the AmfEvent data type shall be the key of the map.
 	AoiStateList *map[string]AreaOfInterestEventState `json:"aoiStateList,omitempty"`
 	BindingInfo  []string                             `json:"bindingInfo,omitempty"`
 	EventSyncInd *bool                                `json:"eventSyncInd,omitempty"`
 
-	// SubscribingNfType NF types known to NRF
+	// SubscribingNfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	SubscribingNfType    *NFType                `json:"subscribingNfType,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfEventSubscriptionInfo defines model for AmfEventSubscriptionInfo.
+// AmfEventSubscriptionInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventSubscriptionInfo
 type AmfEventSubscriptionInfo struct {
 	NotifyCorrelationId  *string                `json:"notifyCorrelationId,omitempty"`
 	OldSubId             *Uri                   `json:"oldSubId,omitempty"`
@@ -2963,16 +3085,16 @@ type AmfEventSubscriptionInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfEventTrigger defines model for AmfEventTrigger.
+// AmfEventTrigger Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventTrigger
 type AmfEventTrigger string
 
-// AmfEventType defines model for AmfEventType.
+// AmfEventType Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventType
 type AmfEventType string
 
 // AmfId defines model for AmfId.
 type AmfId = string
 
-// AmfInfo Information of an AMF NF Instance
+// AmfInfo Information of an AMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AmfInfo)
 type AmfInfo struct {
 	AmfRegionId          AmfRegionId `json:"amfRegionId"`
 	AmfSetId             AmfSetId    `json:"amfSetId"`
@@ -2980,7 +3102,7 @@ type AmfInfo struct {
 	BackupInfoAmfRemoval []Guami     `json:"backupInfoAmfRemoval,omitempty"`
 	GuamiList            []Guami     `json:"guamiList"`
 
-	// N2InterfaceAmfInfo AMF N2 interface information
+	// N2InterfaceAmfInfo AMF N2 interface information (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/N2InterfaceAmfInfo)
 	N2InterfaceAmfInfo   *N2InterfaceAmfInfo    `json:"n2InterfaceAmfInfo,omitempty"`
 	TaiList              []Tai                  `json:"taiList,omitempty"`
 	TaiRangeList         []TaiRange             `json:"taiRangeList,omitempty"`
@@ -2990,40 +3112,52 @@ type AmfInfo struct {
 // AmfName defines model for AmfName.
 type AmfName = string
 
-// AmfNon3GppAccessRegistration defines model for AmfNon3GppAccessRegistration.
+// AmfNon3GppAccessRegistration Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/AmfNon3GppAccessRegistration
 type AmfNon3GppAccessRegistration struct {
 	AmfEeSubscriptionId *Uri         `json:"amfEeSubscriptionId,omitempty"`
 	AmfInstanceId       NfInstanceId `json:"amfInstanceId"`
 
-	// AmfServiceNameDereg Service names known to NRF
+	// AmfServiceNameDereg Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 	AmfServiceNameDereg *ServiceName `json:"amfServiceNameDereg,omitempty"`
 
-	// AmfServiceNamePcscfRest Service names known to NRF
-	AmfServiceNamePcscfRest     *ServiceName           `json:"amfServiceNamePcscfRest,omitempty"`
-	BackupAmfInfo               []BackupAmfInfo        `json:"backupAmfInfo,omitempty"`
-	ContextInfo                 *ContextInfo           `json:"contextInfo,omitempty"`
-	DeregCallbackUri            Uri                    `json:"deregCallbackUri"`
-	Guami                       Guami                  `json:"guami"`
-	ImsVoPs                     ImsVoPs                `json:"imsVoPs"`
-	NoEeSubscriptionInd         *bool                  `json:"noEeSubscriptionInd,omitempty"`
-	PcscfRestorationCallbackUri *Uri                   `json:"pcscfRestorationCallbackUri,omitempty"`
-	Pei                         Pei                    `json:"pei,omitempty"`
-	PurgeFlag                   *PurgeFlag             `json:"purgeFlag,omitempty"`
-	RatType                     RatType                `json:"ratType"`
-	RegistrationTime            *DateTime              `json:"registrationTime,omitempty"`
-	Supi                        Supi                   `json:"supi,omitempty"`
-	SupportedFeatures           *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UrrpIndicator               *bool                  `json:"urrpIndicator,omitempty"`
-	VgmlcAddress                *VgmlcAddress          `json:"vgmlcAddress,omitempty"`
-	AdditionalProperties        map[string]interface{} `json:"-"`
+	// AmfServiceNamePcscfRest Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
+	AmfServiceNamePcscfRest *ServiceName    `json:"amfServiceNamePcscfRest,omitempty"`
+	BackupAmfInfo           []BackupAmfInfo `json:"backupAmfInfo,omitempty"`
+
+	// ContextInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
+	ContextInfo      *ContextInfo `json:"contextInfo,omitempty"`
+	DeregCallbackUri Uri          `json:"deregCallbackUri"`
+	Guami            Guami        `json:"guami"`
+
+	// ImsVoPs Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/ImsVoPs
+	ImsVoPs                     ImsVoPs `json:"imsVoPs"`
+	NoEeSubscriptionInd         *bool   `json:"noEeSubscriptionInd,omitempty"`
+	PcscfRestorationCallbackUri *Uri    `json:"pcscfRestorationCallbackUri,omitempty"`
+	Pei                         Pei     `json:"pei,omitempty"`
+
+	// PurgeFlag Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/PurgeFlag
+	PurgeFlag         *PurgeFlag         `json:"purgeFlag,omitempty"`
+	RatType           RatType            `json:"ratType"`
+	RegistrationTime  *DateTime          `json:"registrationTime,omitempty"`
+	Supi              Supi               `json:"supi,omitempty"`
+	SupportedFeatures *SupportedFeatures `json:"supportedFeatures,omitempty"`
+	UrrpIndicator     *bool              `json:"urrpIndicator,omitempty"`
+
+	// VgmlcAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/VgmlcAddress
+	VgmlcAddress         *VgmlcAddress          `json:"vgmlcAddress,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfNon3GppAccessRegistrationModification defines model for AmfNon3GppAccessRegistrationModification.
+// AmfNon3GppAccessRegistrationModification Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/AmfNon3GppAccessRegistrationModification
 type AmfNon3GppAccessRegistrationModification struct {
-	BackupAmfInfo        *[]BackupAmfInfo       `json:"backupAmfInfo,omitempty"`
-	Guami                Guami                  `json:"guami"`
-	ImsVoPs              *ImsVoPs               `json:"imsVoPs,omitempty"`
-	Pei                  Pei                    `json:"pei,omitempty"`
+	BackupAmfInfo *[]BackupAmfInfo `json:"backupAmfInfo,omitempty"`
+	Guami         Guami            `json:"guami"`
+
+	// ImsVoPs Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/ImsVoPs
+	ImsVoPs *ImsVoPs `json:"imsVoPs,omitempty"`
+	Pei     Pei      `json:"pei,omitempty"`
+
+	// PurgeFlag Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/PurgeFlag
 	PurgeFlag            *PurgeFlag             `json:"purgeFlag,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -3034,22 +3168,24 @@ type AmfRegionId = string
 // AmfSetId defines model for AmfSetId.
 type AmfSetId = string
 
-// AmfStatusChangeNotification defines model for AmfStatusChangeNotification.
+// AmfStatusChangeNotification Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AmfStatusChangeNotification
 type AmfStatusChangeNotification struct {
 	AmfStatusInfoList    []AmfStatusInfo        `json:"amfStatusInfoList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfStatusInfo defines model for AmfStatusInfo.
+// AmfStatusInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AmfStatusInfo
 type AmfStatusInfo struct {
-	GuamiList            []Guami                `json:"guamiList"`
+	GuamiList []Guami `json:"guamiList"`
+
+	// StatusChange Original definition in TS29518_Namf_Communication.yaml#/components/schemas/StatusChange
 	StatusChange         StatusChange           `json:"statusChange"`
 	TargetAmfFailure     *AmfName               `json:"targetAmfFailure,omitempty"`
 	TargetAmfRemoval     *AmfName               `json:"targetAmfRemoval,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AmfSubscriptionInfo defines model for AmfSubscriptionInfo.
+// AmfSubscriptionInfo Original definition in TS29505_Subscription_Data.yaml#/components/schemas/AmfSubscriptionInfo
 type AmfSubscriptionInfo struct {
 	AmfInstanceId                 NfInstanceId           `json:"amfInstanceId"`
 	SubsChangeNotifyCorrelationId *string                `json:"subsChangeNotifyCorrelationId,omitempty"`
@@ -3057,7 +3193,7 @@ type AmfSubscriptionInfo struct {
 	AdditionalProperties          map[string]interface{} `json:"-"`
 }
 
-// AmfUpdateEventOptionItem defines model for AmfUpdateEventOptionItem.
+// AmfUpdateEventOptionItem Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfUpdateEventOptionItem
 type AmfUpdateEventOptionItem struct {
 	Op                   AmfUpdateEventOptionItemOp `json:"op"`
 	Path                 string                     `json:"path"`
@@ -3068,35 +3204,39 @@ type AmfUpdateEventOptionItem struct {
 // AmfUpdateEventOptionItemOp defines model for AmfUpdateEventOptionItem.Op.
 type AmfUpdateEventOptionItemOp string
 
-// AmfUpdateEventSubscriptionItem defines model for AmfUpdateEventSubscriptionItem.
+// AmfUpdateEventSubscriptionItem Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfUpdateEventSubscriptionItem
 type AmfUpdateEventSubscriptionItem struct {
-	Op                   AmfUpdateEventSubscriptionItemOp `json:"op"`
-	Path                 string                           `json:"path"`
-	Value                *AmfEvent                        `json:"value,omitempty"`
-	AdditionalProperties map[string]interface{}           `json:"-"`
+	Op   AmfUpdateEventSubscriptionItemOp `json:"op"`
+	Path string                           `json:"path"`
+
+	// Value Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEvent
+	Value                *AmfEvent              `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // AmfUpdateEventSubscriptionItemOp defines model for AmfUpdateEventSubscriptionItem.Op.
 type AmfUpdateEventSubscriptionItemOp string
 
-// AmfUpdatedEventSubscription defines model for AmfUpdatedEventSubscription.
+// AmfUpdatedEventSubscription Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfUpdatedEventSubscription
 type AmfUpdatedEventSubscription struct {
-	ReportList           []AmfEventReport       `json:"reportList,omitempty"`
+	ReportList []AmfEventReport `json:"reportList,omitempty"`
+
+	// Subscription Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventSubscription
 	Subscription         AmfEventSubscription   `json:"subscription"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AnGwAddress describes the address of the access network gateway control node
+// AnGwAddress describes the address of the access network gateway control node (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AnGwAddress)
 type AnGwAddress struct {
 	AnGwIpv4Addr         Ipv4Addr               `json:"anGwIpv4Addr,omitempty"`
 	AnGwIpv6Addr         *Ipv6Addr              `json:"anGwIpv6Addr,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AnNodeType Access Network Node Type (gNB, ng-eNB...)
+// AnNodeType Access Network Node Type (gNB, ng-eNB...) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AnNodeType)
 type AnNodeType string
 
-// AnchorSmfFeatures defines model for AnchorSmfFeatures.
+// AnchorSmfFeatures Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/AnchorSmfFeatures
 type AnchorSmfFeatures struct {
 	PsetrSupportInd      *bool                  `json:"psetrSupportInd,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -3112,14 +3252,16 @@ type ApnRateStatus struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AppDescriptor defines model for AppDescriptor.
+// AppDescriptor Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AppDescriptor
 type AppDescriptor struct {
-	AppId                *string                `json:"appId,omitempty"`
+	AppId *string `json:"appId,omitempty"`
+
+	// OsId Original definition in TS29519_Policy_Data.yaml#/components/schemas/OsId
 	OsId                 *OsId                  `json:"osId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AppDetectionInfo defines model for AppDetectionInfo.
+// AppDetectionInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AppDetectionInfo
 type AppDetectionInfo struct {
 	// AppId A reference to the application detection filter configured at the UPF
 	AppId string `json:"appId"`
@@ -3132,44 +3274,46 @@ type AppDetectionInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AppPortId defines model for AppPortId.
+// AppPortId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AppPortId
 type AppPortId struct {
 	DestinationPort      *Uint16                `json:"destinationPort,omitempty"`
 	OriginatorPort       *Uint16                `json:"originatorPort,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AppSessionContext Represents an Individual Application Session Context resource.
+// AppSessionContext Represents an Individual Application Session Context resource. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AppSessionContext)
 type AppSessionContext struct {
-	// AscReqData Identifies the service requirements of an Individual Application Session Context.
+	// AscReqData Identifies the service requirements of an Individual Application Session Context. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AppSessionContextReqData)
 	AscReqData *AppSessionContextReqData `json:"ascReqData,omitempty"`
 
-	// AscRespData Describes the authorization data of an Individual Application Session Context created by the PCF.
+	// AscRespData Describes the authorization data of an Individual Application Session Context created by the PCF. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AppSessionContextRespData)
 	AscRespData *AppSessionContextRespData `json:"ascRespData,omitempty"`
 
-	// EvsNotif describes the notification of a matched event
+	// EvsNotif describes the notification of a matched event (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EventsNotification)
 	EvsNotif             *EventsNotification    `json:"evsNotif,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AppSessionContextReqData Identifies the service requirements of an Individual Application Session Context.
+// AppSessionContextReqData Identifies the service requirements of an Individual Application Session Context. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AppSessionContextReqData)
 type AppSessionContextReqData struct {
-	// AfAppId Contains an AF application identifier.
+	// AfAppId Contains an AF application identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId)
 	AfAppId   *AfAppId               `json:"afAppId,omitempty"`
 	AfChargId *ApplicationChargingId `json:"afChargId,omitempty"`
-	AfReqData *AfRequestedData       `json:"afReqData,omitempty"`
 
-	// AfRoutReq describes the event information delivered in the subscription
+	// AfReqData Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfRequestedData
+	AfReqData *AfRequestedData `json:"afReqData,omitempty"`
+
+	// AfRoutReq describes the event information delivered in the subscription (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfRoutingRequirement)
 	AfRoutReq *AfRoutingRequirement `json:"afRoutReq,omitempty"`
 
-	// AspId Contains an identity of an application service provider.
+	// AspId Contains an identity of an application service provider. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AspId)
 	AspId *PolicyAuthorizationAspId `json:"aspId,omitempty"`
 
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
 	BdtRefId *BdtReferenceId `json:"bdtRefId,omitempty"`
 	Dnn      *Dnn            `json:"dnn,omitempty"`
 
-	// EvSubsc Identifies the events the application subscribes to.
+	// EvSubsc Identifies the events the application subscribes to. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EventsSubscReqData)
 	EvSubsc  *EventsSubscReqData `json:"evSubsc,omitempty"`
 	Gpsi     Gpsi                `json:"gpsi,omitempty"`
 	IpDomain *string             `json:"ipDomain,omitempty"`
@@ -3185,53 +3329,66 @@ type AppSessionContextReqData struct {
 	MedComponents *map[string]MediaComponent `json:"medComponents,omitempty"`
 
 	// MpsId indication of MPS service request
-	MpsId              *string                       `json:"mpsId,omitempty"`
-	NotifUri           Uri                           `json:"notifUri"`
-	PreemptControlInfo *PreemptionControlInformation `json:"preemptControlInfo,omitempty"`
-	ResPrio            *ReservPriority               `json:"resPrio,omitempty"`
-	ServInfStatus      *ServiceInfoStatus            `json:"servInfStatus,omitempty"`
+	MpsId    *string `json:"mpsId,omitempty"`
+	NotifUri Uri     `json:"notifUri"`
 
-	// ServUrn Contains values of the service URN and may include subservices.
+	// PreemptControlInfo Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PreemptionControlInformation
+	PreemptControlInfo *PreemptionControlInformation `json:"preemptControlInfo,omitempty"`
+
+	// ResPrio Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority
+	ResPrio *ReservPriority `json:"resPrio,omitempty"`
+
+	// ServInfStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ServiceInfoStatus
+	ServInfStatus *ServiceInfoStatus `json:"servInfStatus,omitempty"`
+
+	// ServUrn Contains values of the service URN and may include subservices. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ServiceUrn)
 	ServUrn   *ServiceUrn `json:"servUrn,omitempty"`
 	SliceInfo *Snssai     `json:"sliceInfo,omitempty"`
 
-	// SponId Contains an identity of a sponsor.
-	SponId               *SponId                    `json:"sponId,omitempty"`
-	SponStatus           *SponsoringStatus          `json:"sponStatus,omitempty"`
-	Supi                 Supi                       `json:"supi,omitempty"`
-	SuppFeat             SupportedFeatures          `json:"suppFeat"`
-	TsnBridgeManCont     *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
-	TsnPortManContDstt   *PortManagementContainer   `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts  []PortManagementContainer  `json:"tsnPortManContNwtts,omitempty"`
-	UeIpv4               Ipv4Addr                   `json:"ueIpv4,omitempty"`
-	UeIpv6               *Ipv6Addr                  `json:"ueIpv6,omitempty"`
-	UeMac                MacAddr48                  `json:"ueMac,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	// SponId Contains an identity of a sponsor. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponId)
+	SponId *SponId `json:"sponId,omitempty"`
+
+	// SponStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponsoringStatus
+	SponStatus *SponsoringStatus `json:"sponStatus,omitempty"`
+	Supi       Supi              `json:"supi,omitempty"`
+	SuppFeat   SupportedFeatures `json:"suppFeat"`
+
+	// TsnBridgeManCont Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+	TsnBridgeManCont *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
+
+	// TsnPortManContDstt Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+	TsnPortManContDstt   *PortManagementContainer  `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts  []PortManagementContainer `json:"tsnPortManContNwtts,omitempty"`
+	UeIpv4               Ipv4Addr                  `json:"ueIpv4,omitempty"`
+	UeIpv6               *Ipv6Addr                 `json:"ueIpv6,omitempty"`
+	UeMac                MacAddr48                 `json:"ueMac,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
-// AppSessionContextRespData Describes the authorization data of an Individual Application Session Context created by the PCF.
+// AppSessionContextRespData Describes the authorization data of an Individual Application Session Context created by the PCF. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AppSessionContextRespData)
 type AppSessionContextRespData struct {
+	// ServAuthInfo Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ServAuthInfo
 	ServAuthInfo         *ServAuthInfo          `json:"servAuthInfo,omitempty"`
 	SuppFeat             *SupportedFeatures     `json:"suppFeat,omitempty"`
 	UeIds                []UeIdentityInfo       `json:"ueIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AppSessionContextUpdateData Identifies the modifications to the "ascReqData" property of an Individual Application Session Context which may include the modifications to the sub-resource Events Subscription.
+// AppSessionContextUpdateData Identifies the modifications to the "ascReqData" property of an Individual Application Session Context which may include the modifications to the sub-resource Events Subscription. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AppSessionContextUpdateData)
 type AppSessionContextUpdateData struct {
-	// AfAppId Contains an AF application identifier.
+	// AfAppId Contains an AF application identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId)
 	AfAppId *AfAppId `json:"afAppId,omitempty"`
 
-	// AfRoutReq this data type is defined in the same way as the AfRoutingRequirement data type, but with the OpenAPI nullable property set to true and the spVal and tempVals attributes defined as removable.
+	// AfRoutReq this data type is defined in the same way as the AfRoutingRequirement data type, but with the OpenAPI nullable property set to true and the spVal and tempVals attributes defined as removable. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfRoutingRequirementRm)
 	AfRoutReq *AfRoutingRequirementRm `json:"afRoutReq"`
 
-	// AspId Contains an identity of an application service provider.
+	// AspId Contains an identity of an application service provider. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AspId)
 	AspId *PolicyAuthorizationAspId `json:"aspId,omitempty"`
 
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
 	BdtRefId *BdtReferenceId `json:"bdtRefId,omitempty"`
 
-	// EvSubsc this data type is defined in the same way as the EventsSubscReqData data type, but with the OpenAPI nullable property set to true.
+	// EvSubsc this data type is defined in the same way as the EventsSubscReqData data type, but with the OpenAPI nullable property set to true. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EventsSubscReqDataRm)
 	EvSubsc *EventsSubscReqDataRm `json:"evSubsc"`
 
 	// McVideoId indication of modification of MCVideo service
@@ -3245,24 +3402,38 @@ type AppSessionContextUpdateData struct {
 	MedComponents *map[string]*MediaComponentRm `json:"medComponents,omitempty"`
 
 	// MpsId indication of MPS service request
-	MpsId              *string                         `json:"mpsId,omitempty"`
-	PreemptControlInfo *PreemptionControlInformationRm `json:"preemptControlInfo,omitempty"`
-	ResPrio            *ReservPriority                 `json:"resPrio,omitempty"`
-	ServInfStatus      *ServiceInfoStatus              `json:"servInfStatus,omitempty"`
-	SipForkInd         *SipForkingIndication           `json:"sipForkInd,omitempty"`
+	MpsId *string `json:"mpsId,omitempty"`
 
-	// SponId Contains an identity of a sponsor.
-	SponId               *SponId                    `json:"sponId,omitempty"`
-	SponStatus           *SponsoringStatus          `json:"sponStatus,omitempty"`
-	TsnBridgeManCont     *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
-	TsnPortManContDstt   *PortManagementContainer   `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts  []PortManagementContainer  `json:"tsnPortManContNwtts,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	// PreemptControlInfo Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PreemptionControlInformation
+	PreemptControlInfo *PreemptionControlInformationRm `json:"preemptControlInfo,omitempty"`
+
+	// ResPrio Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority
+	ResPrio *ReservPriority `json:"resPrio,omitempty"`
+
+	// ServInfStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ServiceInfoStatus
+	ServInfStatus *ServiceInfoStatus `json:"servInfStatus,omitempty"`
+
+	// SipForkInd Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SipForkingIndication
+	SipForkInd *SipForkingIndication `json:"sipForkInd,omitempty"`
+
+	// SponId Contains an identity of a sponsor. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponId)
+	SponId *SponId `json:"sponId,omitempty"`
+
+	// SponStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponsoringStatus
+	SponStatus *SponsoringStatus `json:"sponStatus,omitempty"`
+
+	// TsnBridgeManCont Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+	TsnBridgeManCont *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
+
+	// TsnPortManContDstt Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+	TsnPortManContDstt   *PortManagementContainer  `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts  []PortManagementContainer `json:"tsnPortManContNwtts,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
-// AppSessionContextUpdateDataPatch Identifies the modifications to an Individual Application Session Context and/or the modifications to the sub-resource Events Subscription.
+// AppSessionContextUpdateDataPatch Identifies the modifications to an Individual Application Session Context and/or the modifications to the sub-resource Events Subscription. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AppSessionContextUpdateDataPatch)
 type AppSessionContextUpdateDataPatch struct {
-	// AscReqData Identifies the modifications to the "ascReqData" property of an Individual Application Session Context which may include the modifications to the sub-resource Events Subscription.
+	// AscReqData Identifies the modifications to the "ascReqData" property of an Individual Application Session Context which may include the modifications to the sub-resource Events Subscription. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AppSessionContextUpdateData)
 	AscReqData           *AppSessionContextUpdateData `json:"ascReqData,omitempty"`
 	AdditionalProperties map[string]interface{}       `json:"-"`
 }
@@ -3270,17 +3441,24 @@ type AppSessionContextUpdateDataPatch struct {
 // ApplicationChargingId defines model for ApplicationChargingId.
 type ApplicationChargingId = string
 
-// ApplicationDataChangeNotif Contains changed application data for which notification was requested.
+// ApplicationDataChangeNotif Contains changed application data for which notification was requested. (Original definition in TS29519_Application_Data.yaml#/components/schemas/ApplicationDataChangeNotif)
 type ApplicationDataChangeNotif struct {
-	BdtPolicyData        *BdtPolicyData         `json:"bdtPolicyData,omitempty"`
-	IptvConfigData       *IptvConfigData        `json:"iptvConfigData,omitempty"`
-	PfdData              *PfdChangeNotification `json:"pfdData,omitempty"`
-	ResUri               Uri                    `json:"resUri"`
+	// BdtPolicyData Original definition in TS29519_Application_Data.yaml#/components/schemas/BdtPolicyData
+	BdtPolicyData *BdtPolicyData `json:"bdtPolicyData,omitempty"`
+
+	// IptvConfigData Original definition in TS29519_Application_Data.yaml#/components/schemas/IptvConfigData
+	IptvConfigData *IptvConfigData `json:"iptvConfigData,omitempty"`
+
+	// PfdData Original definition in TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdChangeNotification
+	PfdData *PfdChangeNotification `json:"pfdData,omitempty"`
+	ResUri  Uri                    `json:"resUri"`
+
+	// SerParamData Original definition in TS29519_Application_Data.yaml#/components/schemas/ServiceParameterData
 	SerParamData         *ServiceParameterData  `json:"serParamData,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ApplicationDataSubs Identifies a subscription to application data change notification.
+// ApplicationDataSubs Identifies a subscription to application data change notification. (Original definition in TS29519_Application_Data.yaml#/components/schemas/ApplicationDataSubs)
 type ApplicationDataSubs struct {
 	DataFilters          []DataFilter           `json:"dataFilters,omitempty"`
 	Expiry               *DateTime              `json:"expiry,omitempty"`
@@ -3305,14 +3483,14 @@ type Area struct {
 // AreaCode defines model for AreaCode.
 type AreaCode = string
 
-// AreaOfInterestEventState Event State of AoI event in old AMF
+// AreaOfInterestEventState Event State of AoI event in old AMF (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AreaOfInterestEventState)
 type AreaOfInterestEventState struct {
 	IndividualPraIdList  []string               `json:"individualPraIdList,omitempty"`
 	Presence             PresenceState          `json:"presence"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AreaOfValidity defines model for AreaOfValidity.
+// AreaOfValidity Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AreaOfValidity
 type AreaOfValidity struct {
 	TaiList              []Tai                  `json:"taiList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -3343,7 +3521,7 @@ type Arp struct {
 // ArpPriorityLevel nullable true shall not be used for this attribute
 type ArpPriorityLevel = int
 
-// AssignEbiData defines model for AssignEbiData.
+// AssignEbiData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AssignEbiData
 type AssignEbiData struct {
 	ArpList              []Arp                  `json:"arpList,omitempty"`
 	OldGuami             *Guami                 `json:"oldGuami,omitempty"`
@@ -3352,21 +3530,23 @@ type AssignEbiData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AssignEbiError defines model for AssignEbiError.
+// AssignEbiError Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AssignEbiError
 type AssignEbiError struct {
-	Error                ProblemDetails         `json:"error"`
+	Error ProblemDetails `json:"error"`
+
+	// FailureDetails Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AssignEbiFailed
 	FailureDetails       AssignEbiFailed        `json:"failureDetails"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AssignEbiFailed defines model for AssignEbiFailed.
+// AssignEbiFailed Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AssignEbiFailed
 type AssignEbiFailed struct {
 	FailedArpList        []Arp                  `json:"failedArpList,omitempty"`
 	PduSessionId         PduSessionId           `json:"pduSessionId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AssignedEbiData defines model for AssignedEbiData.
+// AssignedEbiData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AssignedEbiData
 type AssignedEbiData struct {
 	AssignedEbiList      []EbiArpMapping        `json:"assignedEbiList"`
 	FailedArpList        []Arp                  `json:"failedArpList,omitempty"`
@@ -3375,7 +3555,7 @@ type AssignedEbiData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AssociationType defines model for AssociationType.
+// AssociationType Original definition in TS29503_Nudm_EE.yaml#/components/schemas/AssociationType
 type AssociationType string
 
 // Atom defines model for Atom.
@@ -3394,7 +3574,7 @@ type AtsssCapability struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AusfInfo Information of an AUSF NF Instance
+// AusfInfo Information of an AUSF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AusfInfo)
 type AusfInfo struct {
 	GroupId              *NfGroupId             `json:"groupId,omitempty"`
 	RoutingIndicators    []string               `json:"routingIndicators,omitempty"`
@@ -3402,112 +3582,135 @@ type AusfInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthEvent defines model for AuthEvent.
+// AuthEvent Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthEvent
 type AuthEvent struct {
-	AuthRemovalInd       *bool                  `json:"authRemovalInd,omitempty"`
-	AuthType             AuthType               `json:"authType"`
-	NfInstanceId         NfInstanceId           `json:"nfInstanceId"`
-	NfSetId              *NfSetId               `json:"nfSetId,omitempty"`
-	ServingNetworkName   ServingNetworkName     `json:"servingNetworkName"`
+	AuthRemovalInd *bool `json:"authRemovalInd,omitempty"`
+
+	// AuthType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthType
+	AuthType     AuthType     `json:"authType"`
+	NfInstanceId NfInstanceId `json:"nfInstanceId"`
+	NfSetId      *NfSetId     `json:"nfSetId,omitempty"`
+
+	// ServingNetworkName Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
+	ServingNetworkName ServingNetworkName `json:"servingNetworkName"`
+
+	// Success Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Success
 	Success              Success                `json:"success"`
 	TimeStamp            DateTime               `json:"timeStamp"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthMethod defines model for AuthMethod.
+// AuthMethod Original definition in TS29505_Subscription_Data.yaml#/components/schemas/AuthMethod
 type AuthMethod string
 
-// AuthResult defines model for AuthResult.
+// AuthResult Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/AuthResult
 type AuthResult string
 
 // AuthStatus Possible values are - "EAP_SUCCESS": The NSSAA status is EAP-Success. - "EAP_FAILURE": The NSSAA status is EAP-Failure. - "PENDING": The NSSAA status is Pending.
 type AuthStatus string
 
-// AuthType defines model for AuthType.
+// AuthType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthType
 type AuthType string
 
-// AuthenticatedInd defines model for AuthenticatedInd.
+// AuthenticatedInd Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthenticatedInd
 type AuthenticatedInd = bool
 
-// AuthenticationInfo defines model for AuthenticationInfo.
+// AuthenticationInfo Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/AuthenticationInfo
 type AuthenticationInfo struct {
-	CellCagInfo           []CagId                `json:"cellCagInfo,omitempty"`
-	N5gcInd               *bool                  `json:"n5gcInd,omitempty"`
-	Pei                   Pei                    `json:"pei,omitempty"`
+	CellCagInfo []CagId `json:"cellCagInfo,omitempty"`
+	N5gcInd     *bool   `json:"n5gcInd,omitempty"`
+	Pei         Pei     `json:"pei,omitempty"`
+
+	// ResynchronizationInfo Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ResynchronizationInfo
 	ResynchronizationInfo *ResynchronizationInfo `json:"resynchronizationInfo,omitempty"`
 	RoutingIndicator      string                 `json:"routingIndicator,omitempty"`
-	ServingNetworkName    ServingNetworkName     `json:"servingNetworkName"`
-	SupiOrSuci            SupiOrSuci             `json:"supiOrSuci"`
-	SupportedFeatures     *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	TraceData             *TraceData             `json:"traceData"`
-	UdmGroupId            *NfGroupId             `json:"udmGroupId,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
+
+	// ServingNetworkName Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
+	ServingNetworkName   ServingNetworkName     `json:"servingNetworkName"`
+	SupiOrSuci           SupiOrSuci             `json:"supiOrSuci"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	TraceData            *TraceData             `json:"traceData"`
+	UdmGroupId           *NfGroupId             `json:"udmGroupId,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthenticationInfoRequest defines model for AuthenticationInfoRequest.
+// AuthenticationInfoRequest Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthenticationInfoRequest
 type AuthenticationInfoRequest struct {
-	AusfInstanceId        NfInstanceId           `json:"ausfInstanceId"`
-	CellCagInfo           []CagId                `json:"cellCagInfo,omitempty"`
-	N5gcInd               *bool                  `json:"n5gcInd,omitempty"`
+	AusfInstanceId NfInstanceId `json:"ausfInstanceId"`
+	CellCagInfo    []CagId      `json:"cellCagInfo,omitempty"`
+	N5gcInd        *bool        `json:"n5gcInd,omitempty"`
+
+	// ResynchronizationInfo Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ResynchronizationInfo
 	ResynchronizationInfo *ResynchronizationInfo `json:"resynchronizationInfo,omitempty"`
-	ServingNetworkName    ServingNetworkName     `json:"servingNetworkName"`
-	SupportedFeatures     *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
+
+	// ServingNetworkName Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
+	ServingNetworkName   ServingNetworkName     `json:"servingNetworkName"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthenticationInfoResult defines model for AuthenticationInfoResult.
+// AuthenticationInfoResult Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthenticationInfoResult
 type AuthenticationInfoResult struct {
-	AuthType             AuthType               `json:"authType"`
+	// AuthType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthType
+	AuthType AuthType `json:"authType"`
+
+	// AuthenticationVector Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthenticationVector
 	AuthenticationVector *AuthenticationVector  `json:"authenticationVector,omitempty"`
 	Supi                 Supi                   `json:"supi,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthenticationSubscription defines model for AuthenticationSubscription.
+// AuthenticationSubscription Original definition in TS29505_Subscription_Data.yaml#/components/schemas/AuthenticationSubscription
 type AuthenticationSubscription struct {
-	AlgorithmId                   *string                `json:"algorithmId,omitempty"`
-	AuthenticationManagementField string                 `json:"authenticationManagementField,omitempty"`
-	AuthenticationMethod          AuthMethod             `json:"authenticationMethod"`
-	EncOpcKey                     *string                `json:"encOpcKey,omitempty"`
-	EncPermanentKey               *string                `json:"encPermanentKey,omitempty"`
-	EncTopcKey                    *string                `json:"encTopcKey,omitempty"`
-	N5gcAuthMethod                *AuthMethod            `json:"n5gcAuthMethod,omitempty"`
-	ProtectionParameterId         *string                `json:"protectionParameterId,omitempty"`
-	RgAuthenticationInd           *bool                  `json:"rgAuthenticationInd,omitempty"`
-	SequenceNumber                *SequenceNumber        `json:"sequenceNumber,omitempty"`
-	Supi                          Supi                   `json:"supi,omitempty"`
-	VectorGenerationInHss         *bool                  `json:"vectorGenerationInHss,omitempty"`
-	AdditionalProperties          map[string]interface{} `json:"-"`
+	AlgorithmId                   *string `json:"algorithmId,omitempty"`
+	AuthenticationManagementField string  `json:"authenticationManagementField,omitempty"`
+
+	// AuthenticationMethod Original definition in TS29505_Subscription_Data.yaml#/components/schemas/AuthMethod
+	AuthenticationMethod AuthMethod `json:"authenticationMethod"`
+	EncOpcKey            *string    `json:"encOpcKey,omitempty"`
+	EncPermanentKey      *string    `json:"encPermanentKey,omitempty"`
+	EncTopcKey           *string    `json:"encTopcKey,omitempty"`
+
+	// N5gcAuthMethod Original definition in TS29505_Subscription_Data.yaml#/components/schemas/AuthMethod
+	N5gcAuthMethod        *AuthMethod `json:"n5gcAuthMethod,omitempty"`
+	ProtectionParameterId *string     `json:"protectionParameterId,omitempty"`
+	RgAuthenticationInd   *bool       `json:"rgAuthenticationInd,omitempty"`
+
+	// SequenceNumber Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SequenceNumber
+	SequenceNumber        *SequenceNumber        `json:"sequenceNumber,omitempty"`
+	Supi                  Supi                   `json:"supi,omitempty"`
+	VectorGenerationInHss *bool                  `json:"vectorGenerationInHss,omitempty"`
+	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// AuthenticationVector defines model for AuthenticationVector.
+// AuthenticationVector Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AuthenticationVector
 type AuthenticationVector struct {
 	union json.RawMessage
 }
 
-// AuthorizationData defines model for AuthorizationData.
+// AuthorizationData Original definition in TS29503_Nudm_NIDDAU.yaml#/components/schemas/AuthorizationData
 type AuthorizationData struct {
 	AuthorizationData    []UserIdentifier       `json:"authorizationData"`
 	ValidityTime         *DateTime              `json:"validityTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthorizationInfo defines model for AuthorizationInfo.
+// AuthorizationInfo Original definition in TS29503_Nudm_NIDDAU.yaml#/components/schemas/AuthorizationInfo
 type AuthorizationInfo struct {
 	AfId                   *string                `json:"afId,omitempty"`
 	AuthUpdateCallbackUri  Uri                    `json:"authUpdateCallbackUri"`
 	Dnn                    Dnn                    `json:"dnn"`
 	MtcProviderInformation MtcProviderInformation `json:"mtcProviderInformation"`
 
-	// NefId Identity of the NEF
+	// NefId Identity of the NEF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefId)
 	NefId                *NefId                 `json:"nefId,omitempty"`
 	Snssai               Snssai                 `json:"snssai"`
 	ValidityTime         *DateTime              `json:"validityTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthorizedDefaultQos defines model for AuthorizedDefaultQos.
+// AuthorizedDefaultQos Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AuthorizedDefaultQos
 type AuthorizedDefaultQos struct {
 	N5qi                 *N5Qi                  `json:"5qi,omitempty"`
 	Arp                  *Arp                   `json:"arp,omitempty"`
@@ -3522,25 +3725,27 @@ type AuthorizedDefaultQos struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthorizedNetworkSliceInfo defines model for AuthorizedNetworkSliceInfo.
+// AuthorizedNetworkSliceInfo Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/AuthorizedNetworkSliceInfo
 type AuthorizedNetworkSliceInfo struct {
-	AllowedNssaiList        []AllowedNssai         `json:"allowedNssaiList,omitempty"`
-	CandidateAmfList        []NfInstanceId         `json:"candidateAmfList,omitempty"`
-	ConfiguredNssai         []ConfiguredSnssai     `json:"configuredNssai,omitempty"`
-	MappingOfNssai          []MappingOfSnssai      `json:"mappingOfNssai,omitempty"`
-	NrfAmfSet               *Uri                   `json:"nrfAmfSet,omitempty"`
-	NrfAmfSetAccessTokenUri *Uri                   `json:"nrfAmfSetAccessTokenUri,omitempty"`
-	NrfAmfSetNfMgtUri       *Uri                   `json:"nrfAmfSetNfMgtUri,omitempty"`
-	NsiInformation          *NsiInformation        `json:"nsiInformation,omitempty"`
-	RejectedNssaiInPlmn     []Snssai               `json:"rejectedNssaiInPlmn,omitempty"`
-	RejectedNssaiInTa       []Snssai               `json:"rejectedNssaiInTa,omitempty"`
-	SupportedFeatures       *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	TargetAmfServiceSet     *NfServiceSetId        `json:"targetAmfServiceSet,omitempty"`
-	TargetAmfSet            string                 `json:"targetAmfSet,omitempty"`
-	AdditionalProperties    map[string]interface{} `json:"-"`
+	AllowedNssaiList        []AllowedNssai     `json:"allowedNssaiList,omitempty"`
+	CandidateAmfList        []NfInstanceId     `json:"candidateAmfList,omitempty"`
+	ConfiguredNssai         []ConfiguredSnssai `json:"configuredNssai,omitempty"`
+	MappingOfNssai          []MappingOfSnssai  `json:"mappingOfNssai,omitempty"`
+	NrfAmfSet               *Uri               `json:"nrfAmfSet,omitempty"`
+	NrfAmfSetAccessTokenUri *Uri               `json:"nrfAmfSetAccessTokenUri,omitempty"`
+	NrfAmfSetNfMgtUri       *Uri               `json:"nrfAmfSetNfMgtUri,omitempty"`
+
+	// NsiInformation Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiInformation
+	NsiInformation       *NsiInformation        `json:"nsiInformation,omitempty"`
+	RejectedNssaiInPlmn  []Snssai               `json:"rejectedNssaiInPlmn,omitempty"`
+	RejectedNssaiInTa    []Snssai               `json:"rejectedNssaiInTa,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	TargetAmfServiceSet  *NfServiceSetId        `json:"targetAmfServiceSet,omitempty"`
+	TargetAmfSet         string                 `json:"targetAmfSet,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthorizedNssaiAvailabilityData defines model for AuthorizedNssaiAvailabilityData.
+// AuthorizedNssaiAvailabilityData Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/AuthorizedNssaiAvailabilityData
 type AuthorizedNssaiAvailabilityData struct {
 	RestrictedSnssaiList []RestrictedSnssai     `json:"restrictedSnssaiList,omitempty"`
 	SupportedSnssaiList  []ExtSnssai            `json:"supportedSnssaiList"`
@@ -3550,70 +3755,115 @@ type AuthorizedNssaiAvailabilityData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AuthorizedNssaiAvailabilityInfo defines model for AuthorizedNssaiAvailabilityInfo.
+// AuthorizedNssaiAvailabilityInfo Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/AuthorizedNssaiAvailabilityInfo
 type AuthorizedNssaiAvailabilityInfo struct {
 	AuthorizedNssaiAvailabilityData []AuthorizedNssaiAvailabilityData `json:"authorizedNssaiAvailabilityData"`
 	SupportedFeatures               *SupportedFeatures                `json:"supportedFeatures,omitempty"`
 	AdditionalProperties            map[string]interface{}            `json:"-"`
 }
 
-// Autn defines model for Autn.
+// Autn Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Autn
 type Autn = string
 
-// Auts defines model for Auts.
+// Auts Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Auts
 type Auts = string
 
-// Av5GHeAka defines model for Av5GHeAka.
+// Av5GHeAka Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Av5GHeAka
 type Av5GHeAka struct {
-	Autn                 Autn                   `json:"autn"`
-	AvType               AvType                 `json:"avType"`
-	Kausf                Kausf                  `json:"kausf"`
-	Rand                 Rand                   `json:"rand"`
+	// Autn Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Autn
+	Autn Autn `json:"autn"`
+
+	// AvType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AvType
+	AvType AvType `json:"avType"`
+
+	// Kausf Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Kausf
+	Kausf Kausf `json:"kausf"`
+
+	// Rand Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Rand
+	Rand Rand `json:"rand"`
+
+	// XresStar Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/XresStar
 	XresStar             XresStar               `json:"xresStar"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Av5gAka defines model for Av5gAka.
+// Av5gAka Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/Av5gAka
 type Av5gAka struct {
-	Autn                 Autn                   `json:"autn"`
-	HxresStar            HxresStar              `json:"hxresStar"`
+	// Autn Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Autn
+	Autn Autn `json:"autn"`
+
+	// HxresStar Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/HxresStar
+	HxresStar HxresStar `json:"hxresStar"`
+
+	// Rand Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Rand
 	Rand                 Rand                   `json:"rand"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AvEapAkaPrime defines model for AvEapAkaPrime.
+// AvEapAkaPrime Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AvEapAkaPrime
 type AvEapAkaPrime struct {
-	Autn                 Autn                   `json:"autn"`
-	AvType               AvType                 `json:"avType"`
-	CkPrime              CkPrime                `json:"ckPrime"`
-	IkPrime              IkPrime                `json:"ikPrime"`
-	Rand                 Rand                   `json:"rand"`
+	// Autn Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Autn
+	Autn Autn `json:"autn"`
+
+	// AvType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AvType
+	AvType AvType `json:"avType"`
+
+	// CkPrime Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/CkPrime
+	CkPrime CkPrime `json:"ckPrime"`
+
+	// IkPrime Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/IkPrime
+	IkPrime IkPrime `json:"ikPrime"`
+
+	// Rand Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Rand
+	Rand Rand `json:"rand"`
+
+	// Xres Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Xres
 	Xres                 Xres                   `json:"xres"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AvEpsAka defines model for AvEpsAka.
+// AvEpsAka Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AvEpsAka
 type AvEpsAka struct {
-	Autn                 Autn                   `json:"autn"`
-	AvType               HssAvType              `json:"avType"`
-	Kasme                Kasme                  `json:"kasme"`
-	Rand                 Rand                   `json:"rand"`
+	// Autn Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Autn
+	Autn Autn `json:"autn"`
+
+	// AvType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAvType
+	AvType HssAvType `json:"avType"`
+
+	// Kasme Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Kasme
+	Kasme Kasme `json:"kasme"`
+
+	// Rand Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Rand
+	Rand Rand `json:"rand"`
+
+	// Xres Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Xres
 	Xres                 Xres                   `json:"xres"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AvImsGbaEapAka defines model for AvImsGbaEapAka.
+// AvImsGbaEapAka Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AvImsGbaEapAka
 type AvImsGbaEapAka struct {
-	Autn                 Autn                   `json:"autn"`
-	AvType               HssAvType              `json:"avType"`
-	Ck                   ConfidentialityKey     `json:"ck"`
-	Ik                   IntegrityKey           `json:"ik"`
-	Rand                 Rand                   `json:"rand"`
+	// Autn Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Autn
+	Autn Autn `json:"autn"`
+
+	// AvType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAvType
+	AvType HssAvType `json:"avType"`
+
+	// Ck Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ConfidentialityKey
+	Ck ConfidentialityKey `json:"ck"`
+
+	// Ik Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/IntegrityKey
+	Ik IntegrityKey `json:"ik"`
+
+	// Rand Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Rand
+	Rand Rand `json:"rand"`
+
+	// Xres Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Xres
 	Xres                 Xres                   `json:"xres"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AvType defines model for AvType.
+// AvType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AvType
 type AvType string
 
 // AverWindow defines model for AverWindow.
@@ -3622,7 +3872,7 @@ type AverWindow = int
 // AverWindowRm defines model for AverWindowRm.
 type AverWindowRm = int
 
-// BDTPolicyControlAspId Contains an identity of an application service provider.
+// BDTPolicyControlAspId Contains an identity of an application service provider. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/AspId)
 type BDTPolicyControlAspId = string
 
 // BackupAmfInfo defines model for BackupAmfInfo.
@@ -3648,19 +3898,19 @@ type BatteryIndicationRm struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BdtData Contains the background data transfer data.
+// BdtData Contains the background data transfer data. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/BdtData)
 type BdtData struct {
 	AspId string `json:"aspId"`
 
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
 	BdtRefId *BdtReferenceId `json:"bdtRefId,omitempty"`
 
-	// BdtpStatus Indicates the validation status of a negotiated BDT policy.
+	// BdtpStatus Indicates the validation status of a negotiated BDT policy. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/BdtPolicyStatus)
 	BdtpStatus *BdtPolicyStatus `json:"bdtpStatus,omitempty"`
 	Dnn        *Dnn             `json:"dnn,omitempty"`
 	NumOfUes   *Uinteger        `json:"numOfUes,omitempty"`
 
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
 	NwAreaInfo *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	Snssai     *Snssai             `json:"snssai,omitempty"`
 	SuppFeat   *SupportedFeatures  `json:"suppFeat,omitempty"`
@@ -3668,35 +3918,37 @@ type BdtData struct {
 	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
 	TrafficDes *string `json:"trafficDes,omitempty"`
 
-	// TransPolicy Describes a transfer policy.
-	TransPolicy          TransferPolicy         `json:"transPolicy"`
+	// TransPolicy Describes a transfer policy. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/TransferPolicy)
+	TransPolicy TransferPolicy `json:"transPolicy"`
+
+	// VolPerUe Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThreshold
 	VolPerUe             *UsageThreshold        `json:"volPerUe,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BdtDataPatch Contains the modified background data transfer data.
+// BdtDataPatch Contains the modified background data transfer data. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/BdtDataPatch)
 type BdtDataPatch struct {
-	// BdtpStatus Indicates the validation status of a negotiated BDT policy.
+	// BdtpStatus Indicates the validation status of a negotiated BDT policy. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/BdtPolicyStatus)
 	BdtpStatus *BdtPolicyStatus `json:"bdtpStatus,omitempty"`
 
-	// TransPolicy Describes a transfer policy.
+	// TransPolicy Describes a transfer policy. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/TransferPolicy)
 	TransPolicy          *TransferPolicy        `json:"transPolicy,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BdtPolicy Represents an Individual BDT policy resource.
+// BdtPolicy Represents an Individual BDT policy resource. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtPolicy)
 type BdtPolicy struct {
-	// BdtPolData Describes the authorization data of an Individual BDT policy resource.
+	// BdtPolData Describes the authorization data of an Individual BDT policy resource. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtPolicyData)
 	BdtPolData *PcfBdtPolicyData `json:"bdtPolData,omitempty"`
 
-	// BdtReqData Contains service requirements for creation a new Individual BDT policy resource.
+	// BdtReqData Contains service requirements for creation a new Individual BDT policy resource. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtReqData)
 	BdtReqData           *BdtReqData            `json:"bdtReqData,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BdtPolicyData defines model for BdtPolicyData.
+// BdtPolicyData Original definition in TS29519_Application_Data.yaml#/components/schemas/BdtPolicyData
 type BdtPolicyData struct {
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
 	BdtRefId             BdtReferenceId         `json:"bdtRefId"`
 	Dnn                  *Dnn                   `json:"dnn,omitempty"`
 	InterGroupId         GroupId                `json:"interGroupId,omitempty"`
@@ -3706,49 +3958,53 @@ type BdtPolicyData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BdtPolicyDataPatch defines model for BdtPolicyDataPatch.
+// BdtPolicyDataPatch Original definition in TS29519_Application_Data.yaml#/components/schemas/BdtPolicyDataPatch
 type BdtPolicyDataPatch struct {
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
 	BdtRefId             BdtReferenceId         `json:"bdtRefId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BdtPolicyStatus Indicates the validation status of a negotiated BDT policy.
+// BdtPolicyStatus Indicates the validation status of a negotiated BDT policy. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/BdtPolicyStatus)
 type BdtPolicyStatus string
 
-// BdtReferenceId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+// BdtReferenceId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
 type BdtReferenceId = string
 
-// BdtReferenceIdRm This data type is defined in the same way as the BdtReferenceId data type, but with the nullable property set to true.
+// BdtReferenceIdRm This data type is defined in the same way as the BdtReferenceId data type, but with the nullable property set to true. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceIdRm)
 type BdtReferenceIdRm = string
 
-// BdtReqData Contains service requirements for creation a new Individual BDT policy resource.
+// BdtReqData Contains service requirements for creation a new Individual BDT policy resource. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtReqData)
 type BdtReqData struct {
-	// AspId Contains an identity of an application service provider.
-	AspId        BDTPolicyControlAspId `json:"aspId"`
-	DesTimeInt   TimeWindow            `json:"desTimeInt"`
-	Dnn          *Dnn                  `json:"dnn,omitempty"`
-	InterGroupId GroupId               `json:"interGroupId,omitempty"`
-	NotifUri     *Uri                  `json:"notifUri,omitempty"`
+	// AspId Contains an identity of an application service provider. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/AspId)
+	AspId BDTPolicyControlAspId `json:"aspId"`
+
+	// DesTimeInt Original definition in TS29122_CommonData.yaml#/components/schemas/TimeWindow
+	DesTimeInt   TimeWindow `json:"desTimeInt"`
+	Dnn          *Dnn       `json:"dnn,omitempty"`
+	InterGroupId GroupId    `json:"interGroupId,omitempty"`
+	NotifUri     *Uri       `json:"notifUri,omitempty"`
 
 	// NumOfUes Indicates a number of UEs.
 	NumOfUes int `json:"numOfUes"`
 
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
 	NwAreaInfo *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	Snssai     *Snssai             `json:"snssai,omitempty"`
 	SuppFeat   *SupportedFeatures  `json:"suppFeat,omitempty"`
 
 	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-	TrafficDes *string        `json:"trafficDes,omitempty"`
-	VolPerUe   UsageThreshold `json:"volPerUe"`
+	TrafficDes *string `json:"trafficDes,omitempty"`
+
+	// VolPerUe Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThreshold
+	VolPerUe UsageThreshold `json:"volPerUe"`
 
 	// WarnNotifReq Indicates whether the BDT warning notification is enabled or disabled.
 	WarnNotifReq         *bool                  `json:"warnNotifReq,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BdtReqDataPatch A JSON Merge Patch body schema containing modification instruction to be performed on the bdtReqData attribute of the BdtPolicy data structure to indicate whether the BDT warning notification is enabled or disabled. Modifies warnNotifReq from BdtReqData data structure.
+// BdtReqDataPatch A JSON Merge Patch body schema containing modification instruction to be performed on the bdtReqData attribute of the BdtPolicy data structure to indicate whether the BDT warning notification is enabled or disabled. Modifies warnNotifReq from BdtReqData data structure. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtReqDataPatch)
 type BdtReqDataPatch struct {
 	// WarnNotifReq Indicates whether the BDT warning notification is enabled or disabled.
 	WarnNotifReq         *bool                  `json:"warnNotifReq,omitempty"`
@@ -3756,11 +4012,13 @@ type BdtReqDataPatch struct {
 }
 
 // BindingLevel Possible values are - "NF_SET" - "NF_INSTANCE"
+//
+//	(Original definition in TS29521_Nbsf_Management.yaml#/components/schemas/BindingLevel)
 type BindingLevel string
 
-// BindingResp defines model for BindingResp.
+// BindingResp Original definition in TS29521_Nbsf_Management.yaml#/components/schemas/BindingResp
 type BindingResp struct {
-	// PcfSmFqdn Fully Qualified Domain Name
+	// PcfSmFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	PcfSmFqdn *Fqdn `json:"pcfSmFqdn,omitempty"`
 
 	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
@@ -3774,23 +4032,23 @@ type BitRate = string
 // BitRateRm defines model for BitRateRm.
 type BitRateRm = string
 
-// BootstrappingInfo Information returned by NRF in the bootstrapping response message
+// BootstrappingInfo Information returned by NRF in the bootstrapping response message (Original definition in TS29510_Nnrf_Bootstrapping.yaml#/components/schemas/BootstrappingInfo)
 type BootstrappingInfo struct {
 	// Links Map of link objects where the keys are the link relations defined in 3GPP TS 29.510 clause 6.4.6.3.3
 	Links map[string]LinksValueSchema `json:"_links"`
 
-	// Status Overal status of the NRF
+	// Status Overal status of the NRF (Original definition in TS29510_Nnrf_Bootstrapping.yaml#/components/schemas/Status)
 	Status               *Status                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BridgeManagementContainer defines model for BridgeManagementContainer.
+// BridgeManagementContainer Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
 type BridgeManagementContainer struct {
 	BridgeManCont        Bytes                  `json:"bridgeManCont"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// BsfInfo Information of a BSF NF Instance
+// BsfInfo Information of a BSF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/BsfInfo)
 type BsfInfo struct {
 	DnnList              []Dnn                  `json:"dnnList,omitempty"`
 	IpDomainList         []string               `json:"ipDomainList,omitempty"`
@@ -3805,14 +4063,16 @@ type Bytes = []byte
 // CMsisdn defines model for CMsisdn.
 type CMsisdn = string
 
-// CagAckData defines model for CagAckData.
+// CagAckData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/CagAckData
 type CagAckData struct {
-	ProvisioningTime     DateTime               `json:"provisioningTime"`
+	ProvisioningTime DateTime `json:"provisioningTime"`
+
+	// UeUpdateStatus Original definition in TS29505_Subscription_Data.yaml#/components/schemas/UeUpdateStatus
 	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CagData defines model for CagData.
+// CagData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CagData
 type CagData struct {
 	// CagInfos A map (list of key-value pairs where PlmnId serves as key) of CagInfo
 	CagInfos             map[string]CagInfo     `json:"cagInfos"`
@@ -3823,14 +4083,14 @@ type CagData struct {
 // CagId defines model for CagId.
 type CagId = string
 
-// CagInfo defines model for CagInfo.
+// CagInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CagInfo
 type CagInfo struct {
 	AllowedCagList       []CagId                `json:"allowedCagList"`
 	CagOnlyIndicator     *bool                  `json:"cagOnlyIndicator,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CancelPosInfo defines model for CancelPosInfo.
+// CancelPosInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/CancelPosInfo
 type CancelPosInfo struct {
 	HgmlcCallBackURI Uri `json:"hgmlcCallBackURI"`
 
@@ -3844,7 +4104,7 @@ type CancelPosInfo struct {
 	AdditionalProperties     map[string]interface{} `json:"-"`
 }
 
-// CandidateForReplacement defines model for CandidateForReplacement.
+// CandidateForReplacement Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/CandidateForReplacement
 type CandidateForReplacement struct {
 	Dnns                 *[]Dnn                 `json:"dnns"`
 	Snssai               Snssai                 `json:"snssai"`
@@ -3852,9 +4112,11 @@ type CandidateForReplacement struct {
 }
 
 // Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
 type Cause string
 
-// CeModeBInd CE-mode-B Support Indicator.
+// CeModeBInd CE-mode-B Support Indicator. (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/CeModeBInd)
 type CeModeBInd struct {
 	CeModeBSupportInd    bool                   `json:"ceModeBSupportInd"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -3878,7 +4140,7 @@ type ChangeItem struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ChangeOfSupiPeiAssociationReport defines model for ChangeOfSupiPeiAssociationReport.
+// ChangeOfSupiPeiAssociationReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ChangeOfSupiPeiAssociationReport
 type ChangeOfSupiPeiAssociationReport struct {
 	NewPei               Pei                    `json:"newPei"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -3887,7 +4149,7 @@ type ChangeOfSupiPeiAssociationReport struct {
 // ChangeType defines model for ChangeType.
 type ChangeType string
 
-// ChargingData defines model for ChargingData.
+// ChargingData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingData
 type ChargingData struct {
 	AfChargId            *ApplicationChargingId `json:"afChargId,omitempty"`
 	AfChargingIdentifier *ChargingId            `json:"afChargingIdentifier,omitempty"`
@@ -3899,6 +4161,7 @@ type ChargingData struct {
 	ChgId string `json:"chgId"`
 
 	// MeteringMethod Possible values are - DURATION: Indicates that the duration of the service data flow traffic shall be metered. - VOLUME: Indicates that volume of the service data flow traffic shall be metered. - DURATION_VOLUME: Indicates that the duration and the volume of the service data flow traffic shall be metered. - EVENT: Indicates that events of the service data flow traffic shall be metered.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MeteringMethod)
 	MeteringMethod *MeteringMethod `json:"meteringMethod,omitempty"`
 
 	// Offline Indicates the offline charging is applicable to the PCC rule when it is included and set to true.
@@ -3909,6 +4172,7 @@ type ChargingData struct {
 	RatingGroup *RatingGroup `json:"ratingGroup,omitempty"`
 
 	// ReportingLevel Possible values are - SER_ID_LEVEL: Indicates that the usage shall be reported on service id and rating group combination level. - RAT_GR_LEVEL: Indicates that the usage shall be reported on rating group level. - SPON_CON_LEVEL: Indicates that the usage shall be reported on sponsor identity and rating group combination level.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ReportingLevel)
 	ReportingLevel *ReportingLevel `json:"reportingLevel,omitempty"`
 
 	// SdfHandl Indicates whether the service data flow is allowed to start while the SMF is waiting for the response to the credit request.
@@ -3923,7 +4187,7 @@ type ChargingData struct {
 // ChargingId defines model for ChargingId.
 type ChargingId = Uint32
 
-// ChargingInformation defines model for ChargingInformation.
+// ChargingInformation Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingInformation
 type ChargingInformation struct {
 	PrimaryChfAddress      Uri                    `json:"primaryChfAddress"`
 	PrimaryChfInstanceId   *NfInstanceId          `json:"primaryChfInstanceId,omitempty"`
@@ -3934,7 +4198,7 @@ type ChargingInformation struct {
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// ChfInfo Information of a CHF NF Instance
+// ChfInfo Information of a CHF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ChfInfo)
 type ChfInfo struct {
 	GpsiRangeList        []IdentityRange        `json:"gpsiRangeList,omitempty"`
 	GroupId              *NfGroupId             `json:"groupId,omitempty"`
@@ -3945,30 +4209,32 @@ type ChfInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CipheringAlgorithm defines model for CipheringAlgorithm.
+// CipheringAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/CipheringAlgorithm
 type CipheringAlgorithm string
 
-// CkPrime defines model for CkPrime.
+// CkPrime Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/CkPrime
 type CkPrime = string
 
-// CmInfo defines model for CmInfo.
+// CmInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/CmInfo
 type CmInfo struct {
-	AccessType           AccessType             `json:"accessType"`
+	AccessType AccessType `json:"accessType"`
+
+	// CmState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/CmState
 	CmState              CmState                `json:"cmState"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CmInfoReport defines model for CmInfoReport.
+// CmInfoReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/CmInfoReport
 type CmInfoReport struct {
 	NewCmInfoList        []CmInfo               `json:"newCmInfoList"`
 	OldCmInfoList        []CmInfo               `json:"oldCmInfoList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CmState defines model for CmState.
+// CmState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/CmState
 type CmState string
 
-// CnAssistedRanPara defines model for CnAssistedRanPara.
+// CnAssistedRanPara Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/CnAssistedRanPara
 type CnAssistedRanPara struct {
 	BatteryIndication          *BatteryIndication          `json:"batteryIndication,omitempty"`
 	CommunicationDurationTime  *DurationSec                `json:"communicationDurationTime,omitempty"`
@@ -3984,12 +4250,15 @@ type CnAssistedRanPara struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CnType defines model for CnType.
+// CnType Original definition in TS29503_Nudm_EE.yaml#/components/schemas/CnType
 type CnType string
 
-// CnTypeChangeReport defines model for CnTypeChangeReport.
+// CnTypeChangeReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/CnTypeChangeReport
 type CnTypeChangeReport struct {
-	NewCnType            CnType                 `json:"newCnType"`
+	// NewCnType Original definition in TS29503_Nudm_EE.yaml#/components/schemas/CnType
+	NewCnType CnType `json:"newCnType"`
+
+	// OldCnType Original definition in TS29503_Nudm_EE.yaml#/components/schemas/CnType
 	OldCnType            *CnType                `json:"oldCnType,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -4006,13 +4275,13 @@ type CnfUnit struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CodeWord defines model for CodeWord.
+// CodeWord Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CodeWord
 type CodeWord = string
 
-// CodeWordInd defines model for CodeWordInd.
+// CodeWordInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CodeWordInd
 type CodeWordInd string
 
-// CodecData Contains codec related information.
+// CodecData Contains codec related information. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/CodecData)
 type CodecData = string
 
 // CollectionPeriodRmmLteMdt defines model for CollectionPeriodRmmLteMdt.
@@ -4021,18 +4290,29 @@ type CollectionPeriodRmmLteMdt string
 // CollectionPeriodRmmNrMdt defines model for CollectionPeriodRmmNrMdt.
 type CollectionPeriodRmmNrMdt string
 
-// CommunicationCharacteristics defines model for CommunicationCharacteristics.
+// CommunicationCharacteristics Original definition in TS29503_Nudm_PP.yaml#/components/schemas/CommunicationCharacteristics
 type CommunicationCharacteristics struct {
-	PpActiveTime          *PpActiveTime          `json:"ppActiveTime"`
-	PpDlPacketCount       *PpDlPacketCount       `json:"ppDlPacketCount"`
-	PpDlPacketCountExt    *PpDlPacketCountExt    `json:"ppDlPacketCountExt"`
-	PpMaximumLatency      *PpMaximumLatency      `json:"ppMaximumLatency"`
+	// PpActiveTime Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpActiveTime
+	PpActiveTime *PpActiveTime `json:"ppActiveTime"`
+
+	// PpDlPacketCount Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpDlPacketCount
+	PpDlPacketCount *PpDlPacketCount `json:"ppDlPacketCount"`
+
+	// PpDlPacketCountExt Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpDlPacketCountExt
+	PpDlPacketCountExt *PpDlPacketCountExt `json:"ppDlPacketCountExt"`
+
+	// PpMaximumLatency Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpMaximumLatency
+	PpMaximumLatency *PpMaximumLatency `json:"ppMaximumLatency"`
+
+	// PpMaximumResponseTime Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpMaximumResponseTime
 	PpMaximumResponseTime *PpMaximumResponseTime `json:"ppMaximumResponseTime"`
-	PpSubsRegTimer        *PpSubsRegTimer        `json:"ppSubsRegTimer"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
+
+	// PpSubsRegTimer Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpSubsRegTimer
+	PpSubsRegTimer       *PpSubsRegTimer        `json:"ppSubsRegTimer"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CommunicationFailure defines model for CommunicationFailure.
+// CommunicationFailure Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/CommunicationFailure
 type CommunicationFailure struct {
 	NasReleaseCode       *string                `json:"nasReleaseCode,omitempty"`
 	RanReleaseCode       *NgApCause             `json:"ranReleaseCode,omitempty"`
@@ -4044,7 +4324,7 @@ type ComplexQuery struct {
 	union json.RawMessage
 }
 
-// ConditionData defines model for ConditionData.
+// ConditionData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ConditionData
 type ConditionData struct {
 	AccessType     AccessType  `json:"accessType,omitempty"`
 	ActivationTime *DateTimeRm `json:"activationTime"`
@@ -4056,58 +4336,73 @@ type ConditionData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ConditionEventType Indicates whether a notification is due to the NF Instance to start or stop being part of a condition for a subscription to a set of NFs
+// ConditionEventType Indicates whether a notification is due to the NF Instance to start or stop being part of a condition for a subscription to a set of NFs (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ConditionEventType)
 type ConditionEventType string
 
-// ConfidentialityKey defines model for ConfidentialityKey.
+// ConfidentialityKey Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ConfidentialityKey
 type ConfidentialityKey = string
 
-// ConfiguredSnssai defines model for ConfiguredSnssai.
+// ConfiguredSnssai Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/ConfiguredSnssai
 type ConfiguredSnssai struct {
 	ConfiguredSnssai     Snssai                 `json:"configuredSnssai"`
 	MappedHomeSnssai     *Snssai                `json:"mappedHomeSnssai,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ConfirmationData defines model for ConfirmationData.
+// ConfirmationData Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/ConfirmationData
 type ConfirmationData struct {
+	// ResStar Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/ResStar
 	ResStar              *ResStar               `json:"resStar"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ConfirmationDataResponse defines model for ConfirmationDataResponse.
+// ConfirmationDataResponse Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/ConfirmationDataResponse
 type ConfirmationDataResponse struct {
-	AuthResult           AuthResult             `json:"authResult"`
+	// AuthResult Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/AuthResult
+	AuthResult AuthResult `json:"authResult"`
+
+	// Kseaf Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/Kseaf
 	Kseaf                Kseaf                  `json:"kseaf,omitempty"`
 	Supi                 Supi                   `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ContentVersion Represents the content version of some content.
+// ContentVersion Represents the content version of some content. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion)
 type ContentVersion = int
 
-// ContextDataSetName defines model for ContextDataSetName.
+// ContextDataSetName Original definition in TS29505_Subscription_Data.yaml#/components/schemas/ContextDataSetName
 type ContextDataSetName string
 
-// ContextDataSets defines model for ContextDataSets.
+// ContextDataSets Original definition in TS29505_Subscription_Data.yaml#/components/schemas/ContextDataSets
 type ContextDataSets struct {
-	Amf3Gpp                       *Amf3GppAccessRegistration      `json:"amf3Gpp,omitempty"`
-	AmfNon3Gpp                    *AmfNon3GppAccessRegistration   `json:"amfNon3Gpp,omitempty"`
-	EeSubscriptions               []EeSubscription                `json:"eeSubscriptions,omitempty"`
-	IpSmGw                        *IpSmGwRegistration             `json:"ipSmGw,omitempty"`
-	SdmSubscriptions              []SdmSubscription               `json:"sdmSubscriptions,omitempty"`
-	SmfRegistrations              *SmfRegList                     `json:"smfRegistrations,omitempty"`
-	Smsf3GppAccess                *SmsfRegistration               `json:"smsf3GppAccess,omitempty"`
+	// Amf3Gpp Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/Amf3GppAccessRegistration
+	Amf3Gpp *Amf3GppAccessRegistration `json:"amf3Gpp,omitempty"`
+
+	// AmfNon3Gpp Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/AmfNon3GppAccessRegistration
+	AmfNon3Gpp      *AmfNon3GppAccessRegistration `json:"amfNon3Gpp,omitempty"`
+	EeSubscriptions []EeSubscription              `json:"eeSubscriptions,omitempty"`
+
+	// IpSmGw Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/IpSmGwRegistration
+	IpSmGw           *IpSmGwRegistration `json:"ipSmGw,omitempty"`
+	SdmSubscriptions []SdmSubscription   `json:"sdmSubscriptions,omitempty"`
+
+	// SmfRegistrations Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SmfRegList
+	SmfRegistrations *SmfRegList `json:"smfRegistrations,omitempty"`
+
+	// Smsf3GppAccess Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/SmsfRegistration
+	Smsf3GppAccess *SmsfRegistration `json:"smsf3GppAccess,omitempty"`
+
+	// SmsfNon3GppAccess Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/SmsfRegistration
 	SmsfNon3GppAccess             *SmsfRegistration               `json:"smsfNon3GppAccess,omitempty"`
 	SubscriptionDataSubscriptions []SubscriptionDataSubscriptions `json:"subscriptionDataSubscriptions,omitempty"`
 	AdditionalProperties          map[string]interface{}          `json:"-"`
 }
 
-// ContextDatasetNames defines model for ContextDatasetNames.
+// ContextDatasetNames Original definition in TS29505_Subscription_Data.yaml#/components/schemas/ContextDatasetNames
 type ContextDatasetNames = []ContextDataSetName
 
-// ContextInfo defines model for ContextInfo.
+// ContextInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
 type ContextInfo struct {
 	OrigHeaders          []string               `json:"origHeaders,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -4116,14 +4411,15 @@ type ContextInfo struct {
 // CoreNetworkType defines model for CoreNetworkType.
 type CoreNetworkType string
 
-// CounterSor defines model for CounterSor.
+// CounterSor Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/CounterSor
 type CounterSor = string
 
-// CounterUpu defines model for CounterUpu.
+// CounterUpu Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/CounterUpu
 type CounterUpu = string
 
-// CreatedEeSubscription defines model for CreatedEeSubscription.
+// CreatedEeSubscription Original definition in TS29503_Nudm_EE.yaml#/components/schemas/CreatedEeSubscription
 type CreatedEeSubscription struct {
+	// EeSubscription Original definition in TS29503_Nudm_EE.yaml#/components/schemas/EeSubscription
 	EeSubscription       EeSubscription         `json:"eeSubscription"`
 	EpcStatusInd         *bool                  `json:"epcStatusInd,omitempty"`
 	EventReports         []MonitoringReport     `json:"eventReports,omitempty"`
@@ -4131,25 +4427,28 @@ type CreatedEeSubscription struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// CreditManagementStatus defines model for CreditManagementStatus.
+// CreditManagementStatus Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/CreditManagementStatus
 type CreditManagementStatus string
 
-// DataChangeNotify defines model for DataChangeNotify.
+// DataChangeNotify Original definition in TS29505_Subscription_Data.yaml#/components/schemas/DataChangeNotify
 type DataChangeNotify struct {
-	AdditionalSdmSubscriptions    []SdmSubscription                `json:"additionalSdmSubscriptions,omitempty"`
-	NotifyItems                   []NotifyItem                     `json:"notifyItems,omitempty"`
-	OriginalCallbackReference     []Uri                            `json:"originalCallbackReference,omitempty"`
+	AdditionalSdmSubscriptions []SdmSubscription `json:"additionalSdmSubscriptions,omitempty"`
+	NotifyItems                []NotifyItem      `json:"notifyItems,omitempty"`
+	OriginalCallbackReference  []Uri             `json:"originalCallbackReference,omitempty"`
+
+	// SdmSubscription Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SdmSubscription
 	SdmSubscription               *SdmSubscription                 `json:"sdmSubscription,omitempty"`
 	SubscriptionDataSubscriptions *[]SubscriptionDataSubscriptions `json:"subscriptionDataSubscriptions,omitempty"`
 	UeId                          VarUeId                          `json:"ueId,omitempty"`
 	AdditionalProperties          map[string]interface{}           `json:"-"`
 }
 
-// DataFilter Identifies a data filter.
+// DataFilter Identifies a data filter. (Original definition in TS29519_Application_Data.yaml#/components/schemas/DataFilter)
 type DataFilter struct {
 	AppIds []ApplicationId `json:"appIds,omitempty"`
 
 	// DataInd Possible values are - PFD - IPTV - BDT - SVC_PARAM
+	//  (Original definition in TS29519_Application_Data.yaml#/components/schemas/DataInd)
 	DataInd              DataInd                `json:"dataInd"`
 	Dnns                 []Dnn                  `json:"dnns,omitempty"`
 	InternalGroupIds     []GroupId              `json:"internalGroupIds,omitempty"`
@@ -4162,15 +4461,17 @@ type DataFilter struct {
 }
 
 // DataInd Possible values are - PFD - IPTV - BDT - SVC_PARAM
+//
+//	(Original definition in TS29519_Application_Data.yaml#/components/schemas/DataInd)
 type DataInd string
 
-// DataSetId Types of data sets stored in UDR
+// DataSetId Types of data sets stored in UDR (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/DataSetId)
 type DataSetId string
 
-// DataSetName defines model for DataSetName.
+// DataSetName Original definition in TS29505_Subscription_Data.yaml#/components/schemas/DataSetName
 type DataSetName string
 
-// DatalinkReportingConfiguration defines model for DatalinkReportingConfiguration.
+// DatalinkReportingConfiguration Original definition in TS29503_Nudm_EE.yaml#/components/schemas/DatalinkReportingConfiguration
 type DatalinkReportingConfiguration struct {
 	DddStatusList        []DlDataDeliveryStatus `json:"dddStatusList,omitempty"`
 	DddTrafficDes        []DddTrafficDescriptor `json:"dddTrafficDes,omitempty"`
@@ -4179,7 +4480,7 @@ type DatalinkReportingConfiguration struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DatasetNames defines model for DatasetNames.
+// DatasetNames Original definition in TS29505_Subscription_Data.yaml#/components/schemas/DatasetNames
 type DatasetNames = []DataSetName
 
 // DateTime defines model for DateTime.
@@ -4200,60 +4501,72 @@ type DddTrafficDescriptor struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DdnFailureSubInfo defines model for DdnFailureSubInfo.
+// DdnFailureSubInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DdnFailureSubInfo
 type DdnFailureSubInfo struct {
 	DddTrafficDescriptorList []DddTrafficDescriptor `json:"dddTrafficDescriptorList,omitempty"`
 	NotifyCorrelationId      string                 `json:"notifyCorrelationId"`
 	AdditionalProperties     map[string]interface{} `json:"-"`
 }
 
-// DdnFailureSubs defines model for DdnFailureSubs.
+// DdnFailureSubs Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DdnFailureSubs
 type DdnFailureSubs struct {
 	DdnFailureSubsInd      *bool                  `json:"ddnFailureSubsInd,omitempty"`
 	DdnFailureSubsInfoList []DdnFailureSubInfo    `json:"ddnFailureSubsInfoList,omitempty"`
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// DefaultNotificationSubscription Data structure for specifying the notifications the NF service subscribes by default along with callback URI
+// DefaultNotificationSubscription Data structure for specifying the notifications the NF service subscribes by default along with callback URI (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/DefaultNotificationSubscription)
 type DefaultNotificationSubscription struct {
-	Binding            *string             `json:"binding,omitempty"`
-	CallbackUri        Uri                 `json:"callbackUri"`
-	N1MessageClass     *N1MessageClass     `json:"n1MessageClass,omitempty"`
+	Binding     *string `json:"binding,omitempty"`
+	CallbackUri Uri     `json:"callbackUri"`
+
+	// N1MessageClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
+	N1MessageClass *N1MessageClass `json:"n1MessageClass,omitempty"`
+
+	// N2InformationClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
 	N2InformationClass *N2InformationClass `json:"n2InformationClass,omitempty"`
 
-	// NotificationType Types of notifications used in Default Notification URIs in the NF Profile of an NF Instance
+	// NotificationType Types of notifications used in Default Notification URIs in the NF Profile of an NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NotificationType)
 	NotificationType     NotificationType       `json:"notificationType"`
 	Versions             []string               `json:"versions,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DefaultUnrelatedClass defines model for DefaultUnrelatedClass.
+// DefaultUnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DefaultUnrelatedClass
 type DefaultUnrelatedClass struct {
-	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
-	CodeWordInd               *CodeWordInd               `json:"codeWordInd,omitempty"`
-	CodeWordList              []CodeWord                 `json:"codeWordList,omitempty"`
+	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+
+	// CodeWordInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CodeWordInd
+	CodeWordInd  *CodeWordInd `json:"codeWordInd,omitempty"`
+	CodeWordList []CodeWord   `json:"codeWordList,omitempty"`
+
+	// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
-	ValidTimePeriod           *ValidTimePeriod           `json:"validTimePeriod,omitempty"`
-	AdditionalProperties      map[string]interface{}     `json:"-"`
+
+	// ValidTimePeriod Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ValidTimePeriod
+	ValidTimePeriod      *ValidTimePeriod       `json:"validTimePeriod,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DeregistrationData defines model for DeregistrationData.
+// DeregistrationData Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/DeregistrationData
 type DeregistrationData struct {
-	AccessType           AccessType             `json:"accessType,omitempty"`
+	AccessType AccessType `json:"accessType,omitempty"`
+
+	// DeregReason Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/DeregistrationReason
 	DeregReason          DeregistrationReason   `json:"deregReason"`
 	NewSmfInstanceId     *NfInstanceId          `json:"newSmfInstanceId,omitempty"`
 	PduSessionId         *PduSessionId          `json:"pduSessionId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DeregistrationInfo defines model for DeregistrationInfo.
+// DeregistrationInfo Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/DeregistrationInfo
 type DeregistrationInfo struct {
 	Supi                 Supi                   `json:"supi"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DeregistrationReason defines model for DeregistrationReason.
+// DeregistrationReason Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/DeregistrationReason
 type DeregistrationReason string
 
 // DiameterIdentity defines model for DiameterIdentity.
@@ -4268,7 +4581,7 @@ type Dnai = string
 // DnaiChangeType Possible values are - EARLY: Early notification of UP path reconfiguration. - EARLY_LATE: Early and late notification of UP path reconfiguration. This value shall only be present in the subscription to the DNAI change event. - LATE: Late notification of UP path reconfiguration.
 type DnaiChangeType string
 
-// DnaiInformation defines model for DnaiInformation.
+// DnaiInformation Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnaiInformation
 type DnaiInformation struct {
 	Dnai                 Dnai                   `json:"dnai"`
 	NoDnaiChangeInd      *bool                  `json:"noDnaiChangeInd,omitempty"`
@@ -4291,54 +4604,72 @@ type DnfUnit struct {
 // Dnn defines model for Dnn.
 type Dnn = string
 
-// DnnConfiguration defines model for DnnConfiguration.
+// DnnConfiguration Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DnnConfiguration
 type DnnConfiguration struct {
+	// N3gppChargingCharacteristics Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/3GppChargingCharacteristics
 	N3gppChargingCharacteristics *N3GppChargingCharacteristics `json:"3gppChargingCharacteristics,omitempty"`
 	N5gQosProfile                *SubscribedDefaultQos         `json:"5gQosProfile,omitempty"`
 	AcsInfo                      *AcsInfo                      `json:"acsInfo,omitempty"`
 	AtsssAllowed                 *bool                         `json:"atsssAllowed,omitempty"`
-	DnAaaAddress                 *IpAddress                    `json:"dnAaaAddress,omitempty"`
-	DnAaaIpAddressAllocation     *bool                         `json:"dnAaaIpAddressAllocation,omitempty"`
-	IptvAccCtrlInfo              *string                       `json:"iptvAccCtrlInfo,omitempty"`
-	Ipv4FrameRouteList           []FrameRouteInfo              `json:"ipv4FrameRouteList,omitempty"`
-	Ipv6FrameRouteList           []FrameRouteInfo              `json:"ipv6FrameRouteList,omitempty"`
-	IwkEpsInd                    *IwkEpsInd                    `json:"iwkEpsInd,omitempty"`
-	NiddInfo                     *NiddInformation              `json:"niddInfo,omitempty"`
 
-	// NiddNefId Identity of the NEF
-	NiddNefId               *NefId                   `json:"niddNefId,omitempty"`
+	// DnAaaAddress Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress
+	DnAaaAddress             *IpAddress       `json:"dnAaaAddress,omitempty"`
+	DnAaaIpAddressAllocation *bool            `json:"dnAaaIpAddressAllocation,omitempty"`
+	IptvAccCtrlInfo          *string          `json:"iptvAccCtrlInfo,omitempty"`
+	Ipv4FrameRouteList       []FrameRouteInfo `json:"ipv4FrameRouteList,omitempty"`
+	Ipv6FrameRouteList       []FrameRouteInfo `json:"ipv6FrameRouteList,omitempty"`
+
+	// IwkEpsInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/IwkEpsInd
+	IwkEpsInd *IwkEpsInd `json:"iwkEpsInd,omitempty"`
+
+	// NiddInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/NiddInformation
+	NiddInfo *NiddInformation `json:"niddInfo,omitempty"`
+
+	// NiddNefId Identity of the NEF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefId)
+	NiddNefId *NefId `json:"niddNefId,omitempty"`
+
+	// PduSessionContinuityInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PduSessionContinuityInd
 	PduSessionContinuityInd *PduSessionContinuityInd `json:"pduSessionContinuityInd,omitempty"`
-	PduSessionTypes         PduSessionTypes          `json:"pduSessionTypes"`
-	RedundantSessionAllowed *bool                    `json:"redundantSessionAllowed,omitempty"`
-	SecondaryAuth           *bool                    `json:"secondaryAuth,omitempty"`
-	SessionAmbr             *Ambr                    `json:"sessionAmbr,omitempty"`
-	SscModes                SscModes                 `json:"sscModes"`
-	StaticIpAddress         []IpAddress              `json:"staticIpAddress,omitempty"`
-	UpSecurity              *UpSecurity              `json:"upSecurity,omitempty"`
-	AdditionalProperties    map[string]interface{}   `json:"-"`
+
+	// PduSessionTypes Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PduSessionTypes
+	PduSessionTypes         PduSessionTypes `json:"pduSessionTypes"`
+	RedundantSessionAllowed *bool           `json:"redundantSessionAllowed,omitempty"`
+	SecondaryAuth           *bool           `json:"secondaryAuth,omitempty"`
+	SessionAmbr             *Ambr           `json:"sessionAmbr,omitempty"`
+
+	// SscModes Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SscModes
+	SscModes             SscModes               `json:"sscModes"`
+	StaticIpAddress      []IpAddress            `json:"staticIpAddress,omitempty"`
+	UpSecurity           *UpSecurity            `json:"upSecurity,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DnnIndicator defines model for DnnIndicator.
+// DnnIndicator Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DnnIndicator
 type DnnIndicator = bool
 
-// DnnInfo defines model for DnnInfo.
+// DnnInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DnnInfo
 type DnnInfo struct {
+	// DefaultDnnIndicator Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DnnIndicator
 	DefaultDnnIndicator *DnnIndicator `json:"defaultDnnIndicator,omitempty"`
 
 	// Dnn Merged type of
 	//   string in TS29571_CommonData.yaml#/components/schemas/Dnn
 	//   string in TS29571_CommonData.yaml#/components/schemas/WildcardDnn
-	Dnn                  string                 `json:"dnn"`
-	DnnBarred            *bool                  `json:"dnnBarred,omitempty"`
-	InvokeNefInd         *bool                  `json:"invokeNefInd,omitempty"`
-	IwkEpsInd            *IwkEpsInd             `json:"iwkEpsInd,omitempty"`
+	Dnn          string `json:"dnn"`
+	DnnBarred    *bool  `json:"dnnBarred,omitempty"`
+	InvokeNefInd *bool  `json:"invokeNefInd,omitempty"`
+
+	// IwkEpsInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/IwkEpsInd
+	IwkEpsInd *IwkEpsInd `json:"iwkEpsInd,omitempty"`
+
+	// LboRoamingAllowed Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LboRoamingAllowed
 	LboRoamingAllowed    *LboRoamingAllowed     `json:"lboRoamingAllowed,omitempty"`
 	SameSmfInd           *bool                  `json:"sameSmfInd,omitempty"`
 	SmfList              []NfInstanceId         `json:"smfList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DnnRouteSelectionDescriptor Contains the route selector parameters (PDU session types, SSC modes and ATSSS information) per DNN
+// DnnRouteSelectionDescriptor Contains the route selector parameters (PDU session types, SSC modes and ATSSS information) per DNN (Original definition in TS29519_Policy_Data.yaml#/components/schemas/DnnRouteSelectionDescriptor)
 type DnnRouteSelectionDescriptor struct {
 	// AtsssInfo Indicates whether MA PDU session establishment is allowed for this DNN. When set to value true MA PDU session establishment is allowed for this DNN.
 	AtsssInfo            *bool                  `json:"atsssInfo,omitempty"`
@@ -4349,15 +4680,17 @@ type DnnRouteSelectionDescriptor struct {
 }
 
 // DnnSelectionMode Possible values are - VERIFIED - UE_DNN_NOT_VERIFIED - NW_DNN_NOT_VERIFIED
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnnSelectionMode)
 type DnnSelectionMode string
 
-// DnnSmfInfoItem Set of parameters supported by SMF for a given DNN
+// DnnSmfInfoItem Set of parameters supported by SMF for a given DNN (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/DnnSmfInfoItem)
 type DnnSmfInfoItem struct {
 	Dnn                  Dnn                    `json:"dnn"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DnnUpfInfoItem Set of parameters supported by UPF for a given DNN
+// DnnUpfInfoItem Set of parameters supported by UPF for a given DNN (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/DnnUpfInfoItem)
 type DnnUpfInfoItem struct {
 	DnaiList []Dnai `json:"dnaiList,omitempty"`
 
@@ -4371,29 +4704,31 @@ type DnnUpfInfoItem struct {
 }
 
 // DomainNameProtocol Possible values are - DNS_QNAME: Identifies the DNS protocol and the question name in DNS query. - TLS_SNI: Identifies the Server Name Indication in TLS ClientHello message. - TLS_SAN: Identifies the Subject Alternative Name in TLS ServerCertificate message. - TSL_SCN: Identifies the Subject Common Name in TLS ServerCertificate message.
+//
+//	(Original definition in TS29122_PfdManagement.yaml#/components/schemas/DomainNameProtocol)
 type DomainNameProtocol string
 
-// DownlinkDataNotificationControl Contains the downlink data notification control information.
+// DownlinkDataNotificationControl Contains the downlink data notification control information. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/DownlinkDataNotificationControl)
 type DownlinkDataNotificationControl struct {
 	NotifCtrlInds        []NotificationControlIndication `json:"notifCtrlInds,omitempty"`
 	TypesOfNotif         []DlDataDeliveryStatus          `json:"typesOfNotif,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
 }
 
-// DownlinkDataNotificationControlRm this data type is defined in the same way as the DownlinkDataNotificationControl data type, but with the OpenAPI nullable property set to true.
+// DownlinkDataNotificationControlRm this data type is defined in the same way as the DownlinkDataNotificationControl data type, but with the OpenAPI nullable property set to true. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/DownlinkDataNotificationControlRm)
 type DownlinkDataNotificationControlRm struct {
 	NotifCtrlInds        *[]NotificationControlIndication `json:"notifCtrlInds"`
 	TypesOfNotif         *[]DlDataDeliveryStatus          `json:"typesOfNotif"`
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
 
-// DrbId defines model for DrbId.
+// DrbId Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DrbId
 type DrbId = int
 
 // DrxParameter defines model for DrxParameter.
 type DrxParameter = Bytes
 
-// DualRegistrationFlag defines model for DualRegistrationFlag.
+// DualRegistrationFlag Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/DualRegistrationFlag
 type DualRegistrationFlag = bool
 
 // DurationSec defines model for DurationSec.
@@ -4402,7 +4737,7 @@ type DurationSec = int
 // DurationSecRm defines model for DurationSecRm.
 type DurationSecRm = int
 
-// DurationSecRo Unsigned integer identifying a period of time in units of seconds with "readOnly=true" property.
+// DurationSecRo Unsigned integer identifying a period of time in units of seconds with "readOnly=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSecRo)
 type DurationSecRo = int
 
 // Dynamic5Qi defines model for Dynamic5Qi.
@@ -4420,45 +4755,53 @@ type Dynamic5Qi struct {
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// E164Number defines model for E164Number.
+// E164Number Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
 type E164Number = string
 
 // ENbId defines model for ENbId.
 type ENbId = string
 
-// EapPayload contains an EAP packet
+// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
 type EapPayload = string
 
-// EapSession defines model for EapSession.
+// EapSession Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapSession
 type EapSession struct {
-	Links      *map[string]LinksValueSchema `json:"_links,omitempty"`
-	AuthResult AuthResult                   `json:"authResult,omitempty"`
+	Links *map[string]LinksValueSchema `json:"_links,omitempty"`
 
-	// EapPayload contains an EAP packet
-	EapPayload           *EapPayload            `json:"eapPayload"`
+	// AuthResult Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/AuthResult
+	AuthResult AuthResult `json:"authResult,omitempty"`
+
+	// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
+	EapPayload *EapPayload `json:"eapPayload"`
+
+	// KSeaf Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/Kseaf
 	KSeaf                Kseaf                  `json:"kSeaf,omitempty"`
 	Supi                 Supi                   `json:"supi,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EbiArpMapping defines model for EbiArpMapping.
+// EbiArpMapping Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EbiArpMapping
 type EbiArpMapping struct {
-	Arp                  Arp                    `json:"arp"`
+	Arp Arp `json:"arp"`
+
+	// EpsBearerId Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerId
 	EpsBearerId          SmfEpsBearerId         `json:"epsBearerId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EcRestriction defines model for EcRestriction.
+// EcRestriction Original definition in TS29503_Nudm_PP.yaml#/components/schemas/EcRestriction
 type EcRestriction struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
 	PlmnEcInfos            []PlmnEcInfo            `json:"plmnEcInfos,omitempty"`
-	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
-	AdditionalProperties   map[string]interface{}  `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
+	ReferenceId          UdmPPReferenceId       `json:"referenceId"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EcRestrictionDataWb defines model for EcRestrictionDataWb.
+// EcRestrictionDataWb Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EcRestrictionDataWb
 type EcRestrictionDataWb struct {
 	EcModeARestricted    *bool                  `json:"ecModeARestricted,omitempty"`
 	EcModeBRestricted    bool                   `json:"ecModeBRestricted"`
@@ -4473,14 +4816,14 @@ type Ecgi struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EdrxParameters defines model for EdrxParameters.
+// EdrxParameters Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EdrxParameters
 type EdrxParameters struct {
 	EdrxValue            string                 `json:"edrxValue"`
 	RatType              RatType                `json:"ratType"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EeGroupProfileData defines model for EeGroupProfileData.
+// EeGroupProfileData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/EeGroupProfileData
 type EeGroupProfileData struct {
 	// AllowedMtcProvider A map (list of key-value pairs where EventType serves as key) of MTC provider lists. In addition to defined EventTypes, the key value "ALL" may be used to identify a map entry which contains a list of MtcProviders that are allowed monitoring all Event Types.
 	AllowedMtcProvider   *map[string][]MtcProvider `json:"allowedMtcProvider,omitempty"`
@@ -4489,7 +4832,7 @@ type EeGroupProfileData struct {
 	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
-// EeProfileData defines model for EeProfileData.
+// EeProfileData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/EeProfileData
 type EeProfileData struct {
 	// AllowedMtcProvider A map (list of key-value pairs where EventType serves as key) of MTC provider lists. In addition to defined EventTypes, the key value "ALL" may be used to identify a map entry which contains a list of MtcProviders that are allowed monitoring all Event Types.
 	AllowedMtcProvider   *map[string][]MtcProvider `json:"allowedMtcProvider,omitempty"`
@@ -4498,116 +4841,133 @@ type EeProfileData struct {
 	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
-// EeSubscription defines model for EeSubscription.
+// EeSubscription Original definition in TS29503_Nudm_EE.yaml#/components/schemas/EeSubscription
 type EeSubscription struct {
-	CallbackReference Uri          `json:"callbackReference"`
-	ContextInfo       *ContextInfo `json:"contextInfo,omitempty"`
-	EpcAppliedInd     *bool        `json:"epcAppliedInd,omitempty"`
+	CallbackReference Uri `json:"callbackReference"`
+
+	// ContextInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
+	ContextInfo   *ContextInfo `json:"contextInfo,omitempty"`
+	EpcAppliedInd *bool        `json:"epcAppliedInd,omitempty"`
 
 	// MonitoringConfigurations A map (list of key-value pairs where ReferenceId serves as key) of MonitoringConfigurations
 	MonitoringConfigurations map[string]MonitoringConfiguration `json:"monitoringConfigurations"`
 	NotifyCorrelationId      *string                            `json:"notifyCorrelationId,omitempty"`
-	ReportingOptions         *ReportingOptions                  `json:"reportingOptions,omitempty"`
-	ScefDiamHost             DiameterIdentity                   `json:"scefDiamHost,omitempty"`
-	ScefDiamRealm            DiameterIdentity                   `json:"scefDiamRealm,omitempty"`
-	SubscriptionId           *string                            `json:"subscriptionId,omitempty"`
-	SupportedFeatures        *SupportedFeatures                 `json:"supportedFeatures,omitempty"`
-	AdditionalProperties     map[string]interface{}             `json:"-"`
+
+	// ReportingOptions Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReportingOptions
+	ReportingOptions     *ReportingOptions      `json:"reportingOptions,omitempty"`
+	ScefDiamHost         DiameterIdentity       `json:"scefDiamHost,omitempty"`
+	ScefDiamRealm        DiameterIdentity       `json:"scefDiamRealm,omitempty"`
+	SubscriptionId       *string                `json:"subscriptionId,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EmergencyInfo defines model for EmergencyInfo.
+// EmergencyInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EmergencyInfo
 type EmergencyInfo struct {
-	EpdgInd              *bool                  `json:"epdgInd,omitempty"`
-	PgwFqdn              *string                `json:"pgwFqdn,omitempty"`
+	EpdgInd *bool   `json:"epdgInd,omitempty"`
+	PgwFqdn *string `json:"pgwFqdn,omitempty"`
+
+	// PgwIpAddress Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress
 	PgwIpAddress         *IpAddress             `json:"pgwIpAddress,omitempty"`
 	SmfInstanceId        *NfInstanceId          `json:"smfInstanceId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EnableUeReachabilityReqData defines model for EnableUeReachabilityReqData.
+// EnableUeReachabilityReqData Original definition in TS29518_Namf_MT.yaml#/components/schemas/EnableUeReachabilityReqData
 type EnableUeReachabilityReqData struct {
-	ExtBufSupport        *bool                  `json:"extBufSupport,omitempty"`
-	OldGuami             *Guami                 `json:"oldGuami,omitempty"`
+	ExtBufSupport *bool  `json:"extBufSupport,omitempty"`
+	OldGuami      *Guami `json:"oldGuami,omitempty"`
+
+	// Reachability Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
 	Reachability         UeReachability         `json:"reachability"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EnableUeReachabilityRspData defines model for EnableUeReachabilityRspData.
+// EnableUeReachabilityRspData Original definition in TS29518_Namf_MT.yaml#/components/schemas/EnableUeReachabilityRspData
 type EnableUeReachabilityRspData struct {
+	// Reachability Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
 	Reachability         UeReachability         `json:"reachability"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EnhancedCoverageRestrictionData defines model for EnhancedCoverageRestrictionData.
+// EnhancedCoverageRestrictionData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EnhancedCoverageRestrictionData
 type EnhancedCoverageRestrictionData struct {
 	PlmnEcInfoList       []PlmnEcInfo           `json:"plmnEcInfoList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EpsBearerContainer defines model for EpsBearerContainer.
+// EpsBearerContainer Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerContainer
 type EpsBearerContainer = string
 
-// EpsBearerContextStatus defines model for EpsBearerContextStatus.
+// EpsBearerContextStatus Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerContextStatus
 type EpsBearerContextStatus = string
 
-// EpsBearerId defines model for EpsBearerId.
+// EpsBearerId Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EpsBearerId
 type EpsBearerId = int
 
-// EpsBearerInfo defines model for EpsBearerInfo.
+// EpsBearerInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerInfo
 type EpsBearerInfo struct {
-	BearerLevelQoS       Bytes                  `json:"bearerLevelQoS"`
+	BearerLevelQoS Bytes `json:"bearerLevelQoS"`
+
+	// Ebi Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerId
 	Ebi                  SmfEpsBearerId         `json:"ebi"`
 	PgwS8uFteid          Bytes                  `json:"pgwS8uFteid"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // EpsInterworkingIndication Possible values are - NONE - WITH_N26 - WITHOUT_N26 - IWK_NON_3GPP
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsInterworkingIndication)
 type EpsInterworkingIndication string
 
-// EpsInterworkingInfo defines model for EpsInterworkingInfo.
+// EpsInterworkingInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/EpsInterworkingInfo
 type EpsInterworkingInfo struct {
 	// EpsIwkPgws A map (list of key-value pairs where Dnn serves as key) of EpsIwkPgws
 	EpsIwkPgws           *map[string]EpsIwkPgw  `json:"epsIwkPgws,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EpsIwkPgw defines model for EpsIwkPgw.
+// EpsIwkPgw Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/EpsIwkPgw
 type EpsIwkPgw struct {
 	PgwFqdn              string                 `json:"pgwFqdn"`
 	SmfInstanceId        NfInstanceId           `json:"smfInstanceId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EpsNasCipheringAlgorithm defines model for EpsNasCipheringAlgorithm.
+// EpsNasCipheringAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EpsNasCipheringAlgorithm
 type EpsNasCipheringAlgorithm string
 
-// EpsNasIntegrityAlgorithm defines model for EpsNasIntegrityAlgorithm.
+// EpsNasIntegrityAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EpsNasIntegrityAlgorithm
 type EpsNasIntegrityAlgorithm string
 
-// EpsNasSecurityMode defines model for EpsNasSecurityMode.
+// EpsNasSecurityMode Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EpsNasSecurityMode
 type EpsNasSecurityMode struct {
-	CipheringAlgorithm   EpsNasCipheringAlgorithm `json:"cipheringAlgorithm"`
+	// CipheringAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EpsNasCipheringAlgorithm
+	CipheringAlgorithm EpsNasCipheringAlgorithm `json:"cipheringAlgorithm"`
+
+	// IntegrityAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EpsNasIntegrityAlgorithm
 	IntegrityAlgorithm   EpsNasIntegrityAlgorithm `json:"integrityAlgorithm"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
-// EpsPdnCnxContainer defines model for EpsPdnCnxContainer.
+// EpsPdnCnxContainer Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxContainer
 type EpsPdnCnxContainer = string
 
-// EpsPdnCnxInfo defines model for EpsPdnCnxInfo.
+// EpsPdnCnxInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxInfo
 type EpsPdnCnxInfo struct {
+	// LinkedBearerId Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerId
 	LinkedBearerId       *SmfEpsBearerId        `json:"linkedBearerId,omitempty"`
 	PgwNodeName          *Bytes                 `json:"pgwNodeName,omitempty"`
 	PgwS8cFteid          Bytes                  `json:"pgwS8cFteid"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EpsRanNasRelCause Defines the EPS RAN/NAS release cause.
+// EpsRanNasRelCause Defines the EPS RAN/NAS release cause. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/EpsRanNasRelCause)
 type EpsRanNasRelCause = string
 
-// ErrorReport defines model for ErrorReport.
+// ErrorReport Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ErrorReport
 type ErrorReport struct {
 	AltQosParamId *string         `json:"altQosParamId,omitempty"`
 	Error         *ProblemDetails `json:"error,omitempty"`
@@ -4623,16 +4983,17 @@ type ErrorReport struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EthFlowDescription Identifies an Ethernet flow
+// EthFlowDescription Identifies an Ethernet flow (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription)
 type EthFlowDescription struct {
 	DestMacAddr    MacAddr48 `json:"destMacAddr,omitempty"`
 	DestMacAddrEnd MacAddr48 `json:"destMacAddrEnd,omitempty"`
 	EthType        string    `json:"ethType"`
 
-	// FDesc Defines a packet filter of an IP flow.
+	// FDesc Defines a packet filter of an IP flow. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowDescription)
 	FDesc *PolicyAuthorizationFlowDescription `json:"fDesc,omitempty"`
 
 	// FDir Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection)
 	FDir                 *FlowDirection         `json:"fDir,omitempty"`
 	SourceMacAddr        MacAddr48              `json:"sourceMacAddr,omitempty"`
 	SrcMacAddrEnd        MacAddr48              `json:"srcMacAddrEnd,omitempty"`
@@ -4640,7 +5001,7 @@ type EthFlowDescription struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EthernetFlowInfo defines model for EthernetFlowInfo.
+// EthernetFlowInfo Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/EthernetFlowInfo
 type EthernetFlowInfo struct {
 	EthFlows             []EthFlowDescription   `json:"ethFlows,omitempty"`
 	FlowNumber           int                    `json:"flowNumber"`
@@ -4668,13 +5029,15 @@ type EutraLocation struct {
 // EventForMdt defines model for EventForMdt.
 type EventForMdt string
 
-// EventNotification defines model for EventNotification.
+// EventNotification Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/EventNotification
 type EventNotification struct {
-	AccType      AccessType            `json:"accType,omitempty"`
-	AdIpv4Addr   Ipv4Addr              `json:"adIpv4Addr,omitempty"`
-	AdIpv6Prefix *Ipv6Prefix           `json:"adIpv6Prefix,omitempty"`
-	AppId        *ApplicationId        `json:"appId,omitempty"`
-	CommFailure  *CommunicationFailure `json:"commFailure,omitempty"`
+	AccType      AccessType     `json:"accType,omitempty"`
+	AdIpv4Addr   Ipv4Addr       `json:"adIpv4Addr,omitempty"`
+	AdIpv6Prefix *Ipv6Prefix    `json:"adIpv6Prefix,omitempty"`
+	AppId        *ApplicationId `json:"appId,omitempty"`
+
+	// CommFailure Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/CommunicationFailure
+	CommFailure *CommunicationFailure `json:"commFailure,omitempty"`
 
 	// DddStatus Possible values are - BUFFERED: The first downlink data is buffered with extended buffering matching the source of the downlink traffic. - TRANSMITTED: The first downlink data matching the source of the downlink traffic is transmitted after previous buffering or discarding of corresponding packet(s) because the UE of the PDU Session becomes ACTIVE, and buffered data can be delivered to UE. - DISCARDED: The first downlink data matching the source of the downlink traffic is discarded because the Extended Buffering time, as determined by the SMF, expires or the amount of downlink data to be buffered is exceeded.
 	DddStatus        *DlDataDeliveryStatus `json:"dddStatus,omitempty"`
@@ -4687,6 +5050,7 @@ type EventNotification struct {
 	EthfDescs   []EthFlowDescription `json:"ethfDescs,omitempty"`
 
 	// Event Possible values are - AC_TY_CH: Access Type Change - UP_PATH_CH: UP Path Change - PDU_SES_REL: PDU Session Release - PLMN_CH: PLMN Change - UE_IP_CH: UE IP address change - DDDS: Downlink data delivery status - COMM_FAIL: Communication Failure - PDU_SES_EST: PDU Session Establishment - QFI_ALLOC: QFI allocation - QOS_MON: QoS Monitoring
+	//  (Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/SmfEvent)
 	Event                SmfEvent                             `json:"event"`
 	FDescs               []PolicyAuthorizationFlowDescription `json:"fDescs,omitempty"`
 	Gpsi                 Gpsi                                 `json:"gpsi,omitempty"`
@@ -4717,10 +5081,10 @@ type EventNotification struct {
 	AdditionalProperties map[string]interface{}               `json:"-"`
 }
 
-// EventReportMode defines model for EventReportMode.
+// EventReportMode Original definition in TS29503_Nudm_EE.yaml#/components/schemas/EventReportMode
 type EventReportMode string
 
-// EventSubscription defines model for EventSubscription.
+// EventSubscription Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/EventSubscription
 type EventSubscription struct {
 	AppIds            []ApplicationId        `json:"appIds,omitempty"`
 	DddStati          []DlDataDeliveryStatus `json:"dddStati,omitempty"`
@@ -4730,29 +5094,33 @@ type EventSubscription struct {
 	DnaiChgType *DnaiChangeType `json:"dnaiChgType,omitempty"`
 
 	// Event Possible values are - AC_TY_CH: Access Type Change - UP_PATH_CH: UP Path Change - PDU_SES_REL: PDU Session Release - PLMN_CH: PLMN Change - UE_IP_CH: UE IP address change - DDDS: Downlink data delivery status - COMM_FAIL: Communication Failure - PDU_SES_EST: PDU Session Establishment - QFI_ALLOC: QFI allocation - QOS_MON: QoS Monitoring
+	//  (Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/SmfEvent)
 	Event                SmfEvent               `json:"event"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EventType defines model for EventType.
+// EventType Original definition in TS29503_Nudm_EE.yaml#/components/schemas/EventType
 type EventType string
 
-// EventsNotification describes the notification of a matched event
+// EventsNotification describes the notification of a matched event (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EventsNotification)
 type EventsNotification struct {
-	AccessType    AccessType            `json:"accessType,omitempty"`
+	AccessType AccessType `json:"accessType,omitempty"`
+
+	// AddAccessInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
 	AddAccessInfo *AdditionalAccessInfo `json:"addAccessInfo,omitempty"`
 
-	// AnChargAddr Describes the network entity within the access network performing charging
+	// AnChargAddr Describes the network entity within the access network performing charging (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AccNetChargingAddress)
 	AnChargAddr *AccNetChargingAddress        `json:"anChargAddr,omitempty"`
 	AnChargIds  []AccessNetChargingIdentifier `json:"anChargIds,omitempty"`
 
-	// AnGwAddr describes the address of the access network gateway control node
+	// AnGwAddr describes the address of the access network gateway control node (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AnGwAddress)
 	AnGwAddr                  *AnGwAddress              `json:"anGwAddr,omitempty"`
 	EvNotifs                  []AfEventNotification     `json:"evNotifs"`
 	EvSubsUri                 Uri                       `json:"evSubsUri"`
 	FailedResourcAllocReports []ResourcesAllocationInfo `json:"failedResourcAllocReports,omitempty"`
 
 	// NoNetLocSupp Possible values are - ANR_NOT_SUPPORTED: Indicates that the access network does not support the report of access network information. - TZR_NOT_SUPPORTED: Indicates that the access network does not support the report of UE time zone. - LOC_NOT_SUPPORTED: Indicates that the access network does not support the report of UE Location (or PLMN Id).
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/NetLocAccessSupport)
 	NoNetLocSupp     *NetLocAccessSupport                            `json:"noNetLocSupp,omitempty"`
 	OutOfCredReports []OutOfCreditInformation                        `json:"outOfCredReports,omitempty"`
 	PlmnId           *PlmnIdNid                                      `json:"plmnId,omitempty"`
@@ -4760,54 +5128,66 @@ type EventsNotification struct {
 	QosMonReports    []PolicyAuthorizationQosMonitoringReport        `json:"qosMonReports,omitempty"`
 
 	// RanNasRelCauses Contains the RAN and/or NAS release cause.
-	RanNasRelCauses         []RanNasRelCause           `json:"ranNasRelCauses,omitempty"`
-	RatType                 *RatType                   `json:"ratType,omitempty"`
-	RelAccessInfo           *AdditionalAccessInfo      `json:"relAccessInfo,omitempty"`
-	SuccResourcAllocReports []ResourcesAllocationInfo  `json:"succResourcAllocReports,omitempty"`
-	TsnBridgeManCont        *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
-	TsnPortManContDstt      *PortManagementContainer   `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts     []PortManagementContainer  `json:"tsnPortManContNwtts,omitempty"`
-	UeLoc                   *UserLocation              `json:"ueLoc,omitempty"`
-	UeLocTime               *DateTime                  `json:"ueLocTime,omitempty"`
-	UeTimeZone              *TimeZone                  `json:"ueTimeZone,omitempty"`
-	UsgRep                  *AccumulatedUsage          `json:"usgRep,omitempty"`
-	AdditionalProperties    map[string]interface{}     `json:"-"`
+	RanNasRelCauses []RanNasRelCause `json:"ranNasRelCauses,omitempty"`
+	RatType         *RatType         `json:"ratType,omitempty"`
+
+	// RelAccessInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
+	RelAccessInfo           *AdditionalAccessInfo     `json:"relAccessInfo,omitempty"`
+	SuccResourcAllocReports []ResourcesAllocationInfo `json:"succResourcAllocReports,omitempty"`
+
+	// TsnBridgeManCont Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+	TsnBridgeManCont *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
+
+	// TsnPortManContDstt Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+	TsnPortManContDstt  *PortManagementContainer  `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts []PortManagementContainer `json:"tsnPortManContNwtts,omitempty"`
+	UeLoc               *UserLocation             `json:"ueLoc,omitempty"`
+	UeLocTime           *DateTime                 `json:"ueLocTime,omitempty"`
+	UeTimeZone          *TimeZone                 `json:"ueTimeZone,omitempty"`
+
+	// UsgRep Original definition in TS29122_CommonData.yaml#/components/schemas/AccumulatedUsage
+	UsgRep               *AccumulatedUsage      `json:"usgRep,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EventsSubscPutData Identifies the events the application subscribes to within an Events Subscription sub-resource data. It may contain the notification of the already met events
+// EventsSubscPutData Identifies the events the application subscribes to within an Events Subscription sub-resource data. It may contain the notification of the already met events (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EventsSubscPutData)
 type EventsSubscPutData struct {
 	union json.RawMessage
 }
 
-// EventsSubscReqData Identifies the events the application subscribes to.
+// EventsSubscReqData Identifies the events the application subscribes to. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EventsSubscReqData)
 type EventsSubscReqData struct {
 	Events       []AfEventSubscription `json:"events"`
 	NotifCorreId *string               `json:"notifCorreId,omitempty"`
 	NotifUri     *Uri                  `json:"notifUri,omitempty"`
 
-	// QosMon Indicates the QoS Monitoring information to report, i.e. UL and/or DL and or round trip delay.
-	QosMon               *QosMonitoringInformation         `json:"qosMon,omitempty"`
-	ReqAnis              []RequiredAccessInfo              `json:"reqAnis,omitempty"`
-	ReqQosMonParams      []RequestedQosMonitoringParameter `json:"reqQosMonParams,omitempty"`
-	UsgThres             *UsageThreshold                   `json:"usgThres,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"-"`
+	// QosMon Indicates the QoS Monitoring information to report, i.e. UL and/or DL and or round trip delay. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosMonitoringInformation)
+	QosMon          *QosMonitoringInformation         `json:"qosMon,omitempty"`
+	ReqAnis         []RequiredAccessInfo              `json:"reqAnis,omitempty"`
+	ReqQosMonParams []RequestedQosMonitoringParameter `json:"reqQosMonParams,omitempty"`
+
+	// UsgThres Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThreshold
+	UsgThres             *UsageThreshold        `json:"usgThres,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// EventsSubscReqDataRm this data type is defined in the same way as the EventsSubscReqData data type, but with the OpenAPI nullable property set to true.
+// EventsSubscReqDataRm this data type is defined in the same way as the EventsSubscReqData data type, but with the OpenAPI nullable property set to true. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EventsSubscReqDataRm)
 type EventsSubscReqDataRm struct {
 	Events       []AfEventSubscription `json:"events"`
 	NotifCorreId *string               `json:"notifCorreId,omitempty"`
 	NotifUri     *Uri                  `json:"notifUri,omitempty"`
 
-	// QosMon this data type is defined in the same way as the QosMonitoringInformation data type, but with the OpenAPI nullable property set to true.
-	QosMon               *QosMonitoringInformationRm       `json:"qosMon"`
-	ReqAnis              []RequiredAccessInfo              `json:"reqAnis,omitempty"`
-	ReqQosMonParams      []RequestedQosMonitoringParameter `json:"reqQosMonParams,omitempty"`
-	UsgThres             *UsageThresholdRm                 `json:"usgThres"`
-	AdditionalProperties map[string]interface{}            `json:"-"`
+	// QosMon this data type is defined in the same way as the QosMonitoringInformation data type, but with the OpenAPI nullable property set to true. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosMonitoringInformationRm)
+	QosMon          *QosMonitoringInformationRm       `json:"qosMon"`
+	ReqAnis         []RequiredAccessInfo              `json:"reqAnis,omitempty"`
+	ReqQosMonParams []RequestedQosMonitoringParameter `json:"reqQosMonParams,omitempty"`
+
+	// UsgThres Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThresholdRm
+	UsgThres             *UsageThresholdRm      `json:"usgThres"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ExemptionInd defines model for ExemptionInd.
+// ExemptionInd Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExemptionInd
 type ExemptionInd struct {
 	DnnCongestion        *bool                  `json:"dnnCongestion,omitempty"`
 	SnssaiDnnCongestion  *bool                  `json:"snssaiDnnCongestion,omitempty"`
@@ -4815,23 +5195,25 @@ type ExemptionInd struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ExpectedUeBehavior defines model for ExpectedUeBehavior.
+// ExpectedUeBehavior Original definition in TS29518_Namf_Communication.yaml#/components/schemas/ExpectedUeBehavior
 type ExpectedUeBehavior struct {
 	ExpMoveTrajectory    []UserLocation         `json:"expMoveTrajectory"`
 	ValidityTime         DateTime               `json:"validityTime"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ExpectedUeBehaviour defines model for ExpectedUeBehaviour.
+// ExpectedUeBehaviour Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ExpectedUeBehaviour
 type ExpectedUeBehaviour struct {
 	AfInstanceId              string               `json:"afInstanceId"`
 	BatteryIndication         *BatteryIndicationRm `json:"batteryIndication,omitempty"`
 	CommunicationDurationTime *DurationSecRm       `json:"communicationDurationTime"`
 
 	// ExpectedUmts Identifies the UE's expected geographical movement. The attribute is only applicable in 5G.
-	ExpectedUmts               *[]UdmLocationArea            `json:"expectedUmts"`
-	MtcProviderInformation     *MtcProviderInformation       `json:"mtcProviderInformation,omitempty"`
-	PeriodicTime               *DurationSecRm                `json:"periodicTime"`
+	ExpectedUmts           *[]UdmLocationArea      `json:"expectedUmts"`
+	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
+	PeriodicTime           *DurationSecRm          `json:"periodicTime"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
 	ReferenceId                UdmPPReferenceId              `json:"referenceId"`
 	ScheduledCommunicationTime *ScheduledCommunicationTimeRm `json:"scheduledCommunicationTime,omitempty"`
 	ScheduledCommunicationType *ScheduledCommunicationTypeRm `json:"scheduledCommunicationType,omitempty"`
@@ -4845,7 +5227,7 @@ type ExpectedUeBehaviour struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ExpectedUeBehaviourData defines model for ExpectedUeBehaviourData.
+// ExpectedUeBehaviourData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExpectedUeBehaviourData
 type ExpectedUeBehaviourData struct {
 	BatteryIndication         *BatteryIndication `json:"batteryIndication,omitempty"`
 	CommunicationDurationTime *DurationSec       `json:"communicationDurationTime,omitempty"`
@@ -4865,8 +5247,9 @@ type ExpectedUeBehaviourData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ExposureDataChangeNotification defines model for ExposureDataChangeNotification.
+// ExposureDataChangeNotification Original definition in TS29519_Exposure_Data.yaml#/components/schemas/ExposureDataChangeNotification
 type ExposureDataChangeNotification struct {
+	// AccessAndMobilityData Original definition in TS29519_Exposure_Data.yaml#/components/schemas/AccessAndMobilityData
 	AccessAndMobilityData    *AccessAndMobilityData     `json:"accessAndMobilityData,omitempty"`
 	DelResources             []Uri                      `json:"delResources,omitempty"`
 	PduSessionManagementData []PduSessionManagementData `json:"pduSessionManagementData,omitempty"`
@@ -4874,7 +5257,7 @@ type ExposureDataChangeNotification struct {
 	AdditionalProperties     map[string]interface{}     `json:"-"`
 }
 
-// ExposureDataSubscription defines model for ExposureDataSubscription.
+// ExposureDataSubscription Original definition in TS29519_Exposure_Data.yaml#/components/schemas/ExposureDataSubscription
 type ExposureDataSubscription struct {
 	Expiry                *DateTime              `json:"expiry,omitempty"`
 	MonitoredResourceUris []Uri                  `json:"monitoredResourceUris"`
@@ -4897,21 +5280,23 @@ type ExtAmfEventSubscription struct {
 	GroupId             GroupId                              `json:"groupId,omitempty"`
 	NfId                NfInstanceId                         `json:"nfId"`
 	NotifyCorrelationId string                               `json:"notifyCorrelationId"`
-	Options             *AmfEventMode                        `json:"options,omitempty"`
-	Pei                 Pei                                  `json:"pei,omitempty"`
 
-	// SourceNfType NF types known to NRF
+	// Options Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventMode
+	Options *AmfEventMode `json:"options,omitempty"`
+	Pei     Pei           `json:"pei,omitempty"`
+
+	// SourceNfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	SourceNfType                  *NFType `json:"sourceNfType,omitempty"`
 	SubsChangeNotifyCorrelationId *string `json:"subsChangeNotifyCorrelationId,omitempty"`
 	SubsChangeNotifyUri           *Uri    `json:"subsChangeNotifyUri,omitempty"`
 
-	// SubscribingNfType NF types known to NRF
+	// SubscribingNfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	SubscribingNfType    *NFType                `json:"subscribingNfType,omitempty"`
 	Supi                 Supi                   `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ExtGroupId defines model for ExtGroupId.
+// ExtGroupId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
 type ExtGroupId = string
 
 // ExtMaxDataBurstVol defines model for ExtMaxDataBurstVol.
@@ -4925,10 +5310,10 @@ type ExtPacketDelBudget = int
 
 // ExtProblemDetails defines model for ExtProblemDetails.
 type ExtProblemDetails struct {
-	// AccessTokenError Error returned in the access token response message
+	// AccessTokenError Error returned in the access token response message (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
 	AccessTokenError *AccessTokenErr `json:"accessTokenError,omitempty"`
 
-	// AccessTokenRequest Contains information related to the access token request
+	// AccessTokenRequest Contains information related to the access token request (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
 	AccessTokenRequest   *AccessTokenReq        `json:"accessTokenRequest,omitempty"`
 	Cause                *string                `json:"cause,omitempty"`
 	Detail               *string                `json:"detail,omitempty"`
@@ -4961,13 +5346,13 @@ type ExtSnssaiWildcardSd bool
 
 // ExtendedProblemDetails defines model for ExtendedProblemDetails.
 type ExtendedProblemDetails struct {
-	// AcceptableServInfo Indicates the maximum bandwidth that shall be authorized by the PCF.
+	// AcceptableServInfo Indicates the maximum bandwidth that shall be authorized by the PCF. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AcceptableServiceInfo)
 	AcceptableServInfo *AcceptableServiceInfo `json:"acceptableServInfo,omitempty"`
 
-	// AccessTokenError Error returned in the access token response message
+	// AccessTokenError Error returned in the access token response message (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
 	AccessTokenError *AccessTokenErr `json:"accessTokenError,omitempty"`
 
-	// AccessTokenRequest Contains information related to the access token request
+	// AccessTokenRequest Contains information related to the access token request (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
 	AccessTokenRequest   *AccessTokenReq        `json:"accessTokenRequest,omitempty"`
 	Cause                *string                `json:"cause,omitempty"`
 	Detail               *string                `json:"detail,omitempty"`
@@ -4984,7 +5369,7 @@ type ExtendedProblemDetails struct {
 // ExternalGroupId defines model for ExternalGroupId.
 type ExternalGroupId = string
 
-// ExternalUnrelatedClass defines model for ExternalUnrelatedClass.
+// ExternalUnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExternalUnrelatedClass
 type ExternalUnrelatedClass struct {
 	AfExternals             []AfExternal             `json:"afExternals,omitempty"`
 	LcsClientExternals      []LcsClientExternal      `json:"lcsClientExternals,omitempty"`
@@ -4992,10 +5377,12 @@ type ExternalUnrelatedClass struct {
 	AdditionalProperties    map[string]interface{}   `json:"-"`
 }
 
-// FailureCause defines model for FailureCause.
+// FailureCause Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FailureCause
 type FailureCause string
 
 // FailureCode Possible values are - MALFUNCTION: This value indicates that something functions wrongly in PFD provisioning or the PFD provisioning does not function at all. - RESOURCE_LIMITATION: This value indicates there is resource limitation for PFD storage. - SHORT_DELAY: This value indicates that the allowed delay is too short and PFD(s) are not stored. - APP_ID_DUPLICATED: The received external application identifier(s) are already provisioned. - PARTIAL_FAILURE: The PFD(s) are not provisioned to all PCEFs/TDFs/SMFs. - OTHER_REASON: Other reason unspecified.
+//
+//	(Original definition in TS29122_PfdManagement.yaml#/components/schemas/FailureCode)
 type FailureCode string
 
 // Float defines model for Float.
@@ -5005,12 +5392,16 @@ type Float = float32
 type FloatRm = float32
 
 // FlowDirection Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection)
 type FlowDirection string
 
 // FlowDirectionRm Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection)
 type FlowDirectionRm string
 
-// FlowInfo defines model for FlowInfo.
+// FlowInfo Original definition in TS29122_CommonData.yaml#/components/schemas/FlowInfo
 type FlowInfo struct {
 	// FlowDescriptions Indicates the packet filters of the IP flow. Refer to subclause 5.3.8 of 3GPP TS 29.214 for encoding. It shall contain UL and/or DL IP flow description.
 	FlowDescriptions []string `json:"flowDescriptions,omitempty"`
@@ -5020,15 +5411,16 @@ type FlowInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// FlowInformation defines model for FlowInformation.
+// FlowInformation Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowInformation
 type FlowInformation struct {
-	// EthFlowDescription Identifies an Ethernet flow
+	// EthFlowDescription Identifies an Ethernet flow (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription)
 	EthFlowDescription *EthFlowDescription `json:"ethFlowDescription,omitempty"`
 
-	// FlowDescription Defines a packet filter for an IP flow.
+	// FlowDescription Defines a packet filter for an IP flow. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDescription)
 	FlowDescription *SMPolicyFlowDescription `json:"flowDescription,omitempty"`
 
 	// FlowDirection Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection)
 	FlowDirection *FlowDirectionRm `json:"flowDirection,omitempty"`
 
 	// FlowLabel the Ipv6 flow label header field.
@@ -5048,13 +5440,13 @@ type FlowInformation struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// FlowStatus defines model for FlowStatus.
+// FlowStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus
 type FlowStatus string
 
-// FlowUsage defines model for FlowUsage.
+// FlowUsage Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowUsage
 type FlowUsage string
 
-// Flows Identifies the flows
+// Flows Identifies the flows (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/Flows)
 type Flows struct {
 	ContVers             []ContentVersion       `json:"contVers,omitempty"`
 	FNums                []int                  `json:"fNums,omitempty"`
@@ -5062,13 +5454,13 @@ type Flows struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ForwardingBearerContainer defines model for ForwardingBearerContainer.
+// ForwardingBearerContainer Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ForwardingBearerContainer
 type ForwardingBearerContainer = string
 
-// Fqdn Fully Qualified Domain Name
+// Fqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 type Fqdn = string
 
-// FrameRouteInfo defines model for FrameRouteInfo.
+// FrameRouteInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/FrameRouteInfo
 type FrameRouteInfo struct {
 	Ipv4Mask             Ipv4AddrMask           `json:"ipv4Mask,omitempty"`
 	Ipv6Prefix           *Ipv6Prefix            `json:"ipv6Prefix,omitempty"`
@@ -5082,7 +5474,7 @@ type GNbId struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// GbrQosFlowInformation defines model for GbrQosFlowInformation.
+// GbrQosFlowInformation Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/GbrQosFlowInformation
 type GbrQosFlowInformation struct {
 	AlternativeQosProfileList *[]AlternativeQosProfile `json:"alternativeQosProfileList,omitempty"`
 	GuaFbrDl                  BitRate                  `json:"guaFbrDl"`
@@ -5130,7 +5522,7 @@ type GlobalRanNodeId struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// GmlcInfo Information of a GMLC NF Instance
+// GmlcInfo Information of a GMLC NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/GmlcInfo)
 type GmlcInfo struct {
 	GmlcNumbers          []string               `json:"gmlcNumbers,omitempty"`
 	ServingClientTypes   []string               `json:"servingClientTypes,omitempty"`
@@ -5143,8 +5535,9 @@ type Gpsi = string
 // GroupId defines model for GroupId.
 type GroupId = string
 
-// GroupIdentifiers defines model for GroupIdentifiers.
+// GroupIdentifiers Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/GroupIdentifiers
 type GroupIdentifiers struct {
+	// ExtGroupId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
 	ExtGroupId           ExtGroupId             `json:"extGroupId,omitempty"`
 	IntGroupId           GroupId                `json:"intGroupId,omitempty"`
 	UeIdList             []UeId                 `json:"ueIdList,omitempty"`
@@ -5154,7 +5547,7 @@ type GroupIdentifiers struct {
 // Guami defines model for Guami.
 type Guami = f5gcModels.Guami
 
-// GuamiListCond Subscription to a set of AMFs, based on their GUAMIs
+// GuamiListCond Subscription to a set of AMFs, based on their GUAMIs (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/GuamiListCond)
 type GuamiListCond struct {
 	GuamiList            []Guami                `json:"guamiList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -5170,67 +5563,87 @@ type HfcNodeId struct {
 }
 
 // HoState Possible values are - NONE - PREPARING - PREPARED - COMPLETED - CANCELLED
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HoState)
 type HoState string
 
-// HsmfUpdateData defines model for HsmfUpdateData.
+// HsmfUpdateData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdateData
 type HsmfUpdateData struct {
-	N5gMmCauseValue        *N5GMmCause            `json:"5gMmCauseValue,omitempty"`
-	NotifyList             []PduSessionNotifyItem `json:"NotifyList,omitempty"`
-	AddUeLocation          *UserLocation          `json:"addUeLocation,omitempty"`
-	AdditionalAnType       AccessType             `json:"additionalAnType,omitempty"`
-	AdditionalCnTunnelInfo *TunnelInfo            `json:"additionalCnTunnelInfo,omitempty"`
-	AlwaysOnRequested      *bool                  `json:"alwaysOnRequested,omitempty"`
-	AmfNfId                *NfInstanceId          `json:"amfNfId,omitempty"`
-	AnType                 AccessType             `json:"anType,omitempty"`
-	AnTypeCanBeChanged     *bool                  `json:"anTypeCanBeChanged,omitempty"`
+	N5gMmCauseValue  *N5GMmCause            `json:"5gMmCauseValue,omitempty"`
+	NotifyList       []PduSessionNotifyItem `json:"NotifyList,omitempty"`
+	AddUeLocation    *UserLocation          `json:"addUeLocation,omitempty"`
+	AdditionalAnType AccessType             `json:"additionalAnType,omitempty"`
+
+	// AdditionalCnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	AdditionalCnTunnelInfo *TunnelInfo   `json:"additionalCnTunnelInfo,omitempty"`
+	AlwaysOnRequested      *bool         `json:"alwaysOnRequested,omitempty"`
+	AmfNfId                *NfInstanceId `json:"amfNfId,omitempty"`
+	AnType                 AccessType    `json:"anType,omitempty"`
+	AnTypeCanBeChanged     *bool         `json:"anTypeCanBeChanged,omitempty"`
 
 	// Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
 	Cause                *Cause            `json:"cause,omitempty"`
 	DlServingPlmnRateCtl *int              `json:"dlServingPlmnRateCtl"`
 	DnaiList             []Dnai            `json:"dnaiList,omitempty"`
 	EpsBearerId          *[]SmfEpsBearerId `json:"epsBearerId,omitempty"`
 
 	// EpsInterworkingInd Possible values are - NONE - WITH_N26 - WITHOUT_N26 - IWK_NON_3GPP
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsInterworkingIndication)
 	EpsInterworkingInd      *EpsInterworkingIndication `json:"epsInterworkingInd,omitempty"`
 	Guami                   *Guami                     `json:"guami,omitempty"`
 	HoPreparationIndication *bool                      `json:"hoPreparationIndication,omitempty"`
 	ISmfServiceInstanceId   *string                    `json:"iSmfServiceInstanceId,omitempty"`
-	IcnTunnelInfo           *TunnelInfo                `json:"icnTunnelInfo,omitempty"`
-	IsmfId                  *NfInstanceId              `json:"ismfId,omitempty"`
-	IsmfPduSessionUri       *Uri                       `json:"ismfPduSessionUri,omitempty"`
-	MaNwUpgradeInd          *bool                      `json:"maNwUpgradeInd,omitempty"`
+
+	// IcnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	IcnTunnelInfo     *TunnelInfo   `json:"icnTunnelInfo,omitempty"`
+	IsmfId            *NfInstanceId `json:"ismfId,omitempty"`
+	IsmfPduSessionUri *Uri          `json:"ismfPduSessionUri,omitempty"`
+	MaNwUpgradeInd    *bool         `json:"maNwUpgradeInd,omitempty"`
 
 	// MaReleaseInd Possible values are
 	//   - REL_MAPDU_OVER_3GPP
 	//   - REL_MAPDU_OVER_N3GPP
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaReleaseIndication)
 	MaReleaseInd *MaReleaseIndication `json:"maReleaseInd,omitempty"`
 	MaRequestInd *bool                `json:"maRequestInd,omitempty"`
 
 	// MaxIntegrityProtectedDataRateDl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateDl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateDl,omitempty"`
 
 	// MaxIntegrityProtectedDataRateUl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateUl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateUl,omitempty"`
 	MoExpDataCounter                *MoExpDataCounter              `json:"moExpDataCounter,omitempty"`
 	N1SmInfoFromUe                  *RefToBinaryData               `json:"n1SmInfoFromUe,omitempty"`
-	N4Info                          *N4Information                 `json:"n4Info,omitempty"`
-	N4InfoExt1                      *N4Information                 `json:"n4InfoExt1,omitempty"`
-	N4InfoExt2                      *N4Information                 `json:"n4InfoExt2,omitempty"`
-	NgApCause                       *NgApCause                     `json:"ngApCause,omitempty"`
-	PauseCharging                   *bool                          `json:"pauseCharging,omitempty"`
-	Pei                             Pei                            `json:"pei,omitempty"`
-	PresenceInLadn                  *PresenceState                 `json:"presenceInLadn,omitempty"`
-	PsaInfo                         []PsaInformation               `json:"psaInfo,omitempty"`
-	Pti                             *ProcedureTransactionId        `json:"pti,omitempty"`
-	QosFlowsNotifyList              []QosFlowNotifyItem            `json:"qosFlowsNotifyList,omitempty"`
-	QosFlowsRelNotifyList           []QosFlowItem                  `json:"qosFlowsRelNotifyList,omitempty"`
-	RatType                         *RatType                       `json:"ratType,omitempty"`
+
+	// N4Info Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4Info *N4Information `json:"n4Info,omitempty"`
+
+	// N4InfoExt1 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt1 *N4Information `json:"n4InfoExt1,omitempty"`
+
+	// N4InfoExt2 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt2     *N4Information   `json:"n4InfoExt2,omitempty"`
+	NgApCause      *NgApCause       `json:"ngApCause,omitempty"`
+	PauseCharging  *bool            `json:"pauseCharging,omitempty"`
+	Pei            Pei              `json:"pei,omitempty"`
+	PresenceInLadn *PresenceState   `json:"presenceInLadn,omitempty"`
+	PsaInfo        []PsaInformation `json:"psaInfo,omitempty"`
+
+	// Pti Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProcedureTransactionId
+	Pti                   *ProcedureTransactionId `json:"pti,omitempty"`
+	QosFlowsNotifyList    []QosFlowNotifyItem     `json:"qosFlowsNotifyList,omitempty"`
+	QosFlowsRelNotifyList []QosFlowItem           `json:"qosFlowsRelNotifyList,omitempty"`
+	RatType               *RatType                `json:"ratType,omitempty"`
 
 	// RequestIndication Possible values are - UE_REQ_PDU_SES_MOD - UE_REQ_PDU_SES_REL - PDU_SES_MOB - NW_REQ_PDU_SES_AUTH - NW_REQ_PDU_SES_MOD - NW_REQ_PDU_SES_REL - EBI_ASSIGNMENT_REQ - REL_DUE_TO_5G_AN_REQUEST
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RequestIndication)
 	RequestIndication RequestIndication `json:"requestIndication"`
 	RevokeEbiList     []SmfEpsBearerId  `json:"revokeEbiList,omitempty"`
 
@@ -5238,63 +5651,89 @@ type HsmfUpdateData struct {
 	RoamingChargingProfile  interface{}               `json:"roamingChargingProfile,omitempty"`
 	SecondaryRatUsageInfo   []SecondaryRatUsageInfo   `json:"secondaryRatUsageInfo,omitempty"`
 	SecondaryRatUsageReport []SecondaryRatUsageReport `json:"secondaryRatUsageReport,omitempty"`
-	SecurityResult          *SecurityResult           `json:"securityResult,omitempty"`
-	ServingNetwork          *PlmnIdNid                `json:"servingNetwork,omitempty"`
-	SupportedFeatures       *SupportedFeatures        `json:"supportedFeatures,omitempty"`
-	UeLocation              *UserLocation             `json:"ueLocation,omitempty"`
-	UeTimeZone              *TimeZone                 `json:"ueTimeZone,omitempty"`
-	UlclBpInfo              *UlclBpInformation        `json:"ulclBpInfo,omitempty"`
+
+	// SecurityResult Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SecurityResult
+	SecurityResult    *SecurityResult    `json:"securityResult,omitempty"`
+	ServingNetwork    *PlmnIdNid         `json:"servingNetwork,omitempty"`
+	SupportedFeatures *SupportedFeatures `json:"supportedFeatures,omitempty"`
+	UeLocation        *UserLocation      `json:"ueLocation,omitempty"`
+	UeTimeZone        *TimeZone          `json:"ueTimeZone,omitempty"`
+
+	// UlclBpInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UlclBpInformation
+	UlclBpInfo *UlclBpInformation `json:"ulclBpInfo,omitempty"`
 
 	// UnavailableAccessInd Possible values are
 	//   - 3GA_UNAVAILABLE
 	//   - N3GA_UNAVAILABLE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UnavailableAccessIndication)
 	UnavailableAccessInd *UnavailableAccessIndication `json:"unavailableAccessInd,omitempty"`
 	UnknownN1SmInfo      *RefToBinaryData             `json:"unknownN1SmInfo,omitempty"`
 
 	// UpCnxState Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
-	UpCnxState            *UpCnxState            `json:"upCnxState,omitempty"`
-	UpSecurityInfo        *UpSecurityInfo        `json:"upSecurityInfo,omitempty"`
-	VSmfServiceInstanceId *string                `json:"vSmfServiceInstanceId,omitempty"`
-	VcnTunnelInfo         *TunnelInfo            `json:"vcnTunnelInfo,omitempty"`
-	VplmnQos              *VplmnQos              `json:"vplmnQos,omitempty"`
-	VsmfId                *NfInstanceId          `json:"vsmfId,omitempty"`
-	VsmfPduSessionUri     *Uri                   `json:"vsmfPduSessionUri,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpCnxState)
+	UpCnxState *UpCnxState `json:"upCnxState,omitempty"`
+
+	// UpSecurityInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpSecurityInfo
+	UpSecurityInfo        *UpSecurityInfo `json:"upSecurityInfo,omitempty"`
+	VSmfServiceInstanceId *string         `json:"vSmfServiceInstanceId,omitempty"`
+
+	// VcnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	VcnTunnelInfo *TunnelInfo `json:"vcnTunnelInfo,omitempty"`
+
+	// VplmnQos Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VplmnQos
+	VplmnQos             *VplmnQos              `json:"vplmnQos,omitempty"`
+	VsmfId               *NfInstanceId          `json:"vsmfId,omitempty"`
+	VsmfPduSessionUri    *Uri                   `json:"vsmfPduSessionUri,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// HsmfUpdateError defines model for HsmfUpdateError.
+// HsmfUpdateError Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdateError
 type HsmfUpdateError struct {
-	BackOffTimer         *DurationSec            `json:"backOffTimer,omitempty"`
-	Error                ProblemDetails          `json:"error"`
-	N1SmInfoToUe         *RefToBinaryData        `json:"n1SmInfoToUe,omitempty"`
-	N1smCause            string                  `json:"n1smCause,omitempty"`
+	BackOffTimer *DurationSec     `json:"backOffTimer,omitempty"`
+	Error        ProblemDetails   `json:"error"`
+	N1SmInfoToUe *RefToBinaryData `json:"n1SmInfoToUe,omitempty"`
+	N1smCause    string           `json:"n1smCause,omitempty"`
+
+	// Pti Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProcedureTransactionId
 	Pti                  *ProcedureTransactionId `json:"pti,omitempty"`
 	RecoveryTime         *DateTime               `json:"recoveryTime,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// HsmfUpdatedData defines model for HsmfUpdatedData.
+// HsmfUpdatedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdatedData
 type HsmfUpdatedData struct {
-	DnaiList           []Dnai          `json:"dnaiList,omitempty"`
-	EpsBearerInfo      []EpsBearerInfo `json:"epsBearerInfo,omitempty"`
-	EpsPdnCnxInfo      *EpsPdnCnxInfo  `json:"epsPdnCnxInfo,omitempty"`
-	Ipv6MultiHomingInd *bool           `json:"ipv6MultiHomingInd,omitempty"`
+	DnaiList      []Dnai          `json:"dnaiList,omitempty"`
+	EpsBearerInfo []EpsBearerInfo `json:"epsBearerInfo,omitempty"`
+
+	// EpsPdnCnxInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxInfo
+	EpsPdnCnxInfo      *EpsPdnCnxInfo `json:"epsPdnCnxInfo,omitempty"`
+	Ipv6MultiHomingInd *bool          `json:"ipv6MultiHomingInd,omitempty"`
 
 	// MaxIntegrityProtectedDataRateDl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateDl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateDl,omitempty"`
 
 	// MaxIntegrityProtectedDataRateUl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateUl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateUl,omitempty"`
 	N1SmInfoToUe                    *RefToBinaryData               `json:"n1SmInfoToUe,omitempty"`
-	N4Info                          *N4Information                 `json:"n4Info,omitempty"`
-	N4InfoExt1                      *N4Information                 `json:"n4InfoExt1,omitempty"`
-	N4InfoExt2                      *N4Information                 `json:"n4InfoExt2,omitempty"`
-	Pti                             *ProcedureTransactionId        `json:"pti,omitempty"`
-	QosFlowsSetupList               []QosFlowSetupItem             `json:"qosFlowsSetupList,omitempty"`
+
+	// N4Info Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4Info *N4Information `json:"n4Info,omitempty"`
+
+	// N4InfoExt1 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt1 *N4Information `json:"n4InfoExt1,omitempty"`
+
+	// N4InfoExt2 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt2 *N4Information `json:"n4InfoExt2,omitempty"`
+
+	// Pti Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProcedureTransactionId
+	Pti               *ProcedureTransactionId `json:"pti,omitempty"`
+	QosFlowsSetupList []QosFlowSetupItem      `json:"qosFlowsSetupList,omitempty"`
 
 	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
 	RoamingChargingProfile interface{}            `json:"roamingChargingProfile,omitempty"`
@@ -5304,32 +5743,42 @@ type HsmfUpdatedData struct {
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// HssAuthType defines model for HssAuthType.
+// HssAuthType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAuthType
 type HssAuthType string
 
-// HssAuthTypeInUri defines model for HssAuthTypeInUri.
+// HssAuthTypeInUri Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAuthTypeInUri
 type HssAuthTypeInUri string
 
-// HssAuthenticationInfoRequest defines model for HssAuthenticationInfoRequest.
+// HssAuthenticationInfoRequest Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAuthenticationInfoRequest
 type HssAuthenticationInfoRequest struct {
-	AnId                  *AccessNetworkId       `json:"anId,omitempty"`
-	HssAuthType           HssAuthType            `json:"hssAuthType"`
-	NumOfRequestedVectors NumOfRequestedVectors  `json:"numOfRequestedVectors"`
-	RequestingNodeType    *NodeType              `json:"requestingNodeType,omitempty"`
+	// AnId Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AccessNetworkId
+	AnId *AccessNetworkId `json:"anId,omitempty"`
+
+	// HssAuthType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAuthType
+	HssAuthType HssAuthType `json:"hssAuthType"`
+
+	// NumOfRequestedVectors Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/NumOfRequestedVectors
+	NumOfRequestedVectors NumOfRequestedVectors `json:"numOfRequestedVectors"`
+
+	// RequestingNodeType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/NodeType
+	RequestingNodeType *NodeType `json:"requestingNodeType,omitempty"`
+
+	// ResynchronizationInfo Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ResynchronizationInfo
 	ResynchronizationInfo *ResynchronizationInfo `json:"resynchronizationInfo,omitempty"`
 	ServingNetworkId      *PlmnId                `json:"servingNetworkId,omitempty"`
 	SupportedFeatures     *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// HssAuthenticationInfoResult defines model for HssAuthenticationInfoResult.
+// HssAuthenticationInfoResult Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAuthenticationInfoResult
 type HssAuthenticationInfoResult struct {
+	// HssAuthenticationVectors Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAuthenticationVectors
 	HssAuthenticationVectors HssAuthenticationVectors `json:"hssAuthenticationVectors"`
 	SupportedFeatures        *SupportedFeatures       `json:"supportedFeatures,omitempty"`
 	AdditionalProperties     map[string]interface{}   `json:"-"`
 }
 
-// HssAuthenticationVectors defines model for HssAuthenticationVectors.
+// HssAuthenticationVectors Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAuthenticationVectors
 type HssAuthenticationVectors struct {
 	union json.RawMessage
 }
@@ -5343,10 +5792,10 @@ type HssAuthenticationVectors1 = []AvImsGbaEapAka
 // HssAuthenticationVectors2 defines model for .
 type HssAuthenticationVectors2 = []AvEapAkaPrime
 
-// HssAvType defines model for HssAvType.
+// HssAvType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAvType
 type HssAvType string
 
-// HssInfo Information of an HSS NF Instance
+// HssInfo Information of an HSS NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/HssInfo)
 type HssInfo struct {
 	GroupId                  *NfGroupId             `json:"groupId,omitempty"`
 	ImsPrivateIdentityRanges []IdentityRange        `json:"imsPrivateIdentityRanges,omitempty"`
@@ -5356,23 +5805,23 @@ type HssInfo struct {
 	AdditionalProperties     map[string]interface{} `json:"-"`
 }
 
-// HssSubscriptionInfo Information related to active subscriptions at the HSS(s)
+// HssSubscriptionInfo Information related to active subscriptions at the HSS(s) (Original definition in TS29505_Subscription_Data.yaml#/components/schemas/HssSubscriptionInfo)
 type HssSubscriptionInfo struct {
 	HssSubscriptionList  []HssSubscriptionItem  `json:"hssSubscriptionList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// HssSubscriptionItem Contains info about a single HSS event subscription
+// HssSubscriptionItem Contains info about a single HSS event subscription (Original definition in TS29505_Subscription_Data.yaml#/components/schemas/HssSubscriptionItem)
 type HssSubscriptionItem struct {
 	HssInstanceId        NfInstanceId           `json:"hssInstanceId"`
 	SubscriptionId       Uri                    `json:"subscriptionId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// HxresStar defines model for HxresStar.
+// HxresStar Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/HxresStar
 type HxresStar = string
 
-// IdTranslationResult defines model for IdTranslationResult.
+// IdTranslationResult Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/IdTranslationResult
 type IdTranslationResult struct {
 	Gpsi                 Gpsi                   `json:"gpsi,omitempty"`
 	Supi                 Supi                   `json:"supi"`
@@ -5380,14 +5829,14 @@ type IdTranslationResult struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IdentityData defines model for IdentityData.
+// IdentityData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/IdentityData
 type IdentityData struct {
 	GpsiList             []Gpsi                 `json:"gpsiList,omitempty"`
 	SupiList             []Supi                 `json:"supiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IdentityRange A range of GPSIs (subscriber identities), either based on a numeric range, or based on regular-expression matching
+// IdentityRange A range of GPSIs (subscriber identities), either based on a numeric range, or based on regular-expression matching (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/IdentityRange)
 type IdentityRange struct {
 	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
@@ -5395,7 +5844,7 @@ type IdentityRange struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IdleStatusIndication defines model for IdleStatusIndication.
+// IdleStatusIndication Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/IdleStatusIndication
 type IdleStatusIndication struct {
 	ActiveTime              *DurationSec           `json:"activeTime,omitempty"`
 	EdrxCycleLength         *int                   `json:"edrxCycleLength,omitempty"`
@@ -5405,10 +5854,10 @@ type IdleStatusIndication struct {
 	AdditionalProperties    map[string]interface{} `json:"-"`
 }
 
-// IkPrime defines model for IkPrime.
+// IkPrime Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/IkPrime
 type IkPrime = string
 
-// ImmediateMdtConf defines model for ImmediateMdtConf.
+// ImmediateMdtConf Original definition in TS29518_Namf_Communication.yaml#/components/schemas/ImmediateMdtConf
 type ImmediateMdtConf struct {
 	AddPositioningMethodList []PositioningMethodMdt     `json:"addPositioningMethodList,omitempty"`
 	AreaScope                *AreaScope                 `json:"areaScope,omitempty"`
@@ -5432,10 +5881,10 @@ type ImmediateMdtConf struct {
 	AdditionalProperties     map[string]interface{}     `json:"-"`
 }
 
-// ImsVoPs defines model for ImsVoPs.
+// ImsVoPs Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/ImsVoPs
 type ImsVoPs string
 
-// ImsiRange A range of IMSIs (subscriber identities), either based on a numeric range, or based on regular-expression matching
+// ImsiRange A range of IMSIs (subscriber identities), either based on a numeric range, or based on regular-expression matching (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ImsiRange)
 type ImsiRange struct {
 	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
@@ -5443,10 +5892,15 @@ type ImsiRange struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IndirectDataForwardingTunnelInfo defines model for IndirectDataForwardingTunnelInfo.
+// IndirectDataForwardingTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/IndirectDataForwardingTunnelInfo
 type IndirectDataForwardingTunnelInfo struct {
-	AdditionalTnlNb      AdditionalTnlNb        `json:"additionalTnlNb,omitempty"`
-	DrbId                DrbId                  `json:"drbId,omitempty"`
+	// AdditionalTnlNb Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/AdditionalTnlNb
+	AdditionalTnlNb AdditionalTnlNb `json:"additionalTnlNb,omitempty"`
+
+	// DrbId Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DrbId
+	DrbId DrbId `json:"drbId,omitempty"`
+
+	// GtpTeid Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Teid
 	GtpTeid              Teid                   `json:"gtpTeid"`
 	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
 	Ipv6Addr             *Ipv6Addr              `json:"ipv6Addr,omitempty"`
@@ -5456,10 +5910,10 @@ type IndirectDataForwardingTunnelInfo struct {
 // Int64 defines model for Int64.
 type Int64 = int64
 
-// IntegrityAlgorithm defines model for IntegrityAlgorithm.
+// IntegrityAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/IntegrityAlgorithm
 type IntegrityAlgorithm string
 
-// IntegrityKey defines model for IntegrityKey.
+// IntegrityKey Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/IntegrityKey
 type IntegrityKey = string
 
 // InterFreqTargetInfo defines model for InterFreqTargetInfo.
@@ -5469,12 +5923,12 @@ type InterFreqTargetInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// InterfaceUpfInfoItem Information of a given IP interface of an UPF
+// InterfaceUpfInfoItem Information of a given IP interface of an UPF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/InterfaceUpfInfoItem)
 type InterfaceUpfInfoItem struct {
-	// EndpointFqdn Fully Qualified Domain Name
+	// EndpointFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	EndpointFqdn *Fqdn `json:"endpointFqdn,omitempty"`
 
-	// InterfaceType Types of User-Plane interfaces of the UPF
+	// InterfaceType Types of User-Plane interfaces of the UPF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UPInterfaceType)
 	InterfaceType         UPInterfaceType        `json:"interfaceType"`
 	Ipv4EndpointAddresses []Ipv4Addr             `json:"ipv4EndpointAddresses,omitempty"`
 	Ipv6EndpointAddresses []Ipv6Addr             `json:"ipv6EndpointAddresses,omitempty"`
@@ -5482,7 +5936,7 @@ type InterfaceUpfInfoItem struct {
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// InternalGroupIdRange A range of Group IDs (internal group identities), either based on a numeric range, or based on regular-expression matching
+// InternalGroupIdRange A range of Group IDs (internal group identities), either based on a numeric range, or based on regular-expression matching (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/InternalGroupIdRange)
 type InternalGroupIdRange struct {
 	End                  GroupId                `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
@@ -5497,7 +5951,7 @@ type InvalidParam struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IpAddress defines model for IpAddress.
+// IpAddress Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress
 type IpAddress struct {
 	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
 	Ipv6Addr             *Ipv6Addr              `json:"ipv6Addr,omitempty"`
@@ -5505,28 +5959,28 @@ type IpAddress struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IpEndPoint IP addressing information of a given NFService; it consists on, e.g. IP address, TCP port, transport protocol...
+// IpEndPoint IP addressing information of a given NFService; it consists on, e.g. IP address, TCP port, transport protocol... (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint)
 type IpEndPoint struct {
 	Ipv4Address Ipv4Addr  `json:"ipv4Address,omitempty"`
 	Ipv6Address *Ipv6Addr `json:"ipv6Address,omitempty"`
 	Port        *int      `json:"port,omitempty"`
 
-	// Transport Types of transport protocol used in a given IP endpoint of an NF Service Instance
+	// Transport Types of transport protocol used in a given IP endpoint of an NF Service Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TransportProtocol)
 	Transport            *NrfTransportProtocol  `json:"transport,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IpFlowInfo defines model for IpFlowInfo.
+// IpFlowInfo Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/IpFlowInfo
 type IpFlowInfo struct {
 	FlowNumber           int                                  `json:"flowNumber"`
 	IpFlows              []PolicyAuthorizationFlowDescription `json:"ipFlows,omitempty"`
 	AdditionalProperties map[string]interface{}               `json:"-"`
 }
 
-// IpIndex defines model for IpIndex.
+// IpIndex Original definition in TS29519_Policy_Data.yaml#/components/schemas/IpIndex
 type IpIndex = int
 
-// IpMulticastAddressInfo defines model for IpMulticastAddressInfo.
+// IpMulticastAddressInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/IpMulticastAddressInfo
 type IpMulticastAddressInfo struct {
 	Ipv4MulAddr          Ipv4Addr               `json:"ipv4MulAddr,omitempty"`
 	Ipv6MulAddr          *Ipv6Addr              `json:"ipv6MulAddr,omitempty"`
@@ -5535,18 +5989,21 @@ type IpMulticastAddressInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IpReachability Indicates the type(s) of IP addresses reachable via an SCP
+// IpReachability Indicates the type(s) of IP addresses reachable via an SCP (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpReachability)
 type IpReachability string
 
-// IpSmGwRegistration defines model for IpSmGwRegistration.
+// IpSmGwRegistration Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/IpSmGwRegistration
 type IpSmGwRegistration struct {
+	// IpSmGwDiameterAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/NetworkNodeDiameterAddress
 	IpSmGwDiameterAddress *NetworkNodeDiameterAddress `json:"ipSmGwDiameterAddress,omitempty"`
-	IpSmGwMapAddress      E164Number                  `json:"ipSmGwMapAddress,omitempty"`
-	UnriIndicator         *bool                       `json:"unriIndicator,omitempty"`
-	AdditionalProperties  map[string]interface{}      `json:"-"`
+
+	// IpSmGwMapAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
+	IpSmGwMapAddress     E164Number             `json:"ipSmGwMapAddress,omitempty"`
+	UnriIndicator        *bool                  `json:"unriIndicator,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// IptvConfigData defines model for IptvConfigData.
+// IptvConfigData Original definition in TS29519_Application_Data.yaml#/components/schemas/IptvConfigData
 type IptvConfigData struct {
 	AfAppId              string                 `json:"afAppId"`
 	Dnn                  *Dnn                   `json:"dnn,omitempty"`
@@ -5568,7 +6025,7 @@ type Ipv4AddrMask = string
 // Ipv4AddrRm defines model for Ipv4AddrRm.
 type Ipv4AddrRm = string
 
-// Ipv4AddressRange Range of IPv4 addresses
+// Ipv4AddressRange Range of IPv4 addresses (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Ipv4AddressRange)
 type Ipv4AddressRange struct {
 	End                  Ipv4Addr               `json:"end,omitempty"`
 	Start                Ipv4Addr               `json:"start,omitempty"`
@@ -5581,7 +6038,7 @@ type Ipv6Addr = string
 // Ipv6Prefix defines model for Ipv6Prefix.
 type Ipv6Prefix = string
 
-// Ipv6PrefixRange Range of IPv6 prefixes
+// Ipv6PrefixRange Range of IPv6 prefixes (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Ipv6PrefixRange)
 type Ipv6PrefixRange struct {
 	End                  *Ipv6Prefix            `json:"end,omitempty"`
 	Start                *Ipv6Prefix            `json:"start,omitempty"`
@@ -5591,95 +6048,113 @@ type Ipv6PrefixRange struct {
 // Ipv6PrefixRm defines model for Ipv6PrefixRm.
 type Ipv6PrefixRm = string
 
-// ItemPath Identifies a fragment (subset of resource data) of a given resource.
+// ItemPath Identifies a fragment (subset of resource data) of a given resource. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/ItemPath)
 type ItemPath = string
 
-// IwkEpsInd defines model for IwkEpsInd.
+// IwkEpsInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/IwkEpsInd
 type IwkEpsInd = bool
 
 // JobType defines model for JobType.
 type JobType string
 
-// Kasme defines model for Kasme.
+// Kasme Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Kasme
 type Kasme = string
 
-// Kausf defines model for Kausf.
+// Kausf Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Kausf
 type Kausf = string
 
-// KeyAmf defines model for KeyAmf.
+// KeyAmf Original definition in TS29518_Namf_Communication.yaml#/components/schemas/KeyAmf
 type KeyAmf struct {
+	// KeyType Original definition in TS29518_Namf_Communication.yaml#/components/schemas/KeyAmfType
 	KeyType              KeyAmfType             `json:"keyType"`
 	KeyVal               string                 `json:"keyVal"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// KeyAmfType defines model for KeyAmfType.
+// KeyAmfType Original definition in TS29518_Namf_Communication.yaml#/components/schemas/KeyAmfType
 type KeyAmfType string
 
-// Kseaf defines model for Kseaf.
+// Kseaf Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/Kseaf
 type Kseaf = string
 
-// LadnInfo defines model for LadnInfo.
+// LadnInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/LadnInfo
 type LadnInfo struct {
 	Ladn                 string                 `json:"ladn"`
 	Presence             *PresenceState         `json:"presence,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LboRoamingAllowed defines model for LboRoamingAllowed.
+// LboRoamingAllowed Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LboRoamingAllowed
 type LboRoamingAllowed = bool
 
-// LcsBroadcastAssistanceTypesData defines model for LcsBroadcastAssistanceTypesData.
+// LcsBroadcastAssistanceTypesData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsBroadcastAssistanceTypesData
 type LcsBroadcastAssistanceTypesData struct {
 	LocationAssistanceType Bytes                  `json:"locationAssistanceType"`
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// LcsClientClass defines model for LcsClientClass.
+// LcsClientClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsClientClass
 type LcsClientClass string
 
-// LcsClientExternal defines model for LcsClientExternal.
+// LcsClientExternal Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsClientExternal
 type LcsClientExternal struct {
-	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+
+	// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
-	ValidTimePeriod           *ValidTimePeriod           `json:"validTimePeriod,omitempty"`
-	AdditionalProperties      map[string]interface{}     `json:"-"`
+
+	// ValidTimePeriod Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ValidTimePeriod
+	ValidTimePeriod      *ValidTimePeriod       `json:"validTimePeriod,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LcsClientGroupExternal defines model for LcsClientGroupExternal.
+// LcsClientGroupExternal Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsClientGroupExternal
 type LcsClientGroupExternal struct {
-	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
-	LcsClientGroupId          ExtGroupId                 `json:"lcsClientGroupId,omitempty"`
+	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+
+	// LcsClientGroupId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
+	LcsClientGroupId ExtGroupId `json:"lcsClientGroupId,omitempty"`
+
+	// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
-	ValidTimePeriod           *ValidTimePeriod           `json:"validTimePeriod,omitempty"`
-	AdditionalProperties      map[string]interface{}     `json:"-"`
+
+	// ValidTimePeriod Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ValidTimePeriod
+	ValidTimePeriod      *ValidTimePeriod       `json:"validTimePeriod,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LcsClientId defines model for LcsClientId.
+// LcsClientId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsClientId
 type LcsClientId = string
 
-// LcsMoData defines model for LcsMoData.
+// LcsMoData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsMoData
 type LcsMoData struct {
 	AllowedServiceClasses []LcsMoServiceClass    `json:"allowedServiceClasses"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// LcsMoServiceClass defines model for LcsMoServiceClass.
+// LcsMoServiceClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsMoServiceClass
 type LcsMoServiceClass string
 
-// LcsPrivacy defines model for LcsPrivacy.
+// LcsPrivacy Original definition in TS29503_Nudm_PP.yaml#/components/schemas/LcsPrivacy
 type LcsPrivacy struct {
-	AfInstanceId           *string                 `json:"afInstanceId,omitempty"`
+	AfInstanceId *string `json:"afInstanceId,omitempty"`
+
+	// Lpi Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/Lpi
 	Lpi                    *Lpi                    `json:"lpi,omitempty"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            *UdmPPReferenceId       `json:"referenceId,omitempty"`
-	AdditionalProperties   map[string]interface{}  `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
+	ReferenceId          *UdmPPReferenceId      `json:"referenceId,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LcsPrivacyData defines model for LcsPrivacyData.
+// LcsPrivacyData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsPrivacyData
 type LcsPrivacyData struct {
-	Lpi                  *Lpi                   `json:"lpi,omitempty"`
-	PlmnOperatorClasses  []PlmnOperatorClass    `json:"plmnOperatorClasses,omitempty"`
+	// Lpi Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/Lpi
+	Lpi                 *Lpi                `json:"lpi,omitempty"`
+	PlmnOperatorClasses []PlmnOperatorClass `json:"plmnOperatorClasses,omitempty"`
+
+	// UnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UnrelatedClass
 	UnrelatedClass       *UnrelatedClass        `json:"unrelatedClass,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -5687,7 +6162,7 @@ type LcsPrivacyData struct {
 // LcsServiceAuth Possible values are - "LOCATION_ALLOWED_WITH_NOTIFICATION": Location allowed with notification - "LOCATION_ALLOWED_WITHOUT_NOTIFICATION": Location allowed without notification - "LOCATION_ALLOWED_WITHOUT_RESPONSE": Location with notification and privacy verification; location allowed if no response - "LOCATION_RESTRICTED_WITHOUT_RESPONSE": Location with notification and privacy verification; location restricted if no response - "NOTIFICATION_ONLY": Notification only - "NOTIFICATION_AND_VERIFICATION_ONLY": Notification and privacy verification only
 type LcsServiceAuth string
 
-// LimitIdToMonitoringKey Contains the limit identifier and the corresponding monitoring key for a given S-NSSAI and DNN.
+// LimitIdToMonitoringKey Contains the limit identifier and the corresponding monitoring key for a given S-NSSAI and DNN. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/LimitIdToMonitoringKey)
 type LimitIdToMonitoringKey struct {
 	LimitId              string                 `json:"limitId"`
 	Monkey               []string               `json:"monkey,omitempty"`
@@ -5711,7 +6186,7 @@ type LinksValueSchema struct {
 // LinksValueSchema0 defines model for .
 type LinksValueSchema0 = []Link
 
-// LmfInfo Information of an LMF NF Instance
+// LmfInfo Information of an LMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/LmfInfo)
 type LmfInfo struct {
 	// LmfId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
 	LmfId                *string                `json:"lmfId,omitempty"`
@@ -5722,10 +6197,10 @@ type LmfInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LocationAccuracy defines model for LocationAccuracy.
+// LocationAccuracy Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LocationAccuracy
 type LocationAccuracy string
 
-// LocationArea defines model for LocationArea.
+// LocationArea Original definition in TS29122_CommonData.yaml#/components/schemas/LocationArea
 type LocationArea struct {
 	// CellIds Indicates a list of Cell Global Identities of the user which identifies the cell the UE is registered.
 	CellIds []string `json:"cellIds,omitempty"`
@@ -5747,7 +6222,7 @@ type LocationArea struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LocationArea5G defines model for LocationArea5G.
+// LocationArea5G Original definition in TS29122_CommonData.yaml#/components/schemas/LocationArea5G
 type LocationArea5G struct {
 	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
 	CivicAddresses *[]interface{} `json:"civicAddresses,omitempty"`
@@ -5755,7 +6230,7 @@ type LocationArea5G struct {
 	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
 	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
 
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
 	NwAreaInfo           *PcfNetworkAreaInfo    `json:"nwAreaInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -5767,13 +6242,13 @@ type LocationAreaId struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LocationEvent defines model for LocationEvent.
+// LocationEvent Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationEvent
 type LocationEvent string
 
-// LocationFilter defines model for LocationFilter.
+// LocationFilter Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/LocationFilter
 type LocationFilter string
 
-// LocationInfo defines model for LocationInfo.
+// LocationInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/LocationInfo
 type LocationInfo struct {
 	Gpsi                         Gpsi                       `json:"gpsi,omitempty"`
 	RegistrationLocationInfoList []RegistrationLocationInfo `json:"registrationLocationInfoList"`
@@ -5782,7 +6257,7 @@ type LocationInfo struct {
 	AdditionalProperties         map[string]interface{}     `json:"-"`
 }
 
-// LocationInfoRequest defines model for LocationInfoRequest.
+// LocationInfoRequest Original definition in TS29503_Nudm_MT.yaml#/components/schemas/LocationInfoRequest
 type LocationInfoRequest struct {
 	Req5gsLoc            *bool                  `json:"req5gsLoc,omitempty"`
 	ReqCurrentLoc        *bool                  `json:"reqCurrentLoc,omitempty"`
@@ -5793,7 +6268,7 @@ type LocationInfoRequest struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LocationInfoResult defines model for LocationInfoResult.
+// LocationInfoResult Original definition in TS29503_Nudm_MT.yaml#/components/schemas/LocationInfoResult
 type LocationInfoResult struct {
 	AmfInstanceId *NfInstanceId `json:"amfInstanceId,omitempty"`
 	CurrentLoc    *bool         `json:"currentLoc,omitempty"`
@@ -5814,28 +6289,31 @@ type LocationInfoResult struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LocationPrivacyInd defines model for LocationPrivacyInd.
+// LocationPrivacyInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LocationPrivacyInd
 type LocationPrivacyInd string
 
-// LocationPrivacyVerResult defines model for LocationPrivacyVerResult.
+// LocationPrivacyVerResult Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationPrivacyVerResult
 type LocationPrivacyVerResult string
 
-// LocationReport defines model for LocationReport.
+// LocationReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LocationReport
 type LocationReport struct {
 	Location             UserLocation           `json:"location"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LocationReportingConfiguration defines model for LocationReportingConfiguration.
+// LocationReportingConfiguration Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LocationReportingConfiguration
 type LocationReportingConfiguration struct {
-	Accuracy             *LocationAccuracy      `json:"accuracy,omitempty"`
-	CurrentLocation      bool                   `json:"currentLocation"`
+	// Accuracy Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LocationAccuracy
+	Accuracy        *LocationAccuracy `json:"accuracy,omitempty"`
+	CurrentLocation bool              `json:"currentLocation"`
+
+	// N3gppAccuracy Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LocationAccuracy
 	N3gppAccuracy        *LocationAccuracy      `json:"n3gppAccuracy,omitempty"`
 	OneTime              *bool                  `json:"oneTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LocationType defines model for LocationType.
+// LocationType Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationType
 type LocationType string
 
 // LoggingDurationMdt defines model for LoggingDurationMdt.
@@ -5850,29 +6328,33 @@ type LoggingIntervalMdt string
 // LoggingIntervalNrMdt defines model for LoggingIntervalNrMdt.
 type LoggingIntervalNrMdt string
 
-// LossConnectivityCfg defines model for LossConnectivityCfg.
+// LossConnectivityCfg Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LossConnectivityCfg
 type LossConnectivityCfg struct {
 	MaxDetectionTime     *DurationSec           `json:"maxDetectionTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LossConnectivityReport defines model for LossConnectivityReport.
+// LossConnectivityReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LossConnectivityReport
 type LossConnectivityReport struct {
+	// LossOfConnectReason Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/LossOfConnectivityReason
 	LossOfConnectReason  LossOfConnectivityReason `json:"lossOfConnectReason"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
-// LossOfConnectivityReason defines model for LossOfConnectivityReason.
+// LossOfConnectivityReason Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/LossOfConnectivityReason
 type LossOfConnectivityReason string
 
-// Lpi defines model for Lpi.
+// Lpi Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/Lpi
 type Lpi struct {
-	LocationPrivacyInd   LocationPrivacyInd     `json:"locationPrivacyInd"`
+	// LocationPrivacyInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LocationPrivacyInd
+	LocationPrivacyInd LocationPrivacyInd `json:"locationPrivacyInd"`
+
+	// ValidTimePeriod Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ValidTimePeriod
 	ValidTimePeriod      *ValidTimePeriod       `json:"validTimePeriod,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// LteMInd LTE-M Indication.
+// LteMInd LTE-M Indication. (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/LteMInd)
 type LteMInd struct {
 	LteCatMInd           bool                   `json:"lteCatMInd"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -5888,12 +6370,13 @@ type LteV2xAuth struct {
 // MSClassmark2 defines model for MSClassmark2.
 type MSClassmark2 = Bytes
 
-// MaPduIndication defines model for MaPduIndication.
+// MaPduIndication Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MaPduIndication
 type MaPduIndication string
 
 // MaReleaseIndication Possible values are
 //   - REL_MAPDU_OVER_3GPP
 //   - REL_MAPDU_OVER_N3GPP
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaReleaseIndication)
 type MaReleaseIndication string
 
 // MacAddr48 defines model for MacAddr48.
@@ -5905,7 +6388,7 @@ type MacAddr48Rm = string
 // ManAssiUeRadioCapId defines model for ManAssiUeRadioCapId.
 type ManAssiUeRadioCapId = Bytes
 
-// MappingOfSnssai defines model for MappingOfSnssai.
+// MappingOfSnssai Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/MappingOfSnssai
 type MappingOfSnssai struct {
 	HomeSnssai           Snssai                 `json:"homeSnssai"`
 	ServingSnssai        Snssai                 `json:"servingSnssai"`
@@ -5921,9 +6404,10 @@ type MaxDataBurstVolRm = int
 // MaxIntegrityProtectedDataRate Possible values are
 //   - 64_KBPS
 //   - MAX_UE_RATE
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 type MaxIntegrityProtectedDataRate string
 
-// MaxNumOfReports defines model for MaxNumOfReports.
+// MaxNumOfReports Original definition in TS29503_Nudm_EE.yaml#/components/schemas/MaxNumOfReports
 type MaxNumOfReports = int
 
 // MbsfnArea defines model for MbsfnArea.
@@ -5936,7 +6420,7 @@ type MbsfnArea struct {
 // Mcc defines model for Mcc.
 type Mcc = string
 
-// McsPriorityIndicator defines model for McsPriorityIndicator.
+// McsPriorityIndicator Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/McsPriorityIndicator
 type McsPriorityIndicator = bool
 
 // MdtConfiguration defines model for MdtConfiguration.
@@ -5971,7 +6455,7 @@ type MdtConfiguration struct {
 	AdditionalProperties     map[string]interface{}     `json:"-"`
 }
 
-// MdtUserConsent defines model for MdtUserConsent.
+// MdtUserConsent Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MdtUserConsent
 type MdtUserConsent string
 
 // MeasurementLteForMdt defines model for MeasurementLteForMdt.
@@ -5983,21 +6467,23 @@ type MeasurementNrForMdt string
 // MeasurementPeriodLteMdt defines model for MeasurementPeriodLteMdt.
 type MeasurementPeriodLteMdt string
 
-// MediaComponent Identifies a media component.
+// MediaComponent Identifies a media component. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaComponent)
 type MediaComponent struct {
-	// AfAppId Contains an AF application identifier.
+	// AfAppId Contains an AF application identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId)
 	AfAppId *AfAppId `json:"afAppId,omitempty"`
 
-	// AfRoutReq describes the event information delivered in the subscription
+	// AfRoutReq describes the event information delivered in the subscription (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfRoutingRequirement)
 	AfRoutReq  *AfRoutingRequirement `json:"afRoutReq,omitempty"`
 	AltSerReqs []string              `json:"altSerReqs,omitempty"`
 	Codecs     []CodecData           `json:"codecs,omitempty"`
 
-	// ContVer Represents the content version of some content.
-	ContVer             *ContentVersion               `json:"contVer,omitempty"`
-	DesMaxLatency       *Float                        `json:"desMaxLatency,omitempty"`
-	DesMaxLoss          *Float                        `json:"desMaxLoss,omitempty"`
-	DisUeNotif          *bool                         `json:"disUeNotif,omitempty"`
+	// ContVer Represents the content version of some content. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion)
+	ContVer       *ContentVersion `json:"contVer,omitempty"`
+	DesMaxLatency *Float          `json:"desMaxLatency,omitempty"`
+	DesMaxLoss    *Float          `json:"desMaxLoss,omitempty"`
+	DisUeNotif    *bool           `json:"disUeNotif,omitempty"`
+
+	// FStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus
 	FStatus             *FlowStatus                   `json:"fStatus,omitempty"`
 	FlusId              *string                       `json:"flusId,omitempty"`
 	MarBwDl             BitRate                       `json:"marBwDl,omitempty"`
@@ -6008,50 +6494,58 @@ type MediaComponent struct {
 	MaxSuppBwUl         BitRate                       `json:"maxSuppBwUl,omitempty"`
 	MedCompN            int                           `json:"medCompN"`
 	MedSubComps         *map[string]MediaSubComponent `json:"medSubComps,omitempty"`
-	MedType             *MediaType                    `json:"medType,omitempty"`
-	MinDesBwDl          BitRate                       `json:"minDesBwDl,omitempty"`
-	MinDesBwUl          BitRate                       `json:"minDesBwUl,omitempty"`
-	MirBwDl             BitRate                       `json:"mirBwDl,omitempty"`
-	MirBwUl             BitRate                       `json:"mirBwUl,omitempty"`
-	PreemptCap          *PreemptionCapability         `json:"preemptCap,omitempty"`
-	PreemptVuln         *PreemptionVulnerability      `json:"preemptVuln,omitempty"`
-	PrioSharingInd      *PrioritySharingIndicator     `json:"prioSharingInd,omitempty"`
-	QosReference        *string                       `json:"qosReference,omitempty"`
-	ResPrio             *ReservPriority               `json:"resPrio,omitempty"`
-	RrBw                BitRate                       `json:"rrBw,omitempty"`
-	RsBw                BitRate                       `json:"rsBw,omitempty"`
-	SharingKeyDl        *Uint32                       `json:"sharingKeyDl,omitempty"`
-	SharingKeyUl        *Uint32                       `json:"sharingKeyUl,omitempty"`
 
-	// TscaiInputDl Indicates TSC Traffic pattern.
+	// MedType Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaType
+	MedType     *MediaType               `json:"medType,omitempty"`
+	MinDesBwDl  BitRate                  `json:"minDesBwDl,omitempty"`
+	MinDesBwUl  BitRate                  `json:"minDesBwUl,omitempty"`
+	MirBwDl     BitRate                  `json:"mirBwDl,omitempty"`
+	MirBwUl     BitRate                  `json:"mirBwUl,omitempty"`
+	PreemptCap  *PreemptionCapability    `json:"preemptCap,omitempty"`
+	PreemptVuln *PreemptionVulnerability `json:"preemptVuln,omitempty"`
+
+	// PrioSharingInd Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PrioritySharingIndicator
+	PrioSharingInd *PrioritySharingIndicator `json:"prioSharingInd,omitempty"`
+	QosReference   *string                   `json:"qosReference,omitempty"`
+
+	// ResPrio Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority
+	ResPrio      *ReservPriority `json:"resPrio,omitempty"`
+	RrBw         BitRate         `json:"rrBw,omitempty"`
+	RsBw         BitRate         `json:"rsBw,omitempty"`
+	SharingKeyDl *Uint32         `json:"sharingKeyDl,omitempty"`
+	SharingKeyUl *Uint32         `json:"sharingKeyUl,omitempty"`
+
+	// TscaiInputDl Indicates TSC Traffic pattern. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer)
 	TscaiInputDl *TscaiInputContainer `json:"tscaiInputDl"`
 
-	// TscaiInputUl Indicates TSC Traffic pattern.
+	// TscaiInputUl Indicates TSC Traffic pattern. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer)
 	TscaiInputUl *TscaiInputContainer `json:"tscaiInputUl"`
 
-	// TsnQos Indicates TSC Traffic QoS.
+	// TsnQos Indicates TSC Traffic QoS. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TsnQosContainer)
 	TsnQos               *TsnQosContainer       `json:"tsnQos,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// MediaComponentResourcesStatus defines model for MediaComponentResourcesStatus.
+// MediaComponentResourcesStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaComponentResourcesStatus
 type MediaComponentResourcesStatus string
 
-// MediaComponentRm This data type is defined in the same way as the MediaComponent data type, but with the OpenAPI nullable property set to true
+// MediaComponentRm This data type is defined in the same way as the MediaComponent data type, but with the OpenAPI nullable property set to true (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaComponentRm)
 type MediaComponentRm struct {
-	// AfAppId Contains an AF application identifier.
+	// AfAppId Contains an AF application identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId)
 	AfAppId *AfAppId `json:"afAppId,omitempty"`
 
-	// AfRoutReq this data type is defined in the same way as the AfRoutingRequirement data type, but with the OpenAPI nullable property set to true and the spVal and tempVals attributes defined as removable.
+	// AfRoutReq this data type is defined in the same way as the AfRoutingRequirement data type, but with the OpenAPI nullable property set to true and the spVal and tempVals attributes defined as removable. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfRoutingRequirementRm)
 	AfRoutReq  *AfRoutingRequirementRm `json:"afRoutReq"`
 	AltSerReqs *[]string               `json:"altSerReqs"`
 	Codecs     []CodecData             `json:"codecs,omitempty"`
 
-	// ContVer Represents the content version of some content.
-	ContVer             *ContentVersion                  `json:"contVer,omitempty"`
-	DesMaxLatency       *FloatRm                         `json:"desMaxLatency"`
-	DesMaxLoss          *FloatRm                         `json:"desMaxLoss"`
-	DisUeNotif          *bool                            `json:"disUeNotif,omitempty"`
+	// ContVer Represents the content version of some content. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion)
+	ContVer       *ContentVersion `json:"contVer,omitempty"`
+	DesMaxLatency *FloatRm        `json:"desMaxLatency"`
+	DesMaxLoss    *FloatRm        `json:"desMaxLoss"`
+	DisUeNotif    *bool           `json:"disUeNotif,omitempty"`
+
+	// FStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus
 	FStatus             *FlowStatus                      `json:"fStatus,omitempty"`
 	FlusId              *string                          `json:"flusId"`
 	MarBwDl             *BitRateRm                       `json:"marBwDl"`
@@ -6062,76 +6556,94 @@ type MediaComponentRm struct {
 	MaxSuppBwUl         *BitRateRm                       `json:"maxSuppBwUl"`
 	MedCompN            int                              `json:"medCompN"`
 	MedSubComps         *map[string]*MediaSubComponentRm `json:"medSubComps,omitempty"`
-	MedType             *MediaType                       `json:"medType,omitempty"`
-	MinDesBwDl          *BitRateRm                       `json:"minDesBwDl"`
-	MinDesBwUl          *BitRateRm                       `json:"minDesBwUl"`
-	MirBwDl             *BitRateRm                       `json:"mirBwDl"`
-	MirBwUl             *BitRateRm                       `json:"mirBwUl"`
-	PreemptCap          *PreemptionCapabilityRm          `json:"preemptCap,omitempty"`
-	PreemptVuln         *PreemptionVulnerabilityRm       `json:"preemptVuln,omitempty"`
-	PrioSharingInd      *PrioritySharingIndicator        `json:"prioSharingInd,omitempty"`
-	QosReference        *string                          `json:"qosReference"`
-	ResPrio             *ReservPriority                  `json:"resPrio,omitempty"`
-	RrBw                *BitRateRm                       `json:"rrBw"`
-	RsBw                *BitRateRm                       `json:"rsBw"`
-	SharingKeyDl        *Uint32Rm                        `json:"sharingKeyDl"`
-	SharingKeyUl        *Uint32Rm                        `json:"sharingKeyUl"`
 
-	// TscaiInputDl Indicates TSC Traffic pattern.
+	// MedType Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaType
+	MedType     *MediaType                 `json:"medType,omitempty"`
+	MinDesBwDl  *BitRateRm                 `json:"minDesBwDl"`
+	MinDesBwUl  *BitRateRm                 `json:"minDesBwUl"`
+	MirBwDl     *BitRateRm                 `json:"mirBwDl"`
+	MirBwUl     *BitRateRm                 `json:"mirBwUl"`
+	PreemptCap  *PreemptionCapabilityRm    `json:"preemptCap,omitempty"`
+	PreemptVuln *PreemptionVulnerabilityRm `json:"preemptVuln,omitempty"`
+
+	// PrioSharingInd Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PrioritySharingIndicator
+	PrioSharingInd *PrioritySharingIndicator `json:"prioSharingInd,omitempty"`
+	QosReference   *string                   `json:"qosReference"`
+
+	// ResPrio Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority
+	ResPrio      *ReservPriority `json:"resPrio,omitempty"`
+	RrBw         *BitRateRm      `json:"rrBw"`
+	RsBw         *BitRateRm      `json:"rsBw"`
+	SharingKeyDl *Uint32Rm       `json:"sharingKeyDl"`
+	SharingKeyUl *Uint32Rm       `json:"sharingKeyUl"`
+
+	// TscaiInputDl Indicates TSC Traffic pattern. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer)
 	TscaiInputDl *TscaiInputContainer `json:"tscaiInputDl"`
 
-	// TscaiInputUl Indicates TSC Traffic pattern.
+	// TscaiInputUl Indicates TSC Traffic pattern. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer)
 	TscaiInputUl *TscaiInputContainer `json:"tscaiInputUl"`
 
-	// TsnQos Indicates removable TSC Traffic QoS.
+	// TsnQos Indicates removable TSC Traffic QoS. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TsnQosContainerRm)
 	TsnQos               *TsnQosContainerRm     `json:"tsnQos"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// MediaSubComponent Identifies a media subcomponent
+// MediaSubComponent Identifies a media subcomponent (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaSubComponent)
 type MediaSubComponent struct {
 	// AfSigProtocol Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
 	AfSigProtocol *AfSigProtocol                       `json:"afSigProtocol,omitempty"`
 	EthfDescs     []EthFlowDescription                 `json:"ethfDescs,omitempty"`
 	FDescs        []PolicyAuthorizationFlowDescription `json:"fDescs,omitempty"`
 	FNum          int                                  `json:"fNum"`
-	FStatus       *FlowStatus                          `json:"fStatus,omitempty"`
-	FlowUsage     *FlowUsage                           `json:"flowUsage,omitempty"`
-	MarBwDl       BitRate                              `json:"marBwDl,omitempty"`
-	MarBwUl       BitRate                              `json:"marBwUl,omitempty"`
 
-	// TosTrCl 2-octet string, where each octet is encoded in hexadecimal representation. The first octet contains the IPv4 Type-of-Service or the IPv6 Traffic-Class field and the second octet contains the ToS/Traffic Class mask field.
+	// FStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus
+	FStatus *FlowStatus `json:"fStatus,omitempty"`
+
+	// FlowUsage Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowUsage
+	FlowUsage *FlowUsage `json:"flowUsage,omitempty"`
+	MarBwDl   BitRate    `json:"marBwDl,omitempty"`
+	MarBwUl   BitRate    `json:"marBwUl,omitempty"`
+
+	// TosTrCl 2-octet string, where each octet is encoded in hexadecimal representation. The first octet contains the IPv4 Type-of-Service or the IPv6 Traffic-Class field and the second octet contains the ToS/Traffic Class mask field. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TosTrafficClass)
 	TosTrCl              *TosTrafficClass       `json:"tosTrCl,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// MediaSubComponentRm This data type is defined in the same way as the MediaSubComponent data type, but with the OpenAPI nullable property set to true. Removable attributes marBwDl and marBwUl are defined with the corresponding removable data type.
+// MediaSubComponentRm This data type is defined in the same way as the MediaSubComponent data type, but with the OpenAPI nullable property set to true. Removable attributes marBwDl and marBwUl are defined with the corresponding removable data type. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaSubComponentRm)
 type MediaSubComponentRm struct {
 	// AfSigProtocol Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
 	AfSigProtocol *AfSigProtocol                        `json:"afSigProtocol,omitempty"`
 	EthfDescs     *[]EthFlowDescription                 `json:"ethfDescs"`
 	FDescs        *[]PolicyAuthorizationFlowDescription `json:"fDescs"`
 	FNum          int                                   `json:"fNum"`
-	FStatus       *FlowStatus                           `json:"fStatus,omitempty"`
-	FlowUsage     *FlowUsage                            `json:"flowUsage,omitempty"`
-	MarBwDl       *BitRateRm                            `json:"marBwDl"`
-	MarBwUl       *BitRateRm                            `json:"marBwUl"`
 
-	// TosTrCl this data type is defined in the same way as the TosTrafficClass data type, but with the OpenAPI nullable property set to true
+	// FStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus
+	FStatus *FlowStatus `json:"fStatus,omitempty"`
+
+	// FlowUsage Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowUsage
+	FlowUsage *FlowUsage `json:"flowUsage,omitempty"`
+	MarBwDl   *BitRateRm `json:"marBwDl"`
+	MarBwUl   *BitRateRm `json:"marBwUl"`
+
+	// TosTrCl this data type is defined in the same way as the TosTrafficClass data type, but with the OpenAPI nullable property set to true (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TosTrafficClassRm)
 	TosTrCl              *TosTrafficClassRm     `json:"tosTrCl"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// MediaType defines model for MediaType.
+// MediaType Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaType
 type MediaType string
 
-// MessageWaitingData defines model for MessageWaitingData.
+// MessageWaitingData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/MessageWaitingData
 type MessageWaitingData struct {
 	MwdList              []SmscData             `json:"mwdList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // MeteringMethod Possible values are - DURATION: Indicates that the duration of the service data flow traffic shall be metered. - VOLUME: Indicates that volume of the service data flow traffic shall be metered. - DURATION_VOLUME: Indicates that the duration and the volume of the service data flow traffic shall be metered. - EVENT: Indicates that events of the service data flow traffic shall be metered.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MeteringMethod)
 type MeteringMethod struct {
 	union json.RawMessage
 }
@@ -6142,20 +6654,26 @@ type MeteringMethod0 string
 // MeteringMethod2 This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
 type MeteringMethod2 = string
 
-// MicoAllowed defines model for MicoAllowed.
+// MicoAllowed Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MicoAllowed
 type MicoAllowed = bool
 
-// MmContext defines model for MmContext.
+// MmContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/MmContext
 type MmContext struct {
-	AccessType              AccessType             `json:"accessType"`
-	AllowedHomeNssai        []Snssai               `json:"allowedHomeNssai,omitempty"`
-	AllowedNssai            []Snssai               `json:"allowedNssai,omitempty"`
-	AnN2ApId                *int                   `json:"anN2ApId,omitempty"`
-	EpsNasSecurityMode      *EpsNasSecurityMode    `json:"epsNasSecurityMode,omitempty"`
-	ExpectedUEbehavior      *ExpectedUeBehavior    `json:"expectedUEbehavior,omitempty"`
-	ManAssiUeRadioCapId     *ManAssiUeRadioCapId   `json:"manAssiUeRadioCapId,omitempty"`
-	N3IwfId                 *GlobalRanNodeId       `json:"n3IwfId,omitempty"`
-	NasDownlinkCount        *NasCount              `json:"nasDownlinkCount,omitempty"`
+	AccessType       AccessType `json:"accessType"`
+	AllowedHomeNssai []Snssai   `json:"allowedHomeNssai,omitempty"`
+	AllowedNssai     []Snssai   `json:"allowedNssai,omitempty"`
+	AnN2ApId         *int       `json:"anN2ApId,omitempty"`
+
+	// EpsNasSecurityMode Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EpsNasSecurityMode
+	EpsNasSecurityMode *EpsNasSecurityMode `json:"epsNasSecurityMode,omitempty"`
+
+	// ExpectedUEbehavior Original definition in TS29518_Namf_Communication.yaml#/components/schemas/ExpectedUeBehavior
+	ExpectedUEbehavior  *ExpectedUeBehavior  `json:"expectedUEbehavior,omitempty"`
+	ManAssiUeRadioCapId *ManAssiUeRadioCapId `json:"manAssiUeRadioCapId,omitempty"`
+	N3IwfId             *GlobalRanNodeId     `json:"n3IwfId,omitempty"`
+	NasDownlinkCount    *NasCount            `json:"nasDownlinkCount,omitempty"`
+
+	// NasSecurityMode Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NasSecurityMode
 	NasSecurityMode         *NasSecurityMode       `json:"nasSecurityMode,omitempty"`
 	NasUplinkCount          *NasCount              `json:"nasUplinkCount,omitempty"`
 	NsInstanceList          []NsiId                `json:"nsInstanceList,omitempty"`
@@ -6166,13 +6684,15 @@ type MmContext struct {
 	S1UeNetworkCapability   *S1UeNetworkCapability `json:"s1UeNetworkCapability,omitempty"`
 	TngfId                  *GlobalRanNodeId       `json:"tngfId,omitempty"`
 	UcmfDicEntryId          *string                `json:"ucmfDicEntryId,omitempty"`
-	UeDifferentiationInfo   *UeDifferentiationInfo `json:"ueDifferentiationInfo,omitempty"`
-	UeSecurityCapability    *UeSecurityCapability  `json:"ueSecurityCapability,omitempty"`
-	WagfId                  *GlobalRanNodeId       `json:"wagfId,omitempty"`
-	AdditionalProperties    map[string]interface{} `json:"-"`
+
+	// UeDifferentiationInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeDifferentiationInfo
+	UeDifferentiationInfo *UeDifferentiationInfo `json:"ueDifferentiationInfo,omitempty"`
+	UeSecurityCapability  *UeSecurityCapability  `json:"ueSecurityCapability,omitempty"`
+	WagfId                *GlobalRanNodeId       `json:"wagfId,omitempty"`
+	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// MmeCapabilities defines model for MmeCapabilities.
+// MmeCapabilities Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MmeCapabilities
 type MmeCapabilities struct {
 	EthernetSupported    *bool                  `json:"ethernetSupported,omitempty"`
 	NonIpSupported       *bool                  `json:"nonIpSupported,omitempty"`
@@ -6189,46 +6709,67 @@ type MoExpDataCounter struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ModificationNotification defines model for ModificationNotification.
+// ModificationNotification Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ModificationNotification
 type ModificationNotification struct {
 	NotifyItems          []NotifyItem           `json:"notifyItems"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// MonitoringConfiguration defines model for MonitoringConfiguration.
+// MonitoringConfiguration Original definition in TS29503_Nudm_EE.yaml#/components/schemas/MonitoringConfiguration
 type MonitoringConfiguration struct {
-	AfId                           *string                          `json:"afId,omitempty"`
-	AssociationType                *AssociationType                 `json:"associationType,omitempty"`
-	DatalinkReportCfg              *DatalinkReportingConfiguration  `json:"datalinkReportCfg,omitempty"`
-	EventType                      EventType                        `json:"eventType"`
-	IdleStatusInd                  *bool                            `json:"idleStatusInd,omitempty"`
-	ImmediateFlag                  *bool                            `json:"immediateFlag,omitempty"`
-	LocationReportingConfiguration *LocationReportingConfiguration  `json:"locationReportingConfiguration,omitempty"`
-	LossConnectivityCfg            *LossConnectivityCfg             `json:"lossConnectivityCfg,omitempty"`
-	MaximumLatency                 *DurationSec                     `json:"maximumLatency,omitempty"`
-	MaximumResponseTime            *DurationSec                     `json:"maximumResponseTime,omitempty"`
-	MtcProviderInformation         *MtcProviderInformation          `json:"mtcProviderInformation,omitempty"`
-	PduSessionStatusCfg            *PduSessionStatusCfg             `json:"pduSessionStatusCfg,omitempty"`
-	ReachabilityForSmsCfg          *ReachabilityForSmsConfiguration `json:"reachabilityForSmsCfg,omitempty"`
-	SuggestedPacketNumDl           int                              `json:"suggestedPacketNumDl,omitempty"`
-	AdditionalProperties           map[string]interface{}           `json:"-"`
+	AfId *string `json:"afId,omitempty"`
+
+	// AssociationType Original definition in TS29503_Nudm_EE.yaml#/components/schemas/AssociationType
+	AssociationType *AssociationType `json:"associationType,omitempty"`
+
+	// DatalinkReportCfg Original definition in TS29503_Nudm_EE.yaml#/components/schemas/DatalinkReportingConfiguration
+	DatalinkReportCfg *DatalinkReportingConfiguration `json:"datalinkReportCfg,omitempty"`
+
+	// EventType Original definition in TS29503_Nudm_EE.yaml#/components/schemas/EventType
+	EventType     EventType `json:"eventType"`
+	IdleStatusInd *bool     `json:"idleStatusInd,omitempty"`
+	ImmediateFlag *bool     `json:"immediateFlag,omitempty"`
+
+	// LocationReportingConfiguration Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LocationReportingConfiguration
+	LocationReportingConfiguration *LocationReportingConfiguration `json:"locationReportingConfiguration,omitempty"`
+
+	// LossConnectivityCfg Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LossConnectivityCfg
+	LossConnectivityCfg    *LossConnectivityCfg    `json:"lossConnectivityCfg,omitempty"`
+	MaximumLatency         *DurationSec            `json:"maximumLatency,omitempty"`
+	MaximumResponseTime    *DurationSec            `json:"maximumResponseTime,omitempty"`
+	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
+
+	// PduSessionStatusCfg Original definition in TS29503_Nudm_EE.yaml#/components/schemas/PduSessionStatusCfg
+	PduSessionStatusCfg *PduSessionStatusCfg `json:"pduSessionStatusCfg,omitempty"`
+
+	// ReachabilityForSmsCfg Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReachabilityForSmsConfiguration
+	ReachabilityForSmsCfg *ReachabilityForSmsConfiguration `json:"reachabilityForSmsCfg,omitempty"`
+	SuggestedPacketNumDl  int                              `json:"suggestedPacketNumDl,omitempty"`
+	AdditionalProperties  map[string]interface{}           `json:"-"`
 }
 
-// MonitoringReport defines model for MonitoringReport.
+// MonitoringReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/MonitoringReport
 type MonitoringReport struct {
-	EventType                EventType                 `json:"eventType"`
-	Gpsi                     Gpsi                      `json:"gpsi,omitempty"`
+	// EventType Original definition in TS29503_Nudm_EE.yaml#/components/schemas/EventType
+	EventType EventType `json:"eventType"`
+	Gpsi      Gpsi      `json:"gpsi,omitempty"`
+
+	// ReachabilityForSmsReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReachabilityForSmsReport
 	ReachabilityForSmsReport *ReachabilityForSmsReport `json:"reachabilityForSmsReport,omitempty"`
-	ReferenceId              UdmEEReferenceId          `json:"referenceId"`
-	Report                   *Report                   `json:"report,omitempty"`
-	TimeStamp                DateTime                  `json:"timeStamp"`
-	AdditionalProperties     map[string]interface{}    `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
+	ReferenceId UdmEEReferenceId `json:"referenceId"`
+
+	// Report Original definition in TS29503_Nudm_EE.yaml#/components/schemas/Report
+	Report               *Report                `json:"report,omitempty"`
+	TimeStamp            DateTime               `json:"timeStamp"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// MpsPriorityIndicator defines model for MpsPriorityIndicator.
+// MpsPriorityIndicator Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MpsPriorityIndicator
 type MpsPriorityIndicator = bool
 
-// MtcProvider defines model for MtcProvider.
+// MtcProvider Original definition in TS29505_Subscription_Data.yaml#/components/schemas/MtcProvider
 type MtcProvider struct {
 	AfId                   *string                 `json:"afId,omitempty"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
@@ -6238,14 +6779,15 @@ type MtcProvider struct {
 // MtcProviderInformation defines model for MtcProviderInformation.
 type MtcProviderInformation = string
 
-// MulticastAccessControl defines model for MulticastAccessControl.
+// MulticastAccessControl Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl
 type MulticastAccessControl string
 
-// N1MessageClass defines model for N1MessageClass.
+// N1MessageClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
 type N1MessageClass string
 
-// N1MessageContainer defines model for N1MessageContainer.
+// N1MessageContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageContainer
 type N1MessageContainer struct {
+	// N1MessageClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
 	N1MessageClass       N1MessageClass         `json:"n1MessageClass"`
 	N1MessageContent     RefToBinaryData        `json:"n1MessageContent"`
 	NfId                 *NfInstanceId          `json:"nfId,omitempty"`
@@ -6253,67 +6795,81 @@ type N1MessageContainer struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N1MessageNotification defines model for N1MessageNotification.
+// N1MessageNotification Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageNotification
 type N1MessageNotification struct {
 	CIoT5GSOptimisation *bool  `json:"cIoT5GSOptimisation,omitempty"`
 	Ecgi                *Ecgi  `json:"ecgi,omitempty"`
 	Guami               *Guami `json:"guami,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *string            `json:"lcsCorrelationId,omitempty"`
+	LcsCorrelationId *string `json:"lcsCorrelationId,omitempty"`
+
+	// N1MessageContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageContainer
 	N1MessageContainer     N1MessageContainer `json:"n1MessageContainer"`
 	N1NotifySubscriptionId *string            `json:"n1NotifySubscriptionId,omitempty"`
 	Ncgi                   *Ncgi              `json:"ncgi,omitempty"`
 
 	// NewLmfIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	NewLmfIdentification      *string                       `json:"newLmfIdentification,omitempty"`
+	NewLmfIdentification *string `json:"newLmfIdentification,omitempty"`
+
+	// RegistrationCtxtContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/RegistrationContextContainer
 	RegistrationCtxtContainer *RegistrationContextContainer `json:"registrationCtxtContainer,omitempty"`
 	AdditionalProperties      map[string]interface{}        `json:"-"`
 }
 
-// N1N2MessageTransferCause defines model for N1N2MessageTransferCause.
+// N1N2MessageTransferCause Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferCause
 type N1N2MessageTransferCause string
 
-// N1N2MessageTransferError defines model for N1N2MessageTransferError.
+// N1N2MessageTransferError Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferError
 type N1N2MessageTransferError struct {
+	// ErrInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MsgTxfrErrDetail
 	ErrInfo              *N1N2MsgTxfrErrDetail  `json:"errInfo,omitempty"`
 	Error                ProblemDetails         `json:"error"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N1N2MessageTransferReqData defines model for N1N2MessageTransferReqData.
+// N1N2MessageTransferReqData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferReqData
 type N1N2MessageTransferReqData struct {
-	N5qi              *N5Qi           `json:"5qi,omitempty"`
+	N5qi *N5Qi `json:"5qi,omitempty"`
+
+	// AreaOfValidity Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AreaOfValidity
 	AreaOfValidity    *AreaOfValidity `json:"areaOfValidity,omitempty"`
 	Arp               *Arp            `json:"arp,omitempty"`
 	ExtBufSupport     *bool           `json:"extBufSupport,omitempty"`
 	LastMsgIndication *bool           `json:"lastMsgIndication,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *string                `json:"lcsCorrelationId,omitempty"`
-	MaAcceptedInd          *bool                  `json:"maAcceptedInd,omitempty"`
-	MtData                 *RefToBinaryData       `json:"mtData,omitempty"`
-	N1MessageContainer     *N1MessageContainer    `json:"n1MessageContainer,omitempty"`
-	N1n2FailureTxfNotifURI *Uri                   `json:"n1n2FailureTxfNotifURI,omitempty"`
-	N2InfoContainer        *N2InfoContainer       `json:"n2InfoContainer,omitempty"`
-	OldGuami               *Guami                 `json:"oldGuami,omitempty"`
-	PduSessionId           *PduSessionId          `json:"pduSessionId,omitempty"`
-	Ppi                    *Ppi                   `json:"ppi,omitempty"`
-	SkipInd                *bool                  `json:"skipInd,omitempty"`
-	SmfReallocationInd     *bool                  `json:"smfReallocationInd,omitempty"`
-	SupportedFeatures      *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	TargetAccess           AccessType             `json:"targetAccess,omitempty"`
-	AdditionalProperties   map[string]interface{} `json:"-"`
+	LcsCorrelationId *string          `json:"lcsCorrelationId,omitempty"`
+	MaAcceptedInd    *bool            `json:"maAcceptedInd,omitempty"`
+	MtData           *RefToBinaryData `json:"mtData,omitempty"`
+
+	// N1MessageContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageContainer
+	N1MessageContainer     *N1MessageContainer `json:"n1MessageContainer,omitempty"`
+	N1n2FailureTxfNotifURI *Uri                `json:"n1n2FailureTxfNotifURI,omitempty"`
+
+	// N2InfoContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContainer
+	N2InfoContainer *N2InfoContainer `json:"n2InfoContainer,omitempty"`
+	OldGuami        *Guami           `json:"oldGuami,omitempty"`
+	PduSessionId    *PduSessionId    `json:"pduSessionId,omitempty"`
+
+	// Ppi Original definition in TS29518_Namf_Communication.yaml#/components/schemas/Ppi
+	Ppi                  *Ppi                   `json:"ppi,omitempty"`
+	SkipInd              *bool                  `json:"skipInd,omitempty"`
+	SmfReallocationInd   *bool                  `json:"smfReallocationInd,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	TargetAccess         AccessType             `json:"targetAccess,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N1N2MessageTransferRspData defines model for N1N2MessageTransferRspData.
+// N1N2MessageTransferRspData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferRspData
 type N1N2MessageTransferRspData struct {
+	// Cause Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferCause
 	Cause                N1N2MessageTransferCause `json:"cause"`
 	SupportedFeatures    *SupportedFeatures       `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
-// N1N2MsgTxfrErrDetail defines model for N1N2MsgTxfrErrDetail.
+// N1N2MsgTxfrErrDetail Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MsgTxfrErrDetail
 type N1N2MsgTxfrErrDetail struct {
 	HighestPrioArp       *Arp                   `json:"highestPrioArp,omitempty"`
 	MaxWaitingTime       *DurationSec           `json:"maxWaitingTime,omitempty"`
@@ -6321,45 +6877,59 @@ type N1N2MsgTxfrErrDetail struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N1N2MsgTxfrFailureNotification defines model for N1N2MsgTxfrFailureNotification.
+// N1N2MsgTxfrFailureNotification Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MsgTxfrFailureNotification
 type N1N2MsgTxfrFailureNotification struct {
+	// Cause Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferCause
 	Cause                N1N2MessageTransferCause `json:"cause"`
 	N1n2MsgDataUri       Uri                      `json:"n1n2MsgDataUri"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
-// N2InfoContainer defines model for N2InfoContainer.
+// N2InfoContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContainer
 type N2InfoContainer struct {
-	N2InformationClass   N2InformationClass     `json:"n2InformationClass"`
-	NrppaInfo            *NrppaInformation      `json:"nrppaInfo,omitempty"`
-	PwsInfo              *PwsInformation        `json:"pwsInfo,omitempty"`
-	RanInfo              *N2RanInformation      `json:"ranInfo,omitempty"`
-	SmInfo               *N2SmInformation       `json:"smInfo,omitempty"`
+	// N2InformationClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
+	N2InformationClass N2InformationClass `json:"n2InformationClass"`
+
+	// NrppaInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NrppaInformation
+	NrppaInfo *NrppaInformation `json:"nrppaInfo,omitempty"`
+
+	// PwsInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PwsInformation
+	PwsInfo *PwsInformation `json:"pwsInfo,omitempty"`
+
+	// RanInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2RanInformation
+	RanInfo *N2RanInformation `json:"ranInfo,omitempty"`
+
+	// SmInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2SmInformation
+	SmInfo *N2SmInformation `json:"smInfo,omitempty"`
+
+	// V2xInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/V2xInformation
 	V2xInfo              *V2xInformation        `json:"v2xInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N2InfoContent defines model for N2InfoContent.
+// N2InfoContent Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 type N2InfoContent struct {
-	NgapData             RefToBinaryData        `json:"ngapData"`
+	NgapData RefToBinaryData `json:"ngapData"`
+
+	// NgapIeType Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgapIeType
 	NgapIeType           *NgapIeType            `json:"ngapIeType,omitempty"`
 	NgapMessageType      *Uinteger              `json:"ngapMessageType,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N2InfoNotificationRspData defines model for N2InfoNotificationRspData.
+// N2InfoNotificationRspData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoNotificationRspData
 type N2InfoNotificationRspData struct {
 	SecRatDataUsageList  []N2SmInformation      `json:"secRatDataUsageList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N2InfoNotifyReason defines model for N2InfoNotifyReason.
+// N2InfoNotifyReason Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoNotifyReason
 type N2InfoNotifyReason string
 
-// N2InformationClass defines model for N2InformationClass.
+// N2InformationClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
 type N2InformationClass string
 
-// N2InformationNotification defines model for N2InformationNotification.
+// N2InformationNotification Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationNotification
 type N2InformationNotification struct {
 	AnN2IPv4Addr   Ipv4Addr  `json:"anN2IPv4Addr,omitempty"`
 	AnN2IPv6Addr   *Ipv6Addr `json:"anN2IPv6Addr,omitempty"`
@@ -6367,46 +6937,59 @@ type N2InformationNotification struct {
 	InitialAmfName *AmfName  `json:"initialAmfName,omitempty"`
 
 	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId       *string                `json:"lcsCorrelationId,omitempty"`
-	N2InfoContainer        *N2InfoContainer       `json:"n2InfoContainer,omitempty"`
-	N2NotifySubscriptionId string                 `json:"n2NotifySubscriptionId"`
-	NotifyReason           *N2InfoNotifyReason    `json:"notifyReason,omitempty"`
-	NotifySourceNgRan      *bool                  `json:"notifySourceNgRan,omitempty"`
-	RanNodeId              *GlobalRanNodeId       `json:"ranNodeId,omitempty"`
-	SmfChangeInfoList      []SmfChangeInfo        `json:"smfChangeInfoList,omitempty"`
-	ToReleaseSessionList   []PduSessionId         `json:"toReleaseSessionList,omitempty"`
-	AdditionalProperties   map[string]interface{} `json:"-"`
+	LcsCorrelationId *string `json:"lcsCorrelationId,omitempty"`
+
+	// N2InfoContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContainer
+	N2InfoContainer        *N2InfoContainer `json:"n2InfoContainer,omitempty"`
+	N2NotifySubscriptionId string           `json:"n2NotifySubscriptionId"`
+
+	// NotifyReason Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoNotifyReason
+	NotifyReason         *N2InfoNotifyReason    `json:"notifyReason,omitempty"`
+	NotifySourceNgRan    *bool                  `json:"notifySourceNgRan,omitempty"`
+	RanNodeId            *GlobalRanNodeId       `json:"ranNodeId,omitempty"`
+	SmfChangeInfoList    []SmfChangeInfo        `json:"smfChangeInfoList,omitempty"`
+	ToReleaseSessionList []PduSessionId         `json:"toReleaseSessionList,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N2InformationTransferError defines model for N2InformationTransferError.
+// N2InformationTransferError Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationTransferError
 type N2InformationTransferError struct {
-	Error                ProblemDetails         `json:"error"`
+	Error ProblemDetails `json:"error"`
+
+	// PwsErrorInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PWSErrorData
 	PwsErrorInfo         *PWSErrorData          `json:"pwsErrorInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N2InformationTransferReqData defines model for N2InformationTransferReqData.
+// N2InformationTransferReqData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationTransferReqData
 type N2InformationTransferReqData struct {
-	GlobalRanNodeList    []GlobalRanNodeId      `json:"globalRanNodeList,omitempty"`
-	N2Information        N2InfoContainer        `json:"n2Information"`
+	GlobalRanNodeList []GlobalRanNodeId `json:"globalRanNodeList,omitempty"`
+
+	// N2Information Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContainer
+	N2Information N2InfoContainer `json:"n2Information"`
+
+	// RatSelector Original definition in TS29518_Namf_Communication.yaml#/components/schemas/RatSelector
 	RatSelector          *RatSelector           `json:"ratSelector,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	TaiList              []Tai                  `json:"taiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N2InformationTransferResult defines model for N2InformationTransferResult.
+// N2InformationTransferResult Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationTransferResult
 type N2InformationTransferResult string
 
-// N2InformationTransferRspData defines model for N2InformationTransferRspData.
+// N2InformationTransferRspData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationTransferRspData
 type N2InformationTransferRspData struct {
-	PwsRspData           *PWSResponseData            `json:"pwsRspData,omitempty"`
+	// PwsRspData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PWSResponseData
+	PwsRspData *PWSResponseData `json:"pwsRspData,omitempty"`
+
+	// Result Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationTransferResult
 	Result               N2InformationTransferResult `json:"result"`
 	SupportedFeatures    *SupportedFeatures          `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
-// N2InterfaceAmfInfo AMF N2 interface information
+// N2InterfaceAmfInfo AMF N2 interface information (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/N2InterfaceAmfInfo)
 type N2InterfaceAmfInfo struct {
 	AmfName              *AmfName               `json:"amfName,omitempty"`
 	Ipv4EndpointAddress  []Ipv4Addr             `json:"ipv4EndpointAddress,omitempty"`
@@ -6414,19 +6997,24 @@ type N2InterfaceAmfInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N2RanInformation defines model for N2RanInformation.
+// N2RanInformation Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2RanInformation
 type N2RanInformation struct {
+	// N2InfoContent Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 	N2InfoContent        N2InfoContent          `json:"n2InfoContent"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // N2SmInfoType Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 type N2SmInfoType string
 
-// N2SmInformation defines model for N2SmInformation.
+// N2SmInformation Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2SmInformation
 type N2SmInformation struct {
-	HomePlmnSnssai       *Snssai                `json:"homePlmnSnssai,omitempty"`
-	IwkSnssai            *Snssai                `json:"iwkSnssai,omitempty"`
+	HomePlmnSnssai *Snssai `json:"homePlmnSnssai,omitempty"`
+	IwkSnssai      *Snssai `json:"iwkSnssai,omitempty"`
+
+	// N2InfoContent Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 	N2InfoContent        *N2InfoContent         `json:"n2InfoContent,omitempty"`
 	PduSessionId         PduSessionId           `json:"pduSessionId"`
 	SNssai               *Snssai                `json:"sNssai,omitempty"`
@@ -6458,8 +7046,9 @@ type N3gaLocation struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// N4Information defines model for N4Information.
+// N4Information Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
 type N4Information struct {
+	// N4DnaiInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnaiInformation
 	N4DnaiInfo       *DnaiInformation `json:"n4DnaiInfo,omitempty"`
 	N4MessagePayload RefToBinaryData  `json:"n4MessagePayload"`
 
@@ -6472,6 +7061,7 @@ type N4Information struct {
 	//   - PFCP_SES_DEL_RSP
 	//   - PFCP_SES_REP_REQ
 	//   - PFCP_SES_REP_RSP
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4MessageType)
 	N4MessageType        N4MessageType          `json:"n4MessageType"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -6485,46 +7075,47 @@ type N4Information struct {
 //   - PFCP_SES_DEL_RSP
 //   - PFCP_SES_REP_REQ
 //   - PFCP_SES_REP_RSP
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4MessageType)
 type N4MessageType string
 
-// NFDiscoveryNFProfile Information of an NF Instance discovered by the NRF
+// NFDiscoveryNFProfile Information of an NF Instance discovered by the NRF (Original definition in TS29510_Nnrf_NFDiscovery.yaml#/components/schemas/NFProfile)
 type NFDiscoveryNFProfile struct {
-	// AmfInfo Information of an AMF NF Instance
+	// AmfInfo Information of an AMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AmfInfo)
 	AmfInfo     *AmfInfo            `json:"amfInfo,omitempty"`
 	AmfInfoList *map[string]AmfInfo `json:"amfInfoList,omitempty"`
 
-	// AusfInfo Information of an AUSF NF Instance
+	// AusfInfo Information of an AUSF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AusfInfo)
 	AusfInfo     *AusfInfo            `json:"ausfInfo,omitempty"`
 	AusfInfoList *map[string]AusfInfo `json:"ausfInfoList,omitempty"`
 
-	// BsfInfo Information of a BSF NF Instance
+	// BsfInfo Information of a BSF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/BsfInfo)
 	BsfInfo     *BsfInfo            `json:"bsfInfo,omitempty"`
 	BsfInfoList *map[string]BsfInfo `json:"bsfInfoList,omitempty"`
 	Capacity    *int                `json:"capacity,omitempty"`
 
-	// ChfInfo Information of a CHF NF Instance
+	// ChfInfo Information of a CHF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ChfInfo)
 	ChfInfo                          *ChfInfo                           `json:"chfInfo,omitempty"`
 	ChfInfoList                      *map[string]ChfInfo                `json:"chfInfoList,omitempty"`
 	CustomInfo                       *map[string]interface{}            `json:"customInfo,omitempty"`
 	DefaultNotificationSubscriptions *[]DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
 
-	// Fqdn Fully Qualified Domain Name
+	// Fqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	Fqdn *Fqdn `json:"fqdn,omitempty"`
 
-	// GmlcInfo Information of a GMLC NF Instance
+	// GmlcInfo Information of a GMLC NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/GmlcInfo)
 	GmlcInfo      *GmlcInfo           `json:"gmlcInfo,omitempty"`
 	HssInfoList   *map[string]HssInfo `json:"hssInfoList,omitempty"`
 	Ipv4Addresses []Ipv4Addr          `json:"ipv4Addresses,omitempty"`
 	Ipv6Addresses []Ipv6Addr          `json:"ipv6Addresses,omitempty"`
 	LcHSupportInd *bool               `json:"lcHSupportInd,omitempty"`
 
-	// LmfInfo Information of an LMF NF Instance
+	// LmfInfo Information of an LMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/LmfInfo)
 	LmfInfo       *LmfInfo  `json:"lmfInfo,omitempty"`
 	Load          *int      `json:"load,omitempty"`
 	LoadTimeStamp *DateTime `json:"loadTimeStamp,omitempty"`
 	Locality      *string   `json:"locality,omitempty"`
 
-	// NefInfo Information of an NEF NF Instance
+	// NefInfo Information of an NEF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefInfo)
 	NefInfo              *NefInfo              `json:"nefInfo,omitempty"`
 	NfInstanceId         NfInstanceId          `json:"nfInstanceId"`
 	NfInstanceName       *string               `json:"nfInstanceName,omitempty"`
@@ -6535,18 +7126,18 @@ type NFDiscoveryNFProfile struct {
 	NfSetIdList           []NfSetId            `json:"nfSetIdList,omitempty"`
 	NfSetRecoveryTimeList *map[string]DateTime `json:"nfSetRecoveryTimeList,omitempty"`
 
-	// NfStatus Status of a given NF Instance stored in NRF
+	// NfStatus Status of a given NF Instance stored in NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFStatus)
 	NfStatus NFStatus `json:"nfStatus"`
 
-	// NfType NF types known to NRF
+	// NfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	NfType  NFType   `json:"nfType"`
 	NsiList []string `json:"nsiList,omitempty"`
 
-	// NwdafInfo Information of a NWDAF NF Instance
+	// NwdafInfo Information of a NWDAF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafInfo)
 	NwdafInfo      *NwdafInfo `json:"nwdafInfo,omitempty"`
 	OlcHSupportInd *bool      `json:"olcHSupportInd,omitempty"`
 
-	// PcfInfo Information of a PCF NF Instance
+	// PcfInfo Information of a PCF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PcfInfo)
 	PcfInfo           *PcfInfo              `json:"pcfInfo,omitempty"`
 	PcfInfoList       *map[string]PcfInfo   `json:"pcfInfoList,omitempty"`
 	PcscfInfoList     *map[string]PcscfInfo `json:"pcscfInfoList,omitempty"`
@@ -6557,35 +7148,35 @@ type NFDiscoveryNFProfile struct {
 	SNssais           []ExtSnssai           `json:"sNssais,omitempty"`
 	ScpDomains        []string              `json:"scpDomains,omitempty"`
 
-	// ScpInfo Information of an SCP Instance
+	// ScpInfo Information of an SCP Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ScpInfo)
 	ScpInfo                    *ScpInfo             `json:"scpInfo,omitempty"`
 	ServiceSetRecoveryTimeList *map[string]DateTime `json:"serviceSetRecoveryTimeList,omitempty"`
 	ServingScope               []string             `json:"servingScope,omitempty"`
 
-	// SmfInfo Information of an SMF NF Instance
+	// SmfInfo Information of an SMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/SmfInfo)
 	SmfInfo     *SmfInfo            `json:"smfInfo,omitempty"`
 	SmfInfoList *map[string]SmfInfo `json:"smfInfoList,omitempty"`
 	SnpnList    []PlmnIdNid         `json:"snpnList,omitempty"`
 
-	// UdmInfo Information of an UDM NF Instance
+	// UdmInfo Information of an UDM NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdmInfo)
 	UdmInfo     *UdmInfo            `json:"udmInfo,omitempty"`
 	UdmInfoList *map[string]UdmInfo `json:"udmInfoList,omitempty"`
 
-	// UdrInfo Information of an UDR NF Instance
+	// UdrInfo Information of an UDR NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdrInfo)
 	UdrInfo     *UdrInfo            `json:"udrInfo,omitempty"`
 	UdrInfoList *map[string]UdrInfo `json:"udrInfoList,omitempty"`
 
-	// UdsfInfo Information related to UDSF
+	// UdsfInfo Information related to UDSF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdsfInfo)
 	UdsfInfo     *UdsfInfo            `json:"udsfInfo,omitempty"`
 	UdsfInfoList *map[string]UdsfInfo `json:"udsfInfoList,omitempty"`
 
-	// UpfInfo Information of an UPF NF Instance
+	// UpfInfo Information of an UPF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UpfInfo)
 	UpfInfo              *UpfInfo               `json:"upfInfo,omitempty"`
 	UpfInfoList          *map[string]UpfInfo    `json:"upfInfoList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NFManagementNFProfile Information of an NF Instance registered in the NRF
+// NFManagementNFProfile Information of an NF Instance registered in the NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFProfile)
 type NFManagementNFProfile struct {
 	AllowedNfDomains []string    `json:"allowedNfDomains,omitempty"`
 	AllowedNfTypes   []NFType    `json:"allowedNfTypes,omitempty"`
@@ -6593,46 +7184,46 @@ type NFManagementNFProfile struct {
 	AllowedPlmns     []PlmnId    `json:"allowedPlmns,omitempty"`
 	AllowedSnpns     []PlmnIdNid `json:"allowedSnpns,omitempty"`
 
-	// AmfInfo Information of an AMF NF Instance
+	// AmfInfo Information of an AMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AmfInfo)
 	AmfInfo     *AmfInfo            `json:"amfInfo,omitempty"`
 	AmfInfoList *map[string]AmfInfo `json:"amfInfoList,omitempty"`
 
-	// AusfInfo Information of an AUSF NF Instance
+	// AusfInfo Information of an AUSF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AusfInfo)
 	AusfInfo     *AusfInfo            `json:"ausfInfo,omitempty"`
 	AusfInfoList *map[string]AusfInfo `json:"ausfInfoList,omitempty"`
 
-	// BsfInfo Information of a BSF NF Instance
+	// BsfInfo Information of a BSF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/BsfInfo)
 	BsfInfo     *BsfInfo            `json:"bsfInfo,omitempty"`
 	BsfInfoList *map[string]BsfInfo `json:"bsfInfoList,omitempty"`
 	Capacity    *int                `json:"capacity,omitempty"`
 
-	// ChfInfo Information of a CHF NF Instance
+	// ChfInfo Information of a CHF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ChfInfo)
 	ChfInfo                          *ChfInfo                           `json:"chfInfo,omitempty"`
 	ChfInfoList                      *map[string]ChfInfo                `json:"chfInfoList,omitempty"`
 	CustomInfo                       *map[string]interface{}            `json:"customInfo,omitempty"`
 	DefaultNotificationSubscriptions *[]DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
 
-	// Fqdn Fully Qualified Domain Name
+	// Fqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	Fqdn *Fqdn `json:"fqdn,omitempty"`
 
-	// GmlcInfo Information of a GMLC NF Instance
+	// GmlcInfo Information of a GMLC NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/GmlcInfo)
 	GmlcInfo       *GmlcInfo           `json:"gmlcInfo,omitempty"`
 	HeartBeatTimer *int                `json:"heartBeatTimer,omitempty"`
 	HssInfoList    *map[string]HssInfo `json:"hssInfoList,omitempty"`
 
-	// InterPlmnFqdn Fully Qualified Domain Name
+	// InterPlmnFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	InterPlmnFqdn *Fqdn      `json:"interPlmnFqdn,omitempty"`
 	Ipv4Addresses []Ipv4Addr `json:"ipv4Addresses,omitempty"`
 	Ipv6Addresses []Ipv6Addr `json:"ipv6Addresses,omitempty"`
 	LcHSupportInd *bool      `json:"lcHSupportInd,omitempty"`
 
-	// LmfInfo Information of an LMF NF Instance
+	// LmfInfo Information of an LMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/LmfInfo)
 	LmfInfo       *LmfInfo  `json:"lmfInfo,omitempty"`
 	Load          *int      `json:"load,omitempty"`
 	LoadTimeStamp *DateTime `json:"loadTimeStamp,omitempty"`
 	Locality      *string   `json:"locality,omitempty"`
 
-	// NefInfo Information of an NEF NF Instance
+	// NefInfo Information of an NEF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefInfo)
 	NefInfo                    *NefInfo                 `json:"nefInfo,omitempty"`
 	NfInstanceId               NfInstanceId             `json:"nfInstanceId"`
 	NfInstanceName             *string                  `json:"nfInstanceName,omitempty"`
@@ -6645,21 +7236,21 @@ type NFManagementNFProfile struct {
 	NfSetIdList           []NfSetId            `json:"nfSetIdList,omitempty"`
 	NfSetRecoveryTimeList *map[string]DateTime `json:"nfSetRecoveryTimeList,omitempty"`
 
-	// NfStatus Status of a given NF Instance stored in NRF
+	// NfStatus Status of a given NF Instance stored in NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFStatus)
 	NfStatus NFStatus `json:"nfStatus"`
 
-	// NfType NF types known to NRF
+	// NfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	NfType NFType `json:"nfType"`
 
-	// NrfInfo Information of an NRF NF Instance, used in hierarchical NRF deployments
+	// NrfInfo Information of an NRF NF Instance, used in hierarchical NRF deployments (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NrfInfo)
 	NrfInfo *NrfInfo `json:"nrfInfo,omitempty"`
 	NsiList []string `json:"nsiList,omitempty"`
 
-	// NwdafInfo Information of a NWDAF NF Instance
+	// NwdafInfo Information of a NWDAF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafInfo)
 	NwdafInfo      *NwdafInfo `json:"nwdafInfo,omitempty"`
 	OlcHSupportInd *bool      `json:"olcHSupportInd,omitempty"`
 
-	// PcfInfo Information of a PCF NF Instance
+	// PcfInfo Information of a PCF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PcfInfo)
 	PcfInfo           *PcfInfo              `json:"pcfInfo,omitempty"`
 	PcfInfoList       *map[string]PcfInfo   `json:"pcfInfoList,omitempty"`
 	PcscfInfoList     *map[string]PcscfInfo `json:"pcscfInfoList,omitempty"`
@@ -6670,35 +7261,35 @@ type NFManagementNFProfile struct {
 	SNssais           []ExtSnssai           `json:"sNssais,omitempty"`
 	ScpDomains        []string              `json:"scpDomains,omitempty"`
 
-	// ScpInfo Information of an SCP Instance
+	// ScpInfo Information of an SCP Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ScpInfo)
 	ScpInfo                    *ScpInfo             `json:"scpInfo,omitempty"`
 	ServiceSetRecoveryTimeList *map[string]DateTime `json:"serviceSetRecoveryTimeList,omitempty"`
 	ServingScope               []string             `json:"servingScope,omitempty"`
 
-	// SmfInfo Information of an SMF NF Instance
+	// SmfInfo Information of an SMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/SmfInfo)
 	SmfInfo     *SmfInfo            `json:"smfInfo,omitempty"`
 	SmfInfoList *map[string]SmfInfo `json:"smfInfoList,omitempty"`
 	SnpnList    []PlmnIdNid         `json:"snpnList,omitempty"`
 
-	// UdmInfo Information of an UDM NF Instance
+	// UdmInfo Information of an UDM NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdmInfo)
 	UdmInfo     *UdmInfo            `json:"udmInfo,omitempty"`
 	UdmInfoList *map[string]UdmInfo `json:"udmInfoList,omitempty"`
 
-	// UdrInfo Information of an UDR NF Instance
+	// UdrInfo Information of an UDR NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdrInfo)
 	UdrInfo     *UdrInfo            `json:"udrInfo,omitempty"`
 	UdrInfoList *map[string]UdrInfo `json:"udrInfoList,omitempty"`
 
-	// UdsfInfo Information related to UDSF
+	// UdsfInfo Information related to UDSF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdsfInfo)
 	UdsfInfo     *UdsfInfo            `json:"udsfInfo,omitempty"`
 	UdsfInfoList *map[string]UdsfInfo `json:"udsfInfoList,omitempty"`
 
-	// UpfInfo Information of an UPF NF Instance
+	// UpfInfo Information of an UPF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UpfInfo)
 	UpfInfo              *UpfInfo               `json:"upfInfo,omitempty"`
 	UpfInfoList          *map[string]UpfInfo    `json:"upfInfoList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance discovered by the NRF
+// NFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance discovered by the NRF (Original definition in TS29510_Nnrf_NFDiscovery.yaml#/components/schemas/NFService)
 type NFService struct {
 	AllowedOperationsPerNfInstance   *map[string][]string              `json:"allowedOperationsPerNfInstance,omitempty"`
 	AllowedOperationsPerNfType       *map[string][]string              `json:"allowedOperationsPerNfType,omitempty"`
@@ -6706,14 +7297,14 @@ type NFService struct {
 	Capacity                         *int                              `json:"capacity,omitempty"`
 	DefaultNotificationSubscriptions []DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
 
-	// Fqdn Fully Qualified Domain Name
+	// Fqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	Fqdn               *Fqdn            `json:"fqdn,omitempty"`
 	IpEndPoints        []IpEndPoint     `json:"ipEndPoints,omitempty"`
 	Load               *int             `json:"load,omitempty"`
 	LoadTimeStamp      *DateTime        `json:"loadTimeStamp,omitempty"`
 	NfServiceSetIdList []NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
 
-	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF
+	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFServiceStatus)
 	NfServiceStatus   NFServiceStatus `json:"nfServiceStatus"`
 	Oauth2Required    *bool           `json:"oauth2Required,omitempty"`
 	PerPlmnSnssaiList []PlmnSnssai    `json:"perPlmnSnssaiList,omitempty"`
@@ -6723,21 +7314,21 @@ type NFService struct {
 	Scheme            UriScheme       `json:"scheme"`
 	ServiceInstanceId string          `json:"serviceInstanceId"`
 
-	// ServiceName Service names known to NRF
+	// ServiceName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 	ServiceName                     ServiceName                         `json:"serviceName"`
 	SupportedFeatures               *SupportedFeatures                  `json:"supportedFeatures,omitempty"`
 	SupportedVendorSpecificFeatures *map[string][]VendorSpecificFeature `json:"supportedVendorSpecificFeatures,omitempty"`
 
-	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
+	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorId)
 	VendorId             VendorId               `json:"vendorId,omitempty"`
 	Versions             []NFServiceVersion     `json:"versions"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NFServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF
+// NFServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFServiceStatus)
 type NFServiceStatus string
 
-// NFServiceVersion Contains the version details of an NF service
+// NFServiceVersion Contains the version details of an NF service (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFServiceVersion)
 type NFServiceVersion struct {
 	ApiFullVersion       string                 `json:"apiFullVersion"`
 	ApiVersionInUri      string                 `json:"apiVersionInUri"`
@@ -6745,23 +7336,26 @@ type NFServiceVersion struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NFStatus Status of a given NF Instance stored in NRF
+// NFStatus Status of a given NF Instance stored in NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFStatus)
 type NFStatus string
 
-// NFType NF types known to NRF
+// NFType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 type NFType string
 
 // NasCount defines model for NasCount.
 type NasCount = Uinteger
 
-// NasSecurityMode defines model for NasSecurityMode.
+// NasSecurityMode Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NasSecurityMode
 type NasSecurityMode struct {
-	CipheringAlgorithm   CipheringAlgorithm     `json:"cipheringAlgorithm"`
+	// CipheringAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/CipheringAlgorithm
+	CipheringAlgorithm CipheringAlgorithm `json:"cipheringAlgorithm"`
+
+	// IntegrityAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/IntegrityAlgorithm
 	IntegrityAlgorithm   IntegrityAlgorithm     `json:"integrityAlgorithm"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NbIoTUePriority defines model for NbIoTUePriority.
+// NbIoTUePriority Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/NbIoTUePriority
 type NbIoTUePriority = int
 
 // Ncgi defines model for Ncgi.
@@ -6772,14 +7366,14 @@ type Ncgi struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NefCond Subscription to a set of NF Instances (NEFs), identified by Event ID(s) provided by AF, S-NSSAI(s), AF Instance ID, Application Identifier, External Identifier, External Group Identifier, or domain name.
+// NefCond Subscription to a set of NF Instances (NEFs), identified by Event ID(s) provided by AF, S-NSSAI(s), AF Instance ID, Application Identifier, External Identifier, External Group Identifier, or domain name. (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefCond)
 type NefCond struct {
 	AfEvents                       []string             `json:"afEvents,omitempty"`
 	ConditionType                  NefCondConditionType `json:"conditionType"`
 	ExternalGroupIdentifiersRanges []IdentityRange      `json:"externalGroupIdentifiersRanges,omitempty"`
 	GpsiRanges                     []IdentityRange      `json:"gpsiRanges,omitempty"`
 
-	// PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
+	// PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PfdData)
 	PfdData              *NrfPfdData            `json:"pfdData,omitempty"`
 	ServedFqdnList       []string               `json:"servedFqdnList,omitempty"`
 	SnssaiList           []Snssai               `json:"snssaiList,omitempty"`
@@ -6789,29 +7383,31 @@ type NefCond struct {
 // NefCondConditionType defines model for NefCond.ConditionType.
 type NefCondConditionType string
 
-// NefId Identity of the NEF
+// NefId Identity of the NEF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefId)
 type NefId = string
 
-// NefInfo Information of an NEF NF Instance
+// NefInfo Information of an NEF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefInfo)
 type NefInfo struct {
-	// AfEeData AF Event Exposure data managed by a given NEF Instance
+	// AfEeData AF Event Exposure data managed by a given NEF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AfEventExposureData)
 	AfEeData                       *AfEventExposureData `json:"afEeData,omitempty"`
 	ExternalGroupIdentifiersRanges []IdentityRange      `json:"externalGroupIdentifiersRanges,omitempty"`
 	GpsiRanges                     []IdentityRange      `json:"gpsiRanges,omitempty"`
 
-	// NefId Identity of the NEF
+	// NefId Identity of the NEF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefId)
 	NefId *NefId `json:"nefId,omitempty"`
 
-	// PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
+	// PfdData List of Application IDs and/or AF IDs managed by a given NEF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PfdData)
 	PfdData              *NrfPfdData            `json:"pfdData,omitempty"`
 	ServedFqdnList       []string               `json:"servedFqdnList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NetLocAccessSupport Possible values are - ANR_NOT_SUPPORTED: Indicates that the access network does not support the report of access network information. - TZR_NOT_SUPPORTED: Indicates that the access network does not support the report of UE time zone. - LOC_NOT_SUPPORTED: Indicates that the access network does not support the report of UE Location (or PLMN Id).
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/NetLocAccessSupport)
 type NetLocAccessSupport string
 
-// NetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+// NetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29503_Nudm_PP.yaml#/components/schemas/NetworkAreaInfo)
 type NetworkAreaInfo struct {
 	// Ecgis Contains a list of E-UTRA cell identities.
 	Ecgis []Ecgi `json:"ecgis,omitempty"`
@@ -6827,21 +7423,21 @@ type NetworkAreaInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NetworkNodeDiameterAddress defines model for NetworkNodeDiameterAddress.
+// NetworkNodeDiameterAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/NetworkNodeDiameterAddress
 type NetworkNodeDiameterAddress struct {
 	Name                 DiameterIdentity       `json:"name"`
 	Realm                DiameterIdentity       `json:"realm"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NetworkSliceCond Subscription to a set of NFs, based on the slices (S-NSSAI and NSI) they support
+// NetworkSliceCond Subscription to a set of NFs, based on the slices (S-NSSAI and NSI) they support (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NetworkSliceCond)
 type NetworkSliceCond struct {
 	NsiList              *[]string              `json:"nsiList,omitempty"`
 	SnssaiList           []Snssai               `json:"snssaiList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NfGroupCond Subscription to a set of NFs based on their Group Id
+// NfGroupCond Subscription to a set of NFs based on their Group Id (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NfGroupCond)
 type NfGroupCond struct {
 	NfGroupId            NfGroupId              `json:"nfGroupId"`
 	NfType               NfGroupCondNfType      `json:"nfType"`
@@ -6854,12 +7450,12 @@ type NfGroupCondNfType string
 // NfGroupId defines model for NfGroupId.
 type NfGroupId = string
 
-// NfGroupIdMapResult defines model for NfGroupIdMapResult.
+// NfGroupIdMapResult Original definition in TS29504_Nudr_GroupIDmap.yaml#/components/schemas/NfGroupIdMapResult
 type NfGroupIdMapResult map[string]NfGroupId
 
-// NfInfo Information of a generic NF Instance
+// NfInfo Information of a generic NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NfInfo)
 type NfInfo struct {
-	// NfType NF types known to NRF
+	// NfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	NfType               *NFType                `json:"nfType,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -6867,19 +7463,19 @@ type NfInfo struct {
 // NfInstanceId defines model for NfInstanceId.
 type NfInstanceId = openapi_types.UUID
 
-// NfInstanceIdCond Subscription to a given NF Instance Id
+// NfInstanceIdCond Subscription to a given NF Instance Id (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NfInstanceIdCond)
 type NfInstanceIdCond struct {
 	NfInstanceId         NfInstanceId           `json:"nfInstanceId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NfInstanceIdListCond Subscription to a list of NF Instances
+// NfInstanceIdListCond Subscription to a list of NF Instances (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NfInstanceIdListCond)
 type NfInstanceIdListCond struct {
 	NfInstanceIdList     []NfInstanceId         `json:"nfInstanceIdList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NfServiceSetCond Subscription to a set of NFs based on their Service Set Id
+// NfServiceSetCond Subscription to a set of NFs based on their Service Set Id (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NfServiceSetCond)
 type NfServiceSetCond struct {
 	NfServiceSetId       NfServiceSetId         `json:"nfServiceSetId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -6888,7 +7484,7 @@ type NfServiceSetCond struct {
 // NfServiceSetId defines model for NfServiceSetId.
 type NfServiceSetId = string
 
-// NfSetCond Subscription to a set of NFs based on their Set Id
+// NfSetCond Subscription to a set of NFs based on their Set Id (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NfSetCond)
 type NfSetCond struct {
 	NfSetId              NfSetId                `json:"nfSetId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -6897,9 +7493,9 @@ type NfSetCond struct {
 // NfSetId defines model for NfSetId.
 type NfSetId = string
 
-// NfTypeCond Subscription to a set of NFs based on their NF Type
+// NfTypeCond Subscription to a set of NFs based on their NF Type (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NfTypeCond)
 type NfTypeCond struct {
-	// NfType NF types known to NRF
+	// NfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	NfType               NFType                 `json:"nfType"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -6911,21 +7507,23 @@ type NgApCause struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NgKsi defines model for NgKsi.
+// NgKsi Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgKsi
 type NgKsi struct {
-	Ksi                  int                    `json:"ksi"`
+	Ksi int `json:"ksi"`
+
+	// Tsc Original definition in TS29518_Namf_Communication.yaml#/components/schemas/ScType
 	Tsc                  ScType                 `json:"tsc"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NgRanTargetId defines model for NgRanTargetId.
+// NgRanTargetId Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgRanTargetId
 type NgRanTargetId struct {
 	RanNodeId            GlobalRanNodeId        `json:"ranNodeId"`
 	Tai                  Tai                    `json:"tai"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NgapIeType defines model for NgapIeType.
+// NgapIeType Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgapIeType
 type NgapIeType string
 
 // NgeNbId defines model for NgeNbId.
@@ -6934,26 +7532,29 @@ type NgeNbId = string
 // Nid defines model for Nid.
 type Nid = string
 
-// NiddAuthUpdateInfo defines model for NiddAuthUpdateInfo.
+// NiddAuthUpdateInfo Original definition in TS29503_Nudm_NIDDAU.yaml#/components/schemas/NiddAuthUpdateInfo
 type NiddAuthUpdateInfo struct {
-	AuthorizationData    AuthorizationData      `json:"authorizationData"`
-	Dnn                  *Dnn                   `json:"dnn,omitempty"`
-	InvalidityInd        *bool                  `json:"invalidityInd,omitempty"`
+	// AuthorizationData Original definition in TS29503_Nudm_NIDDAU.yaml#/components/schemas/AuthorizationData
+	AuthorizationData AuthorizationData `json:"authorizationData"`
+	Dnn               *Dnn              `json:"dnn,omitempty"`
+	InvalidityInd     *bool             `json:"invalidityInd,omitempty"`
+
+	// NiddCause Original definition in TS29503_Nudm_NIDDAU.yaml#/components/schemas/NiddCause
 	NiddCause            *NiddCause             `json:"niddCause,omitempty"`
 	Snssai               *Snssai                `json:"snssai,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NiddAuthUpdateNotification defines model for NiddAuthUpdateNotification.
+// NiddAuthUpdateNotification Original definition in TS29503_Nudm_NIDDAU.yaml#/components/schemas/NiddAuthUpdateNotification
 type NiddAuthUpdateNotification struct {
 	NiddAuthUpdateInfoList []NiddAuthUpdateInfo   `json:"niddAuthUpdateInfoList"`
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// NiddCause defines model for NiddCause.
+// NiddCause Original definition in TS29503_Nudm_NIDDAU.yaml#/components/schemas/NiddCause
 type NiddCause string
 
-// NiddInformation defines model for NiddInformation.
+// NiddInformation Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/NiddInformation
 type NiddInformation struct {
 	AfId                 string                 `json:"afId"`
 	ExtGroupId           ExternalGroupId        `json:"extGroupId,omitempty"`
@@ -6961,7 +7562,7 @@ type NiddInformation struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NodeType defines model for NodeType.
+// NodeType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/NodeType
 type NodeType string
 
 // NonDynamic5Qi defines model for NonDynamic5Qi.
@@ -6975,10 +7576,12 @@ type NonDynamic5Qi struct {
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// NonUeN2InfoSubscriptionCreateData defines model for NonUeN2InfoSubscriptionCreateData.
+// NonUeN2InfoSubscriptionCreateData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NonUeN2InfoSubscriptionCreateData
 type NonUeN2InfoSubscriptionCreateData struct {
-	AnTypeList           []AccessType           `json:"anTypeList,omitempty"`
-	GlobalRanNodeList    []GlobalRanNodeId      `json:"globalRanNodeList,omitempty"`
+	AnTypeList        []AccessType      `json:"anTypeList,omitempty"`
+	GlobalRanNodeList []GlobalRanNodeId `json:"globalRanNodeList,omitempty"`
+
+	// N2InformationClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
 	N2InformationClass   N2InformationClass     `json:"n2InformationClass"`
 	N2NotifyCallbackUri  Uri                    `json:"n2NotifyCallbackUri"`
 	NfId                 *NfInstanceId          `json:"nfId,omitempty"`
@@ -6986,50 +7589,55 @@ type NonUeN2InfoSubscriptionCreateData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NonUeN2InfoSubscriptionCreatedData defines model for NonUeN2InfoSubscriptionCreatedData.
+// NonUeN2InfoSubscriptionCreatedData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NonUeN2InfoSubscriptionCreatedData
 type NonUeN2InfoSubscriptionCreatedData struct {
+	// N2InformationClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
 	N2InformationClass     *N2InformationClass    `json:"n2InformationClass,omitempty"`
 	N2NotifySubscriptionId string                 `json:"n2NotifySubscriptionId"`
 	SupportedFeatures      *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// NotifCondition Condition (list of attributes in the NF Profile) to determine whether a notification must be sent by NRF
+// NotifCondition Condition (list of attributes in the NF Profile) to determine whether a notification must be sent by NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NotifCondition)
 type NotifCondition struct {
 	MonitoredAttributes   []string               `json:"monitoredAttributes,omitempty"`
 	UnmonitoredAttributes []string               `json:"unmonitoredAttributes,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// Notification Describes a BDT notification.
+// Notification Describes a BDT notification. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/Notification)
 type Notification struct {
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
 	BdtRefId BdtReferenceId `json:"bdtRefId"`
 
 	// CandPolicies Contains a list of the candidate transfer policies from which the AF may select a new transfer policy due to a network performance is below the criteria set by the operator.
 	CandPolicies []TransferPolicy `json:"candPolicies,omitempty"`
 
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
-	NwAreaInfo           *PcfNetworkAreaInfo    `json:"nwAreaInfo,omitempty"`
+	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
+	NwAreaInfo *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
+
+	// TimeWindow Original definition in TS29122_CommonData.yaml#/components/schemas/TimeWindow
 	TimeWindow           *TimeWindow            `json:"timeWindow,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NotificationCause Possible values are - QOS_FULFILLED - QOS_NOT_FULFILLED - UP_SEC_FULFILLED - UP_SEC_NOT_FULFILLED
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/NotificationCause)
 type NotificationCause string
 
 // NotificationControl defines model for NotificationControl.
 type NotificationControl string
 
-// NotificationControlIndication defines model for NotificationControlIndication.
+// NotificationControlIndication Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/NotificationControlIndication
 type NotificationControlIndication string
 
-// NotificationData Data sent in notifications from NRF to subscribed NF Instances
+// NotificationData Data sent in notifications from NRF to subscribed NF Instances (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NotificationData)
 type NotificationData struct {
-	// ConditionEvent Indicates whether a notification is due to the NF Instance to start or stop being part of a condition for a subscription to a set of NFs
+	// ConditionEvent Indicates whether a notification is due to the NF Instance to start or stop being part of a condition for a subscription to a set of NFs (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ConditionEventType)
 	ConditionEvent *ConditionEventType `json:"conditionEvent,omitempty"`
 
-	// Event Types of events sent in notifications from NRF to subscribed NF Instances
+	// Event Types of events sent in notifications from NRF to subscribed NF Instances (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NotificationEventType)
 	Event                NotificationEventType       `json:"event"`
 	NfInstanceUri        Uri                         `json:"nfInstanceUri"`
 	NfProfile            *NotificationData_NfProfile `json:"nfProfile,omitempty"`
@@ -7045,46 +7653,46 @@ type NotificationData_NfProfile struct {
 	AllowedPlmns     []PlmnId    `json:"allowedPlmns,omitempty"`
 	AllowedSnpns     []PlmnIdNid `json:"allowedSnpns,omitempty"`
 
-	// AmfInfo Information of an AMF NF Instance
+	// AmfInfo Information of an AMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AmfInfo)
 	AmfInfo     *AmfInfo            `json:"amfInfo,omitempty"`
 	AmfInfoList *map[string]AmfInfo `json:"amfInfoList,omitempty"`
 
-	// AusfInfo Information of an AUSF NF Instance
+	// AusfInfo Information of an AUSF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AusfInfo)
 	AusfInfo     *AusfInfo            `json:"ausfInfo,omitempty"`
 	AusfInfoList *map[string]AusfInfo `json:"ausfInfoList,omitempty"`
 
-	// BsfInfo Information of a BSF NF Instance
+	// BsfInfo Information of a BSF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/BsfInfo)
 	BsfInfo     *BsfInfo            `json:"bsfInfo,omitempty"`
 	BsfInfoList *map[string]BsfInfo `json:"bsfInfoList,omitempty"`
 	Capacity    *int                `json:"capacity,omitempty"`
 
-	// ChfInfo Information of a CHF NF Instance
+	// ChfInfo Information of a CHF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ChfInfo)
 	ChfInfo                          *ChfInfo                           `json:"chfInfo,omitempty"`
 	ChfInfoList                      *map[string]ChfInfo                `json:"chfInfoList,omitempty"`
 	CustomInfo                       *map[string]interface{}            `json:"customInfo,omitempty"`
 	DefaultNotificationSubscriptions *[]DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
 
-	// Fqdn Fully Qualified Domain Name
+	// Fqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	Fqdn *Fqdn `json:"fqdn,omitempty"`
 
-	// GmlcInfo Information of a GMLC NF Instance
+	// GmlcInfo Information of a GMLC NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/GmlcInfo)
 	GmlcInfo       *GmlcInfo           `json:"gmlcInfo,omitempty"`
 	HeartBeatTimer *int                `json:"heartBeatTimer,omitempty"`
 	HssInfoList    *map[string]HssInfo `json:"hssInfoList,omitempty"`
 
-	// InterPlmnFqdn Fully Qualified Domain Name
+	// InterPlmnFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	InterPlmnFqdn *Fqdn      `json:"interPlmnFqdn,omitempty"`
 	Ipv4Addresses []Ipv4Addr `json:"ipv4Addresses,omitempty"`
 	Ipv6Addresses []Ipv6Addr `json:"ipv6Addresses,omitempty"`
 	LcHSupportInd *bool      `json:"lcHSupportInd,omitempty"`
 
-	// LmfInfo Information of an LMF NF Instance
+	// LmfInfo Information of an LMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/LmfInfo)
 	LmfInfo       *LmfInfo  `json:"lmfInfo,omitempty"`
 	Load          *int      `json:"load,omitempty"`
 	LoadTimeStamp *DateTime `json:"loadTimeStamp,omitempty"`
 	Locality      *string   `json:"locality,omitempty"`
 
-	// NefInfo Information of an NEF NF Instance
+	// NefInfo Information of an NEF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefInfo)
 	NefInfo                    *NefInfo                 `json:"nefInfo,omitempty"`
 	NfInstanceId               NfInstanceId             `json:"nfInstanceId"`
 	NfInstanceName             *string                  `json:"nfInstanceName,omitempty"`
@@ -7096,21 +7704,21 @@ type NotificationData_NfProfile struct {
 	NfSetIdList                []NfSetId                `json:"nfSetIdList,omitempty"`
 	NfSetRecoveryTimeList      *map[string]DateTime     `json:"nfSetRecoveryTimeList,omitempty"`
 
-	// NfStatus Status of a given NF Instance stored in NRF
+	// NfStatus Status of a given NF Instance stored in NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFStatus)
 	NfStatus NFStatus `json:"nfStatus"`
 
-	// NfType NF types known to NRF
+	// NfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	NfType NFType `json:"nfType"`
 
-	// NrfInfo Information of an NRF NF Instance, used in hierarchical NRF deployments
+	// NrfInfo Information of an NRF NF Instance, used in hierarchical NRF deployments (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NrfInfo)
 	NrfInfo *NrfInfo `json:"nrfInfo,omitempty"`
 	NsiList []string `json:"nsiList,omitempty"`
 
-	// NwdafInfo Information of a NWDAF NF Instance
+	// NwdafInfo Information of a NWDAF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafInfo)
 	NwdafInfo      *NwdafInfo `json:"nwdafInfo,omitempty"`
 	OlcHSupportInd *bool      `json:"olcHSupportInd,omitempty"`
 
-	// PcfInfo Information of a PCF NF Instance
+	// PcfInfo Information of a PCF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PcfInfo)
 	PcfInfo           *PcfInfo              `json:"pcfInfo,omitempty"`
 	PcfInfoList       *map[string]PcfInfo   `json:"pcfInfoList,omitempty"`
 	PcscfInfoList     *map[string]PcscfInfo `json:"pcscfInfoList,omitempty"`
@@ -7121,38 +7729,38 @@ type NotificationData_NfProfile struct {
 	SNssais           []ExtSnssai           `json:"sNssais,omitempty"`
 	ScpDomains        []string              `json:"scpDomains,omitempty"`
 
-	// ScpInfo Information of an SCP Instance
+	// ScpInfo Information of an SCP Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ScpInfo)
 	ScpInfo                    *ScpInfo             `json:"scpInfo,omitempty"`
 	ServiceSetRecoveryTimeList *map[string]DateTime `json:"serviceSetRecoveryTimeList,omitempty"`
 	ServingScope               []string             `json:"servingScope,omitempty"`
 
-	// SmfInfo Information of an SMF NF Instance
+	// SmfInfo Information of an SMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/SmfInfo)
 	SmfInfo     *SmfInfo            `json:"smfInfo,omitempty"`
 	SmfInfoList *map[string]SmfInfo `json:"smfInfoList,omitempty"`
 	SnpnList    []PlmnIdNid         `json:"snpnList,omitempty"`
 
-	// UdmInfo Information of an UDM NF Instance
+	// UdmInfo Information of an UDM NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdmInfo)
 	UdmInfo     *UdmInfo            `json:"udmInfo,omitempty"`
 	UdmInfoList *map[string]UdmInfo `json:"udmInfoList,omitempty"`
 
-	// UdrInfo Information of an UDR NF Instance
+	// UdrInfo Information of an UDR NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdrInfo)
 	UdrInfo     *UdrInfo            `json:"udrInfo,omitempty"`
 	UdrInfoList *map[string]UdrInfo `json:"udrInfoList,omitempty"`
 
-	// UdsfInfo Information related to UDSF
+	// UdsfInfo Information related to UDSF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdsfInfo)
 	UdsfInfo     *UdsfInfo            `json:"udsfInfo,omitempty"`
 	UdsfInfoList *map[string]UdsfInfo `json:"udsfInfoList,omitempty"`
 
-	// UpfInfo Information of an UPF NF Instance
+	// UpfInfo Information of an UPF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UpfInfo)
 	UpfInfo              *UpfInfo               `json:"upfInfo,omitempty"`
 	UpfInfoList          *map[string]UpfInfo    `json:"upfInfoList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NotificationEventType Types of events sent in notifications from NRF to subscribed NF Instances
+// NotificationEventType Types of events sent in notifications from NRF to subscribed NF Instances (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NotificationEventType)
 type NotificationEventType string
 
-// NotificationItem Identifies a data change notification when the change occurs in a fragment (subset of resource data) of a given resource.
+// NotificationItem Identifies a data change notification when the change occurs in a fragment (subset of resource data) of a given resource. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/NotificationItem)
 type NotificationItem struct {
 	NotifItems           []UpdatedItem          `json:"notifItems"`
 	ResourceId           Uri                    `json:"resourceId"`
@@ -7160,12 +7768,14 @@ type NotificationItem struct {
 }
 
 // NotificationMethod Possible values are - PERIODIC - ONE_TIME - ON_EVENT_DETECTION
+//
+//	(Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/NotificationMethod)
 type NotificationMethod string
 
-// NotificationType Types of notifications used in Default Notification URIs in the NF Profile of an NF Instance
+// NotificationType Types of notifications used in Default Notification URIs in the NF Profile of an NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NotificationType)
 type NotificationType string
 
-// NotifiedPosInfo defines model for NotifiedPosInfo.
+// NotifiedPosInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/NotifiedPosInfo
 type NotifiedPosInfo struct {
 	// AgeOfLocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
 	AgeOfLocationEstimate interface{} `json:"ageOfLocationEstimate,omitempty"`
@@ -7187,8 +7797,12 @@ type NotifiedPosInfo struct {
 	LdrReference *string `json:"ldrReference,omitempty"`
 
 	// LocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	LocationEstimate    interface{}    `json:"locationEstimate,omitempty"`
-	LocationEvent       LocationEvent  `json:"locationEvent"`
+	LocationEstimate interface{} `json:"locationEstimate,omitempty"`
+
+	// LocationEvent Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationEvent
+	LocationEvent LocationEvent `json:"locationEvent"`
+
+	// MscServerId Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
 	MscServerId         E164Number     `json:"mscServerId,omitempty"`
 	Ncgi                *Ncgi          `json:"ncgi,omitempty"`
 	Pei                 Pei            `json:"pei,omitempty"`
@@ -7217,7 +7831,7 @@ type NotifyItem struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NpnAccessInfo NPN Access Information.
+// NpnAccessInfo NPN Access Information. (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NpnAccessInfo)
 type NpnAccessInfo struct {
 	CellCagInfo          []CagId                `json:"cellCagInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -7246,7 +7860,7 @@ type NrV2xAuth struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NrfInfo Information of an NRF NF Instance, used in hierarchical NRF deployments
+// NrfInfo Information of an NRF NF Instance, used in hierarchical NRF deployments (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NrfInfo)
 type NrfInfo struct {
 	ServedAmfInfo        *map[string]AmfInfo              `json:"servedAmfInfo,omitempty"`
 	ServedAmfInfoList    *map[string]map[string]AmfInfo   `json:"servedAmfInfoList,omitempty"`
@@ -7279,27 +7893,31 @@ type NrfInfo struct {
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
 
-// NrppaInformation defines model for NrppaInformation.
+// NrppaInformation Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NrppaInformation
 type NrppaInformation struct {
-	NfId                 NfInstanceId           `json:"nfId"`
+	NfId NfInstanceId `json:"nfId"`
+
+	// NrppaPdu Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 	NrppaPdu             N2InfoContent          `json:"nrppaPdu"`
 	ServiceInstanceId    *string                `json:"serviceInstanceId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NsiId defines model for NsiId.
+// NsiId Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId
 type NsiId = string
 
-// NsiInformation defines model for NsiInformation.
+// NsiInformation Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiInformation
 type NsiInformation struct {
-	NrfAccessTokenUri    *Uri                   `json:"nrfAccessTokenUri,omitempty"`
-	NrfId                Uri                    `json:"nrfId"`
-	NrfNfMgtUri          *Uri                   `json:"nrfNfMgtUri,omitempty"`
+	NrfAccessTokenUri *Uri `json:"nrfAccessTokenUri,omitempty"`
+	NrfId             Uri  `json:"nrfId"`
+	NrfNfMgtUri       *Uri `json:"nrfNfMgtUri,omitempty"`
+
+	// NsiId Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId
 	NsiId                *NsiId                 `json:"nsiId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NsmfEventExposure Represents an Individual SMF Notification Subscription resource. The serviveName property corresponds to the serviceName in the main body of the specification.
+// NsmfEventExposure Represents an Individual SMF Notification Subscription resource. The serviveName property corresponds to the serviceName in the main body of the specification. (Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/NsmfEventExposure)
 type NsmfEventExposure struct {
 	ImmeRep *bool `json:"ImmeRep,omitempty"`
 
@@ -7329,24 +7947,25 @@ type NsmfEventExposure struct {
 	NotifId string `json:"notifId"`
 
 	// NotifMethod Possible values are - PERIODIC - ONE_TIME - ON_EVENT_DETECTION
+	//  (Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/NotificationMethod)
 	NotifMethod *NotificationMethod `json:"notifMethod,omitempty"`
 	NotifUri    Uri                 `json:"notifUri"`
 	PduSeId     *PduSessionId       `json:"pduSeId,omitempty"`
 	RepPeriod   *DurationSec        `json:"repPeriod,omitempty"`
 	SampRatio   SamplingRatio       `json:"sampRatio,omitempty"`
 
-	// ServiveName Service names known to NRF
+	// ServiveName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 	ServiveName *ServiceName `json:"serviveName,omitempty"`
 	Snssai      *Snssai      `json:"snssai,omitempty"`
 
-	// SubId Identifies an Individual SMF Notification Subscription. To enable that the value is used as part of a URI, the string shall only contain characters allowed according to the "lower-with-hyphen" naming convention defined in 3GPP TS 29.501. In an OpenAPI schema, the format shall be designated as "SubId".
+	// SubId Identifies an Individual SMF Notification Subscription. To enable that the value is used as part of a URI, the string shall only contain characters allowed according to the "lower-with-hyphen" naming convention defined in 3GPP TS 29.501. In an OpenAPI schema, the format shall be designated as "SubId". (Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/SubId)
 	SubId                *SubId                 `json:"subId,omitempty"`
 	Supi                 Supi                   `json:"supi,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NsmfEventExposureNotification defines model for NsmfEventExposureNotification.
+// NsmfEventExposureNotification Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/NsmfEventExposureNotification
 type NsmfEventExposureNotification struct {
 	AckUri *Uri `json:"ackUri,omitempty"`
 
@@ -7367,7 +7986,7 @@ type NssaaStatus struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Nssai defines model for Nssai.
+// Nssai Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/Nssai
 type Nssai struct {
 	AdditionalSnssaiData *map[string]AdditionalSnssaiData `json:"additionalSnssaiData,omitempty"`
 	DefaultSingleNssais  []Snssai                         `json:"defaultSingleNssais"`
@@ -7377,14 +7996,16 @@ type Nssai struct {
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
 
-// NssaiAckData defines model for NssaiAckData.
+// NssaiAckData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/NssaiAckData
 type NssaiAckData struct {
-	ProvisioningTime     DateTime               `json:"provisioningTime"`
+	ProvisioningTime DateTime `json:"provisioningTime"`
+
+	// UeUpdateStatus Original definition in TS29505_Subscription_Data.yaml#/components/schemas/UeUpdateStatus
 	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NssaiAvailabilityInfo defines model for NssaiAvailabilityInfo.
+// NssaiAvailabilityInfo Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/NssaiAvailabilityInfo
 type NssaiAvailabilityInfo struct {
 	AmfSetId                       string                           `json:"amfSetId,omitempty"`
 	SupportedFeatures              *SupportedFeatures               `json:"supportedFeatures,omitempty"`
@@ -7392,23 +8013,25 @@ type NssaiAvailabilityInfo struct {
 	AdditionalProperties           map[string]interface{}           `json:"-"`
 }
 
-// NssaiMapping defines model for NssaiMapping.
+// NssaiMapping Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NssaiMapping
 type NssaiMapping struct {
 	HSnssai              Snssai                 `json:"hSnssai"`
 	MappedSnssai         Snssai                 `json:"mappedSnssai"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NssfEventNotification defines model for NssfEventNotification.
+// NssfEventNotification Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/NssfEventNotification
 type NssfEventNotification struct {
 	AuthorizedNssaiAvailabilityData []AuthorizedNssaiAvailabilityData `json:"authorizedNssaiAvailabilityData"`
 	SubscriptionId                  string                            `json:"subscriptionId"`
 	AdditionalProperties            map[string]interface{}            `json:"-"`
 }
 
-// NssfEventSubscriptionCreateData defines model for NssfEventSubscriptionCreateData.
+// NssfEventSubscriptionCreateData Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/NssfEventSubscriptionCreateData
 type NssfEventSubscriptionCreateData struct {
-	AmfSetId               string                 `json:"amfSetId,omitempty"`
+	AmfSetId string `json:"amfSetId,omitempty"`
+
+	// Event Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/NssfEventType
 	Event                  NssfEventType          `json:"event"`
 	Expiry                 *DateTime              `json:"expiry,omitempty"`
 	NfNssaiAvailabilityUri Uri                    `json:"nfNssaiAvailabilityUri"`
@@ -7418,7 +8041,7 @@ type NssfEventSubscriptionCreateData struct {
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// NssfEventSubscriptionCreatedData defines model for NssfEventSubscriptionCreatedData.
+// NssfEventSubscriptionCreatedData Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/NssfEventSubscriptionCreatedData
 type NssfEventSubscriptionCreatedData struct {
 	AuthorizedNssaiAvailabilityData []AuthorizedNssaiAvailabilityData `json:"authorizedNssaiAvailabilityData,omitempty"`
 	Expiry                          *DateTime                         `json:"expiry,omitempty"`
@@ -7427,16 +8050,16 @@ type NssfEventSubscriptionCreatedData struct {
 	AdditionalProperties            map[string]interface{}            `json:"-"`
 }
 
-// NssfEventType defines model for NssfEventType.
+// NssfEventType Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/NssfEventType
 type NssfEventType string
 
 // NullValue defines model for NullValue.
 type NullValue = interface{}
 
-// NumOfRequestedVectors defines model for NumOfRequestedVectors.
+// NumOfRequestedVectors Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/NumOfRequestedVectors
 type NumOfRequestedVectors = int
 
-// NwdafCond Subscription to a set of NF Instances (NWDAFs), identified by Analytics ID(s), S-NSSAI(s) or NWDAF Serving Area information, i.e. list of TAIs for which the NWDAF can provide analytics.
+// NwdafCond Subscription to a set of NF Instances (NWDAFs), identified by Analytics ID(s), S-NSSAI(s) or NWDAF Serving Area information, i.e. list of TAIs for which the NWDAF can provide analytics. (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafCond)
 type NwdafCond struct {
 	AnalyticsIds         []string               `json:"analyticsIds,omitempty"`
 	ConditionType        NwdafCondConditionType `json:"conditionType"`
@@ -7449,7 +8072,7 @@ type NwdafCond struct {
 // NwdafCondConditionType defines model for NwdafCond.ConditionType.
 type NwdafCondConditionType string
 
-// NwdafInfo Information of a NWDAF NF Instance
+// NwdafInfo Information of a NWDAF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafInfo)
 type NwdafInfo struct {
 	EventIds             []string               `json:"eventIds,omitempty"`
 	NwdafEvents          []string               `json:"nwdafEvents,omitempty"`
@@ -7467,13 +8090,13 @@ type OdbData struct {
 // OdbPacketServices defines model for OdbPacketServices.
 type OdbPacketServices string
 
-// OmcIdentifier defines model for OmcIdentifier.
+// OmcIdentifier Original definition in TS29518_Namf_Communication.yaml#/components/schemas/OmcIdentifier
 type OmcIdentifier = string
 
-// OperationMode defines model for OperationMode.
+// OperationMode Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/OperationMode
 type OperationMode string
 
-// OperatorSpecificDataContainer defines model for OperatorSpecificDataContainer.
+// OperatorSpecificDataContainer Original definition in TS29505_Subscription_Data.yaml#/components/schemas/OperatorSpecificDataContainer
 type OperatorSpecificDataContainer struct {
 	DataType             OperatorSpecificDataContainerDataType `json:"dataType"`
 	DataTypeDefinition   *string                               `json:"dataTypeDefinition,omitempty"`
@@ -7505,16 +8128,16 @@ type OperatorSpecificDataContainer_Value struct {
 	union json.RawMessage
 }
 
-// OptionsResponse Communication options of the NRF sent in response payload of OPTIONS method
+// OptionsResponse Communication options of the NRF sent in response payload of OPTIONS method (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/OptionsResponse)
 type OptionsResponse struct {
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// OsId defines model for OsId.
+// OsId Original definition in TS29519_Policy_Data.yaml#/components/schemas/OsId
 type OsId = openapi_types.UUID
 
-// OutOfCreditInformation Indicates the SDFs without available credit and the corresponding termination action.
+// OutOfCreditInformation Indicates the SDFs without available credit and the corresponding termination action. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/OutOfCreditInformation)
 type OutOfCreditInformation struct {
 	// FinUnitAct Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
 	FinUnitAct           string                 `json:"finUnitAct"`
@@ -7522,13 +8145,13 @@ type OutOfCreditInformation struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PWSErrorData defines model for PWSErrorData.
+// PWSErrorData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PWSErrorData
 type PWSErrorData struct {
 	NamfCause            int                    `json:"namfCause"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PWSResponseData defines model for PWSResponseData.
+// PWSResponseData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PWSResponseData
 type PWSResponseData struct {
 	MessageIdentifier    int                    `json:"messageIdentifier"`
 	NgapMessageType      Uinteger               `json:"ngapMessageType"`
@@ -7546,18 +8169,19 @@ type PacketDelBudgetRm = int
 // PacketErrRate defines model for PacketErrRate.
 type PacketErrRate = string
 
-// PacketFilterContent Defines a packet filter for an IP flow.
+// PacketFilterContent Defines a packet filter for an IP flow. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PacketFilterContent)
 type PacketFilterContent = string
 
-// PacketFilterInfo defines model for PacketFilterInfo.
+// PacketFilterInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PacketFilterInfo
 type PacketFilterInfo struct {
 	// FlowDirection Possible values are - DOWNLINK: The corresponding filter applies for traffic to the UE. - UPLINK: The corresponding filter applies for traffic from the UE. - BIDIRECTIONAL: The corresponding filter applies for traffic both to and from the UE. - UNSPECIFIED: The corresponding filter applies for traffic to the UE (downlink), but has no specific direction declared. The service data flow detection shall apply the filter for uplink traffic as if the filter was bidirectional. The PCF shall not use the value UNSPECIFIED in filters created by the network in NW-initiated procedures. The PCF shall only include the value UNSPECIFIED in filters in UE-initiated procedures if the same value is received from the SMF.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection)
 	FlowDirection *FlowDirection `json:"flowDirection,omitempty"`
 
 	// FlowLabel The Ipv6 flow label header field.
 	FlowLabel *string `json:"flowLabel,omitempty"`
 
-	// PackFiltCont Defines a packet filter for an IP flow.
+	// PackFiltCont Defines a packet filter for an IP flow. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PacketFilterContent)
 	PackFiltCont *PacketFilterContent `json:"packFiltCont,omitempty"`
 
 	// PackFiltId An identifier of packet filter.
@@ -7577,7 +8201,7 @@ type PacketLossRate = int
 // PacketLossRateRm defines model for PacketLossRateRm.
 type PacketLossRateRm = int
 
-// ParameterCombination defines model for ParameterCombination.
+// ParameterCombination Original definition in TS29521_Nbsf_Management.yaml#/components/schemas/ParameterCombination
 type ParameterCombination struct {
 	Dnn                  *Dnn                   `json:"dnn,omitempty"`
 	Snssai               *Snssai                `json:"snssai,omitempty"`
@@ -7585,8 +8209,9 @@ type ParameterCombination struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PartialSuccessReport defines model for PartialSuccessReport.
+// PartialSuccessReport Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PartialSuccessReport
 type PartialSuccessReport struct {
+	// FailureCause Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FailureCause
 	FailureCause FailureCause `json:"failureCause"`
 
 	// PolicyDecFailureReports Contains the type(s) of failed policy decision and/or condition data.
@@ -7596,22 +8221,24 @@ type PartialSuccessReport struct {
 	RuleReports []RuleReport `json:"ruleReports,omitempty"`
 
 	// SessRuleReports Information about the session rules provisioned by the PCF not successfully installed.
-	SessRuleReports      []SessionRuleReport    `json:"sessRuleReports,omitempty"`
+	SessRuleReports []SessionRuleReport `json:"sessRuleReports,omitempty"`
+
+	// UeCampingRep Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UeCampingRep
 	UeCampingRep         *UeCampingRep          `json:"ueCampingRep,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PatchBdtPolicy Describes the updates in authorization data of an Individual BDT Policy created by the PCF.
+// PatchBdtPolicy Describes the updates in authorization data of an Individual BDT Policy created by the PCF. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/PatchBdtPolicy)
 type PatchBdtPolicy struct {
-	// BdtPolData A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure.
+	// BdtPolData A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtPolicyDataPatch)
 	BdtPolData *PcfBdtPolicyDataPatch `json:"bdtPolData,omitempty"`
 
-	// BdtReqData A JSON Merge Patch body schema containing modification instruction to be performed on the bdtReqData attribute of the BdtPolicy data structure to indicate whether the BDT warning notification is enabled or disabled. Modifies warnNotifReq from BdtReqData data structure.
+	// BdtReqData A JSON Merge Patch body schema containing modification instruction to be performed on the bdtReqData attribute of the BdtPolicy data structure to indicate whether the BDT warning notification is enabled or disabled. Modifies warnNotifReq from BdtReqData data structure. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtReqDataPatch)
 	BdtReqData           *BdtReqDataPatch       `json:"bdtReqData,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PatchDocument defines model for PatchDocument.
+// PatchDocument Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/PatchDocument
 type PatchDocument = []PatchItem
 
 // PatchItem defines model for PatchItem.
@@ -7633,6 +8260,8 @@ type PatchResult struct {
 }
 
 // Pc5Capability Possible values are - LTE_PC5: This value is used to indicate that UE supports PC5 LTE RAT for V2X communication over PC5 reference point. - NR_PC5: This value is used to indicate that UE supports PC5 NR RAT for V2X communication over PC5 reference point. - LTE_NR_PC5: This value is used to indicate that UE supports both PC5 LTE and NR RAT for V2X communication over PC5 reference point..
+//
+//	(Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/Pc5Capability)
 type Pc5Capability string
 
 // Pc5FlowBitRates defines model for Pc5FlowBitRates.
@@ -7657,19 +8286,21 @@ type Pc5QosFlowItem struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PcEvent defines model for PcEvent.
+// PcEvent Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/PcEvent
 type PcEvent string
 
-// PcEventExposureNotif defines model for PcEventExposureNotif.
+// PcEventExposureNotif Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/PcEventExposureNotif
 type PcEventExposureNotif struct {
 	EventNotifs          []PcEventNotification  `json:"eventNotifs"`
 	NotifId              string                 `json:"notifId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PcEventExposureSubsc defines model for PcEventExposureSubsc.
+// PcEventExposureSubsc Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/PcEventExposureSubsc
 type PcEventExposureSubsc struct {
-	EventSubs            []PcEvent               `json:"eventSubs"`
+	EventSubs []PcEvent `json:"eventSubs"`
+
+	// EventsRepInfo Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/ReportingInformation
 	EventsRepInfo        *ReportingInformation   `json:"eventsRepInfo,omitempty"`
 	FilterDnns           []Dnn                   `json:"filterDnns,omitempty"`
 	FilterServices       []ServiceIdentification `json:"filterServices,omitempty"`
@@ -7681,30 +8312,41 @@ type PcEventExposureSubsc struct {
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// PcEventNotification defines model for PcEventNotification.
+// PcEventNotification Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/PcEventNotification
 type PcEventNotification struct {
-	AccType       AccessType            `json:"accType,omitempty"`
+	AccType AccessType `json:"accType,omitempty"`
+
+	// AddAccessInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
 	AddAccessInfo *AdditionalAccessInfo `json:"addAccessInfo,omitempty"`
 
-	// AnGwAddr describes the address of the access network gateway control node
-	AnGwAddr             *AnGwAddress           `json:"anGwAddr,omitempty"`
-	Event                PcEvent                `json:"event"`
-	Gpsi                 Gpsi                   `json:"gpsi,omitempty"`
-	PduSessionInfo       *PduSessionInformation `json:"pduSessionInfo,omitempty"`
-	PlmnId               *PlmnIdNid             `json:"plmnId,omitempty"`
-	RatType              *RatType               `json:"ratType,omitempty"`
-	RelAccessInfo        *AdditionalAccessInfo  `json:"relAccessInfo,omitempty"`
+	// AnGwAddr describes the address of the access network gateway control node (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AnGwAddress)
+	AnGwAddr *AnGwAddress `json:"anGwAddr,omitempty"`
+
+	// Event Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/PcEvent
+	Event PcEvent `json:"event"`
+	Gpsi  Gpsi    `json:"gpsi,omitempty"`
+
+	// PduSessionInfo Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/PduSessionInformation
+	PduSessionInfo *PduSessionInformation `json:"pduSessionInfo,omitempty"`
+	PlmnId         *PlmnIdNid             `json:"plmnId,omitempty"`
+	RatType        *RatType               `json:"ratType,omitempty"`
+
+	// RelAccessInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
+	RelAccessInfo *AdditionalAccessInfo `json:"relAccessInfo,omitempty"`
+
+	// RepServices Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/ServiceIdentification
 	RepServices          *ServiceIdentification `json:"repServices,omitempty"`
 	Supi                 Supi                   `json:"supi,omitempty"`
 	TimeStamp            DateTime               `json:"timeStamp"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PccRule defines model for PccRule.
+// PccRule Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PccRule
 type PccRule struct {
 	AddrPreserInd *bool `json:"addrPreserInd"`
 
 	// AfSigProtocol Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
 	AfSigProtocol *AfSigProtocol         `json:"afSigProtocol,omitempty"`
 	AppDescriptor *ApplicationDescriptor `json:"appDescriptor,omitempty"`
 
@@ -7714,13 +8356,13 @@ type PccRule struct {
 	// AppReloc Indication of application relocation possibility.
 	AppReloc *bool `json:"appReloc,omitempty"`
 
-	// ContVer Represents the content version of some content.
+	// ContVer Represents the content version of some content. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion)
 	ContVer *ContentVersion `json:"contVer,omitempty"`
 
-	// DdNotifCtrl Contains the downlink data notification control information.
+	// DdNotifCtrl Contains the downlink data notification control information. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/DownlinkDataNotificationControl)
 	DdNotifCtrl *DownlinkDataNotificationControl `json:"ddNotifCtrl,omitempty"`
 
-	// DdNotifCtrl2 this data type is defined in the same way as the DownlinkDataNotificationControl data type, but with the OpenAPI nullable property set to true.
+	// DdNotifCtrl2 this data type is defined in the same way as the DownlinkDataNotificationControl data type, but with the OpenAPI nullable property set to true. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/DownlinkDataNotificationControlRm)
 	DdNotifCtrl2 *DownlinkDataNotificationControlRm `json:"ddNotifCtrl2"`
 	DisUeNotif   *bool                              `json:"disUeNotif"`
 
@@ -7758,15 +8400,15 @@ type PccRule struct {
 	// RefUmN3gData A reference to UsageMonitoringData policy decision type only applicable to Non-3GPP access if "ATSSS" feature is supported. It is the umId described in subclause 5.6.2.12.
 	RefUmN3gData *[]string `json:"refUmN3gData"`
 
-	// TscaiInputDl Indicates TSC Traffic pattern.
+	// TscaiInputDl Indicates TSC Traffic pattern. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer)
 	TscaiInputDl *TscaiInputContainer `json:"tscaiInputDl"`
 
-	// TscaiInputUl Indicates TSC Traffic pattern.
+	// TscaiInputUl Indicates TSC Traffic pattern. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer)
 	TscaiInputUl         *TscaiInputContainer   `json:"tscaiInputUl"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PcfBinding defines model for PcfBinding.
+// PcfBinding Original definition in TS29521_Nbsf_Management.yaml#/components/schemas/PcfBinding
 type PcfBinding struct {
 	// AddIpv6Prefixes The additional IPv6 Address Prefixes of the served UE.
 	AddIpv6Prefixes []Ipv6Prefix `json:"addIpv6Prefixes,omitempty"`
@@ -7775,20 +8417,23 @@ type PcfBinding struct {
 	AddMacAddrs []MacAddr48 `json:"addMacAddrs,omitempty"`
 
 	// BindLevel Possible values are - "NF_SET" - "NF_INSTANCE"
-	BindLevel          *BindingLevel         `json:"bindLevel,omitempty"`
-	Dnn                Dnn                   `json:"dnn"`
-	Gpsi               Gpsi                  `json:"gpsi,omitempty"`
-	IpDomain           *string               `json:"ipDomain,omitempty"`
-	Ipv4Addr           Ipv4Addr              `json:"ipv4Addr,omitempty"`
-	Ipv4FrameRouteList []Ipv4AddrMask        `json:"ipv4FrameRouteList,omitempty"`
-	Ipv6FrameRouteList []Ipv6Prefix          `json:"ipv6FrameRouteList,omitempty"`
-	Ipv6Prefix         *Ipv6Prefix           `json:"ipv6Prefix,omitempty"`
-	MacAddr48          MacAddr48             `json:"macAddr48,omitempty"`
-	ParaCom            *ParameterCombination `json:"paraCom,omitempty"`
-	PcfDiamHost        DiameterIdentity      `json:"pcfDiamHost,omitempty"`
-	PcfDiamRealm       DiameterIdentity      `json:"pcfDiamRealm,omitempty"`
+	//  (Original definition in TS29521_Nbsf_Management.yaml#/components/schemas/BindingLevel)
+	BindLevel          *BindingLevel  `json:"bindLevel,omitempty"`
+	Dnn                Dnn            `json:"dnn"`
+	Gpsi               Gpsi           `json:"gpsi,omitempty"`
+	IpDomain           *string        `json:"ipDomain,omitempty"`
+	Ipv4Addr           Ipv4Addr       `json:"ipv4Addr,omitempty"`
+	Ipv4FrameRouteList []Ipv4AddrMask `json:"ipv4FrameRouteList,omitempty"`
+	Ipv6FrameRouteList []Ipv6Prefix   `json:"ipv6FrameRouteList,omitempty"`
+	Ipv6Prefix         *Ipv6Prefix    `json:"ipv6Prefix,omitempty"`
+	MacAddr48          MacAddr48      `json:"macAddr48,omitempty"`
 
-	// PcfFqdn Fully Qualified Domain Name
+	// ParaCom Original definition in TS29521_Nbsf_Management.yaml#/components/schemas/ParameterCombination
+	ParaCom      *ParameterCombination `json:"paraCom,omitempty"`
+	PcfDiamHost  DiameterIdentity      `json:"pcfDiamHost,omitempty"`
+	PcfDiamRealm DiameterIdentity      `json:"pcfDiamRealm,omitempty"`
+
+	// PcfFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	PcfFqdn *Fqdn         `json:"pcfFqdn,omitempty"`
 	PcfId   *NfInstanceId `json:"pcfId,omitempty"`
 
@@ -7796,7 +8441,7 @@ type PcfBinding struct {
 	PcfIpEndPoints []IpEndPoint `json:"pcfIpEndPoints,omitempty"`
 	PcfSetId       *NfSetId     `json:"pcfSetId,omitempty"`
 
-	// PcfSmFqdn Fully Qualified Domain Name
+	// PcfSmFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	PcfSmFqdn *Fqdn `json:"pcfSmFqdn,omitempty"`
 
 	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
@@ -7808,7 +8453,7 @@ type PcfBinding struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PcfBindingPatch defines model for PcfBindingPatch.
+// PcfBindingPatch Original definition in TS29521_Nbsf_Management.yaml#/components/schemas/PcfBindingPatch
 type PcfBindingPatch struct {
 	// AddIpv6Prefixes The additional IPv6 Address Prefixes of the served UE.
 	AddIpv6Prefixes *[]Ipv6Prefix `json:"addIpv6Prefixes"`
@@ -7822,7 +8467,7 @@ type PcfBindingPatch struct {
 	PcfDiamHost  DiameterIdentity `json:"pcfDiamHost,omitempty"`
 	PcfDiamRealm DiameterIdentity `json:"pcfDiamRealm,omitempty"`
 
-	// PcfFqdn Fully Qualified Domain Name
+	// PcfFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	PcfFqdn *Fqdn         `json:"pcfFqdn,omitempty"`
 	PcfId   *NfInstanceId `json:"pcfId,omitempty"`
 
@@ -7831,7 +8476,7 @@ type PcfBindingPatch struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PcfInfo Information of a PCF NF Instance
+// PcfInfo Information of a PCF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PcfInfo)
 type PcfInfo struct {
 	DnnList              []Dnn                  `json:"dnnList,omitempty"`
 	GpsiRanges           []IdentityRange        `json:"gpsiRanges,omitempty"`
@@ -7843,12 +8488,12 @@ type PcfInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PcscfInfo Information of a P-CSCF NF Instance
+// PcscfInfo Information of a P-CSCF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PcscfInfo)
 type PcscfInfo struct {
 	AccessType []AccessType `json:"accessType,omitempty"`
 	DnnList    []Dnn        `json:"dnnList,omitempty"`
 
-	// GmFqdn Fully Qualified Domain Name
+	// GmFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	GmFqdn                  *Fqdn                  `json:"gmFqdn,omitempty"`
 	GmIpv4Addresses         []Ipv4Addr             `json:"gmIpv4Addresses,omitempty"`
 	GmIpv6Addresses         []Ipv6Addr             `json:"gmIpv6Addresses,omitempty"`
@@ -7857,13 +8502,13 @@ type PcscfInfo struct {
 	AdditionalProperties    map[string]interface{} `json:"-"`
 }
 
-// PcscfRestorationNotification defines model for PcscfRestorationNotification.
+// PcscfRestorationNotification Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/PcscfRestorationNotification
 type PcscfRestorationNotification struct {
 	Supi                 Supi                   `json:"supi"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PcscfRestorationRequestData Indicates P-CSCF restoration.
+// PcscfRestorationRequestData Indicates P-CSCF restoration. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PcscfRestorationRequestData)
 type PcscfRestorationRequestData struct {
 	Dnn                  *Dnn                   `json:"dnn,omitempty"`
 	IpDomain             *string                `json:"ipDomain,omitempty"`
@@ -7874,22 +8519,24 @@ type PcscfRestorationRequestData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PdnConnectivityStatReport defines model for PdnConnectivityStatReport.
+// PdnConnectivityStatReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/PdnConnectivityStatReport
 type PdnConnectivityStatReport struct {
-	Dnn                  *Dnn                   `json:"dnn,omitempty"`
-	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
-	Ipv6Addrs            []Ipv6Addr             `json:"ipv6Addrs,omitempty"`
-	Ipv6Prefixes         []Ipv6Prefix           `json:"ipv6Prefixes,omitempty"`
+	Dnn          *Dnn         `json:"dnn,omitempty"`
+	Ipv4Addr     Ipv4Addr     `json:"ipv4Addr,omitempty"`
+	Ipv6Addrs    []Ipv6Addr   `json:"ipv6Addrs,omitempty"`
+	Ipv6Prefixes []Ipv6Prefix `json:"ipv6Prefixes,omitempty"`
+
+	// PdnConnStat Original definition in TS29503_Nudm_EE.yaml#/components/schemas/PdnConnectivityStatus
 	PdnConnStat          PdnConnectivityStatus  `json:"pdnConnStat"`
 	PduSeId              *PduSessionId          `json:"pduSeId,omitempty"`
 	PduSessType          *PduSessionType        `json:"pduSessType,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PdnConnectivityStatus defines model for PdnConnectivityStatus.
+// PdnConnectivityStatus Original definition in TS29503_Nudm_EE.yaml#/components/schemas/PdnConnectivityStatus
 type PdnConnectivityStatus string
 
-// PduSession defines model for PduSession.
+// PduSession Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PduSession
 type PduSession struct {
 	Dnn                  Dnn                    `json:"dnn"`
 	PlmnId               PlmnId                 `json:"plmnId"`
@@ -7898,28 +8545,38 @@ type PduSession struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PduSessionContext defines model for PduSessionContext.
+// PduSessionContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PduSessionContext
 type PduSessionContext struct {
-	AccessType           AccessType             `json:"accessType"`
-	AdditionalAccessType AccessType             `json:"additionalAccessType,omitempty"`
-	AllocatedEbiList     []EbiArpMapping        `json:"allocatedEbiList,omitempty"`
-	CnAssistedRanPara    *CnAssistedRanPara     `json:"cnAssistedRanPara,omitempty"`
-	Dnn                  Dnn                    `json:"dnn"`
-	HsmfId               *NfInstanceId          `json:"hsmfId,omitempty"`
-	HsmfServiceSetId     *NfServiceSetId        `json:"hsmfServiceSetId,omitempty"`
-	HsmfSetId            *NfSetId               `json:"hsmfSetId,omitempty"`
-	IsmfBinding          *SbiBindingLevel       `json:"ismfBinding,omitempty"`
-	IsmfId               *NfInstanceId          `json:"ismfId,omitempty"`
-	IsmfServiceSetId     *NfServiceSetId        `json:"ismfServiceSetId,omitempty"`
-	IsmfSetId            *NfSetId               `json:"ismfSetId,omitempty"`
-	MaPduSession         *bool                  `json:"maPduSession,omitempty"`
-	NsInstance           *NsiId                 `json:"nsInstance,omitempty"`
-	PduSessionId         PduSessionId           `json:"pduSessionId"`
-	SNssai               Snssai                 `json:"sNssai"`
-	SelectedDnn          *Dnn                   `json:"selectedDnn,omitempty"`
-	SmContextRef         Uri                    `json:"smContextRef"`
-	SmfBinding           *SbiBindingLevel       `json:"smfBinding,omitempty"`
-	SmfServiceInstanceId *string                `json:"smfServiceInstanceId,omitempty"`
+	AccessType           AccessType      `json:"accessType"`
+	AdditionalAccessType AccessType      `json:"additionalAccessType,omitempty"`
+	AllocatedEbiList     []EbiArpMapping `json:"allocatedEbiList,omitempty"`
+
+	// CnAssistedRanPara Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/CnAssistedRanPara
+	CnAssistedRanPara *CnAssistedRanPara `json:"cnAssistedRanPara,omitempty"`
+	Dnn               Dnn                `json:"dnn"`
+	HsmfId            *NfInstanceId      `json:"hsmfId,omitempty"`
+	HsmfServiceSetId  *NfServiceSetId    `json:"hsmfServiceSetId,omitempty"`
+	HsmfSetId         *NfSetId           `json:"hsmfSetId,omitempty"`
+
+	// IsmfBinding Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
+	IsmfBinding      *SbiBindingLevel `json:"ismfBinding,omitempty"`
+	IsmfId           *NfInstanceId    `json:"ismfId,omitempty"`
+	IsmfServiceSetId *NfServiceSetId  `json:"ismfServiceSetId,omitempty"`
+	IsmfSetId        *NfSetId         `json:"ismfSetId,omitempty"`
+	MaPduSession     *bool            `json:"maPduSession,omitempty"`
+
+	// NsInstance Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId
+	NsInstance   *NsiId       `json:"nsInstance,omitempty"`
+	PduSessionId PduSessionId `json:"pduSessionId"`
+	SNssai       Snssai       `json:"sNssai"`
+	SelectedDnn  *Dnn         `json:"selectedDnn,omitempty"`
+	SmContextRef Uri          `json:"smContextRef"`
+
+	// SmfBinding Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
+	SmfBinding           *SbiBindingLevel `json:"smfBinding,omitempty"`
+	SmfServiceInstanceId *string          `json:"smfServiceInstanceId,omitempty"`
+
+	// VsmfBinding Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
 	VsmfBinding          *SbiBindingLevel       `json:"vsmfBinding,omitempty"`
 	VsmfId               *NfInstanceId          `json:"vsmfId,omitempty"`
 	VsmfServiceSetId     *NfServiceSetId        `json:"vsmfServiceSetId,omitempty"`
@@ -7927,64 +8584,76 @@ type PduSessionContext struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PduSessionContinuityInd defines model for PduSessionContinuityInd.
+// PduSessionContinuityInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PduSessionContinuityInd
 type PduSessionContinuityInd string
 
-// PduSessionCreateData defines model for PduSessionCreateData.
+// PduSessionCreateData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PduSessionCreateData
 type PduSessionCreateData struct {
-	AddUeLocation          *UserLocation          `json:"addUeLocation,omitempty"`
-	AdditionalAnType       AccessType             `json:"additionalAnType,omitempty"`
-	AdditionalCnTunnelInfo *TunnelInfo            `json:"additionalCnTunnelInfo,omitempty"`
-	AlwaysOnRequested      *bool                  `json:"alwaysOnRequested,omitempty"`
-	AmfNfId                *NfInstanceId          `json:"amfNfId,omitempty"`
-	AnType                 AccessType             `json:"anType"`
-	ApnRateStatus          *ApnRateStatus         `json:"apnRateStatus,omitempty"`
-	ChargingId             string                 `json:"chargingId,omitempty"`
-	CpCiotEnabled          *bool                  `json:"cpCiotEnabled,omitempty"`
-	CpOnlyInd              *bool                  `json:"cpOnlyInd,omitempty"`
-	DlServingPlmnRateCtl   int                    `json:"dlServingPlmnRateCtl,omitempty"`
-	DnaiList               []Dnai                 `json:"dnaiList,omitempty"`
-	Dnn                    Dnn                    `json:"dnn"`
-	EpsBearerCtxStatus     EpsBearerContextStatus `json:"epsBearerCtxStatus,omitempty"`
-	EpsBearerId            []SmfEpsBearerId       `json:"epsBearerId,omitempty"`
+	AddUeLocation    *UserLocation `json:"addUeLocation,omitempty"`
+	AdditionalAnType AccessType    `json:"additionalAnType,omitempty"`
+
+	// AdditionalCnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	AdditionalCnTunnelInfo *TunnelInfo    `json:"additionalCnTunnelInfo,omitempty"`
+	AlwaysOnRequested      *bool          `json:"alwaysOnRequested,omitempty"`
+	AmfNfId                *NfInstanceId  `json:"amfNfId,omitempty"`
+	AnType                 AccessType     `json:"anType"`
+	ApnRateStatus          *ApnRateStatus `json:"apnRateStatus,omitempty"`
+	ChargingId             string         `json:"chargingId,omitempty"`
+	CpCiotEnabled          *bool          `json:"cpCiotEnabled,omitempty"`
+	CpOnlyInd              *bool          `json:"cpOnlyInd,omitempty"`
+	DlServingPlmnRateCtl   int            `json:"dlServingPlmnRateCtl,omitempty"`
+	DnaiList               []Dnai         `json:"dnaiList,omitempty"`
+	Dnn                    Dnn            `json:"dnn"`
+
+	// EpsBearerCtxStatus Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerContextStatus
+	EpsBearerCtxStatus EpsBearerContextStatus `json:"epsBearerCtxStatus,omitempty"`
+	EpsBearerId        []SmfEpsBearerId       `json:"epsBearerId,omitempty"`
 
 	// EpsInterworkingInd Possible values are - NONE - WITH_N26 - WITHOUT_N26 - IWK_NON_3GPP
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsInterworkingIndication)
 	EpsInterworkingInd      *EpsInterworkingIndication `json:"epsInterworkingInd,omitempty"`
 	Gpsi                    Gpsi                       `json:"gpsi,omitempty"`
 	Guami                   *Guami                     `json:"guami,omitempty"`
 	HPcfId                  *NfInstanceId              `json:"hPcfId,omitempty"`
 	HoPreparationIndication *bool                      `json:"hoPreparationIndication,omitempty"`
 	ISmfServiceInstanceId   *string                    `json:"iSmfServiceInstanceId,omitempty"`
-	IcnTunnelInfo           *TunnelInfo                `json:"icnTunnelInfo,omitempty"`
-	InvokeNef               *bool                      `json:"invokeNef,omitempty"`
-	IsmfId                  *NfInstanceId              `json:"ismfId,omitempty"`
-	IsmfPduSessionUri       *Uri                       `json:"ismfPduSessionUri,omitempty"`
-	MaNwUpgradeInd          *bool                      `json:"maNwUpgradeInd,omitempty"`
-	MaRequestInd            *bool                      `json:"maRequestInd,omitempty"`
+
+	// IcnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	IcnTunnelInfo     *TunnelInfo   `json:"icnTunnelInfo,omitempty"`
+	InvokeNef         *bool         `json:"invokeNef,omitempty"`
+	IsmfId            *NfInstanceId `json:"ismfId,omitempty"`
+	IsmfPduSessionUri *Uri          `json:"ismfPduSessionUri,omitempty"`
+	MaNwUpgradeInd    *bool         `json:"maNwUpgradeInd,omitempty"`
+	MaRequestInd      *bool         `json:"maRequestInd,omitempty"`
 
 	// MaxIntegrityProtectedDataRateDl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateDl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateDl,omitempty"`
 
 	// MaxIntegrityProtectedDataRateUl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateUl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateUl,omitempty"`
 	N1SmInfoFromUe                  *RefToBinaryData               `json:"n1SmInfoFromUe,omitempty"`
-	N9ForwardingTunnelInfo          *TunnelInfo                    `json:"n9ForwardingTunnelInfo,omitempty"`
-	OldPduSessionId                 *PduSessionId                  `json:"oldPduSessionId,omitempty"`
-	PcfGroupId                      *NfGroupId                     `json:"pcfGroupId,omitempty"`
-	PcfId                           *NfInstanceId                  `json:"pcfId,omitempty"`
-	PcfSetId                        *NfSetId                       `json:"pcfSetId,omitempty"`
-	PduSessionId                    *PduSessionId                  `json:"pduSessionId,omitempty"`
-	Pei                             Pei                            `json:"pei,omitempty"`
-	PgwS8cFteid                     *Bytes                         `json:"pgwS8cFteid,omitempty"`
-	PresenceInLadn                  *PresenceState                 `json:"presenceInLadn,omitempty"`
-	RatType                         *RatType                       `json:"ratType,omitempty"`
-	RecoveryTime                    *DateTime                      `json:"recoveryTime,omitempty"`
+
+	// N9ForwardingTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	N9ForwardingTunnelInfo *TunnelInfo    `json:"n9ForwardingTunnelInfo,omitempty"`
+	OldPduSessionId        *PduSessionId  `json:"oldPduSessionId,omitempty"`
+	PcfGroupId             *NfGroupId     `json:"pcfGroupId,omitempty"`
+	PcfId                  *NfInstanceId  `json:"pcfId,omitempty"`
+	PcfSetId               *NfSetId       `json:"pcfSetId,omitempty"`
+	PduSessionId           *PduSessionId  `json:"pduSessionId,omitempty"`
+	Pei                    Pei            `json:"pei,omitempty"`
+	PgwS8cFteid            *Bytes         `json:"pgwS8cFteid,omitempty"`
+	PresenceInLadn         *PresenceState `json:"presenceInLadn,omitempty"`
+	RatType                *RatType       `json:"ratType,omitempty"`
+	RecoveryTime           *DateTime      `json:"recoveryTime,omitempty"`
 
 	// RequestType Possible values are - INITIAL_REQUEST - EXISTING_PDU_SESSION - INITIAL_EMERGENCY_REQUEST - EXISTING_EMERGENCY_PDU_SESSION
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RequestType)
 	RequestType *RequestType `json:"requestType,omitempty"`
 
 	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
@@ -7994,6 +8663,7 @@ type PduSessionCreateData struct {
 	SecondaryRatUsageInfo  []SecondaryRatUsageInfo `json:"secondaryRatUsageInfo,omitempty"`
 
 	// SelMode Possible values are - VERIFIED - UE_DNN_NOT_VERIFIED - NW_DNN_NOT_VERIFIED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnnSelectionMode)
 	SelMode             *DnnSelectionMode    `json:"selMode,omitempty"`
 	SelectedDnn         *Dnn                 `json:"selectedDnn,omitempty"`
 	ServingNetwork      PlmnIdNid            `json:"servingNetwork"`
@@ -8007,17 +8677,24 @@ type PduSessionCreateData struct {
 	UnknownN1SmInfo     *RefToBinaryData     `json:"unknownN1SmInfo,omitempty"`
 
 	// UpCnxState Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
-	UpCnxState            *UpCnxState            `json:"upCnxState,omitempty"`
-	UpSecurityInfo        *UpSecurityInfo        `json:"upSecurityInfo,omitempty"`
-	VSmfServiceInstanceId *string                `json:"vSmfServiceInstanceId,omitempty"`
-	VcnTunnelInfo         *TunnelInfo            `json:"vcnTunnelInfo,omitempty"`
-	VplmnQos              *VplmnQos              `json:"vplmnQos,omitempty"`
-	VsmfId                *NfInstanceId          `json:"vsmfId,omitempty"`
-	VsmfPduSessionUri     *Uri                   `json:"vsmfPduSessionUri,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpCnxState)
+	UpCnxState *UpCnxState `json:"upCnxState,omitempty"`
+
+	// UpSecurityInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpSecurityInfo
+	UpSecurityInfo        *UpSecurityInfo `json:"upSecurityInfo,omitempty"`
+	VSmfServiceInstanceId *string         `json:"vSmfServiceInstanceId,omitempty"`
+
+	// VcnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	VcnTunnelInfo *TunnelInfo `json:"vcnTunnelInfo,omitempty"`
+
+	// VplmnQos Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VplmnQos
+	VplmnQos             *VplmnQos              `json:"vplmnQos,omitempty"`
+	VsmfId               *NfInstanceId          `json:"vsmfId,omitempty"`
+	VsmfPduSessionUri    *Uri                   `json:"vsmfPduSessionUri,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PduSessionCreateError defines model for PduSessionCreateError.
+// PduSessionCreateError Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PduSessionCreateError
 type PduSessionCreateError struct {
 	BackOffTimer         *DurationSec           `json:"backOffTimer,omitempty"`
 	Error                ProblemDetails         `json:"error"`
@@ -8027,33 +8704,46 @@ type PduSessionCreateError struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PduSessionCreatedData defines model for PduSessionCreatedData.
+// PduSessionCreatedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PduSessionCreatedData
 type PduSessionCreatedData struct {
-	AdditionalCnTunnelInfo *TunnelInfo     `json:"additionalCnTunnelInfo,omitempty"`
-	AlwaysOnGranted        *bool           `json:"alwaysOnGranted,omitempty"`
-	CnTunnelInfo           *TunnelInfo     `json:"cnTunnelInfo,omitempty"`
-	DnAaaAddress           *SmfIpAddress   `json:"dnAaaAddress,omitempty"`
-	DnaiList               []Dnai          `json:"dnaiList,omitempty"`
-	EnablePauseCharging    *bool           `json:"enablePauseCharging,omitempty"`
-	EpsBearerInfo          []EpsBearerInfo `json:"epsBearerInfo,omitempty"`
-	EpsPdnCnxInfo          *EpsPdnCnxInfo  `json:"epsPdnCnxInfo,omitempty"`
-	Gpsi                   Gpsi            `json:"gpsi,omitempty"`
-	HSmfInstanceId         *NfInstanceId   `json:"hSmfInstanceId,omitempty"`
-	HSmfServiceInstanceId  *string         `json:"hSmfServiceInstanceId,omitempty"`
-	HcnTunnelInfo          *TunnelInfo     `json:"hcnTunnelInfo,omitempty"`
-	HomeProvidedChargingId string          `json:"homeProvidedChargingId,omitempty"`
-	Ipv6Index              *IpIndex        `json:"ipv6Index,omitempty"`
-	Ipv6MultiHomingInd     *bool           `json:"ipv6MultiHomingInd,omitempty"`
-	MaAcceptedInd          *bool           `json:"maAcceptedInd,omitempty"`
+	// AdditionalCnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	AdditionalCnTunnelInfo *TunnelInfo `json:"additionalCnTunnelInfo,omitempty"`
+	AlwaysOnGranted        *bool       `json:"alwaysOnGranted,omitempty"`
+
+	// CnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	CnTunnelInfo *TunnelInfo `json:"cnTunnelInfo,omitempty"`
+
+	// DnAaaAddress Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/IpAddress
+	DnAaaAddress        *SmfIpAddress   `json:"dnAaaAddress,omitempty"`
+	DnaiList            []Dnai          `json:"dnaiList,omitempty"`
+	EnablePauseCharging *bool           `json:"enablePauseCharging,omitempty"`
+	EpsBearerInfo       []EpsBearerInfo `json:"epsBearerInfo,omitempty"`
+
+	// EpsPdnCnxInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxInfo
+	EpsPdnCnxInfo         *EpsPdnCnxInfo `json:"epsPdnCnxInfo,omitempty"`
+	Gpsi                  Gpsi           `json:"gpsi,omitempty"`
+	HSmfInstanceId        *NfInstanceId  `json:"hSmfInstanceId,omitempty"`
+	HSmfServiceInstanceId *string        `json:"hSmfServiceInstanceId,omitempty"`
+
+	// HcnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	HcnTunnelInfo          *TunnelInfo `json:"hcnTunnelInfo,omitempty"`
+	HomeProvidedChargingId string      `json:"homeProvidedChargingId,omitempty"`
+
+	// Ipv6Index Original definition in TS29519_Policy_Data.yaml#/components/schemas/IpIndex
+	Ipv6Index          *IpIndex `json:"ipv6Index,omitempty"`
+	Ipv6MultiHomingInd *bool    `json:"ipv6MultiHomingInd,omitempty"`
+	MaAcceptedInd      *bool    `json:"maAcceptedInd,omitempty"`
 
 	// MaxIntegrityProtectedDataRate Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRate *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRate,omitempty"`
 
 	// MaxIntegrityProtectedDataRateDl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateDl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateDl,omitempty"`
 	N1SmInfoToUe                    *RefToBinaryData               `json:"n1SmInfoToUe,omitempty"`
 	NefExtBufSupportInd             *bool                          `json:"nefExtBufSupportInd,omitempty"`
@@ -8062,7 +8752,7 @@ type PduSessionCreatedData struct {
 	QosFlowsSetupList               []QosFlowSetupItem             `json:"qosFlowsSetupList,omitempty"`
 	RecoveryTime                    *DateTime                      `json:"recoveryTime,omitempty"`
 
-	// RedundantPduSessionInfo Redundant PDU Session Information
+	// RedundantPduSessionInfo Redundant PDU Session Information (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RedundantPduSessionInformation)
 	RedundantPduSessionInfo *RedundantPduSessionInformation `json:"redundantPduSessionInfo,omitempty"`
 
 	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
@@ -8084,7 +8774,7 @@ type PduSessionCreatedData struct {
 // PduSessionId defines model for PduSessionId.
 type PduSessionId = int
 
-// PduSessionInformation defines model for PduSessionInformation.
+// PduSessionInformation Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/PduSessionInformation
 type PduSessionInformation struct {
 	Dnn                  Dnn                    `json:"dnn"`
 	IpDomain             *string                `json:"ipDomain,omitempty"`
@@ -8095,7 +8785,7 @@ type PduSessionInformation struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PduSessionManagementData defines model for PduSessionManagementData.
+// PduSessionManagementData Original definition in TS29519_Exposure_Data.yaml#/components/schemas/PduSessionManagementData
 type PduSessionManagementData struct {
 	Dnai      *Dnai      `json:"dnai,omitempty"`
 	DnaiTs    *DateTime  `json:"dnaiTs,omitempty"`
@@ -8112,44 +8802,53 @@ type PduSessionManagementData struct {
 	PduSessionId           *PduSessionId      `json:"pduSessionId,omitempty"`
 
 	// PduSessionStatus Possible values are - "ACTIVE" - "RELEASED"
+	//  (Original definition in TS29519_Exposure_Data.yaml#/components/schemas/PduSessionStatus)
 	PduSessionStatus     *PduSessionStatus      `json:"pduSessionStatus,omitempty"`
 	PduSessionStatusTs   *DateTime              `json:"pduSessionStatusTs,omitempty"`
 	SuppFeat             *SupportedFeatures     `json:"suppFeat,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PduSessionNotifyItem defines model for PduSessionNotifyItem.
+// PduSessionNotifyItem Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PduSessionNotifyItem
 type PduSessionNotifyItem struct {
 	// NotificationCause Possible values are - QOS_FULFILLED - QOS_NOT_FULFILLED - UP_SEC_FULFILLED - UP_SEC_NOT_FULFILLED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/NotificationCause)
 	NotificationCause    NotificationCause      `json:"notificationCause"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PduSessionRelCause defines model for PduSessionRelCause.
+// PduSessionRelCause Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PduSessionRelCause
 type PduSessionRelCause string
 
 // PduSessionStatus Possible values are - "ACTIVE" - "RELEASED"
+//
+//	(Original definition in TS29519_Exposure_Data.yaml#/components/schemas/PduSessionStatus)
 type PduSessionStatus string
 
-// PduSessionStatusCfg defines model for PduSessionStatusCfg.
+// PduSessionStatusCfg Original definition in TS29503_Nudm_EE.yaml#/components/schemas/PduSessionStatusCfg
 type PduSessionStatusCfg struct {
 	Dnn                  *Dnn                   `json:"dnn,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PduSessionTsnBridge Contains the new 5GS Bridge information and may contain the DS-TT port and/or NW-TT port management information.
+// PduSessionTsnBridge Contains the new 5GS Bridge information and may contain the DS-TT port and/or NW-TT port management information. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PduSessionTsnBridge)
 type PduSessionTsnBridge struct {
-	TsnBridgeInfo        TsnBridgeInfo              `json:"tsnBridgeInfo"`
-	TsnBridgeManCont     *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
-	TsnPortManContDstt   *PortManagementContainer   `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts  []PortManagementContainer  `json:"tsnPortManContNwtts,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"-"`
+	// TsnBridgeInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/TsnBridgeInfo
+	TsnBridgeInfo TsnBridgeInfo `json:"tsnBridgeInfo"`
+
+	// TsnBridgeManCont Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+	TsnBridgeManCont *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
+
+	// TsnPortManContDstt Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+	TsnPortManContDstt   *PortManagementContainer  `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts  []PortManagementContainer `json:"tsnPortManContNwtts,omitempty"`
+	AdditionalProperties map[string]interface{}    `json:"-"`
 }
 
 // PduSessionType defines model for PduSessionType.
 type PduSessionType string
 
-// PduSessionTypes defines model for PduSessionTypes.
+// PduSessionTypes Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PduSessionTypes
 type PduSessionTypes struct {
 	AllowedSessionTypes  []PduSessionType       `json:"allowedSessionTypes,omitempty"`
 	DefaultSessionType   PduSessionType         `json:"defaultSessionType"`
@@ -8159,21 +8858,22 @@ type PduSessionTypes struct {
 // Pei defines model for Pei.
 type Pei = string
 
-// PeiUpdateInfo defines model for PeiUpdateInfo.
+// PeiUpdateInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/PeiUpdateInfo
 type PeiUpdateInfo struct {
 	Pei                  Pei                    `json:"pei"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PeriodicCommunicationIndicator defines model for PeriodicCommunicationIndicator.
+// PeriodicCommunicationIndicator Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PeriodicCommunicationIndicator
 type PeriodicCommunicationIndicator string
 
-// Periodicity defines model for Periodicity.
+// Periodicity Original definition in TS29519_Policy_Data.yaml#/components/schemas/Periodicity
 type Periodicity string
 
-// Pfd defines model for Pfd.
+// Pfd Original definition in TS29122_PfdManagement.yaml#/components/schemas/Pfd
 type Pfd struct {
 	// DnProtocol Possible values are - DNS_QNAME: Identifies the DNS protocol and the question name in DNS query. - TLS_SNI: Identifies the Server Name Indication in TLS ClientHello message. - TLS_SAN: Identifies the Subject Alternative Name in TLS ServerCertificate message. - TSL_SCN: Identifies the Subject Common Name in TLS ServerCertificate message.
+	//  (Original definition in TS29122_PfdManagement.yaml#/components/schemas/DomainNameProtocol)
 	DnProtocol *DomainNameProtocol `json:"dnProtocol,omitempty"`
 
 	// DomainNames Indicates an FQDN or a regular expression as a domain name matching criteria.
@@ -8190,7 +8890,7 @@ type Pfd struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdChangeNotification defines model for PfdChangeNotification.
+// PfdChangeNotification Original definition in TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdChangeNotification
 type PfdChangeNotification struct {
 	ApplicationId        ApplicationId          `json:"applicationId"`
 	PartialFlag          *bool                  `json:"partialFlag,omitempty"`
@@ -8199,16 +8899,17 @@ type PfdChangeNotification struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdChangeReport defines model for PfdChangeReport.
+// PfdChangeReport Original definition in TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdChangeReport
 type PfdChangeReport struct {
 	ApplicationId        []ApplicationId        `json:"applicationId"`
 	PfdError             ProblemDetails         `json:"pfdError"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdContent defines model for PfdContent.
+// PfdContent Original definition in TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdContent
 type PfdContent struct {
 	// DnProtocol Possible values are - DNS_QNAME: Identifies the DNS protocol and the question name in DNS query. - TLS_SNI: Identifies the Server Name Indication in TLS ClientHello message. - TLS_SAN: Identifies the Subject Alternative Name in TLS ServerCertificate message. - TSL_SCN: Identifies the Subject Common Name in TLS ServerCertificate message.
+	//  (Original definition in TS29122_PfdManagement.yaml#/components/schemas/DomainNameProtocol)
 	DnProtocol *DomainNameProtocol `json:"dnProtocol,omitempty"`
 
 	// DomainNames Indicates an FQDN or a regular expression as a domain name matching criteria.
@@ -8225,12 +8926,12 @@ type PfdContent struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdData defines model for PfdData.
+// PfdData Original definition in TS29122_PfdManagement.yaml#/components/schemas/PfdData
 type PfdData struct {
-	// AllowedDelay Unsigned integer identifying a period of time in units of seconds with "nullable=true" property.
+	// AllowedDelay Unsigned integer identifying a period of time in units of seconds with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSecRm)
 	AllowedDelay *TS29122DurationSecRm `json:"allowedDelay"`
 
-	// CachingTime Unsigned integer identifying a period of time in units of seconds with "readOnly=true" property.
+	// CachingTime Unsigned integer identifying a period of time in units of seconds with "readOnly=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSecRo)
 	CachingTime *DurationSecRo `json:"cachingTime,omitempty"`
 
 	// ExternalAppId Each element uniquely external application identifier
@@ -8239,12 +8940,12 @@ type PfdData struct {
 	// Pfds Contains the PFDs of the external application identifier. Each PFD is identified in the map via a key containing the PFD identifier.
 	Pfds map[string]Pfd `json:"pfds"`
 
-	// Self string formatted according to IETF RFC 3986 identifying a referenced resource.
+	// Self string formatted according to IETF RFC 3986 identifying a referenced resource. (Original definition in TS29122_CommonData.yaml#/components/schemas/Link)
 	Self                 *TS29122Link           `json:"self,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdDataForApp defines model for PfdDataForApp.
+// PfdDataForApp Original definition in TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdDataForApp
 type PfdDataForApp struct {
 	ApplicationId        ApplicationId          `json:"applicationId"`
 	CachingTime          *DateTime              `json:"cachingTime,omitempty"`
@@ -8253,7 +8954,7 @@ type PfdDataForApp struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdDataForAppExt defines model for PfdDataForAppExt.
+// PfdDataForAppExt Original definition in TS29519_Application_Data.yaml#/components/schemas/PfdDataForAppExt
 type PfdDataForAppExt struct {
 	ApplicationId        ApplicationId          `json:"applicationId"`
 	CachingTime          *DateTime              `json:"cachingTime,omitempty"`
@@ -8262,9 +8963,9 @@ type PfdDataForAppExt struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdManagement defines model for PfdManagement.
+// PfdManagement Original definition in TS29122_PfdManagement.yaml#/components/schemas/PfdManagement
 type PfdManagement struct {
-	// NotificationDestination string formatted according to IETF RFC 3986 identifying a referenced resource.
+	// NotificationDestination string formatted according to IETF RFC 3986 identifying a referenced resource. (Original definition in TS29122_CommonData.yaml#/components/schemas/Link)
 	NotificationDestination *TS29122Link `json:"notificationDestination,omitempty"`
 
 	// PfdDatas Each element uniquely identifies the PFDs for an external application identifier. Each element is identified in the map via an external application identifier as key. The response shall include successfully provisioned PFD data of application(s).
@@ -8276,28 +8977,33 @@ type PfdManagement struct {
 	// RequestTestNotification Set to true by the SCS/AS to request the SCEF to send a test notification as defined in subclause 5.2.5.3. Set to false or omitted otherwise.
 	RequestTestNotification *bool `json:"requestTestNotification,omitempty"`
 
-	// Self string formatted according to IETF RFC 3986 identifying a referenced resource.
-	Self                 *TS29122Link           `json:"self,omitempty"`
-	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	// Self string formatted according to IETF RFC 3986 identifying a referenced resource. (Original definition in TS29122_CommonData.yaml#/components/schemas/Link)
+	Self              *TS29122Link       `json:"self,omitempty"`
+	SupportedFeatures *SupportedFeatures `json:"supportedFeatures,omitempty"`
+
+	// WebsockNotifConfig Original definition in TS29122_CommonData.yaml#/components/schemas/WebsockNotifConfig
 	WebsockNotifConfig   *WebsockNotifConfig    `json:"websockNotifConfig,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdReport defines model for PfdReport.
+// PfdReport Original definition in TS29122_PfdManagement.yaml#/components/schemas/PfdReport
 type PfdReport struct {
-	// CachingTime Unsigned integer identifying a period of time in units of seconds.
+	// CachingTime Unsigned integer identifying a period of time in units of seconds. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSec)
 	CachingTime *TS29122DurationSec `json:"cachingTime,omitempty"`
 
 	// ExternalAppIds Identifies the external application identifier(s) which PFD(s) are not added or modified successfully
 	ExternalAppIds []string `json:"externalAppIds"`
 
 	// FailureCode Possible values are - MALFUNCTION: This value indicates that something functions wrongly in PFD provisioning or the PFD provisioning does not function at all. - RESOURCE_LIMITATION: This value indicates there is resource limitation for PFD storage. - SHORT_DELAY: This value indicates that the allowed delay is too short and PFD(s) are not stored. - APP_ID_DUPLICATED: The received external application identifier(s) are already provisioned. - PARTIAL_FAILURE: The PFD(s) are not provisioned to all PCEFs/TDFs/SMFs. - OTHER_REASON: Other reason unspecified.
-	FailureCode          FailureCode            `json:"failureCode"`
+	//  (Original definition in TS29122_PfdManagement.yaml#/components/schemas/FailureCode)
+	FailureCode FailureCode `json:"failureCode"`
+
+	// LocationArea Original definition in TS29122_PfdManagement.yaml#/components/schemas/UserPlaneLocationArea
 	LocationArea         *UserPlaneLocationArea `json:"locationArea,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PfdSubscription defines model for PfdSubscription.
+// PfdSubscription Original definition in TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdSubscription
 type PfdSubscription struct {
 	ApplicationIds       []ApplicationId        `json:"applicationIds,omitempty"`
 	NotifyUri            Uri                    `json:"notifyUri"`
@@ -8305,7 +9011,7 @@ type PfdSubscription struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PgwInfo defines model for PgwInfo.
+// PgwInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PgwInfo
 type PgwInfo struct {
 	Dnn                  Dnn                    `json:"dnn"`
 	EpdgInd              *bool                  `json:"epdgInd,omitempty"`
@@ -8320,9 +9026,11 @@ type PhysCellId = int
 // PlmnAssiUeRadioCapId defines model for PlmnAssiUeRadioCapId.
 type PlmnAssiUeRadioCapId = Bytes
 
-// PlmnEcInfo defines model for PlmnEcInfo.
+// PlmnEcInfo Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PlmnEcInfo
 type PlmnEcInfo struct {
-	EcRestrictionDataNb  *bool                   `json:"ecRestrictionDataNb,omitempty"`
+	EcRestrictionDataNb *bool `json:"ecRestrictionDataNb,omitempty"`
+
+	// EcRestrictionDataWb Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EcRestrictionDataWb
 	EcRestrictionDataWb  *UdmEcRestrictionDataWb `json:"ecRestrictionDataWb,omitempty"`
 	PlmnId               PlmnId                  `json:"plmnId"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
@@ -8339,14 +9047,15 @@ type PlmnIdNid struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PlmnOperatorClass defines model for PlmnOperatorClass.
+// PlmnOperatorClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PlmnOperatorClass
 type PlmnOperatorClass struct {
+	// LcsClientClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsClientClass
 	LcsClientClass       LcsClientClass         `json:"lcsClientClass"`
 	LcsClientIds         []LcsClientId          `json:"lcsClientIds"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PlmnRange Range of PLMN IDs
+// PlmnRange Range of PLMN IDs (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnRange)
 type PlmnRange struct {
 	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
@@ -8354,14 +9063,14 @@ type PlmnRange struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PlmnRouteSelectionDescriptor Contains the route selection descriptors (combinations of SNSSAI, DNNs, PDU session types, SSC modes and ATSSS information) allowed by subscription to the UE for a serving PLMN
+// PlmnRouteSelectionDescriptor Contains the route selection descriptors (combinations of SNSSAI, DNNs, PDU session types, SSC modes and ATSSS information) allowed by subscription to the UE for a serving PLMN (Original definition in TS29519_Policy_Data.yaml#/components/schemas/PlmnRouteSelectionDescriptor)
 type PlmnRouteSelectionDescriptor struct {
 	ServingPlmn          PlmnId                           `json:"servingPlmn"`
 	SnssaiRouteSelDescs  []SnssaiRouteSelectionDescriptor `json:"snssaiRouteSelDescs,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
 
-// PlmnSnssai List of network slices (S-NSSAIs) for a given PLMN ID
+// PlmnSnssai List of network slices (S-NSSAIs) for a given PLMN ID (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai)
 type PlmnSnssai struct {
 	Nid                  Nid                    `json:"nid,omitempty"`
 	PlmnId               PlmnId                 `json:"plmnId"`
@@ -8369,13 +9078,13 @@ type PlmnSnssai struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PolicyAuthorizationAspId Contains an identity of an application service provider.
+// PolicyAuthorizationAspId Contains an identity of an application service provider. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AspId)
 type PolicyAuthorizationAspId = string
 
-// PolicyAuthorizationFlowDescription Defines a packet filter of an IP flow.
+// PolicyAuthorizationFlowDescription Defines a packet filter of an IP flow. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowDescription)
 type PolicyAuthorizationFlowDescription = string
 
-// PolicyAuthorizationQosMonitoringReport QoS Monitoring reporting information
+// PolicyAuthorizationQosMonitoringReport QoS Monitoring reporting information (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosMonitoringReport)
 type PolicyAuthorizationQosMonitoringReport struct {
 	DlDelays             []int                  `json:"dlDelays,omitempty"`
 	Flows                []Flows                `json:"flows,omitempty"`
@@ -8384,55 +9093,61 @@ type PolicyAuthorizationQosMonitoringReport struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PolicyAuthorizationQosNotificationControlInfo Indicates whether the QoS targets for a GRB flow are not guaranteed or guaranteed again
+// PolicyAuthorizationQosNotificationControlInfo Indicates whether the QoS targets for a GRB flow are not guaranteed or guaranteed again (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosNotificationControlInfo)
 type PolicyAuthorizationQosNotificationControlInfo struct {
-	AltSerReq            *string                `json:"altSerReq,omitempty"`
-	Flows                []Flows                `json:"flows,omitempty"`
+	AltSerReq *string `json:"altSerReq,omitempty"`
+	Flows     []Flows `json:"flows,omitempty"`
+
+	// NotifType Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosNotifType
 	NotifType            QosNotifType           `json:"notifType"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // PolicyControlRequestTrigger Possible values are - PLMN_CH: PLMN Change - RES_MO_RE: A request for resource modification has been received by the SMF. The SMF always reports to the PCF. - AC_TY_CH: Access Type Change - UE_IP_CH: UE IP address change. The SMF always reports to the PCF. - UE_MAC_CH: A new UE MAC address is detected or a used UE MAC address is inactive for a specific period - AN_CH_COR: Access Network Charging Correlation Information - US_RE: The PDU Session or the Monitoring key specific resources consumed by a UE either reached the threshold or needs to be reported for other reasons. - APP_STA: The start of application traffic has been detected. - APP_STO: The stop of application traffic has been detected. - AN_INFO: Access Network Information report - CM_SES_FAIL: Credit management session failure - PS_DA_OFF: The SMF reports when the 3GPP PS Data Off status changes. The SMF always reports to the PCF. - DEF_QOS_CH: Default QoS Change. The SMF always reports to the PCF. - SE_AMBR_CH: Session AMBR Change. The SMF always reports to the PCF. - QOS_NOTIF: The SMF notify the PCF when receiving notification from RAN that QoS targets of the QoS Flow cannot be guranteed or gurateed again. - NO_CREDIT: Out of credit - REALLO_OF_CREDIT: Reallocation of credit - PRA_CH: Change of UE presence in Presence Reporting Area - SAREA_CH: Location Change with respect to the Serving Area - SCNN_CH: Location Change with respect to the Serving CN node - RE_TIMEOUT: Indicates the SMF generated the request because there has been a PCC revalidation timeout - RES_RELEASE: Indicate that the SMF can inform the PCF of the outcome of the release of resources for those rules that require so. - SUCC_RES_ALLO: Indicates that the requested rule data is the successful resource allocation. - RAT_TY_CH: RAT Type Change. - REF_QOS_IND_CH: Reflective QoS indication Change - NUM_OF_PACKET_FILTER: Indicates that the SMF shall report the number of supported packet filter for signalled QoS rules - UE_STATUS_RESUME: Indicates that the UE’s status is resumed. - UE_TZ_CH: UE Time Zone Change - AUTH_PROF_CH: The DN-AAA authorization profile index has changed - QOS_MONITORING: Indicate that the SMF notifies the PCF of the QoS Monitoring information. - SCELL_CH: Location Change with respect to the Serving Cell. - EPS_FALLBACK: EPS Fallback report is enabled in the SMF. - MA_PDU: UE Indicates that the SMF notifies the PCF of the MA PDU session request - TSN_BRIDGE_INFO: 5GS Bridge information available - 5G_RG_JOIN: The 5G-RG has joined to an IP Multicast Group. - 5G_RG_LEAVE: The 5G-RG has left an IP Multicast Group. - DDN_FAILURE: Event subscription for DDN Failure event received. - DDN_DELIVERY_STATUS: Event subscription for DDN Delivery Status received. - GROUP_ID_LIST_CHG: UE Internal Group Identifier(s) has changed: the SMF reports that UDM provided list of group Ids has changed. - DDN_FAILURE_CANCELLATION: The event subscription for DDN Failure event is cancelled. - DDN_DELIVERY_STATUS_CANCELLATION: The event subscription for DDD STATUS is cancelled. - VPLMN_QOS_CH: Change of the QoS supported in the VPLMN.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PolicyControlRequestTrigger)
 type PolicyControlRequestTrigger string
 
-// PolicyDataChangeNotification Contains changed policy data for which notification was requested.
+// PolicyDataChangeNotification Contains changed policy data for which notification was requested. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/PolicyDataChangeNotification)
 type PolicyDataChangeNotification struct {
-	// SponsorConnectivityData Contains the sponsored data connectivity related information for a sponsor identifier.
+	// SponsorConnectivityData Contains the sponsored data connectivity related information for a sponsor identifier. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SponsorConnectivityData)
 	SponsorConnectivityData *SponsorConnectivityData `json:"SponsorConnectivityData,omitempty"`
 
-	// AmPolicyData Contains the AM policy data for a given subscriber.
+	// AmPolicyData Contains the AM policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/AmPolicyData)
 	AmPolicyData *AmPolicyData `json:"amPolicyData,omitempty"`
 
-	// BdtData Contains the background data transfer data.
+	// BdtData Contains the background data transfer data. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/BdtData)
 	BdtData *BdtData `json:"bdtData,omitempty"`
 
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
-	BdtRefId      *BdtReferenceId                           `json:"bdtRefId,omitempty"`
-	DelResources  []Uri                                     `json:"delResources,omitempty"`
-	NotifId       *string                                   `json:"notifId,omitempty"`
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
+	BdtRefId     *BdtReferenceId `json:"bdtRefId,omitempty"`
+	DelResources []Uri           `json:"delResources,omitempty"`
+	NotifId      *string         `json:"notifId,omitempty"`
+
+	// OpSpecData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/OperatorSpecificDataContainer
 	OpSpecData    *OperatorSpecificDataContainer            `json:"opSpecData,omitempty"`
 	OpSpecDataMap *map[string]OperatorSpecificDataContainer `json:"opSpecDataMap,omitempty"`
 	PlmnId        *PlmnId                                   `json:"plmnId,omitempty"`
 
-	// PlmnUePolicySet Contains the UE policy data for a given subscriber.
+	// PlmnUePolicySet Contains the UE policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UePolicySet)
 	PlmnUePolicySet   *UePolicySet       `json:"plmnUePolicySet,omitempty"`
 	ReportedFragments []NotificationItem `json:"reportedFragments,omitempty"`
 
-	// SmPolicyData Contains the SM policy data for a given subscriber.
+	// SmPolicyData Contains the SM policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SmPolicyData)
 	SmPolicyData *SmPolicyData `json:"smPolicyData,omitempty"`
 	SponsorId    *string       `json:"sponsorId,omitempty"`
 	UeId         VarUeId       `json:"ueId,omitempty"`
 
-	// UePolicySet Contains the UE policy data for a given subscriber.
+	// UePolicySet Contains the UE policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UePolicySet)
 	UePolicySet *UePolicySet `json:"uePolicySet,omitempty"`
 
-	// UsageMonData Contains remain allowed usage data for a subscriber.
+	// UsageMonData Contains remain allowed usage data for a subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonData)
 	UsageMonData         *UsageMonData          `json:"usageMonData,omitempty"`
 	UsageMonId           *string                `json:"usageMonId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PolicyDataSubscription Identifies a subscription to policy data change notification.
+// PolicyDataSubscription Identifies a subscription to policy data change notification. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/PolicyDataSubscription)
 type PolicyDataSubscription struct {
 	Expiry                *DateTime              `json:"expiry,omitempty"`
 	MonResItems           []ResourceItem         `json:"monResItems,omitempty"`
@@ -8443,13 +9158,13 @@ type PolicyDataSubscription struct {
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// PolicyDecisionFailureCode defines model for PolicyDecisionFailureCode.
+// PolicyDecisionFailureCode Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PolicyDecisionFailureCode
 type PolicyDecisionFailureCode string
 
-// PolicyReqTrigger defines model for PolicyReqTrigger.
+// PolicyReqTrigger Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PolicyReqTrigger
 type PolicyReqTrigger string
 
-// PortManagementContainer defines model for PortManagementContainer.
+// PortManagementContainer Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
 type PortManagementContainer struct {
 	PortManCont          Bytes                  `json:"portManCont"`
 	PortNum              TsnPortNumber          `json:"portNum"`
@@ -8459,7 +9174,7 @@ type PortManagementContainer struct {
 // PositioningMethodMdt defines model for PositioningMethodMdt.
 type PositioningMethodMdt string
 
-// Pp5gVnGroupProfileData defines model for Pp5gVnGroupProfileData.
+// Pp5gVnGroupProfileData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/Pp5gVnGroupProfileData
 type Pp5gVnGroupProfileData struct {
 	// AllowedMtcProviders A map (list of key-value pairs where external VN group identifier serves as key) of AllowedMtcProviderInfo lists. In addition to defined external VN group identifier, the key value "ALL" may be used to identify a map entry which contains a list of AllowedMtcProviderInfo that are allowed operating all the external group identifiers.
 	AllowedMtcProviders  *map[string][]AllowedMtcProviderInfo `json:"allowedMtcProviders,omitempty"`
@@ -8467,62 +9182,80 @@ type Pp5gVnGroupProfileData struct {
 	AdditionalProperties map[string]interface{}               `json:"-"`
 }
 
-// PpActiveTime defines model for PpActiveTime.
+// PpActiveTime Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpActiveTime
 type PpActiveTime struct {
 	ActiveTime             DurationSec             `json:"activeTime"`
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
-	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}  `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
+	ReferenceId          UdmPPReferenceId       `json:"referenceId"`
+	ValidityTime         *DateTime              `json:"validityTime,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PpData defines model for PpData.
+// PpData Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpData
 type PpData struct {
-	AcsInfo                       *AcsInfoRm                    `json:"acsInfo,omitempty"`
-	CommunicationCharacteristics  *CommunicationCharacteristics `json:"communicationCharacteristics,omitempty"`
-	EcRestriction                 *EcRestriction                `json:"ecRestriction,omitempty"`
-	ExpectedUeBehaviourParameters *ExpectedUeBehaviour          `json:"expectedUeBehaviourParameters,omitempty"`
-	LcsPrivacy                    *LcsPrivacy                   `json:"lcsPrivacy,omitempty"`
-	SorInfo                       *SorInfo                      `json:"sorInfo,omitempty"`
-	StnSr                         *StnSrRm                      `json:"stnSr"`
-	SupportedFeatures             *SupportedFeatures            `json:"supportedFeatures,omitempty"`
-	AdditionalProperties          map[string]interface{}        `json:"-"`
+	AcsInfo *AcsInfoRm `json:"acsInfo,omitempty"`
+
+	// CommunicationCharacteristics Original definition in TS29503_Nudm_PP.yaml#/components/schemas/CommunicationCharacteristics
+	CommunicationCharacteristics *CommunicationCharacteristics `json:"communicationCharacteristics,omitempty"`
+
+	// EcRestriction Original definition in TS29503_Nudm_PP.yaml#/components/schemas/EcRestriction
+	EcRestriction *EcRestriction `json:"ecRestriction,omitempty"`
+
+	// ExpectedUeBehaviourParameters Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ExpectedUeBehaviour
+	ExpectedUeBehaviourParameters *ExpectedUeBehaviour `json:"expectedUeBehaviourParameters,omitempty"`
+
+	// LcsPrivacy Original definition in TS29503_Nudm_PP.yaml#/components/schemas/LcsPrivacy
+	LcsPrivacy *LcsPrivacy `json:"lcsPrivacy,omitempty"`
+
+	// SorInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SorInfo
+	SorInfo              *SorInfo               `json:"sorInfo,omitempty"`
+	StnSr                *StnSrRm               `json:"stnSr"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PpDlPacketCount defines model for PpDlPacketCount.
+// PpDlPacketCount Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpDlPacketCount
 type PpDlPacketCount = int
 
-// PpDlPacketCountExt defines model for PpDlPacketCountExt.
+// PpDlPacketCountExt Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpDlPacketCountExt
 type PpDlPacketCountExt struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
-	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}  `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
+	ReferenceId          UdmPPReferenceId       `json:"referenceId"`
+	ValidityTime         *DateTime              `json:"validityTime,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PpMaximumLatency defines model for PpMaximumLatency.
+// PpMaximumLatency Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpMaximumLatency
 type PpMaximumLatency struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MaximumLatency         DurationSec             `json:"maximumLatency"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
-	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}  `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
+	ReferenceId          UdmPPReferenceId       `json:"referenceId"`
+	ValidityTime         *DateTime              `json:"validityTime,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PpMaximumResponseTime defines model for PpMaximumResponseTime.
+// PpMaximumResponseTime Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpMaximumResponseTime
 type PpMaximumResponseTime struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MaximumResponseTime    DurationSec             `json:"maximumResponseTime"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
-	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}  `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
+	ReferenceId          UdmPPReferenceId       `json:"referenceId"`
+	ValidityTime         *DateTime              `json:"validityTime,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PpProfileData defines model for PpProfileData.
+// PpProfileData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/PpProfileData
 type PpProfileData struct {
 	// AllowedMtcProviders A map (list of key-value pairs where PpDataType serves as key) of AllowedMtcProviderInfo lists. In addition to defined PpDataType, the key value "ALL" may be used to identify a map entry which contains a list of AllowedMtcProviderInfo that are allowed to provision all types of the PP data for the user using UDM ParameterProvision service.
 	AllowedMtcProviders  *map[string][]AllowedMtcProviderInfo `json:"allowedMtcProviders,omitempty"`
@@ -8530,17 +9263,19 @@ type PpProfileData struct {
 	AdditionalProperties map[string]interface{}               `json:"-"`
 }
 
-// PpSubsRegTimer defines model for PpSubsRegTimer.
+// PpSubsRegTimer Original definition in TS29503_Nudm_PP.yaml#/components/schemas/PpSubsRegTimer
 type PpSubsRegTimer struct {
 	AfInstanceId           string                  `json:"afInstanceId"`
 	MtcProviderInformation *MtcProviderInformation `json:"mtcProviderInformation,omitempty"`
-	ReferenceId            UdmPPReferenceId        `json:"referenceId"`
-	SubsRegTimer           DurationSec             `json:"subsRegTimer"`
-	ValidityTime           *DateTime               `json:"validityTime,omitempty"`
-	AdditionalProperties   map[string]interface{}  `json:"-"`
+
+	// ReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
+	ReferenceId          UdmPPReferenceId       `json:"referenceId"`
+	SubsRegTimer         DurationSec            `json:"subsRegTimer"`
+	ValidityTime         *DateTime              `json:"validityTime,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Ppi defines model for Ppi.
+// Ppi Original definition in TS29518_Namf_Communication.yaml#/components/schemas/Ppi
 type Ppi = int
 
 // PreemptionCapability defines model for PreemptionCapability.
@@ -8549,10 +9284,10 @@ type PreemptionCapability string
 // PreemptionCapabilityRm defines model for PreemptionCapabilityRm.
 type PreemptionCapabilityRm string
 
-// PreemptionControlInformation defines model for PreemptionControlInformation.
+// PreemptionControlInformation Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PreemptionControlInformation
 type PreemptionControlInformation string
 
-// PreemptionControlInformationRm defines model for PreemptionControlInformationRm.
+// PreemptionControlInformationRm Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PreemptionControlInformation
 type PreemptionControlInformationRm string
 
 // PreemptionVulnerability defines model for PreemptionVulnerability.
@@ -8561,7 +9296,7 @@ type PreemptionVulnerability string
 // PreemptionVulnerabilityRm defines model for PreemptionVulnerabilityRm.
 type PreemptionVulnerabilityRm string
 
-// PreferredSearch Contains information on whether the returned NFProfiles match the preferred query parameters
+// PreferredSearch Contains information on whether the returned NFProfiles match the preferred query parameters (Original definition in TS29510_Nnrf_NFDiscovery.yaml#/components/schemas/PreferredSearch)
 type PreferredSearch struct {
 	OtherApiVersionsInd          *bool                  `json:"otherApiVersionsInd,omitempty"`
 	OtherLocalityInd             *bool                  `json:"otherLocalityInd,omitempty"`
@@ -8601,18 +9336,18 @@ type PresenceInfoRm struct {
 // PresenceState defines model for PresenceState.
 type PresenceState string
 
-// PrioritySharingIndicator defines model for PrioritySharingIndicator.
+// PrioritySharingIndicator Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/PrioritySharingIndicator
 type PrioritySharingIndicator string
 
-// PrivacyCheckRelatedAction defines model for PrivacyCheckRelatedAction.
+// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 type PrivacyCheckRelatedAction string
 
 // ProblemDetails defines model for ProblemDetails.
 type ProblemDetails struct {
-	// AccessTokenError Error returned in the access token response message
+	// AccessTokenError Error returned in the access token response message (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
 	AccessTokenError *AccessTokenErr `json:"accessTokenError,omitempty"`
 
-	// AccessTokenRequest Contains information related to the access token request
+	// AccessTokenRequest Contains information related to the access token request (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
 	AccessTokenRequest   *AccessTokenReq        `json:"accessTokenRequest,omitempty"`
 	Cause                *string                `json:"cause,omitempty"`
 	Detail               *string                `json:"detail,omitempty"`
@@ -8626,7 +9361,7 @@ type ProblemDetails struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ProblemDetailsAddInfo defines model for ProblemDetailsAddInfo.
+// ProblemDetailsAddInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProblemDetailsAddInfo
 type ProblemDetailsAddInfo struct {
 	RemoteError          *bool                  `json:"remoteError,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -8634,10 +9369,10 @@ type ProblemDetailsAddInfo struct {
 
 // ProblemDetailsEnableUeReachability defines model for ProblemDetailsEnableUeReachability.
 type ProblemDetailsEnableUeReachability struct {
-	// AccessTokenError Error returned in the access token response message
+	// AccessTokenError Error returned in the access token response message (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
 	AccessTokenError *AccessTokenErr `json:"accessTokenError,omitempty"`
 
-	// AccessTokenRequest Contains information related to the access token request
+	// AccessTokenRequest Contains information related to the access token request (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
 	AccessTokenRequest   *AccessTokenReq        `json:"accessTokenRequest,omitempty"`
 	Cause                *string                `json:"cause,omitempty"`
 	Detail               *string                `json:"detail,omitempty"`
@@ -8652,15 +9387,16 @@ type ProblemDetailsEnableUeReachability struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ProcedureTransactionId defines model for ProcedureTransactionId.
+// ProcedureTransactionId Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProcedureTransactionId
 type ProcedureTransactionId = int
 
 // ProtectionResult Possible values are
 //   - PERFORMED
 //   - NOT_PERFORMED
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProtectionResult)
 type ProtectionResult string
 
-// ProvideLocInfo defines model for ProvideLocInfo.
+// ProvideLocInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/ProvideLocInfo
 type ProvideLocInfo struct {
 	AdditionalLocation *UserLocation `json:"additionalLocation,omitempty"`
 	CurrentLoc         *bool         `json:"currentLoc,omitempty"`
@@ -8678,7 +9414,7 @@ type ProvideLocInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ProvidePosInfo defines model for ProvidePosInfo.
+// ProvidePosInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/ProvidePosInfo
 type ProvidePosInfo struct {
 	// AccuracyFulfilmentIndicator Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
 	AccuracyFulfilmentIndicator *string `json:"accuracyFulfilmentIndicator,omitempty"`
@@ -8698,7 +9434,9 @@ type ProvidePosInfo struct {
 	GnssPositioningDataList *[]interface{} `json:"gnssPositioningDataList,omitempty"`
 
 	// LocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	LocationEstimate         interface{}               `json:"locationEstimate,omitempty"`
+	LocationEstimate interface{} `json:"locationEstimate,omitempty"`
+
+	// LocationPrivacyVerResult Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationPrivacyVerResult
 	LocationPrivacyVerResult *LocationPrivacyVerResult `json:"locationPrivacyVerResult,omitempty"`
 	Ncgi                     *Ncgi                     `json:"ncgi,omitempty"`
 	PositioningDataList      *[]interface{}            `json:"positioningDataList,omitempty"`
@@ -8716,19 +9454,34 @@ type ProvidePosInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ProvisionedDataSets defines model for ProvisionedDataSets.
+// ProvisionedDataSets Original definition in TS29505_Subscription_Data.yaml#/components/schemas/ProvisionedDataSets
 type ProvisionedDataSets struct {
-	AmData               *AccessAndMobilitySubscriptionData   `json:"amData,omitempty"`
-	LcsBcaData           *LcsBroadcastAssistanceTypesData     `json:"lcsBcaData,omitempty"`
-	LcsMoData            *LcsMoData                           `json:"lcsMoData,omitempty"`
-	LcsPrivacyData       *LcsPrivacyData                      `json:"lcsPrivacyData,omitempty"`
-	SmData               *[]SessionManagementSubscriptionData `json:"smData,omitempty"`
-	SmfSelData           *SmfSelectionSubscriptionData        `json:"smfSelData,omitempty"`
-	SmsMngData           *SmsManagementSubscriptionData       `json:"smsMngData,omitempty"`
-	SmsSubsData          *SmsSubscriptionData                 `json:"smsSubsData,omitempty"`
-	TraceData            *TraceData                           `json:"traceData"`
-	V2xData              *V2xSubscriptionData                 `json:"v2xData,omitempty"`
-	AdditionalProperties map[string]interface{}               `json:"-"`
+	// AmData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AccessAndMobilitySubscriptionData
+	AmData *AccessAndMobilitySubscriptionData `json:"amData,omitempty"`
+
+	// LcsBcaData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsBroadcastAssistanceTypesData
+	LcsBcaData *LcsBroadcastAssistanceTypesData `json:"lcsBcaData,omitempty"`
+
+	// LcsMoData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsMoData
+	LcsMoData *LcsMoData `json:"lcsMoData,omitempty"`
+
+	// LcsPrivacyData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsPrivacyData
+	LcsPrivacyData *LcsPrivacyData                      `json:"lcsPrivacyData,omitempty"`
+	SmData         *[]SessionManagementSubscriptionData `json:"smData,omitempty"`
+
+	// SmfSelData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmfSelectionSubscriptionData
+	SmfSelData *SmfSelectionSubscriptionData `json:"smfSelData,omitempty"`
+
+	// SmsMngData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsManagementSubscriptionData
+	SmsMngData *SmsManagementSubscriptionData `json:"smsMngData,omitempty"`
+
+	// SmsSubsData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsSubscriptionData
+	SmsSubsData *SmsSubscriptionData `json:"smsSubsData,omitempty"`
+	TraceData   *TraceData           `json:"traceData"`
+
+	// V2xData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/V2xSubscriptionData
+	V2xData              *V2xSubscriptionData   `json:"v2xData,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // PsaIndication Possible values are
@@ -8736,9 +9489,10 @@ type ProvisionedDataSets struct {
 //   - PSA_REMOVED
 //   - PSA_INSERTED_ONLY
 //   - PSA_REMOVED_ONLY
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PsaIndication)
 type PsaIndication string
 
-// PsaInformation defines model for PsaInformation.
+// PsaInformation Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PsaInformation
 type PsaInformation struct {
 	DnaiList []Dnai `json:"dnaiList,omitempty"`
 
@@ -8747,27 +9501,33 @@ type PsaInformation struct {
 	//   - PSA_REMOVED
 	//   - PSA_INSERTED_ONLY
 	//   - PSA_REMOVED_ONLY
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PsaIndication)
 	PsaInd               *PsaIndication         `json:"psaInd,omitempty"`
 	PsaUpfId             *NfInstanceId          `json:"psaUpfId,omitempty"`
 	UeIpv6Prefix         *Ipv6Prefix            `json:"ueIpv6Prefix,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PtwParameters defines model for PtwParameters.
+// PtwParameters Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PtwParameters
 type PtwParameters struct {
+	// OperationMode Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/OperationMode
 	OperationMode        OperationMode          `json:"operationMode"`
 	PtwValue             string                 `json:"ptwValue"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PurgeFlag defines model for PurgeFlag.
+// PurgeFlag Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/PurgeFlag
 type PurgeFlag = bool
 
-// PwsInformation defines model for PwsInformation.
+// PwsInformation Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PwsInformation
 type PwsInformation struct {
-	BcEmptyAreaList      []GlobalRanNodeId      `json:"bcEmptyAreaList,omitempty"`
-	MessageIdentifier    Uint16                 `json:"messageIdentifier"`
-	OmcId                *OmcIdentifier         `json:"omcId,omitempty"`
+	BcEmptyAreaList   []GlobalRanNodeId `json:"bcEmptyAreaList,omitempty"`
+	MessageIdentifier Uint16            `json:"messageIdentifier"`
+
+	// OmcId Original definition in TS29518_Namf_Communication.yaml#/components/schemas/OmcIdentifier
+	OmcId *OmcIdentifier `json:"omcId,omitempty"`
+
+	// PwsContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 	PwsContainer         N2InfoContent          `json:"pwsContainer"`
 	SendRanResponse      *bool                  `json:"sendRanResponse,omitempty"`
 	SerialNumber         Uint16                 `json:"serialNumber"`
@@ -8777,7 +9537,7 @@ type PwsInformation struct {
 // Qfi defines model for Qfi.
 type Qfi = int
 
-// QosCharacteristics defines model for QosCharacteristics.
+// QosCharacteristics Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosCharacteristics
 type QosCharacteristics struct {
 	N5qi                 N5Qi                   `json:"5qi"`
 	AveragingWindow      AverWindow             `json:"averagingWindow,omitempty"`
@@ -8790,7 +9550,7 @@ type QosCharacteristics struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// QosData defines model for QosData.
+// QosData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosData
 type QosData struct {
 	N5qi       *N5Qi         `json:"5qi,omitempty"`
 	Arp        *Arp          `json:"arp,omitempty"`
@@ -8831,26 +9591,33 @@ type QosData struct {
 //   - 3GPP
 //   - NON_3GPP
 //   - 3GPP_AND_NON_3GPP
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowAccessType)
 type QosFlowAccessType string
 
-// QosFlowAddModifyRequestItem defines model for QosFlowAddModifyRequestItem.
+// QosFlowAddModifyRequestItem Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowAddModifyRequestItem
 type QosFlowAddModifyRequestItem struct {
 	// AssociatedAnType Possible values are
 	//   - 3GPP
 	//   - NON_3GPP
 	//   - 3GPP_AND_NON_3GPP
-	AssociatedAnType     *QosFlowAccessType     `json:"associatedAnType,omitempty"`
-	Ebi                  *SmfEpsBearerId        `json:"ebi,omitempty"`
-	Qfi                  Qfi                    `json:"qfi"`
-	QosFlowDescription   *Bytes                 `json:"qosFlowDescription,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowAccessType)
+	AssociatedAnType *QosFlowAccessType `json:"associatedAnType,omitempty"`
+
+	// Ebi Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerId
+	Ebi                *SmfEpsBearerId `json:"ebi,omitempty"`
+	Qfi                Qfi             `json:"qfi"`
+	QosFlowDescription *Bytes          `json:"qosFlowDescription,omitempty"`
+
+	// QosFlowProfile Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowProfile
 	QosFlowProfile       *QosFlowProfile        `json:"qosFlowProfile,omitempty"`
 	QosRules             *Bytes                 `json:"qosRules,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// QosFlowItem defines model for QosFlowItem.
+// QosFlowItem Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowItem
 type QosFlowItem struct {
 	// Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
 	Cause                  *Cause                 `json:"cause,omitempty"`
 	CurrentQosProfileIndex int                    `json:"currentQosProfileIndex,omitempty"`
 	NullQoSProfileIndex    *bool                  `json:"nullQoSProfileIndex,omitempty"`
@@ -8858,38 +9625,42 @@ type QosFlowItem struct {
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// QosFlowNotifyItem defines model for QosFlowNotifyItem.
+// QosFlowNotifyItem Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowNotifyItem
 type QosFlowNotifyItem struct {
 	CurrentQosProfileIndex int `json:"currentQosProfileIndex,omitempty"`
 
 	// NotificationCause Possible values are - QOS_FULFILLED - QOS_NOT_FULFILLED - UP_SEC_FULFILLED - UP_SEC_NOT_FULFILLED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/NotificationCause)
 	NotificationCause    NotificationCause      `json:"notificationCause"`
 	NullQoSProfileIndex  *bool                  `json:"nullQoSProfileIndex,omitempty"`
 	Qfi                  Qfi                    `json:"qfi"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// QosFlowProfile defines model for QosFlowProfile.
+// QosFlowProfile Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowProfile
 type QosFlowProfile struct {
 	N5qi                  N5Qi                   `json:"5qi"`
 	AdditionalQosFlowInfo *AdditionalQosFlowInfo `json:"additionalQosFlowInfo,omitempty"`
 	Arp                   *Arp                   `json:"arp,omitempty"`
 	Dynamic5Qi            *Dynamic5Qi            `json:"dynamic5Qi,omitempty"`
-	GbrQosFlowInfo        *GbrQosFlowInformation `json:"gbrQosFlowInfo,omitempty"`
-	NonDynamic5Qi         *NonDynamic5Qi         `json:"nonDynamic5Qi,omitempty"`
+
+	// GbrQosFlowInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/GbrQosFlowInformation
+	GbrQosFlowInfo *GbrQosFlowInformation `json:"gbrQosFlowInfo,omitempty"`
+	NonDynamic5Qi  *NonDynamic5Qi         `json:"nonDynamic5Qi,omitempty"`
 
 	// QosMonitoringReq Possible values are
 	//   - UL
 	//   - DL
 	//   - BOTH
 	//   - NONE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosMonitoringReq)
 	QosMonitoringReq     *QosMonitoringReq       `json:"qosMonitoringReq,omitempty"`
 	QosRepPeriod         *DurationSec            `json:"qosRepPeriod,omitempty"`
 	Rqa                  *ReflectiveQoSAttribute `json:"rqa,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// QosFlowReleaseRequestItem defines model for QosFlowReleaseRequestItem.
+// QosFlowReleaseRequestItem Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowReleaseRequestItem
 type QosFlowReleaseRequestItem struct {
 	Qfi                  Qfi                    `json:"qfi"`
 	QosFlowDescription   *Bytes                 `json:"qosFlowDescription,omitempty"`
@@ -8897,30 +9668,39 @@ type QosFlowReleaseRequestItem struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// QosFlowSetupItem defines model for QosFlowSetupItem.
+// QosFlowSetupItem Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowSetupItem
 type QosFlowSetupItem struct {
 	// AssociatedAnType Possible values are
 	//   - 3GPP
 	//   - NON_3GPP
 	//   - 3GPP_AND_NON_3GPP
-	AssociatedAnType     *QosFlowAccessType     `json:"associatedAnType,omitempty"`
-	DefaultQosRuleInd    *bool                  `json:"defaultQosRuleInd,omitempty"`
-	Ebi                  *SmfEpsBearerId        `json:"ebi,omitempty"`
-	Qfi                  Qfi                    `json:"qfi"`
-	QosFlowDescription   *Bytes                 `json:"qosFlowDescription,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowAccessType)
+	AssociatedAnType  *QosFlowAccessType `json:"associatedAnType,omitempty"`
+	DefaultQosRuleInd *bool              `json:"defaultQosRuleInd,omitempty"`
+
+	// Ebi Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerId
+	Ebi                *SmfEpsBearerId `json:"ebi,omitempty"`
+	Qfi                Qfi             `json:"qfi"`
+	QosFlowDescription *Bytes          `json:"qosFlowDescription,omitempty"`
+
+	// QosFlowProfile Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowProfile
 	QosFlowProfile       *QosFlowProfile        `json:"qosFlowProfile,omitempty"`
 	QosRules             Bytes                  `json:"qosRules"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// QosFlowTunnel Tunnel Information per QoS Flow
+// QosFlowTunnel Tunnel Information per QoS Flow (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowTunnel)
 type QosFlowTunnel struct {
-	QfiList              []Qfi                  `json:"qfiList"`
+	QfiList []Qfi `json:"qfiList"`
+
+	// TunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
 	TunnelInfo           TunnelInfo             `json:"tunnelInfo"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // QosFlowUsage Possible values are - GENERAL: Indicate no specific QoS flow usage information is available.  - IMS_SIG: Indicate that the QoS flow is used for IMS signalling only.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosFlowUsage)
 type QosFlowUsage string
 
 // QosFlowUsageReport defines model for QosFlowUsageReport.
@@ -8933,7 +9713,7 @@ type QosFlowUsageReport struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// QosMonitoringData defines model for QosMonitoringData.
+// QosMonitoringData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosMonitoringData
 type QosMonitoringData struct {
 	NotifyCorreId *string `json:"notifyCorreId,omitempty"`
 	NotifyUri     *Uri    `json:"notifyUri,omitempty"`
@@ -8958,13 +9738,13 @@ type QosMonitoringData struct {
 	AdditionalProperties map[string]interface{}            `json:"-"`
 }
 
-// QosMonitoringInfo defines model for QosMonitoringInfo.
+// QosMonitoringInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosMonitoringInfo
 type QosMonitoringInfo struct {
 	QosMonitoringInd     *bool                  `json:"qosMonitoringInd,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// QosMonitoringInformation Indicates the QoS Monitoring information to report, i.e. UL and/or DL and or round trip delay.
+// QosMonitoringInformation Indicates the QoS Monitoring information to report, i.e. UL and/or DL and or round trip delay. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosMonitoringInformation)
 type QosMonitoringInformation struct {
 	RepThreshDl          *int                   `json:"repThreshDl,omitempty"`
 	RepThreshRp          *int                   `json:"repThreshRp,omitempty"`
@@ -8972,7 +9752,7 @@ type QosMonitoringInformation struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// QosMonitoringInformationRm this data type is defined in the same way as the QosMonitoringInformation data type, but with the OpenAPI nullable property set to true.
+// QosMonitoringInformationRm this data type is defined in the same way as the QosMonitoringInformation data type, but with the OpenAPI nullable property set to true. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosMonitoringInformationRm)
 type QosMonitoringInformationRm struct {
 	RepThreshDl          *int                   `json:"repThreshDl,omitempty"`
 	RepThreshRp          *int                   `json:"repThreshRp,omitempty"`
@@ -8985,29 +9765,30 @@ type QosMonitoringInformationRm struct {
 //   - DL
 //   - BOTH
 //   - NONE
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosMonitoringReq)
 type QosMonitoringReq string
 
-// QosNotifType defines model for QosNotifType.
+// QosNotifType Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosNotifType
 type QosNotifType string
 
 // QosResourceType defines model for QosResourceType.
 type QosResourceType string
 
-// RanNasRelCause defines model for RanNasRelCause.
+// RanNasRelCause Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RanNasRelCause
 type RanNasRelCause struct {
 	N5gMmCause *N5GMmCause `json:"5gMmCause,omitempty"`
 	N5gSmCause *N5GSmCause `json:"5gSmCause,omitempty"`
 
-	// EpsCause Defines the EPS RAN/NAS release cause.
+	// EpsCause Defines the EPS RAN/NAS release cause. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/EpsRanNasRelCause)
 	EpsCause             *EpsRanNasRelCause     `json:"epsCause,omitempty"`
 	NgApCause            *NgApCause             `json:"ngApCause,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Rand defines model for Rand.
+// Rand Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Rand
 type Rand = string
 
-// RatSelector defines model for RatSelector.
+// RatSelector Original definition in TS29518_Namf_Communication.yaml#/components/schemas/RatSelector
 type RatSelector string
 
 // RatType defines model for RatType.
@@ -9016,13 +9797,13 @@ type RatType string
 // RatingGroup defines model for RatingGroup.
 type RatingGroup = Uint32
 
-// ReachabilityFilter defines model for ReachabilityFilter.
+// ReachabilityFilter Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/ReachabilityFilter
 type ReachabilityFilter string
 
-// ReachabilityForSmsConfiguration defines model for ReachabilityForSmsConfiguration.
+// ReachabilityForSmsConfiguration Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReachabilityForSmsConfiguration
 type ReachabilityForSmsConfiguration string
 
-// ReachabilityForSmsReport defines model for ReachabilityForSmsReport.
+// ReachabilityForSmsReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReachabilityForSmsReport
 type ReachabilityForSmsReport struct {
 	MaxAvailabilityTime  *DateTime              `json:"maxAvailabilityTime,omitempty"`
 	SmsfAccessType       AccessType             `json:"smsfAccessType"`
@@ -9030,11 +9811,14 @@ type ReachabilityForSmsReport struct {
 }
 
 // RedirectAddressType Possible values are - IPV4_ADDR: Indicates that the address type is in the form of "dotted-decimal" IPv4 address. - IPV6_ADDR: Indicates that the address type is in the form of IPv6 address. - URL: Indicates that the address type is in the form of Uniform Resource Locator. - SIP_URI: Indicates that the address type is in the form of SIP Uniform Resource Identifier.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectAddressType)
 type RedirectAddressType string
 
-// RedirectInformation defines model for RedirectInformation.
+// RedirectInformation Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation
 type RedirectInformation struct {
 	// RedirectAddressType Possible values are - IPV4_ADDR: Indicates that the address type is in the form of "dotted-decimal" IPv4 address. - IPV6_ADDR: Indicates that the address type is in the form of IPv6 address. - URL: Indicates that the address type is in the form of Uniform Resource Locator. - SIP_URI: Indicates that the address type is in the form of SIP Uniform Resource Identifier.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectAddressType)
 	RedirectAddressType *RedirectAddressType `json:"redirectAddressType,omitempty"`
 
 	// RedirectEnabled Indicates the redirect is enable.
@@ -9053,11 +9837,12 @@ type RedirectResponse struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RedundantPduSessionInformation Redundant PDU Session Information
+// RedundantPduSessionInformation Redundant PDU Session Information (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RedundantPduSessionInformation)
 type RedundantPduSessionInformation struct {
 	// Rsn Redundancy Sequence Number. Possible values are
 	//   - V1
 	//   - V2
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Rsn)
 	Rsn                  Rsn                    `json:"rsn"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -9071,8 +9856,9 @@ type RefToBinaryData struct {
 // ReflectiveQoSAttribute defines model for ReflectiveQoSAttribute.
 type ReflectiveQoSAttribute string
 
-// RegistrationContextContainer defines model for RegistrationContextContainer.
+// RegistrationContextContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/RegistrationContextContainer
 type RegistrationContextContainer struct {
+	// AllowedNssai Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/AllowedNssai
 	AllowedNssai     *AllowedNssai `json:"allowedNssai,omitempty"`
 	AnN2ApId         int           `json:"anN2ApId"`
 	AnN2IPv4Addr     Ipv4Addr      `json:"anN2IPv4Addr,omitempty"`
@@ -9080,7 +9866,7 @@ type RegistrationContextContainer struct {
 	AnType           AccessType    `json:"anType"`
 	AuthenticatedInd *bool         `json:"authenticatedInd,omitempty"`
 
-	// CeModeBInd CE-mode-B Support Indicator.
+	// CeModeBInd CE-mode-B Support Indicator. (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/CeModeBInd)
 	CeModeBInd       *CeModeBInd        `json:"ceModeBInd,omitempty"`
 	ConfiguredNssai  []ConfiguredSnssai `json:"configuredNssai,omitempty"`
 	IabNodeInd       *bool              `json:"iabNodeInd,omitempty"`
@@ -9088,60 +9874,80 @@ type RegistrationContextContainer struct {
 	InitialAmfName   AmfName            `json:"initialAmfName"`
 	LocalTimeZone    *TimeZone          `json:"localTimeZone,omitempty"`
 
-	// LteMInd LTE-M Indication.
+	// LteMInd LTE-M Indication. (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/LteMInd)
 	LteMInd *LteMInd `json:"lteMInd,omitempty"`
 
-	// NpnAccessInfo NPN Access Information.
-	NpnAccessInfo        *NpnAccessInfo         `json:"npnAccessInfo,omitempty"`
-	RanNodeId            GlobalRanNodeId        `json:"ranNodeId"`
-	RejectedNssaiInPlmn  []Snssai               `json:"rejectedNssaiInPlmn,omitempty"`
-	RejectedNssaiInTa    []Snssai               `json:"rejectedNssaiInTa,omitempty"`
-	RrcEstCause          string                 `json:"rrcEstCause,omitempty"`
-	SelectedPlmnId       *PlmnId                `json:"selectedPlmnId,omitempty"`
+	// NpnAccessInfo NPN Access Information. (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NpnAccessInfo)
+	NpnAccessInfo       *NpnAccessInfo  `json:"npnAccessInfo,omitempty"`
+	RanNodeId           GlobalRanNodeId `json:"ranNodeId"`
+	RejectedNssaiInPlmn []Snssai        `json:"rejectedNssaiInPlmn,omitempty"`
+	RejectedNssaiInTa   []Snssai        `json:"rejectedNssaiInTa,omitempty"`
+	RrcEstCause         string          `json:"rrcEstCause,omitempty"`
+	SelectedPlmnId      *PlmnId         `json:"selectedPlmnId,omitempty"`
+
+	// UeContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContext
 	UeContext            UeContext              `json:"ueContext"`
 	UeContextRequest     *bool                  `json:"ueContextRequest,omitempty"`
 	UserLocation         UserLocation           `json:"userLocation"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RegistrationDataSetName defines model for RegistrationDataSetName.
+// RegistrationDataSetName Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/RegistrationDataSetName
 type RegistrationDataSetName string
 
-// RegistrationDataSets defines model for RegistrationDataSets.
+// RegistrationDataSets Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/RegistrationDataSets
 type RegistrationDataSets struct {
-	Amf3Gpp              *Amf3GppAccessRegistration    `json:"amf3Gpp,omitempty"`
-	AmfNon3Gpp           *AmfNon3GppAccessRegistration `json:"amfNon3Gpp,omitempty"`
-	SmfRegistration      *SmfRegistrationInfo          `json:"smfRegistration,omitempty"`
-	Smsf3Gpp             *SmsfRegistration             `json:"smsf3Gpp,omitempty"`
-	SmsfNon3Gpp          *SmsfRegistration             `json:"smsfNon3Gpp,omitempty"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
+	// Amf3Gpp Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/Amf3GppAccessRegistration
+	Amf3Gpp *Amf3GppAccessRegistration `json:"amf3Gpp,omitempty"`
+
+	// AmfNon3Gpp Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/AmfNon3GppAccessRegistration
+	AmfNon3Gpp *AmfNon3GppAccessRegistration `json:"amfNon3Gpp,omitempty"`
+
+	// SmfRegistration Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/SmfRegistrationInfo
+	SmfRegistration *SmfRegistrationInfo `json:"smfRegistration,omitempty"`
+
+	// Smsf3Gpp Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/SmsfRegistration
+	Smsf3Gpp *SmsfRegistration `json:"smsf3Gpp,omitempty"`
+
+	// SmsfNon3Gpp Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/SmsfRegistration
+	SmsfNon3Gpp          *SmsfRegistration      `json:"smsfNon3Gpp,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RegistrationDatasetNames defines model for RegistrationDatasetNames.
+// RegistrationDatasetNames Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/RegistrationDatasetNames
 type RegistrationDatasetNames = []RegistrationDataSetName
 
-// RegistrationLocationInfo defines model for RegistrationLocationInfo.
+// RegistrationLocationInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/RegistrationLocationInfo
 type RegistrationLocationInfo struct {
-	AccessTypeList       []AccessType           `json:"accessTypeList"`
-	AmfInstanceId        NfInstanceId           `json:"amfInstanceId"`
-	Guami                *Guami                 `json:"guami,omitempty"`
-	PlmnId               *PlmnId                `json:"plmnId,omitempty"`
+	AccessTypeList []AccessType `json:"accessTypeList"`
+	AmfInstanceId  NfInstanceId `json:"amfInstanceId"`
+	Guami          *Guami       `json:"guami,omitempty"`
+	PlmnId         *PlmnId      `json:"plmnId,omitempty"`
+
+	// VgmlcAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/VgmlcAddress
 	VgmlcAddress         *VgmlcAddress          `json:"vgmlcAddress,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RegistrationReason defines model for RegistrationReason.
+// RegistrationReason Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/RegistrationReason
 type RegistrationReason string
 
-// ReleaseData defines model for ReleaseData.
+// ReleaseData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ReleaseData
 type ReleaseData struct {
 	N5gMmCauseValue *N5GMmCause   `json:"5gMmCauseValue,omitempty"`
 	AddUeLocation   *UserLocation `json:"addUeLocation,omitempty"`
 
 	// Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
-	Cause                   *Cause                    `json:"cause,omitempty"`
-	N4Info                  *N4Information            `json:"n4Info,omitempty"`
-	N4InfoExt1              *N4Information            `json:"n4InfoExt1,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
+	Cause *Cause `json:"cause,omitempty"`
+
+	// N4Info Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4Info *N4Information `json:"n4Info,omitempty"`
+
+	// N4InfoExt1 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt1 *N4Information `json:"n4InfoExt1,omitempty"`
+
+	// N4InfoExt2 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
 	N4InfoExt2              *N4Information            `json:"n4InfoExt2,omitempty"`
 	NgApCause               *NgApCause                `json:"ngApCause,omitempty"`
 	SecondaryRatUsageInfo   []SecondaryRatUsageInfo   `json:"secondaryRatUsageInfo,omitempty"`
@@ -9151,17 +9957,23 @@ type ReleaseData struct {
 	AdditionalProperties    map[string]interface{}    `json:"-"`
 }
 
-// ReleasedData defines model for ReleasedData.
+// ReleasedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ReleasedData
 type ReleasedData struct {
-	ApnRateStatus        *ApnRateStatus         `json:"apnRateStatus,omitempty"`
-	N4Info               *N4Information         `json:"n4Info,omitempty"`
-	N4InfoExt1           *N4Information         `json:"n4InfoExt1,omitempty"`
+	ApnRateStatus *ApnRateStatus `json:"apnRateStatus,omitempty"`
+
+	// N4Info Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4Info *N4Information `json:"n4Info,omitempty"`
+
+	// N4InfoExt1 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt1 *N4Information `json:"n4InfoExt1,omitempty"`
+
+	// N4InfoExt2 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
 	N4InfoExt2           *N4Information         `json:"n4InfoExt2,omitempty"`
 	SmallDataRateStatus  *SmallDataRateStatus   `json:"smallDataRateStatus,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Report defines model for Report.
+// Report Original definition in TS29503_Nudm_EE.yaml#/components/schemas/Report
 type Report struct {
 	union json.RawMessage
 }
@@ -9184,10 +9996,10 @@ type ReportItem struct {
 // ReportTypeMdt defines model for ReportTypeMdt.
 type ReportTypeMdt string
 
-// ReportingFrequency defines model for ReportingFrequency.
+// ReportingFrequency Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ReportingFrequency
 type ReportingFrequency string
 
-// ReportingInformation defines model for ReportingInformation.
+// ReportingInformation Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/ReportingInformation
 type ReportingInformation struct {
 	GrpRepTime   *DurationSec `json:"grpRepTime,omitempty"`
 	ImmRep       *bool        `json:"immRep,omitempty"`
@@ -9195,6 +10007,7 @@ type ReportingInformation struct {
 	MonDur       *DateTime    `json:"monDur,omitempty"`
 
 	// NotifMethod Possible values are - PERIODIC - ONE_TIME - ON_EVENT_DETECTION
+	//  (Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/NotificationMethod)
 	NotifMethod          *NotificationMethod    `json:"notifMethod,omitempty"`
 	RepPeriod            *DurationSec           `json:"repPeriod,omitempty"`
 	SampRatio            SamplingRatio          `json:"sampRatio,omitempty"`
@@ -9202,6 +10015,8 @@ type ReportingInformation struct {
 }
 
 // ReportingLevel Possible values are - SER_ID_LEVEL: Indicates that the usage shall be reported on service id and rating group combination level. - RAT_GR_LEVEL: Indicates that the usage shall be reported on rating group level. - SPON_CON_LEVEL: Indicates that the usage shall be reported on sponsor identity and rating group combination level.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ReportingLevel)
 type ReportingLevel struct {
 	union json.RawMessage
 }
@@ -9212,11 +10027,15 @@ type ReportingLevel0 string
 // ReportingLevel2 This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
 type ReportingLevel2 = string
 
-// ReportingOptions defines model for ReportingOptions.
+// ReportingOptions Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReportingOptions
 type ReportingOptions struct {
-	Expiry               *DateTime              `json:"expiry,omitempty"`
-	GuardTime            *DurationSec           `json:"guardTime,omitempty"`
-	MaxNumOfReports      *MaxNumOfReports       `json:"maxNumOfReports,omitempty"`
+	Expiry    *DateTime    `json:"expiry,omitempty"`
+	GuardTime *DurationSec `json:"guardTime,omitempty"`
+
+	// MaxNumOfReports Original definition in TS29503_Nudm_EE.yaml#/components/schemas/MaxNumOfReports
+	MaxNumOfReports *MaxNumOfReports `json:"maxNumOfReports,omitempty"`
+
+	// ReportMode Original definition in TS29503_Nudm_EE.yaml#/components/schemas/EventReportMode
 	ReportMode           *EventReportMode       `json:"reportMode,omitempty"`
 	ReportPeriod         *DurationSec           `json:"reportPeriod,omitempty"`
 	SamplingRatio        SamplingRatio          `json:"samplingRatio,omitempty"`
@@ -9227,9 +10046,11 @@ type ReportingOptions struct {
 type ReportingTrigger string
 
 // RequestIndication Possible values are - UE_REQ_PDU_SES_MOD - UE_REQ_PDU_SES_REL - PDU_SES_MOB - NW_REQ_PDU_SES_AUTH - NW_REQ_PDU_SES_MOD - NW_REQ_PDU_SES_REL - EBI_ASSIGNMENT_REQ - REL_DUE_TO_5G_AN_REQUEST
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RequestIndication)
 type RequestIndication string
 
-// RequestLocInfo defines model for RequestLocInfo.
+// RequestLocInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/RequestLocInfo
 type RequestLocInfo struct {
 	Req5gsLoc            *bool                  `json:"req5gsLoc,omitempty"`
 	ReqCurrentLoc        *bool                  `json:"reqCurrentLoc,omitempty"`
@@ -9239,7 +10060,7 @@ type RequestLocInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RequestPosInfo defines model for RequestPosInfo.
+// RequestPosInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/RequestPosInfo
 type RequestPosInfo struct {
 	AdditionalLcsSuppGADShapes []string      `json:"additionalLcsSuppGADShapes,omitempty"`
 	AfID                       *NfInstanceId `json:"afID,omitempty"`
@@ -9256,8 +10077,10 @@ type RequestPosInfo struct {
 	HgmlcCallBackURI             *Uri    `json:"hgmlcCallBackURI,omitempty"`
 
 	// LcsClientType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-	LcsClientType string       `json:"lcsClientType"`
-	LcsLocation   LocationType `json:"lcsLocation"`
+	LcsClientType string `json:"lcsClientType"`
+
+	// LcsLocation Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationType
+	LcsLocation LocationType `json:"lcsLocation"`
 
 	// LcsQoS Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
 	LcsQoS interface{} `json:"lcsQoS,omitempty"`
@@ -9297,9 +10120,11 @@ type RequestPosInfo struct {
 }
 
 // RequestType Possible values are - INITIAL_REQUEST - EXISTING_PDU_SESSION - INITIAL_EMERGENCY_REQUEST - EXISTING_EMERGENCY_PDU_SESSION
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RequestType)
 type RequestType string
 
-// RequestedQos defines model for RequestedQos.
+// RequestedQos Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedQos
 type RequestedQos struct {
 	N5qi                 N5Qi                   `json:"5qi"`
 	GbrDl                BitRate                `json:"gbrDl,omitempty"`
@@ -9307,10 +10132,10 @@ type RequestedQos struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RequestedQosMonitoringParameter defines model for RequestedQosMonitoringParameter.
+// RequestedQosMonitoringParameter Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedQosMonitoringParameter
 type RequestedQosMonitoringParameter string
 
-// RequestedRuleData defines model for RequestedRuleData.
+// RequestedRuleData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedRuleData
 type RequestedRuleData struct {
 	// RefPccRuleIds An array of PCC rule id references to the PCC rules associated with the control data.
 	RefPccRuleIds []string `json:"refPccRuleIds"`
@@ -9321,9 +10146,11 @@ type RequestedRuleData struct {
 }
 
 // RequestedRuleDataType Possible values are - CH_ID: Indicates that the requested rule data is the charging identifier.  - MS_TIME_ZONE: Indicates that the requested access network info type is the UE's timezone. - USER_LOC_INFO: Indicates that the requested access network info type is the UE's location. - RES_RELEASE: Indicates that the requested rule data is the result of the release of resource. - SUCC_RES_ALLO: Indicates that the requested rule data is the successful resource allocation. - EPS_FALLBACK: Indicates that the requested rule data is the report of QoS flow rejection due to EPS fallback.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedRuleDataType)
 type RequestedRuleDataType string
 
-// RequestedUsageData defines model for RequestedUsageData.
+// RequestedUsageData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedUsageData
 type RequestedUsageData struct {
 	// AllUmIds This boolean indicates whether requested usage data applies to all usage monitoring data instances. When it's not included, it means requested usage data shall only apply to the usage monitoring data instances referenced by the refUmIds attribute.
 	AllUmIds *bool `json:"allUmIds,omitempty"`
@@ -9333,16 +10160,16 @@ type RequestedUsageData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RequiredAccessInfo defines model for RequiredAccessInfo.
+// RequiredAccessInfo Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/RequiredAccessInfo
 type RequiredAccessInfo string
 
-// ResStar defines model for ResStar.
+// ResStar Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/ResStar
 type ResStar = string
 
-// ReservPriority defines model for ReservPriority.
+// ReservPriority Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority
 type ReservPriority string
 
-// ResourceItem Identifies a subscription to policy data change notification when the change occurs in a fragment (subset of resource data) of a given resource.
+// ResourceItem Identifies a subscription to policy data change notification when the change occurs in a fragment (subset of resource data) of a given resource. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/ResourceItem)
 type ResourceItem struct {
 	Items                []ItemPath             `json:"items"`
 	MonResourceUri       Uri                    `json:"monResourceUri"`
@@ -9350,17 +10177,21 @@ type ResourceItem struct {
 }
 
 // ResourceStatus Possible values are - RELEASED - UNCHANGED - TRANSFERRED - UPDATED - ALT_ANCHOR_SMF
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ResourceStatus)
 type ResourceStatus string
 
-// ResourcesAllocationInfo describes the status of the PCC rule(s) related to certain media components.
+// ResourcesAllocationInfo describes the status of the PCC rule(s) related to certain media components. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ResourcesAllocationInfo)
 type ResourcesAllocationInfo struct {
-	AltSerReq            *string                        `json:"altSerReq,omitempty"`
-	Flows                []Flows                        `json:"flows,omitempty"`
+	AltSerReq *string `json:"altSerReq,omitempty"`
+	Flows     []Flows `json:"flows,omitempty"`
+
+	// McResourcStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaComponentResourcesStatus
 	McResourcStatus      *MediaComponentResourcesStatus `json:"mcResourcStatus,omitempty"`
 	AdditionalProperties map[string]interface{}         `json:"-"`
 }
 
-// RestrictedSnssai defines model for RestrictedSnssai.
+// RestrictedSnssai Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/RestrictedSnssai
 type RestrictedSnssai struct {
 	HomePlmnId           PlmnId                 `json:"homePlmnId"`
 	HomePlmnIdList       []PlmnId               `json:"homePlmnIdList,omitempty"`
@@ -9372,20 +10203,23 @@ type RestrictedSnssai struct {
 // RestrictionType defines model for RestrictionType.
 type RestrictionType string
 
-// ResynchronizationInfo defines model for ResynchronizationInfo.
+// ResynchronizationInfo Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ResynchronizationInfo
 type ResynchronizationInfo struct {
-	Auts                 Auts                   `json:"auts"`
+	// Auts Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Auts
+	Auts Auts `json:"auts"`
+
+	// Rand Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Rand
 	Rand                 Rand                   `json:"rand"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RetrieveData defines model for RetrieveData.
+// RetrieveData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RetrieveData
 type RetrieveData struct {
 	SmallDataRateStatusReq *bool                  `json:"smallDataRateStatusReq,omitempty"`
 	AdditionalProperties   map[string]interface{} `json:"-"`
 }
 
-// RetrievedData defines model for RetrievedData.
+// RetrievedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RetrievedData
 type RetrievedData struct {
 	SmallDataRateStatus  *SmallDataRateStatus   `json:"smallDataRateStatus,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -9397,7 +10231,7 @@ type RfspIndex = int
 // RfspIndexRm defines model for RfspIndexRm.
 type RfspIndexRm = int
 
-// RgAuthCtx defines model for RgAuthCtx.
+// RgAuthCtx Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/RgAuthCtx
 type RgAuthCtx struct {
 	AuthInd              bool                   `json:"authInd"`
 	Supi                 Supi                   `json:"supi,omitempty"`
@@ -9405,9 +10239,11 @@ type RgAuthCtx struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RgAuthenticationInfo defines model for RgAuthenticationInfo.
+// RgAuthenticationInfo Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/RgAuthenticationInfo
 type RgAuthenticationInfo struct {
-	AuthenticatedInd     bool                   `json:"authenticatedInd"`
+	AuthenticatedInd bool `json:"authenticatedInd"`
+
+	// Suci Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/Suci
 	Suci                 Suci                   `json:"suci"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -9416,23 +10252,25 @@ type RgAuthenticationInfo struct {
 // RgWirelineCharacteristics defines model for RgWirelineCharacteristics.
 type RgWirelineCharacteristics = Bytes
 
-// RmInfo defines model for RmInfo.
+// RmInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/RmInfo
 type RmInfo struct {
-	AccessType           AccessType             `json:"accessType"`
+	AccessType AccessType `json:"accessType"`
+
+	// RmState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/RmState
 	RmState              RmState                `json:"rmState"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// RmState defines model for RmState.
+// RmState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/RmState
 type RmState string
 
-// RoamingIndication defines model for RoamingIndication.
+// RoamingIndication Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/RoamingIndication
 type RoamingIndication string
 
 // RoamingOdb defines model for RoamingOdb.
 type RoamingOdb string
 
-// RoamingStatusReport defines model for RoamingStatusReport.
+// RoamingStatusReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/RoamingStatusReport
 type RoamingStatusReport struct {
 	NewServingPlmn       PlmnId                 `json:"newServingPlmn"`
 	Roaming              bool                   `json:"roaming"`
@@ -9466,12 +10304,15 @@ type RoutingAreaId struct {
 // Rsn Redundancy Sequence Number. Possible values are
 //   - V1
 //   - V2
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Rsn)
 type Rsn string
 
 // RuleOperation Possible values are - CREATE_PCC_RULE: Indicates to create a new PCC rule to reserve the resource requested by the UE.  - DELETE_PCC_RULE: Indicates to delete a PCC rule corresponding to reserve the resource requested by the UE. - MODIFY_PCC_RULE_AND_ADD_PACKET_FILTERS: Indicates to modify the PCC rule by adding new packet filter(s). - MODIFY_ PCC_RULE_AND_REPLACE_PACKET_FILTERS: Indicates to modify the PCC rule by replacing the existing packet filter(s). - MODIFY_ PCC_RULE_AND_DELETE_PACKET_FILTERS: Indicates to modify the PCC rule by deleting the existing packet filter(s). - MODIFY_PCC_RULE_WITHOUT_MODIFY_PACKET_FILTERS: Indicates to modify the PCC rule by modifying the QoS of the PCC rule.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RuleOperation)
 type RuleOperation string
 
-// RuleReport defines model for RuleReport.
+// RuleReport Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RuleReport
 type RuleReport struct {
 	// ContVers Indicates the version of a PCC rule.
 	ContVers []ContentVersion `json:"contVers,omitempty"`
@@ -9498,6 +10339,7 @@ type RuleReport struct {
 	//   - CM_USER_UNK: Indicate that the specified end user could not be found in the charging system.
 	//   - CM_RAT_FAILED: Indicate that the charging system cannot rate the service request due to insufficient rating input, incorrect AVP combination or due to an attribute or an attribute value that is not recognized or supported in the rating.
 	//   - UE_STA_SUSP: Indicates that the UE is in suspend state.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FailureCode)
 	FailureCode *PcfFailureCode `json:"failureCode,omitempty"`
 
 	// FinUnitAct Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
@@ -9510,20 +10352,23 @@ type RuleReport struct {
 	RanNasRelCauses []RanNasRelCause `json:"ranNasRelCauses,omitempty"`
 
 	// RuleStatus Possible values are - ACTIVE: Indicates that the PCC rule(s) are successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF), or the session rule(s) are successfully installed  - INACTIVE: Indicates that the PCC rule(s) are removed (for those provisioned from PCF) or inactive (for those pre-defined in SMF) or the session rule(s) are removed.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RuleStatus)
 	RuleStatus           RuleStatus             `json:"ruleStatus"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // RuleStatus Possible values are - ACTIVE: Indicates that the PCC rule(s) are successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF), or the session rule(s) are successfully installed  - INACTIVE: Indicates that the PCC rule(s) are removed (for those provisioned from PCF) or inactive (for those pre-defined in SMF) or the session rule(s) are removed.
+//
+//	(Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RuleStatus)
 type RuleStatus string
 
 // S1UeNetworkCapability defines model for S1UeNetworkCapability.
 type S1UeNetworkCapability = Bytes
 
-// SMPolicyFlowDescription Defines a packet filter for an IP flow.
+// SMPolicyFlowDescription Defines a packet filter for an IP flow. (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDescription)
 type SMPolicyFlowDescription = string
 
-// SMPolicyQosMonitoringReport defines model for SMPolicy-QosMonitoringReport.
+// SMPolicyQosMonitoringReport Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosMonitoringReport
 type SMPolicyQosMonitoringReport struct {
 	DlDelays []int `json:"dlDelays,omitempty"`
 
@@ -9534,13 +10379,15 @@ type SMPolicyQosMonitoringReport struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SMPolicyQosNotificationControlInfo defines model for SMPolicy-QosNotificationControlInfo.
+// SMPolicyQosNotificationControlInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosNotificationControlInfo
 type SMPolicyQosNotificationControlInfo struct {
 	AltQosParamId *string `json:"altQosParamId,omitempty"`
 
-	// ContVer Represents the content version of some content.
-	ContVer   *ContentVersion `json:"contVer,omitempty"`
-	NotifType QosNotifType    `json:"notifType"`
+	// ContVer Represents the content version of some content. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ContentVersion)
+	ContVer *ContentVersion `json:"contVer,omitempty"`
+
+	// NotifType Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/QosNotifType
+	NotifType QosNotifType `json:"notifType"`
 
 	// RefPccRuleIds An array of PCC rule id references to the PCC rules associated with the QoS notification control info.
 	RefPccRuleIds        []string               `json:"refPccRuleIds"`
@@ -9550,10 +10397,10 @@ type SMPolicyQosNotificationControlInfo struct {
 // SamplingRatio defines model for SamplingRatio.
 type SamplingRatio = int
 
-// SbiBindingLevel defines model for SbiBindingLevel.
+// SbiBindingLevel Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
 type SbiBindingLevel string
 
-// ScType defines model for ScType.
+// ScType Original definition in TS29518_Namf_Communication.yaml#/components/schemas/ScType
 type ScType string
 
 // ScheduledCommunicationTime defines model for ScheduledCommunicationTime.
@@ -9588,15 +10435,15 @@ type ScheduledCommunicationType string
 // ScheduledCommunicationTypeRm defines model for ScheduledCommunicationTypeRm.
 type ScheduledCommunicationTypeRm string
 
-// ScpDomainCond Subscription to a set of NF or SCP instances belonging to certain SCP domains
+// ScpDomainCond Subscription to a set of NF or SCP instances belonging to certain SCP domains (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ScpDomainCond)
 type ScpDomainCond struct {
 	ScpDomains           []string               `json:"scpDomains"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ScpDomainInfo SCP Domain specific information
+// ScpDomainInfo SCP Domain specific information (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ScpDomainInfo)
 type ScpDomainInfo struct {
-	// ScpFqdn Fully Qualified Domain Name
+	// ScpFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	ScpFqdn              *Fqdn                  `json:"scpFqdn,omitempty"`
 	ScpIpEndPoints       []IpEndPoint           `json:"scpIpEndPoints,omitempty"`
 	ScpPorts             *map[string]int        `json:"scpPorts,omitempty"`
@@ -9604,11 +10451,11 @@ type ScpDomainInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ScpInfo Information of an SCP Instance
+// ScpInfo Information of an SCP Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ScpInfo)
 type ScpInfo struct {
 	AddressDomains []string `json:"addressDomains,omitempty"`
 
-	// IpReachability Indicates the type(s) of IP addresses reachable via an SCP
+	// IpReachability Indicates the type(s) of IP addresses reachable via an SCP (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpReachability)
 	IpReachability       *IpReachability           `json:"ipReachability,omitempty"`
 	Ipv4AddrRanges       []Ipv4AddressRange        `json:"ipv4AddrRanges,omitempty"`
 	Ipv4Addresses        []Ipv4Addr                `json:"ipv4Addresses,omitempty"`
@@ -9629,52 +10476,59 @@ type SdRange struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SdmSubsModification defines model for SdmSubsModification.
+// SdmSubsModification Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SdmSubsModification
 type SdmSubsModification struct {
 	Expires               *DateTime              `json:"expires,omitempty"`
 	MonitoredResourceUris []Uri                  `json:"monitoredResourceUris,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// SdmSubscription defines model for SdmSubscription.
+// SdmSubscription Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SdmSubscription
 type SdmSubscription struct {
-	// AmfServiceName Service names known to NRF
-	AmfServiceName        *ServiceName           `json:"amfServiceName,omitempty"`
-	CallbackReference     Uri                    `json:"callbackReference"`
-	ContextInfo           *ContextInfo           `json:"contextInfo,omitempty"`
-	Dnn                   *Dnn                   `json:"dnn,omitempty"`
-	Expires               *DateTime              `json:"expires,omitempty"`
-	ImmediateReport       *bool                  `json:"immediateReport,omitempty"`
-	ImplicitUnsubscribe   *bool                  `json:"implicitUnsubscribe,omitempty"`
-	MonitoredResourceUris []Uri                  `json:"monitoredResourceUris"`
-	NfInstanceId          NfInstanceId           `json:"nfInstanceId"`
-	PlmnId                *PlmnId                `json:"plmnId,omitempty"`
-	Report                *SubscriptionDataSets  `json:"report,omitempty"`
-	SingleNssai           *Snssai                `json:"singleNssai,omitempty"`
-	SubscriptionId        *string                `json:"subscriptionId,omitempty"`
-	SupportedFeatures     *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UniqueSubscription    *bool                  `json:"uniqueSubscription,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"-"`
+	// AmfServiceName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
+	AmfServiceName    *ServiceName `json:"amfServiceName,omitempty"`
+	CallbackReference Uri          `json:"callbackReference"`
+
+	// ContextInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
+	ContextInfo           *ContextInfo `json:"contextInfo,omitempty"`
+	Dnn                   *Dnn         `json:"dnn,omitempty"`
+	Expires               *DateTime    `json:"expires,omitempty"`
+	ImmediateReport       *bool        `json:"immediateReport,omitempty"`
+	ImplicitUnsubscribe   *bool        `json:"implicitUnsubscribe,omitempty"`
+	MonitoredResourceUris []Uri        `json:"monitoredResourceUris"`
+	NfInstanceId          NfInstanceId `json:"nfInstanceId"`
+	PlmnId                *PlmnId      `json:"plmnId,omitempty"`
+
+	// Report Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SubscriptionDataSets
+	Report               *SubscriptionDataSets  `json:"report,omitempty"`
+	SingleNssai          *Snssai                `json:"singleNssai,omitempty"`
+	SubscriptionId       *string                `json:"subscriptionId,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	UniqueSubscription   *bool                  `json:"uniqueSubscription,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SeafData defines model for SeafData.
+// SeafData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SeafData
 type SeafData struct {
-	KeyAmf               KeyAmf                 `json:"keyAmf"`
-	KeyAmfChangeInd      *bool                  `json:"keyAmfChangeInd,omitempty"`
-	KeyAmfHDerivationInd *bool                  `json:"keyAmfHDerivationInd,omitempty"`
-	Ncc                  *int                   `json:"ncc,omitempty"`
+	// KeyAmf Original definition in TS29518_Namf_Communication.yaml#/components/schemas/KeyAmf
+	KeyAmf               KeyAmf `json:"keyAmf"`
+	KeyAmfChangeInd      *bool  `json:"keyAmfChangeInd,omitempty"`
+	KeyAmfHDerivationInd *bool  `json:"keyAmfHDerivationInd,omitempty"`
+	Ncc                  *int   `json:"ncc,omitempty"`
+
+	// NgKsi Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgKsi
 	NgKsi                NgKsi                  `json:"ngKsi"`
 	Nh                   string                 `json:"nh,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SearchResult Contains the list of NF Profiles returned in a Discovery response
+// SearchResult Contains the list of NF Profiles returned in a Discovery response (Original definition in TS29510_Nnrf_NFDiscovery.yaml#/components/schemas/SearchResult)
 type SearchResult struct {
 	NfInstances          []NFDiscoveryNFProfile `json:"nfInstances"`
 	NrfSupportedFeatures *SupportedFeatures     `json:"nrfSupportedFeatures,omitempty"`
 	NumNfInstComplete    *Uint32                `json:"numNfInstComplete,omitempty"`
 
-	// PreferredSearch Contains information on whether the returned NFProfiles match the preferred query parameters
+	// PreferredSearch Contains information on whether the returned NFProfiles match the preferred query parameters (Original definition in TS29510_Nnrf_NFDiscovery.yaml#/components/schemas/PreferredSearch)
 	PreferredSearch      *PreferredSearch       `json:"preferredSearch,omitempty"`
 	SearchId             *string                `json:"searchId,omitempty"`
 	ValidityPeriod       *int                   `json:"validityPeriod,omitempty"`
@@ -9696,24 +10550,26 @@ type SecondaryRatUsageReport struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SecuredPacket defines model for SecuredPacket.
+// SecuredPacket Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SecuredPacket
 type SecuredPacket = []byte
 
-// SecurityResult defines model for SecurityResult.
+// SecurityResult Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SecurityResult
 type SecurityResult struct {
 	// ConfidentialityProtectionResult Possible values are
 	//   - PERFORMED
 	//   - NOT_PERFORMED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProtectionResult)
 	ConfidentialityProtectionResult *ProtectionResult `json:"confidentialityProtectionResult,omitempty"`
 
 	// IntegrityProtectionResult Possible values are
 	//   - PERFORMED
 	//   - NOT_PERFORMED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProtectionResult)
 	IntegrityProtectionResult *ProtectionResult      `json:"integrityProtectionResult,omitempty"`
 	AdditionalProperties      map[string]interface{} `json:"-"`
 }
 
-// SendMoDataReqData defines model for SendMoDataReqData.
+// SendMoDataReqData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SendMoDataReqData
 type SendMoDataReqData struct {
 	MoData               RefToBinaryData        `json:"moData"`
 	MoExpDataCounter     *MoExpDataCounter      `json:"moExpDataCounter,omitempty"`
@@ -9724,17 +10580,20 @@ type SendMoDataReqData struct {
 // SensorMeasurement defines model for SensorMeasurement.
 type SensorMeasurement string
 
-// SequenceNumber defines model for SequenceNumber.
+// SequenceNumber Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SequenceNumber
 type SequenceNumber struct {
-	DifSign              Sign                   `json:"difSign,omitempty"`
-	IndLength            *int                   `json:"indLength,omitempty"`
-	LastIndexes          *map[string]int        `json:"lastIndexes,omitempty"`
-	Sqn                  string                 `json:"sqn,omitempty"`
+	// DifSign Original definition in TS29505_Subscription_Data.yaml#/components/schemas/Sign
+	DifSign     Sign            `json:"difSign,omitempty"`
+	IndLength   *int            `json:"indLength,omitempty"`
+	LastIndexes *map[string]int `json:"lastIndexes,omitempty"`
+	Sqn         string          `json:"sqn,omitempty"`
+
+	// SqnScheme Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SqnScheme
 	SqnScheme            *SqnScheme             `json:"sqnScheme,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ServAuthInfo defines model for ServAuthInfo.
+// ServAuthInfo Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ServAuthInfo
 type ServAuthInfo string
 
 // ServiceAreaId defines model for ServiceAreaId.
@@ -9757,29 +10616,29 @@ type ServiceAreaRestriction struct {
 // ServiceId defines model for ServiceId.
 type ServiceId = Uint32
 
-// ServiceIdentification defines model for ServiceIdentification.
+// ServiceIdentification Original definition in TS29523_Npcf_EventExposure.yaml#/components/schemas/ServiceIdentification
 type ServiceIdentification struct {
-	// AfAppId Contains an AF application identifier.
+	// AfAppId Contains an AF application identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId)
 	AfAppId              *AfAppId               `json:"afAppId,omitempty"`
 	ServEthFlows         []EthernetFlowInfo     `json:"servEthFlows,omitempty"`
 	ServIpFlows          []IpFlowInfo           `json:"servIpFlows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ServiceInfoStatus defines model for ServiceInfoStatus.
+// ServiceInfoStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ServiceInfoStatus
 type ServiceInfoStatus string
 
-// ServiceName Service names known to NRF
+// ServiceName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 type ServiceName string
 
-// ServiceNameCond Subscription to a set of NFs based on their support for a given Service Name
+// ServiceNameCond Subscription to a set of NFs based on their support for a given Service Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceNameCond)
 type ServiceNameCond struct {
-	// ServiceName Service names known to NRF
+	// ServiceName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 	ServiceName          ServiceName            `json:"serviceName"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ServiceParameterData defines model for ServiceParameterData.
+// ServiceParameterData Original definition in TS29519_Application_Data.yaml#/components/schemas/ServiceParameterData
 type ServiceParameterData struct {
 	AnyUeInd *bool `json:"anyUeInd,omitempty"`
 
@@ -9798,63 +10657,75 @@ type ServiceParameterData struct {
 	Supi        Supi               `json:"supi,omitempty"`
 	SuppFeat    *SupportedFeatures `json:"suppFeat,omitempty"`
 
-	// UeIpv4 string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
+	// UeIpv4 string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166. (Original definition in TS29122_CommonData.yaml#/components/schemas/Ipv4Addr)
 	UeIpv4 *TS29122Ipv4Addr `json:"ueIpv4,omitempty"`
 
-	// UeIpv6 string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used.
+	// UeIpv6 string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used. (Original definition in TS29122_CommonData.yaml#/components/schemas/Ipv6Addr)
 	UeIpv6               *TS29122Ipv6Addr       `json:"ueIpv6,omitempty"`
 	UeMac                MacAddr48              `json:"ueMac,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ServiceTypeUnrelatedClass defines model for ServiceTypeUnrelatedClass.
+// ServiceTypeUnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ServiceTypeUnrelatedClass
 type ServiceTypeUnrelatedClass struct {
-	AllowedGeographicArea     []interface{}              `json:"allowedGeographicArea,omitempty"`
-	CodeWordInd               *CodeWordInd               `json:"codeWordInd,omitempty"`
-	CodeWordList              []CodeWord                 `json:"codeWordList,omitempty"`
+	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+
+	// CodeWordInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CodeWordInd
+	CodeWordInd  *CodeWordInd `json:"codeWordInd,omitempty"`
+	CodeWordList []CodeWord   `json:"codeWordList,omitempty"`
+
+	// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
 
 	// ServiceType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
-	ServiceType          interface{}            `json:"serviceType"`
+	ServiceType interface{} `json:"serviceType"`
+
+	// ValidTimePeriod Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ValidTimePeriod
 	ValidTimePeriod      *ValidTimePeriod       `json:"validTimePeriod,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ServiceUrn Contains values of the service URN and may include subservices.
+// ServiceUrn Contains values of the service URN and may include subservices. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ServiceUrn)
 type ServiceUrn = string
 
-// ServingNetworkName defines model for ServingNetworkName.
+// ServingNetworkName Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
 type ServingNetworkName = string
 
-// ServingNfIdentity defines model for ServingNfIdentity.
+// ServingNfIdentity Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ServingNfIdentity
 type ServingNfIdentity struct {
-	// AnGwAddr describes the address of the access network gateway control node
+	// AnGwAddr describes the address of the access network gateway control node (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AnGwAddress)
 	AnGwAddr             *AnGwAddress           `json:"anGwAddr,omitempty"`
 	Guami                *Guami                 `json:"guami,omitempty"`
 	ServNfInstId         *NfInstanceId          `json:"servNfInstId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SessionManagementSubscriptionData defines model for SessionManagementSubscriptionData.
+// SessionManagementSubscriptionData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SessionManagementSubscriptionData
 type SessionManagementSubscriptionData struct {
+	// N3gppChargingCharacteristics Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/3GppChargingCharacteristics
 	N3gppChargingCharacteristics *N3GppChargingCharacteristics `json:"3gppChargingCharacteristics,omitempty"`
 
 	// DnnConfigurations A map (list of key-value pairs where Dnn, or optionally the Wildcard DNN, serves as key) of DnnConfigurations
-	DnnConfigurations         *map[string]DnnConfiguration        `json:"dnnConfigurations,omitempty"`
-	ExpectedUeBehavioursList  *map[string]ExpectedUeBehaviourData `json:"expectedUeBehavioursList,omitempty"`
-	InternalGroupIds          []GroupId                           `json:"internalGroupIds,omitempty"`
-	OdbPacketServices         *OdbPacketServices                  `json:"odbPacketServices,omitempty"`
-	SharedDnnConfigurationsId SharedDataId                        `json:"sharedDnnConfigurationsId,omitempty"`
-	SharedTraceDataId         SharedDataId                        `json:"sharedTraceDataId,omitempty"`
-	SharedVnGroupDataIds      *map[string]SharedDataId            `json:"sharedVnGroupDataIds,omitempty"`
-	SingleNssai               Snssai                              `json:"singleNssai"`
-	SuggestedPacketNumDlList  *map[string]SuggestedPacketNumDl    `json:"suggestedPacketNumDlList,omitempty"`
-	TraceData                 *TraceData                          `json:"traceData"`
-	AdditionalProperties      map[string]interface{}              `json:"-"`
+	DnnConfigurations        *map[string]DnnConfiguration        `json:"dnnConfigurations,omitempty"`
+	ExpectedUeBehavioursList *map[string]ExpectedUeBehaviourData `json:"expectedUeBehavioursList,omitempty"`
+	InternalGroupIds         []GroupId                           `json:"internalGroupIds,omitempty"`
+	OdbPacketServices        *OdbPacketServices                  `json:"odbPacketServices,omitempty"`
+
+	// SharedDnnConfigurationsId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataId
+	SharedDnnConfigurationsId SharedDataId `json:"sharedDnnConfigurationsId,omitempty"`
+
+	// SharedTraceDataId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataId
+	SharedTraceDataId        SharedDataId                     `json:"sharedTraceDataId,omitempty"`
+	SharedVnGroupDataIds     *map[string]SharedDataId         `json:"sharedVnGroupDataIds,omitempty"`
+	SingleNssai              Snssai                           `json:"singleNssai"`
+	SuggestedPacketNumDlList *map[string]SuggestedPacketNumDl `json:"suggestedPacketNumDlList,omitempty"`
+	TraceData                *TraceData                       `json:"traceData"`
+	AdditionalProperties     map[string]interface{}           `json:"-"`
 }
 
-// SessionRule defines model for SessionRule.
+// SessionRule Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SessionRule
 type SessionRule struct {
+	// AuthDefQos Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AuthorizedDefaultQos
 	AuthDefQos   *AuthorizedDefaultQos `json:"authDefQos,omitempty"`
 	AuthSessAmbr *Ambr                 `json:"authSessAmbr,omitempty"`
 
@@ -9877,9 +10748,10 @@ type SessionRule struct {
 //   - RES_LIM: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to a limitation of resources at the SMF/UPF.
 //   - UNSUCC_QOS_VAL: indicate that the QoS validation has failed.
 //   - UE_STA_SUSP: Indicates that the UE is in suspend state.
+//     (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SessionRuleFailureCode)
 type SessionRuleFailureCode string
 
-// SessionRuleReport defines model for SessionRuleReport.
+// SessionRuleReport Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SessionRuleReport
 type SessionRuleReport struct {
 	// PolicyDecFailureReports Contains the type(s) of failed policy decision and/or condition data.
 	PolicyDecFailureReports []PolicyDecisionFailureCode `json:"policyDecFailureReports,omitempty"`
@@ -9888,6 +10760,7 @@ type SessionRuleReport struct {
 	RuleIds []string `json:"ruleIds"`
 
 	// RuleStatus Possible values are - ACTIVE: Indicates that the PCC rule(s) are successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF), or the session rule(s) are successfully installed  - INACTIVE: Indicates that the PCC rule(s) are removed (for those provisioned from PCF) or inactive (for those pre-defined in SMF) or the session rule(s) are removed.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RuleStatus)
 	RuleStatus RuleStatus `json:"ruleStatus"`
 
 	// SessRuleFailureCode Possible values are
@@ -9895,46 +10768,59 @@ type SessionRuleReport struct {
 	//   - RES_LIM: Indicate that the PCC rule could not be successfully installed (for those provisioned from PCF) or activated (for those pre-defined in SMF) or enforced (for those already successfully installed) due to a limitation of resources at the SMF/UPF.
 	//   - UNSUCC_QOS_VAL: indicate that the QoS validation has failed.
 	//   - UE_STA_SUSP: Indicates that the UE is in suspend state.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SessionRuleFailureCode)
 	SessRuleFailureCode  *SessionRuleFailureCode `json:"sessRuleFailureCode,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// SharedData defines model for SharedData.
+// SharedData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedData
 type SharedData struct {
-	SharedAmData            *AccessAndMobilitySubscriptionData `json:"sharedAmData,omitempty"`
-	SharedDataId            SharedDataId                       `json:"sharedDataId"`
-	SharedDnnConfigurations *map[string]DnnConfiguration       `json:"sharedDnnConfigurations,omitempty"`
-	SharedSmsMngSubsData    *SmsManagementSubscriptionData     `json:"sharedSmsMngSubsData,omitempty"`
-	SharedSmsSubsData       *SmsSubscriptionData               `json:"sharedSmsSubsData,omitempty"`
-	SharedSnssaiInfos       *map[string]SnssaiInfo             `json:"sharedSnssaiInfos,omitempty"`
-	SharedTraceData         *TraceData                         `json:"sharedTraceData"`
-	SharedVnGroupDatas      *map[string]VnGroupData            `json:"sharedVnGroupDatas,omitempty"`
-	AdditionalProperties    map[string]interface{}             `json:"-"`
+	// SharedAmData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AccessAndMobilitySubscriptionData
+	SharedAmData *AccessAndMobilitySubscriptionData `json:"sharedAmData,omitempty"`
+
+	// SharedDataId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataId
+	SharedDataId            SharedDataId                 `json:"sharedDataId"`
+	SharedDnnConfigurations *map[string]DnnConfiguration `json:"sharedDnnConfigurations,omitempty"`
+
+	// SharedSmsMngSubsData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsManagementSubscriptionData
+	SharedSmsMngSubsData *SmsManagementSubscriptionData `json:"sharedSmsMngSubsData,omitempty"`
+
+	// SharedSmsSubsData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsSubscriptionData
+	SharedSmsSubsData    *SmsSubscriptionData    `json:"sharedSmsSubsData,omitempty"`
+	SharedSnssaiInfos    *map[string]SnssaiInfo  `json:"sharedSnssaiInfos,omitempty"`
+	SharedTraceData      *TraceData              `json:"sharedTraceData"`
+	SharedVnGroupDatas   *map[string]VnGroupData `json:"sharedVnGroupDatas,omitempty"`
+	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// SharedDataId defines model for SharedDataId.
+// SharedDataId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataId
 type SharedDataId = string
 
-// SharedDataIds defines model for SharedDataIds.
+// SharedDataIds Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataIds
 type SharedDataIds = []SharedDataId
 
-// Sign defines model for Sign.
+// Sign Original definition in TS29505_Subscription_Data.yaml#/components/schemas/Sign
 type Sign string
 
-// SipForkingIndication defines model for SipForkingIndication.
+// SipForkingIndication Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SipForkingIndication
 type SipForkingIndication string
 
-// SliceInfoForPDUSession defines model for SliceInfoForPDUSession.
+// SliceInfoForPDUSession Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/SliceInfoForPDUSession
 type SliceInfoForPDUSession struct {
-	HomeSnssai           *Snssai                `json:"homeSnssai,omitempty"`
+	HomeSnssai *Snssai `json:"homeSnssai,omitempty"`
+
+	// RoamingIndication Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/RoamingIndication
 	RoamingIndication    RoamingIndication      `json:"roamingIndication"`
 	SNssai               Snssai                 `json:"sNssai"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SliceInfoForRegistration defines model for SliceInfoForRegistration.
+// SliceInfoForRegistration Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/SliceInfoForRegistration
 type SliceInfoForRegistration struct {
-	AllowedNssaiCurrentAccess  *AllowedNssai          `json:"allowedNssaiCurrentAccess,omitempty"`
+	// AllowedNssaiCurrentAccess Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/AllowedNssai
+	AllowedNssaiCurrentAccess *AllowedNssai `json:"allowedNssaiCurrentAccess,omitempty"`
+
+	// AllowedNssaiOtherAccess Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/AllowedNssai
 	AllowedNssaiOtherAccess    *AllowedNssai          `json:"allowedNssaiOtherAccess,omitempty"`
 	DefaultConfiguredSnssaiInd *bool                  `json:"defaultConfiguredSnssaiInd,omitempty"`
 	MappingOfNssai             []MappingOfSnssai      `json:"mappingOfNssai,omitempty"`
@@ -9945,9 +10831,12 @@ type SliceInfoForRegistration struct {
 	AdditionalProperties       map[string]interface{} `json:"-"`
 }
 
-// SliceInfoForUEConfigurationUpdate defines model for SliceInfoForUEConfigurationUpdate.
+// SliceInfoForUEConfigurationUpdate Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/SliceInfoForUEConfigurationUpdate
 type SliceInfoForUEConfigurationUpdate struct {
-	AllowedNssaiCurrentAccess  *AllowedNssai          `json:"allowedNssaiCurrentAccess,omitempty"`
+	// AllowedNssaiCurrentAccess Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/AllowedNssai
+	AllowedNssaiCurrentAccess *AllowedNssai `json:"allowedNssaiCurrentAccess,omitempty"`
+
+	// AllowedNssaiOtherAccess Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/AllowedNssai
 	AllowedNssaiOtherAccess    *AllowedNssai          `json:"allowedNssaiOtherAccess,omitempty"`
 	DefaultConfiguredSnssaiInd *bool                  `json:"defaultConfiguredSnssaiInd,omitempty"`
 	MappingOfNssai             []MappingOfSnssai      `json:"mappingOfNssai,omitempty"`
@@ -9956,35 +10845,45 @@ type SliceInfoForUEConfigurationUpdate struct {
 	AdditionalProperties       map[string]interface{} `json:"-"`
 }
 
-// SmContext defines model for SmContext.
+// SmContext Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContext
 type SmContext struct {
-	AddRanTunnelInfo      []QosFlowTunnel      `json:"addRanTunnelInfo,omitempty"`
-	AddRedRanTunnelInfo   []QosFlowTunnel      `json:"addRedRanTunnelInfo,omitempty"`
-	AlwaysOnGranted       *bool                `json:"alwaysOnGranted,omitempty"`
-	ChargingId            string               `json:"chargingId,omitempty"`
-	ChargingInfo          *ChargingInformation `json:"chargingInfo,omitempty"`
-	DlsetSupportInd       *bool                `json:"dlsetSupportInd,omitempty"`
-	DnAaaAddress          *SmfIpAddress        `json:"dnAaaAddress,omitempty"`
-	Dnn                   Dnn                  `json:"dnn"`
-	EnablePauseCharging   *bool                `json:"enablePauseCharging,omitempty"`
-	EpsBearerInfo         []EpsBearerInfo      `json:"epsBearerInfo,omitempty"`
-	EpsPdnCnxInfo         *EpsPdnCnxInfo       `json:"epsPdnCnxInfo,omitempty"`
-	ForwardingInd         *bool                `json:"forwardingInd,omitempty"`
-	Gpsi                  Gpsi                 `json:"gpsi,omitempty"`
-	HSmfInstanceId        *NfInstanceId        `json:"hSmfInstanceId,omitempty"`
-	HSmfServiceInstanceId *string              `json:"hSmfServiceInstanceId,omitempty"`
-	HSmfUri               *Uri                 `json:"hSmfUri,omitempty"`
-	HplmnSnssai           *Snssai              `json:"hplmnSnssai,omitempty"`
-	Ipv6Index             *IpIndex             `json:"ipv6Index,omitempty"`
+	AddRanTunnelInfo    []QosFlowTunnel `json:"addRanTunnelInfo,omitempty"`
+	AddRedRanTunnelInfo []QosFlowTunnel `json:"addRedRanTunnelInfo,omitempty"`
+	AlwaysOnGranted     *bool           `json:"alwaysOnGranted,omitempty"`
+	ChargingId          string          `json:"chargingId,omitempty"`
+
+	// ChargingInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingInformation
+	ChargingInfo    *ChargingInformation `json:"chargingInfo,omitempty"`
+	DlsetSupportInd *bool                `json:"dlsetSupportInd,omitempty"`
+
+	// DnAaaAddress Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/IpAddress
+	DnAaaAddress        *SmfIpAddress   `json:"dnAaaAddress,omitempty"`
+	Dnn                 Dnn             `json:"dnn"`
+	EnablePauseCharging *bool           `json:"enablePauseCharging,omitempty"`
+	EpsBearerInfo       []EpsBearerInfo `json:"epsBearerInfo,omitempty"`
+
+	// EpsPdnCnxInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxInfo
+	EpsPdnCnxInfo         *EpsPdnCnxInfo `json:"epsPdnCnxInfo,omitempty"`
+	ForwardingInd         *bool          `json:"forwardingInd,omitempty"`
+	Gpsi                  Gpsi           `json:"gpsi,omitempty"`
+	HSmfInstanceId        *NfInstanceId  `json:"hSmfInstanceId,omitempty"`
+	HSmfServiceInstanceId *string        `json:"hSmfServiceInstanceId,omitempty"`
+	HSmfUri               *Uri           `json:"hSmfUri,omitempty"`
+	HplmnSnssai           *Snssai        `json:"hplmnSnssai,omitempty"`
+
+	// Ipv6Index Original definition in TS29519_Policy_Data.yaml#/components/schemas/IpIndex
+	Ipv6Index *IpIndex `json:"ipv6Index,omitempty"`
 
 	// MaxIntegrityProtectedDataRate Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRate *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRate,omitempty"`
 
 	// MaxIntegrityProtectedDataRateDl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateDl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateDl,omitempty"`
 	NefExtBufSupportInd             *bool                          `json:"nefExtBufSupportInd,omitempty"`
 	PcfGroupId                      *NfGroupId                     `json:"pcfGroupId,omitempty"`
@@ -9992,21 +10891,25 @@ type SmContext struct {
 	PcfSetId                        *NfSetId                       `json:"pcfSetId,omitempty"`
 	PduSessionId                    PduSessionId                   `json:"pduSessionId"`
 	PduSessionRef                   *Uri                           `json:"pduSessionRef,omitempty"`
-	PduSessionSmfBinding            *SbiBindingLevel               `json:"pduSessionSmfBinding,omitempty"`
-	PduSessionSmfServiceSetId       *NfServiceSetId                `json:"pduSessionSmfServiceSetId,omitempty"`
-	PduSessionSmfSetId              *NfSetId                       `json:"pduSessionSmfSetId,omitempty"`
-	PduSessionType                  PduSessionType                 `json:"pduSessionType"`
-	PsaTunnelInfo                   *TunnelInfo                    `json:"psaTunnelInfo,omitempty"`
-	QosFlowsList                    []QosFlowSetupItem             `json:"qosFlowsList"`
 
-	// RanTunnelInfo Tunnel Information per QoS Flow
+	// PduSessionSmfBinding Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
+	PduSessionSmfBinding      *SbiBindingLevel `json:"pduSessionSmfBinding,omitempty"`
+	PduSessionSmfServiceSetId *NfServiceSetId  `json:"pduSessionSmfServiceSetId,omitempty"`
+	PduSessionSmfSetId        *NfSetId         `json:"pduSessionSmfSetId,omitempty"`
+	PduSessionType            PduSessionType   `json:"pduSessionType"`
+
+	// PsaTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
+	PsaTunnelInfo *TunnelInfo        `json:"psaTunnelInfo,omitempty"`
+	QosFlowsList  []QosFlowSetupItem `json:"qosFlowsList"`
+
+	// RanTunnelInfo Tunnel Information per QoS Flow (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowTunnel)
 	RanTunnelInfo *QosFlowTunnel `json:"ranTunnelInfo,omitempty"`
 	RecoveryTime  *DateTime      `json:"recoveryTime,omitempty"`
 
-	// RedRanTunnelInfo Tunnel Information per QoS Flow
+	// RedRanTunnelInfo Tunnel Information per QoS Flow (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosFlowTunnel)
 	RedRanTunnelInfo *QosFlowTunnel `json:"redRanTunnelInfo,omitempty"`
 
-	// RedundantPduSessionInfo Redundant PDU Session Information
+	// RedundantPduSessionInfo Redundant PDU Session Information (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RedundantPduSessionInformation)
 	RedundantPduSessionInfo *RedundantPduSessionInformation `json:"redundantPduSessionInfo,omitempty"`
 
 	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
@@ -10015,6 +10918,7 @@ type SmContext struct {
 	SNssai                 Snssai      `json:"sNssai"`
 
 	// SelMode Possible values are - VERIFIED - UE_DNN_NOT_VERIFIED - NW_DNN_NOT_VERIFIED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnnSelectionMode)
 	SelMode              *DnnSelectionMode      `json:"selMode,omitempty"`
 	SelectedDnn          *Dnn                   `json:"selectedDnn,omitempty"`
 	SessionAmbr          Ambr                   `json:"sessionAmbr"`
@@ -10028,26 +10932,31 @@ type SmContext struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextCreateData defines model for SmContextCreateData.
+// SmContextCreateData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateData
 type SmContextCreateData struct {
-	AddUeLocation        *UserLocation          `json:"addUeLocation,omitempty"`
-	AdditionalAnType     AccessType             `json:"additionalAnType,omitempty"`
-	AdditionalHsmfId     []NfInstanceId         `json:"additionalHsmfId,omitempty"`
-	AdditionalHsmfUri    []Uri                  `json:"additionalHsmfUri,omitempty"`
-	AdditionalSmfId      []NfInstanceId         `json:"additionalSmfId,omitempty"`
-	AdditionalSmfUri     []Uri                  `json:"additionalSmfUri,omitempty"`
-	AnType               AccessType             `json:"anType"`
-	ApnRateStatus        *ApnRateStatus         `json:"apnRateStatus,omitempty"`
-	BackupAmfInfo        []BackupAmfInfo        `json:"backupAmfInfo,omitempty"`
-	CpCiotEnabled        *bool                  `json:"cpCiotEnabled,omitempty"`
-	CpOnlyInd            *bool                  `json:"cpOnlyInd,omitempty"`
-	DdnFailureSubs       *DdnFailureSubs        `json:"ddnFailureSubs,omitempty"`
-	DirectForwardingFlag *bool                  `json:"directForwardingFlag,omitempty"`
-	DlDataWaitingInd     *bool                  `json:"dlDataWaitingInd,omitempty"`
-	Dnn                  *Dnn                   `json:"dnn,omitempty"`
-	EpsBearerCtxStatus   EpsBearerContextStatus `json:"epsBearerCtxStatus,omitempty"`
+	AddUeLocation     *UserLocation   `json:"addUeLocation,omitempty"`
+	AdditionalAnType  AccessType      `json:"additionalAnType,omitempty"`
+	AdditionalHsmfId  []NfInstanceId  `json:"additionalHsmfId,omitempty"`
+	AdditionalHsmfUri []Uri           `json:"additionalHsmfUri,omitempty"`
+	AdditionalSmfId   []NfInstanceId  `json:"additionalSmfId,omitempty"`
+	AdditionalSmfUri  []Uri           `json:"additionalSmfUri,omitempty"`
+	AnType            AccessType      `json:"anType"`
+	ApnRateStatus     *ApnRateStatus  `json:"apnRateStatus,omitempty"`
+	BackupAmfInfo     []BackupAmfInfo `json:"backupAmfInfo,omitempty"`
+	CpCiotEnabled     *bool           `json:"cpCiotEnabled,omitempty"`
+	CpOnlyInd         *bool           `json:"cpOnlyInd,omitempty"`
+
+	// DdnFailureSubs Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DdnFailureSubs
+	DdnFailureSubs       *DdnFailureSubs `json:"ddnFailureSubs,omitempty"`
+	DirectForwardingFlag *bool           `json:"directForwardingFlag,omitempty"`
+	DlDataWaitingInd     *bool           `json:"dlDataWaitingInd,omitempty"`
+	Dnn                  *Dnn            `json:"dnn,omitempty"`
+
+	// EpsBearerCtxStatus Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerContextStatus
+	EpsBearerCtxStatus EpsBearerContextStatus `json:"epsBearerCtxStatus,omitempty"`
 
 	// EpsInterworkingInd Possible values are - NONE - WITH_N26 - WITHOUT_N26 - IWK_NON_3GPP
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsInterworkingIndication)
 	EpsInterworkingInd    *EpsInterworkingIndication `json:"epsInterworkingInd,omitempty"`
 	ExtendedNasSmTimerInd *bool                      `json:"extendedNasSmTimerInd,omitempty"`
 	Gpsi                  Gpsi                       `json:"gpsi,omitempty"`
@@ -10056,6 +10965,7 @@ type SmContextCreateData struct {
 	HSmfUri               *Uri                       `json:"hSmfUri,omitempty"`
 
 	// HoState Possible values are - NONE - PREPARING - PREPARED - COMPLETED - CANCELLED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HoState)
 	HoState                *HoState         `json:"hoState,omitempty"`
 	HplmnSnssai            *Snssai          `json:"hplmnSnssai,omitempty"`
 	IndirectForwardingFlag *bool            `json:"indirectForwardingFlag,omitempty"`
@@ -10067,9 +10977,11 @@ type SmContextCreateData struct {
 	N2SmInfoExt1           *RefToBinaryData `json:"n2SmInfoExt1,omitempty"`
 
 	// N2SmInfoType Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 	N2SmInfoType *N2SmInfoType `json:"n2SmInfoType,omitempty"`
 
 	// N2SmInfoTypeExt1 Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 	N2SmInfoTypeExt1        *N2SmInfoType  `json:"n2SmInfoTypeExt1,omitempty"`
 	NrfUri                  *Uri           `json:"nrfUri,omitempty"`
 	OldPduSessionId         *PduSessionId  `json:"oldPduSessionId,omitempty"`
@@ -10086,19 +10998,23 @@ type SmContextCreateData struct {
 	RatType                 *RatType       `json:"ratType,omitempty"`
 
 	// RequestType Possible values are - INITIAL_REQUEST - EXISTING_PDU_SESSION - INITIAL_EMERGENCY_REQUEST - EXISTING_EMERGENCY_PDU_SESSION
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RequestType)
 	RequestType      *RequestType `json:"requestType,omitempty"`
 	RoutingIndicator *string      `json:"routingIndicator,omitempty"`
 	SNssai           *Snssai      `json:"sNssai,omitempty"`
 
 	// SelMode Possible values are - VERIFIED - UE_DNN_NOT_VERIFIED - NW_DNN_NOT_VERIFIED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnnSelectionMode)
 	SelMode     *DnnSelectionMode `json:"selMode,omitempty"`
 	SelectedDnn *Dnn              `json:"selectedDnn,omitempty"`
 
-	// ServiceName Service names known to NRF
-	ServiceName              *ServiceName         `json:"serviceName,omitempty"`
-	ServingNetwork           PlmnIdNid            `json:"servingNetwork"`
-	ServingNfId              NfInstanceId         `json:"servingNfId"`
-	SmContextRef             *Uri                 `json:"smContextRef,omitempty"`
+	// ServiceName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
+	ServiceName    *ServiceName `json:"serviceName,omitempty"`
+	ServingNetwork PlmnIdNid    `json:"servingNetwork"`
+	ServingNfId    NfInstanceId `json:"servingNfId"`
+	SmContextRef   *Uri         `json:"smContextRef,omitempty"`
+
+	// SmContextSmfBinding Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
 	SmContextSmfBinding      *SbiBindingLevel     `json:"smContextSmfBinding,omitempty"`
 	SmContextSmfId           *NfInstanceId        `json:"smContextSmfId,omitempty"`
 	SmContextSmfServiceSetId *NfServiceSetId      `json:"smContextSmfServiceSetId,omitempty"`
@@ -10110,51 +11026,60 @@ type SmContextCreateData struct {
 	SmfUri                   *Uri                 `json:"smfUri,omitempty"`
 	Supi                     Supi                 `json:"supi,omitempty"`
 	SupportedFeatures        *SupportedFeatures   `json:"supportedFeatures,omitempty"`
-	TargetId                 *NgRanTargetId       `json:"targetId,omitempty"`
 
-	// TngfInfo Infomation of the TNGF endpoints
+	// TargetId Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgRanTargetId
+	TargetId *NgRanTargetId `json:"targetId,omitempty"`
+
+	// TngfInfo Infomation of the TNGF endpoints (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TngfInfo)
 	TngfInfo  *TngfInfo  `json:"tngfInfo,omitempty"`
 	TraceData *TraceData `json:"traceData"`
 
-	// TwifInfo Addressing information (IP addresses, FQDN) of the TWIF
-	TwifInfo            *TwifInfo           `json:"twifInfo,omitempty"`
-	UdmGroupId          *NfGroupId          `json:"udmGroupId,omitempty"`
+	// TwifInfo Addressing information (IP addresses, FQDN) of the TWIF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TwifInfo)
+	TwifInfo   *TwifInfo  `json:"twifInfo,omitempty"`
+	UdmGroupId *NfGroupId `json:"udmGroupId,omitempty"`
+
+	// UeEpsPdnConnection Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxContainer
 	UeEpsPdnConnection  *EpsPdnCnxContainer `json:"ueEpsPdnConnection,omitempty"`
 	UeLocation          *UserLocation       `json:"ueLocation,omitempty"`
 	UeTimeZone          *TimeZone           `json:"ueTimeZone,omitempty"`
 	UnauthenticatedSupi *bool               `json:"unauthenticatedSupi,omitempty"`
 
 	// UpCnxState Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpCnxState)
 	UpCnxState *UpCnxState `json:"upCnxState,omitempty"`
 
-	// WAgfInfo Information of the W-AGF end-points
+	// WAgfInfo Information of the W-AGF end-points (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/WAgfInfo)
 	WAgfInfo             *WAgfInfo              `json:"wAgfInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextCreateError defines model for SmContextCreateError.
+// SmContextCreateError Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateError
 type SmContextCreateError struct {
+	// Error Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 	Error    ExtProblemDetails `json:"error"`
 	N1SmMsg  *RefToBinaryData  `json:"n1SmMsg,omitempty"`
 	N2SmInfo *RefToBinaryData  `json:"n2SmInfo,omitempty"`
 
 	// N2SmInfoType Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 	N2SmInfoType         *N2SmInfoType          `json:"n2SmInfoType,omitempty"`
 	RecoveryTime         *DateTime              `json:"recoveryTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextCreatedData defines model for SmContextCreatedData.
+// SmContextCreatedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreatedData
 type SmContextCreatedData struct {
 	AllocatedEbiList []EbiArpMapping `json:"allocatedEbiList,omitempty"`
 	Gpsi             Gpsi            `json:"gpsi,omitempty"`
 	HSmfUri          *Uri            `json:"hSmfUri,omitempty"`
 
 	// HoState Possible values are - NONE - PREPARING - PREPARED - COMPLETED - CANCELLED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HoState)
 	HoState  *HoState         `json:"hoState,omitempty"`
 	N2SmInfo *RefToBinaryData `json:"n2SmInfo,omitempty"`
 
 	// N2SmInfoType Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 	N2SmInfoType         *N2SmInfoType      `json:"n2SmInfoType,omitempty"`
 	PduSessionId         *PduSessionId      `json:"pduSessionId,omitempty"`
 	RecoveryTime         *DateTime          `json:"recoveryTime,omitempty"`
@@ -10166,21 +11091,24 @@ type SmContextCreatedData struct {
 	SupportedFeatures    *SupportedFeatures `json:"supportedFeatures,omitempty"`
 
 	// UpCnxState Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpCnxState)
 	UpCnxState           *UpCnxState            `json:"upCnxState,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextReleaseData defines model for SmContextReleaseData.
+// SmContextReleaseData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextReleaseData
 type SmContextReleaseData struct {
 	N5gMmCauseValue *N5GMmCause   `json:"5gMmCauseValue,omitempty"`
 	AddUeLocation   *UserLocation `json:"addUeLocation,omitempty"`
 
 	// Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
 	Cause           *Cause           `json:"cause,omitempty"`
 	IsmfReleaseOnly *bool            `json:"ismfReleaseOnly,omitempty"`
 	N2SmInfo        *RefToBinaryData `json:"n2SmInfo,omitempty"`
 
 	// N2SmInfoType Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 	N2SmInfoType         *N2SmInfoType          `json:"n2SmInfoType,omitempty"`
 	NgApCause            *NgApCause             `json:"ngApCause,omitempty"`
 	UeLocation           *UserLocation          `json:"ueLocation,omitempty"`
@@ -10189,14 +11117,14 @@ type SmContextReleaseData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextReleasedData defines model for SmContextReleasedData.
+// SmContextReleasedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextReleasedData
 type SmContextReleasedData struct {
 	ApnRateStatus        *ApnRateStatus         `json:"apnRateStatus,omitempty"`
 	SmallDataRateStatus  *SmallDataRateStatus   `json:"smallDataRateStatus,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextRetrieveData defines model for SmContextRetrieveData.
+// SmContextRetrieveData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextRetrieveData
 type SmContextRetrieveData struct {
 	NotToTransferEbiList []SmfEpsBearerId `json:"notToTransferEbiList,omitempty"`
 	RanUnchangedInd      *bool            `json:"ranUnchangedInd,omitempty"`
@@ -10205,44 +11133,54 @@ type SmContextRetrieveData struct {
 	// SmContextType Possible values are
 	//   - EPS_PDN_CONNECTION
 	//   - SM_CONTEXT
-	SmContextType        *SmContextType         `json:"smContextType,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextType)
+	SmContextType *SmContextType `json:"smContextType,omitempty"`
+
+	// TargetMmeCap Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MmeCapabilities
 	TargetMmeCap         *MmeCapabilities       `json:"targetMmeCap,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextRetrievedData defines model for SmContextRetrievedData.
+// SmContextRetrievedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextRetrievedData
 type SmContextRetrievedData struct {
-	ApnRateStatus        *ApnRateStatus         `json:"apnRateStatus,omitempty"`
-	DlDataWaitingInd     *bool                  `json:"dlDataWaitingInd,omitempty"`
-	SmContext            *SmContext             `json:"smContext,omitempty"`
-	SmallDataRateStatus  *SmallDataRateStatus   `json:"smallDataRateStatus,omitempty"`
+	ApnRateStatus    *ApnRateStatus `json:"apnRateStatus,omitempty"`
+	DlDataWaitingInd *bool          `json:"dlDataWaitingInd,omitempty"`
+
+	// SmContext Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContext
+	SmContext           *SmContext           `json:"smContext,omitempty"`
+	SmallDataRateStatus *SmallDataRateStatus `json:"smallDataRateStatus,omitempty"`
+
+	// UeEpsPdnConnection Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxContainer
 	UeEpsPdnConnection   EpsPdnCnxContainer     `json:"ueEpsPdnConnection"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextStatusNotification defines model for SmContextStatusNotification.
+// SmContextStatusNotification Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextStatusNotification
 type SmContextStatusNotification struct {
-	AltAnchorSmfId                    *NfInstanceId          `json:"altAnchorSmfId,omitempty"`
-	AltAnchorSmfUri                   *Uri                   `json:"altAnchorSmfUri,omitempty"`
-	ApnRateStatus                     *ApnRateStatus         `json:"apnRateStatus,omitempty"`
-	DdnFailureStatus                  *bool                  `json:"ddnFailureStatus,omitempty"`
-	NewIntermediateSmfId              *NfInstanceId          `json:"newIntermediateSmfId,omitempty"`
-	NewSmfId                          *NfInstanceId          `json:"newSmfId,omitempty"`
-	NewSmfSetId                       *NfSetId               `json:"newSmfSetId,omitempty"`
-	NotifyCorrelationIdsForddnFailure []string               `json:"notifyCorrelationIdsForddnFailure,omitempty"`
-	OldSmContextRef                   *Uri                   `json:"oldSmContextRef,omitempty"`
-	OldSmfId                          *NfInstanceId          `json:"oldSmfId,omitempty"`
-	SmallDataRateStatus               *SmallDataRateStatus   `json:"smallDataRateStatus,omitempty"`
-	StatusInfo                        StatusInfo             `json:"statusInfo"`
-	AdditionalProperties              map[string]interface{} `json:"-"`
+	AltAnchorSmfId                    *NfInstanceId        `json:"altAnchorSmfId,omitempty"`
+	AltAnchorSmfUri                   *Uri                 `json:"altAnchorSmfUri,omitempty"`
+	ApnRateStatus                     *ApnRateStatus       `json:"apnRateStatus,omitempty"`
+	DdnFailureStatus                  *bool                `json:"ddnFailureStatus,omitempty"`
+	NewIntermediateSmfId              *NfInstanceId        `json:"newIntermediateSmfId,omitempty"`
+	NewSmfId                          *NfInstanceId        `json:"newSmfId,omitempty"`
+	NewSmfSetId                       *NfSetId             `json:"newSmfSetId,omitempty"`
+	NotifyCorrelationIdsForddnFailure []string             `json:"notifyCorrelationIdsForddnFailure,omitempty"`
+	OldSmContextRef                   *Uri                 `json:"oldSmContextRef,omitempty"`
+	OldSmfId                          *NfInstanceId        `json:"oldSmfId,omitempty"`
+	SmallDataRateStatus               *SmallDataRateStatus `json:"smallDataRateStatus,omitempty"`
+
+	// StatusInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/StatusInfo
+	StatusInfo           StatusInfo             `json:"statusInfo"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // SmContextType Possible values are
 //   - EPS_PDN_CONNECTION
 //   - SM_CONTEXT
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextType)
 type SmContextType string
 
-// SmContextUpdateData defines model for SmContextUpdateData.
+// SmContextUpdateData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdateData
 type SmContextUpdateData struct {
 	N5gMmCauseValue    *N5GMmCause      `json:"5gMmCauseValue,omitempty"`
 	AddUeLocation      *UserLocation    `json:"addUeLocation,omitempty"`
@@ -10253,13 +11191,19 @@ type SmContextUpdateData struct {
 	BackupAmfInfo      *[]BackupAmfInfo `json:"backupAmfInfo"`
 
 	// Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
-	Cause          *Cause                `json:"cause,omitempty"`
-	DataForwarding *bool                 `json:"dataForwarding,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
+	Cause          *Cause `json:"cause,omitempty"`
+	DataForwarding *bool  `json:"dataForwarding,omitempty"`
+
+	// DdnFailureSubs Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DdnFailureSubs
 	DdnFailureSubs *DdnFailureSubs       `json:"ddnFailureSubs,omitempty"`
 	EpsBearerSetup *[]EpsBearerContainer `json:"epsBearerSetup,omitempty"`
 
 	// EpsInterworkingInd Possible values are - NONE - WITH_N26 - WITHOUT_N26 - IWK_NON_3GPP
-	EpsInterworkingInd       *EpsInterworkingIndication  `json:"epsInterworkingInd,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsInterworkingIndication)
+	EpsInterworkingInd *EpsInterworkingIndication `json:"epsInterworkingInd,omitempty"`
+
+	// ExemptionInd Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExemptionInd
 	ExemptionInd             *ExemptionInd               `json:"exemptionInd,omitempty"`
 	ExtendedNasSmTimerInd    *bool                       `json:"extendedNasSmTimerInd,omitempty"`
 	FailedToBeSwitched       *bool                       `json:"failedToBeSwitched,omitempty"`
@@ -10268,12 +11212,14 @@ type SmContextUpdateData struct {
 	Guami                    *Guami                      `json:"guami,omitempty"`
 
 	// HoState Possible values are - NONE - PREPARING - PREPARED - COMPLETED - CANCELLED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HoState)
 	HoState        *HoState `json:"hoState,omitempty"`
 	MaNwUpgradeInd *bool    `json:"maNwUpgradeInd,omitempty"`
 
 	// MaReleaseInd Possible values are
 	//   - REL_MAPDU_OVER_3GPP
 	//   - REL_MAPDU_OVER_N3GPP
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaReleaseIndication)
 	MaReleaseInd     *MaReleaseIndication `json:"maReleaseInd,omitempty"`
 	MaRequestInd     *bool                `json:"maRequestInd,omitempty"`
 	MoExpDataCounter *MoExpDataCounter    `json:"moExpDataCounter,omitempty"`
@@ -10282,11 +11228,15 @@ type SmContextUpdateData struct {
 	N2SmInfoExt1     *RefToBinaryData     `json:"n2SmInfoExt1,omitempty"`
 
 	// N2SmInfoType Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 	N2SmInfoType *N2SmInfoType `json:"n2SmInfoType,omitempty"`
 
 	// N2SmInfoTypeExt1 Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
-	N2SmInfoTypeExt1          *N2SmInfoType                      `json:"n2SmInfoTypeExt1,omitempty"`
-	N9DlForwardingTnlList     []IndirectDataForwardingTunnelInfo `json:"n9DlForwardingTnlList,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
+	N2SmInfoTypeExt1      *N2SmInfoType                      `json:"n2SmInfoTypeExt1,omitempty"`
+	N9DlForwardingTnlList []IndirectDataForwardingTunnelInfo `json:"n9DlForwardingTnlList,omitempty"`
+
+	// N9ForwardingTunnel Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
 	N9ForwardingTunnel        *TunnelInfo                        `json:"n9ForwardingTunnel,omitempty"`
 	N9UlForwardingTnlList     []IndirectDataForwardingTunnelInfo `json:"n9UlForwardingTnlList,omitempty"`
 	NgApCause                 *NgApCause                         `json:"ngApCause,omitempty"`
@@ -10301,39 +11251,48 @@ type SmContextUpdateData struct {
 	SkipN2PduSessionResRelInd *bool                              `json:"skipN2PduSessionResRelInd,omitempty"`
 	SmContextStatusUri        *Uri                               `json:"smContextStatusUri,omitempty"`
 	SupportedFeatures         *SupportedFeatures                 `json:"supportedFeatures,omitempty"`
-	TargetId                  *NgRanTargetId                     `json:"targetId,omitempty"`
-	TargetServingNfId         *NfInstanceId                      `json:"targetServingNfId,omitempty"`
-	ToBeSwitched              *bool                              `json:"toBeSwitched,omitempty"`
-	TraceData                 *TraceData                         `json:"traceData"`
-	UeLocation                *UserLocation                      `json:"ueLocation,omitempty"`
-	UeTimeZone                *TimeZone                          `json:"ueTimeZone,omitempty"`
+
+	// TargetId Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgRanTargetId
+	TargetId          *NgRanTargetId `json:"targetId,omitempty"`
+	TargetServingNfId *NfInstanceId  `json:"targetServingNfId,omitempty"`
+	ToBeSwitched      *bool          `json:"toBeSwitched,omitempty"`
+	TraceData         *TraceData     `json:"traceData"`
+	UeLocation        *UserLocation  `json:"ueLocation,omitempty"`
+	UeTimeZone        *TimeZone      `json:"ueTimeZone,omitempty"`
 
 	// UpCnxState Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpCnxState)
 	UpCnxState           *UpCnxState            `json:"upCnxState,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextUpdateError defines model for SmContextUpdateError.
+// SmContextUpdateError Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdateError
 type SmContextUpdateError struct {
+	// Error Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 	Error    ExtProblemDetails `json:"error"`
 	N1SmMsg  *RefToBinaryData  `json:"n1SmMsg,omitempty"`
 	N2SmInfo *RefToBinaryData  `json:"n2SmInfo,omitempty"`
 
 	// N2SmInfoType Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 	N2SmInfoType *N2SmInfoType `json:"n2SmInfoType,omitempty"`
 	RecoveryTime *DateTime     `json:"recoveryTime,omitempty"`
 
 	// UpCnxState Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpCnxState)
 	UpCnxState           *UpCnxState            `json:"upCnxState,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmContextUpdatedData defines model for SmContextUpdatedData.
+// SmContextUpdatedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdatedData
 type SmContextUpdatedData struct {
-	AllocatedEbiList  []EbiArpMapping    `json:"allocatedEbiList,omitempty"`
+	AllocatedEbiList []EbiArpMapping `json:"allocatedEbiList,omitempty"`
+
+	// AnchorSmfFeatures Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/AnchorSmfFeatures
 	AnchorSmfFeatures *AnchorSmfFeatures `json:"anchorSmfFeatures,omitempty"`
 
 	// Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
 	Cause                    *Cause                      `json:"cause,omitempty"`
 	DataForwarding           *bool                       `json:"dataForwarding,omitempty"`
 	EpsBearerSetup           []EpsBearerContainer        `json:"epsBearerSetup,omitempty"`
@@ -10341,6 +11300,7 @@ type SmContextUpdatedData struct {
 	ForwardingFTeid          *Bytes                      `json:"forwardingFTeid,omitempty"`
 
 	// HoState Possible values are - NONE - PREPARING - PREPARED - COMPLETED - CANCELLED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HoState)
 	HoState         *HoState         `json:"hoState,omitempty"`
 	MaAcceptedInd   *bool            `json:"maAcceptedInd,omitempty"`
 	ModifiedEbiList []EbiArpMapping  `json:"modifiedEbiList,omitempty"`
@@ -10348,6 +11308,7 @@ type SmContextUpdatedData struct {
 	N2SmInfo        *RefToBinaryData `json:"n2SmInfo,omitempty"`
 
 	// N2SmInfoType Possible values are - PDU_RES_SETUP_REQ - PDU_RES_SETUP_RSP - PDU_RES_SETUP_FAIL - PDU_RES_REL_CMD - PDU_RES_REL_RSP - PDU_RES_MOD_REQ - PDU_RES_MOD_RSP - PDU_RES_MOD_FAIL - PDU_RES_NTY - PDU_RES_NTY_REL - PDU_RES_MOD_IND - PDU_RES_MOD_CFM - PATH_SWITCH_REQ - PATH_SWITCH_SETUP_FAIL - PATH_SWITCH_REQ_ACK - PATH_SWITCH_REQ_FAIL - HANDOVER_REQUIRED - HANDOVER_CMD - HANDOVER_PREP_FAIL - HANDOVER_REQ_ACK - HANDOVER_RES_ALLOC_FAIL - SECONDARY_RAT_USAGE - PDU_RES_MOD_IND_FAIL - UE_CONTEXT_RESUME_REQ - UE_CONTEXT_RESUME_RSP - UE_CONTEXT_SUSPEND_REQ
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N2SmInfoType)
 	N2SmInfoType          *N2SmInfoType                      `json:"n2SmInfoType,omitempty"`
 	N3DlForwardingTnlList []IndirectDataForwardingTunnelInfo `json:"n3DlForwardingTnlList,omitempty"`
 	N3UlForwardingTnlList []IndirectDataForwardingTunnelInfo `json:"n3UlForwardingTnlList,omitempty"`
@@ -10357,31 +11318,39 @@ type SmContextUpdatedData struct {
 	SupportedFeatures     *SupportedFeatures                 `json:"supportedFeatures,omitempty"`
 
 	// UpCnxState Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpCnxState)
 	UpCnxState           *UpCnxState            `json:"upCnxState,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmPolicyAssociationReleaseCause defines model for SmPolicyAssociationReleaseCause.
+// SmPolicyAssociationReleaseCause Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyAssociationReleaseCause
 type SmPolicyAssociationReleaseCause string
 
-// SmPolicyContextData defines model for SmPolicyContextData.
+// SmPolicyContextData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyContextData
 type SmPolicyContextData struct {
 	// N3gppPsDataOffStatus If it is included and set to true, the 3GPP PS Data Off is activated by the UE.
-	N3gppPsDataOffStatus *bool                 `json:"3gppPsDataOffStatus,omitempty"`
-	AccNetChId           *AccNetChId           `json:"accNetChId,omitempty"`
-	AccessType           AccessType            `json:"accessType,omitempty"`
-	AddAccessInfo        *AdditionalAccessInfo `json:"addAccessInfo,omitempty"`
-	AtsssCapab           *PcfAtsssCapability   `json:"atsssCapab,omitempty"`
+	N3gppPsDataOffStatus *bool `json:"3gppPsDataOffStatus,omitempty"`
+
+	// AccNetChId Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AccNetChId
+	AccNetChId *AccNetChId `json:"accNetChId,omitempty"`
+	AccessType AccessType  `json:"accessType,omitempty"`
+
+	// AddAccessInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
+	AddAccessInfo *AdditionalAccessInfo `json:"addAccessInfo,omitempty"`
+
+	// AtsssCapab Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AtsssCapability
+	AtsssCapab *PcfAtsssCapability `json:"atsssCapab,omitempty"`
 
 	// AuthProfIndex Indicates the DN-AAA authorization profile index
 	AuthProfIndex *string `json:"authProfIndex,omitempty"`
 
-	// ChargEntityAddr Describes the network entity within the access network performing charging
+	// ChargEntityAddr Describes the network entity within the access network performing charging (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AccNetChargingAddress)
 	ChargEntityAddr         *AccNetChargingAddress `json:"chargEntityAddr,omitempty"`
 	Chargingcharacteristics *string                `json:"chargingcharacteristics,omitempty"`
 	Dnn                     Dnn                    `json:"dnn"`
 
 	// DnnSelMode Possible values are - VERIFIED - UE_DNN_NOT_VERIFIED - NW_DNN_NOT_VERIFIED
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnnSelectionMode)
 	DnnSelMode  *DnnSelectionMode `json:"dnnSelMode,omitempty"`
 	Gpsi        Gpsi              `json:"gpsi,omitempty"`
 	InterGrpIds []GroupId         `json:"interGrpIds,omitempty"`
@@ -10390,13 +11359,15 @@ type SmPolicyContextData struct {
 	InvalidSupi *bool `json:"invalidSupi,omitempty"`
 
 	// IpDomain Indicates the IPv4 address domain
-	IpDomain           *string          `json:"ipDomain,omitempty"`
-	Ipv4Address        Ipv4Addr         `json:"ipv4Address,omitempty"`
-	Ipv4FrameRouteList []Ipv4AddrMask   `json:"ipv4FrameRouteList,omitempty"`
-	Ipv6AddressPrefix  *Ipv6Prefix      `json:"ipv6AddressPrefix,omitempty"`
-	Ipv6FrameRouteList []Ipv6Prefix     `json:"ipv6FrameRouteList,omitempty"`
-	MaPduInd           *MaPduIndication `json:"maPduInd,omitempty"`
-	NotificationUri    Uri              `json:"notificationUri"`
+	IpDomain           *string        `json:"ipDomain,omitempty"`
+	Ipv4Address        Ipv4Addr       `json:"ipv4Address,omitempty"`
+	Ipv4FrameRouteList []Ipv4AddrMask `json:"ipv4FrameRouteList,omitempty"`
+	Ipv6AddressPrefix  *Ipv6Prefix    `json:"ipv6AddressPrefix,omitempty"`
+	Ipv6FrameRouteList []Ipv6Prefix   `json:"ipv6FrameRouteList,omitempty"`
+
+	// MaPduInd Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MaPduIndication
+	MaPduInd        *MaPduIndication `json:"maPduInd,omitempty"`
+	NotificationUri Uri              `json:"notificationUri"`
 
 	// NumOfPackFilter Contains the number of supported packet filter for signalled QoS rules.
 	NumOfPackFilter *int `json:"numOfPackFilter,omitempty"`
@@ -10411,35 +11382,43 @@ type SmPolicyContextData struct {
 	Pei            Pei            `json:"pei,omitempty"`
 
 	// QosFlowUsage Possible values are - GENERAL: Indicate no specific QoS flow usage information is available.  - IMS_SIG: Indicate that the QoS flow is used for IMS signalling only.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosFlowUsage)
 	QosFlowUsage *QosFlowUsage `json:"qosFlowUsage,omitempty"`
 	RatType      *RatType      `json:"ratType,omitempty"`
 	RecoveryTime *DateTime     `json:"recoveryTime,omitempty"`
 
 	// RefQosIndication If it is included and set to true, the reflective QoS is supported by the UE.
-	RefQosIndication     *bool                  `json:"refQosIndication,omitempty"`
-	ServNfId             *ServingNfIdentity     `json:"servNfId,omitempty"`
-	ServingNetwork       *PlmnIdNid             `json:"servingNetwork,omitempty"`
-	SliceInfo            Snssai                 `json:"sliceInfo"`
-	SmfId                *NfInstanceId          `json:"smfId,omitempty"`
-	SubsDefQos           *SubscribedDefaultQos  `json:"subsDefQos,omitempty"`
-	SubsSessAmbr         *Ambr                  `json:"subsSessAmbr,omitempty"`
-	Supi                 Supi                   `json:"supi"`
-	SuppFeat             *SupportedFeatures     `json:"suppFeat,omitempty"`
-	TraceReq             *TraceData             `json:"traceReq"`
-	UeTimeZone           *TimeZone              `json:"ueTimeZone,omitempty"`
-	UserLocationInfo     *UserLocation          `json:"userLocationInfo,omitempty"`
+	RefQosIndication *bool `json:"refQosIndication,omitempty"`
+
+	// ServNfId Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ServingNfIdentity
+	ServNfId         *ServingNfIdentity    `json:"servNfId,omitempty"`
+	ServingNetwork   *PlmnIdNid            `json:"servingNetwork,omitempty"`
+	SliceInfo        Snssai                `json:"sliceInfo"`
+	SmfId            *NfInstanceId         `json:"smfId,omitempty"`
+	SubsDefQos       *SubscribedDefaultQos `json:"subsDefQos,omitempty"`
+	SubsSessAmbr     *Ambr                 `json:"subsSessAmbr,omitempty"`
+	Supi             Supi                  `json:"supi"`
+	SuppFeat         *SupportedFeatures    `json:"suppFeat,omitempty"`
+	TraceReq         *TraceData            `json:"traceReq"`
+	UeTimeZone       *TimeZone             `json:"ueTimeZone,omitempty"`
+	UserLocationInfo *UserLocation         `json:"userLocationInfo,omitempty"`
+
+	// VplmnQos Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VplmnQos
 	VplmnQos             *VplmnQos              `json:"vplmnQos,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmPolicyControl defines model for SmPolicyControl.
+// SmPolicyControl Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyControl
 type SmPolicyControl struct {
-	Context              SmPolicyContextData    `json:"context"`
+	// Context Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyContextData
+	Context SmPolicyContextData `json:"context"`
+
+	// Policy Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyDecision
 	Policy               SmPolicyDecision       `json:"policy"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmPolicyData Contains the SM policy data for a given subscriber.
+// SmPolicyData Contains the SM policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SmPolicyData)
 type SmPolicyData struct {
 	SmPolicySnssaiData   map[string]SmPolicySnssaiData `json:"smPolicySnssaiData"`
 	SuppFeat             *SupportedFeatures            `json:"suppFeat,omitempty"`
@@ -10448,27 +11427,34 @@ type SmPolicyData struct {
 	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
-// SmPolicyDataPatch Contains the SM policy data for a given subscriber.
+// SmPolicyDataPatch Contains the SM policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SmPolicyDataPatch)
 type SmPolicyDataPatch struct {
 	SmPolicySnssaiData   *map[string]SmPolicySnssaiDataPatch `json:"smPolicySnssaiData,omitempty"`
 	UmData               *map[string]UsageMonData            `json:"umData"`
 	AdditionalProperties map[string]interface{}              `json:"-"`
 }
 
-// SmPolicyDecision defines model for SmPolicyDecision.
+// SmPolicyDecision Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyDecision
 type SmPolicyDecision struct {
+	// ChargingInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingInformation
 	ChargingInfo *ChargingInformation `json:"chargingInfo,omitempty"`
 
 	// ChgDecs Map of Charging data policy decisions.
 	ChgDecs *map[string]*ChargingData `json:"chgDecs"`
 
 	// Conds A map of condition data with the content being as described in subclause 5.6.2.9.
-	Conds     *map[string]*ConditionData `json:"conds"`
-	Ipv4Index *IpIndex                   `json:"ipv4Index,omitempty"`
-	Ipv6Index *IpIndex                   `json:"ipv6Index,omitempty"`
+	Conds *map[string]*ConditionData `json:"conds"`
+
+	// Ipv4Index Original definition in TS29519_Policy_Data.yaml#/components/schemas/IpIndex
+	Ipv4Index *IpIndex `json:"ipv4Index,omitempty"`
+
+	// Ipv6Index Original definition in TS29519_Policy_Data.yaml#/components/schemas/IpIndex
+	Ipv6Index *IpIndex `json:"ipv6Index,omitempty"`
 
 	// LastReqRuleData Defines the last list of rule control data requested by the PCF.
-	LastReqRuleData  []RequestedRuleData `json:"lastReqRuleData,omitempty"`
+	LastReqRuleData []RequestedRuleData `json:"lastReqRuleData,omitempty"`
+
+	// LastReqUsageData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedUsageData
 	LastReqUsageData *RequestedUsageData `json:"lastReqUsageData,omitempty"`
 
 	// Offline Indicates the offline charging is applicable to the PDU session when it is included and set to true.
@@ -10496,37 +11482,46 @@ type SmPolicyDecision struct {
 	QosDecs *map[string]*QosData `json:"qosDecs,omitempty"`
 
 	// QosFlowUsage Possible values are - GENERAL: Indicate no specific QoS flow usage information is available.  - IMS_SIG: Indicate that the QoS flow is used for IMS signalling only.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosFlowUsage)
 	QosFlowUsage *QosFlowUsage `json:"qosFlowUsage,omitempty"`
 
 	// QosMonDecs Map of QoS Monitoring data policy decisions.
 	QosMonDecs *map[string]*QosMonitoringData `json:"qosMonDecs"`
 
 	// RedSessIndication Indicates whether the PDU session is a redundant PDU session. If absent it means the PDU session is not a redundant PDU session.
-	RedSessIndication  *bool                            `json:"redSessIndication,omitempty"`
-	ReflectiveQoSTimer *DurationSec                     `json:"reflectiveQoSTimer,omitempty"`
-	RelCause           *SmPolicyAssociationReleaseCause `json:"relCause,omitempty"`
-	RevalidationTime   *DateTime                        `json:"revalidationTime,omitempty"`
+	RedSessIndication  *bool        `json:"redSessIndication,omitempty"`
+	ReflectiveQoSTimer *DurationSec `json:"reflectiveQoSTimer,omitempty"`
+
+	// RelCause Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyAssociationReleaseCause
+	RelCause         *SmPolicyAssociationReleaseCause `json:"relCause,omitempty"`
+	RevalidationTime *DateTime                        `json:"revalidationTime,omitempty"`
 
 	// SessRules A map of Sessionrules with the content being the SessionRule as described in subclause 5.6.2.7.
 	SessRules *map[string]*SessionRule `json:"sessRules,omitempty"`
 	SuppFeat  *SupportedFeatures       `json:"suppFeat,omitempty"`
 
 	// TraffContDecs Map of Traffic Control data policy decisions.
-	TraffContDecs       *map[string]*TrafficControlData `json:"traffContDecs,omitempty"`
-	TsnBridgeManCont    *BridgeManagementContainer      `json:"tsnBridgeManCont,omitempty"`
-	TsnPortManContDstt  *PortManagementContainer        `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts []PortManagementContainer       `json:"tsnPortManContNwtts,omitempty"`
+	TraffContDecs *map[string]*TrafficControlData `json:"traffContDecs,omitempty"`
+
+	// TsnBridgeManCont Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+	TsnBridgeManCont *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
+
+	// TsnPortManContDstt Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+	TsnPortManContDstt  *PortManagementContainer  `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts []PortManagementContainer `json:"tsnPortManContNwtts,omitempty"`
 
 	// UmDecs Map of Usage Monitoring data policy decisions.
 	UmDecs               *map[string]*UsageMonitoringData `json:"umDecs"`
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
 
-// SmPolicyDeleteData defines model for SmPolicyDeleteData.
+// SmPolicyDeleteData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyDeleteData
 type SmPolicyDeleteData struct {
 	// AccuUsageReports Contains the usage report
-	AccuUsageReports []AccuUsageReport   `json:"accuUsageReports,omitempty"`
-	PduSessRelCause  *PduSessionRelCause `json:"pduSessRelCause,omitempty"`
+	AccuUsageReports []AccuUsageReport `json:"accuUsageReports,omitempty"`
+
+	// PduSessRelCause Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PduSessionRelCause
+	PduSessRelCause *PduSessionRelCause `json:"pduSessRelCause,omitempty"`
 
 	// RanNasRelCauses Contains the RAN and/or NAS release cause.
 	RanNasRelCauses      []RanNasRelCause       `json:"ranNasRelCauses,omitempty"`
@@ -10537,17 +11532,23 @@ type SmPolicyDeleteData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmPolicyDnnData Contains the SM policy data for a given DNN (and S-NSSAI).
+// SmPolicyDnnData Contains the SM policy data for a given DNN (and S-NSSAI). (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SmPolicyDnnData)
 type SmPolicyDnnData struct {
-	AdcSupport           *bool                               `json:"adcSupport,omitempty"`
-	AllowedServices      []string                            `json:"allowedServices,omitempty"`
-	BdtRefIds            *map[string]*BdtReferenceIdRm       `json:"bdtRefIds"`
-	ChfInfo              *ChargingInformation                `json:"chfInfo,omitempty"`
-	Dnn                  Dnn                                 `json:"dnn"`
-	GbrDl                BitRate                             `json:"gbrDl,omitempty"`
-	GbrUl                BitRate                             `json:"gbrUl,omitempty"`
-	ImsSignallingPrio    *bool                               `json:"imsSignallingPrio,omitempty"`
-	Ipv4Index            *IpIndex                            `json:"ipv4Index,omitempty"`
+	AdcSupport      *bool                         `json:"adcSupport,omitempty"`
+	AllowedServices []string                      `json:"allowedServices,omitempty"`
+	BdtRefIds       *map[string]*BdtReferenceIdRm `json:"bdtRefIds"`
+
+	// ChfInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingInformation
+	ChfInfo           *ChargingInformation `json:"chfInfo,omitempty"`
+	Dnn               Dnn                  `json:"dnn"`
+	GbrDl             BitRate              `json:"gbrDl,omitempty"`
+	GbrUl             BitRate              `json:"gbrUl,omitempty"`
+	ImsSignallingPrio *bool                `json:"imsSignallingPrio,omitempty"`
+
+	// Ipv4Index Original definition in TS29519_Policy_Data.yaml#/components/schemas/IpIndex
+	Ipv4Index *IpIndex `json:"ipv4Index,omitempty"`
+
+	// Ipv6Index Original definition in TS29519_Policy_Data.yaml#/components/schemas/IpIndex
 	Ipv6Index            *IpIndex                            `json:"ipv6Index,omitempty"`
 	LocRoutNotAllowed    *bool                               `json:"locRoutNotAllowed,omitempty"`
 	McsPriority          *bool                               `json:"mcsPriority,omitempty"`
@@ -10563,35 +11564,37 @@ type SmPolicyDnnData struct {
 	AdditionalProperties map[string]interface{}              `json:"-"`
 }
 
-// SmPolicyDnnDataPatch Contains the SM policy data for a given DNN (and S-NSSAI).
+// SmPolicyDnnDataPatch Contains the SM policy data for a given DNN (and S-NSSAI). (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SmPolicyDnnDataPatch)
 type SmPolicyDnnDataPatch struct {
 	BdtRefIds            *map[string]*BdtReferenceIdRm `json:"bdtRefIds"`
 	Dnn                  Dnn                           `json:"dnn"`
 	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
-// SmPolicyNotification defines model for SmPolicyNotification.
+// SmPolicyNotification Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyNotification
 type SmPolicyNotification struct {
-	ResourceUri          *Uri                   `json:"resourceUri,omitempty"`
+	ResourceUri *Uri `json:"resourceUri,omitempty"`
+
+	// SmPolicyDecision Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyDecision
 	SmPolicyDecision     *SmPolicyDecision      `json:"smPolicyDecision,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmPolicySnssaiData Contains the SM policy data for a given subscriber and S-NSSAI.
+// SmPolicySnssaiData Contains the SM policy data for a given subscriber and S-NSSAI. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SmPolicySnssaiData)
 type SmPolicySnssaiData struct {
 	SmPolicyDnnData      *map[string]SmPolicyDnnData `json:"smPolicyDnnData,omitempty"`
 	Snssai               Snssai                      `json:"snssai"`
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
-// SmPolicySnssaiDataPatch Contains the SM policy data for a given subscriber and S-NSSAI.
+// SmPolicySnssaiDataPatch Contains the SM policy data for a given subscriber and S-NSSAI. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SmPolicySnssaiDataPatch)
 type SmPolicySnssaiDataPatch struct {
 	SmPolicyDnnData      *map[string]SmPolicyDnnDataPatch `json:"smPolicyDnnData,omitempty"`
 	Snssai               Snssai                           `json:"snssai"`
 	AdditionalProperties map[string]interface{}           `json:"-"`
 }
 
-// SmPolicyUpdateContextData defines model for SmPolicyUpdateContextData.
+// SmPolicyUpdateContextData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyUpdateContextData
 type SmPolicyUpdateContextData struct {
 	// N3gppPsDataOffStatus If it is included and set to true, the 3GPP PS Data Off is activated by the UE.
 	N3gppPsDataOffStatus *bool `json:"3gppPsDataOffStatus,omitempty"`
@@ -10601,26 +11604,34 @@ type SmPolicyUpdateContextData struct {
 	AccessType  AccessType   `json:"accessType,omitempty"`
 
 	// AccuUsageReports Contains the usage report
-	AccuUsageReports       []AccuUsageReport     `json:"accuUsageReports,omitempty"`
+	AccuUsageReports []AccuUsageReport `json:"accuUsageReports,omitempty"`
+
+	// AddAccessInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
 	AddAccessInfo          *AdditionalAccessInfo `json:"addAccessInfo,omitempty"`
 	AddIpv6AddrPrefixes    *Ipv6Prefix           `json:"addIpv6AddrPrefixes,omitempty"`
 	AddRelIpv6AddrPrefixes *Ipv6Prefix           `json:"addRelIpv6AddrPrefixes,omitempty"`
 
 	// AppDetectionInfos Report the start/stop of the application traffic and detected SDF descriptions if applicable.
-	AppDetectionInfos []AppDetectionInfo  `json:"appDetectionInfos,omitempty"`
-	AtsssCapab        *PcfAtsssCapability `json:"atsssCapab,omitempty"`
+	AppDetectionInfos []AppDetectionInfo `json:"appDetectionInfos,omitempty"`
+
+	// AtsssCapab Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AtsssCapability
+	AtsssCapab *PcfAtsssCapability `json:"atsssCapab,omitempty"`
 
 	// AuthProfIndex Indicates the DN-AAA authorization profile index
-	AuthProfIndex      *string                 `json:"authProfIndex,omitempty"`
+	AuthProfIndex *string `json:"authProfIndex,omitempty"`
+
+	// CreditManageStatus Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/CreditManagementStatus
 	CreditManageStatus *CreditManagementStatus `json:"creditManageStatus,omitempty"`
 	InterGrpIds        []GroupId               `json:"interGrpIds,omitempty"`
 
 	// IpDomain Indicates the IPv4 address domain
-	IpDomain          *string                  `json:"ipDomain,omitempty"`
-	Ipv4Address       Ipv4Addr                 `json:"ipv4Address,omitempty"`
-	Ipv6AddressPrefix *Ipv6Prefix              `json:"ipv6AddressPrefix,omitempty"`
-	MaPduInd          *MaPduIndication         `json:"maPduInd,omitempty"`
-	MulAddrInfos      []IpMulticastAddressInfo `json:"mulAddrInfos,omitempty"`
+	IpDomain          *string     `json:"ipDomain,omitempty"`
+	Ipv4Address       Ipv4Addr    `json:"ipv4Address,omitempty"`
+	Ipv6AddressPrefix *Ipv6Prefix `json:"ipv6AddressPrefix,omitempty"`
+
+	// MaPduInd Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MaPduIndication
+	MaPduInd     *MaPduIndication         `json:"maPduInd,omitempty"`
+	MulAddrInfos []IpMulticastAddressInfo `json:"mulAddrInfos,omitempty"`
 
 	// NumOfPackFilter Contains the number of supported packet filter for signalled QoS rules.
 	NumOfPackFilter *int `json:"numOfPackFilter,omitempty"`
@@ -10635,12 +11646,15 @@ type SmPolicyUpdateContextData struct {
 	QncReports []SMPolicyQosNotificationControlInfo `json:"qncReports,omitempty"`
 
 	// QosFlowUsage Possible values are - GENERAL: Indicate no specific QoS flow usage information is available.  - IMS_SIG: Indicate that the QoS flow is used for IMS signalling only.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosFlowUsage)
 	QosFlowUsage  *QosFlowUsage                 `json:"qosFlowUsage,omitempty"`
 	QosMonReports []SMPolicyQosMonitoringReport `json:"qosMonReports,omitempty"`
 	RatType       *RatType                      `json:"ratType,omitempty"`
 
 	// RefQosIndication If it is included and set to true, the reflective QoS is supported by the UE. If it is included and set to false, the reflective QoS is revoked by the UE.
-	RefQosIndication     *bool                 `json:"refQosIndication,omitempty"`
+	RefQosIndication *bool `json:"refQosIndication,omitempty"`
+
+	// RelAccessInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AdditionalAccessInfo
 	RelAccessInfo        *AdditionalAccessInfo `json:"relAccessInfo,omitempty"`
 	RelIpv4Address       Ipv4Addr              `json:"relIpv4Address,omitempty"`
 	RelIpv6AddressPrefix *Ipv6Prefix           `json:"relIpv6AddressPrefix,omitempty"`
@@ -10653,27 +11667,39 @@ type SmPolicyUpdateContextData struct {
 	RepPraInfos *map[string]PresenceInfo `json:"repPraInfos,omitempty"`
 
 	// RuleReports Used to report the PCC rule failure.
-	RuleReports    []RuleReport       `json:"ruleReports,omitempty"`
+	RuleReports []RuleReport `json:"ruleReports,omitempty"`
+
+	// ServNfId Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ServingNfIdentity
 	ServNfId       *ServingNfIdentity `json:"servNfId,omitempty"`
 	ServingNetwork *PlmnIdNid         `json:"servingNetwork,omitempty"`
 
 	// SessRuleReports Used to report the session rule failure.
-	SessRuleReports      []SessionRuleReport         `json:"sessRuleReports,omitempty"`
-	SubsDefQos           *SubscribedDefaultQos       `json:"subsDefQos,omitempty"`
-	SubsSessAmbr         *Ambr                       `json:"subsSessAmbr,omitempty"`
-	TraceReq             *TraceData                  `json:"traceReq"`
-	TrafficDescriptors   []DddTrafficDescriptor      `json:"trafficDescriptors,omitempty"`
-	TsnBridgeInfo        *TsnBridgeInfo              `json:"tsnBridgeInfo,omitempty"`
-	TsnBridgeManCont     *BridgeManagementContainer  `json:"tsnBridgeManCont,omitempty"`
-	TsnPortManContDstt   *PortManagementContainer    `json:"tsnPortManContDstt,omitempty"`
-	TsnPortManContNwtts  []PortManagementContainer   `json:"tsnPortManContNwtts,omitempty"`
-	TypesOfNotif         []DlDataDeliveryStatus      `json:"typesOfNotif,omitempty"`
+	SessRuleReports    []SessionRuleReport    `json:"sessRuleReports,omitempty"`
+	SubsDefQos         *SubscribedDefaultQos  `json:"subsDefQos,omitempty"`
+	SubsSessAmbr       *Ambr                  `json:"subsSessAmbr,omitempty"`
+	TraceReq           *TraceData             `json:"traceReq"`
+	TrafficDescriptors []DddTrafficDescriptor `json:"trafficDescriptors,omitempty"`
+
+	// TsnBridgeInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/TsnBridgeInfo
+	TsnBridgeInfo *TsnBridgeInfo `json:"tsnBridgeInfo,omitempty"`
+
+	// TsnBridgeManCont Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/BridgeManagementContainer
+	TsnBridgeManCont *BridgeManagementContainer `json:"tsnBridgeManCont,omitempty"`
+
+	// TsnPortManContDstt Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
+	TsnPortManContDstt  *PortManagementContainer  `json:"tsnPortManContDstt,omitempty"`
+	TsnPortManContNwtts []PortManagementContainer `json:"tsnPortManContNwtts,omitempty"`
+	TypesOfNotif        []DlDataDeliveryStatus    `json:"typesOfNotif,omitempty"`
+
+	// UeInitResReq Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UeInitiatedResourceRequest
 	UeInitResReq         *UeInitiatedResourceRequest `json:"ueInitResReq,omitempty"`
 	UeMac                MacAddr48                   `json:"ueMac,omitempty"`
 	UeTimeZone           *TimeZone                   `json:"ueTimeZone,omitempty"`
 	UserLocationInfo     *UserLocation               `json:"userLocationInfo,omitempty"`
 	UserLocationInfoTime *DateTime                   `json:"userLocationInfoTime,omitempty"`
-	VplmnQos             *VplmnQos                   `json:"vplmnQos,omitempty"`
+
+	// VplmnQos Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VplmnQos
+	VplmnQos *VplmnQos `json:"vplmnQos,omitempty"`
 
 	// VplmnQosNotApp If it is included and set to true, indicates that the QoS constraints in the VPLMN are not applicable.
 	VplmnQosNotApp       *bool                  `json:"vplmnQosNotApp,omitempty"`
@@ -10690,7 +11716,7 @@ type SmallDataRateStatus struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmallDataRateStatusInfo defines model for SmallDataRateStatusInfo.
+// SmallDataRateStatusInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SmallDataRateStatusInfo
 type SmallDataRateStatusInfo struct {
 	Dnn                  Dnn                    `json:"Dnn"`
 	SmallDataRateStatus  SmallDataRateStatus    `json:"SmallDataRateStatus"`
@@ -10698,24 +11724,28 @@ type SmallDataRateStatusInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmfChangeIndication defines model for SmfChangeIndication.
+// SmfChangeIndication Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SmfChangeIndication
 type SmfChangeIndication string
 
-// SmfChangeInfo defines model for SmfChangeInfo.
+// SmfChangeInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SmfChangeInfo
 type SmfChangeInfo struct {
-	PduSessionIdList     []PduSessionId         `json:"pduSessionIdList"`
+	PduSessionIdList []PduSessionId `json:"pduSessionIdList"`
+
+	// SmfChangeInd Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SmfChangeIndication
 	SmfChangeInd         SmfChangeIndication    `json:"smfChangeInd"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // SmfEvent Possible values are - AC_TY_CH: Access Type Change - UP_PATH_CH: UP Path Change - PDU_SES_REL: PDU Session Release - PLMN_CH: PLMN Change - UE_IP_CH: UE IP address change - DDDS: Downlink data delivery status - COMM_FAIL: Communication Failure - PDU_SES_EST: PDU Session Establishment - QFI_ALLOC: QFI allocation - QOS_MON: QoS Monitoring
+//
+//	(Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/SmfEvent)
 type SmfEvent string
 
-// SmfInfo Information of an SMF NF Instance
+// SmfInfo Information of an SMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/SmfInfo)
 type SmfInfo struct {
 	AccessType []AccessType `json:"accessType,omitempty"`
 
-	// PgwFqdn Fully Qualified Domain Name
+	// PgwFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	PgwFqdn              *Fqdn                  `json:"pgwFqdn,omitempty"`
 	Priority             *int                   `json:"priority,omitempty"`
 	SNssaiSmfInfoList    []SnssaiSmfInfoItem    `json:"sNssaiSmfInfoList"`
@@ -10725,36 +11755,39 @@ type SmfInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmfRegList defines model for SmfRegList.
+// SmfRegList Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SmfRegList
 type SmfRegList = []SmfRegistration
 
-// SmfRegistration defines model for SmfRegistration.
+// SmfRegistration Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/SmfRegistration
 type SmfRegistration struct {
-	ContextInfo                 *ContextInfo           `json:"contextInfo,omitempty"`
-	DeregCallbackUri            *Uri                   `json:"deregCallbackUri,omitempty"`
-	Dnn                         *Dnn                   `json:"dnn,omitempty"`
-	EmergencyServices           *bool                  `json:"emergencyServices,omitempty"`
-	EpdgInd                     *bool                  `json:"epdgInd,omitempty"`
-	PcscfRestorationCallbackUri *Uri                   `json:"pcscfRestorationCallbackUri,omitempty"`
-	PduSessionId                PduSessionId           `json:"pduSessionId"`
-	PgwFqdn                     *string                `json:"pgwFqdn,omitempty"`
-	PlmnId                      PlmnId                 `json:"plmnId"`
-	RegistrationReason          *RegistrationReason    `json:"registrationReason,omitempty"`
-	RegistrationTime            *DateTime              `json:"registrationTime,omitempty"`
-	SingleNssai                 Snssai                 `json:"singleNssai"`
-	SmfInstanceId               NfInstanceId           `json:"smfInstanceId"`
-	SmfSetId                    *NfSetId               `json:"smfSetId,omitempty"`
-	SupportedFeatures           *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	AdditionalProperties        map[string]interface{} `json:"-"`
+	// ContextInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
+	ContextInfo                 *ContextInfo `json:"contextInfo,omitempty"`
+	DeregCallbackUri            *Uri         `json:"deregCallbackUri,omitempty"`
+	Dnn                         *Dnn         `json:"dnn,omitempty"`
+	EmergencyServices           *bool        `json:"emergencyServices,omitempty"`
+	EpdgInd                     *bool        `json:"epdgInd,omitempty"`
+	PcscfRestorationCallbackUri *Uri         `json:"pcscfRestorationCallbackUri,omitempty"`
+	PduSessionId                PduSessionId `json:"pduSessionId"`
+	PgwFqdn                     *string      `json:"pgwFqdn,omitempty"`
+	PlmnId                      PlmnId       `json:"plmnId"`
+
+	// RegistrationReason Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/RegistrationReason
+	RegistrationReason   *RegistrationReason    `json:"registrationReason,omitempty"`
+	RegistrationTime     *DateTime              `json:"registrationTime,omitempty"`
+	SingleNssai          Snssai                 `json:"singleNssai"`
+	SmfInstanceId        NfInstanceId           `json:"smfInstanceId"`
+	SmfSetId             *NfSetId               `json:"smfSetId,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmfRegistrationInfo defines model for SmfRegistrationInfo.
+// SmfRegistrationInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/SmfRegistrationInfo
 type SmfRegistrationInfo struct {
 	SmfRegistrationList  []SmfRegistration      `json:"smfRegistrationList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmfSelectionData defines model for SmfSelectionData.
+// SmfSelectionData Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/SmfSelectionData
 type SmfSelectionData struct {
 	Candidates           *map[string]*CandidateForReplacement `json:"candidates"`
 	Dnn                  *Dnn                                 `json:"dnn,omitempty"`
@@ -10764,28 +11797,29 @@ type SmfSelectionData struct {
 	AdditionalProperties map[string]interface{}               `json:"-"`
 }
 
-// SmfSelectionSubscriptionData defines model for SmfSelectionSubscriptionData.
+// SmfSelectionSubscriptionData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmfSelectionSubscriptionData
 type SmfSelectionSubscriptionData struct {
+	// SharedSnssaiInfosId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataId
 	SharedSnssaiInfosId   SharedDataId           `json:"sharedSnssaiInfosId,omitempty"`
 	SubscribedSnssaiInfos *map[string]SnssaiInfo `json:"subscribedSnssaiInfos,omitempty"`
 	SupportedFeatures     *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// SmfSubscriptionInfo Information related to active subscriptions at the SMF(s)
+// SmfSubscriptionInfo Information related to active subscriptions at the SMF(s) (Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SmfSubscriptionInfo)
 type SmfSubscriptionInfo struct {
 	SmfSubscriptionList  []SmfSubscriptionItem  `json:"smfSubscriptionList"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmfSubscriptionItem Contains info about a single SMF event subscription
+// SmfSubscriptionItem Contains info about a single SMF event subscription (Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SmfSubscriptionItem)
 type SmfSubscriptionItem struct {
 	SmfInstanceId        NfInstanceId           `json:"smfInstanceId"`
 	SubscriptionId       Uri                    `json:"subscriptionId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmsManagementSubscriptionData defines model for SmsManagementSubscriptionData.
+// SmsManagementSubscriptionData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsManagementSubscriptionData
 type SmsManagementSubscriptionData struct {
 	MoSmsBarringAll      *bool                  `json:"moSmsBarringAll,omitempty"`
 	MoSmsBarringRoaming  *bool                  `json:"moSmsBarringRoaming,omitempty"`
@@ -10799,44 +11833,55 @@ type SmsManagementSubscriptionData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmsSubscribed defines model for SmsSubscribed.
+// SmsSubscribed Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsSubscribed
 type SmsSubscribed = bool
 
-// SmsSubscriptionData defines model for SmsSubscriptionData.
+// SmsSubscriptionData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsSubscriptionData
 type SmsSubscriptionData struct {
-	SharedSmsSubsDataId  SharedDataId           `json:"sharedSmsSubsDataId,omitempty"`
+	// SharedSmsSubsDataId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataId
+	SharedSmsSubsDataId SharedDataId `json:"sharedSmsSubsDataId,omitempty"`
+
+	// SmsSubscribed Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsSubscribed
 	SmsSubscribed        *SmsSubscribed         `json:"smsSubscribed,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmsSupport defines model for SmsSupport.
+// SmsSupport Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SmsSupport
 type SmsSupport string
 
-// SmscData defines model for SmscData.
+// SmscData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SmscData
 type SmscData struct {
-	SmscDiameterAddress  *NetworkNodeDiameterAddress `json:"smscDiameterAddress,omitempty"`
-	SmscMapAddress       E164Number                  `json:"smscMapAddress,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
+	// SmscDiameterAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/NetworkNodeDiameterAddress
+	SmscDiameterAddress *NetworkNodeDiameterAddress `json:"smscDiameterAddress,omitempty"`
+
+	// SmscMapAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
+	SmscMapAddress       E164Number             `json:"smscMapAddress,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmsfInfo defines model for SmsfInfo.
+// SmsfInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsfInfo
 type SmsfInfo struct {
 	PlmnId               PlmnId                 `json:"plmnId"`
 	SmsfInstanceId       NfInstanceId           `json:"smsfInstanceId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmsfRegistration defines model for SmsfRegistration.
+// SmsfRegistration Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/SmsfRegistration
 type SmsfRegistration struct {
-	ContextInfo          *ContextInfo                `json:"contextInfo,omitempty"`
-	PlmnId               PlmnId                      `json:"plmnId"`
-	RegistrationTime     *DateTime                   `json:"registrationTime,omitempty"`
-	SmsfDiameterAddress  *NetworkNodeDiameterAddress `json:"smsfDiameterAddress,omitempty"`
-	SmsfInstanceId       NfInstanceId                `json:"smsfInstanceId"`
-	SmsfMAPAddress       E164Number                  `json:"smsfMAPAddress,omitempty"`
-	SmsfSetId            *NfSetId                    `json:"smsfSetId,omitempty"`
-	SupportedFeatures    *SupportedFeatures          `json:"supportedFeatures,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"-"`
+	// ContextInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ContextInfo
+	ContextInfo      *ContextInfo `json:"contextInfo,omitempty"`
+	PlmnId           PlmnId       `json:"plmnId"`
+	RegistrationTime *DateTime    `json:"registrationTime,omitempty"`
+
+	// SmsfDiameterAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/NetworkNodeDiameterAddress
+	SmsfDiameterAddress *NetworkNodeDiameterAddress `json:"smsfDiameterAddress,omitempty"`
+	SmsfInstanceId      NfInstanceId                `json:"smsfInstanceId"`
+
+	// SmsfMAPAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
+	SmsfMAPAddress       E164Number             `json:"smsfMAPAddress,omitempty"`
+	SmsfSetId            *NfSetId               `json:"smsfSetId,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // Snssai defines model for Snssai.
@@ -10855,27 +11900,27 @@ type SnssaiExtension struct {
 // SnssaiExtensionWildcardSd When present, it shall be set to true, to indicate that all SD values are supported for the Slice/Service Type value indicated in the sst attribute of the Snssai data type
 type SnssaiExtensionWildcardSd bool
 
-// SnssaiInfo defines model for SnssaiInfo.
+// SnssaiInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SnssaiInfo
 type SnssaiInfo struct {
 	DnnInfos             []DnnInfo              `json:"dnnInfos"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SnssaiRouteSelectionDescriptor Contains the route selector parameters (DNNs, PDU session types, SSC modes and ATSSS information) per SNSSAI
+// SnssaiRouteSelectionDescriptor Contains the route selector parameters (DNNs, PDU session types, SSC modes and ATSSS information) per SNSSAI (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SnssaiRouteSelectionDescriptor)
 type SnssaiRouteSelectionDescriptor struct {
 	DnnRouteSelDescs     []DnnRouteSelectionDescriptor `json:"dnnRouteSelDescs,omitempty"`
 	Snssai               Snssai                        `json:"snssai"`
 	AdditionalProperties map[string]interface{}        `json:"-"`
 }
 
-// SnssaiSmfInfoItem Set of parameters supported by SMF for a given S-NSSAI
+// SnssaiSmfInfoItem Set of parameters supported by SMF for a given S-NSSAI (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/SnssaiSmfInfoItem)
 type SnssaiSmfInfoItem struct {
 	DnnSmfInfoList       []DnnSmfInfoItem       `json:"dnnSmfInfoList"`
 	SNssai               Snssai                 `json:"sNssai"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SnssaiUpfInfoItem Set of parameters supported by UPF for a given S-NSSAI
+// SnssaiUpfInfoItem Set of parameters supported by UPF for a given S-NSSAI (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/SnssaiUpfInfoItem)
 type SnssaiUpfInfoItem struct {
 	DnnUpfInfoList       []DnnUpfInfoItem       `json:"dnnUpfInfoList"`
 	RedundantTransport   *bool                  `json:"redundantTransport,omitempty"`
@@ -10883,76 +11928,94 @@ type SnssaiUpfInfoItem struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SorData defines model for SorData.
+// SorData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SorData
 type SorData struct {
-	ProvisioningTime     DateTime               `json:"provisioningTime"`
-	SorMacIue            SorMac                 `json:"sorMacIue,omitempty"`
-	SorXmacIue           SorMac                 `json:"sorXmacIue,omitempty"`
+	ProvisioningTime DateTime `json:"provisioningTime"`
+
+	// SorMacIue Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
+	SorMacIue SorMac `json:"sorMacIue,omitempty"`
+
+	// SorXmacIue Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
+	SorXmacIue SorMac `json:"sorXmacIue,omitempty"`
+
+	// UeUpdateStatus Original definition in TS29505_Subscription_Data.yaml#/components/schemas/UeUpdateStatus
 	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SorInfo defines model for SorInfo.
+// SorInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SorInfo
 type SorInfo struct {
-	AckInd               AckInd                 `json:"ackInd"`
-	Countersor           CounterSor             `json:"countersor,omitempty"`
-	ProvisioningTime     DateTime               `json:"provisioningTime"`
-	SorMacIausf          SorMac                 `json:"sorMacIausf,omitempty"`
+	// AckInd Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/AckInd
+	AckInd AckInd `json:"ackInd"`
+
+	// Countersor Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/CounterSor
+	Countersor       CounterSor `json:"countersor,omitempty"`
+	ProvisioningTime DateTime   `json:"provisioningTime"`
+
+	// SorMacIausf Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
+	SorMacIausf SorMac `json:"sorMacIausf,omitempty"`
+
+	// SteeringContainer Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SteeringContainer
 	SteeringContainer    *SteeringContainer     `json:"steeringContainer,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SorMac defines model for SorMac.
+// SorMac Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
 type SorMac = string
 
-// SorSecurityInfo defines model for SorSecurityInfo.
+// SorSecurityInfo Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorSecurityInfo
 type SorSecurityInfo struct {
-	CounterSor           CounterSor             `json:"counterSor"`
-	SorMacIausf          SorMac                 `json:"sorMacIausf"`
+	// CounterSor Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/CounterSor
+	CounterSor CounterSor `json:"counterSor"`
+
+	// SorMacIausf Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
+	SorMacIausf SorMac `json:"sorMacIausf"`
+
+	// SorXmacIue Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorMac
 	SorXmacIue           SorMac                 `json:"sorXmacIue,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SorUpdateIndicator defines model for SorUpdateIndicator.
+// SorUpdateIndicator Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SorUpdateIndicator
 type SorUpdateIndicator string
 
-// SorUpdateInfo defines model for SorUpdateInfo.
+// SorUpdateInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SorUpdateInfo
 type SorUpdateInfo struct {
 	VplmnId              PlmnId                 `json:"vplmnId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SpatialValidity describes explicitly the route to an Application location
+// SpatialValidity describes explicitly the route to an Application location (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SpatialValidity)
 type SpatialValidity struct {
 	PresenceInfoList     map[string]PresenceInfo `json:"presenceInfoList"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// SpatialValidityRm this data type is defined in the same way as the SpatialValidity data type, but with the OpenAPI nullable property set to true
+// SpatialValidityRm this data type is defined in the same way as the SpatialValidity data type, but with the OpenAPI nullable property set to true (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SpatialValidityRm)
 type SpatialValidityRm struct {
 	PresenceInfoList     map[string]PresenceInfo `json:"presenceInfoList"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// SponId Contains an identity of a sponsor.
+// SponId Contains an identity of a sponsor. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponId)
 type SponId = string
 
-// SponsorConnectivityData Contains the sponsored data connectivity related information for a sponsor identifier.
+// SponsorConnectivityData Contains the sponsored data connectivity related information for a sponsor identifier. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/SponsorConnectivityData)
 type SponsorConnectivityData struct {
 	AspIds               []string               `json:"aspIds"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SponsoringStatus defines model for SponsoringStatus.
+// SponsoringStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponsoringStatus
 type SponsoringStatus string
 
-// SqnScheme defines model for SqnScheme.
+// SqnScheme Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SqnScheme
 type SqnScheme string
 
 // SscMode defines model for SscMode.
 type SscMode string
 
-// SscModes defines model for SscModes.
+// SscModes Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SscModes
 type SscModes struct {
 	AllowedSscModes      []SscMode              `json:"allowedSscModes,omitempty"`
 	DefaultSscMode       SscMode                `json:"defaultSscMode"`
@@ -10965,39 +12028,47 @@ type StationaryIndication string
 // StationaryIndicationRm Possible values are - STATIONARY: Identifies the UE is stationary - MOBILE: Identifies the UE is mobile
 type StationaryIndicationRm string
 
-// Status Overal status of the NRF
+// Status Overal status of the NRF (Original definition in TS29510_Nnrf_Bootstrapping.yaml#/components/schemas/Status)
 type Status string
 
-// StatusChange defines model for StatusChange.
+// StatusChange Original definition in TS29518_Namf_Communication.yaml#/components/schemas/StatusChange
 type StatusChange string
 
-// StatusInfo defines model for StatusInfo.
+// StatusInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/StatusInfo
 type StatusInfo struct {
 	AnType AccessType `json:"anType,omitempty"`
 
 	// Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
-	Cause             *Cause             `json:"cause,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
+	Cause *Cause `json:"cause,omitempty"`
+
+	// CnAssistedRanPara Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/CnAssistedRanPara
 	CnAssistedRanPara *CnAssistedRanPara `json:"cnAssistedRanPara,omitempty"`
 
 	// ResourceStatus Possible values are - RELEASED - UNCHANGED - TRANSFERRED - UPDATED - ALT_ANCHOR_SMF
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ResourceStatus)
 	ResourceStatus       ResourceStatus         `json:"resourceStatus"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// StatusNotification defines model for StatusNotification.
+// StatusNotification Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/StatusNotification
 type StatusNotification struct {
-	ApnRateStatus        *ApnRateStatus         `json:"apnRateStatus,omitempty"`
-	EpsPdnCnxInfo        *EpsPdnCnxInfo         `json:"epsPdnCnxInfo,omitempty"`
-	NewSmfId             *NfInstanceId          `json:"newSmfId,omitempty"`
-	SmallDataRateStatus  *SmallDataRateStatus   `json:"smallDataRateStatus,omitempty"`
+	ApnRateStatus *ApnRateStatus `json:"apnRateStatus,omitempty"`
+
+	// EpsPdnCnxInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxInfo
+	EpsPdnCnxInfo       *EpsPdnCnxInfo       `json:"epsPdnCnxInfo,omitempty"`
+	NewSmfId            *NfInstanceId        `json:"newSmfId,omitempty"`
+	SmallDataRateStatus *SmallDataRateStatus `json:"smallDataRateStatus,omitempty"`
+
+	// StatusInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/StatusInfo
 	StatusInfo           StatusInfo             `json:"statusInfo"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SteerModeValue defines model for SteerModeValue.
+// SteerModeValue Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteerModeValue
 type SteerModeValue string
 
-// SteeringContainer defines model for SteeringContainer.
+// SteeringContainer Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SteeringContainer
 type SteeringContainer struct {
 	union json.RawMessage
 }
@@ -11008,21 +12079,24 @@ type SteeringContainer0 = []SteeringInfo
 // SteeringFunctionality Possible values are
 //   - MPTCP: Indicates that PCF authorizes the MPTCP functionality to support traffic steering, switching and splitting.
 //   - ATSSS_LL: Indicates that PCF authorizes the ATSSS-LL functionality to support traffic steering, switching and splitting.
+//     (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteeringFunctionality)
 type SteeringFunctionality string
 
-// SteeringInfo defines model for SteeringInfo.
+// SteeringInfo Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SteeringInfo
 type SteeringInfo struct {
 	AccessTechList       []AccessTech           `json:"accessTechList,omitempty"`
 	PlmnId               PlmnId                 `json:"plmnId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SteeringMode defines model for SteeringMode.
+// SteeringMode Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteeringMode
 type SteeringMode struct {
-	N3gLoad              *Uinteger              `json:"3gLoad,omitempty"`
-	Active               AccessType             `json:"active,omitempty"`
-	PrioAcc              AccessType             `json:"prioAcc,omitempty"`
-	Standby              AccessTypeRm           `json:"standby,omitempty"`
+	N3gLoad *Uinteger    `json:"3gLoad,omitempty"`
+	Active  AccessType   `json:"active,omitempty"`
+	PrioAcc AccessType   `json:"prioAcc,omitempty"`
+	Standby AccessTypeRm `json:"standby,omitempty"`
+
+	// SteerModeValue Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteerModeValue
 	SteerModeValue       SteerModeValue         `json:"steerModeValue"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -11033,13 +12107,13 @@ type StnSr = string
 // StnSrRm defines model for StnSrRm.
 type StnSrRm = string
 
-// StoredSearchResult Contains a complete search result (i.e. a number of discovered NF Instances), stored by NRF as a consequence of a prior search result
+// StoredSearchResult Contains a complete search result (i.e. a number of discovered NF Instances), stored by NRF as a consequence of a prior search result (Original definition in TS29510_Nnrf_NFDiscovery.yaml#/components/schemas/StoredSearchResult)
 type StoredSearchResult struct {
 	NfInstances          []NFDiscoveryNFProfile `json:"nfInstances"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SubId Identifies an Individual SMF Notification Subscription. To enable that the value is used as part of a URI, the string shall only contain characters allowed according to the "lower-with-hyphen" naming convention defined in 3GPP TS 29.501. In an OpenAPI schema, the format shall be designated as "SubId".
+// SubId Identifies an Individual SMF Notification Subscription. To enable that the value is used as part of a URI, the string shall only contain characters allowed according to the "lower-with-hyphen" naming convention defined in 3GPP TS 29.501. In an OpenAPI schema, the format shall be designated as "SubId". (Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/SubId)
 type SubId = string
 
 // SubscribedDefaultQos defines model for SubscribedDefaultQos.
@@ -11051,64 +12125,89 @@ type SubscribedDefaultQos struct {
 }
 
 // SubscribedEvent Possible values are - UP_PATH_CHANGE: The AF requests to be notified when the UP path changes for the PDU session.
+//
+//	(Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/SubscribedEvent)
 type SubscribedEvent string
 
-// SubscribedSnssai defines model for SubscribedSnssai.
+// SubscribedSnssai Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/SubscribedSnssai
 type SubscribedSnssai struct {
 	DefaultIndication    *bool                  `json:"defaultIndication,omitempty"`
 	SubscribedSnssai     Snssai                 `json:"subscribedSnssai"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SubscriberId defines model for SubscriberId.
+// SubscriberId Original definition in TS29504_Nudr_GroupIDmap.yaml#/components/schemas/SubscriberId
 type SubscriberId = string
 
-// SubscriptionData defines model for SubscriptionData.
+// SubscriptionData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SubscriptionData
 type SubscriptionData struct {
 	AmfStatusUri         Uri                    `json:"amfStatusUri"`
 	GuamiList            []Guami                `json:"guamiList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SubscriptionDataSets defines model for SubscriptionDataSets.
+// SubscriptionDataSets Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SubscriptionDataSets
 type SubscriptionDataSets struct {
-	AmData                          *AccessAndMobilitySubscriptionData  `json:"amData,omitempty"`
-	LcsBroadcastAssistanceTypesData *LcsBroadcastAssistanceTypesData    `json:"lcsBroadcastAssistanceTypesData,omitempty"`
-	LcsMoData                       *LcsMoData                          `json:"lcsMoData,omitempty"`
-	LcsPrivacyData                  *LcsPrivacyData                     `json:"lcsPrivacyData,omitempty"`
-	SmData                          []SessionManagementSubscriptionData `json:"smData,omitempty"`
-	SmfSelData                      *SmfSelectionSubscriptionData       `json:"smfSelData,omitempty"`
-	SmsMngData                      *SmsManagementSubscriptionData      `json:"smsMngData,omitempty"`
-	SmsSubsData                     *SmsSubscriptionData                `json:"smsSubsData,omitempty"`
-	TraceData                       *TraceData                          `json:"traceData"`
-	UecAmfData                      *UeContextInAmfData                 `json:"uecAmfData,omitempty"`
-	UecSmfData                      *UeContextInSmfData                 `json:"uecSmfData,omitempty"`
-	UecSmsfData                     *UeContextInSmsfData                `json:"uecSmsfData,omitempty"`
-	V2xData                         *V2xSubscriptionData                `json:"v2xData,omitempty"`
-	AdditionalProperties            map[string]interface{}              `json:"-"`
+	// AmData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AccessAndMobilitySubscriptionData
+	AmData *AccessAndMobilitySubscriptionData `json:"amData,omitempty"`
+
+	// LcsBroadcastAssistanceTypesData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsBroadcastAssistanceTypesData
+	LcsBroadcastAssistanceTypesData *LcsBroadcastAssistanceTypesData `json:"lcsBroadcastAssistanceTypesData,omitempty"`
+
+	// LcsMoData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsMoData
+	LcsMoData *LcsMoData `json:"lcsMoData,omitempty"`
+
+	// LcsPrivacyData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsPrivacyData
+	LcsPrivacyData *LcsPrivacyData                     `json:"lcsPrivacyData,omitempty"`
+	SmData         []SessionManagementSubscriptionData `json:"smData,omitempty"`
+
+	// SmfSelData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmfSelectionSubscriptionData
+	SmfSelData *SmfSelectionSubscriptionData `json:"smfSelData,omitempty"`
+
+	// SmsMngData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsManagementSubscriptionData
+	SmsMngData *SmsManagementSubscriptionData `json:"smsMngData,omitempty"`
+
+	// SmsSubsData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsSubscriptionData
+	SmsSubsData *SmsSubscriptionData `json:"smsSubsData,omitempty"`
+	TraceData   *TraceData           `json:"traceData"`
+
+	// UecAmfData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeContextInAmfData
+	UecAmfData *UeContextInAmfData `json:"uecAmfData,omitempty"`
+
+	// UecSmfData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeContextInSmfData
+	UecSmfData *UeContextInSmfData `json:"uecSmfData,omitempty"`
+
+	// UecSmsfData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeContextInSmsfData
+	UecSmsfData *UeContextInSmsfData `json:"uecSmsfData,omitempty"`
+
+	// V2xData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/V2xSubscriptionData
+	V2xData              *V2xSubscriptionData   `json:"v2xData,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SubscriptionDataSubscriptions defines model for SubscriptionDataSubscriptions.
+// SubscriptionDataSubscriptions Original definition in TS29505_Subscription_Data.yaml#/components/schemas/SubscriptionDataSubscriptions
 type SubscriptionDataSubscriptions struct {
-	CallbackReference         Uri                    `json:"callbackReference"`
-	Expiry                    *DateTime              `json:"expiry,omitempty"`
-	MonitoredResourceUris     []Uri                  `json:"monitoredResourceUris"`
-	OriginalCallbackReference *Uri                   `json:"originalCallbackReference,omitempty"`
-	SdmSubscription           *SdmSubscription       `json:"sdmSubscription,omitempty"`
-	SubscriptionId            *string                `json:"subscriptionId,omitempty"`
-	SupportedFeatures         *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UeId                      VarUeId                `json:"ueId,omitempty"`
-	UniqueSubscription        *bool                  `json:"uniqueSubscription,omitempty"`
-	AdditionalProperties      map[string]interface{} `json:"-"`
+	CallbackReference         Uri       `json:"callbackReference"`
+	Expiry                    *DateTime `json:"expiry,omitempty"`
+	MonitoredResourceUris     []Uri     `json:"monitoredResourceUris"`
+	OriginalCallbackReference *Uri      `json:"originalCallbackReference,omitempty"`
+
+	// SdmSubscription Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SdmSubscription
+	SdmSubscription      *SdmSubscription       `json:"sdmSubscription,omitempty"`
+	SubscriptionId       *string                `json:"subscriptionId,omitempty"`
+	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
+	UeId                 VarUeId                `json:"ueId,omitempty"`
+	UniqueSubscription   *bool                  `json:"uniqueSubscription,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Success defines model for Success.
+// Success Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Success
 type Success = bool
 
-// Suci defines model for Suci.
+// Suci Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/Suci
 type Suci = string
 
-// SuggestedPacketNumDl defines model for SuggestedPacketNumDl.
+// SuggestedPacketNumDl Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SuggestedPacketNumDl
 type SuggestedPacketNumDl struct {
 	SuggestedPacketNumDl int                    `json:"suggestedPacketNumDl"`
 	ValidityTime         *DateTime              `json:"validityTime,omitempty"`
@@ -11121,7 +12220,7 @@ type Supi = string
 // SupiOrSuci defines model for SupiOrSuci.
 type SupiOrSuci = string
 
-// SupiRange A range of SUPIs (subscriber identities), either based on a numeric range, or based on regular-expression matching
+// SupiRange A range of SUPIs (subscriber identities), either based on a numeric range, or based on regular-expression matching (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/SupiRange)
 type SupiRange struct {
 	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
@@ -11135,7 +12234,7 @@ type SupportedCodec = Bytes
 // SupportedFeatures defines model for SupportedFeatures.
 type SupportedFeatures = string
 
-// SupportedNssaiAvailabilityData defines model for SupportedNssaiAvailabilityData.
+// SupportedNssaiAvailabilityData Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/SupportedNssaiAvailabilityData
 type SupportedNssaiAvailabilityData struct {
 	SupportedSnssaiList  []ExtSnssai            `json:"supportedSnssaiList"`
 	Tai                  Tai                    `json:"tai"`
@@ -11144,19 +12243,19 @@ type SupportedNssaiAvailabilityData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TS29122DateTime string with format "date-time" as defined in OpenAPI.
+// TS29122DateTime string with format "date-time" as defined in OpenAPI. (Original definition in TS29122_CommonData.yaml#/components/schemas/DateTime)
 type TS29122DateTime = string
 
-// TS29122DurationSec Unsigned integer identifying a period of time in units of seconds.
+// TS29122DurationSec Unsigned integer identifying a period of time in units of seconds. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSec)
 type TS29122DurationSec = int
 
-// TS29122DurationSecRm Unsigned integer identifying a period of time in units of seconds with "nullable=true" property.
+// TS29122DurationSecRm Unsigned integer identifying a period of time in units of seconds with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSecRm)
 type TS29122DurationSecRm = int
 
-// TS29122ExternalGroupId string containing a local identifier followed by "@" and a domain identifier. Both the local identifier and the domain identifier shall be encoded as strings that do not contain any "@" characters. See Clauses 4.6.2 and 4.6.3 of 3GPP TS 23.682 for more information.
+// TS29122ExternalGroupId string containing a local identifier followed by "@" and a domain identifier. Both the local identifier and the domain identifier shall be encoded as strings that do not contain any "@" characters. See Clauses 4.6.2 and 4.6.3 of 3GPP TS 23.682 for more information. (Original definition in TS29122_CommonData.yaml#/components/schemas/ExternalGroupId)
 type TS29122ExternalGroupId = string
 
-// TS29122InvalidParam defines model for TS29122-InvalidParam.
+// TS29122InvalidParam Original definition in TS29122_CommonData.yaml#/components/schemas/InvalidParam
 type TS29122InvalidParam struct {
 	// Param Attribute's name encoded as a JSON Pointer, or header's name.
 	Param string `json:"param"`
@@ -11166,16 +12265,16 @@ type TS29122InvalidParam struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TS29122Ipv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
+// TS29122Ipv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166. (Original definition in TS29122_CommonData.yaml#/components/schemas/Ipv4Addr)
 type TS29122Ipv4Addr = string
 
-// TS29122Ipv6Addr string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used.
+// TS29122Ipv6Addr string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used. (Original definition in TS29122_CommonData.yaml#/components/schemas/Ipv6Addr)
 type TS29122Ipv6Addr = string
 
-// TS29122Link string formatted according to IETF RFC 3986 identifying a referenced resource.
+// TS29122Link string formatted according to IETF RFC 3986 identifying a referenced resource. (Original definition in TS29122_CommonData.yaml#/components/schemas/Link)
 type TS29122Link = string
 
-// TS29122ProblemDetails defines model for TS29122-ProblemDetails.
+// TS29122ProblemDetails Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type TS29122ProblemDetails struct {
 	// Cause A machine-readable application error cause specific to this occurrence of the problem. This IE should be present and provide application-related error information, if available.
 	Cause *string `json:"cause,omitempty"`
@@ -11183,7 +12282,7 @@ type TS29122ProblemDetails struct {
 	// Detail A human-readable explanation specific to this occurrence of the problem.
 	Detail *string `json:"detail,omitempty"`
 
-	// Instance string providing an URI formatted according to IETF RFC 3986.
+	// Instance string providing an URI formatted according to IETF RFC 3986. (Original definition in TS29122_CommonData.yaml#/components/schemas/Uri)
 	Instance *TS29122Uri `json:"instance,omitempty"`
 
 	// InvalidParams Description of invalid parameters, for a request rejected due to invalid parameters.
@@ -11195,17 +12294,17 @@ type TS29122ProblemDetails struct {
 	// Title A short, human-readable summary of the problem type. It should not change from occurrence to occurrence of the problem.
 	Title *string `json:"title,omitempty"`
 
-	// Type string providing an URI formatted according to IETF RFC 3986.
+	// Type string providing an URI formatted according to IETF RFC 3986. (Original definition in TS29122_CommonData.yaml#/components/schemas/Uri)
 	Type                 *TS29122Uri            `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TS29122Uri string providing an URI formatted according to IETF RFC 3986.
+// TS29122Uri string providing an URI formatted according to IETF RFC 3986. (Original definition in TS29122_CommonData.yaml#/components/schemas/Uri)
 type TS29122Uri = string
 
-// TS29522EventNotification defines model for TS29522-EventNotification.
+// TS29522EventNotification Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/EventNotification
 type TS29522EventNotification struct {
-	// AfAckUri string formatted according to IETF RFC 3986 identifying a referenced resource.
+	// AfAckUri string formatted according to IETF RFC 3986 identifying a referenced resource. (Original definition in TS29122_CommonData.yaml#/components/schemas/Link)
 	AfAckUri *TS29122Link `json:"afAckUri,omitempty"`
 
 	// AfTransId Identifies an NEF Northbound interface transaction, generated by the AF.
@@ -11217,23 +12316,24 @@ type TS29522EventNotification struct {
 	SourceDnai         *Dnai            `json:"sourceDnai,omitempty"`
 	SourceTrafficRoute *RouteToLocation `json:"sourceTrafficRoute"`
 
-	// SrcUeIpv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
+	// SrcUeIpv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166. (Original definition in TS29122_CommonData.yaml#/components/schemas/Ipv4Addr)
 	SrcUeIpv4Addr   *TS29122Ipv4Addr `json:"srcUeIpv4Addr,omitempty"`
 	SrcUeIpv6Prefix *Ipv6Prefix      `json:"srcUeIpv6Prefix,omitempty"`
 
 	// SubscribedEvent Possible values are - UP_PATH_CHANGE: The AF requests to be notified when the UP path changes for the PDU session.
+	//  (Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/SubscribedEvent)
 	SubscribedEvent    SubscribedEvent  `json:"subscribedEvent"`
 	TargetDnai         *Dnai            `json:"targetDnai,omitempty"`
 	TargetTrafficRoute *RouteToLocation `json:"targetTrafficRoute"`
 
-	// TgtUeIpv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
+	// TgtUeIpv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166. (Original definition in TS29122_CommonData.yaml#/components/schemas/Ipv4Addr)
 	TgtUeIpv4Addr        *TS29122Ipv4Addr       `json:"tgtUeIpv4Addr,omitempty"`
 	TgtUeIpv6Prefix      *Ipv6Prefix            `json:"tgtUeIpv6Prefix,omitempty"`
 	UeMac                MacAddr48              `json:"ueMac,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TS29522TrafficInfluSub defines model for TS29522-TrafficInfluSub.
+// TS29522TrafficInfluSub Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/TrafficInfluSub
 type TS29522TrafficInfluSub struct {
 	AddrPreserInd *bool `json:"addrPreserInd,omitempty"`
 	AfAckInd      *bool `json:"afAckInd,omitempty"`
@@ -11260,25 +12360,25 @@ type TS29522TrafficInfluSub struct {
 	// EthTrafficFilters Identifies Ethernet packet filters.
 	EthTrafficFilters []EthFlowDescription `json:"ethTrafficFilters,omitempty"`
 
-	// ExternalGroupId string containing a local identifier followed by "@" and a domain identifier. Both the local identifier and the domain identifier shall be encoded as strings that do not contain any "@" characters. See Clauses 4.6.2 and 4.6.3 of 3GPP TS 23.682 for more information.
+	// ExternalGroupId string containing a local identifier followed by "@" and a domain identifier. Both the local identifier and the domain identifier shall be encoded as strings that do not contain any "@" characters. See Clauses 4.6.2 and 4.6.3 of 3GPP TS 23.682 for more information. (Original definition in TS29122_CommonData.yaml#/components/schemas/ExternalGroupId)
 	ExternalGroupId *TS29122ExternalGroupId `json:"externalGroupId,omitempty"`
 	Gpsi            Gpsi                    `json:"gpsi,omitempty"`
 	IpDomain        *string                 `json:"ipDomain,omitempty"`
 
-	// Ipv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166.
+	// Ipv4Addr string identifying a Ipv4 address formatted in the "dotted decimal" notation as defined in IETF RFC 1166. (Original definition in TS29122_CommonData.yaml#/components/schemas/Ipv4Addr)
 	Ipv4Addr *TS29122Ipv4Addr `json:"ipv4Addr,omitempty"`
 
-	// Ipv6Addr string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used.
+	// Ipv6Addr string identifying a Ipv6 address formatted according to clause 4 in IETF RFC 5952. The mixed Ipv4 Ipv6 notation according to clause 5 of IETF RFC 5952 shall not be used. (Original definition in TS29122_CommonData.yaml#/components/schemas/Ipv6Addr)
 	Ipv6Addr *TS29122Ipv6Addr `json:"ipv6Addr,omitempty"`
 	MacAddr  MacAddr48        `json:"macAddr,omitempty"`
 
-	// NotificationDestination string formatted according to IETF RFC 3986 identifying a referenced resource.
+	// NotificationDestination string formatted according to IETF RFC 3986 identifying a referenced resource. (Original definition in TS29122_CommonData.yaml#/components/schemas/Link)
 	NotificationDestination *TS29122Link `json:"notificationDestination,omitempty"`
 
 	// RequestTestNotification Set to true by the SCS/AS to request the NEF to send a test notification as defined in subclause 5.2.5.3. Set to false or omitted otherwise.
 	RequestTestNotification *bool `json:"requestTestNotification,omitempty"`
 
-	// Self string formatted according to IETF RFC 3986 identifying a referenced resource.
+	// Self string formatted according to IETF RFC 3986 identifying a referenced resource. (Original definition in TS29122_CommonData.yaml#/components/schemas/Link)
 	Self   *TS29122Link `json:"self,omitempty"`
 	Snssai *Snssai      `json:"snssai,omitempty"`
 
@@ -11295,7 +12395,9 @@ type TS29522TrafficInfluSub struct {
 	TrafficRoutes []RouteToLocation `json:"trafficRoutes,omitempty"`
 
 	// ValidGeoZoneIds Identifies a geographic zone that the AF request applies only to the traffic of UE(s) located in this specific zone.
-	ValidGeoZoneIds      []string               `json:"validGeoZoneIds,omitempty"`
+	ValidGeoZoneIds []string `json:"validGeoZoneIds,omitempty"`
+
+	// WebsockNotifConfig Original definition in TS29122_CommonData.yaml#/components/schemas/WebsockNotifConfig
 	WebsockNotifConfig   *WebsockNotifConfig    `json:"websockNotifConfig,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -11309,7 +12411,7 @@ type TacInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TacRange Range of TACs (Tracking Area Codes)
+// TacRange Range of TACs (Tracking Area Codes) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TacRange)
 type TacRange struct {
 	End                  string                 `json:"end,omitempty"`
 	Pattern              *string                `json:"pattern,omitempty"`
@@ -11325,7 +12427,7 @@ type Tai struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TaiRange Range of TAIs (Tracking Area Identities)
+// TaiRange Range of TAIs (Tracking Area Identities) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TaiRange)
 type TaiRange struct {
 	Nid                  Nid                    `json:"nid,omitempty"`
 	PlmnId               PlmnId                 `json:"plmnId"`
@@ -11333,28 +12435,31 @@ type TaiRange struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Teid defines model for Teid.
+// Teid Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Teid
 type Teid = string
 
-// TemporalValidity Indicates the time interval(s) during which the AF request is to be applied
+// TemporalValidity Indicates the time interval(s) during which the AF request is to be applied (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TemporalValidity)
 type TemporalValidity struct {
 	StartTime            *DateTime              `json:"startTime,omitempty"`
 	StopTime             *DateTime              `json:"stopTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TerminationCause defines model for TerminationCause.
+// TerminationCause Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TerminationCause
 type TerminationCause string
 
-// TerminationInfo indicates the cause for requesting the deletion of the Individual Application Session Context resource
+// TerminationInfo indicates the cause for requesting the deletion of the Individual Application Session Context resource (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TerminationInfo)
 type TerminationInfo struct {
-	ResUri               Uri                    `json:"resUri"`
+	ResUri Uri `json:"resUri"`
+
+	// TermCause Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TerminationCause
 	TermCause            TerminationCause       `json:"termCause"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TerminationNotification defines model for TerminationNotification.
+// TerminationNotification Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/TerminationNotification
 type TerminationNotification struct {
+	// Cause Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SmPolicyAssociationReleaseCause
 	Cause                SmPolicyAssociationReleaseCause `json:"cause"`
 	ResourceUri          Uri                             `json:"resourceUri"`
 	AdditionalProperties map[string]interface{}          `json:"-"`
@@ -11363,19 +12468,21 @@ type TerminationNotification struct {
 // TimeOfDay String with format partial-time or full-time as defined in clause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind UTC).
 type TimeOfDay = string
 
-// TimePeriod Contains the periodicity for the defined usage monitoring data limits.
+// TimePeriod Contains the periodicity for the defined usage monitoring data limits. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/TimePeriod)
 type TimePeriod struct {
-	MaxNumPeriod         *Uinteger              `json:"maxNumPeriod,omitempty"`
+	MaxNumPeriod *Uinteger `json:"maxNumPeriod,omitempty"`
+
+	// Period Original definition in TS29519_Policy_Data.yaml#/components/schemas/Periodicity
 	Period               Periodicity            `json:"period"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TimeWindow defines model for TimeWindow.
+// TimeWindow Original definition in TS29122_CommonData.yaml#/components/schemas/TimeWindow
 type TimeWindow struct {
-	// StartTime string with format "date-time" as defined in OpenAPI.
+	// StartTime string with format "date-time" as defined in OpenAPI. (Original definition in TS29122_CommonData.yaml#/components/schemas/DateTime)
 	StartTime TS29122DateTime `json:"startTime"`
 
-	// StopTime string with format "date-time" as defined in OpenAPI.
+	// StopTime string with format "date-time" as defined in OpenAPI. (Original definition in TS29122_CommonData.yaml#/components/schemas/DateTime)
 	StopTime             TS29122DateTime        `json:"stopTime"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -11394,19 +12501,19 @@ type TnapId struct {
 // TngfId defines model for TngfId.
 type TngfId = string
 
-// TngfInfo Infomation of the TNGF endpoints
+// TngfInfo Infomation of the TNGF endpoints (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TngfInfo)
 type TngfInfo struct {
-	// EndpointFqdn Fully Qualified Domain Name
+	// EndpointFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	EndpointFqdn          *Fqdn                  `json:"endpointFqdn,omitempty"`
 	Ipv4EndpointAddresses []Ipv4Addr             `json:"ipv4EndpointAddresses,omitempty"`
 	Ipv6EndpointAddresses []Ipv6Addr             `json:"ipv6EndpointAddresses,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// TosTrafficClass 2-octet string, where each octet is encoded in hexadecimal representation. The first octet contains the IPv4 Type-of-Service or the IPv6 Traffic-Class field and the second octet contains the ToS/Traffic Class mask field.
+// TosTrafficClass 2-octet string, where each octet is encoded in hexadecimal representation. The first octet contains the IPv4 Type-of-Service or the IPv6 Traffic-Class field and the second octet contains the ToS/Traffic Class mask field. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TosTrafficClass)
 type TosTrafficClass = string
 
-// TosTrafficClassRm this data type is defined in the same way as the TosTrafficClass data type, but with the OpenAPI nullable property set to true
+// TosTrafficClassRm this data type is defined in the same way as the TosTrafficClass data type, but with the OpenAPI nullable property set to true (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TosTrafficClassRm)
 type TosTrafficClassRm = string
 
 // TraceData defines model for TraceData.
@@ -11422,8 +12529,9 @@ type TraceData struct {
 	AdditionalProperties      map[string]interface{} `json:"-"`
 }
 
-// TraceDataResponse defines model for TraceDataResponse.
+// TraceDataResponse Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/TraceDataResponse
 type TraceDataResponse struct {
+	// SharedTraceDataId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SharedDataId
 	SharedTraceDataId    SharedDataId           `json:"sharedTraceDataId,omitempty"`
 	TraceData            *TraceData             `json:"traceData"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -11432,14 +12540,20 @@ type TraceDataResponse struct {
 // TraceDepth defines model for TraceDepth.
 type TraceDepth string
 
-// TrafficControlData defines model for TrafficControlData.
+// TrafficControlData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/TrafficControlData
 type TrafficControlData struct {
-	AddRedirectInfo []RedirectInformation   `json:"addRedirectInfo,omitempty"`
-	FlowStatus      *FlowStatus             `json:"flowStatus,omitempty"`
-	MulAccCtrl      *MulticastAccessControl `json:"mulAccCtrl,omitempty"`
+	AddRedirectInfo []RedirectInformation `json:"addRedirectInfo,omitempty"`
+
+	// FlowStatus Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowStatus
+	FlowStatus *FlowStatus `json:"flowStatus,omitempty"`
+
+	// MulAccCtrl Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl
+	MulAccCtrl *MulticastAccessControl `json:"mulAccCtrl,omitempty"`
 
 	// MuteNotif Indicates whether applicat'on's start or stop notification is to be muted.
-	MuteNotif    *bool                `json:"muteNotif,omitempty"`
+	MuteNotif *bool `json:"muteNotif,omitempty"`
+
+	// RedirectInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RedirectInformation
 	RedirectInfo *RedirectInformation `json:"redirectInfo,omitempty"`
 
 	// RouteToLocs A list of location which the traffic shall be routed to for the AF request
@@ -11448,9 +12562,14 @@ type TrafficControlData struct {
 	// SteerFun Possible values are
 	//   - MPTCP: Indicates that PCF authorizes the MPTCP functionality to support traffic steering, switching and splitting.
 	//   - ATSSS_LL: Indicates that PCF authorizes the ATSSS-LL functionality to support traffic steering, switching and splitting.
-	SteerFun    *SteeringFunctionality `json:"steerFun,omitempty"`
-	SteerModeDl *SteeringMode          `json:"steerModeDl,omitempty"`
-	SteerModeUl *SteeringMode          `json:"steerModeUl,omitempty"`
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteeringFunctionality)
+	SteerFun *SteeringFunctionality `json:"steerFun,omitempty"`
+
+	// SteerModeDl Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteeringMode
+	SteerModeDl *SteeringMode `json:"steerModeDl,omitempty"`
+
+	// SteerModeUl Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/SteeringMode
+	SteerModeUl *SteeringMode `json:"steerModeUl,omitempty"`
 
 	// TcId Univocally identifies the traffic control policy data within a PDU session.
 	TcId          string `json:"tcId"`
@@ -11460,12 +12579,14 @@ type TrafficControlData struct {
 	TrafficSteeringPolIdDl *string `json:"trafficSteeringPolIdDl"`
 
 	// TrafficSteeringPolIdUl Reference to a pre-configured traffic steering policy for uplink traffic at the SMF.
-	TrafficSteeringPolIdUl *string                `json:"trafficSteeringPolIdUl"`
-	UpPathChgEvent         *UpPathChgEvent        `json:"upPathChgEvent"`
-	AdditionalProperties   map[string]interface{} `json:"-"`
+	TrafficSteeringPolIdUl *string `json:"trafficSteeringPolIdUl"`
+
+	// UpPathChgEvent Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent
+	UpPathChgEvent       *UpPathChgEvent        `json:"upPathChgEvent"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TrafficDescriptor defines model for TrafficDescriptor.
+// TrafficDescriptor Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/TrafficDescriptor
 type TrafficDescriptor struct {
 	DddTrafficDescriptorList []DddTrafficDescriptor `json:"dddTrafficDescriptorList,omitempty"`
 	Dnn                      *Dnn                   `json:"dnn,omitempty"`
@@ -11473,7 +12594,7 @@ type TrafficDescriptor struct {
 	AdditionalProperties     map[string]interface{} `json:"-"`
 }
 
-// TrafficInfluData defines model for TrafficInfluData.
+// TrafficInfluData Original definition in TS29519_Application_Data.yaml#/components/schemas/TrafficInfluData
 type TrafficInfluData struct {
 	AddrPreserInd *bool `json:"addrPreserInd,omitempty"`
 	AfAckInd      *bool `json:"afAckInd,omitempty"`
@@ -11493,7 +12614,7 @@ type TrafficInfluData struct {
 	Headers           []string             `json:"headers,omitempty"`
 	InterGroupId      GroupId              `json:"interGroupId,omitempty"`
 
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
 	NwAreaInfo        *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	ResUri            *Uri                `json:"resUri,omitempty"`
 	Snssai            *Snssai             `json:"snssai,omitempty"`
@@ -11519,14 +12640,16 @@ type TrafficInfluData struct {
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// TrafficInfluDataNotif defines model for TrafficInfluDataNotif.
+// TrafficInfluDataNotif Original definition in TS29519_Application_Data.yaml#/components/schemas/TrafficInfluDataNotif
 type TrafficInfluDataNotif struct {
-	ResUri               Uri                    `json:"resUri"`
+	ResUri Uri `json:"resUri"`
+
+	// TrafficInfluData Original definition in TS29519_Application_Data.yaml#/components/schemas/TrafficInfluData
 	TrafficInfluData     *TrafficInfluData      `json:"trafficInfluData,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TrafficInfluDataPatch defines model for TrafficInfluDataPatch.
+// TrafficInfluDataPatch Original definition in TS29519_Application_Data.yaml#/components/schemas/TrafficInfluDataPatch
 type TrafficInfluDataPatch struct {
 	AddrPreserInd *bool `json:"addrPreserInd,omitempty"`
 	AfAckInd      *bool `json:"afAckInd,omitempty"`
@@ -11540,7 +12663,7 @@ type TrafficInfluDataPatch struct {
 	Headers           []string             `json:"headers,omitempty"`
 	InternalGroupId   GroupId              `json:"internalGroupId,omitempty"`
 
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
 	NwAreaInfo *PcfNetworkAreaInfo `json:"nwAreaInfo,omitempty"`
 	Snssai     *Snssai             `json:"snssai,omitempty"`
 	Supi       Supi                `json:"supi,omitempty"`
@@ -11563,7 +12686,7 @@ type TrafficInfluDataPatch struct {
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// TrafficInfluSub defines model for TrafficInfluSub.
+// TrafficInfluSub Original definition in TS29519_Application_Data.yaml#/components/schemas/TrafficInfluSub
 type TrafficInfluSub struct {
 	// Dnns Each element identifies a DNN.
 	Dnns   []Dnn     `json:"dnns,omitempty"`
@@ -11582,7 +12705,7 @@ type TrafficInfluSub struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TrafficInfluSubPatch defines model for TrafficInfluSubPatch.
+// TrafficInfluSubPatch Original definition in TS29522_TrafficInfluence.yaml#/components/schemas/TrafficInfluSubPatch
 type TrafficInfluSubPatch struct {
 	AddrPreserInd *bool `json:"addrPreserInd"`
 	AfAckInd      *bool `json:"afAckInd"`
@@ -11612,7 +12735,7 @@ type TrafficProfile string
 // TrafficProfileRm Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission. - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST: Dual packet transmission, firstly uplink packet transmission with subsequent downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission, firstly downlink packet transmission with subsequent uplink packet transmission.
 type TrafficProfileRm string
 
-// TransferMoDataReqData defines model for TransferMoDataReqData.
+// TransferMoDataReqData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TransferMoDataReqData
 type TransferMoDataReqData struct {
 	MoData               RefToBinaryData        `json:"moData"`
 	MoExpDataCounter     *MoExpDataCounter      `json:"moExpDataCounter,omitempty"`
@@ -11620,7 +12743,7 @@ type TransferMoDataReqData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TransferMtDataAddInfo defines model for TransferMtDataAddInfo.
+// TransferMtDataAddInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TransferMtDataAddInfo
 type TransferMtDataAddInfo struct {
 	MaxWaitingTime       *DurationSec           `json:"maxWaitingTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -11628,10 +12751,10 @@ type TransferMtDataAddInfo struct {
 
 // TransferMtDataError defines model for TransferMtDataError.
 type TransferMtDataError struct {
-	// AccessTokenError Error returned in the access token response message
+	// AccessTokenError Error returned in the access token response message (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
 	AccessTokenError *AccessTokenErr `json:"accessTokenError,omitempty"`
 
-	// AccessTokenRequest Contains information related to the access token request
+	// AccessTokenRequest Contains information related to the access token request (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
 	AccessTokenRequest   *AccessTokenReq        `json:"accessTokenRequest,omitempty"`
 	Cause                *string                `json:"cause,omitempty"`
 	Detail               *string                `json:"detail,omitempty"`
@@ -11646,52 +12769,54 @@ type TransferMtDataError struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TransferMtDataReqData defines model for TransferMtDataReqData.
+// TransferMtDataReqData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TransferMtDataReqData
 type TransferMtDataReqData struct {
 	MtData               RefToBinaryData        `json:"mtData"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TransferPolicy Describes a transfer policy.
+// TransferPolicy Describes a transfer policy. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/TransferPolicy)
 type TransferPolicy struct {
 	MaxBitRateDl BitRate `json:"maxBitRateDl,omitempty"`
 	MaxBitRateUl BitRate `json:"maxBitRateUl,omitempty"`
 
 	// RatingGroup Indicates a rating group for the recommended time window.
-	RatingGroup int        `json:"ratingGroup"`
-	RecTimeInt  TimeWindow `json:"recTimeInt"`
+	RatingGroup int `json:"ratingGroup"`
+
+	// RecTimeInt Original definition in TS29122_CommonData.yaml#/components/schemas/TimeWindow
+	RecTimeInt TimeWindow `json:"recTimeInt"`
 
 	// TransPolicyId Contains an identity of a transfer policy.
 	TransPolicyId        int                    `json:"transPolicyId"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TransferReason defines model for TransferReason.
+// TransferReason Original definition in TS29518_Namf_Communication.yaml#/components/schemas/TransferReason
 type TransferReason string
 
 // TransportProtocol Possible values are - UDP: User Datagram Protocol. - TCP: Transmission Control Protocol.
 type TransportProtocol string
 
-// TriggerRequest defines model for TriggerRequest.
+// TriggerRequest Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/TriggerRequest
 type TriggerRequest struct {
 	Supi                 Supi                   `json:"supi"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TscPriorityLevel defines model for TscPriorityLevel.
+// TscPriorityLevel Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscPriorityLevel
 type TscPriorityLevel = int
 
-// TscPriorityLevelRm defines model for TscPriorityLevelRm.
+// TscPriorityLevelRm Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscPriorityLevelRm
 type TscPriorityLevelRm = int
 
-// TscaiInputContainer Indicates TSC Traffic pattern.
+// TscaiInputContainer Indicates TSC Traffic pattern. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscaiInputContainer)
 type TscaiInputContainer struct {
 	BurstArrivalTime     *DateTime              `json:"burstArrivalTime,omitempty"`
 	Periodicity          *Uinteger              `json:"periodicity,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TsnBridgeInfo defines model for TsnBridgeInfo.
+// TsnBridgeInfo Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/TsnBridgeInfo
 type TsnBridgeInfo struct {
 	BridgeId             *Uint64                `json:"bridgeId,omitempty"`
 	DsttAddr             MacAddr48              `json:"dsttAddr,omitempty"`
@@ -11703,25 +12828,31 @@ type TsnBridgeInfo struct {
 // TsnPortNumber defines model for TsnPortNumber.
 type TsnPortNumber = Uinteger
 
-// TsnQosContainer Indicates TSC Traffic QoS.
+// TsnQosContainer Indicates TSC Traffic QoS. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TsnQosContainer)
 type TsnQosContainer struct {
-	MaxTscBurstSize      ExtMaxDataBurstVol     `json:"maxTscBurstSize,omitempty"`
-	TscPackDelay         PacketDelBudget        `json:"tscPackDelay,omitempty"`
+	MaxTscBurstSize ExtMaxDataBurstVol `json:"maxTscBurstSize,omitempty"`
+	TscPackDelay    PacketDelBudget    `json:"tscPackDelay,omitempty"`
+
+	// TscPrioLevel Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscPriorityLevel
 	TscPrioLevel         TscPriorityLevel       `json:"tscPrioLevel,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TsnQosContainerRm Indicates removable TSC Traffic QoS.
+// TsnQosContainerRm Indicates removable TSC Traffic QoS. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TsnQosContainerRm)
 type TsnQosContainerRm struct {
-	MaxTscBurstSize      *ExtMaxDataBurstVolRm  `json:"maxTscBurstSize"`
-	TscPackDelay         *PacketDelBudgetRm     `json:"tscPackDelay"`
+	MaxTscBurstSize *ExtMaxDataBurstVolRm `json:"maxTscBurstSize"`
+	TscPackDelay    *PacketDelBudgetRm    `json:"tscPackDelay"`
+
+	// TscPrioLevel Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscPriorityLevelRm
 	TscPrioLevel         *TscPriorityLevelRm    `json:"tscPrioLevel"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TunnelInfo defines model for TunnelInfo.
+// TunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
 type TunnelInfo struct {
-	AnType               AccessType             `json:"anType,omitempty"`
+	AnType AccessType `json:"anType,omitempty"`
+
+	// GtpTeid Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Teid
 	GtpTeid              Teid                   `json:"gtpTeid"`
 	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
 	Ipv6Addr             *Ipv6Addr              `json:"ipv6Addr,omitempty"`
@@ -11736,22 +12867,26 @@ type TwapId struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// TwifInfo Addressing information (IP addresses, FQDN) of the TWIF
+// TwifInfo Addressing information (IP addresses, FQDN) of the TWIF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TwifInfo)
 type TwifInfo struct {
-	// EndpointFqdn Fully Qualified Domain Name
+	// EndpointFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	EndpointFqdn          *Fqdn                  `json:"endpointFqdn,omitempty"`
 	Ipv4EndpointAddresses []Ipv4Addr             `json:"ipv4EndpointAddresses,omitempty"`
 	Ipv6EndpointAddresses []Ipv6Addr             `json:"ipv6EndpointAddresses,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// UEAuthenticationCtx defines model for UEAuthenticationCtx.
+// UEAuthenticationCtx Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/UEAuthenticationCtx
 type UEAuthenticationCtx struct {
-	N5gAuthData          UEAuthenticationCtx_5gAuthData `json:"5gAuthData"`
-	Links                map[string]LinksValueSchema    `json:"_links"`
-	AuthType             AusfAuthType                   `json:"authType"`
-	ServingNetworkName   ServingNetworkName             `json:"servingNetworkName,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"-"`
+	N5gAuthData UEAuthenticationCtx_5gAuthData `json:"5gAuthData"`
+	Links       map[string]LinksValueSchema    `json:"_links"`
+
+	// AuthType Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/AuthType
+	AuthType AusfAuthType `json:"authType"`
+
+	// ServingNetworkName Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName
+	ServingNetworkName   ServingNetworkName     `json:"servingNetworkName,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // UEAuthenticationCtx_5gAuthData defines model for UEAuthenticationCtx.5gAuthData.
@@ -11759,7 +12894,7 @@ type UEAuthenticationCtx_5gAuthData struct {
 	union json.RawMessage
 }
 
-// UEContextRelease defines model for UEContextRelease.
+// UEContextRelease Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UEContextRelease
 type UEContextRelease struct {
 	NgapCause            NgApCause              `json:"ngapCause"`
 	Supi                 Supi                   `json:"supi,omitempty"`
@@ -11767,17 +12902,20 @@ type UEContextRelease struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UEIdExt defines model for UEIdExt.
+// UEIdExt Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/UEIdExt
 type UEIdExt struct {
 	Gpsi                 Gpsi                   `json:"gpsi,omitempty"`
 	Supi                 Supi                   `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UEPolicyPolicyAssociation defines model for UEPolicy-PolicyAssociation.
+// UEPolicyPolicyAssociation Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/PolicyAssociation
 type UEPolicyPolicyAssociation struct {
-	N2Pc5Pol *N2InfoContent                    `json:"n2Pc5Pol,omitempty"`
-	Pras     *map[string]PresenceInfo          `json:"pras,omitempty"`
+	// N2Pc5Pol Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
+	N2Pc5Pol *N2InfoContent           `json:"n2Pc5Pol,omitempty"`
+	Pras     *map[string]PresenceInfo `json:"pras,omitempty"`
+
+	// Request Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/PolicyAssociationRequest
 	Request  *UEPolicyPolicyAssociationRequest `json:"request,omitempty"`
 	SuppFeat SupportedFeatures                 `json:"suppFeat"`
 
@@ -11788,9 +12926,11 @@ type UEPolicyPolicyAssociation struct {
 }
 
 // UEPolicyPolicyAssociationReleaseCause Possible values are - UNSPECIFIED: This value is used for unspecified reasons. - UE_SUBSCRIPTION: This value is used to indicate that the policy association needs to be terminated because the subscription of UE has changed (e.g. was removed). - INSUFFICIENT_RES: This value is used to indicate that the server is overloaded and needs to abort the policy association.
+//
+//	(Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/PolicyAssociationReleaseCause)
 type UEPolicyPolicyAssociationReleaseCause string
 
-// UEPolicyPolicyAssociationRequest defines model for UEPolicy-PolicyAssociationRequest.
+// UEPolicyPolicyAssociationRequest Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/PolicyAssociationRequest
 type UEPolicyPolicyAssociationRequest struct {
 	AccessType AccessType `json:"accessType,omitempty"`
 
@@ -11809,11 +12949,12 @@ type UEPolicyPolicyAssociationRequest struct {
 	NotificationUri   Uri           `json:"notificationUri"`
 
 	// Pc5Capab Possible values are - LTE_PC5: This value is used to indicate that UE supports PC5 LTE RAT for V2X communication over PC5 reference point. - NR_PC5: This value is used to indicate that UE supports PC5 NR RAT for V2X communication over PC5 reference point. - LTE_NR_PC5: This value is used to indicate that UE supports both PC5 LTE and NR RAT for V2X communication over PC5 reference point..
+	//  (Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/Pc5Capability)
 	Pc5Capab *Pc5Capability `json:"pc5Capab,omitempty"`
 	Pei      Pei            `json:"pei,omitempty"`
 	RatType  *RatType       `json:"ratType,omitempty"`
 
-	// ServiceName Service names known to NRF
+	// ServiceName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 	ServiceName          *ServiceName           `json:"serviceName,omitempty"`
 	ServingNfId          *NfInstanceId          `json:"servingNfId,omitempty"`
 	ServingPlmn          *PlmnIdNid             `json:"servingPlmn,omitempty"`
@@ -11825,7 +12966,7 @@ type UEPolicyPolicyAssociationRequest struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UEPolicyPolicyAssociationUpdateRequest defines model for UEPolicy-PolicyAssociationUpdateRequest.
+// UEPolicyPolicyAssociationUpdateRequest Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/PolicyAssociationUpdateRequest
 type UEPolicyPolicyAssociationUpdateRequest struct {
 	// AltNotifFqdns Alternate or backup FQDN(s) where to send Notifications.
 	AltNotifFqdns []Fqdn `json:"altNotifFqdns,omitempty"`
@@ -11835,27 +12976,32 @@ type UEPolicyPolicyAssociationUpdateRequest struct {
 
 	// AltNotifIpv6Addrs Alternate or backup IPv6 Address(es) where to send Notifications.
 	AltNotifIpv6Addrs []Ipv6Addr `json:"altNotifIpv6Addrs,omitempty"`
-	ConnectState      *CmState   `json:"connectState,omitempty"`
-	GroupIds          []GroupId  `json:"groupIds,omitempty"`
-	Guami             *Guami     `json:"guami,omitempty"`
-	NotificationUri   *Uri       `json:"notificationUri,omitempty"`
-	PlmnId            *PlmnId    `json:"plmnId,omitempty"`
+
+	// ConnectState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/CmState
+	ConnectState    *CmState  `json:"connectState,omitempty"`
+	GroupIds        []GroupId `json:"groupIds,omitempty"`
+	Guami           *Guami    `json:"guami,omitempty"`
+	NotificationUri *Uri      `json:"notificationUri,omitempty"`
+	PlmnId          *PlmnId   `json:"plmnId,omitempty"`
 
 	// PraStatuses Map of PRA status information.
 	PraStatuses *map[string]PresenceInfo `json:"praStatuses,omitempty"`
 	ServingNfId *NfInstanceId            `json:"servingNfId,omitempty"`
 
 	// Triggers Request Triggers that the NF service consumer observes.
-	Triggers             []UEPolicyRequestTrigger             `json:"triggers,omitempty"`
-	UePolDelResult       *UePolicyDeliveryResult              `json:"uePolDelResult,omitempty"`
-	UePolReq             *UePolicyRequest                     `json:"uePolReq,omitempty"`
+	Triggers       []UEPolicyRequestTrigger `json:"triggers,omitempty"`
+	UePolDelResult *UePolicyDeliveryResult  `json:"uePolDelResult,omitempty"`
+	UePolReq       *UePolicyRequest         `json:"uePolReq,omitempty"`
+
+	// UePolTransFailNotif Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/UePolicyTransferFailureNotification
 	UePolTransFailNotif  *UePolicyTransferFailureNotification `json:"uePolTransFailNotif,omitempty"`
 	UserLoc              *UserLocation                        `json:"userLoc,omitempty"`
 	AdditionalProperties map[string]interface{}               `json:"-"`
 }
 
-// UEPolicyPolicyUpdate defines model for UEPolicy-PolicyUpdate.
+// UEPolicyPolicyUpdate Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/PolicyUpdate
 type UEPolicyPolicyUpdate struct {
+	// N2Pc5Pol Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 	N2Pc5Pol *N2InfoContent `json:"n2Pc5Pol,omitempty"`
 
 	// Pras Map of PRA information.
@@ -11869,20 +13015,23 @@ type UEPolicyPolicyUpdate struct {
 }
 
 // UEPolicyRequestTrigger Possible values are - LOC_CH: Location change (tracking area). The tracking area of the UE has changed. - PRA_CH: Change of UE presence in PRA. The AMF reports the current presence status of the UE in a Presence Reporting Area, and notifies that the UE enters/leaves the Presence Reporting Area. - UE_POLICY: A MANAGE UE POLICY COMPLETE message or a MANAGE UE POLICY COMMAND REJECT message, as defined in Annex D.5 of 3GPP TS 24.501 or a "UE POLICY PROVISIONING REQUEST" message, as defined in subclause 7.2.1.1 of 3GPP TS 24.587 , has been received by the AMF and is being forwarded. - PLMN_CH: PLMN change. the serving PLMN of UE has changed.  - CON_STATE_CH: Connectivity state change: the connectivity state of UE has changed.  - GROUP_ID_LIST_CHG: UE Internal Group Identifier(s) has changed. This event does not require a subscription
+//
+//	(Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/RequestTrigger)
 type UEPolicyRequestTrigger string
 
-// UEPolicyTerminationNotification defines model for UEPolicy-TerminationNotification.
+// UEPolicyTerminationNotification Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/TerminationNotification
 type UEPolicyTerminationNotification struct {
 	// Cause Possible values are - UNSPECIFIED: This value is used for unspecified reasons. - UE_SUBSCRIPTION: This value is used to indicate that the policy association needs to be terminated because the subscription of UE has changed (e.g. was removed). - INSUFFICIENT_RES: This value is used to indicate that the server is overloaded and needs to abort the policy association.
+	//  (Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/PolicyAssociationReleaseCause)
 	Cause                UEPolicyPolicyAssociationReleaseCause `json:"cause"`
 	ResourceUri          Uri                                   `json:"resourceUri"`
 	AdditionalProperties map[string]interface{}                `json:"-"`
 }
 
-// UPInterfaceType Types of User-Plane interfaces of the UPF
+// UPInterfaceType Types of User-Plane interfaces of the UPF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UPInterfaceType)
 type UPInterfaceType string
 
-// UdmInfo Information of an UDM NF Instance
+// UdmInfo Information of an UDM NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdmInfo)
 type UdmInfo struct {
 	ExternalGroupIdentifiersRanges []IdentityRange        `json:"externalGroupIdentifiersRanges,omitempty"`
 	GpsiRanges                     []IdentityRange        `json:"gpsiRanges,omitempty"`
@@ -11893,7 +13042,7 @@ type UdmInfo struct {
 	AdditionalProperties           map[string]interface{} `json:"-"`
 }
 
-// UdrInfo Information of an UDR NF Instance
+// UdrInfo Information of an UDR NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdrInfo)
 type UdrInfo struct {
 	ExternalGroupIdentifiersRanges []IdentityRange        `json:"externalGroupIdentifiersRanges,omitempty"`
 	GpsiRanges                     []IdentityRange        `json:"gpsiRanges,omitempty"`
@@ -11903,7 +13052,7 @@ type UdrInfo struct {
 	AdditionalProperties           map[string]interface{} `json:"-"`
 }
 
-// UdsfInfo Information related to UDSF
+// UdsfInfo Information related to UDSF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UdsfInfo)
 type UdsfInfo struct {
 	GroupId *NfGroupId `json:"groupId,omitempty"`
 
@@ -11916,13 +13065,16 @@ type UdsfInfo struct {
 // UeAuth defines model for UeAuth.
 type UeAuth string
 
-// UeCampingRep defines model for UeCampingRep.
+// UeCampingRep Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UeCampingRep
 type UeCampingRep struct {
 	AccessType AccessType `json:"accessType,omitempty"`
 
 	// NetLocAccSupp Possible values are - ANR_NOT_SUPPORTED: Indicates that the access network does not support the report of access network information. - TZR_NOT_SUPPORTED: Indicates that the access network does not support the report of UE time zone. - LOC_NOT_SUPPORTED: Indicates that the access network does not support the report of UE Location (or PLMN Id).
-	NetLocAccSupp        *NetLocAccessSupport   `json:"netLocAccSupp,omitempty"`
-	RatType              *RatType               `json:"ratType,omitempty"`
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/NetLocAccessSupport)
+	NetLocAccSupp *NetLocAccessSupport `json:"netLocAccSupp,omitempty"`
+	RatType       *RatType             `json:"ratType,omitempty"`
+
+	// ServNfId Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ServingNfIdentity
 	ServNfId             *ServingNfIdentity     `json:"servNfId,omitempty"`
 	ServingNetwork       *PlmnIdNid             `json:"servingNetwork,omitempty"`
 	UeTimeZone           *TimeZone              `json:"ueTimeZone,omitempty"`
@@ -11930,130 +13082,160 @@ type UeCampingRep struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContext defines model for UeContext.
+// UeContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContext
 type UeContext struct {
-	N5gMmCapability        *N5GMmCapability          `json:"5gMmCapability,omitempty"`
-	AmPolicyReqTriggerList []PolicyReqTrigger        `json:"amPolicyReqTriggerList,omitempty"`
-	AusfGroupId            *NfGroupId                `json:"ausfGroupId,omitempty"`
-	CMsisdn                CMsisdn                   `json:"cMsisdn,omitempty"`
-	CagData                *CagData                  `json:"cagData,omitempty"`
-	DrxParameter           *DrxParameter             `json:"drxParameter,omitempty"`
-	EcRestrictionDataNb    *bool                     `json:"ecRestrictionDataNb,omitempty"`
-	EcRestrictionDataWb    *EcRestrictionDataWb      `json:"ecRestrictionDataWb,omitempty"`
-	EventSubscriptionList  []ExtAmfEventSubscription `json:"eventSubscriptionList,omitempty"`
-	ForbiddenAreaList      []Area                    `json:"forbiddenAreaList,omitempty"`
-	GpsiList               []Gpsi                    `json:"gpsiList,omitempty"`
-	GroupList              []GroupId                 `json:"groupList,omitempty"`
-	HpcfId                 *NfInstanceId             `json:"hpcfId,omitempty"`
-	HpcfSetId              *NfSetId                  `json:"hpcfSetId,omitempty"`
-	IabOperationAllowed    *bool                     `json:"iabOperationAllowed,omitempty"`
-	ImmediateMdtConf       *ImmediateMdtConf         `json:"immediateMdtConf,omitempty"`
-	LteCatMInd             *bool                     `json:"lteCatMInd,omitempty"`
-	ManagementMdtInd       *bool                     `json:"managementMdtInd,omitempty"`
-	MmContextList          []MmContext               `json:"mmContextList,omitempty"`
-	MoExpDataCounter       *MoExpDataCounter         `json:"moExpDataCounter,omitempty"`
-	MsClassmark2           *MSClassmark2             `json:"msClassmark2,omitempty"`
-	PcfAmPolicyUri         *Uri                      `json:"pcfAmPolicyUri,omitempty"`
-	PcfAmpBindingInfo      *string                   `json:"pcfAmpBindingInfo,omitempty"`
-	PcfAmpServiceSetId     *NfServiceSetId           `json:"pcfAmpServiceSetId,omitempty"`
-	PcfBinding             *SbiBindingLevel          `json:"pcfBinding,omitempty"`
-	PcfGroupId             *NfGroupId                `json:"pcfGroupId,omitempty"`
-	PcfId                  *NfInstanceId             `json:"pcfId,omitempty"`
-	PcfRfsp                RfspIndex                 `json:"pcfRfsp,omitempty"`
-	PcfSetId               *NfSetId                  `json:"pcfSetId,omitempty"`
-	PcfUeAmbr              *Ambr                     `json:"pcfUeAmbr,omitempty"`
-	PcfUePolicyUri         *Uri                      `json:"pcfUePolicyUri,omitempty"`
-	PcfUepBindingInfo      *string                   `json:"pcfUepBindingInfo,omitempty"`
-	PcfUepServiceSetId     *NfServiceSetId           `json:"pcfUepServiceSetId,omitempty"`
-	Pei                    Pei                       `json:"pei,omitempty"`
+	N5gMmCapability        *N5GMmCapability   `json:"5gMmCapability,omitempty"`
+	AmPolicyReqTriggerList []PolicyReqTrigger `json:"amPolicyReqTriggerList,omitempty"`
+	AusfGroupId            *NfGroupId         `json:"ausfGroupId,omitempty"`
+	CMsisdn                CMsisdn            `json:"cMsisdn,omitempty"`
+
+	// CagData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CagData
+	CagData             *CagData      `json:"cagData,omitempty"`
+	DrxParameter        *DrxParameter `json:"drxParameter,omitempty"`
+	EcRestrictionDataNb *bool         `json:"ecRestrictionDataNb,omitempty"`
+
+	// EcRestrictionDataWb Original definition in TS29518_Namf_Communication.yaml#/components/schemas/EcRestrictionDataWb
+	EcRestrictionDataWb   *EcRestrictionDataWb      `json:"ecRestrictionDataWb,omitempty"`
+	EventSubscriptionList []ExtAmfEventSubscription `json:"eventSubscriptionList,omitempty"`
+	ForbiddenAreaList     []Area                    `json:"forbiddenAreaList,omitempty"`
+	GpsiList              []Gpsi                    `json:"gpsiList,omitempty"`
+	GroupList             []GroupId                 `json:"groupList,omitempty"`
+	HpcfId                *NfInstanceId             `json:"hpcfId,omitempty"`
+	HpcfSetId             *NfSetId                  `json:"hpcfSetId,omitempty"`
+	IabOperationAllowed   *bool                     `json:"iabOperationAllowed,omitempty"`
+
+	// ImmediateMdtConf Original definition in TS29518_Namf_Communication.yaml#/components/schemas/ImmediateMdtConf
+	ImmediateMdtConf   *ImmediateMdtConf `json:"immediateMdtConf,omitempty"`
+	LteCatMInd         *bool             `json:"lteCatMInd,omitempty"`
+	ManagementMdtInd   *bool             `json:"managementMdtInd,omitempty"`
+	MmContextList      []MmContext       `json:"mmContextList,omitempty"`
+	MoExpDataCounter   *MoExpDataCounter `json:"moExpDataCounter,omitempty"`
+	MsClassmark2       *MSClassmark2     `json:"msClassmark2,omitempty"`
+	PcfAmPolicyUri     *Uri              `json:"pcfAmPolicyUri,omitempty"`
+	PcfAmpBindingInfo  *string           `json:"pcfAmpBindingInfo,omitempty"`
+	PcfAmpServiceSetId *NfServiceSetId   `json:"pcfAmpServiceSetId,omitempty"`
+
+	// PcfBinding Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SbiBindingLevel
+	PcfBinding         *SbiBindingLevel `json:"pcfBinding,omitempty"`
+	PcfGroupId         *NfGroupId       `json:"pcfGroupId,omitempty"`
+	PcfId              *NfInstanceId    `json:"pcfId,omitempty"`
+	PcfRfsp            RfspIndex        `json:"pcfRfsp,omitempty"`
+	PcfSetId           *NfSetId         `json:"pcfSetId,omitempty"`
+	PcfUeAmbr          *Ambr            `json:"pcfUeAmbr,omitempty"`
+	PcfUePolicyUri     *Uri             `json:"pcfUePolicyUri,omitempty"`
+	PcfUepBindingInfo  *string          `json:"pcfUepBindingInfo,omitempty"`
+	PcfUepServiceSetId *NfServiceSetId  `json:"pcfUepServiceSetId,omitempty"`
+	Pei                Pei              `json:"pei,omitempty"`
 
 	// PraInAmPolicy A map(list of key-value pairs) where praId serves as key.
 	PraInAmPolicy *map[string]PresenceInfo `json:"praInAmPolicy,omitempty"`
 
 	// PraInUePolicy A map(list of key-value pairs) where praId serves as key.
-	PraInUePolicy              *map[string]PresenceInfo  `json:"praInUePolicy,omitempty"`
-	RestrictedCoreNwTypeList   []CoreNetworkType         `json:"restrictedCoreNwTypeList,omitempty"`
-	RestrictedPrimaryRatList   []RatType                 `json:"restrictedPrimaryRatList,omitempty"`
-	RestrictedRatList          []RatType                 `json:"restrictedRatList,omitempty"`
-	RestrictedSecondaryRatList []RatType                 `json:"restrictedSecondaryRatList,omitempty"`
-	RoutingIndicator           *string                   `json:"routingIndicator,omitempty"`
-	SeafData                   *SeafData                 `json:"seafData,omitempty"`
-	ServiceAreaRestriction     *ServiceAreaRestriction   `json:"serviceAreaRestriction,omitempty"`
-	ServiceGapExpiryTime       *DateTime                 `json:"serviceGapExpiryTime,omitempty"`
-	SessionContextList         []PduSessionContext       `json:"sessionContextList,omitempty"`
-	SmallDataRateStatusInfos   []SmallDataRateStatusInfo `json:"smallDataRateStatusInfos,omitempty"`
-	SmfSelInfo                 *SmfSelectionData         `json:"smfSelInfo"`
-	SmsfBindingInfo            *string                   `json:"smsfBindingInfo,omitempty"`
-	SmsfId                     *NfInstanceId             `json:"smsfId,omitempty"`
-	SmsfServiceSetId           *NfServiceSetId           `json:"smsfServiceSetId,omitempty"`
-	SmsfSetId                  *NfSetId                  `json:"smsfSetId,omitempty"`
-	StnSr                      *StnSr                    `json:"stnSr,omitempty"`
-	SubRfsp                    RfspIndex                 `json:"subRfsp,omitempty"`
-	SubUeAmbr                  *Ambr                     `json:"subUeAmbr,omitempty"`
-	Supi                       Supi                      `json:"supi,omitempty"`
-	SupiUnauthInd              *bool                     `json:"supiUnauthInd,omitempty"`
-	SupportedCodecList         []SupportedCodec          `json:"supportedCodecList,omitempty"`
-	TraceData                  *TraceData                `json:"traceData"`
-	UdmGroupId                 *NfGroupId                `json:"udmGroupId,omitempty"`
-	UePolicyReqTriggerList     []PolicyReqTrigger        `json:"uePolicyReqTriggerList,omitempty"`
+	PraInUePolicy              *map[string]PresenceInfo `json:"praInUePolicy,omitempty"`
+	RestrictedCoreNwTypeList   []CoreNetworkType        `json:"restrictedCoreNwTypeList,omitempty"`
+	RestrictedPrimaryRatList   []RatType                `json:"restrictedPrimaryRatList,omitempty"`
+	RestrictedRatList          []RatType                `json:"restrictedRatList,omitempty"`
+	RestrictedSecondaryRatList []RatType                `json:"restrictedSecondaryRatList,omitempty"`
+	RoutingIndicator           *string                  `json:"routingIndicator,omitempty"`
 
-	// UpdpSubscriptionData UE policy delivery related N1 message notification subscription data.
-	UpdpSubscriptionData       *UpdpSubscriptionData           `json:"updpSubscriptionData,omitempty"`
-	UsedRfsp                   RfspIndex                       `json:"usedRfsp,omitempty"`
-	UsedServiceAreaRestriction *ServiceAreaRestriction         `json:"usedServiceAreaRestriction,omitempty"`
-	V2xContext                 *V2xContext                     `json:"v2xContext,omitempty"`
-	WlServAreaRes              *WirelineServiceAreaRestriction `json:"wlServAreaRes,omitempty"`
-	AdditionalProperties       map[string]interface{}          `json:"-"`
+	// SeafData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/SeafData
+	SeafData                 *SeafData                 `json:"seafData,omitempty"`
+	ServiceAreaRestriction   *ServiceAreaRestriction   `json:"serviceAreaRestriction,omitempty"`
+	ServiceGapExpiryTime     *DateTime                 `json:"serviceGapExpiryTime,omitempty"`
+	SessionContextList       []PduSessionContext       `json:"sessionContextList,omitempty"`
+	SmallDataRateStatusInfos []SmallDataRateStatusInfo `json:"smallDataRateStatusInfos,omitempty"`
+
+	// SmfSelInfo Original definition in TS29507_Npcf_AMPolicyControl.yaml#/components/schemas/SmfSelectionData
+	SmfSelInfo             *SmfSelectionData  `json:"smfSelInfo"`
+	SmsfBindingInfo        *string            `json:"smsfBindingInfo,omitempty"`
+	SmsfId                 *NfInstanceId      `json:"smsfId,omitempty"`
+	SmsfServiceSetId       *NfServiceSetId    `json:"smsfServiceSetId,omitempty"`
+	SmsfSetId              *NfSetId           `json:"smsfSetId,omitempty"`
+	StnSr                  *StnSr             `json:"stnSr,omitempty"`
+	SubRfsp                RfspIndex          `json:"subRfsp,omitempty"`
+	SubUeAmbr              *Ambr              `json:"subUeAmbr,omitempty"`
+	Supi                   Supi               `json:"supi,omitempty"`
+	SupiUnauthInd          *bool              `json:"supiUnauthInd,omitempty"`
+	SupportedCodecList     []SupportedCodec   `json:"supportedCodecList,omitempty"`
+	TraceData              *TraceData         `json:"traceData"`
+	UdmGroupId             *NfGroupId         `json:"udmGroupId,omitempty"`
+	UePolicyReqTriggerList []PolicyReqTrigger `json:"uePolicyReqTriggerList,omitempty"`
+
+	// UpdpSubscriptionData UE policy delivery related N1 message notification subscription data. (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UpdpSubscriptionData)
+	UpdpSubscriptionData       *UpdpSubscriptionData   `json:"updpSubscriptionData,omitempty"`
+	UsedRfsp                   RfspIndex               `json:"usedRfsp,omitempty"`
+	UsedServiceAreaRestriction *ServiceAreaRestriction `json:"usedServiceAreaRestriction,omitempty"`
+
+	// V2xContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/V2xContext
+	V2xContext           *V2xContext                     `json:"v2xContext,omitempty"`
+	WlServAreaRes        *WirelineServiceAreaRestriction `json:"wlServAreaRes,omitempty"`
+	AdditionalProperties map[string]interface{}          `json:"-"`
 }
 
-// UeContextCancelRelocateData defines model for UeContextCancelRelocateData.
+// UeContextCancelRelocateData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextCancelRelocateData
 type UeContextCancelRelocateData struct {
 	RelocationCancelRequest RefToBinaryData        `json:"relocationCancelRequest"`
 	Supi                    Supi                   `json:"supi,omitempty"`
 	AdditionalProperties    map[string]interface{} `json:"-"`
 }
 
-// UeContextCreateData defines model for UeContextCreateData.
+// UeContextCreateData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextCreateData
 type UeContextCreateData struct {
-	N2NotifyUri          *Uri                   `json:"n2NotifyUri,omitempty"`
-	NgapCause            *NgApCause             `json:"ngapCause,omitempty"`
-	PduSessionList       []N2SmInformation      `json:"pduSessionList"`
-	ServingNetwork       *PlmnIdNid             `json:"servingNetwork,omitempty"`
-	SourceToTargetData   N2InfoContent          `json:"sourceToTargetData"`
-	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	TargetId             NgRanTargetId          `json:"targetId"`
-	UeContext            UeContext              `json:"ueContext"`
+	N2NotifyUri    *Uri              `json:"n2NotifyUri,omitempty"`
+	NgapCause      *NgApCause        `json:"ngapCause,omitempty"`
+	PduSessionList []N2SmInformation `json:"pduSessionList"`
+	ServingNetwork *PlmnIdNid        `json:"servingNetwork,omitempty"`
+
+	// SourceToTargetData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
+	SourceToTargetData N2InfoContent      `json:"sourceToTargetData"`
+	SupportedFeatures  *SupportedFeatures `json:"supportedFeatures,omitempty"`
+
+	// TargetId Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgRanTargetId
+	TargetId NgRanTargetId `json:"targetId"`
+
+	// UeContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContext
+	UeContext UeContext `json:"ueContext"`
+
+	// UeRadioCapability Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 	UeRadioCapability    *N2InfoContent         `json:"ueRadioCapability,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextCreateError defines model for UeContextCreateError.
+// UeContextCreateError Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextCreateError
 type UeContextCreateError struct {
-	Error                     ProblemDetails         `json:"error"`
-	NgapCause                 *NgApCause             `json:"ngapCause,omitempty"`
+	Error     ProblemDetails `json:"error"`
+	NgapCause *NgApCause     `json:"ngapCause,omitempty"`
+
+	// TargetToSourceFailureData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 	TargetToSourceFailureData *N2InfoContent         `json:"targetToSourceFailureData,omitempty"`
 	AdditionalProperties      map[string]interface{} `json:"-"`
 }
 
-// UeContextCreatedData defines model for UeContextCreatedData.
+// UeContextCreatedData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextCreatedData
 type UeContextCreatedData struct {
-	FailedSessionList    []N2SmInformation      `json:"failedSessionList,omitempty"`
-	PcfReselectedInd     *bool                  `json:"pcfReselectedInd,omitempty"`
-	PduSessionList       []N2SmInformation      `json:"pduSessionList"`
-	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	TargetToSourceData   N2InfoContent          `json:"targetToSourceData"`
+	FailedSessionList []N2SmInformation  `json:"failedSessionList,omitempty"`
+	PcfReselectedInd  *bool              `json:"pcfReselectedInd,omitempty"`
+	PduSessionList    []N2SmInformation  `json:"pduSessionList"`
+	SupportedFeatures *SupportedFeatures `json:"supportedFeatures,omitempty"`
+
+	// TargetToSourceData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
+	TargetToSourceData N2InfoContent `json:"targetToSourceData"`
+
+	// UeContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContext
 	UeContext            UeContext              `json:"ueContext"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextInAmfData defines model for UeContextInAmfData.
+// UeContextInAmfData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeContextInAmfData
 type UeContextInAmfData struct {
+	// EpsInterworkingInfo Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/EpsInterworkingInfo
 	EpsInterworkingInfo  *EpsInterworkingInfo   `json:"epsInterworkingInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextInSmfData defines model for UeContextInSmfData.
+// UeContextInSmfData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeContextInSmfData
 type UeContextInSmfData struct {
+	// EmergencyInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EmergencyInfo
 	EmergencyInfo *EmergencyInfo `json:"emergencyInfo,omitempty"`
 
 	// PduSessions A map (list of key-value pairs where PduSessionId serves as key) of PduSessions
@@ -12062,14 +13244,17 @@ type UeContextInSmfData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextInSmsfData defines model for UeContextInSmsfData.
+// UeContextInSmsfData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeContextInSmsfData
 type UeContextInSmsfData struct {
-	SmsfInfo3GppAccess    *SmsfInfo              `json:"smsfInfo3GppAccess,omitempty"`
+	// SmsfInfo3GppAccess Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsfInfo
+	SmsfInfo3GppAccess *SmsfInfo `json:"smsfInfo3GppAccess,omitempty"`
+
+	// SmsfInfoNon3GppAccess Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/SmsfInfo
 	SmsfInfoNon3GppAccess *SmsfInfo              `json:"smsfInfoNon3GppAccess,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// UeContextInfo defines model for UeContextInfo.
+// UeContextInfo Original definition in TS29518_Namf_MT.yaml#/components/schemas/UeContextInfo
 type UeContextInfo struct {
 	AccessType           AccessType             `json:"accessType,omitempty"`
 	LastActTime          *DateTime              `json:"lastActTime,omitempty"`
@@ -12080,53 +13265,74 @@ type UeContextInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextInfoClass defines model for UeContextInfoClass.
+// UeContextInfoClass Original definition in TS29518_Namf_MT.yaml#/components/schemas/UeContextInfoClass
 type UeContextInfoClass string
 
-// UeContextRelocateData defines model for UeContextRelocateData.
+// UeContextRelocateData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextRelocateData
 type UeContextRelocateData struct {
-	ForwardRelocationRequest RefToBinaryData        `json:"forwardRelocationRequest"`
-	NgapCause                *NgApCause             `json:"ngapCause,omitempty"`
-	PduSessionList           []N2SmInformation      `json:"pduSessionList,omitempty"`
-	SourceToTargetData       N2InfoContent          `json:"sourceToTargetData"`
-	SupportedFeatures        *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	TargetId                 NgRanTargetId          `json:"targetId"`
-	UeContext                UeContext              `json:"ueContext"`
-	UeRadioCapability        *N2InfoContent         `json:"ueRadioCapability,omitempty"`
-	AdditionalProperties     map[string]interface{} `json:"-"`
+	ForwardRelocationRequest RefToBinaryData   `json:"forwardRelocationRequest"`
+	NgapCause                *NgApCause        `json:"ngapCause,omitempty"`
+	PduSessionList           []N2SmInformation `json:"pduSessionList,omitempty"`
+
+	// SourceToTargetData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
+	SourceToTargetData N2InfoContent      `json:"sourceToTargetData"`
+	SupportedFeatures  *SupportedFeatures `json:"supportedFeatures,omitempty"`
+
+	// TargetId Original definition in TS29518_Namf_Communication.yaml#/components/schemas/NgRanTargetId
+	TargetId NgRanTargetId `json:"targetId"`
+
+	// UeContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContext
+	UeContext UeContext `json:"ueContext"`
+
+	// UeRadioCapability Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
+	UeRadioCapability    *N2InfoContent         `json:"ueRadioCapability,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextRelocatedData defines model for UeContextRelocatedData.
+// UeContextRelocatedData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextRelocatedData
 type UeContextRelocatedData struct {
+	// UeContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContext
 	UeContext            UeContext              `json:"ueContext"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextTransferReqData defines model for UeContextTransferReqData.
+// UeContextTransferReqData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextTransferReqData
 type UeContextTransferReqData struct {
-	AccessType           AccessType             `json:"accessType"`
-	PlmnId               *PlmnId                `json:"plmnId,omitempty"`
-	Reason               TransferReason         `json:"reason"`
+	AccessType AccessType `json:"accessType"`
+	PlmnId     *PlmnId    `json:"plmnId,omitempty"`
+
+	// Reason Original definition in TS29518_Namf_Communication.yaml#/components/schemas/TransferReason
+	Reason TransferReason `json:"reason"`
+
+	// RegRequest Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageContainer
 	RegRequest           *N1MessageContainer    `json:"regRequest,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextTransferRspData defines model for UeContextTransferRspData.
+// UeContextTransferRspData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextTransferRspData
 type UeContextTransferRspData struct {
-	SupportedFeatures      *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UeContext              UeContext              `json:"ueContext"`
-	UeNbiotRadioCapability *N2InfoContent         `json:"ueNbiotRadioCapability,omitempty"`
-	UeRadioCapability      *N2InfoContent         `json:"ueRadioCapability,omitempty"`
-	AdditionalProperties   map[string]interface{} `json:"-"`
+	SupportedFeatures *SupportedFeatures `json:"supportedFeatures,omitempty"`
+
+	// UeContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContext
+	UeContext UeContext `json:"ueContext"`
+
+	// UeNbiotRadioCapability Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
+	UeNbiotRadioCapability *N2InfoContent `json:"ueNbiotRadioCapability,omitempty"`
+
+	// UeRadioCapability Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
+	UeRadioCapability    *N2InfoContent         `json:"ueRadioCapability,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeContextTransferStatus defines model for UeContextTransferStatus.
+// UeContextTransferStatus Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextTransferStatus
 type UeContextTransferStatus string
 
-// UeDifferentiationInfo defines model for UeDifferentiationInfo.
+// UeDifferentiationInfo Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeDifferentiationInfo
 type UeDifferentiationInfo struct {
-	BatteryInd       *BatteryIndication              `json:"batteryInd,omitempty"`
+	BatteryInd *BatteryIndication `json:"batteryInd,omitempty"`
+
+	// PeriodicComInd Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PeriodicCommunicationIndicator
 	PeriodicComInd   *PeriodicCommunicationIndicator `json:"periodicComInd,omitempty"`
 	PeriodicTime     *DurationSec                    `json:"periodicTime,omitempty"`
 	ScheduledComTime *ScheduledCommunicationTime     `json:"scheduledComTime,omitempty"`
@@ -12140,14 +13346,14 @@ type UeDifferentiationInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeId defines model for UeId.
+// UeId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeId
 type UeId struct {
 	GpsiList             []Gpsi                 `json:"gpsiList,omitempty"`
 	Supi                 Supi                   `json:"supi"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeIdentityInfo Represents 5GS-Level UE identities.
+// UeIdentityInfo Represents 5GS-Level UE identities. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/UeIdentityInfo)
 type UeIdentityInfo struct {
 	Gpsi                 Gpsi                   `json:"gpsi,omitempty"`
 	Pei                  Pei                    `json:"pei,omitempty"`
@@ -12155,30 +13361,41 @@ type UeIdentityInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeInfo defines model for UeInfo.
+// UeInfo Original definition in TS29503_Nudm_MT.yaml#/components/schemas/UeInfo
 type UeInfo struct {
-	N5gSrvccInfo         *N5GSrvccInfo          `json:"5gSrvccInfo,omitempty"`
-	TadsInfo             *UeContextInfo         `json:"tadsInfo,omitempty"`
+	// N5gSrvccInfo Original definition in TS29503_Nudm_MT.yaml#/components/schemas/5GSrvccInfo
+	N5gSrvccInfo *N5GSrvccInfo `json:"5gSrvccInfo,omitempty"`
+
+	// TadsInfo Original definition in TS29518_Namf_MT.yaml#/components/schemas/UeContextInfo
+	TadsInfo *UeContextInfo `json:"tadsInfo,omitempty"`
+
+	// UserState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/5GsUserState
 	UserState            *N5GsUserState         `json:"userState,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeInitiatedResourceRequest defines model for UeInitiatedResourceRequest.
+// UeInitiatedResourceRequest Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UeInitiatedResourceRequest
 type UeInitiatedResourceRequest struct {
 	PackFiltInfo []PacketFilterInfo `json:"packFiltInfo"`
 	PccRuleId    *string            `json:"pccRuleId,omitempty"`
 	Precedence   *int               `json:"precedence,omitempty"`
-	ReqQos       *RequestedQos      `json:"reqQos,omitempty"`
+
+	// ReqQos Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RequestedQos
+	ReqQos *RequestedQos `json:"reqQos,omitempty"`
 
 	// RuleOp Possible values are - CREATE_PCC_RULE: Indicates to create a new PCC rule to reserve the resource requested by the UE.  - DELETE_PCC_RULE: Indicates to delete a PCC rule corresponding to reserve the resource requested by the UE. - MODIFY_PCC_RULE_AND_ADD_PACKET_FILTERS: Indicates to modify the PCC rule by adding new packet filter(s). - MODIFY_ PCC_RULE_AND_REPLACE_PACKET_FILTERS: Indicates to modify the PCC rule by replacing the existing packet filter(s). - MODIFY_ PCC_RULE_AND_DELETE_PACKET_FILTERS: Indicates to modify the PCC rule by deleting the existing packet filter(s). - MODIFY_PCC_RULE_WITHOUT_MODIFY_PACKET_FILTERS: Indicates to modify the PCC rule by modifying the QoS of the PCC rule.
+	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/RuleOperation)
 	RuleOp               RuleOperation          `json:"ruleOp"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeN1N2InfoSubscriptionCreateData defines model for UeN1N2InfoSubscriptionCreateData.
+// UeN1N2InfoSubscriptionCreateData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeN1N2InfoSubscriptionCreateData
 type UeN1N2InfoSubscriptionCreateData struct {
-	N1MessageClass       *N1MessageClass        `json:"n1MessageClass,omitempty"`
-	N1NotifyCallbackUri  *Uri                   `json:"n1NotifyCallbackUri,omitempty"`
+	// N1MessageClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
+	N1MessageClass      *N1MessageClass `json:"n1MessageClass,omitempty"`
+	N1NotifyCallbackUri *Uri            `json:"n1NotifyCallbackUri,omitempty"`
+
+	// N2InformationClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass
 	N2InformationClass   *N2InformationClass    `json:"n2InformationClass,omitempty"`
 	N2NotifyCallbackUri  *Uri                   `json:"n2NotifyCallbackUri,omitempty"`
 	NfId                 *NfInstanceId          `json:"nfId,omitempty"`
@@ -12187,7 +13404,7 @@ type UeN1N2InfoSubscriptionCreateData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UeN1N2InfoSubscriptionCreatedData defines model for UeN1N2InfoSubscriptionCreatedData.
+// UeN1N2InfoSubscriptionCreatedData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeN1N2InfoSubscriptionCreatedData
 type UeN1N2InfoSubscriptionCreatedData struct {
 	N1n2NotifySubscriptionId string                 `json:"n1n2NotifySubscriptionId"`
 	SupportedFeatures        *SupportedFeatures     `json:"supportedFeatures,omitempty"`
@@ -12203,14 +13420,14 @@ type UePolicyDeliveryResult = Bytes
 // UePolicyRequest defines model for UePolicyRequest.
 type UePolicyRequest = Bytes
 
-// UePolicySection Contains the UE policy section.
+// UePolicySection Contains the UE policy section. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UePolicySection)
 type UePolicySection struct {
 	UePolicySectionInfo  Bytes                  `json:"uePolicySectionInfo"`
 	Upsi                 string                 `json:"upsi"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UePolicySet Contains the UE policy data for a given subscriber.
+// UePolicySet Contains the UE policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UePolicySet)
 type UePolicySet struct {
 	AllowedRouteSelDescs *map[string]PlmnRouteSelectionDescriptor `json:"allowedRouteSelDescs,omitempty"`
 	AndspInd             *bool                                    `json:"andspInd,omitempty"`
@@ -12224,7 +13441,7 @@ type UePolicySet struct {
 	AdditionalProperties map[string]interface{}                   `json:"-"`
 }
 
-// UePolicySetPatch Contains the UE policy set for a given subscriber.
+// UePolicySetPatch Contains the UE policy set for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UePolicySetPatch)
 type UePolicySetPatch struct {
 	AndspInd             *bool                       `json:"andspInd,omitempty"`
 	OsIds                []OsId                      `json:"osIds,omitempty"`
@@ -12234,26 +13451,29 @@ type UePolicySetPatch struct {
 	AdditionalProperties map[string]interface{}      `json:"-"`
 }
 
-// UePolicyTransferFailureNotification defines model for UePolicyTransferFailureNotification.
+// UePolicyTransferFailureNotification Original definition in TS29525_Npcf_UEPolicyControl.yaml#/components/schemas/UePolicyTransferFailureNotification
 type UePolicyTransferFailureNotification struct {
+	// Cause Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1N2MessageTransferCause
 	Cause                N1N2MessageTransferCause `json:"cause"`
 	Ptis                 []Uinteger               `json:"ptis"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
-// UeReachability defines model for UeReachability.
+// UeReachability Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
 type UeReachability string
 
-// UeRegStatusUpdateReqData defines model for UeRegStatusUpdateReqData.
+// UeRegStatusUpdateReqData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeRegStatusUpdateReqData
 type UeRegStatusUpdateReqData struct {
-	PcfReselectedInd     *bool                   `json:"pcfReselectedInd,omitempty"`
-	SmfChangeInfoList    []SmfChangeInfo         `json:"smfChangeInfoList,omitempty"`
-	ToReleaseSessionList []PduSessionId          `json:"toReleaseSessionList,omitempty"`
+	PcfReselectedInd     *bool           `json:"pcfReselectedInd,omitempty"`
+	SmfChangeInfoList    []SmfChangeInfo `json:"smfChangeInfoList,omitempty"`
+	ToReleaseSessionList []PduSessionId  `json:"toReleaseSessionList,omitempty"`
+
+	// TransferStatus Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextTransferStatus
 	TransferStatus       UeContextTransferStatus `json:"transferStatus"`
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// UeRegStatusUpdateRspData defines model for UeRegStatusUpdateRspData.
+// UeRegStatusUpdateRspData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeRegStatusUpdateRspData
 type UeRegStatusUpdateRspData struct {
 	RegStatusTransferComplete bool                   `json:"regStatusTransferComplete"`
 	AdditionalProperties      map[string]interface{} `json:"-"`
@@ -12262,10 +13482,10 @@ type UeRegStatusUpdateRspData struct {
 // UeSecurityCapability defines model for UeSecurityCapability.
 type UeSecurityCapability = Bytes
 
-// UeUpdateStatus defines model for UeUpdateStatus.
+// UeUpdateStatus Original definition in TS29505_Subscription_Data.yaml#/components/schemas/UeUpdateStatus
 type UeUpdateStatus string
 
-// UeUsageType defines model for UeUsageType.
+// UeUsageType Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UeUsageType
 type UeUsageType = int
 
 // Uint16 defines model for Uint16.
@@ -12283,7 +13503,7 @@ type Uint64 = uint64
 // Uinteger defines model for Uinteger.
 type Uinteger = uint
 
-// UlclBpInformation defines model for UlclBpInformation.
+// UlclBpInformation Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UlclBpInformation
 type UlclBpInformation struct {
 	UlclBpUpfId          *NfInstanceId          `json:"ulclBpUpfId,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -12292,17 +13512,23 @@ type UlclBpInformation struct {
 // UnavailableAccessIndication Possible values are
 //   - 3GA_UNAVAILABLE
 //   - N3GA_UNAVAILABLE
+//     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UnavailableAccessIndication)
 type UnavailableAccessIndication string
 
-// UnrelatedClass defines model for UnrelatedClass.
+// UnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UnrelatedClass
 type UnrelatedClass struct {
-	DefaultUnrelatedClass       DefaultUnrelatedClass       `json:"defaultUnrelatedClass"`
+	// DefaultUnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DefaultUnrelatedClass
+	DefaultUnrelatedClass DefaultUnrelatedClass `json:"defaultUnrelatedClass"`
+
+	// ExternalUnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExternalUnrelatedClass
 	ExternalUnrelatedClass      *ExternalUnrelatedClass     `json:"externalUnrelatedClass,omitempty"`
 	ServiceTypeUnrelatedClasses []ServiceTypeUnrelatedClass `json:"serviceTypeUnrelatedClasses,omitempty"`
 	AdditionalProperties        map[string]interface{}      `json:"-"`
 }
 
 // UpCnxState Possible values are - ACTIVATED - DEACTIVATED - ACTIVATING - SUSPENDED
+//
+//	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpCnxState)
 type UpCnxState string
 
 // UpConfidentiality defines model for UpConfidentiality.
@@ -12311,7 +13537,7 @@ type UpConfidentiality string
 // UpIntegrity defines model for UpIntegrity.
 type UpIntegrity string
 
-// UpPathChgEvent defines model for UpPathChgEvent.
+// UpPathChgEvent Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UpPathChgEvent
 type UpPathChgEvent struct {
 	AfAckInd *bool `json:"afAckInd,omitempty"`
 
@@ -12331,31 +13557,35 @@ type UpSecurity struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UpSecurityInfo defines model for UpSecurityInfo.
+// UpSecurityInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UpSecurityInfo
 type UpSecurityInfo struct {
 	// MaxIntegrityProtectedDataRateDl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateDl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateDl,omitempty"`
 
 	// MaxIntegrityProtectedDataRateUl Possible values are
 	//   - 64_KBPS
 	//   - MAX_UE_RATE
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaxIntegrityProtectedDataRate)
 	MaxIntegrityProtectedDataRateUl *MaxIntegrityProtectedDataRate `json:"maxIntegrityProtectedDataRateUl,omitempty"`
-	SecurityResult                  *SecurityResult                `json:"securityResult,omitempty"`
-	UpSecurity                      UpSecurity                     `json:"upSecurity"`
-	AdditionalProperties            map[string]interface{}         `json:"-"`
+
+	// SecurityResult Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SecurityResult
+	SecurityResult       *SecurityResult        `json:"securityResult,omitempty"`
+	UpSecurity           UpSecurity             `json:"upSecurity"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UpdatedItem Identifies a fragment of a resource.
+// UpdatedItem Identifies a fragment of a resource. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UpdatedItem)
 type UpdatedItem struct {
-	// Item Identifies a fragment (subset of resource data) of a given resource.
+	// Item Identifies a fragment (subset of resource data) of a given resource. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/ItemPath)
 	Item                 ItemPath               `json:"item"`
 	Value                interface{}            `json:"value"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UpdpSubscriptionData UE policy delivery related N1 message notification subscription data.
+// UpdpSubscriptionData UE policy delivery related N1 message notification subscription data. (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UpdpSubscriptionData)
 type UpdpSubscriptionData struct {
 	SupportedFeatures        *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	UpdpCallbackBinding      *string                `json:"updpCallbackBinding,omitempty"`
@@ -12364,7 +13594,7 @@ type UpdpSubscriptionData struct {
 	AdditionalProperties     map[string]interface{} `json:"-"`
 }
 
-// UpfCond Subscription to a set of NF Instances (UPFs), able to serve a certain service area (i.e. SMF serving area or TAI list)
+// UpfCond Subscription to a set of NF Instances (UPFs), able to serve a certain service area (i.e. SMF serving area or TAI list) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UpfCond)
 type UpfCond struct {
 	ConditionType        UpfCondConditionType   `json:"conditionType"`
 	SmfServingArea       []string               `json:"smfServingArea,omitempty"`
@@ -12375,7 +13605,7 @@ type UpfCond struct {
 // UpfCondConditionType defines model for UpfCond.ConditionType.
 type UpfCondConditionType string
 
-// UpfInfo Information of an UPF NF Instance
+// UpfInfo Information of an UPF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/UpfInfo)
 type UpfInfo struct {
 	AtsssCapability      *AtsssCapability       `json:"atsssCapability,omitempty"`
 	DataForwarding       *bool                  `json:"dataForwarding,omitempty"`
@@ -12389,54 +13619,72 @@ type UpfInfo struct {
 	SmfServingArea       []string               `json:"smfServingArea,omitempty"`
 	TaiList              []Tai                  `json:"taiList,omitempty"`
 
-	// TngfInfo Infomation of the TNGF endpoints
+	// TngfInfo Infomation of the TNGF endpoints (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TngfInfo)
 	TngfInfo *TngfInfo `json:"tngfInfo,omitempty"`
 
-	// TwifInfo Addressing information (IP addresses, FQDN) of the TWIF
+	// TwifInfo Addressing information (IP addresses, FQDN) of the TWIF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TwifInfo)
 	TwifInfo    *TwifInfo `json:"twifInfo,omitempty"`
 	UeIpAddrInd *bool     `json:"ueIpAddrInd,omitempty"`
 
-	// WAgfInfo Information of the W-AGF end-points
+	// WAgfInfo Information of the W-AGF end-points (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/WAgfInfo)
 	WAgfInfo             *WAgfInfo              `json:"wAgfInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UpuAckInd defines model for UpuAckInd.
+// UpuAckInd Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuAckInd
 type UpuAckInd = bool
 
-// UpuData defines model for UpuData.
+// UpuData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/UpuData
 type UpuData struct {
-	ProvisioningTime     DateTime               `json:"provisioningTime"`
-	UeUpdateStatus       UeUpdateStatus         `json:"ueUpdateStatus"`
-	UpuMacIue            UpuMac                 `json:"upuMacIue,omitempty"`
+	ProvisioningTime DateTime `json:"provisioningTime"`
+
+	// UeUpdateStatus Original definition in TS29505_Subscription_Data.yaml#/components/schemas/UeUpdateStatus
+	UeUpdateStatus UeUpdateStatus `json:"ueUpdateStatus"`
+
+	// UpuMacIue Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
+	UpuMacIue UpuMac `json:"upuMacIue,omitempty"`
+
+	// UpuXmacIue Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
 	UpuXmacIue           UpuMac                 `json:"upuXmacIue,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UpuHeader defines model for UpuHeader.
+// UpuHeader Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuHeader
 type UpuHeader = string
 
-// UpuInfo defines model for UpuInfo.
+// UpuInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UpuInfo
 type UpuInfo struct {
-	CounterUpu           CounterUpu             `json:"counterUpu,omitempty"`
-	ProvisioningTime     DateTime               `json:"provisioningTime"`
-	UpuAckInd            UpuAckInd              `json:"upuAckInd"`
-	UpuDataList          []AusfUpuData          `json:"upuDataList"`
-	UpuMacIausf          UpuMac                 `json:"upuMacIausf,omitempty"`
+	// CounterUpu Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/CounterUpu
+	CounterUpu       CounterUpu `json:"counterUpu,omitempty"`
+	ProvisioningTime DateTime   `json:"provisioningTime"`
+
+	// UpuAckInd Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuAckInd
+	UpuAckInd   UpuAckInd     `json:"upuAckInd"`
+	UpuDataList []AusfUpuData `json:"upuDataList"`
+
+	// UpuMacIausf Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
+	UpuMacIausf UpuMac `json:"upuMacIausf,omitempty"`
+
+	// UpuRegInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UpuRegInd
 	UpuRegInd            UpuRegInd              `json:"upuRegInd"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UpuMac defines model for UpuMac.
+// UpuMac Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
 type UpuMac = string
 
-// UpuRegInd defines model for UpuRegInd.
+// UpuRegInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UpuRegInd
 type UpuRegInd = bool
 
-// UpuSecurityInfo defines model for UpuSecurityInfo.
+// UpuSecurityInfo Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuSecurityInfo
 type UpuSecurityInfo struct {
-	CounterUpu           CounterUpu             `json:"counterUpu"`
-	UpuMacIausf          UpuMac                 `json:"upuMacIausf"`
+	// CounterUpu Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/CounterUpu
+	CounterUpu CounterUpu `json:"counterUpu"`
+
+	// UpuMacIausf Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
+	UpuMacIausf UpuMac `json:"upuMacIausf"`
+
+	// UpuXmacIue Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuMac
 	UpuXmacIue           UpuMac                 `json:"upuXmacIue,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -12447,42 +13695,49 @@ type Uri = string
 // UriScheme defines model for UriScheme.
 type UriScheme string
 
-// UsageMonData Contains remain allowed usage data for a subscriber.
+// UsageMonData Contains remain allowed usage data for a subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonData)
 type UsageMonData struct {
-	AllowedUsage         *UsageThreshold               `json:"allowedUsage,omitempty"`
-	LimitId              string                        `json:"limitId"`
-	ResetTime            *DateTime                     `json:"resetTime,omitempty"`
-	Scopes               *map[string]UsageMonDataScope `json:"scopes,omitempty"`
-	SuppFeat             *SupportedFeatures            `json:"suppFeat,omitempty"`
-	UmLevel              *UsageMonLevel                `json:"umLevel,omitempty"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
+	// AllowedUsage Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThreshold
+	AllowedUsage *UsageThreshold               `json:"allowedUsage,omitempty"`
+	LimitId      string                        `json:"limitId"`
+	ResetTime    *DateTime                     `json:"resetTime,omitempty"`
+	Scopes       *map[string]UsageMonDataScope `json:"scopes,omitempty"`
+	SuppFeat     *SupportedFeatures            `json:"suppFeat,omitempty"`
+
+	// UmLevel Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonLevel
+	UmLevel              *UsageMonLevel         `json:"umLevel,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UsageMonDataLimit Contains usage monitoring control data for a subscriber.
+// UsageMonDataLimit Contains usage monitoring control data for a subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonDataLimit)
 type UsageMonDataLimit struct {
 	EndDate *DateTime `json:"endDate,omitempty"`
 	LimitId string    `json:"limitId"`
 
-	// ResetPeriod Contains the periodicity for the defined usage monitoring data limits.
-	ResetPeriod          *TimePeriod                   `json:"resetPeriod,omitempty"`
-	Scopes               *map[string]UsageMonDataScope `json:"scopes,omitempty"`
-	StartDate            *DateTime                     `json:"startDate,omitempty"`
-	UmLevel              *UsageMonLevel                `json:"umLevel,omitempty"`
-	UsageLimit           *UsageThreshold               `json:"usageLimit,omitempty"`
-	AdditionalProperties map[string]interface{}        `json:"-"`
+	// ResetPeriod Contains the periodicity for the defined usage monitoring data limits. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/TimePeriod)
+	ResetPeriod *TimePeriod                   `json:"resetPeriod,omitempty"`
+	Scopes      *map[string]UsageMonDataScope `json:"scopes,omitempty"`
+	StartDate   *DateTime                     `json:"startDate,omitempty"`
+
+	// UmLevel Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonLevel
+	UmLevel *UsageMonLevel `json:"umLevel,omitempty"`
+
+	// UsageLimit Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThreshold
+	UsageLimit           *UsageThreshold        `json:"usageLimit,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UsageMonDataScope Contains a SNSSAI and DNN combinations to which the UsageMonData instance belongs to.
+// UsageMonDataScope Contains a SNSSAI and DNN combinations to which the UsageMonData instance belongs to. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonDataScope)
 type UsageMonDataScope struct {
 	Dnn                  []Dnn                  `json:"dnn,omitempty"`
 	Snssai               Snssai                 `json:"snssai"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UsageMonLevel defines model for UsageMonLevel.
+// UsageMonLevel Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonLevel
 type UsageMonLevel string
 
-// UsageMonitoringData defines model for UsageMonitoringData.
+// UsageMonitoringData Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/UsageMonitoringData
 type UsageMonitoringData struct {
 	// ExUsagePccRuleIds Contains the PCC rule identifier(s) which corresponding service data flow(s) shall be excluded from PDU Session usage monitoring. It is only included in the UsageMonitoringData instance for session level usage monitoring.
 	ExUsagePccRuleIds *[]string      `json:"exUsagePccRuleIds"`
@@ -12490,63 +13745,63 @@ type UsageMonitoringData struct {
 	MonitoringTime    *DateTimeRm    `json:"monitoringTime"`
 	NextTimeThreshold *DurationSecRm `json:"nextTimeThreshold"`
 
-	// NextVolThreshold Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// NextVolThreshold Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	NextVolThreshold *VolumeRm `json:"nextVolThreshold"`
 
-	// NextVolThresholdDownlink Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// NextVolThresholdDownlink Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	NextVolThresholdDownlink *VolumeRm `json:"nextVolThresholdDownlink"`
 
-	// NextVolThresholdUplink Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// NextVolThresholdUplink Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	NextVolThresholdUplink *VolumeRm      `json:"nextVolThresholdUplink"`
 	TimeThreshold          *DurationSecRm `json:"timeThreshold"`
 
 	// UmId Univocally identifies the usage monitoring policy data within a PDU session.
 	UmId string `json:"umId"`
 
-	// VolumeThreshold Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// VolumeThreshold Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	VolumeThreshold *VolumeRm `json:"volumeThreshold"`
 
-	// VolumeThresholdDownlink Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// VolumeThresholdDownlink Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	VolumeThresholdDownlink *VolumeRm `json:"volumeThresholdDownlink"`
 
-	// VolumeThresholdUplink Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// VolumeThresholdUplink Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	VolumeThresholdUplink *VolumeRm              `json:"volumeThresholdUplink"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// UsageThreshold defines model for UsageThreshold.
+// UsageThreshold Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThreshold
 type UsageThreshold struct {
-	// DownlinkVolume Unsigned integer identifying a volume in units of bytes.
+	// DownlinkVolume Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	DownlinkVolume *Volume `json:"downlinkVolume,omitempty"`
 
-	// Duration Unsigned integer identifying a period of time in units of seconds.
+	// Duration Unsigned integer identifying a period of time in units of seconds. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSec)
 	Duration *TS29122DurationSec `json:"duration,omitempty"`
 
-	// TotalVolume Unsigned integer identifying a volume in units of bytes.
+	// TotalVolume Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	TotalVolume *Volume `json:"totalVolume,omitempty"`
 
-	// UplinkVolume Unsigned integer identifying a volume in units of bytes.
+	// UplinkVolume Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 	UplinkVolume         *Volume                `json:"uplinkVolume,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UsageThresholdRm defines model for UsageThresholdRm.
+// UsageThresholdRm Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThresholdRm
 type UsageThresholdRm struct {
-	// DownlinkVolume Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// DownlinkVolume Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	DownlinkVolume *VolumeRm `json:"downlinkVolume"`
 
-	// Duration Unsigned integer identifying a period of time in units of seconds with "nullable=true" property.
+	// Duration Unsigned integer identifying a period of time in units of seconds with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/DurationSecRm)
 	Duration *TS29122DurationSecRm `json:"duration"`
 
-	// TotalVolume Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// TotalVolume Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	TotalVolume *VolumeRm `json:"totalVolume"`
 
-	// UplinkVolume Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+	// UplinkVolume Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 	UplinkVolume         *VolumeRm              `json:"uplinkVolume"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UserIdentifier defines model for UserIdentifier.
+// UserIdentifier Original definition in TS29503_Nudm_NIDDAU.yaml#/components/schemas/UserIdentifier
 type UserIdentifier struct {
 	Gpsi                 Gpsi                   `json:"gpsi,omitempty"`
 	Supi                 Supi                   `json:"supi"`
@@ -12564,11 +13819,15 @@ type UserLocation struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UserPlaneLocationArea defines model for UserPlaneLocationArea.
+// UserPlaneLocationArea Original definition in TS29122_PfdManagement.yaml#/components/schemas/UserPlaneLocationArea
 type UserPlaneLocationArea struct {
 	// Dnais Identifies a list of DNAI which the user plane functions support.
-	Dnais                *[]Dnai                `json:"dnais,omitempty"`
-	LocationArea         *LocationArea          `json:"locationArea,omitempty"`
+	Dnais *[]Dnai `json:"dnais,omitempty"`
+
+	// LocationArea Original definition in TS29122_CommonData.yaml#/components/schemas/LocationArea
+	LocationArea *LocationArea `json:"locationArea,omitempty"`
+
+	// LocationArea5G Original definition in TS29122_CommonData.yaml#/components/schemas/LocationArea5G
 	LocationArea5G       *LocationArea5G        `json:"locationArea5G,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -12586,7 +13845,7 @@ type UtraLocation struct {
 	AdditionalProperties     map[string]interface{} `json:"-"`
 }
 
-// V2xContext defines model for V2xContext.
+// V2xContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/V2xContext
 type V2xContext struct {
 	LteUeSidelinkAmbr    BitRate                `json:"lteUeSidelinkAmbr,omitempty"`
 	LteV2xServicesAuth   *LteV2xAuth            `json:"lteV2xServicesAuth,omitempty"`
@@ -12596,13 +13855,14 @@ type V2xContext struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// V2xInformation defines model for V2xInformation.
+// V2xInformation Original definition in TS29518_Namf_Communication.yaml#/components/schemas/V2xInformation
 type V2xInformation struct {
+	// N2Pc5Pol Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContent
 	N2Pc5Pol             *N2InfoContent         `json:"n2Pc5Pol,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// V2xSubscriptionData defines model for V2xSubscriptionData.
+// V2xSubscriptionData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/V2xSubscriptionData
 type V2xSubscriptionData struct {
 	LtePc5Ambr           BitRate                `json:"ltePc5Ambr,omitempty"`
 	LteV2xServicesAuth   *LteV2xAuth            `json:"lteV2xServicesAuth,omitempty"`
@@ -12611,58 +13871,60 @@ type V2xSubscriptionData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// ValidTimePeriod defines model for ValidTimePeriod.
+// ValidTimePeriod Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ValidTimePeriod
 type ValidTimePeriod struct {
 	EndTime              *DateTime              `json:"endTime,omitempty"`
 	StartTime            *DateTime              `json:"startTime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// VarPlmnId defines model for VarPlmnId.
+// VarPlmnId Original definition in TS29505_Subscription_Data.yaml#/components/schemas/VarPlmnId
 type VarPlmnId = string
 
 // VarSnssai defines model for VarSnssai.
 type VarSnssai = Snssai
 
-// VarUeGroupId defines model for VarUeGroupId.
+// VarUeGroupId Original definition in TS29505_Subscription_Data.yaml#/components/schemas/VarUeGroupId
 type VarUeGroupId = string
 
 // VarUeId defines model for VarUeId.
 type VarUeId = string
 
-// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
+// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorId)
 type VendorId = string
 
-// VendorSpecificFeature Information about a vendor-specific feature
+// VendorSpecificFeature Information about a vendor-specific feature (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorSpecificFeature)
 type VendorSpecificFeature struct {
 	FeatureName          string                 `json:"featureName"`
 	FeatureVersion       string                 `json:"featureVersion"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// VgmlcAddress defines model for VgmlcAddress.
+// VgmlcAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/VgmlcAddress
 type VgmlcAddress struct {
 	VgmlcAddressIpv4 Ipv4Addr  `json:"vgmlcAddressIpv4,omitempty"`
 	VgmlcAddressIpv6 *Ipv6Addr `json:"vgmlcAddressIpv6,omitempty"`
 
-	// VgmlcFqdn Fully Qualified Domain Name
+	// VgmlcFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	VgmlcFqdn            *Fqdn                  `json:"vgmlcFqdn,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// VnGroupData defines model for VnGroupData.
+// VnGroupData Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/VnGroupData
 type VnGroupData struct {
-	AppDescriptors       []AppDescriptor        `json:"appDescriptors,omitempty"`
-	Dnn                  *Dnn                   `json:"dnn,omitempty"`
+	AppDescriptors []AppDescriptor `json:"appDescriptors,omitempty"`
+	Dnn            *Dnn            `json:"dnn,omitempty"`
+
+	// PduSessionTypes Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PduSessionTypes
 	PduSessionTypes      *PduSessionTypes       `json:"pduSessionTypes,omitempty"`
 	SingleNssai          *Snssai                `json:"singleNssai,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Volume Unsigned integer identifying a volume in units of bytes.
+// Volume Unsigned integer identifying a volume in units of bytes. (Original definition in TS29122_CommonData.yaml#/components/schemas/Volume)
 type Volume = int64
 
-// VolumeRm Unsigned integer identifying a volume in units of bytes with "nullable=true" property.
+// VolumeRm Unsigned integer identifying a volume in units of bytes with "nullable=true" property. (Original definition in TS29122_CommonData.yaml#/components/schemas/VolumeRm)
 type VolumeRm = int64
 
 // VolumeTimedReport defines model for VolumeTimedReport.
@@ -12674,7 +13936,7 @@ type VolumeTimedReport struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// VplmnQos defines model for VplmnQos.
+// VplmnQos Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VplmnQos
 type VplmnQos struct {
 	N5qi                 *N5Qi                  `json:"5qi,omitempty"`
 	Arp                  *Arp                   `json:"arp,omitempty"`
@@ -12686,37 +13948,53 @@ type VplmnQos struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// VsmfUpdateData defines model for VsmfUpdateData.
+// VsmfUpdateData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VsmfUpdateData
 type VsmfUpdateData struct {
+	// AdditionalCnTunnelInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/TunnelInfo
 	AdditionalCnTunnelInfo *TunnelInfo  `json:"additionalCnTunnelInfo,omitempty"`
 	AlwaysOnGranted        *bool        `json:"alwaysOnGranted,omitempty"`
 	AssignEbiList          []Arp        `json:"assignEbiList,omitempty"`
 	BackOffTimer           *DurationSec `json:"backOffTimer,omitempty"`
 
 	// Cause Possible values are - REL_DUE_TO_HO - EPS_FALLBACK - REL_DUE_TO_UP_SEC - DNN_CONGESTION - S_NSSAI_CONGESTION - REL_DUE_TO_REACTIVATION - 5G_AN_NOT_RESPONDING - REL_DUE_TO_SLICE_NOT_AVAILABLE - REL_DUE_TO_DUPLICATE_SESSION_ID - PDU_SESSION_STATUS_MISMATCH - HO_FAILURE - INSUFFICIENT_UP_RESOURCES - PDU_SESSION_HANDED_OVER - PDU_SESSION_RESUMED - CN_ASSISTED_RAN_PARAMETER_TUNING - ISMF_CONTEXT_TRANSFER - SMF_CONTEXT_TRANSFER - REL_DUE_TO_PS_TO_CS_HO - REL_DUE_TO_SUBSCRIPTION_CHANGE - HO_CANCEL - REL_DUE_TO_SLICE_NOT_AUTHORIZED - PDU_SESSION_HAND_OVER_FAILURE - DDN_FAILURE_STATUS - REL_DUE_TO_CP_ONLY_NOT_APPLICABLE - NOT_SUPPORTED_WITH_ISMF - CHANGED_ANCHOR_SMF - CHANGED_INTERMEDIATE_SMF - REL_DUE_TO_SMF_NOT_SUPPORT_PSETR
-	Cause             *Cause          `json:"cause,omitempty"`
-	DnaiList          *[]Dnai         `json:"dnaiList,omitempty"`
-	EpsBearerInfo     []EpsBearerInfo `json:"epsBearerInfo,omitempty"`
-	EpsPdnCnxInfo     *EpsPdnCnxInfo  `json:"epsPdnCnxInfo,omitempty"`
-	HsmfPduSessionUri *Uri            `json:"hsmfPduSessionUri,omitempty"`
-	MaAcceptedInd     *bool           `json:"maAcceptedInd,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/Cause)
+	Cause         *Cause          `json:"cause,omitempty"`
+	DnaiList      *[]Dnai         `json:"dnaiList,omitempty"`
+	EpsBearerInfo []EpsBearerInfo `json:"epsBearerInfo,omitempty"`
+
+	// EpsPdnCnxInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsPdnCnxInfo
+	EpsPdnCnxInfo     *EpsPdnCnxInfo `json:"epsPdnCnxInfo,omitempty"`
+	HsmfPduSessionUri *Uri           `json:"hsmfPduSessionUri,omitempty"`
+	MaAcceptedInd     *bool          `json:"maAcceptedInd,omitempty"`
 
 	// MaReleaseInd Possible values are
 	//   - REL_MAPDU_OVER_3GPP
 	//   - REL_MAPDU_OVER_N3GPP
-	MaReleaseInd              *MaReleaseIndication          `json:"maReleaseInd,omitempty"`
-	ModifiedEbiList           []EbiArpMapping               `json:"modifiedEbiList,omitempty"`
-	N1SmInfoToUe              *RefToBinaryData              `json:"n1SmInfoToUe,omitempty"`
-	N1smCause                 *string                       `json:"n1smCause,omitempty"`
-	N4Info                    *N4Information                `json:"n4Info,omitempty"`
-	N4InfoExt1                *N4Information                `json:"n4InfoExt1,omitempty"`
-	N4InfoExt2                *N4Information                `json:"n4InfoExt2,omitempty"`
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/MaReleaseIndication)
+	MaReleaseInd    *MaReleaseIndication `json:"maReleaseInd,omitempty"`
+	ModifiedEbiList []EbiArpMapping      `json:"modifiedEbiList,omitempty"`
+	N1SmInfoToUe    *RefToBinaryData     `json:"n1SmInfoToUe,omitempty"`
+	N1smCause       *string              `json:"n1smCause,omitempty"`
+
+	// N4Info Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4Info *N4Information `json:"n4Info,omitempty"`
+
+	// N4InfoExt1 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt1 *N4Information `json:"n4InfoExt1,omitempty"`
+
+	// N4InfoExt2 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt2 *N4Information `json:"n4InfoExt2,omitempty"`
+
+	// Pti Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProcedureTransactionId
 	Pti                       *ProcedureTransactionId       `json:"pti,omitempty"`
 	QosFlowsAddModRequestList []QosFlowAddModifyRequestItem `json:"qosFlowsAddModRequestList,omitempty"`
 	QosFlowsRelRequestList    []QosFlowReleaseRequestItem   `json:"qosFlowsRelRequestList,omitempty"`
-	QosMonitoringInfo         *QosMonitoringInfo            `json:"qosMonitoringInfo,omitempty"`
+
+	// QosMonitoringInfo Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/QosMonitoringInfo
+	QosMonitoringInfo *QosMonitoringInfo `json:"qosMonitoringInfo,omitempty"`
 
 	// RequestIndication Possible values are - UE_REQ_PDU_SES_MOD - UE_REQ_PDU_SES_REL - PDU_SES_MOB - NW_REQ_PDU_SES_AUTH - NW_REQ_PDU_SES_MOD - NW_REQ_PDU_SES_REL - EBI_ASSIGNMENT_REQ - REL_DUE_TO_5G_AN_REQUEST
+	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RequestIndication)
 	RequestIndication           RequestIndication      `json:"requestIndication"`
 	RevokeEbiList               []SmfEpsBearerId       `json:"revokeEbiList,omitempty"`
 	SessionAmbr                 *Ambr                  `json:"sessionAmbr,omitempty"`
@@ -12725,31 +14003,45 @@ type VsmfUpdateData struct {
 	AdditionalProperties        map[string]interface{} `json:"-"`
 }
 
-// VsmfUpdateError defines model for VsmfUpdateError.
+// VsmfUpdateError Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VsmfUpdateError
 type VsmfUpdateError struct {
-	N5gMmCauseValue       *N5GMmCause             `json:"5gMmCauseValue,omitempty"`
-	Error                 ProblemDetails          `json:"error"`
-	FailedToAssignEbiList []Arp                   `json:"failedToAssignEbiList,omitempty"`
-	N1SmInfoFromUe        *RefToBinaryData        `json:"n1SmInfoFromUe,omitempty"`
-	N1smCause             string                  `json:"n1smCause,omitempty"`
-	N4Info                *N4Information          `json:"n4Info,omitempty"`
-	N4InfoExt1            *N4Information          `json:"n4InfoExt1,omitempty"`
-	N4InfoExt2            *N4Information          `json:"n4InfoExt2,omitempty"`
-	NgApCause             *NgApCause              `json:"ngApCause,omitempty"`
-	Pti                   *ProcedureTransactionId `json:"pti,omitempty"`
-	RecoveryTime          *DateTime               `json:"recoveryTime,omitempty"`
-	UnknownN1SmInfo       *RefToBinaryData        `json:"unknownN1SmInfo,omitempty"`
-	AdditionalProperties  map[string]interface{}  `json:"-"`
+	N5gMmCauseValue       *N5GMmCause      `json:"5gMmCauseValue,omitempty"`
+	Error                 ProblemDetails   `json:"error"`
+	FailedToAssignEbiList []Arp            `json:"failedToAssignEbiList,omitempty"`
+	N1SmInfoFromUe        *RefToBinaryData `json:"n1SmInfoFromUe,omitempty"`
+	N1smCause             string           `json:"n1smCause,omitempty"`
+
+	// N4Info Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4Info *N4Information `json:"n4Info,omitempty"`
+
+	// N4InfoExt1 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt1 *N4Information `json:"n4InfoExt1,omitempty"`
+
+	// N4InfoExt2 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt2 *N4Information `json:"n4InfoExt2,omitempty"`
+	NgApCause  *NgApCause     `json:"ngApCause,omitempty"`
+
+	// Pti Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ProcedureTransactionId
+	Pti                  *ProcedureTransactionId `json:"pti,omitempty"`
+	RecoveryTime         *DateTime               `json:"recoveryTime,omitempty"`
+	UnknownN1SmInfo      *RefToBinaryData        `json:"unknownN1SmInfo,omitempty"`
+	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
-// VsmfUpdatedData defines model for VsmfUpdatedData.
+// VsmfUpdatedData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VsmfUpdatedData
 type VsmfUpdatedData struct {
-	AddUeLocation              *UserLocation             `json:"addUeLocation,omitempty"`
-	AssignedEbiList            []EbiArpMapping           `json:"assignedEbiList,omitempty"`
-	FailedToAssignEbiList      []Arp                     `json:"failedToAssignEbiList,omitempty"`
-	N1SmInfoFromUe             *RefToBinaryData          `json:"n1SmInfoFromUe,omitempty"`
-	N4Info                     *N4Information            `json:"n4Info,omitempty"`
-	N4InfoExt1                 *N4Information            `json:"n4InfoExt1,omitempty"`
+	AddUeLocation         *UserLocation    `json:"addUeLocation,omitempty"`
+	AssignedEbiList       []EbiArpMapping  `json:"assignedEbiList,omitempty"`
+	FailedToAssignEbiList []Arp            `json:"failedToAssignEbiList,omitempty"`
+	N1SmInfoFromUe        *RefToBinaryData `json:"n1SmInfoFromUe,omitempty"`
+
+	// N4Info Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4Info *N4Information `json:"n4Info,omitempty"`
+
+	// N4InfoExt1 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
+	N4InfoExt1 *N4Information `json:"n4InfoExt1,omitempty"`
+
+	// N4InfoExt2 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/N4Information
 	N4InfoExt2                 *N4Information            `json:"n4InfoExt2,omitempty"`
 	QosFlowsAddModList         []QosFlowItem             `json:"qosFlowsAddModList,omitempty"`
 	QosFlowsFailedtoAddModList []QosFlowItem             `json:"qosFlowsFailedtoAddModList,omitempty"`
@@ -12767,21 +14059,21 @@ type VsmfUpdatedData struct {
 // WAgfId defines model for WAgfId.
 type WAgfId = string
 
-// WAgfInfo Information of the W-AGF end-points
+// WAgfInfo Information of the W-AGF end-points (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/WAgfInfo)
 type WAgfInfo struct {
-	// EndpointFqdn Fully Qualified Domain Name
+	// EndpointFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	EndpointFqdn          *Fqdn                  `json:"endpointFqdn,omitempty"`
 	Ipv4EndpointAddresses []Ipv4Addr             `json:"ipv4EndpointAddresses,omitempty"`
 	Ipv6EndpointAddresses []Ipv6Addr             `json:"ipv6EndpointAddresses,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"-"`
 }
 
-// WebsockNotifConfig defines model for WebsockNotifConfig.
+// WebsockNotifConfig Original definition in TS29122_CommonData.yaml#/components/schemas/WebsockNotifConfig
 type WebsockNotifConfig struct {
 	// RequestWebsocketUri Set by the SCS/AS to indicate that the Websocket delivery is requested.
 	RequestWebsocketUri *bool `json:"requestWebsocketUri,omitempty"`
 
-	// WebsocketUri string formatted according to IETF RFC 3986 identifying a referenced resource.
+	// WebsocketUri string formatted according to IETF RFC 3986 identifying a referenced resource. (Original definition in TS29122_CommonData.yaml#/components/schemas/Link)
 	WebsocketUri         *TS29122Link           `json:"websocketUri,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -12805,35 +14097,40 @@ type WirelineServiceAreaRestriction struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// Xres defines model for Xres.
+// Xres Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/Xres
 type Xres = string
 
-// XresStar defines model for XresStar.
+// XresStar Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/XresStar
 type XresStar = string
 
-// AusfAuthType defines model for ausf-AuthType.
+// AusfAuthType Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/AuthType
 type AusfAuthType string
 
-// AusfRgAuthCtx defines model for ausf-RgAuthCtx.
+// AusfRgAuthCtx Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/RgAuthCtx
 type AusfRgAuthCtx struct {
-	AuthInd              *bool                  `json:"authInd,omitempty"`
+	AuthInd *bool `json:"authInd,omitempty"`
+
+	// AuthResult Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/AuthResult
 	AuthResult           AuthResult             `json:"authResult"`
 	Supi                 Supi                   `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AusfSecuredPacket defines model for ausf-SecuredPacket.
+// AusfSecuredPacket Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SecuredPacket
 type AusfSecuredPacket = string
 
-// AusfSorInfo defines model for ausf-SorInfo.
+// AusfSorInfo Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SorInfo
 type AusfSorInfo struct {
-	AckInd               AckInd                 `json:"ackInd"`
+	// AckInd Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/AckInd
+	AckInd AckInd `json:"ackInd"`
+
+	// SteeringContainer Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SteeringContainer
 	SteeringContainer    *AusfSteeringContainer `json:"steeringContainer,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AusfSteeringContainer defines model for ausf-SteeringContainer.
+// AusfSteeringContainer Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SteeringContainer
 type AusfSteeringContainer struct {
 	union json.RawMessage
 }
@@ -12841,31 +14138,37 @@ type AusfSteeringContainer struct {
 // AusfSteeringContainer0 defines model for .
 type AusfSteeringContainer0 = []SteeringInfo
 
-// AusfUpuData defines model for ausf-UpuData.
+// AusfUpuData Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuData
 type AusfUpuData struct {
 	DefaultConfNssai []Snssai `json:"defaultConfNssai,omitempty"`
 
 	// RoutingId Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-	RoutingId            *string                `json:"routingId,omitempty"`
+	RoutingId *string `json:"routingId,omitempty"`
+
+	// SecPacket Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SecuredPacket
 	SecPacket            *AusfSecuredPacket     `json:"secPacket,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// AusfUpuInfo defines model for ausf-UpuInfo.
+// AusfUpuInfo Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuInfo
 type AusfUpuInfo struct {
-	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UpuAckInd            UpuAckInd              `json:"upuAckInd"`
-	UpuDataList          []AusfUpuData          `json:"upuDataList"`
+	SupportedFeatures *SupportedFeatures `json:"supportedFeatures,omitempty"`
+
+	// UpuAckInd Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuAckInd
+	UpuAckInd   UpuAckInd     `json:"upuAckInd"`
+	UpuDataList []AusfUpuData `json:"upuDataList"`
+
+	// UpuHeader Original definition in TS29509_Nausf_UPUProtection.yaml#/components/schemas/UpuHeader
 	UpuHeader            UpuHeader              `json:"upuHeader,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // BsfExtProblemDetails defines model for bsf-ExtProblemDetails.
 type BsfExtProblemDetails struct {
-	// AccessTokenError Error returned in the access token response message
+	// AccessTokenError Error returned in the access token response message (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr)
 	AccessTokenError *AccessTokenErr `json:"accessTokenError,omitempty"`
 
-	// AccessTokenRequest Contains information related to the access token request
+	// AccessTokenRequest Contains information related to the access token request (Original definition in TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq)
 	AccessTokenRequest *AccessTokenReq `json:"accessTokenRequest,omitempty"`
 	Cause              *string         `json:"cause,omitempty"`
 	Detail             *string         `json:"detail,omitempty"`
@@ -12873,7 +14176,7 @@ type BsfExtProblemDetails struct {
 	InvalidParams      []InvalidParam  `json:"invalidParams,omitempty"`
 	NrfId              *string         `json:"nrfId,omitempty"`
 
-	// PcfSmFqdn Fully Qualified Domain Name
+	// PcfSmFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	PcfSmFqdn *Fqdn `json:"pcfSmFqdn,omitempty"`
 
 	// PcfSmIpEndPoints IP end points of the PCF hosting the Npcf_SMPolicyControl service.
@@ -12885,7 +14188,7 @@ type BsfExtProblemDetails struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NrfNFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance
+// NrfNFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFService)
 type NrfNFService struct {
 	AllowedNfDomains                 []string                          `json:"allowedNfDomains,omitempty"`
 	AllowedNfTypes                   []NFType                          `json:"allowedNfTypes,omitempty"`
@@ -12898,17 +14201,17 @@ type NrfNFService struct {
 	Capacity                         *int                              `json:"capacity,omitempty"`
 	DefaultNotificationSubscriptions []DefaultNotificationSubscription `json:"defaultNotificationSubscriptions,omitempty"`
 
-	// Fqdn Fully Qualified Domain Name
+	// Fqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	Fqdn *Fqdn `json:"fqdn,omitempty"`
 
-	// InterPlmnFqdn Fully Qualified Domain Name
+	// InterPlmnFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	InterPlmnFqdn      *Fqdn            `json:"interPlmnFqdn,omitempty"`
 	IpEndPoints        []IpEndPoint     `json:"ipEndPoints,omitempty"`
 	Load               *int             `json:"load,omitempty"`
 	LoadTimeStamp      *DateTime        `json:"loadTimeStamp,omitempty"`
 	NfServiceSetIdList []NfServiceSetId `json:"nfServiceSetIdList,omitempty"`
 
-	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF
+	// NfServiceStatus Status of a given NF Service Instance of an NF Instance stored in NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFServiceStatus)
 	NfServiceStatus   NFServiceStatus `json:"nfServiceStatus"`
 	Oauth2Required    *bool           `json:"oauth2Required,omitempty"`
 	PerPlmnSnssaiList []PlmnSnssai    `json:"perPlmnSnssaiList,omitempty"`
@@ -12918,39 +14221,39 @@ type NrfNFService struct {
 	Scheme            UriScheme       `json:"scheme"`
 	ServiceInstanceId string          `json:"serviceInstanceId"`
 
-	// ServiceName Service names known to NRF
+	// ServiceName Service names known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName)
 	ServiceName                     ServiceName                         `json:"serviceName"`
 	SupportedFeatures               *SupportedFeatures                  `json:"supportedFeatures,omitempty"`
 	SupportedVendorSpecificFeatures *map[string][]VendorSpecificFeature `json:"supportedVendorSpecificFeatures,omitempty"`
 
-	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
+	// VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorId)
 	VendorId             VendorId               `json:"vendorId,omitempty"`
 	Versions             []NFServiceVersion     `json:"versions"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NrfPfdData List of Application IDs and/or AF IDs managed by a given NEF Instance
+// NrfPfdData List of Application IDs and/or AF IDs managed by a given NEF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/PfdData)
 type NrfPfdData struct {
 	AfIds                []string               `json:"afIds,omitempty"`
 	AppIds               []string               `json:"appIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NrfSubscriptionData Information of a subscription to notifications to NRF events, included in subscription requests and responses
+// NrfSubscriptionData Information of a subscription to notifications to NRF events, included in subscription requests and responses (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/SubscriptionData)
 type NrfSubscriptionData struct {
 	NfStatusNotificationUri string `json:"nfStatusNotificationUri"`
 	Nid                     Nid    `json:"nid,omitempty"`
 
-	// NotifCondition Condition (list of attributes in the NF Profile) to determine whether a notification must be sent by NRF
+	// NotifCondition Condition (list of attributes in the NF Profile) to determine whether a notification must be sent by NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NotifCondition)
 	NotifCondition       *NotifCondition    `json:"notifCondition,omitempty"`
 	NrfSupportedFeatures *SupportedFeatures `json:"nrfSupportedFeatures,omitempty"`
 	PlmnId               *PlmnId            `json:"plmnId,omitempty"`
 
-	// ReqNfFqdn Fully Qualified Domain Name
+	// ReqNfFqdn Fully Qualified Domain Name (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn)
 	ReqNfFqdn       *Fqdn         `json:"reqNfFqdn,omitempty"`
 	ReqNfInstanceId *NfInstanceId `json:"reqNfInstanceId,omitempty"`
 
-	// ReqNfType NF types known to NRF
+	// ReqNfType NF types known to NRF (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType)
 	ReqNfType            *NFType                         `json:"reqNfType,omitempty"`
 	ReqNotifEvents       []NotificationEventType         `json:"reqNotifEvents,omitempty"`
 	ReqPerPlmnSnssais    []PlmnSnssai                    `json:"reqPerPlmnSnssais,omitempty"`
@@ -12970,15 +14273,15 @@ type NrfSubscriptionData_SubscrCond struct {
 	union json.RawMessage
 }
 
-// NrfTransportProtocol Types of transport protocol used in a given IP endpoint of an NF Service Instance
+// NrfTransportProtocol Types of transport protocol used in a given IP endpoint of an NF Service Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TransportProtocol)
 type NrfTransportProtocol string
 
-// PcfAtsssCapability defines model for pcf-AtsssCapability.
+// PcfAtsssCapability Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AtsssCapability
 type PcfAtsssCapability string
 
-// PcfBdtPolicyData Describes the authorization data of an Individual BDT policy resource.
+// PcfBdtPolicyData Describes the authorization data of an Individual BDT policy resource. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtPolicyData)
 type PcfBdtPolicyData struct {
-	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154.
+	// BdtRefId string identifying a BDT Reference ID as defined in subclause 5.3.3 of 3GPP TS 29.154. (Original definition in TS29122_CommonData.yaml#/components/schemas/BdtReferenceId)
 	BdtRefId BdtReferenceId `json:"bdtRefId"`
 
 	// SelTransPolicyId Contains an identity of the selected transfer policy.
@@ -12990,7 +14293,7 @@ type PcfBdtPolicyData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// PcfBdtPolicyDataPatch A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure.
+// PcfBdtPolicyDataPatch A JSON Merge Patch body schema containing modification instruction to be performed on the bdtPolData attribute of the BdtPolicy data structure to select a transfer policy. Adds selTransPolicyId to BdtPolicyData data structure. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/BdtPolicyDataPatch)
 type PcfBdtPolicyDataPatch struct {
 	// SelTransPolicyId Contains an identity (i.e. transPolicyId value) of the selected transfer policy. If the BdtNotification_5G feature is supported value 0 indicates that no transfer policy is selected.
 	SelTransPolicyId     int                    `json:"selTransPolicyId"`
@@ -13019,9 +14322,10 @@ type PcfBdtPolicyDataPatch struct {
 //   - CM_USER_UNK: Indicate that the specified end user could not be found in the charging system.
 //   - CM_RAT_FAILED: Indicate that the charging system cannot rate the service request due to insufficient rating input, incorrect AVP combination or due to an attribute or an attribute value that is not recognized or supported in the rating.
 //   - UE_STA_SUSP: Indicates that the UE is in suspend state.
+//     (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FailureCode)
 type PcfFailureCode string
 
-// PcfNetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+// PcfNetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
 type PcfNetworkAreaInfo struct {
 	// Ecgis Contains a list of E-UTRA cell identities.
 	Ecgis []Ecgi `json:"ecgis,omitempty"`
@@ -13037,10 +14341,10 @@ type PcfNetworkAreaInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SmfEpsBearerId defines model for smf-EpsBearerId.
+// SmfEpsBearerId Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/EpsBearerId
 type SmfEpsBearerId = int
 
-// SmfIpAddress defines model for smf-IpAddress.
+// SmfIpAddress Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/IpAddress
 type SmfIpAddress struct {
 	Ipv4Addr             Ipv4Addr               `json:"ipv4Addr,omitempty"`
 	Ipv6Addr             *Ipv6Addr              `json:"ipv6Addr,omitempty"`
@@ -13048,23 +14352,23 @@ type SmfIpAddress struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UdmDataSetName defines model for udm-DataSetName.
+// UdmDataSetName Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DataSetName
 type UdmDataSetName string
 
-// UdmDatasetNames defines model for udm-DatasetNames.
+// UdmDatasetNames Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DatasetNames
 type UdmDatasetNames = []UdmDataSetName
 
-// UdmEEReferenceId defines model for udm-EE-ReferenceId.
+// UdmEEReferenceId Original definition in TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId
 type UdmEEReferenceId = int
 
-// UdmEcRestrictionDataWb defines model for udm-EcRestrictionDataWb.
+// UdmEcRestrictionDataWb Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EcRestrictionDataWb
 type UdmEcRestrictionDataWb struct {
 	EcModeARestricted    *bool                  `json:"ecModeARestricted,omitempty"`
 	EcModeBRestricted    *bool                  `json:"ecModeBRestricted,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UdmLocationArea defines model for udm-LocationArea.
+// UdmLocationArea Original definition in TS29503_Nudm_PP.yaml#/components/schemas/LocationArea
 type UdmLocationArea struct {
 	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
 	CivicAddresses *[]interface{} `json:"civicAddresses,omitempty"`
@@ -13072,12 +14376,12 @@ type UdmLocationArea struct {
 	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
 	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
 
-	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs.
+	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29503_Nudm_PP.yaml#/components/schemas/NetworkAreaInfo)
 	NwAreaInfo           *NetworkAreaInfo       `json:"nwAreaInfo,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UdmPPReferenceId defines model for udm-PP-ReferenceId.
+// UdmPPReferenceId Original definition in TS29503_Nudm_PP.yaml#/components/schemas/ReferenceId
 type UdmPPReferenceId = int
 
 // N307 defines model for 307.

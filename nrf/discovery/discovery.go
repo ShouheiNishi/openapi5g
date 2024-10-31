@@ -25,7 +25,7 @@ const (
 // SearchId defines model for searchId.
 type SearchId = string
 
-// N200 Contains a complete search result (i.e. a number of discovered NF Instances), stored by NRF as a consequence of a prior search result
+// N200 Contains a complete search result (i.e. a number of discovered NF Instances), stored by NRF as a consequence of a prior search result (Original definition in TS29510_Nnrf_NFDiscovery.yaml#/components/schemas/StoredSearchResult)
 type N200 = externalRef0.StoredSearchResult
 
 // SearchNFInstancesParams defines parameters for SearchNFInstances.

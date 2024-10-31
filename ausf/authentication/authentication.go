@@ -817,7 +817,7 @@ type EapAuthMethodResponse struct {
 		// Links URI : /{eapSessionUri}
 		Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
-		// EapPayload contains an EAP packet
+		// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
 		EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
 		AdditionalProperties map[string]interface{}   `json:"-"`
 	}
@@ -1370,7 +1370,7 @@ func ParseEapAuthMethodResponse(rsp *http.Response) (*EapAuthMethodResponse, err
 			// Links URI : /{eapSessionUri}
 			Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
-			// EapPayload contains an EAP packet
+			// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
 			EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
 			AdditionalProperties map[string]interface{}   `json:"-"`
 		}
@@ -2191,7 +2191,7 @@ type EapAuthMethod200Application3gppHalPlusJSONResponse struct {
 	// Links URI : /{eapSessionUri}
 	Links map[string]externalRef0.LinksValueSchema `json:"_links"`
 
-	// EapPayload contains an EAP packet
+	// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
 	EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }

@@ -33,7 +33,7 @@ paths:
                     description: |-
                         Merged type of
                           string in TS29571_CommonData.yaml#/components/schemas/VarUeId
-                          string in TS29571_CommonData.yaml#/components/schemas/ExtGroupId
+                          Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId in TS29571_CommonData.yaml#/components/schemas/ExtGroupId
                     type: string
                     x-go-type-skip-optional-pointer: true
                 - description: Features required to be supported by the target NF

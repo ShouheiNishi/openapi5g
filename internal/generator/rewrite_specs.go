@@ -439,6 +439,13 @@ func (s *GeneratorState) MoveSchemas() error {
 				Path:    commonDataSpec,
 				Pointer: schemasPrefix + "/" + refInfo.schema.newName(),
 			}
+		} else if refInfo.schema.spec != commonDataSpec {
+			origRefStr := "Original definition in " + refInfo.schema.spec + "#" + schemasPrefix + "/" + refInfo.schema.oldName
+			if newRef.Value.Description == "" {
+				newRef.Value.Description = origRefStr
+			} else {
+				newRef.Value.Description += " (" + origRefStr + ")"
+			}
 		}
 		newSchemas[newName] = newRef
 	}

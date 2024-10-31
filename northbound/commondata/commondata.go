@@ -7,46 +7,46 @@ import (
 	externalRef0 "github.com/ShouheiNishi/openapi5g/models"
 )
 
-// N400 defines model for 400.
+// N400 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N400 = externalRef0.TS29122ProblemDetails
 
-// N401 defines model for 401.
+// N401 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N401 = externalRef0.TS29122ProblemDetails
 
-// N403 defines model for 403.
+// N403 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N403 = externalRef0.TS29122ProblemDetails
 
-// N404 defines model for 404.
+// N404 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N404 = externalRef0.TS29122ProblemDetails
 
-// N406 defines model for 406.
+// N406 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N406 = externalRef0.TS29122ProblemDetails
 
-// N409 defines model for 409.
+// N409 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N409 = externalRef0.TS29122ProblemDetails
 
-// N411 defines model for 411.
+// N411 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N411 = externalRef0.TS29122ProblemDetails
 
-// N412 defines model for 412.
+// N412 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N412 = externalRef0.TS29122ProblemDetails
 
-// N413 defines model for 413.
+// N413 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N413 = externalRef0.TS29122ProblemDetails
 
-// N414 defines model for 414.
+// N414 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N414 = externalRef0.TS29122ProblemDetails
 
-// N415 defines model for 415.
+// N415 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N415 = externalRef0.TS29122ProblemDetails
 
-// N429 defines model for 429.
+// N429 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N429 = externalRef0.TS29122ProblemDetails
 
-// N500 defines model for 500.
+// N500 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N500 = externalRef0.TS29122ProblemDetails
 
-// N503 defines model for 503.
+// N503 Original definition in TS29122_CommonData.yaml#/components/schemas/ProblemDetails
 type N503 = externalRef0.TS29122ProblemDetails
 
 type N307ResponseHeaders struct {

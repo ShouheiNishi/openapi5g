@@ -340,16 +340,12 @@ func (s *GeneratorState) MoveSchemas() error {
 				}
 
 			// PCF
-			case "AtsssCapability":
+			case "AtsssCapability", "FailureCode":
 				if refInfo.schema.spec == "TS29512_Npcf_SMPolicyControl.yaml" {
 					newName = "pcf-" + newName
 				}
 			case "BdtPolicyData", "BdtPolicyDataPatch", "NetworkAreaInfo":
 				if refInfo.schema.spec == "TS29554_Npcf_BDTPolicyControl.yaml" {
-					newName = "pcf-" + newName
-				}
-			case "FailureCode":
-				if refInfo.schema.spec == "TS29512_Npcf_SMPolicyControl.yaml" {
 					newName = "pcf-" + newName
 				}
 			case "PolicyAssociation",

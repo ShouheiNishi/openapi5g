@@ -44,12 +44,7 @@ func (s *GeneratorState) RewriteSpecs() error {
 		doc := s.Specs[spec]
 
 		refs := map[string]struct{}{}
-		cutRefs := map[string]struct{}{}
-		for _, s := range pkgList[spec].cutRefs {
-			cutRefs[s] = struct{}{}
-		}
-
-		if err := walkRewriteSpecs(doc, refs, cutRefs); err != nil {
+		if err := walkRewriteSpecs(doc, refs); err != nil {
 			return err
 		}
 
@@ -106,9 +101,7 @@ func (s *GeneratorState) RewriteSpecs() error {
 				continue
 			}
 			if _, exist := pkgList[r]; !exist {
-				if _, exist := cutRefs[r]; !exist {
-					panic(fmt.Sprintf("%s is not defined.", r))
-				}
+				panic(fmt.Sprintf("%s is not defined.", r))
 			}
 			deps = append(deps, r)
 		}
@@ -221,7 +214,7 @@ func (s *GeneratorState) MoveSchemas() error {
 	}
 
 	schemas := make(map[*openapi.Schema]*schemaInfo)
-	for spec := range pkgList {
+	for spec := range s.Specs {
 		if components := s.Specs[spec].Components; components != nil {
 			for name, ref := range components.Schemas {
 				if !ref.HasRef() {
@@ -263,8 +256,7 @@ func (s *GeneratorState) MoveSchemas() error {
 		}
 		info := schemas[schemaRef.Value]
 		if info == nil {
-			// return fmt.Errorf("%s has no info", ref)
-			continue
+			return fmt.Errorf("%s has no info", ref)
 		}
 		if info.refs[name] == nil {
 			info.refs[name] = &refInfo{
@@ -299,6 +291,10 @@ func (s *GeneratorState) MoveSchemas() error {
 				if refInfo.schema.spec == "TS29122_CommonData.yaml" {
 					newName = "TS29122-" + newName
 				}
+			case "TrafficDescriptor":
+				if refInfo.schema.spec == "TS29122_ResourceManagementOfBdt.yaml" {
+					newName = "TS29122-" + newName
+				}
 
 			// traffic influence
 			case "EventNotification", "TrafficInfluSub":
@@ -326,6 +322,18 @@ func (s *GeneratorState) MoveSchemas() error {
 					newName = "bsf-" + newName
 				}
 
+			// GMLC
+			case "CodeWord":
+				if refInfo.schema.spec == "TS29515_Ngmlc_Location.yaml" {
+					newName = "gmlc-" + newName
+				}
+
+			// LMF
+			case "TerminationCause":
+				if refInfo.schema.spec == "TS29572_Nlmf_Location.yaml" {
+					newName = "lmf-" + newName
+				}
+
 			// NRF
 			case "NFProfile":
 				if refInfo.schema.spec == "TS29510_Nnrf_NFDiscovery.yaml" {
@@ -340,16 +348,16 @@ func (s *GeneratorState) MoveSchemas() error {
 				}
 
 			// PCF
-			case "AtsssCapability":
+			case "AtsssCapability", "FailureCode", "MulticastAccessControl":
 				if refInfo.schema.spec == "TS29512_Npcf_SMPolicyControl.yaml" {
+					newName = "pcf-" + newName
+				}
+			case "AfEvent":
+				if refInfo.schema.spec == "TS29514_Npcf_PolicyAuthorization.yaml" {
 					newName = "pcf-" + newName
 				}
 			case "BdtPolicyData", "BdtPolicyDataPatch", "NetworkAreaInfo":
 				if refInfo.schema.spec == "TS29554_Npcf_BDTPolicyControl.yaml" {
-					newName = "pcf-" + newName
-				}
-			case "FailureCode":
-				if refInfo.schema.spec == "TS29512_Npcf_SMPolicyControl.yaml" {
 					newName = "pcf-" + newName
 				}
 			case "PolicyAssociation",
@@ -715,45 +723,6 @@ func fixSkipOptionalPointer(v *openapi.Schema) error {
 
 	if skipOptionalPointer {
 		v.GoTypeSkipOptionalPointer = true
-	}
-
-	return nil
-}
-
-func fixCutSchemaRef(v *openapi.Ref[openapi.Schema]) error {
-	origSchema := v.Value
-
-	newDescription := v.Value.Description
-	if newDescription == "" {
-		newDescription = fmt.Sprintf("Original reference %s", v.Ref)
-	} else {
-		newDescription = fmt.Sprintf("%s (Original reference %s)", v.Value.Description, v.Ref)
-	}
-
-	v.Ref = openapi.Reference{}
-	v.Value = &openapi.Schema{
-		Description: newDescription,
-	}
-
-	skipPointer := true
-
-	switch getSchemaType(origSchema) {
-	case "":
-		if len(origSchema.AnyOf) == 2 &&
-			origSchema.AnyOf[0].Value.Type != nil &&
-			*origSchema.AnyOf[0].Value.Type == openapi.SchemaTypeString &&
-			origSchema.AnyOf[1].Value.Type != nil &&
-			*origSchema.AnyOf[1].Value.Type == openapi.SchemaTypeString {
-			v.Value.Type = lo.ToPtr(openapi.SchemaTypeString)
-			skipPointer = false
-		}
-	case openapi.SchemaTypeBoolean, openapi.SchemaTypeString:
-		v.Value.Type = origSchema.Type
-		skipPointer = false
-	}
-
-	if skipPointer {
-		v.Value.GoTypeSkipOptionalPointer = true
 	}
 
 	return nil

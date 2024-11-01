@@ -917,8 +917,7 @@ paths:
                 content:
                     application/merge-patch+json:
                         schema:
-                            description: Original reference TS29522_IPTVConfiguration.yaml#/components/schemas/IptvConfigDataPatch
-                            x-go-type-skip-optional-pointer: true
+                            $ref: TS29571_CommonData.yaml#/components/schemas/IptvConfigDataPatch
                 required: true
             responses:
                 "200":
@@ -1366,8 +1365,7 @@ paths:
                 content:
                     application/merge-patch+json:
                         schema:
-                            description: Original reference TS29522_ServiceParameter.yaml#/components/schemas/ServiceParameterDataPatch
-                            x-go-type-skip-optional-pointer: true
+                            $ref: TS29571_CommonData.yaml#/components/schemas/ServiceParameterDataPatch
                 required: true
             responses:
                 "200":

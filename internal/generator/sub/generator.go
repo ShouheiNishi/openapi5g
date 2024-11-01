@@ -133,27 +133,19 @@ func main() {
 		},
 
 		RootFuncName:  "walkRewriteSpecs",
-		ExtraRootArgs: ", refs map[string]struct{}, cutRefs map[string]struct{}",
-		ExtraInit:     "s.refs = refs\ns.cutRefs = cutRefs\n",
+		ExtraRootArgs: ", refs map[string]struct{}",
+		ExtraInit:     "s.refs = refs\n",
 
 		StateType:  "walkRewriteSpecsType",
-		ExtraState: "refs map[string]struct{}\ncutRefs map[string]struct{}\n",
+		ExtraState: "refs map[string]struct{}\n",
 
 		WalkPreHook: func(t *types.Named) string {
 			if t.Obj().Name() == "Ref" {
 				if t.TypeArgs().At(0).(*types.Named).Obj().Name() != "PathItemBase" {
-					cutOp := ""
-					if t.TypeArgs().At(0).(*types.Named).Obj().Name() == "Schema" {
-						cutOp = "if err := fixCutSchemaRef(v) ; err != nil{return err}\nreturn nil\n"
-					}
-					return `	if v.HasRef() {
-						if _, exist := s.cutRefs[v.Ref.Path]; exist {
-` + cutOp +
-						`} else {
-							s.refs[v.Ref.Path] = struct{}{}
-							return nil
-						}
-					}
+					return `if v.HasRef() {
+								s.refs[v.Ref.Path] = struct{}{}
+								return nil
+							}
 `
 				}
 			}

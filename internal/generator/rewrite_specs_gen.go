@@ -14,17 +14,15 @@ type walkRewriteSpecsType struct {
 	visited map[interface{}]struct{}
 	doc     *openapi.Document
 	refs    map[string]struct{}
-	cutRefs map[string]struct{}
 }
 
-func walkRewriteSpecs(d *openapi.Document, refs map[string]struct{}, cutRefs map[string]struct{}) error {
+func walkRewriteSpecs(d *openapi.Document, refs map[string]struct{}) error {
 	s := &walkRewriteSpecsType{
 		visited: make(map[interface{}]struct{}),
 		doc:     d,
 	}
 
 	s.refs = refs
-	s.cutRefs = cutRefs
 
 	return s.walkDocument(s.doc)
 }
@@ -51,11 +49,8 @@ func (s *walkRewriteSpecsType) walkCallbackRef(v *openapi.Ref[openapi.Callback])
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -259,11 +254,8 @@ func (s *walkRewriteSpecsType) walkExampleRef(v *openapi.Ref[openapi.Example]) e
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	return nil
@@ -315,11 +307,8 @@ func (s *walkRewriteSpecsType) walkHeaderRef(v *openapi.Ref[openapi.Header]) err
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -338,11 +327,8 @@ func (s *walkRewriteSpecsType) walkLinkRef(v *openapi.Ref[openapi.Link]) error {
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	return nil
@@ -394,11 +380,8 @@ func (s *walkRewriteSpecsType) walkNodeRef(v *openapi.Ref[yaml.Node]) error {
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	return nil
@@ -495,11 +478,8 @@ func (s *walkRewriteSpecsType) walkParameterRef(v *openapi.Ref[openapi.Parameter
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -618,11 +598,8 @@ func (s *walkRewriteSpecsType) walkRequestBodyRef(v *openapi.Ref[openapi.Request
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -689,11 +666,8 @@ func (s *walkRewriteSpecsType) walkResponseRef(v *openapi.Ref[openapi.Response])
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	if v.Value != nil {
@@ -796,15 +770,8 @@ func (s *walkRewriteSpecsType) walkSchemaRef(v *openapi.Ref[openapi.Schema]) err
 	s.visited[v] = struct{}{}
 
 	if v.HasRef() {
-		if _, exist := s.cutRefs[v.Ref.Path]; exist {
-			if err := fixCutSchemaRef(v); err != nil {
-				return err
-			}
-			return nil
-		} else {
-			s.refs[v.Ref.Path] = struct{}{}
-			return nil
-		}
+		s.refs[v.Ref.Path] = struct{}{}
+		return nil
 	}
 
 	if v.Value != nil {

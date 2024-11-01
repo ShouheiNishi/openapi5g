@@ -44,11 +44,6 @@ func (s *GeneratorState) RewriteSpecs() error {
 		doc := s.Specs[spec]
 
 		refs := map[string]struct{}{}
-		cutRefs := map[string]struct{}{}
-		for _, s := range pkgList[spec].cutRefs {
-			cutRefs[s] = struct{}{}
-		}
-
 		if err := walkRewriteSpecs(doc, refs); err != nil {
 			return err
 		}
@@ -106,9 +101,7 @@ func (s *GeneratorState) RewriteSpecs() error {
 				continue
 			}
 			if _, exist := pkgList[r]; !exist {
-				if _, exist := cutRefs[r]; !exist {
-					panic(fmt.Sprintf("%s is not defined.", r))
-				}
+				panic(fmt.Sprintf("%s is not defined.", r))
 			}
 			deps = append(deps, r)
 		}

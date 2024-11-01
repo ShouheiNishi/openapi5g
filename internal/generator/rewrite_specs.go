@@ -49,7 +49,7 @@ func (s *GeneratorState) RewriteSpecs() error {
 			cutRefs[s] = struct{}{}
 		}
 
-		if err := walkRewriteSpecs(doc, refs, cutRefs); err != nil {
+		if err := walkRewriteSpecs(doc, refs); err != nil {
 			return err
 		}
 
@@ -730,45 +730,6 @@ func fixSkipOptionalPointer(v *openapi.Schema) error {
 
 	if skipOptionalPointer {
 		v.GoTypeSkipOptionalPointer = true
-	}
-
-	return nil
-}
-
-func fixCutSchemaRef(v *openapi.Ref[openapi.Schema]) error {
-	origSchema := v.Value
-
-	newDescription := v.Value.Description
-	if newDescription == "" {
-		newDescription = fmt.Sprintf("Original reference %s", v.Ref)
-	} else {
-		newDescription = fmt.Sprintf("%s (Original reference %s)", v.Value.Description, v.Ref)
-	}
-
-	v.Ref = openapi.Reference{}
-	v.Value = &openapi.Schema{
-		Description: newDescription,
-	}
-
-	skipPointer := true
-
-	switch getSchemaType(origSchema) {
-	case "":
-		if len(origSchema.AnyOf) == 2 &&
-			origSchema.AnyOf[0].Value.Type != nil &&
-			*origSchema.AnyOf[0].Value.Type == openapi.SchemaTypeString &&
-			origSchema.AnyOf[1].Value.Type != nil &&
-			*origSchema.AnyOf[1].Value.Type == openapi.SchemaTypeString {
-			v.Value.Type = lo.ToPtr(openapi.SchemaTypeString)
-			skipPointer = false
-		}
-	case openapi.SchemaTypeBoolean, openapi.SchemaTypeString:
-		v.Value.Type = origSchema.Type
-		skipPointer = false
-	}
-
-	if skipPointer {
-		v.Value.GoTypeSkipOptionalPointer = true
 	}
 
 	return nil

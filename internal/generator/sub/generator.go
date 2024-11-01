@@ -147,7 +147,7 @@ func main() {
 						cutOp = "if err := fixCutSchemaRef(v) ; err != nil{return err}\nreturn nil\n"
 					}
 					return `	if v.HasRef() {
-						if _, exist := s.cutRefs[v.Ref.Path]; exist {
+						if _, exist := s.cutRefs[v.Ref.Path]; exist && false {
 ` + cutOp +
 						`} else {
 							s.refs[v.Ref.Path] = struct{}{}

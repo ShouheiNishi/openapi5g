@@ -49,6 +49,13 @@ const (
 	AccessNetworkIdWLAN     AccessNetworkId = "WLAN"
 )
 
+// Defines values for AccessRightStatus.
+const (
+	FULLYALLOWED   AccessRightStatus = "FULLY_ALLOWED"
+	NOALLOWED      AccessRightStatus = "NO_ALLOWED"
+	PREVIEWALLOWED AccessRightStatus = "PREVIEW_ALLOWED"
+)
+
 // Defines values for AccessTech.
 const (
 	AccessTechCDMA1xRTT                   AccessTech = "CDMA_1xRTT"
@@ -96,6 +103,12 @@ const (
 	AccessTypeRmNON3GPPACCESS AccessTypeRm = "NON_3GPP_ACCESS"
 )
 
+// Defines values for AccuracyFulfilmentIndicator.
+const (
+	REQUESTEDACCURACYFULFILLED    AccuracyFulfilmentIndicator = "REQUESTED_ACCURACY_FULFILLED"
+	REQUESTEDACCURACYNOTFULFILLED AccuracyFulfilmentIndicator = "REQUESTED_ACCURACY_NOT_FULFILLED"
+)
+
 // Defines values for AdditionalQosFlowInfo.
 const (
 	MORELIKELY AdditionalQosFlowInfo = "MORE_LIKELY"
@@ -103,20 +116,10 @@ const (
 
 // Defines values for AfEvent.
 const (
-	AfEventACCESSTYPECHANGE              AfEvent = "ACCESS_TYPE_CHANGE"
-	AfEventANIREPORT                     AfEvent = "ANI_REPORT"
-	AfEventCHARGINGCORRELATION           AfEvent = "CHARGING_CORRELATION"
-	AfEventEPSFALLBACK                   AfEvent = "EPS_FALLBACK"
-	AfEventFAILEDRESOURCESALLOCATION     AfEvent = "FAILED_RESOURCES_ALLOCATION"
-	AfEventOUTOFCREDIT                   AfEvent = "OUT_OF_CREDIT"
-	AfEventPLMNCHG                       AfEvent = "PLMN_CHG"
-	AfEventQOSMONITORING                 AfEvent = "QOS_MONITORING"
-	AfEventQOSNOTIF                      AfEvent = "QOS_NOTIF"
-	AfEventRANNASCAUSE                   AfEvent = "RAN_NAS_CAUSE"
-	AfEventREALLOCATIONOFCREDIT          AfEvent = "REALLOCATION_OF_CREDIT"
-	AfEventSUCCESSFULRESOURCESALLOCATION AfEvent = "SUCCESSFUL_RESOURCES_ALLOCATION"
-	AfEventTSNBRIDGEINFO                 AfEvent = "TSN_BRIDGE_INFO"
-	AfEventUSAGEREPORT                   AfEvent = "USAGE_REPORT"
+	AfEventEXCEPTIONS    AfEvent = "EXCEPTIONS"
+	AfEventSVCEXPERIENCE AfEvent = "SVC_EXPERIENCE"
+	AfEventUECOMM        AfEvent = "UE_COMM"
+	AfEventUEMOBILITY    AfEvent = "UE_MOBILITY"
 )
 
 // Defines values for AfNotifMethod.
@@ -463,6 +466,20 @@ const (
 	OUTOFCOVERAG EventForMdt = "OUT_OF_COVERAG"
 )
 
+// Defines values for EventId.
+const (
+	EventIdABNORMALBEHAVIOUR    EventId = "ABNORMAL_BEHAVIOUR"
+	EventIdLOADLEVELINFORMATION EventId = "LOAD_LEVEL_INFORMATION"
+	EventIdNETWORKPERFORMANCE   EventId = "NETWORK_PERFORMANCE"
+	EventIdNFLOAD               EventId = "NF_LOAD"
+	EventIdNSILOADLEVEL         EventId = "NSI_LOAD_LEVEL"
+	EventIdQOSSUSTAINABILITY    EventId = "QOS_SUSTAINABILITY"
+	EventIdSERVICEEXPERIENCE    EventId = "SERVICE_EXPERIENCE"
+	EventIdUECOMMUNICATION      EventId = "UE_COMMUNICATION"
+	EventIdUEMOBILITY           EventId = "UE_MOBILITY"
+	EventIdUSERDATACONGESTION   EventId = "USER_DATA_CONGESTION"
+)
+
 // Defines values for EventReportMode.
 const (
 	EventReportModeONEVENTDETECTION EventReportMode = "ON_EVENT_DETECTION"
@@ -490,6 +507,18 @@ const (
 	ExtSnssaiWildcardSdTrue ExtSnssaiWildcardSd = true
 )
 
+// Defines values for ExternalClientType.
+const (
+	EMERGENCYSERVICES                  ExternalClientType = "EMERGENCY_SERVICES"
+	LAWFULINTERCEPTSERVICES            ExternalClientType = "LAWFUL_INTERCEPT_SERVICES"
+	PLMNOPERATORANONYMOUSSTATISTICS    ExternalClientType = "PLMN_OPERATOR_ANONYMOUS_STATISTICS"
+	PLMNOPERATORBROADCASTSERVICES      ExternalClientType = "PLMN_OPERATOR_BROADCAST_SERVICES"
+	PLMNOPERATOROM                     ExternalClientType = "PLMN_OPERATOR_OM"
+	PLMNOPERATORSERVICES               ExternalClientType = "PLMN_OPERATOR_SERVICES"
+	PLMNOPERATORTARGETMSSERVICESUPPORT ExternalClientType = "PLMN_OPERATOR_TARGET_MS_SERVICE_SUPPORT"
+	VALUEADDEDSERVICES                 ExternalClientType = "VALUE_ADDED_SERVICES"
+)
+
 // Defines values for FailureCause.
 const (
 	PCCQOSFLOWEVENT    FailureCause = "PCC_QOS_FLOW_EVENT"
@@ -507,6 +536,13 @@ const (
 	PARTIALFAILURE     FailureCode = "PARTIAL_FAILURE"
 	RESOURCELIMITATION FailureCode = "RESOURCE_LIMITATION"
 	SHORTDELAY         FailureCode = "SHORT_DELAY"
+)
+
+// Defines values for FinalUnitAction.
+const (
+	REDIRECT       FinalUnitAction = "REDIRECT"
+	RESTRICTACCESS FinalUnitAction = "RESTRICT_ACCESS"
+	TERMINATE      FinalUnitAction = "TERMINATE"
 )
 
 // Defines values for FlowDirection.
@@ -539,6 +575,18 @@ const (
 	AFSIGNALLING FlowUsage = "AF_SIGNALLING"
 	NOINFO       FlowUsage = "NO_INFO"
 	RTCP         FlowUsage = "RTCP"
+)
+
+// Defines values for GnssId.
+const (
+	BDS           GnssId = "BDS"
+	GALILEO       GnssId = "GALILEO"
+	GLONASS       GnssId = "GLONASS"
+	GPS           GnssId = "GPS"
+	MODERNIZEDGPS GnssId = "MODERNIZED_GPS"
+	NAVIC         GnssId = "NAVIC"
+	QZSS          GnssId = "QZSS"
+	SBAS          GnssId = "SBAS"
 )
 
 // Defines values for HoState.
@@ -633,6 +681,18 @@ const (
 	TRANSFERTOTHIRDPARTY   LcsMoServiceClass = "TRANSFER_TO_THIRD_PARTY"
 )
 
+// Defines values for LcsPriority.
+const (
+	HIGHESTPRIORITY LcsPriority = "HIGHEST_PRIORITY"
+	NORMALPRIORITY  LcsPriority = "NORMAL_PRIORITY"
+)
+
+// Defines values for LcsQosClass.
+const (
+	ASSURED    LcsQosClass = "ASSURED"
+	BESTEFFORT LcsQosClass = "BEST_EFFORT"
+)
+
 // Defines values for LcsServiceAuth.
 const (
 	LcsServiceAuthLOCATIONALLOWEDWITHNOTIFICATION    LcsServiceAuth = "LOCATION_ALLOWED_WITH_NOTIFICATION"
@@ -641,6 +701,16 @@ const (
 	LcsServiceAuthLOCATIONRESTRICTEDWITHOUTRESPONSE  LcsServiceAuth = "LOCATION_RESTRICTED_WITHOUT_RESPONSE"
 	LcsServiceAuthNOTIFICATIONANDVERIFICATIONONLY    LcsServiceAuth = "NOTIFICATION_AND_VERIFICATION_ONLY"
 	LcsServiceAuthNOTIFICATIONONLY                   LcsServiceAuth = "NOTIFICATION_ONLY"
+)
+
+// Defines values for LdrType.
+const (
+	LdrTypeBEINGINSIDEAREA  LdrType = "BEING_INSIDE_AREA"
+	LdrTypeENTERINGINTOAREA LdrType = "ENTERING_INTO_AREA"
+	LdrTypeLEAVINGFROMAREA  LdrType = "LEAVING_FROM_AREA"
+	LdrTypeMOTION           LdrType = "MOTION"
+	LdrTypePERIODIC         LdrType = "PERIODIC"
+	LdrTypeUEAVAILABLE      LdrType = "UE_AVAILABLE"
 )
 
 // Defines values for LineType.
@@ -848,12 +918,6 @@ const (
 	DURATIONVOLUME MeteringMethod0 = "DURATION_VOLUME"
 	EVENT          MeteringMethod0 = "EVENT"
 	VOLUME         MeteringMethod0 = "VOLUME"
-)
-
-// Defines values for MulticastAccessControl.
-const (
-	ALLOWED    MulticastAccessControl = "ALLOWED"
-	NOTALLOWED MulticastAccessControl = "NOT_ALLOWED"
 )
 
 // Defines values for N1MessageClass.
@@ -1113,6 +1177,26 @@ const (
 	NWDAFCOND NwdafCondConditionType = "NWDAF_COND"
 )
 
+// Defines values for NwdafEvent.
+const (
+	ABNORMALBEHAVIOUR  NwdafEvent = "ABNORMAL_BEHAVIOUR"
+	NETWORKPERFORMANCE NwdafEvent = "NETWORK_PERFORMANCE"
+	NFLOAD             NwdafEvent = "NF_LOAD"
+	NSILOADLEVEL       NwdafEvent = "NSI_LOAD_LEVEL"
+	QOSSUSTAINABILITY  NwdafEvent = "QOS_SUSTAINABILITY"
+	SERVICEEXPERIENCE  NwdafEvent = "SERVICE_EXPERIENCE"
+	SLICELOADLEVEL     NwdafEvent = "SLICE_LOAD_LEVEL"
+	UECOMMUNICATION    NwdafEvent = "UE_COMMUNICATION"
+	UEMOBILITY         NwdafEvent = "UE_MOBILITY"
+	USERDATACONGESTION NwdafEvent = "USER_DATA_CONGESTION"
+)
+
+// Defines values for OccurrenceInfo.
+const (
+	MULTIPLETIMEEVENT OccurrenceInfo = "MULTIPLE_TIME_EVENT"
+	ONETIMEEVENT      OccurrenceInfo = "ONE_TIME_EVENT"
+)
+
 // Defines values for OdbPacketServices.
 const (
 	ALLPACKETSERVICES   OdbPacketServices = "ALL_PACKET_SERVICES"
@@ -1135,6 +1219,12 @@ const (
 	Number  OperatorSpecificDataContainerDataType = "number"
 	Object  OperatorSpecificDataContainerDataType = "object"
 	String  OperatorSpecificDataContainerDataType = "string"
+)
+
+// Defines values for PartialRecordMethod.
+const (
+	DEFAULT    PartialRecordMethod = "DEFAULT"
+	INDIVIDUAL PartialRecordMethod = "INDIVIDUAL"
 )
 
 // Defines values for PatchOperation.
@@ -1266,19 +1356,45 @@ const (
 
 // Defines values for PolicyReqTrigger.
 const (
-	ACCESSTYPECHANGE   PolicyReqTrigger = "ACCESS_TYPE_CHANGE"
-	ALLOWEDNSSAICHANGE PolicyReqTrigger = "ALLOWED_NSSAI_CHANGE"
-	CONSTATECHANGE     PolicyReqTrigger = "CON_STATE_CHANGE"
-	LOCATIONCHANGE     PolicyReqTrigger = "LOCATION_CHANGE"
-	PLMNCHANGE         PolicyReqTrigger = "PLMN_CHANGE"
-	PRACHANGE          PolicyReqTrigger = "PRA_CHANGE"
-	SMFSELECTCHANGE    PolicyReqTrigger = "SMF_SELECT_CHANGE"
+	PolicyReqTriggerACCESSTYPECHANGE   PolicyReqTrigger = "ACCESS_TYPE_CHANGE"
+	PolicyReqTriggerALLOWEDNSSAICHANGE PolicyReqTrigger = "ALLOWED_NSSAI_CHANGE"
+	PolicyReqTriggerCONSTATECHANGE     PolicyReqTrigger = "CON_STATE_CHANGE"
+	PolicyReqTriggerLOCATIONCHANGE     PolicyReqTrigger = "LOCATION_CHANGE"
+	PolicyReqTriggerPLMNCHANGE         PolicyReqTrigger = "PLMN_CHANGE"
+	PolicyReqTriggerPRACHANGE          PolicyReqTrigger = "PRA_CHANGE"
+	PolicyReqTriggerSMFSELECTCHANGE    PolicyReqTrigger = "SMF_SELECT_CHANGE"
+)
+
+// Defines values for PositioningMethod.
+const (
+	PositioningMethodBAROMETRICPRESSURE PositioningMethod = "BAROMETRIC_PRESSURE"
+	PositioningMethodBLUETOOTH          PositioningMethod = "BLUETOOTH"
+	PositioningMethodCELLID             PositioningMethod = "CELLID"
+	PositioningMethodDLAOD              PositioningMethod = "DL_AOD"
+	PositioningMethodDLTDOA             PositioningMethod = "DL_TDOA"
+	PositioningMethodECID               PositioningMethod = "ECID"
+	PositioningMethodMBS                PositioningMethod = "MBS"
+	PositioningMethodMOTIONSENSOR       PositioningMethod = "MOTION_SENSOR"
+	PositioningMethodMULTIRTT           PositioningMethod = "MULTI-RTT"
+	PositioningMethodNETWORKSPECIFIC    PositioningMethod = "NETWORK_SPECIFIC"
+	PositioningMethodNRECID             PositioningMethod = "NR_ECID"
+	PositioningMethodOTDOA              PositioningMethod = "OTDOA"
+	PositioningMethodULAOA              PositioningMethod = "UL_AOA"
+	PositioningMethodULTDOA             PositioningMethod = "UL_TDOA"
+	PositioningMethodWLAN               PositioningMethod = "WLAN"
 )
 
 // Defines values for PositioningMethodMdt.
 const (
 	ECELLID PositioningMethodMdt = "E_CELL_ID"
 	GNSS    PositioningMethodMdt = "GNSS"
+)
+
+// Defines values for PositioningMode.
+const (
+	CONVENTIONAL PositioningMode = "CONVENTIONAL"
+	UEASSISTED   PositioningMode = "UE_ASSISTED"
+	UEBASED      PositioningMode = "UE_BASED"
 )
 
 // Defines values for PreemptionCapability.
@@ -1398,21 +1514,21 @@ const (
 
 // Defines values for RatType.
 const (
-	EUTRA         RatType = "EUTRA"
-	EUTRAU        RatType = "EUTRA_U"
-	GERA          RatType = "GERA"
-	LTEM          RatType = "LTE-M"
-	NBIOT         RatType = "NBIOT"
-	NR            RatType = "NR"
-	NRU           RatType = "NR_U"
-	TRUSTEDN3GA   RatType = "TRUSTED_N3GA"
-	TRUSTEDWLAN   RatType = "TRUSTED_WLAN"
-	UTRA          RatType = "UTRA"
-	VIRTUAL       RatType = "VIRTUAL"
-	WIRELINE      RatType = "WIRELINE"
-	WIRELINEBBF   RatType = "WIRELINE_BBF"
-	WIRELINECABLE RatType = "WIRELINE_CABLE"
-	WLAN          RatType = "WLAN"
+	RatTypeEUTRA         RatType = "EUTRA"
+	RatTypeEUTRAU        RatType = "EUTRA_U"
+	RatTypeGERA          RatType = "GERA"
+	RatTypeLTEM          RatType = "LTE-M"
+	RatTypeNBIOT         RatType = "NBIOT"
+	RatTypeNR            RatType = "NR"
+	RatTypeNRU           RatType = "NR_U"
+	RatTypeTRUSTEDN3GA   RatType = "TRUSTED_N3GA"
+	RatTypeTRUSTEDWLAN   RatType = "TRUSTED_WLAN"
+	RatTypeUTRA          RatType = "UTRA"
+	RatTypeVIRTUAL       RatType = "VIRTUAL"
+	RatTypeWIRELINE      RatType = "WIRELINE"
+	RatTypeWIRELINEBBF   RatType = "WIRELINE_BBF"
+	RatTypeWIRELINECABLE RatType = "WIRELINE_CABLE"
+	RatTypeWLAN          RatType = "WLAN"
 )
 
 // Defines values for ReachabilityFilter.
@@ -1509,10 +1625,18 @@ const (
 	ReportTypeMdtPERIODICAL   ReportTypeMdt = "PERIODICAL"
 )
 
+// Defines values for ReportingAreaType.
+const (
+	EPSTRACKINGAREAIDENTITY        ReportingAreaType = "EPS_TRACKING_AREA_IDENTITY"
+	EUTRANCELLGLOBALIDENTIFICATION ReportingAreaType = "E-UTRAN_CELL_GLOBAL_IDENTIFICATION"
+	N5GSTRACKINGAREAIDENTITY       ReportingAreaType = "5GS_TRACKING_AREA_IDENTITY"
+	NRCELLGLOBALIDENTITY           ReportingAreaType = "NR_CELL_GLOBAL_IDENTITY"
+)
+
 // Defines values for ReportingFrequency.
 const (
-	EVENTTRIGGERED ReportingFrequency = "EVENT_TRIGGERED"
-	PERIODIC       ReportingFrequency = "PERIODIC"
+	ReportingFrequencyEVENTTRIGGERED ReportingFrequency = "EVENT_TRIGGERED"
+	ReportingFrequencyPERIODIC       ReportingFrequency = "PERIODIC"
 )
 
 // Defines values for ReportingLevel0.
@@ -1559,12 +1683,12 @@ const (
 
 // Defines values for RequestedRuleDataType.
 const (
-	CHID        RequestedRuleDataType = "CH_ID"
-	EPSFALLBACK RequestedRuleDataType = "EPS_FALLBACK"
-	MSTIMEZONE  RequestedRuleDataType = "MS_TIME_ZONE"
-	RESRELEASE  RequestedRuleDataType = "RES_RELEASE"
-	SUCCRESALLO RequestedRuleDataType = "SUCC_RES_ALLO"
-	USERLOCINFO RequestedRuleDataType = "USER_LOC_INFO"
+	RequestedRuleDataTypeCHID        RequestedRuleDataType = "CH_ID"
+	RequestedRuleDataTypeEPSFALLBACK RequestedRuleDataType = "EPS_FALLBACK"
+	RequestedRuleDataTypeMSTIMEZONE  RequestedRuleDataType = "MS_TIME_ZONE"
+	RequestedRuleDataTypeRESRELEASE  RequestedRuleDataType = "RES_RELEASE"
+	RequestedRuleDataTypeSUCCRESALLO RequestedRuleDataType = "SUCC_RES_ALLO"
+	RequestedRuleDataTypeUSERLOCINFO RequestedRuleDataType = "USER_LOC_INFO"
 )
 
 // Defines values for RequiredAccessInfo.
@@ -1600,6 +1724,13 @@ const (
 	ResourceStatusTRANSFERRED  ResourceStatus = "TRANSFERRED"
 	ResourceStatusUNCHANGED    ResourceStatus = "UNCHANGED"
 	ResourceStatusUPDATED      ResourceStatus = "UPDATED"
+)
+
+// Defines values for ResponseTime.
+const (
+	DELAYTOLERANT ResponseTime = "DELAY_TOLERANT"
+	LOWDELAY      ResponseTime = "LOW_DELAY"
+	NODELAY       ResponseTime = "NO_DELAY"
 )
 
 // Defines values for RestrictionType.
@@ -1910,6 +2041,17 @@ const (
 	UPPATHCHANGE SubscribedEvent = "UP_PATH_CHANGE"
 )
 
+// Defines values for SupportedGADShapes.
+const (
+	ELLIPSOIDARC             SupportedGADShapes = "ELLIPSOID_ARC"
+	POINT                    SupportedGADShapes = "POINT"
+	POINTALTITUDE            SupportedGADShapes = "POINT_ALTITUDE"
+	POINTALTITUDEUNCERTAINTY SupportedGADShapes = "POINT_ALTITUDE_UNCERTAINTY"
+	POINTUNCERTAINTYCIRCLE   SupportedGADShapes = "POINT_UNCERTAINTY_CIRCLE"
+	POINTUNCERTAINTYELLIPSE  SupportedGADShapes = "POINT_UNCERTAINTY_ELLIPSE"
+	POLYGON                  SupportedGADShapes = "POLYGON"
+)
+
 // Defines values for TerminationCause.
 const (
 	TerminationCauseALLSDFDEACTIVATION    TerminationCause = "ALL_SDF_DEACTIVATION"
@@ -1956,6 +2098,56 @@ const (
 const (
 	TransportProtocolTCP TransportProtocol = "TCP"
 	TransportProtocolUDP TransportProtocol = "UDP"
+)
+
+// Defines values for TriggerCategory.
+const (
+	DEFERREDREPORT  TriggerCategory = "DEFERRED_REPORT"
+	IMMEDIATEREPORT TriggerCategory = "IMMEDIATE_REPORT"
+)
+
+// Defines values for TriggerType.
+const (
+	TriggerTypeABNORMALRELEASE                           TriggerType = "ABNORMAL_RELEASE"
+	TriggerTypeADDITIONOFACCESS                          TriggerType = "ADDITION_OF_ACCESS"
+	TriggerTypeADDITIONOFUPF                             TriggerType = "ADDITION_OF_UPF"
+	TriggerTypeCHANGEOF3GPPPSDATAOFFSTATUS               TriggerType = "CHANGE_OF_3GPP_PS_DATA_OFF_STATUS"
+	TriggerTypeCHANGEOFISMF                              TriggerType = "CHANGE_OF_ISMF"
+	TriggerTypeCHANGEOFUEPRESENCEINPRESENCEREPORTINGAREA TriggerType = "CHANGE_OF_UE_PRESENCE_IN_PRESENCE_REPORTING_AREA"
+	TriggerTypeECGICHANGE                                TriggerType = "ECGI_CHANGE"
+	TriggerTypeEVENTLIMIT                                TriggerType = "EVENT_LIMIT"
+	TriggerTypeFINAL                                     TriggerType = "FINAL"
+	TriggerTypeFORCEDREAUTHORISATION                     TriggerType = "FORCED_REAUTHORISATION"
+	TriggerTypeGFBRGUARANTEEDSTATUSCHANGE                TriggerType = "GFBR_GUARANTEED_STATUS_CHANGE"
+	TriggerTypeHANDOVERCANCEL                            TriggerType = "HANDOVER_CANCEL"
+	TriggerTypeHANDOVERCOMPLETE                          TriggerType = "HANDOVER_COMPLETE"
+	TriggerTypeHANDOVERSTART                             TriggerType = "HANDOVER_START"
+	TriggerTypeINSERTIONOFISMF                           TriggerType = "INSERTION_OF_ISMF"
+	TriggerTypeMANAGEMENTINTERVENTION                    TriggerType = "MANAGEMENT_INTERVENTION"
+	TriggerTypeMAXNUMBEROFCHANGESINCHARGINGCONDITIONS    TriggerType = "MAX_NUMBER_OF_CHANGES_IN_CHARGING_CONDITIONS"
+	TriggerTypeOTHERQUOTATYPE                            TriggerType = "OTHER_QUOTA_TYPE"
+	TriggerTypePLMNCHANGE                                TriggerType = "PLMN_CHANGE"
+	TriggerTypeQHT                                       TriggerType = "QHT"
+	TriggerTypeQOSCHANGE                                 TriggerType = "QOS_CHANGE"
+	TriggerTypeQUOTAEXHAUSTED                            TriggerType = "QUOTA_EXHAUSTED"
+	TriggerTypeQUOTATHRESHOLD                            TriggerType = "QUOTA_THRESHOLD"
+	TriggerTypeRATCHANGE                                 TriggerType = "RAT_CHANGE"
+	TriggerTypeREMOVALOFACCESS                           TriggerType = "REMOVAL_OF_ACCESS"
+	TriggerTypeREMOVALOFISMF                             TriggerType = "REMOVAL_OF_ISMF"
+	TriggerTypeREMOVALOFUPF                              TriggerType = "REMOVAL_OF_UPF"
+	TriggerTypeSERVINGNODECHANGE                         TriggerType = "SERVING_NODE_CHANGE"
+	TriggerTypeSESSIONAMBRCHANGE                         TriggerType = "SESSION_AMBR_CHANGE"
+	TriggerTypeSTARTOFSDFADDITIONALACCESS                TriggerType = "START_OF_SDF_ADDITIONAL_ACCESS"
+	TriggerTypeSTARTOFSERVICEDATAFLOW                    TriggerType = "START_OF_SERVICE_DATA_FLOW"
+	TriggerTypeTAICHANGE                                 TriggerType = "TAI_CHANGE"
+	TriggerTypeTARIFFTIMECHANGE                          TriggerType = "TARIFF_TIME_CHANGE"
+	TriggerTypeTIMELIMIT                                 TriggerType = "TIME_LIMIT"
+	TriggerTypeUETIMEZONECHANGE                          TriggerType = "UE_TIMEZONE_CHANGE"
+	TriggerTypeUNITCOUNTINACTIVITYTIMER                  TriggerType = "UNIT_COUNT_INACTIVITY_TIMER"
+	TriggerTypeUNUSEDQUOTATIMER                          TriggerType = "UNUSED_QUOTA_TIMER"
+	TriggerTypeUSERLOCATIONCHANGE                        TriggerType = "USER_LOCATION_CHANGE"
+	TriggerTypeVALIDITYTIME                              TriggerType = "VALIDITY_TIME"
+	TriggerTypeVOLUMELIMIT                               TriggerType = "VOLUME_LIMIT"
 )
 
 // Defines values for UEPolicyPolicyAssociationReleaseCause.
@@ -2055,10 +2247,31 @@ const (
 	Https UriScheme = "https"
 )
 
+// Defines values for Usage.
+const (
+	SUCCESSMETHODNOTDETERMINED           Usage = "SUCCESS_METHOD_NOT_DETERMINED"
+	SUCCESSRESULTSNOTUSED                Usage = "SUCCESS_RESULTS_NOT_USED"
+	SUCCESSRESULTSUSEDTOGENERATELOCATION Usage = "SUCCESS_RESULTS_USED_TO_GENERATE_LOCATION"
+	SUCCESSRESULTSUSEDTOVERIFYLOCATION   Usage = "SUCCESS_RESULTS_USED_TO_VERIFY_LOCATION"
+	UNSUCCESS                            Usage = "UNSUCCESS"
+)
+
 // Defines values for UsageMonLevel.
 const (
 	SERVICELEVEL UsageMonLevel = "SERVICE_LEVEL"
 	SESSIONLEVEL UsageMonLevel = "SESSION_LEVEL"
+)
+
+// Defines values for VelocityRequested.
+const (
+	VELOCITYISNOTREQUESTED VelocityRequested = "VELOCITY_IS_NOT_REQUESTED"
+	VELOCITYISREQUESTED    VelocityRequested = "VELOCITY_IS_REQUESTED"
+)
+
+// Defines values for VerticalDirection.
+const (
+	DOWNWARD VerticalDirection = "DOWNWARD"
+	UPWARD   VerticalDirection = "UPWARD"
 )
 
 // Defines values for AusfAuthType.
@@ -2068,9 +2281,34 @@ const (
 	N5GAKA      AusfAuthType = "5G_AKA"
 )
 
+// Defines values for LmfTerminationCause.
+const (
+	NORMALTERMINATION    LmfTerminationCause = "NORMAL_TERMINATION"
+	TERMINATIONBYNETWORK LmfTerminationCause = "TERMINATION_BY_NETWORK"
+	TERMINATIONBYUE      LmfTerminationCause = "TERMINATION_BY_UE"
+)
+
 // Defines values for NrfTransportProtocol.
 const (
 	NrfTransportProtocolTCP NrfTransportProtocol = "TCP"
+)
+
+// Defines values for PcfAfEvent.
+const (
+	ACCESSTYPECHANGE              PcfAfEvent = "ACCESS_TYPE_CHANGE"
+	ANIREPORT                     PcfAfEvent = "ANI_REPORT"
+	CHARGINGCORRELATION           PcfAfEvent = "CHARGING_CORRELATION"
+	EPSFALLBACK                   PcfAfEvent = "EPS_FALLBACK"
+	FAILEDRESOURCESALLOCATION     PcfAfEvent = "FAILED_RESOURCES_ALLOCATION"
+	OUTOFCREDIT                   PcfAfEvent = "OUT_OF_CREDIT"
+	PLMNCHG                       PcfAfEvent = "PLMN_CHG"
+	QOSMONITORING                 PcfAfEvent = "QOS_MONITORING"
+	QOSNOTIF                      PcfAfEvent = "QOS_NOTIF"
+	RANNASCAUSE                   PcfAfEvent = "RAN_NAS_CAUSE"
+	REALLOCATIONOFCREDIT          PcfAfEvent = "REALLOCATION_OF_CREDIT"
+	SUCCESSFULRESOURCESALLOCATION PcfAfEvent = "SUCCESSFUL_RESOURCES_ALLOCATION"
+	TSNBRIDGEINFO                 PcfAfEvent = "TSN_BRIDGE_INFO"
+	USAGEREPORT                   PcfAfEvent = "USAGE_REPORT"
 )
 
 // Defines values for PcfAtsssCapability.
@@ -2105,6 +2343,12 @@ const (
 	PcfFailureCodeUESTASUSP          PcfFailureCode = "UE_STA_SUSP"
 	PcfFailureCodeUNKRULEID          PcfFailureCode = "UNK_RULE_ID"
 	PcfFailureCodeUNSUCCQOSVAL       PcfFailureCode = "UNSUCC_QOS_VAL"
+)
+
+// Defines values for PcfMulticastAccessControl.
+const (
+	ALLOWED    PcfMulticastAccessControl = "ALLOWED"
+	NOTALLOWED PcfMulticastAccessControl = "NOT_ALLOWED"
 )
 
 // Defines values for UdmDataSetName.
@@ -2476,6 +2720,11 @@ type AccessNetChargingIdentifier struct {
 // AccessNetworkId Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/AccessNetworkId
 type AccessNetworkId string
 
+// AccessRightStatus Possible values are - FULLY_ALLOWED: The User is fully allowed to access to the channel. - PREVIEW_ALLOWED: The User is preview allowed to access to the channel. - NO_ALLOWED: The User is not allowed to access to the channel.
+//
+//	(Original definition in TS29522_IPTVConfiguration.yaml#/components/schemas/AccessRightStatus)
+type AccessRightStatus string
+
 // AccessTech Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/AccessTech
 type AccessTech string
 
@@ -2583,6 +2832,12 @@ type AccumulatedUsage struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// Accuracy Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Accuracy
+type Accuracy = float32
+
+// AccuracyFulfilmentIndicator Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
+type AccuracyFulfilmentIndicator string
+
 // AckInd Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/AckInd
 type AckInd = bool
 
@@ -2665,12 +2920,12 @@ type AfAckInfo struct {
 // AfAppId Contains an AF application identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId)
 type AfAppId = string
 
-// AfEvent Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
+// AfEvent Original definition in TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent
 type AfEvent string
 
 // AfEventExposureData AF Event Exposure data managed by a given NEF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/AfEventExposureData)
 type AfEventExposureData struct {
-	AfEvents             []string               `json:"afEvents"`
+	AfEvents             []AfEvent              `json:"afEvents"`
 	AfIds                []string               `json:"afIds,omitempty"`
 	AppIds               []string               `json:"appIds,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -2679,7 +2934,7 @@ type AfEventExposureData struct {
 // AfEventNotification describes the event information delivered in the notification (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEventNotification)
 type AfEventNotification struct {
 	// Event Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
-	Event                AfEvent                `json:"event"`
+	Event                PcfAfEvent             `json:"event"`
 	Flows                []Flows                `json:"flows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -2687,7 +2942,7 @@ type AfEventNotification struct {
 // AfEventSubscription describes the event information delivered in the subscription (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEventSubscription)
 type AfEventSubscription struct {
 	// Event Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
-	Event AfEvent `json:"event"`
+	Event PcfAfEvent `json:"event"`
 
 	// NotifMethod Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfNotifMethod
 	NotifMethod          *AfNotifMethod         `json:"notifMethod,omitempty"`
@@ -2699,8 +2954,8 @@ type AfEventSubscription struct {
 // AfExternal Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AfExternal
 type AfExternal struct {
 	// AfId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/AfId
-	AfId                  *AfId         `json:"afId,omitempty"`
-	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+	AfId                  *AfId            `json:"afId,omitempty"`
+	AllowedGeographicArea []GeographicArea `json:"allowedGeographicArea,omitempty"`
 
 	// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
@@ -2776,6 +3031,9 @@ type AfSigProtocol0 string
 // AfSigProtocol2 This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
 type AfSigProtocol2 = string
 
+// AgeOfLocationEstimate Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+type AgeOfLocationEstimate = int
+
 // AllowedMtcProviderInfo Original definition in TS29505_Subscription_Data.yaml#/components/schemas/AllowedMtcProviderInfo
 type AllowedMtcProviderInfo struct {
 	AfId                   *string                 `json:"afId,omitempty"`
@@ -2807,6 +3065,9 @@ type AlternativeQosProfile struct {
 	PacketErrRate        PacketErrRate          `json:"packetErrRate,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// Altitude Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+type Altitude = float64
 
 // AmPolicyData Contains the AM policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/AmPolicyData)
 type AmPolicyData struct {
@@ -3242,6 +3503,9 @@ type AnchorSmfFeatures struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// Angle Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Angle
+type Angle = int
+
 // ApnRateStatus defines model for ApnRateStatus.
 type ApnRateStatus struct {
 	RemainExReportsDl    *int                   `json:"remainExReportsDl,omitempty"`
@@ -3482,6 +3746,28 @@ type Area struct {
 
 // AreaCode defines model for AreaCode.
 type AreaCode = string
+
+// AreaEventInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
+type AreaEventInfo struct {
+	AreaDefinition []ReportingArea `json:"areaDefinition"`
+
+	// MaximumInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MaximumInterval
+	MaximumInterval MaximumInterval `json:"maximumInterval,omitempty"`
+
+	// MinimumInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MinimumInterval
+	MinimumInterval MinimumInterval `json:"minimumInterval,omitempty"`
+
+	// OccurrenceInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/OccurrenceInfo
+	OccurrenceInfo *OccurrenceInfo `json:"occurrenceInfo,omitempty"`
+
+	// ReportingDuration Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingDuration
+	ReportingDuration    ReportingDuration `json:"reportingDuration,omitempty"`
+	ReportingLocationReq *bool             `json:"reportingLocationReq,omitempty"`
+
+	// SamplingInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SamplingInterval
+	SamplingInterval     SamplingInterval       `json:"samplingInterval,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // AreaOfInterestEventState Event State of AoI event in old AMF (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AreaOfInterestEventState)
 type AreaOfInterestEventState struct {
@@ -3882,6 +4168,9 @@ type BackupAmfInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// BarometricPressure Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
+type BarometricPressure = int
+
 // BatteryIndication defines model for BatteryIndication.
 type BatteryIndication struct {
 	BatteryInd           *bool                  `json:"batteryInd,omitempty"`
@@ -3915,8 +4204,8 @@ type BdtData struct {
 	Snssai     *Snssai             `json:"snssai,omitempty"`
 	SuppFeat   *SupportedFeatures  `json:"suppFeat,omitempty"`
 
-	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-	TrafficDes *string `json:"trafficDes,omitempty"`
+	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original definition in TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
+	TrafficDes *TS29122TrafficDescriptor `json:"trafficDes,omitempty"`
 
 	// TransPolicy Describes a transfer policy. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/TransferPolicy)
 	TransPolicy TransferPolicy `json:"transPolicy"`
@@ -3993,8 +4282,8 @@ type BdtReqData struct {
 	Snssai     *Snssai             `json:"snssai,omitempty"`
 	SuppFeat   *SupportedFeatures  `json:"suppFeat,omitempty"`
 
-	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-	TrafficDes *string `json:"trafficDes,omitempty"`
+	// TrafficDes Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original definition in TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
+	TrafficDes *TS29122TrafficDescriptor `json:"trafficDes,omitempty"`
 
 	// VolPerUe Original definition in TS29122_CommonData.yaml#/components/schemas/UsageThreshold
 	VolPerUe UsageThreshold `json:"volPerUe"`
@@ -4094,11 +4383,11 @@ type CagInfo struct {
 type CancelPosInfo struct {
 	HgmlcCallBackURI Uri `json:"hgmlcCallBackURI"`
 
-	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-	LdrReference string `json:"ldrReference"`
+	// LdrReference Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+	LdrReference LdrReference `json:"ldrReference"`
 
-	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification *string                `json:"servingLMFIdentification,omitempty"`
+	// ServingLMFIdentification Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+	ServingLMFIdentification *LMFIdentification     `json:"servingLMFIdentification,omitempty"`
 	Supi                     Supi                   `json:"supi"`
 	SupportedFeatures        *SupportedFeatures     `json:"supportedFeatures,omitempty"`
 	AdditionalProperties     map[string]interface{} `json:"-"`
@@ -4211,6 +4500,45 @@ type ChfInfo struct {
 
 // CipheringAlgorithm Original definition in TS29518_Namf_Communication.yaml#/components/schemas/CipheringAlgorithm
 type CipheringAlgorithm string
+
+// CivicAddress Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+type CivicAddress struct {
+	A1                   *string                `json:"A1,omitempty"`
+	A2                   *string                `json:"A2,omitempty"`
+	A3                   *string                `json:"A3,omitempty"`
+	A4                   *string                `json:"A4,omitempty"`
+	A5                   *string                `json:"A5,omitempty"`
+	A6                   *string                `json:"A6,omitempty"`
+	ADDCODE              *string                `json:"ADDCODE,omitempty"`
+	BLD                  *string                `json:"BLD,omitempty"`
+	FLR                  *string                `json:"FLR,omitempty"`
+	HNO                  *string                `json:"HNO,omitempty"`
+	HNS                  *string                `json:"HNS,omitempty"`
+	LMK                  *string                `json:"LMK,omitempty"`
+	LOC                  *string                `json:"LOC,omitempty"`
+	NAM                  *string                `json:"NAM,omitempty"`
+	PC                   *string                `json:"PC,omitempty"`
+	PCN                  *string                `json:"PCN,omitempty"`
+	PLC                  *string                `json:"PLC,omitempty"`
+	POBOX                *string                `json:"POBOX,omitempty"`
+	POD                  *string                `json:"POD,omitempty"`
+	POM                  *string                `json:"POM,omitempty"`
+	PRD                  *string                `json:"PRD,omitempty"`
+	PRM                  *string                `json:"PRM,omitempty"`
+	RD                   *string                `json:"RD,omitempty"`
+	RDBR                 *string                `json:"RDBR,omitempty"`
+	RDSEC                *string                `json:"RDSEC,omitempty"`
+	RDSUBBR              *string                `json:"RDSUBBR,omitempty"`
+	ROOM                 *string                `json:"ROOM,omitempty"`
+	SEAT                 *string                `json:"SEAT,omitempty"`
+	STS                  *string                `json:"STS,omitempty"`
+	UNIT                 *string                `json:"UNIT,omitempty"`
+	Country              *string                `json:"country,omitempty"`
+	Method               *string                `json:"method,omitempty"`
+	ProvidedBy           *string                `json:"providedBy,omitempty"`
+	UsageRules           *string                `json:"usageRules,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // CkPrime Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/CkPrime
 type CkPrime = string
@@ -4339,6 +4667,9 @@ type ConditionData struct {
 // ConditionEventType Indicates whether a notification is due to the NF Instance to start or stop being part of a condition for a subscription to a set of NFs (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/ConditionEventType)
 type ConditionEventType string
 
+// Confidence Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Confidence
+type Confidence = int
+
 // ConfidentialityKey Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ConfidentialityKey
 type ConfidentialityKey = string
 
@@ -4410,6 +4741,9 @@ type ContextInfo struct {
 
 // CoreNetworkType defines model for CoreNetworkType.
 type CoreNetworkType string
+
+// CorrelationID Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
+type CorrelationID = string
 
 // CounterSor Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/CounterSor
 type CounterSor = string
@@ -4534,7 +4868,7 @@ type DefaultNotificationSubscription struct {
 
 // DefaultUnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/DefaultUnrelatedClass
 type DefaultUnrelatedClass struct {
-	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea []GeographicArea `json:"allowedGeographicArea,omitempty"`
 
 	// CodeWordInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CodeWordInd
 	CodeWordInd  *CodeWordInd `json:"codeWordInd,omitempty"`
@@ -4862,6 +5196,31 @@ type EeSubscription struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// EllipsoidArc defines model for EllipsoidArc.
+type EllipsoidArc struct {
+	// Confidence Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Confidence
+	Confidence Confidence `json:"confidence"`
+
+	// IncludedAngle Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Angle
+	IncludedAngle Angle `json:"includedAngle"`
+
+	// InnerRadius Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/InnerRadius
+	InnerRadius InnerRadius `json:"innerRadius"`
+
+	// OffsetAngle Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Angle
+	OffsetAngle Angle `json:"offsetAngle"`
+
+	// Point Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicalCoordinates
+	Point GeographicalCoordinates `json:"point"`
+
+	// Shape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	Shape SupportedGADShapes `json:"shape"`
+
+	// UncertaintyRadius Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Uncertainty
+	UncertaintyRadius    Uncertainty            `json:"uncertaintyRadius"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // EmergencyInfo Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EmergencyInfo
 type EmergencyInfo struct {
 	EpdgInd *bool   `json:"epdgInd,omitempty"`
@@ -5028,6 +5387,11 @@ type EutraLocation struct {
 
 // EventForMdt defines model for EventForMdt.
 type EventForMdt string
+
+// EventId Possible values are - LOAD_LEVEL_INFORMATION: Represent the analytics of load level information of corresponding network slice. - NETWORK_PERFORMANCE: Represent the analytics of network performance information. - NF_LOAD: Indicates that the event subscribed is NF Load. - SERVICE_EXPERIENCE: Represent the analytics of service experience information of the specific applications. - UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION: Represent the analytics of UE communication. - QOS_SUSTAINABILITY: Represent the analytics of QoS sustainability information in the certain area.  - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour information. - USER_DATA_CONGESTION: Represent the analytics of the user data congestion in the certain area. - NSI_LOAD_LEVEL: Represent the analytics of Network Slice and the optionally associated Network Slice Instance.
+//
+//	(Original definition in TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId)
+type EventId string
 
 // EventNotification Original definition in TS29508_Nsmf_EventExposure.yaml#/components/schemas/EventNotification
 type EventNotification struct {
@@ -5366,6 +5730,12 @@ type ExtendedProblemDetails struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// ExternalClientIdentification Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
+type ExternalClientIdentification = string
+
+// ExternalClientType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
+type ExternalClientType string
+
 // ExternalGroupId defines model for ExternalGroupId.
 type ExternalGroupId = string
 
@@ -5384,6 +5754,9 @@ type FailureCause string
 //
 //	(Original definition in TS29122_PfdManagement.yaml#/components/schemas/FailureCode)
 type FailureCode string
+
+// FinalUnitAction Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
+type FinalUnitAction string
 
 // Float defines model for Float.
 type Float = float32
@@ -5467,6 +5840,13 @@ type FrameRouteInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// GADShape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GADShape
+type GADShape struct {
+	// Shape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	Shape                SupportedGADShapes     `json:"shape"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // GNbId defines model for GNbId.
 type GNbId struct {
 	BitLength            int                    `json:"bitLength"`
@@ -5489,6 +5869,18 @@ type GbrQosFlowInformation struct {
 
 // Gci defines model for Gci.
 type Gci = string
+
+// GeographicArea Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+type GeographicArea struct {
+	union json.RawMessage
+}
+
+// GeographicalCoordinates Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicalCoordinates
+type GeographicalCoordinates struct {
+	Lat                  float64                `json:"lat"`
+	Lon                  float64                `json:"lon"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // GeraLocation defines model for GeraLocation.
 type GeraLocation struct {
@@ -5525,7 +5917,23 @@ type GlobalRanNodeId struct {
 // GmlcInfo Information of a GMLC NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/GmlcInfo)
 type GmlcInfo struct {
 	GmlcNumbers          []string               `json:"gmlcNumbers,omitempty"`
-	ServingClientTypes   []string               `json:"servingClientTypes,omitempty"`
+	ServingClientTypes   []ExternalClientType   `json:"servingClientTypes,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// GnssId Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GnssId
+type GnssId string
+
+// GnssPositioningMethodAndUsage Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
+type GnssPositioningMethodAndUsage struct {
+	// Gnss Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GnssId
+	Gnss GnssId `json:"gnss"`
+
+	// Mode Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMode
+	Mode PositioningMode `json:"mode"`
+
+	// Usage Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Usage
+	Usage                Usage                  `json:"usage"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -5566,6 +5974,70 @@ type HfcNodeId struct {
 //
 //	(Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HoState)
 type HoState string
+
+// HorizontalSpeed Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalSpeed
+type HorizontalSpeed = float32
+
+// HorizontalVelocity Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalVelocity
+type HorizontalVelocity struct {
+	// Bearing Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Angle
+	Bearing Angle `json:"bearing"`
+
+	// HSpeed Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalSpeed
+	HSpeed               HorizontalSpeed        `json:"hSpeed"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// HorizontalVelocityWithUncertainty Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalVelocityWithUncertainty
+type HorizontalVelocityWithUncertainty struct {
+	// Bearing Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Angle
+	Bearing Angle `json:"bearing"`
+
+	// HSpeed Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalSpeed
+	HSpeed HorizontalSpeed `json:"hSpeed"`
+
+	// HUncertainty Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SpeedUncertainty
+	HUncertainty         SpeedUncertainty       `json:"hUncertainty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// HorizontalWithVerticalVelocity Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalWithVerticalVelocity
+type HorizontalWithVerticalVelocity struct {
+	// Bearing Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Angle
+	Bearing Angle `json:"bearing"`
+
+	// HSpeed Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalSpeed
+	HSpeed HorizontalSpeed `json:"hSpeed"`
+
+	// VDirection Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VerticalDirection
+	VDirection VerticalDirection `json:"vDirection"`
+
+	// VSpeed Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VerticalSpeed
+	VSpeed               VerticalSpeed          `json:"vSpeed"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// HorizontalWithVerticalVelocityAndUncertainty Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalWithVerticalVelocityAndUncertainty
+type HorizontalWithVerticalVelocityAndUncertainty struct {
+	// Bearing Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Angle
+	Bearing Angle `json:"bearing"`
+
+	// HSpeed Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalSpeed
+	HSpeed HorizontalSpeed `json:"hSpeed"`
+
+	// HUncertainty Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SpeedUncertainty
+	HUncertainty SpeedUncertainty `json:"hUncertainty"`
+
+	// VDirection Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VerticalDirection
+	VDirection VerticalDirection `json:"vDirection"`
+
+	// VSpeed Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VerticalSpeed
+	VSpeed VerticalSpeed `json:"vSpeed"`
+
+	// VUncertainty Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SpeedUncertainty
+	VUncertainty         SpeedUncertainty       `json:"vUncertainty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // HsmfUpdateData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdateData
 type HsmfUpdateData struct {
@@ -5647,8 +6119,8 @@ type HsmfUpdateData struct {
 	RequestIndication RequestIndication `json:"requestIndication"`
 	RevokeEbiList     []SmfEpsBearerId  `json:"revokeEbiList,omitempty"`
 
-	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-	RoamingChargingProfile  interface{}               `json:"roamingChargingProfile,omitempty"`
+	// RoamingChargingProfile Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
+	RoamingChargingProfile  *RoamingChargingProfile   `json:"roamingChargingProfile,omitempty"`
 	SecondaryRatUsageInfo   []SecondaryRatUsageInfo   `json:"secondaryRatUsageInfo,omitempty"`
 	SecondaryRatUsageReport []SecondaryRatUsageReport `json:"secondaryRatUsageReport,omitempty"`
 
@@ -5735,12 +6207,12 @@ type HsmfUpdatedData struct {
 	Pti               *ProcedureTransactionId `json:"pti,omitempty"`
 	QosFlowsSetupList []QosFlowSetupItem      `json:"qosFlowsSetupList,omitempty"`
 
-	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-	RoamingChargingProfile interface{}            `json:"roamingChargingProfile,omitempty"`
-	SessionAmbr            *Ambr                  `json:"sessionAmbr,omitempty"`
-	SupportedFeatures      *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UpSecurity             *UpSecurity            `json:"upSecurity,omitempty"`
-	AdditionalProperties   map[string]interface{} `json:"-"`
+	// RoamingChargingProfile Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
+	RoamingChargingProfile *RoamingChargingProfile `json:"roamingChargingProfile,omitempty"`
+	SessionAmbr            *Ambr                   `json:"sessionAmbr,omitempty"`
+	SupportedFeatures      *SupportedFeatures      `json:"supportedFeatures,omitempty"`
+	UpSecurity             *UpSecurity             `json:"upSecurity,omitempty"`
+	AdditionalProperties   map[string]interface{}  `json:"-"`
 }
 
 // HssAuthType Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/HssAuthType
@@ -5907,6 +6379,9 @@ type IndirectDataForwardingTunnelInfo struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// InnerRadius Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/InnerRadius
+type InnerRadius = int32
+
 // Int64 defines model for Int64.
 type Int64 = int64
 
@@ -6005,15 +6480,21 @@ type IpSmGwRegistration struct {
 
 // IptvConfigData Original definition in TS29519_Application_Data.yaml#/components/schemas/IptvConfigData
 type IptvConfigData struct {
-	AfAppId              string                 `json:"afAppId"`
-	Dnn                  *Dnn                   `json:"dnn,omitempty"`
-	InterGroupId         GroupId                `json:"interGroupId,omitempty"`
-	MultiAccCtrls        map[string]interface{} `json:"multiAccCtrls"`
-	ResUri               *Uri                   `json:"resUri,omitempty"`
-	Snssai               *Snssai                `json:"snssai,omitempty"`
-	Supi                 Supi                   `json:"supi,omitempty"`
-	SuppFeat             *SupportedFeatures     `json:"suppFeat,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	AfAppId              string                            `json:"afAppId"`
+	Dnn                  *Dnn                              `json:"dnn,omitempty"`
+	InterGroupId         GroupId                           `json:"interGroupId,omitempty"`
+	MultiAccCtrls        map[string]MulticastAccessControl `json:"multiAccCtrls"`
+	ResUri               *Uri                              `json:"resUri,omitempty"`
+	Snssai               *Snssai                           `json:"snssai,omitempty"`
+	Supi                 Supi                              `json:"supi,omitempty"`
+	SuppFeat             *SupportedFeatures                `json:"suppFeat,omitempty"`
+	AdditionalProperties map[string]interface{}            `json:"-"`
+}
+
+// IptvConfigDataPatch Original definition in TS29522_IPTVConfiguration.yaml#/components/schemas/IptvConfigDataPatch
+type IptvConfigDataPatch struct {
+	MultiAccCtrls        *map[string]MulticastAccessControl `json:"multiAccCtrls,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
 }
 
 // Ipv4Addr defines model for Ipv4Addr.
@@ -6077,6 +6558,9 @@ type KeyAmfType string
 // Kseaf Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/Kseaf
 type Kseaf = string
 
+// LMFIdentification Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+type LMFIdentification = string
+
 // LadnInfo Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/LadnInfo
 type LadnInfo struct {
 	Ladn                 string                 `json:"ladn"`
@@ -6098,7 +6582,7 @@ type LcsClientClass string
 
 // LcsClientExternal Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsClientExternal
 type LcsClientExternal struct {
-	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea []GeographicArea `json:"allowedGeographicArea,omitempty"`
 
 	// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
@@ -6110,7 +6594,7 @@ type LcsClientExternal struct {
 
 // LcsClientGroupExternal Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsClientGroupExternal
 type LcsClientGroupExternal struct {
-	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea []GeographicArea `json:"allowedGeographicArea,omitempty"`
 
 	// LcsClientGroupId Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId
 	LcsClientGroupId ExtGroupId `json:"lcsClientGroupId,omitempty"`
@@ -6134,6 +6618,9 @@ type LcsMoData struct {
 
 // LcsMoServiceClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/LcsMoServiceClass
 type LcsMoServiceClass string
+
+// LcsPriority Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
+type LcsPriority string
 
 // LcsPrivacy Original definition in TS29503_Nudm_PP.yaml#/components/schemas/LcsPrivacy
 type LcsPrivacy struct {
@@ -6159,8 +6646,20 @@ type LcsPrivacyData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// LcsQosClass Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsQosClass
+type LcsQosClass string
+
 // LcsServiceAuth Possible values are - "LOCATION_ALLOWED_WITH_NOTIFICATION": Location allowed with notification - "LOCATION_ALLOWED_WITHOUT_NOTIFICATION": Location allowed without notification - "LOCATION_ALLOWED_WITHOUT_RESPONSE": Location with notification and privacy verification; location allowed if no response - "LOCATION_RESTRICTED_WITHOUT_RESPONSE": Location with notification and privacy verification; location restricted if no response - "NOTIFICATION_ONLY": Notification only - "NOTIFICATION_AND_VERIFICATION_ONLY": Notification and privacy verification only
 type LcsServiceAuth string
+
+// LcsServiceType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
+type LcsServiceType = int
+
+// LdrReference Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+type LdrReference = string
+
+// LdrType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
+type LdrType string
 
 // LimitIdToMonitoringKey Contains the limit identifier and the corresponding monitoring key for a given S-NSSAI and DNN. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/LimitIdToMonitoringKey)
 type LimitIdToMonitoringKey struct {
@@ -6171,6 +6670,9 @@ type LimitIdToMonitoringKey struct {
 
 // LineType Possible values are - DSL: Identifies a DSL line - PON: Identifies a PON line
 type LineType string
+
+// LinearDistance Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LinearDistance
+type LinearDistance = int
 
 // Link defines model for Link.
 type Link struct {
@@ -6188,11 +6690,11 @@ type LinksValueSchema0 = []Link
 
 // LmfInfo Information of an LMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/LmfInfo)
 type LmfInfo struct {
-	// LmfId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	LmfId                *string                `json:"lmfId,omitempty"`
+	// LmfId Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+	LmfId                *LMFIdentification     `json:"lmfId,omitempty"`
 	ServingAccessTypes   []AccessType           `json:"servingAccessTypes,omitempty"`
 	ServingAnNodeTypes   []AnNodeType           `json:"servingAnNodeTypes,omitempty"`
-	ServingClientTypes   []string               `json:"servingClientTypes,omitempty"`
+	ServingClientTypes   []ExternalClientType   `json:"servingClientTypes,omitempty"`
 	ServingRatTypes      []RatType              `json:"servingRatTypes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -6206,13 +6708,13 @@ type LocationArea struct {
 	CellIds []string `json:"cellIds,omitempty"`
 
 	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
-	CivicAddresses []interface{} `json:"civicAddresses,omitempty"`
+	CivicAddresses []CivicAddress `json:"civicAddresses,omitempty"`
 
 	// EnodeBIds Indicates a list of eNodeB identities in which the UE is currently located.
 	EnodeBIds []string `json:"enodeBIds,omitempty"`
 
 	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
-	GeographicAreas []interface{} `json:"geographicAreas,omitempty"`
+	GeographicAreas []GeographicArea `json:"geographicAreas,omitempty"`
 
 	// RoutingAreaIds Identifies a list of Routing Area Identities of the user where the UE is located.
 	RoutingAreaIds []string `json:"routingAreaIds,omitempty"`
@@ -6225,10 +6727,10 @@ type LocationArea struct {
 // LocationArea5G Original definition in TS29122_CommonData.yaml#/components/schemas/LocationArea5G
 type LocationArea5G struct {
 	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
-	CivicAddresses *[]interface{} `json:"civicAddresses,omitempty"`
+	CivicAddresses *[]CivicAddress `json:"civicAddresses,omitempty"`
 
 	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
-	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
+	GeographicAreas *[]GeographicArea `json:"geographicAreas,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
 	NwAreaInfo           *PcfNetworkAreaInfo    `json:"nwAreaInfo,omitempty"`
@@ -6274,11 +6776,11 @@ type LocationInfoResult struct {
 	CurrentLoc    *bool         `json:"currentLoc,omitempty"`
 	Ecgi          *Ecgi         `json:"ecgi,omitempty"`
 
-	// GeoInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	GeoInfo interface{} `json:"geoInfo,omitempty"`
+	// GeoInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+	GeoInfo *GeographicArea `json:"geoInfo,omitempty"`
 
-	// LocationAge Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	LocationAge          interface{}            `json:"locationAge,omitempty"`
+	// LocationAge Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+	LocationAge          *AgeOfLocationEstimate `json:"locationAge,omitempty"`
 	Ncgi                 *Ncgi                  `json:"ncgi,omitempty"`
 	RatType              *RatType               `json:"ratType,omitempty"`
 	SmsfInstanceId       *NfInstanceId          `json:"smsfInstanceId,omitempty"`
@@ -6294,6 +6796,23 @@ type LocationPrivacyInd string
 
 // LocationPrivacyVerResult Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationPrivacyVerResult
 type LocationPrivacyVerResult string
+
+// LocationQoS Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
+type LocationQoS struct {
+	// HAccuracy Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Accuracy
+	HAccuracy *Accuracy `json:"hAccuracy,omitempty"`
+
+	// LcsQosClass Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsQosClass
+	LcsQosClass *LcsQosClass `json:"lcsQosClass,omitempty"`
+
+	// ResponseTime Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ResponseTime
+	ResponseTime *ResponseTime `json:"responseTime,omitempty"`
+
+	// VAccuracy Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Accuracy
+	VAccuracy            *Accuracy              `json:"vAccuracy,omitempty"`
+	VerticalRequested    *bool                  `json:"verticalRequested,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // LocationReport Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LocationReport
 type LocationReport struct {
@@ -6409,6 +6928,9 @@ type MaxIntegrityProtectedDataRate string
 
 // MaxNumOfReports Original definition in TS29503_Nudm_EE.yaml#/components/schemas/MaxNumOfReports
 type MaxNumOfReports = int
+
+// MaximumInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MaximumInterval
+type MaximumInterval = int
 
 // MbsfnArea defines model for MbsfnArea.
 type MbsfnArea struct {
@@ -6657,6 +7179,9 @@ type MeteringMethod2 = string
 // MicoAllowed Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MicoAllowed
 type MicoAllowed = bool
 
+// MinimumInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MinimumInterval
+type MinimumInterval = int
+
 // MmContext Original definition in TS29518_Namf_Communication.yaml#/components/schemas/MmContext
 type MmContext struct {
 	AccessType       AccessType `json:"accessType"`
@@ -6766,6 +7291,29 @@ type MonitoringReport struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// MotionEventInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
+type MotionEventInfo struct {
+	// LinearDistance Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LinearDistance
+	LinearDistance LinearDistance `json:"linearDistance"`
+
+	// MaximumInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MaximumInterval
+	MaximumInterval MaximumInterval `json:"maximumInterval,omitempty"`
+
+	// MinimumInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MinimumInterval
+	MinimumInterval MinimumInterval `json:"minimumInterval,omitempty"`
+
+	// OccurrenceInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/OccurrenceInfo
+	OccurrenceInfo *OccurrenceInfo `json:"occurrenceInfo,omitempty"`
+
+	// ReportingDuration Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingDuration
+	ReportingDuration    ReportingDuration `json:"reportingDuration,omitempty"`
+	ReportingLocationReq *bool             `json:"reportingLocationReq,omitempty"`
+
+	// SamplingInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SamplingInterval
+	SamplingInterval     SamplingInterval       `json:"samplingInterval,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // MpsPriorityIndicator Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MpsPriorityIndicator
 type MpsPriorityIndicator = bool
 
@@ -6779,8 +7327,17 @@ type MtcProvider struct {
 // MtcProviderInformation defines model for MtcProviderInformation.
 type MtcProviderInformation = string
 
-// MulticastAccessControl Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl
-type MulticastAccessControl string
+// MulticastAccessControl Original definition in TS29522_IPTVConfiguration.yaml#/components/schemas/MulticastAccessControl
+type MulticastAccessControl struct {
+	// AccStatus Possible values are - FULLY_ALLOWED: The User is fully allowed to access to the channel. - PREVIEW_ALLOWED: The User is preview allowed to access to the channel. - NO_ALLOWED: The User is not allowed to access to the channel.
+	//  (Original definition in TS29522_IPTVConfiguration.yaml#/components/schemas/AccessRightStatus)
+	AccStatus            AccessRightStatus      `json:"accStatus"`
+	MulticastV4Addr      Ipv4Addr               `json:"multicastV4Addr,omitempty"`
+	MulticastV6Addr      *Ipv6Addr              `json:"multicastV6Addr,omitempty"`
+	SrcIpv4Addr          Ipv4Addr               `json:"srcIpv4Addr,omitempty"`
+	SrcIpv6Addr          *Ipv6Addr              `json:"srcIpv6Addr,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // N1MessageClass Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
 type N1MessageClass string
@@ -6801,16 +7358,16 @@ type N1MessageNotification struct {
 	Ecgi                *Ecgi  `json:"ecgi,omitempty"`
 	Guami               *Guami `json:"guami,omitempty"`
 
-	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId *string `json:"lcsCorrelationId,omitempty"`
+	// LcsCorrelationId Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
+	LcsCorrelationId CorrelationID `json:"lcsCorrelationId,omitempty"`
 
 	// N1MessageContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageContainer
 	N1MessageContainer     N1MessageContainer `json:"n1MessageContainer"`
 	N1NotifySubscriptionId *string            `json:"n1NotifySubscriptionId,omitempty"`
 	Ncgi                   *Ncgi              `json:"ncgi,omitempty"`
 
-	// NewLmfIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	NewLmfIdentification *string `json:"newLmfIdentification,omitempty"`
+	// NewLmfIdentification Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+	NewLmfIdentification *LMFIdentification `json:"newLmfIdentification,omitempty"`
 
 	// RegistrationCtxtContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/RegistrationContextContainer
 	RegistrationCtxtContainer *RegistrationContextContainer `json:"registrationCtxtContainer,omitempty"`
@@ -6838,8 +7395,8 @@ type N1N2MessageTransferReqData struct {
 	ExtBufSupport     *bool           `json:"extBufSupport,omitempty"`
 	LastMsgIndication *bool           `json:"lastMsgIndication,omitempty"`
 
-	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId *string          `json:"lcsCorrelationId,omitempty"`
+	// LcsCorrelationId Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
+	LcsCorrelationId CorrelationID    `json:"lcsCorrelationId,omitempty"`
 	MaAcceptedInd    *bool            `json:"maAcceptedInd,omitempty"`
 	MtData           *RefToBinaryData `json:"mtData,omitempty"`
 
@@ -6936,8 +7493,8 @@ type N2InformationNotification struct {
 	Guami          *Guami    `json:"guami,omitempty"`
 	InitialAmfName *AmfName  `json:"initialAmfName,omitempty"`
 
-	// LcsCorrelationId Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-	LcsCorrelationId *string `json:"lcsCorrelationId,omitempty"`
+	// LcsCorrelationId Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
+	LcsCorrelationId CorrelationID `json:"lcsCorrelationId,omitempty"`
 
 	// N2InfoContainer Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N2InfoContainer
 	N2InfoContainer        *N2InfoContainer `json:"n2InfoContainer,omitempty"`
@@ -7368,7 +7925,7 @@ type Ncgi struct {
 
 // NefCond Subscription to a set of NF Instances (NEFs), identified by Event ID(s) provided by AF, S-NSSAI(s), AF Instance ID, Application Identifier, External Identifier, External Group Identifier, or domain name. (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NefCond)
 type NefCond struct {
-	AfEvents                       []string             `json:"afEvents,omitempty"`
+	AfEvents                       []AfEvent            `json:"afEvents,omitempty"`
 	ConditionType                  NefCondConditionType `json:"conditionType"`
 	ExternalGroupIdentifiersRanges []IdentityRange      `json:"externalGroupIdentifiersRanges,omitempty"`
 	GpsiRanges                     []IdentityRange      `json:"gpsiRanges,omitempty"`
@@ -7777,50 +8334,50 @@ type NotificationType string
 
 // NotifiedPosInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/NotifiedPosInfo
 type NotifiedPosInfo struct {
-	// AgeOfLocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	AgeOfLocationEstimate interface{} `json:"ageOfLocationEstimate,omitempty"`
+	// AgeOfLocationEstimate Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+	AgeOfLocationEstimate *AgeOfLocationEstimate `json:"ageOfLocationEstimate,omitempty"`
 
-	// Altitude Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
-	Altitude interface{} `json:"altitude,omitempty"`
+	// Altitude Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+	Altitude *Altitude `json:"altitude,omitempty"`
 
-	// BarometricPressure Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
-	BarometricPressure interface{} `json:"barometricPressure,omitempty"`
+	// BarometricPressure Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
+	BarometricPressure BarometricPressure `json:"barometricPressure,omitempty"`
 
-	// CivicAddress Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-	CivicAddress            interface{}    `json:"civicAddress,omitempty"`
-	Ecgi                    *Ecgi          `json:"ecgi,omitempty"`
-	GnssPositioningDataList *[]interface{} `json:"gnssPositioningDataList,omitempty"`
-	Gpsi                    Gpsi           `json:"gpsi,omitempty"`
-	HgmlcCallBackURI        *Uri           `json:"hgmlcCallBackURI,omitempty"`
+	// CivicAddress Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+	CivicAddress            *CivicAddress                    `json:"civicAddress,omitempty"`
+	Ecgi                    *Ecgi                            `json:"ecgi,omitempty"`
+	GnssPositioningDataList *[]GnssPositioningMethodAndUsage `json:"gnssPositioningDataList,omitempty"`
+	Gpsi                    Gpsi                             `json:"gpsi,omitempty"`
+	HgmlcCallBackURI        *Uri                             `json:"hgmlcCallBackURI,omitempty"`
 
-	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-	LdrReference *string `json:"ldrReference,omitempty"`
+	// LdrReference Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+	LdrReference LdrReference `json:"ldrReference,omitempty"`
 
-	// LocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	LocationEstimate interface{} `json:"locationEstimate,omitempty"`
+	// LocationEstimate Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+	LocationEstimate *GeographicArea `json:"locationEstimate,omitempty"`
 
 	// LocationEvent Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationEvent
 	LocationEvent LocationEvent `json:"locationEvent"`
 
 	// MscServerId Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/E164Number
-	MscServerId         E164Number     `json:"mscServerId,omitempty"`
-	Ncgi                *Ncgi          `json:"ncgi,omitempty"`
-	Pei                 Pei            `json:"pei,omitempty"`
-	PositioningDataList *[]interface{} `json:"positioningDataList,omitempty"`
+	MscServerId         E164Number                   `json:"mscServerId,omitempty"`
+	Ncgi                *Ncgi                        `json:"ncgi,omitempty"`
+	Pei                 Pei                          `json:"pei,omitempty"`
+	PositioningDataList *[]PositioningMethodAndUsage `json:"positioningDataList,omitempty"`
 
-	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification *string          `json:"servingLMFIdentification,omitempty"`
-	ServingNode              *NfInstanceId    `json:"servingNode,omitempty"`
-	Supi                     Supi             `json:"supi,omitempty"`
-	TargetMmeName            DiameterIdentity `json:"targetMmeName,omitempty"`
-	TargetMmeRealm           DiameterIdentity `json:"targetMmeRealm,omitempty"`
+	// ServingLMFIdentification Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+	ServingLMFIdentification *LMFIdentification `json:"servingLMFIdentification,omitempty"`
+	ServingNode              *NfInstanceId      `json:"servingNode,omitempty"`
+	Supi                     Supi               `json:"supi,omitempty"`
+	TargetMmeName            DiameterIdentity   `json:"targetMmeName,omitempty"`
+	TargetMmeRealm           DiameterIdentity   `json:"targetMmeRealm,omitempty"`
 
-	// TerminationCause Original reference TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
-	TerminationCause *string `json:"terminationCause,omitempty"`
-	UtranSrvccInd    *bool   `json:"utranSrvccInd,omitempty"`
+	// TerminationCause Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
+	TerminationCause *LmfTerminationCause `json:"terminationCause,omitempty"`
+	UtranSrvccInd    *bool                `json:"utranSrvccInd,omitempty"`
 
-	// VelocityEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
-	VelocityEstimate     interface{}            `json:"velocityEstimate,omitempty"`
+	// VelocityEstimate Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
+	VelocityEstimate     *VelocityEstimate      `json:"velocityEstimate,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -8072,14 +8629,22 @@ type NwdafCond struct {
 // NwdafCondConditionType defines model for NwdafCond.ConditionType.
 type NwdafCondConditionType string
 
+// NwdafEvent Possible values are - SLICE_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice - NETWORK_PERFORMANCE: Indicates that the event subscribed is network performance information. - NF_LOAD: Indicates that the event subscribed is load level and status of one or several Network Functions. - SERVICE_EXPERIENCE: Indicates that the event subscribed is service experience. - UE_MOBILITY: Indicates that the event subscribed is UE mobility information. - UE_COMMUNICATION: Indicates that the event subscribed is UE communication information. - QOS_SUSTAINABILITY: Indicates that the event subscribed is QoS sustainability. - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour. - USER_DATA_CONGESTION: Indicates that the event subscribed is user data congestion information. - NSI_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice and the optionally associated Network Slice Instance
+//
+//	(Original definition in TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent)
+type NwdafEvent string
+
 // NwdafInfo Information of a NWDAF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafInfo)
 type NwdafInfo struct {
-	EventIds             []string               `json:"eventIds,omitempty"`
-	NwdafEvents          []string               `json:"nwdafEvents,omitempty"`
+	EventIds             []EventId              `json:"eventIds,omitempty"`
+	NwdafEvents          []NwdafEvent           `json:"nwdafEvents,omitempty"`
 	TaiList              []Tai                  `json:"taiList,omitempty"`
 	TaiRangeList         []TaiRange             `json:"taiRangeList,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// OccurrenceInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/OccurrenceInfo
+type OccurrenceInfo string
 
 // OdbData defines model for OdbData.
 type OdbData struct {
@@ -8134,13 +8699,16 @@ type OptionsResponse struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// Orientation Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Orientation
+type Orientation = int
+
 // OsId Original definition in TS29519_Policy_Data.yaml#/components/schemas/OsId
 type OsId = openapi_types.UUID
 
 // OutOfCreditInformation Indicates the SDFs without available credit and the corresponding termination action. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/OutOfCreditInformation)
 type OutOfCreditInformation struct {
-	// FinUnitAct Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
-	FinUnitAct           string                 `json:"finUnitAct"`
+	// FinUnitAct Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
+	FinUnitAct           FinalUnitAction        `json:"finUnitAct"`
 	Flows                []Flows                `json:"flows,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -8208,6 +8776,21 @@ type ParameterCombination struct {
 	Supi                 Supi                   `json:"supi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// ParameterOverPc5 Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
+type ParameterOverPc5 = string
+
+// ParameterOverPc5Rm Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5Rm
+type ParameterOverPc5Rm = string
+
+// ParameterOverUu Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
+type ParameterOverUu = string
+
+// ParameterOverUuRm Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUuRm
+type ParameterOverUuRm = string
+
+// PartialRecordMethod Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/PartialRecordMethod
+type PartialRecordMethod string
 
 // PartialSuccessReport Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PartialSuccessReport
 type PartialSuccessReport struct {
@@ -8656,8 +9239,8 @@ type PduSessionCreateData struct {
 	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RequestType)
 	RequestType *RequestType `json:"requestType,omitempty"`
 
-	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-	RoamingChargingProfile interface{}             `json:"roamingChargingProfile,omitempty"`
+	// RoamingChargingProfile Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
+	RoamingChargingProfile *RoamingChargingProfile `json:"roamingChargingProfile,omitempty"`
 	RoutingIndicator       *string                 `json:"routingIndicator,omitempty"`
 	SNssai                 *Snssai                 `json:"sNssai,omitempty"`
 	SecondaryRatUsageInfo  []SecondaryRatUsageInfo `json:"secondaryRatUsageInfo,omitempty"`
@@ -8755,20 +9338,20 @@ type PduSessionCreatedData struct {
 	// RedundantPduSessionInfo Redundant PDU Session Information (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RedundantPduSessionInformation)
 	RedundantPduSessionInfo *RedundantPduSessionInformation `json:"redundantPduSessionInfo,omitempty"`
 
-	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-	RoamingChargingProfile      interface{}            `json:"roamingChargingProfile,omitempty"`
-	SNssai                      *Snssai                `json:"sNssai,omitempty"`
-	SessionAmbr                 *Ambr                  `json:"sessionAmbr,omitempty"`
-	SmallDataRateControlEnabled *bool                  `json:"smallDataRateControlEnabled,omitempty"`
-	SmfInstanceId               *NfInstanceId          `json:"smfInstanceId,omitempty"`
-	SmfServiceInstanceId        *string                `json:"smfServiceInstanceId,omitempty"`
-	SscMode                     string                 `json:"sscMode"`
-	SupportedFeatures           *SupportedFeatures     `json:"supportedFeatures,omitempty"`
-	UeIpv4Address               Ipv4Addr               `json:"ueIpv4Address,omitempty"`
-	UeIpv6InterfaceId           string                 `json:"ueIpv6InterfaceId,omitempty"`
-	UeIpv6Prefix                *Ipv6Prefix            `json:"ueIpv6Prefix,omitempty"`
-	UpSecurity                  *UpSecurity            `json:"upSecurity,omitempty"`
-	AdditionalProperties        map[string]interface{} `json:"-"`
+	// RoamingChargingProfile Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
+	RoamingChargingProfile      *RoamingChargingProfile `json:"roamingChargingProfile,omitempty"`
+	SNssai                      *Snssai                 `json:"sNssai,omitempty"`
+	SessionAmbr                 *Ambr                   `json:"sessionAmbr,omitempty"`
+	SmallDataRateControlEnabled *bool                   `json:"smallDataRateControlEnabled,omitempty"`
+	SmfInstanceId               *NfInstanceId           `json:"smfInstanceId,omitempty"`
+	SmfServiceInstanceId        *string                 `json:"smfServiceInstanceId,omitempty"`
+	SscMode                     string                  `json:"sscMode"`
+	SupportedFeatures           *SupportedFeatures      `json:"supportedFeatures,omitempty"`
+	UeIpv4Address               Ipv4Addr                `json:"ueIpv4Address,omitempty"`
+	UeIpv6InterfaceId           string                  `json:"ueIpv6InterfaceId,omitempty"`
+	UeIpv6Prefix                *Ipv6Prefix             `json:"ueIpv6Prefix,omitempty"`
+	UpSecurity                  *UpSecurity             `json:"upSecurity,omitempty"`
+	AdditionalProperties        map[string]interface{}  `json:"-"`
 }
 
 // PduSessionId defines model for PduSessionId.
@@ -8866,6 +9449,16 @@ type PeiUpdateInfo struct {
 
 // PeriodicCommunicationIndicator Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PeriodicCommunicationIndicator
 type PeriodicCommunicationIndicator string
+
+// PeriodicEventInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
+type PeriodicEventInfo struct {
+	// ReportingAmount Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingAmount
+	ReportingAmount ReportingAmount `json:"reportingAmount"`
+
+	// ReportingInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingInterval
+	ReportingInterval    ReportingInterval      `json:"reportingInterval"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // Periodicity Original definition in TS29519_Policy_Data.yaml#/components/schemas/Periodicity
 type Periodicity string
@@ -9078,6 +9671,86 @@ type PlmnSnssai struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// Point defines model for Point.
+type Point struct {
+	// Point Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicalCoordinates
+	Point GeographicalCoordinates `json:"point"`
+
+	// Shape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	Shape                SupportedGADShapes     `json:"shape"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// PointAltitude defines model for PointAltitude.
+type PointAltitude struct {
+	// Altitude Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+	Altitude Altitude `json:"altitude"`
+
+	// Point Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicalCoordinates
+	Point GeographicalCoordinates `json:"point"`
+
+	// Shape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	Shape                SupportedGADShapes     `json:"shape"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// PointAltitudeUncertainty defines model for PointAltitudeUncertainty.
+type PointAltitudeUncertainty struct {
+	// Altitude Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+	Altitude Altitude `json:"altitude"`
+
+	// Confidence Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Confidence
+	Confidence Confidence `json:"confidence"`
+
+	// Point Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicalCoordinates
+	Point GeographicalCoordinates `json:"point"`
+
+	// Shape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	Shape SupportedGADShapes `json:"shape"`
+
+	// UncertaintyAltitude Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Uncertainty
+	UncertaintyAltitude Uncertainty `json:"uncertaintyAltitude"`
+
+	// UncertaintyEllipse Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/UncertaintyEllipse
+	UncertaintyEllipse UncertaintyEllipse `json:"uncertaintyEllipse"`
+
+	// VConfidence Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Confidence
+	VConfidence          *Confidence            `json:"vConfidence,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// PointList Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PointList
+type PointList = []GeographicalCoordinates
+
+// PointUncertaintyCircle defines model for PointUncertaintyCircle.
+type PointUncertaintyCircle struct {
+	// Point Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicalCoordinates
+	Point GeographicalCoordinates `json:"point"`
+
+	// Shape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	Shape SupportedGADShapes `json:"shape"`
+
+	// Uncertainty Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Uncertainty
+	Uncertainty          Uncertainty            `json:"uncertainty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// PointUncertaintyEllipse defines model for PointUncertaintyEllipse.
+type PointUncertaintyEllipse struct {
+	// Confidence Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Confidence
+	Confidence Confidence `json:"confidence"`
+
+	// Point Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicalCoordinates
+	Point GeographicalCoordinates `json:"point"`
+
+	// Shape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	Shape SupportedGADShapes `json:"shape"`
+
+	// UncertaintyEllipse Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/UncertaintyEllipse
+	UncertaintyEllipse   UncertaintyEllipse     `json:"uncertaintyEllipse"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // PolicyAuthorizationAspId Contains an identity of an application service provider. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AspId)
 type PolicyAuthorizationAspId = string
 
@@ -9164,6 +9837,16 @@ type PolicyDecisionFailureCode string
 // PolicyReqTrigger Original definition in TS29518_Namf_Communication.yaml#/components/schemas/PolicyReqTrigger
 type PolicyReqTrigger string
 
+// Polygon defines model for Polygon.
+type Polygon struct {
+	// PointList Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PointList
+	PointList PointList `json:"pointList"`
+
+	// Shape Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	Shape                SupportedGADShapes     `json:"shape"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // PortManagementContainer Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
 type PortManagementContainer struct {
 	PortManCont          Bytes                  `json:"portManCont"`
@@ -9171,8 +9854,28 @@ type PortManagementContainer struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// PositioningMethod Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethod
+type PositioningMethod string
+
+// PositioningMethodAndUsage Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
+type PositioningMethodAndUsage struct {
+	// Method Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethod
+	Method     PositioningMethod `json:"method"`
+	MethodCode int               `json:"methodCode,omitempty"`
+
+	// Mode Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMode
+	Mode PositioningMode `json:"mode"`
+
+	// Usage Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Usage
+	Usage                Usage                  `json:"usage"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // PositioningMethodMdt defines model for PositioningMethodMdt.
 type PositioningMethodMdt string
+
+// PositioningMode Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMode
+type PositioningMode string
 
 // Pp5gVnGroupProfileData Original definition in TS29505_Subscription_Data.yaml#/components/schemas/Pp5gVnGroupProfileData
 type Pp5gVnGroupProfileData struct {
@@ -9401,12 +10104,12 @@ type ProvideLocInfo struct {
 	AdditionalLocation *UserLocation `json:"additionalLocation,omitempty"`
 	CurrentLoc         *bool         `json:"currentLoc,omitempty"`
 
-	// GeoInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	GeoInfo  interface{}   `json:"geoInfo,omitempty"`
-	Location *UserLocation `json:"location,omitempty"`
+	// GeoInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+	GeoInfo  *GeographicArea `json:"geoInfo,omitempty"`
+	Location *UserLocation   `json:"location,omitempty"`
 
-	// LocationAge Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	LocationAge          interface{}            `json:"locationAge,omitempty"`
+	// LocationAge Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+	LocationAge          *AgeOfLocationEstimate `json:"locationAge,omitempty"`
 	OldGuami             *Guami                 `json:"oldGuami,omitempty"`
 	RatType              *RatType               `json:"ratType,omitempty"`
 	SupportedFeatures    *SupportedFeatures     `json:"supportedFeatures,omitempty"`
@@ -9416,41 +10119,41 @@ type ProvideLocInfo struct {
 
 // ProvidePosInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/ProvidePosInfo
 type ProvidePosInfo struct {
-	// AccuracyFulfilmentIndicator Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
-	AccuracyFulfilmentIndicator *string `json:"accuracyFulfilmentIndicator,omitempty"`
+	// AccuracyFulfilmentIndicator Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
+	AccuracyFulfilmentIndicator *AccuracyFulfilmentIndicator `json:"accuracyFulfilmentIndicator,omitempty"`
 
-	// AgeOfLocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-	AgeOfLocationEstimate interface{} `json:"ageOfLocationEstimate,omitempty"`
+	// AgeOfLocationEstimate Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+	AgeOfLocationEstimate *AgeOfLocationEstimate `json:"ageOfLocationEstimate,omitempty"`
 
-	// Altitude Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
-	Altitude interface{} `json:"altitude,omitempty"`
+	// Altitude Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+	Altitude *Altitude `json:"altitude,omitempty"`
 
-	// BarometricPressure Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
-	BarometricPressure interface{} `json:"barometricPressure,omitempty"`
+	// BarometricPressure Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
+	BarometricPressure BarometricPressure `json:"barometricPressure,omitempty"`
 
-	// CivicAddress Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-	CivicAddress            interface{}    `json:"civicAddress,omitempty"`
-	Ecgi                    *Ecgi          `json:"ecgi,omitempty"`
-	GnssPositioningDataList *[]interface{} `json:"gnssPositioningDataList,omitempty"`
+	// CivicAddress Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+	CivicAddress            *CivicAddress                    `json:"civicAddress,omitempty"`
+	Ecgi                    *Ecgi                            `json:"ecgi,omitempty"`
+	GnssPositioningDataList *[]GnssPositioningMethodAndUsage `json:"gnssPositioningDataList,omitempty"`
 
-	// LocationEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-	LocationEstimate interface{} `json:"locationEstimate,omitempty"`
+	// LocationEstimate Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+	LocationEstimate *GeographicArea `json:"locationEstimate,omitempty"`
 
 	// LocationPrivacyVerResult Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationPrivacyVerResult
-	LocationPrivacyVerResult *LocationPrivacyVerResult `json:"locationPrivacyVerResult,omitempty"`
-	Ncgi                     *Ncgi                     `json:"ncgi,omitempty"`
-	PositioningDataList      *[]interface{}            `json:"positioningDataList,omitempty"`
+	LocationPrivacyVerResult *LocationPrivacyVerResult    `json:"locationPrivacyVerResult,omitempty"`
+	Ncgi                     *Ncgi                        `json:"ncgi,omitempty"`
+	PositioningDataList      *[]PositioningMethodAndUsage `json:"positioningDataList,omitempty"`
 
-	// ServingLMFIdentification Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-	ServingLMFIdentification *string            `json:"servingLMFIdentification,omitempty"`
+	// ServingLMFIdentification Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+	ServingLMFIdentification *LMFIdentification `json:"servingLMFIdentification,omitempty"`
 	SupportedFeatures        *SupportedFeatures `json:"supportedFeatures,omitempty"`
 	TargetMmeName            DiameterIdentity   `json:"targetMmeName,omitempty"`
 	TargetMmeRealm           DiameterIdentity   `json:"targetMmeRealm,omitempty"`
 	TargetServingNode        *NfInstanceId      `json:"targetServingNode,omitempty"`
 	UtranSrvccInd            *bool              `json:"utranSrvccInd,omitempty"`
 
-	// VelocityEstimate Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
-	VelocityEstimate     interface{}            `json:"velocityEstimate,omitempty"`
+	// VelocityEstimate Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
+	VelocityEstimate     *VelocityEstimate      `json:"velocityEstimate,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -9996,6 +10699,25 @@ type ReportItem struct {
 // ReportTypeMdt defines model for ReportTypeMdt.
 type ReportTypeMdt string
 
+// ReportingAmount Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingAmount
+type ReportingAmount = int
+
+// ReportingArea Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingArea
+type ReportingArea struct {
+	// AreaType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingAreaType
+	AreaType             ReportingAreaType      `json:"areaType"`
+	Ecgi                 *Ecgi                  `json:"ecgi,omitempty"`
+	Ncgi                 *Ncgi                  `json:"ncgi,omitempty"`
+	Tai                  *Tai                   `json:"tai,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// ReportingAreaType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingAreaType
+type ReportingAreaType string
+
+// ReportingDuration Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingDuration
+type ReportingDuration = int
+
 // ReportingFrequency Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ReportingFrequency
 type ReportingFrequency string
 
@@ -10013,6 +10735,9 @@ type ReportingInformation struct {
 	SampRatio            SamplingRatio          `json:"sampRatio,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// ReportingInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingInterval
+type ReportingInterval = int
 
 // ReportingLevel Possible values are - SER_ID_LEVEL: Indicates that the usage shall be reported on service id and rating group combination level. - RAT_GR_LEVEL: Indicates that the usage shall be reported on rating group level. - SPON_CON_LEVEL: Indicates that the usage shall be reported on sponsor identity and rating group combination level.
 //
@@ -10062,60 +10787,60 @@ type RequestLocInfo struct {
 
 // RequestPosInfo Original definition in TS29518_Namf_Location.yaml#/components/schemas/RequestPosInfo
 type RequestPosInfo struct {
-	AdditionalLcsSuppGADShapes []string      `json:"additionalLcsSuppGADShapes,omitempty"`
-	AfID                       *NfInstanceId `json:"afID,omitempty"`
+	AdditionalLcsSuppGADShapes []SupportedGADShapes `json:"additionalLcsSuppGADShapes,omitempty"`
+	AfID                       *NfInstanceId        `json:"afID,omitempty"`
 
-	// AreaEventInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
-	AreaEventInfo interface{} `json:"areaEventInfo,omitempty"`
+	// AreaEventInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
+	AreaEventInfo *AreaEventInfo `json:"areaEventInfo,omitempty"`
 
-	// CodeWord Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
-	CodeWord *string `json:"codeWord,omitempty"`
+	// CodeWord Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
+	CodeWord *GmlcCodeWord `json:"codeWord,omitempty"`
 
-	// ExternalClientIdentification Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
-	ExternalClientIdentification *string `json:"externalClientIdentification,omitempty"`
-	Gpsi                         Gpsi    `json:"gpsi,omitempty"`
-	HgmlcCallBackURI             *Uri    `json:"hgmlcCallBackURI,omitempty"`
+	// ExternalClientIdentification Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
+	ExternalClientIdentification *ExternalClientIdentification `json:"externalClientIdentification,omitempty"`
+	Gpsi                         Gpsi                          `json:"gpsi,omitempty"`
+	HgmlcCallBackURI             *Uri                          `json:"hgmlcCallBackURI,omitempty"`
 
-	// LcsClientType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-	LcsClientType string `json:"lcsClientType"`
+	// LcsClientType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
+	LcsClientType ExternalClientType `json:"lcsClientType"`
 
 	// LcsLocation Original definition in TS29518_Namf_Location.yaml#/components/schemas/LocationType
 	LcsLocation LocationType `json:"lcsLocation"`
 
-	// LcsQoS Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
-	LcsQoS interface{} `json:"lcsQoS,omitempty"`
+	// LcsQoS Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
+	LcsQoS *LocationQoS `json:"lcsQoS,omitempty"`
 
-	// LcsServiceType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
-	LcsServiceType interface{} `json:"lcsServiceType,omitempty"`
+	// LcsServiceType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
+	LcsServiceType *LcsServiceType `json:"lcsServiceType,omitempty"`
 
-	// LcsSupportedGADShapes Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-	LcsSupportedGADShapes *string `json:"lcsSupportedGADShapes,omitempty"`
+	// LcsSupportedGADShapes Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+	LcsSupportedGADShapes *SupportedGADShapes `json:"lcsSupportedGADShapes,omitempty"`
 
-	// LdrReference Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-	LdrReference *string `json:"ldrReference,omitempty"`
+	// LdrReference Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+	LdrReference LdrReference `json:"ldrReference,omitempty"`
 
-	// LdrType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
-	LdrType                 *string `json:"ldrType,omitempty"`
-	LocationNotificationUri *Uri    `json:"locationNotificationUri,omitempty"`
+	// LdrType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
+	LdrType                 *LdrType `json:"ldrType,omitempty"`
+	LocationNotificationUri *Uri     `json:"locationNotificationUri,omitempty"`
 
-	// MotionEventInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
-	MotionEventInfo interface{} `json:"motionEventInfo,omitempty"`
-	OldGuami        *Guami      `json:"oldGuami,omitempty"`
-	Pei             Pei         `json:"pei,omitempty"`
+	// MotionEventInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
+	MotionEventInfo *MotionEventInfo `json:"motionEventInfo,omitempty"`
+	OldGuami        *Guami           `json:"oldGuami,omitempty"`
+	Pei             Pei              `json:"pei,omitempty"`
 
-	// PeriodicEventInfo Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
-	PeriodicEventInfo interface{} `json:"periodicEventInfo,omitempty"`
+	// PeriodicEventInfo Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
+	PeriodicEventInfo *PeriodicEventInfo `json:"periodicEventInfo,omitempty"`
 
-	// Priority Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
-	Priority          *string            `json:"priority,omitempty"`
+	// Priority Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
+	Priority          *LcsPriority       `json:"priority,omitempty"`
 	Supi              Supi               `json:"supi,omitempty"`
 	SupportedFeatures *SupportedFeatures `json:"supportedFeatures,omitempty"`
 
-	// UePrivacyRequirements Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
-	UePrivacyRequirements interface{} `json:"uePrivacyRequirements,omitempty"`
+	// UePrivacyRequirements Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
+	UePrivacyRequirements *UePrivacyRequirements `json:"uePrivacyRequirements,omitempty"`
 
-	// VelocityRequested Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
-	VelocityRequested    *string                `json:"velocityRequested,omitempty"`
+	// VelocityRequested Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
+	VelocityRequested    *VelocityRequested     `json:"velocityRequested,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
@@ -10191,6 +10916,9 @@ type ResourcesAllocationInfo struct {
 	AdditionalProperties map[string]interface{}         `json:"-"`
 }
 
+// ResponseTime Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ResponseTime
+type ResponseTime string
+
 // RestrictedSnssai Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/RestrictedSnssai
 type RestrictedSnssai struct {
 	HomePlmnId           PlmnId                 `json:"homePlmnId"`
@@ -10264,6 +10992,14 @@ type RmInfo struct {
 // RmState Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/RmState
 type RmState string
 
+// RoamingChargingProfile Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
+type RoamingChargingProfile struct {
+	// PartialRecordMethod Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/PartialRecordMethod
+	PartialRecordMethod  *PartialRecordMethod   `json:"partialRecordMethod,omitempty"`
+	Triggers             *[]Trigger             `json:"triggers,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // RoamingIndication Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/RoamingIndication
 type RoamingIndication string
 
@@ -10300,6 +11036,9 @@ type RoutingAreaId struct {
 	Rac                  string                 `json:"rac"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// RoutingId Original definition in TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
+type RoutingId = string
 
 // Rsn Redundancy Sequence Number. Possible values are
 //   - V1
@@ -10342,8 +11081,8 @@ type RuleReport struct {
 	//  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FailureCode)
 	FailureCode *PcfFailureCode `json:"failureCode,omitempty"`
 
-	// FinUnitAct Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
-	FinUnitAct *string `json:"finUnitAct,omitempty"`
+	// FinUnitAct Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
+	FinUnitAct *FinalUnitAction `json:"finUnitAct,omitempty"`
 
 	// PccRuleIds Contains the identifier of the affected PCC rule(s).
 	PccRuleIds []string `json:"pccRuleIds"`
@@ -10393,6 +11132,9 @@ type SMPolicyQosNotificationControlInfo struct {
 	RefPccRuleIds        []string               `json:"refPccRuleIds"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// SamplingInterval Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SamplingInterval
+type SamplingInterval = int
 
 // SamplingRatio defines model for SamplingRatio.
 type SamplingRatio = int
@@ -10647,11 +11389,11 @@ type ServiceParameterData struct {
 	Dnn          *Dnn    `json:"dnn,omitempty"`
 	InterGroupId GroupId `json:"interGroupId,omitempty"`
 
-	// ParamOverPc5 Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
-	ParamOverPc5 *string `json:"paramOverPc5,omitempty"`
+	// ParamOverPc5 Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
+	ParamOverPc5 *ParameterOverPc5 `json:"paramOverPc5,omitempty"`
 
-	// ParamOverUu Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
-	ParamOverUu *string            `json:"paramOverUu,omitempty"`
+	// ParamOverUu Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
+	ParamOverUu *ParameterOverUu   `json:"paramOverUu,omitempty"`
 	ResUri      *Uri               `json:"resUri,omitempty"`
 	Snssai      *Snssai            `json:"snssai,omitempty"`
 	Supi        Supi               `json:"supi,omitempty"`
@@ -10666,9 +11408,19 @@ type ServiceParameterData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// ServiceParameterDataPatch Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ServiceParameterDataPatch
+type ServiceParameterDataPatch struct {
+	// ParamOverPc5 Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5Rm
+	ParamOverPc5 *ParameterOverPc5Rm `json:"paramOverPc5"`
+
+	// ParamOverUu Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUuRm
+	ParamOverUu          *ParameterOverUuRm     `json:"paramOverUu"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // ServiceTypeUnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ServiceTypeUnrelatedClass
 type ServiceTypeUnrelatedClass struct {
-	AllowedGeographicArea []interface{} `json:"allowedGeographicArea,omitempty"`
+	AllowedGeographicArea []GeographicArea `json:"allowedGeographicArea,omitempty"`
 
 	// CodeWordInd Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/CodeWordInd
 	CodeWordInd  *CodeWordInd `json:"codeWordInd,omitempty"`
@@ -10677,8 +11429,8 @@ type ServiceTypeUnrelatedClass struct {
 	// PrivacyCheckRelatedAction Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/PrivacyCheckRelatedAction
 	PrivacyCheckRelatedAction *PrivacyCheckRelatedAction `json:"privacyCheckRelatedAction,omitempty"`
 
-	// ServiceType Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
-	ServiceType interface{} `json:"serviceType"`
+	// ServiceType Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
+	ServiceType LcsServiceType `json:"serviceType"`
 
 	// ValidTimePeriod Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ValidTimePeriod
 	ValidTimePeriod      *ValidTimePeriod       `json:"validTimePeriod,omitempty"`
@@ -10912,10 +11664,10 @@ type SmContext struct {
 	// RedundantPduSessionInfo Redundant PDU Session Information (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/RedundantPduSessionInformation)
 	RedundantPduSessionInfo *RedundantPduSessionInformation `json:"redundantPduSessionInfo,omitempty"`
 
-	// RoamingChargingProfile Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-	RoamingChargingProfile interface{} `json:"roamingChargingProfile,omitempty"`
-	RoutingIndicator       *string     `json:"routingIndicator,omitempty"`
-	SNssai                 Snssai      `json:"sNssai"`
+	// RoamingChargingProfile Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
+	RoamingChargingProfile *RoamingChargingProfile `json:"roamingChargingProfile,omitempty"`
+	RoutingIndicator       *string                 `json:"routingIndicator,omitempty"`
+	SNssai                 Snssai                  `json:"sNssai"`
 
 	// SelMode Possible values are - VERIFIED - UE_DNN_NOT_VERIFIED - NW_DNN_NOT_VERIFIED
 	//  (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/DnnSelectionMode)
@@ -11997,6 +12749,9 @@ type SpatialValidityRm struct {
 	AdditionalProperties map[string]interface{}  `json:"-"`
 }
 
+// SpeedUncertainty Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SpeedUncertainty
+type SpeedUncertainty = float32
+
 // SponId Contains an identity of a sponsor. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponId)
 type SponId = string
 
@@ -12234,6 +12989,9 @@ type SupportedCodec = Bytes
 // SupportedFeatures defines model for SupportedFeatures.
 type SupportedFeatures = string
 
+// SupportedGADShapes Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+type SupportedGADShapes string
+
 // SupportedNssaiAvailabilityData Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/SupportedNssaiAvailabilityData
 type SupportedNssaiAvailabilityData struct {
 	SupportedSnssaiList  []ExtSnssai            `json:"supportedSnssaiList"`
@@ -12298,6 +13056,9 @@ type TS29122ProblemDetails struct {
 	Type                 *TS29122Uri            `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// TS29122TrafficDescriptor Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original definition in TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
+type TS29122TrafficDescriptor = string
 
 // TS29122Uri string providing an URI formatted according to IETF RFC 3986. (Original definition in TS29122_CommonData.yaml#/components/schemas/Uri)
 type TS29122Uri = string
@@ -12548,7 +13309,7 @@ type TrafficControlData struct {
 	FlowStatus *FlowStatus `json:"flowStatus,omitempty"`
 
 	// MulAccCtrl Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl
-	MulAccCtrl *MulticastAccessControl `json:"mulAccCtrl,omitempty"`
+	MulAccCtrl *PcfMulticastAccessControl `json:"mulAccCtrl,omitempty"`
 
 	// MuteNotif Indicates whether applicat'on's start or stop notification is to be muted.
 	MuteNotif *bool `json:"muteNotif,omitempty"`
@@ -12797,11 +13558,34 @@ type TransferReason string
 // TransportProtocol Possible values are - UDP: User Datagram Protocol. - TCP: Transmission Control Protocol.
 type TransportProtocol string
 
+// Trigger Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/Trigger
+type Trigger struct {
+	EventLimit       *Uint32      `json:"eventLimit,omitempty"`
+	MaxNumberOfccc   *Uint32      `json:"maxNumberOfccc,omitempty"`
+	TariffTimeChange *DateTime    `json:"tariffTimeChange,omitempty"`
+	TimeLimit        *DurationSec `json:"timeLimit,omitempty"`
+
+	// TriggerCategory Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/TriggerCategory
+	TriggerCategory TriggerCategory `json:"triggerCategory"`
+
+	// TriggerType Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/TriggerType
+	TriggerType          *TriggerType           `json:"triggerType,omitempty"`
+	VolumeLimit          *Uint32                `json:"volumeLimit,omitempty"`
+	VolumeLimit64        *Uint64                `json:"volumeLimit64,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// TriggerCategory Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/TriggerCategory
+type TriggerCategory string
+
 // TriggerRequest Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/TriggerRequest
 type TriggerRequest struct {
 	Supi                 Supi                   `json:"supi"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// TriggerType Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/TriggerType
+type TriggerType string
 
 // TscPriorityLevel Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscPriorityLevel
 type TscPriorityLevel = int
@@ -13459,6 +14243,15 @@ type UePolicyTransferFailureNotification struct {
 	AdditionalProperties map[string]interface{}   `json:"-"`
 }
 
+// UePrivacyRequirements Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
+type UePrivacyRequirements struct {
+	CodeWordCheck *bool `json:"codeWordCheck,omitempty"`
+
+	// LcsServiceAuthInfo Possible values are - "LOCATION_ALLOWED_WITH_NOTIFICATION": Location allowed with notification - "LOCATION_ALLOWED_WITHOUT_NOTIFICATION": Location allowed without notification - "LOCATION_ALLOWED_WITHOUT_RESPONSE": Location with notification and privacy verification; location allowed if no response - "LOCATION_RESTRICTED_WITHOUT_RESPONSE": Location with notification and privacy verification; location restricted if no response - "NOTIFICATION_ONLY": Notification only - "NOTIFICATION_AND_VERIFICATION_ONLY": Notification and privacy verification only
+	LcsServiceAuthInfo   *LcsServiceAuth        `json:"lcsServiceAuthInfo,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // UeReachability Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
 type UeReachability string
 
@@ -13514,6 +14307,22 @@ type UlclBpInformation struct {
 //   - N3GA_UNAVAILABLE
 //     (Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/UnavailableAccessIndication)
 type UnavailableAccessIndication string
+
+// Uncertainty Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Uncertainty
+type Uncertainty = float32
+
+// UncertaintyEllipse Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/UncertaintyEllipse
+type UncertaintyEllipse struct {
+	// OrientationMajor Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Orientation
+	OrientationMajor Orientation `json:"orientationMajor"`
+
+	// SemiMajor Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Uncertainty
+	SemiMajor Uncertainty `json:"semiMajor"`
+
+	// SemiMinor Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Uncertainty
+	SemiMinor            Uncertainty            `json:"semiMinor"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
 
 // UnrelatedClass Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UnrelatedClass
 type UnrelatedClass struct {
@@ -13694,6 +14503,9 @@ type Uri = string
 
 // UriScheme defines model for UriScheme.
 type UriScheme string
+
+// Usage Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Usage
+type Usage string
 
 // UsageMonData Contains remain allowed usage data for a subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonData)
 type UsageMonData struct {
@@ -13890,6 +14702,14 @@ type VarUeGroupId = string
 // VarUeId defines model for VarUeId.
 type VarUeId = string
 
+// VelocityEstimate Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
+type VelocityEstimate struct {
+	union json.RawMessage
+}
+
+// VelocityRequested Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
+type VelocityRequested string
+
 // VendorId Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorId)
 type VendorId = string
 
@@ -13899,6 +14719,12 @@ type VendorSpecificFeature struct {
 	FeatureVersion       string                 `json:"featureVersion"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// VerticalDirection Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VerticalDirection
+type VerticalDirection string
+
+// VerticalSpeed Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VerticalSpeed
+type VerticalSpeed = float32
 
 // VgmlcAddress Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/VgmlcAddress
 type VgmlcAddress struct {
@@ -14142,8 +14968,8 @@ type AusfSteeringContainer0 = []SteeringInfo
 type AusfUpuData struct {
 	DefaultConfNssai []Snssai `json:"defaultConfNssai,omitempty"`
 
-	// RoutingId Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-	RoutingId *string `json:"routingId,omitempty"`
+	// RoutingId Original definition in TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
+	RoutingId RoutingId `json:"routingId,omitempty"`
 
 	// SecPacket Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/SecuredPacket
 	SecPacket            *AusfSecuredPacket     `json:"secPacket,omitempty"`
@@ -14187,6 +15013,12 @@ type BsfExtProblemDetails struct {
 	Type                 *Uri                   `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
+// GmlcCodeWord Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
+type GmlcCodeWord = string
+
+// LmfTerminationCause Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
+type LmfTerminationCause string
 
 // NrfNFService Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFService)
 type NrfNFService struct {
@@ -14276,6 +15108,9 @@ type NrfSubscriptionData_SubscrCond struct {
 // NrfTransportProtocol Types of transport protocol used in a given IP endpoint of an NF Service Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/TransportProtocol)
 type NrfTransportProtocol string
 
+// PcfAfEvent Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
+type PcfAfEvent string
+
 // PcfAtsssCapability Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AtsssCapability
 type PcfAtsssCapability string
 
@@ -14325,6 +15160,9 @@ type PcfBdtPolicyDataPatch struct {
 //     (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FailureCode)
 type PcfFailureCode string
 
+// PcfMulticastAccessControl Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl
+type PcfMulticastAccessControl string
+
 // PcfNetworkAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo)
 type PcfNetworkAreaInfo struct {
 	// Ecgis Contains a list of E-UTRA cell identities.
@@ -14371,10 +15209,10 @@ type UdmEcRestrictionDataWb struct {
 // UdmLocationArea Original definition in TS29503_Nudm_PP.yaml#/components/schemas/LocationArea
 type UdmLocationArea struct {
 	// CivicAddresses Identifies a list of civic addresses of the user where the UE is located.
-	CivicAddresses *[]interface{} `json:"civicAddresses,omitempty"`
+	CivicAddresses *[]CivicAddress `json:"civicAddresses,omitempty"`
 
 	// GeographicAreas Identifies a list of geographic area of the user where the UE is located.
-	GeographicAreas *[]interface{} `json:"geographicAreas,omitempty"`
+	GeographicAreas *[]GeographicArea `json:"geographicAreas,omitempty"`
 
 	// NwAreaInfo Describes a network area information in which the NF service consumer requests the number of UEs. (Original definition in TS29503_Nudm_PP.yaml#/components/schemas/NetworkAreaInfo)
 	NwAreaInfo           *NetworkAreaInfo       `json:"nwAreaInfo,omitempty"`
@@ -26113,6 +26951,162 @@ func (a Area) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for AreaEventInfo. Returns the specified
+// element and whether it was found
+func (a AreaEventInfo) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for AreaEventInfo
+func (a *AreaEventInfo) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for AreaEventInfo to handle AdditionalProperties
+func (a *AreaEventInfo) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["areaDefinition"]; found {
+		err = json.Unmarshal(raw, &a.AreaDefinition)
+		if err != nil {
+			return fmt.Errorf("error reading 'areaDefinition': %w", err)
+		}
+		delete(object, "areaDefinition")
+	}
+
+	if raw, found := object["maximumInterval"]; found {
+		err = json.Unmarshal(raw, &a.MaximumInterval)
+		if err != nil {
+			return fmt.Errorf("error reading 'maximumInterval': %w", err)
+		}
+		delete(object, "maximumInterval")
+	}
+
+	if raw, found := object["minimumInterval"]; found {
+		err = json.Unmarshal(raw, &a.MinimumInterval)
+		if err != nil {
+			return fmt.Errorf("error reading 'minimumInterval': %w", err)
+		}
+		delete(object, "minimumInterval")
+	}
+
+	if raw, found := object["occurrenceInfo"]; found {
+		err = json.Unmarshal(raw, &a.OccurrenceInfo)
+		if err != nil {
+			return fmt.Errorf("error reading 'occurrenceInfo': %w", err)
+		}
+		delete(object, "occurrenceInfo")
+	}
+
+	if raw, found := object["reportingDuration"]; found {
+		err = json.Unmarshal(raw, &a.ReportingDuration)
+		if err != nil {
+			return fmt.Errorf("error reading 'reportingDuration': %w", err)
+		}
+		delete(object, "reportingDuration")
+	}
+
+	if raw, found := object["reportingLocationReq"]; found {
+		err = json.Unmarshal(raw, &a.ReportingLocationReq)
+		if err != nil {
+			return fmt.Errorf("error reading 'reportingLocationReq': %w", err)
+		}
+		delete(object, "reportingLocationReq")
+	}
+
+	if raw, found := object["samplingInterval"]; found {
+		err = json.Unmarshal(raw, &a.SamplingInterval)
+		if err != nil {
+			return fmt.Errorf("error reading 'samplingInterval': %w", err)
+		}
+		delete(object, "samplingInterval")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for AreaEventInfo to handle AdditionalProperties
+func (a AreaEventInfo) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["areaDefinition"], err = json.Marshal(a.AreaDefinition)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'areaDefinition': %w", err)
+	}
+
+	if a.MaximumInterval != 0 {
+		object["maximumInterval"], err = json.Marshal(a.MaximumInterval)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'maximumInterval': %w", err)
+		}
+	}
+
+	if a.MinimumInterval != 0 {
+		object["minimumInterval"], err = json.Marshal(a.MinimumInterval)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'minimumInterval': %w", err)
+		}
+	}
+
+	if a.OccurrenceInfo != nil {
+		object["occurrenceInfo"], err = json.Marshal(a.OccurrenceInfo)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'occurrenceInfo': %w", err)
+		}
+	}
+
+	if a.ReportingDuration != 0 {
+		object["reportingDuration"], err = json.Marshal(a.ReportingDuration)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reportingDuration': %w", err)
+		}
+	}
+
+	if a.ReportingLocationReq != nil {
+		object["reportingLocationReq"], err = json.Marshal(a.ReportingLocationReq)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reportingLocationReq': %w", err)
+		}
+	}
+
+	if a.SamplingInterval != 0 {
+		object["samplingInterval"], err = json.Marshal(a.SamplingInterval)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'samplingInterval': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for AreaOfInterestEventState. Returns the specified
 // element and whether it was found
 func (a AreaOfInterestEventState) Get(fieldName string) (value interface{}, found bool) {
@@ -32225,6 +33219,569 @@ func (a ChfInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for CivicAddress. Returns the specified
+// element and whether it was found
+func (a CivicAddress) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for CivicAddress
+func (a *CivicAddress) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for CivicAddress to handle AdditionalProperties
+func (a *CivicAddress) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["A1"]; found {
+		err = json.Unmarshal(raw, &a.A1)
+		if err != nil {
+			return fmt.Errorf("error reading 'A1': %w", err)
+		}
+		delete(object, "A1")
+	}
+
+	if raw, found := object["A2"]; found {
+		err = json.Unmarshal(raw, &a.A2)
+		if err != nil {
+			return fmt.Errorf("error reading 'A2': %w", err)
+		}
+		delete(object, "A2")
+	}
+
+	if raw, found := object["A3"]; found {
+		err = json.Unmarshal(raw, &a.A3)
+		if err != nil {
+			return fmt.Errorf("error reading 'A3': %w", err)
+		}
+		delete(object, "A3")
+	}
+
+	if raw, found := object["A4"]; found {
+		err = json.Unmarshal(raw, &a.A4)
+		if err != nil {
+			return fmt.Errorf("error reading 'A4': %w", err)
+		}
+		delete(object, "A4")
+	}
+
+	if raw, found := object["A5"]; found {
+		err = json.Unmarshal(raw, &a.A5)
+		if err != nil {
+			return fmt.Errorf("error reading 'A5': %w", err)
+		}
+		delete(object, "A5")
+	}
+
+	if raw, found := object["A6"]; found {
+		err = json.Unmarshal(raw, &a.A6)
+		if err != nil {
+			return fmt.Errorf("error reading 'A6': %w", err)
+		}
+		delete(object, "A6")
+	}
+
+	if raw, found := object["ADDCODE"]; found {
+		err = json.Unmarshal(raw, &a.ADDCODE)
+		if err != nil {
+			return fmt.Errorf("error reading 'ADDCODE': %w", err)
+		}
+		delete(object, "ADDCODE")
+	}
+
+	if raw, found := object["BLD"]; found {
+		err = json.Unmarshal(raw, &a.BLD)
+		if err != nil {
+			return fmt.Errorf("error reading 'BLD': %w", err)
+		}
+		delete(object, "BLD")
+	}
+
+	if raw, found := object["FLR"]; found {
+		err = json.Unmarshal(raw, &a.FLR)
+		if err != nil {
+			return fmt.Errorf("error reading 'FLR': %w", err)
+		}
+		delete(object, "FLR")
+	}
+
+	if raw, found := object["HNO"]; found {
+		err = json.Unmarshal(raw, &a.HNO)
+		if err != nil {
+			return fmt.Errorf("error reading 'HNO': %w", err)
+		}
+		delete(object, "HNO")
+	}
+
+	if raw, found := object["HNS"]; found {
+		err = json.Unmarshal(raw, &a.HNS)
+		if err != nil {
+			return fmt.Errorf("error reading 'HNS': %w", err)
+		}
+		delete(object, "HNS")
+	}
+
+	if raw, found := object["LMK"]; found {
+		err = json.Unmarshal(raw, &a.LMK)
+		if err != nil {
+			return fmt.Errorf("error reading 'LMK': %w", err)
+		}
+		delete(object, "LMK")
+	}
+
+	if raw, found := object["LOC"]; found {
+		err = json.Unmarshal(raw, &a.LOC)
+		if err != nil {
+			return fmt.Errorf("error reading 'LOC': %w", err)
+		}
+		delete(object, "LOC")
+	}
+
+	if raw, found := object["NAM"]; found {
+		err = json.Unmarshal(raw, &a.NAM)
+		if err != nil {
+			return fmt.Errorf("error reading 'NAM': %w", err)
+		}
+		delete(object, "NAM")
+	}
+
+	if raw, found := object["PC"]; found {
+		err = json.Unmarshal(raw, &a.PC)
+		if err != nil {
+			return fmt.Errorf("error reading 'PC': %w", err)
+		}
+		delete(object, "PC")
+	}
+
+	if raw, found := object["PCN"]; found {
+		err = json.Unmarshal(raw, &a.PCN)
+		if err != nil {
+			return fmt.Errorf("error reading 'PCN': %w", err)
+		}
+		delete(object, "PCN")
+	}
+
+	if raw, found := object["PLC"]; found {
+		err = json.Unmarshal(raw, &a.PLC)
+		if err != nil {
+			return fmt.Errorf("error reading 'PLC': %w", err)
+		}
+		delete(object, "PLC")
+	}
+
+	if raw, found := object["POBOX"]; found {
+		err = json.Unmarshal(raw, &a.POBOX)
+		if err != nil {
+			return fmt.Errorf("error reading 'POBOX': %w", err)
+		}
+		delete(object, "POBOX")
+	}
+
+	if raw, found := object["POD"]; found {
+		err = json.Unmarshal(raw, &a.POD)
+		if err != nil {
+			return fmt.Errorf("error reading 'POD': %w", err)
+		}
+		delete(object, "POD")
+	}
+
+	if raw, found := object["POM"]; found {
+		err = json.Unmarshal(raw, &a.POM)
+		if err != nil {
+			return fmt.Errorf("error reading 'POM': %w", err)
+		}
+		delete(object, "POM")
+	}
+
+	if raw, found := object["PRD"]; found {
+		err = json.Unmarshal(raw, &a.PRD)
+		if err != nil {
+			return fmt.Errorf("error reading 'PRD': %w", err)
+		}
+		delete(object, "PRD")
+	}
+
+	if raw, found := object["PRM"]; found {
+		err = json.Unmarshal(raw, &a.PRM)
+		if err != nil {
+			return fmt.Errorf("error reading 'PRM': %w", err)
+		}
+		delete(object, "PRM")
+	}
+
+	if raw, found := object["RD"]; found {
+		err = json.Unmarshal(raw, &a.RD)
+		if err != nil {
+			return fmt.Errorf("error reading 'RD': %w", err)
+		}
+		delete(object, "RD")
+	}
+
+	if raw, found := object["RDBR"]; found {
+		err = json.Unmarshal(raw, &a.RDBR)
+		if err != nil {
+			return fmt.Errorf("error reading 'RDBR': %w", err)
+		}
+		delete(object, "RDBR")
+	}
+
+	if raw, found := object["RDSEC"]; found {
+		err = json.Unmarshal(raw, &a.RDSEC)
+		if err != nil {
+			return fmt.Errorf("error reading 'RDSEC': %w", err)
+		}
+		delete(object, "RDSEC")
+	}
+
+	if raw, found := object["RDSUBBR"]; found {
+		err = json.Unmarshal(raw, &a.RDSUBBR)
+		if err != nil {
+			return fmt.Errorf("error reading 'RDSUBBR': %w", err)
+		}
+		delete(object, "RDSUBBR")
+	}
+
+	if raw, found := object["ROOM"]; found {
+		err = json.Unmarshal(raw, &a.ROOM)
+		if err != nil {
+			return fmt.Errorf("error reading 'ROOM': %w", err)
+		}
+		delete(object, "ROOM")
+	}
+
+	if raw, found := object["SEAT"]; found {
+		err = json.Unmarshal(raw, &a.SEAT)
+		if err != nil {
+			return fmt.Errorf("error reading 'SEAT': %w", err)
+		}
+		delete(object, "SEAT")
+	}
+
+	if raw, found := object["STS"]; found {
+		err = json.Unmarshal(raw, &a.STS)
+		if err != nil {
+			return fmt.Errorf("error reading 'STS': %w", err)
+		}
+		delete(object, "STS")
+	}
+
+	if raw, found := object["UNIT"]; found {
+		err = json.Unmarshal(raw, &a.UNIT)
+		if err != nil {
+			return fmt.Errorf("error reading 'UNIT': %w", err)
+		}
+		delete(object, "UNIT")
+	}
+
+	if raw, found := object["country"]; found {
+		err = json.Unmarshal(raw, &a.Country)
+		if err != nil {
+			return fmt.Errorf("error reading 'country': %w", err)
+		}
+		delete(object, "country")
+	}
+
+	if raw, found := object["method"]; found {
+		err = json.Unmarshal(raw, &a.Method)
+		if err != nil {
+			return fmt.Errorf("error reading 'method': %w", err)
+		}
+		delete(object, "method")
+	}
+
+	if raw, found := object["providedBy"]; found {
+		err = json.Unmarshal(raw, &a.ProvidedBy)
+		if err != nil {
+			return fmt.Errorf("error reading 'providedBy': %w", err)
+		}
+		delete(object, "providedBy")
+	}
+
+	if raw, found := object["usageRules"]; found {
+		err = json.Unmarshal(raw, &a.UsageRules)
+		if err != nil {
+			return fmt.Errorf("error reading 'usageRules': %w", err)
+		}
+		delete(object, "usageRules")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for CivicAddress to handle AdditionalProperties
+func (a CivicAddress) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.A1 != nil {
+		object["A1"], err = json.Marshal(a.A1)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'A1': %w", err)
+		}
+	}
+
+	if a.A2 != nil {
+		object["A2"], err = json.Marshal(a.A2)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'A2': %w", err)
+		}
+	}
+
+	if a.A3 != nil {
+		object["A3"], err = json.Marshal(a.A3)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'A3': %w", err)
+		}
+	}
+
+	if a.A4 != nil {
+		object["A4"], err = json.Marshal(a.A4)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'A4': %w", err)
+		}
+	}
+
+	if a.A5 != nil {
+		object["A5"], err = json.Marshal(a.A5)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'A5': %w", err)
+		}
+	}
+
+	if a.A6 != nil {
+		object["A6"], err = json.Marshal(a.A6)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'A6': %w", err)
+		}
+	}
+
+	if a.ADDCODE != nil {
+		object["ADDCODE"], err = json.Marshal(a.ADDCODE)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ADDCODE': %w", err)
+		}
+	}
+
+	if a.BLD != nil {
+		object["BLD"], err = json.Marshal(a.BLD)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'BLD': %w", err)
+		}
+	}
+
+	if a.FLR != nil {
+		object["FLR"], err = json.Marshal(a.FLR)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'FLR': %w", err)
+		}
+	}
+
+	if a.HNO != nil {
+		object["HNO"], err = json.Marshal(a.HNO)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'HNO': %w", err)
+		}
+	}
+
+	if a.HNS != nil {
+		object["HNS"], err = json.Marshal(a.HNS)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'HNS': %w", err)
+		}
+	}
+
+	if a.LMK != nil {
+		object["LMK"], err = json.Marshal(a.LMK)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'LMK': %w", err)
+		}
+	}
+
+	if a.LOC != nil {
+		object["LOC"], err = json.Marshal(a.LOC)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'LOC': %w", err)
+		}
+	}
+
+	if a.NAM != nil {
+		object["NAM"], err = json.Marshal(a.NAM)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'NAM': %w", err)
+		}
+	}
+
+	if a.PC != nil {
+		object["PC"], err = json.Marshal(a.PC)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'PC': %w", err)
+		}
+	}
+
+	if a.PCN != nil {
+		object["PCN"], err = json.Marshal(a.PCN)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'PCN': %w", err)
+		}
+	}
+
+	if a.PLC != nil {
+		object["PLC"], err = json.Marshal(a.PLC)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'PLC': %w", err)
+		}
+	}
+
+	if a.POBOX != nil {
+		object["POBOX"], err = json.Marshal(a.POBOX)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'POBOX': %w", err)
+		}
+	}
+
+	if a.POD != nil {
+		object["POD"], err = json.Marshal(a.POD)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'POD': %w", err)
+		}
+	}
+
+	if a.POM != nil {
+		object["POM"], err = json.Marshal(a.POM)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'POM': %w", err)
+		}
+	}
+
+	if a.PRD != nil {
+		object["PRD"], err = json.Marshal(a.PRD)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'PRD': %w", err)
+		}
+	}
+
+	if a.PRM != nil {
+		object["PRM"], err = json.Marshal(a.PRM)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'PRM': %w", err)
+		}
+	}
+
+	if a.RD != nil {
+		object["RD"], err = json.Marshal(a.RD)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'RD': %w", err)
+		}
+	}
+
+	if a.RDBR != nil {
+		object["RDBR"], err = json.Marshal(a.RDBR)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'RDBR': %w", err)
+		}
+	}
+
+	if a.RDSEC != nil {
+		object["RDSEC"], err = json.Marshal(a.RDSEC)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'RDSEC': %w", err)
+		}
+	}
+
+	if a.RDSUBBR != nil {
+		object["RDSUBBR"], err = json.Marshal(a.RDSUBBR)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'RDSUBBR': %w", err)
+		}
+	}
+
+	if a.ROOM != nil {
+		object["ROOM"], err = json.Marshal(a.ROOM)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ROOM': %w", err)
+		}
+	}
+
+	if a.SEAT != nil {
+		object["SEAT"], err = json.Marshal(a.SEAT)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'SEAT': %w", err)
+		}
+	}
+
+	if a.STS != nil {
+		object["STS"], err = json.Marshal(a.STS)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'STS': %w", err)
+		}
+	}
+
+	if a.UNIT != nil {
+		object["UNIT"], err = json.Marshal(a.UNIT)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'UNIT': %w", err)
+		}
+	}
+
+	if a.Country != nil {
+		object["country"], err = json.Marshal(a.Country)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'country': %w", err)
+		}
+	}
+
+	if a.Method != nil {
+		object["method"], err = json.Marshal(a.Method)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'method': %w", err)
+		}
+	}
+
+	if a.ProvidedBy != nil {
+		object["providedBy"], err = json.Marshal(a.ProvidedBy)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'providedBy': %w", err)
+		}
+	}
+
+	if a.UsageRules != nil {
+		object["usageRules"], err = json.Marshal(a.UsageRules)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'usageRules': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for CmInfo. Returns the specified
 // element and whether it was found
 func (a CmInfo) Get(fieldName string) (value interface{}, found bool) {
@@ -37296,6 +38853,150 @@ func (a EeSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for EllipsoidArc. Returns the specified
+// element and whether it was found
+func (a EllipsoidArc) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for EllipsoidArc
+func (a *EllipsoidArc) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for EllipsoidArc to handle AdditionalProperties
+func (a *EllipsoidArc) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["confidence"]; found {
+		err = json.Unmarshal(raw, &a.Confidence)
+		if err != nil {
+			return fmt.Errorf("error reading 'confidence': %w", err)
+		}
+		delete(object, "confidence")
+	}
+
+	if raw, found := object["includedAngle"]; found {
+		err = json.Unmarshal(raw, &a.IncludedAngle)
+		if err != nil {
+			return fmt.Errorf("error reading 'includedAngle': %w", err)
+		}
+		delete(object, "includedAngle")
+	}
+
+	if raw, found := object["innerRadius"]; found {
+		err = json.Unmarshal(raw, &a.InnerRadius)
+		if err != nil {
+			return fmt.Errorf("error reading 'innerRadius': %w", err)
+		}
+		delete(object, "innerRadius")
+	}
+
+	if raw, found := object["offsetAngle"]; found {
+		err = json.Unmarshal(raw, &a.OffsetAngle)
+		if err != nil {
+			return fmt.Errorf("error reading 'offsetAngle': %w", err)
+		}
+		delete(object, "offsetAngle")
+	}
+
+	if raw, found := object["point"]; found {
+		err = json.Unmarshal(raw, &a.Point)
+		if err != nil {
+			return fmt.Errorf("error reading 'point': %w", err)
+		}
+		delete(object, "point")
+	}
+
+	if raw, found := object["shape"]; found {
+		err = json.Unmarshal(raw, &a.Shape)
+		if err != nil {
+			return fmt.Errorf("error reading 'shape': %w", err)
+		}
+		delete(object, "shape")
+	}
+
+	if raw, found := object["uncertaintyRadius"]; found {
+		err = json.Unmarshal(raw, &a.UncertaintyRadius)
+		if err != nil {
+			return fmt.Errorf("error reading 'uncertaintyRadius': %w", err)
+		}
+		delete(object, "uncertaintyRadius")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for EllipsoidArc to handle AdditionalProperties
+func (a EllipsoidArc) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["confidence"], err = json.Marshal(a.Confidence)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'confidence': %w", err)
+	}
+
+	object["includedAngle"], err = json.Marshal(a.IncludedAngle)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'includedAngle': %w", err)
+	}
+
+	object["innerRadius"], err = json.Marshal(a.InnerRadius)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'innerRadius': %w", err)
+	}
+
+	object["offsetAngle"], err = json.Marshal(a.OffsetAngle)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'offsetAngle': %w", err)
+	}
+
+	object["point"], err = json.Marshal(a.Point)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'point': %w", err)
+	}
+
+	object["shape"], err = json.Marshal(a.Shape)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'shape': %w", err)
+	}
+
+	object["uncertaintyRadius"], err = json.Marshal(a.UncertaintyRadius)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'uncertaintyRadius': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for EmergencyInfo. Returns the specified
 // element and whether it was found
 func (a EmergencyInfo) Get(fieldName string) (value interface{}, found bool) {
@@ -42332,6 +44033,72 @@ func (a FrameRouteInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for GADShape. Returns the specified
+// element and whether it was found
+func (a GADShape) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for GADShape
+func (a *GADShape) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for GADShape to handle AdditionalProperties
+func (a *GADShape) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["shape"]; found {
+		err = json.Unmarshal(raw, &a.Shape)
+		if err != nil {
+			return fmt.Errorf("error reading 'shape': %w", err)
+		}
+		delete(object, "shape")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for GADShape to handle AdditionalProperties
+func (a GADShape) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["shape"], err = json.Marshal(a.Shape)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'shape': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for GNbId. Returns the specified
 // element and whether it was found
 func (a GNbId) Get(fieldName string) (value interface{}, found bool) {
@@ -42565,6 +44332,85 @@ func (a GbrQosFlowInformation) MarshalJSON() ([]byte, error) {
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'notifControl': %w", err)
 		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for GeographicalCoordinates. Returns the specified
+// element and whether it was found
+func (a GeographicalCoordinates) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for GeographicalCoordinates
+func (a *GeographicalCoordinates) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for GeographicalCoordinates to handle AdditionalProperties
+func (a *GeographicalCoordinates) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["lat"]; found {
+		err = json.Unmarshal(raw, &a.Lat)
+		if err != nil {
+			return fmt.Errorf("error reading 'lat': %w", err)
+		}
+		delete(object, "lat")
+	}
+
+	if raw, found := object["lon"]; found {
+		err = json.Unmarshal(raw, &a.Lon)
+		if err != nil {
+			return fmt.Errorf("error reading 'lon': %w", err)
+		}
+		delete(object, "lon")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for GeographicalCoordinates to handle AdditionalProperties
+func (a GeographicalCoordinates) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["lat"], err = json.Marshal(a.Lat)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'lat': %w", err)
+	}
+
+	object["lon"], err = json.Marshal(a.Lon)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'lon': %w", err)
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -43048,6 +44894,98 @@ func (a GmlcInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for GnssPositioningMethodAndUsage. Returns the specified
+// element and whether it was found
+func (a GnssPositioningMethodAndUsage) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for GnssPositioningMethodAndUsage
+func (a *GnssPositioningMethodAndUsage) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for GnssPositioningMethodAndUsage to handle AdditionalProperties
+func (a *GnssPositioningMethodAndUsage) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["gnss"]; found {
+		err = json.Unmarshal(raw, &a.Gnss)
+		if err != nil {
+			return fmt.Errorf("error reading 'gnss': %w", err)
+		}
+		delete(object, "gnss")
+	}
+
+	if raw, found := object["mode"]; found {
+		err = json.Unmarshal(raw, &a.Mode)
+		if err != nil {
+			return fmt.Errorf("error reading 'mode': %w", err)
+		}
+		delete(object, "mode")
+	}
+
+	if raw, found := object["usage"]; found {
+		err = json.Unmarshal(raw, &a.Usage)
+		if err != nil {
+			return fmt.Errorf("error reading 'usage': %w", err)
+		}
+		delete(object, "usage")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for GnssPositioningMethodAndUsage to handle AdditionalProperties
+func (a GnssPositioningMethodAndUsage) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["gnss"], err = json.Marshal(a.Gnss)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'gnss': %w", err)
+	}
+
+	object["mode"], err = json.Marshal(a.Mode)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'mode': %w", err)
+	}
+
+	object["usage"], err = json.Marshal(a.Usage)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'usage': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for GroupIdentifiers. Returns the specified
 // element and whether it was found
 func (a GroupIdentifiers) Get(fieldName string) (value interface{}, found bool) {
@@ -43267,6 +45205,413 @@ func (a HfcNodeId) MarshalJSON() ([]byte, error) {
 	object["hfcNId"], err = json.Marshal(a.HfcNId)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'hfcNId': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for HorizontalVelocity. Returns the specified
+// element and whether it was found
+func (a HorizontalVelocity) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for HorizontalVelocity
+func (a *HorizontalVelocity) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for HorizontalVelocity to handle AdditionalProperties
+func (a *HorizontalVelocity) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["bearing"]; found {
+		err = json.Unmarshal(raw, &a.Bearing)
+		if err != nil {
+			return fmt.Errorf("error reading 'bearing': %w", err)
+		}
+		delete(object, "bearing")
+	}
+
+	if raw, found := object["hSpeed"]; found {
+		err = json.Unmarshal(raw, &a.HSpeed)
+		if err != nil {
+			return fmt.Errorf("error reading 'hSpeed': %w", err)
+		}
+		delete(object, "hSpeed")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for HorizontalVelocity to handle AdditionalProperties
+func (a HorizontalVelocity) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["bearing"], err = json.Marshal(a.Bearing)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'bearing': %w", err)
+	}
+
+	object["hSpeed"], err = json.Marshal(a.HSpeed)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'hSpeed': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for HorizontalVelocityWithUncertainty. Returns the specified
+// element and whether it was found
+func (a HorizontalVelocityWithUncertainty) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for HorizontalVelocityWithUncertainty
+func (a *HorizontalVelocityWithUncertainty) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for HorizontalVelocityWithUncertainty to handle AdditionalProperties
+func (a *HorizontalVelocityWithUncertainty) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["bearing"]; found {
+		err = json.Unmarshal(raw, &a.Bearing)
+		if err != nil {
+			return fmt.Errorf("error reading 'bearing': %w", err)
+		}
+		delete(object, "bearing")
+	}
+
+	if raw, found := object["hSpeed"]; found {
+		err = json.Unmarshal(raw, &a.HSpeed)
+		if err != nil {
+			return fmt.Errorf("error reading 'hSpeed': %w", err)
+		}
+		delete(object, "hSpeed")
+	}
+
+	if raw, found := object["hUncertainty"]; found {
+		err = json.Unmarshal(raw, &a.HUncertainty)
+		if err != nil {
+			return fmt.Errorf("error reading 'hUncertainty': %w", err)
+		}
+		delete(object, "hUncertainty")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for HorizontalVelocityWithUncertainty to handle AdditionalProperties
+func (a HorizontalVelocityWithUncertainty) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["bearing"], err = json.Marshal(a.Bearing)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'bearing': %w", err)
+	}
+
+	object["hSpeed"], err = json.Marshal(a.HSpeed)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'hSpeed': %w", err)
+	}
+
+	object["hUncertainty"], err = json.Marshal(a.HUncertainty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'hUncertainty': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for HorizontalWithVerticalVelocity. Returns the specified
+// element and whether it was found
+func (a HorizontalWithVerticalVelocity) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for HorizontalWithVerticalVelocity
+func (a *HorizontalWithVerticalVelocity) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for HorizontalWithVerticalVelocity to handle AdditionalProperties
+func (a *HorizontalWithVerticalVelocity) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["bearing"]; found {
+		err = json.Unmarshal(raw, &a.Bearing)
+		if err != nil {
+			return fmt.Errorf("error reading 'bearing': %w", err)
+		}
+		delete(object, "bearing")
+	}
+
+	if raw, found := object["hSpeed"]; found {
+		err = json.Unmarshal(raw, &a.HSpeed)
+		if err != nil {
+			return fmt.Errorf("error reading 'hSpeed': %w", err)
+		}
+		delete(object, "hSpeed")
+	}
+
+	if raw, found := object["vDirection"]; found {
+		err = json.Unmarshal(raw, &a.VDirection)
+		if err != nil {
+			return fmt.Errorf("error reading 'vDirection': %w", err)
+		}
+		delete(object, "vDirection")
+	}
+
+	if raw, found := object["vSpeed"]; found {
+		err = json.Unmarshal(raw, &a.VSpeed)
+		if err != nil {
+			return fmt.Errorf("error reading 'vSpeed': %w", err)
+		}
+		delete(object, "vSpeed")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for HorizontalWithVerticalVelocity to handle AdditionalProperties
+func (a HorizontalWithVerticalVelocity) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["bearing"], err = json.Marshal(a.Bearing)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'bearing': %w", err)
+	}
+
+	object["hSpeed"], err = json.Marshal(a.HSpeed)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'hSpeed': %w", err)
+	}
+
+	object["vDirection"], err = json.Marshal(a.VDirection)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'vDirection': %w", err)
+	}
+
+	object["vSpeed"], err = json.Marshal(a.VSpeed)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'vSpeed': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for HorizontalWithVerticalVelocityAndUncertainty. Returns the specified
+// element and whether it was found
+func (a HorizontalWithVerticalVelocityAndUncertainty) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for HorizontalWithVerticalVelocityAndUncertainty
+func (a *HorizontalWithVerticalVelocityAndUncertainty) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for HorizontalWithVerticalVelocityAndUncertainty to handle AdditionalProperties
+func (a *HorizontalWithVerticalVelocityAndUncertainty) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["bearing"]; found {
+		err = json.Unmarshal(raw, &a.Bearing)
+		if err != nil {
+			return fmt.Errorf("error reading 'bearing': %w", err)
+		}
+		delete(object, "bearing")
+	}
+
+	if raw, found := object["hSpeed"]; found {
+		err = json.Unmarshal(raw, &a.HSpeed)
+		if err != nil {
+			return fmt.Errorf("error reading 'hSpeed': %w", err)
+		}
+		delete(object, "hSpeed")
+	}
+
+	if raw, found := object["hUncertainty"]; found {
+		err = json.Unmarshal(raw, &a.HUncertainty)
+		if err != nil {
+			return fmt.Errorf("error reading 'hUncertainty': %w", err)
+		}
+		delete(object, "hUncertainty")
+	}
+
+	if raw, found := object["vDirection"]; found {
+		err = json.Unmarshal(raw, &a.VDirection)
+		if err != nil {
+			return fmt.Errorf("error reading 'vDirection': %w", err)
+		}
+		delete(object, "vDirection")
+	}
+
+	if raw, found := object["vSpeed"]; found {
+		err = json.Unmarshal(raw, &a.VSpeed)
+		if err != nil {
+			return fmt.Errorf("error reading 'vSpeed': %w", err)
+		}
+		delete(object, "vSpeed")
+	}
+
+	if raw, found := object["vUncertainty"]; found {
+		err = json.Unmarshal(raw, &a.VUncertainty)
+		if err != nil {
+			return fmt.Errorf("error reading 'vUncertainty': %w", err)
+		}
+		delete(object, "vUncertainty")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for HorizontalWithVerticalVelocityAndUncertainty to handle AdditionalProperties
+func (a HorizontalWithVerticalVelocityAndUncertainty) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["bearing"], err = json.Marshal(a.Bearing)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'bearing': %w", err)
+	}
+
+	object["hSpeed"], err = json.Marshal(a.HSpeed)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'hSpeed': %w", err)
+	}
+
+	object["hUncertainty"], err = json.Marshal(a.HUncertainty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'hUncertainty': %w", err)
+	}
+
+	object["vDirection"], err = json.Marshal(a.VDirection)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'vDirection': %w", err)
+	}
+
+	object["vSpeed"], err = json.Marshal(a.VSpeed)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'vSpeed': %w", err)
+	}
+
+	object["vUncertainty"], err = json.Marshal(a.VUncertainty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'vUncertainty': %w", err)
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -47177,6 +49522,74 @@ func (a IptvConfigData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for IptvConfigDataPatch. Returns the specified
+// element and whether it was found
+func (a IptvConfigDataPatch) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for IptvConfigDataPatch
+func (a *IptvConfigDataPatch) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for IptvConfigDataPatch to handle AdditionalProperties
+func (a *IptvConfigDataPatch) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["multiAccCtrls"]; found {
+		err = json.Unmarshal(raw, &a.MultiAccCtrls)
+		if err != nil {
+			return fmt.Errorf("error reading 'multiAccCtrls': %w", err)
+		}
+		delete(object, "multiAccCtrls")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for IptvConfigDataPatch to handle AdditionalProperties
+func (a IptvConfigDataPatch) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.MultiAccCtrls != nil {
+		object["multiAccCtrls"], err = json.Marshal(a.MultiAccCtrls)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'multiAccCtrls': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for Ipv4AddressRange. Returns the specified
 // element and whether it was found
 func (a Ipv4AddressRange) Get(fieldName string) (value interface{}, found bool) {
@@ -49129,6 +51542,134 @@ func (a LocationInfoResult) MarshalJSON() ([]byte, error) {
 		object["vPlmnId"], err = json.Marshal(a.VPlmnId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'vPlmnId': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for LocationQoS. Returns the specified
+// element and whether it was found
+func (a LocationQoS) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for LocationQoS
+func (a *LocationQoS) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for LocationQoS to handle AdditionalProperties
+func (a *LocationQoS) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["hAccuracy"]; found {
+		err = json.Unmarshal(raw, &a.HAccuracy)
+		if err != nil {
+			return fmt.Errorf("error reading 'hAccuracy': %w", err)
+		}
+		delete(object, "hAccuracy")
+	}
+
+	if raw, found := object["lcsQosClass"]; found {
+		err = json.Unmarshal(raw, &a.LcsQosClass)
+		if err != nil {
+			return fmt.Errorf("error reading 'lcsQosClass': %w", err)
+		}
+		delete(object, "lcsQosClass")
+	}
+
+	if raw, found := object["responseTime"]; found {
+		err = json.Unmarshal(raw, &a.ResponseTime)
+		if err != nil {
+			return fmt.Errorf("error reading 'responseTime': %w", err)
+		}
+		delete(object, "responseTime")
+	}
+
+	if raw, found := object["vAccuracy"]; found {
+		err = json.Unmarshal(raw, &a.VAccuracy)
+		if err != nil {
+			return fmt.Errorf("error reading 'vAccuracy': %w", err)
+		}
+		delete(object, "vAccuracy")
+	}
+
+	if raw, found := object["verticalRequested"]; found {
+		err = json.Unmarshal(raw, &a.VerticalRequested)
+		if err != nil {
+			return fmt.Errorf("error reading 'verticalRequested': %w", err)
+		}
+		delete(object, "verticalRequested")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for LocationQoS to handle AdditionalProperties
+func (a LocationQoS) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.HAccuracy != nil {
+		object["hAccuracy"], err = json.Marshal(a.HAccuracy)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'hAccuracy': %w", err)
+		}
+	}
+
+	if a.LcsQosClass != nil {
+		object["lcsQosClass"], err = json.Marshal(a.LcsQosClass)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'lcsQosClass': %w", err)
+		}
+	}
+
+	if a.ResponseTime != nil {
+		object["responseTime"], err = json.Marshal(a.ResponseTime)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'responseTime': %w", err)
+		}
+	}
+
+	if a.VAccuracy != nil {
+		object["vAccuracy"], err = json.Marshal(a.VAccuracy)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'vAccuracy': %w", err)
+		}
+	}
+
+	if a.VerticalRequested != nil {
+		object["verticalRequested"], err = json.Marshal(a.VerticalRequested)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'verticalRequested': %w", err)
 		}
 	}
 
@@ -52837,6 +55378,162 @@ func (a MonitoringReport) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for MotionEventInfo. Returns the specified
+// element and whether it was found
+func (a MotionEventInfo) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for MotionEventInfo
+func (a *MotionEventInfo) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for MotionEventInfo to handle AdditionalProperties
+func (a *MotionEventInfo) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["linearDistance"]; found {
+		err = json.Unmarshal(raw, &a.LinearDistance)
+		if err != nil {
+			return fmt.Errorf("error reading 'linearDistance': %w", err)
+		}
+		delete(object, "linearDistance")
+	}
+
+	if raw, found := object["maximumInterval"]; found {
+		err = json.Unmarshal(raw, &a.MaximumInterval)
+		if err != nil {
+			return fmt.Errorf("error reading 'maximumInterval': %w", err)
+		}
+		delete(object, "maximumInterval")
+	}
+
+	if raw, found := object["minimumInterval"]; found {
+		err = json.Unmarshal(raw, &a.MinimumInterval)
+		if err != nil {
+			return fmt.Errorf("error reading 'minimumInterval': %w", err)
+		}
+		delete(object, "minimumInterval")
+	}
+
+	if raw, found := object["occurrenceInfo"]; found {
+		err = json.Unmarshal(raw, &a.OccurrenceInfo)
+		if err != nil {
+			return fmt.Errorf("error reading 'occurrenceInfo': %w", err)
+		}
+		delete(object, "occurrenceInfo")
+	}
+
+	if raw, found := object["reportingDuration"]; found {
+		err = json.Unmarshal(raw, &a.ReportingDuration)
+		if err != nil {
+			return fmt.Errorf("error reading 'reportingDuration': %w", err)
+		}
+		delete(object, "reportingDuration")
+	}
+
+	if raw, found := object["reportingLocationReq"]; found {
+		err = json.Unmarshal(raw, &a.ReportingLocationReq)
+		if err != nil {
+			return fmt.Errorf("error reading 'reportingLocationReq': %w", err)
+		}
+		delete(object, "reportingLocationReq")
+	}
+
+	if raw, found := object["samplingInterval"]; found {
+		err = json.Unmarshal(raw, &a.SamplingInterval)
+		if err != nil {
+			return fmt.Errorf("error reading 'samplingInterval': %w", err)
+		}
+		delete(object, "samplingInterval")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for MotionEventInfo to handle AdditionalProperties
+func (a MotionEventInfo) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["linearDistance"], err = json.Marshal(a.LinearDistance)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'linearDistance': %w", err)
+	}
+
+	if a.MaximumInterval != 0 {
+		object["maximumInterval"], err = json.Marshal(a.MaximumInterval)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'maximumInterval': %w", err)
+		}
+	}
+
+	if a.MinimumInterval != 0 {
+		object["minimumInterval"], err = json.Marshal(a.MinimumInterval)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'minimumInterval': %w", err)
+		}
+	}
+
+	if a.OccurrenceInfo != nil {
+		object["occurrenceInfo"], err = json.Marshal(a.OccurrenceInfo)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'occurrenceInfo': %w", err)
+		}
+	}
+
+	if a.ReportingDuration != 0 {
+		object["reportingDuration"], err = json.Marshal(a.ReportingDuration)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reportingDuration': %w", err)
+		}
+	}
+
+	if a.ReportingLocationReq != nil {
+		object["reportingLocationReq"], err = json.Marshal(a.ReportingLocationReq)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'reportingLocationReq': %w", err)
+		}
+	}
+
+	if a.SamplingInterval != 0 {
+		object["samplingInterval"], err = json.Marshal(a.SamplingInterval)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'samplingInterval': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for MtcProvider. Returns the specified
 // element and whether it was found
 func (a MtcProvider) Get(fieldName string) (value interface{}, found bool) {
@@ -52908,6 +55605,132 @@ func (a MtcProvider) MarshalJSON() ([]byte, error) {
 		object["mtcProviderInformation"], err = json.Marshal(a.MtcProviderInformation)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'mtcProviderInformation': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for MulticastAccessControl. Returns the specified
+// element and whether it was found
+func (a MulticastAccessControl) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for MulticastAccessControl
+func (a *MulticastAccessControl) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for MulticastAccessControl to handle AdditionalProperties
+func (a *MulticastAccessControl) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["accStatus"]; found {
+		err = json.Unmarshal(raw, &a.AccStatus)
+		if err != nil {
+			return fmt.Errorf("error reading 'accStatus': %w", err)
+		}
+		delete(object, "accStatus")
+	}
+
+	if raw, found := object["multicastV4Addr"]; found {
+		err = json.Unmarshal(raw, &a.MulticastV4Addr)
+		if err != nil {
+			return fmt.Errorf("error reading 'multicastV4Addr': %w", err)
+		}
+		delete(object, "multicastV4Addr")
+	}
+
+	if raw, found := object["multicastV6Addr"]; found {
+		err = json.Unmarshal(raw, &a.MulticastV6Addr)
+		if err != nil {
+			return fmt.Errorf("error reading 'multicastV6Addr': %w", err)
+		}
+		delete(object, "multicastV6Addr")
+	}
+
+	if raw, found := object["srcIpv4Addr"]; found {
+		err = json.Unmarshal(raw, &a.SrcIpv4Addr)
+		if err != nil {
+			return fmt.Errorf("error reading 'srcIpv4Addr': %w", err)
+		}
+		delete(object, "srcIpv4Addr")
+	}
+
+	if raw, found := object["srcIpv6Addr"]; found {
+		err = json.Unmarshal(raw, &a.SrcIpv6Addr)
+		if err != nil {
+			return fmt.Errorf("error reading 'srcIpv6Addr': %w", err)
+		}
+		delete(object, "srcIpv6Addr")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for MulticastAccessControl to handle AdditionalProperties
+func (a MulticastAccessControl) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["accStatus"], err = json.Marshal(a.AccStatus)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'accStatus': %w", err)
+	}
+
+	if len(a.MulticastV4Addr) != 0 {
+		object["multicastV4Addr"], err = json.Marshal(a.MulticastV4Addr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'multicastV4Addr': %w", err)
+		}
+	}
+
+	if a.MulticastV6Addr != nil {
+		object["multicastV6Addr"], err = json.Marshal(a.MulticastV6Addr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'multicastV6Addr': %w", err)
+		}
+	}
+
+	if len(a.SrcIpv4Addr) != 0 {
+		object["srcIpv4Addr"], err = json.Marshal(a.SrcIpv4Addr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'srcIpv4Addr': %w", err)
+		}
+	}
+
+	if a.SrcIpv6Addr != nil {
+		object["srcIpv6Addr"], err = json.Marshal(a.SrcIpv6Addr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'srcIpv6Addr': %w", err)
 		}
 	}
 
@@ -53166,7 +55989,7 @@ func (a N1MessageNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.LcsCorrelationId != nil {
+	if len(a.LcsCorrelationId) != 0 {
 		object["lcsCorrelationId"], err = json.Marshal(a.LcsCorrelationId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'lcsCorrelationId': %w", err)
@@ -53519,7 +56342,7 @@ func (a N1N2MessageTransferReqData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.LcsCorrelationId != nil {
+	if len(a.LcsCorrelationId) != 0 {
 		object["lcsCorrelationId"], err = json.Marshal(a.LcsCorrelationId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'lcsCorrelationId': %w", err)
@@ -54350,7 +57173,7 @@ func (a N2InformationNotification) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.LcsCorrelationId != nil {
+	if len(a.LcsCorrelationId) != 0 {
 		object["lcsCorrelationId"], err = json.Marshal(a.LcsCorrelationId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'lcsCorrelationId': %w", err)
@@ -61600,7 +64423,7 @@ func (a NotifiedPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.BarometricPressure != nil {
+	if a.BarometricPressure != 0 {
 		object["barometricPressure"], err = json.Marshal(a.BarometricPressure)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'barometricPressure': %w", err)
@@ -61642,7 +64465,7 @@ func (a NotifiedPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.LdrReference != nil {
+	if len(a.LdrReference) != 0 {
 		object["ldrReference"], err = json.Marshal(a.LdrReference)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ldrReference': %w", err)
@@ -70957,6 +73780,85 @@ func (a PeiUpdateInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for PeriodicEventInfo. Returns the specified
+// element and whether it was found
+func (a PeriodicEventInfo) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PeriodicEventInfo
+func (a *PeriodicEventInfo) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PeriodicEventInfo to handle AdditionalProperties
+func (a *PeriodicEventInfo) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["reportingAmount"]; found {
+		err = json.Unmarshal(raw, &a.ReportingAmount)
+		if err != nil {
+			return fmt.Errorf("error reading 'reportingAmount': %w", err)
+		}
+		delete(object, "reportingAmount")
+	}
+
+	if raw, found := object["reportingInterval"]; found {
+		err = json.Unmarshal(raw, &a.ReportingInterval)
+		if err != nil {
+			return fmt.Errorf("error reading 'reportingInterval': %w", err)
+		}
+		delete(object, "reportingInterval")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PeriodicEventInfo to handle AdditionalProperties
+func (a PeriodicEventInfo) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["reportingAmount"], err = json.Marshal(a.ReportingAmount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'reportingAmount': %w", err)
+	}
+
+	object["reportingInterval"], err = json.Marshal(a.ReportingInterval)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'reportingInterval': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for Pfd. Returns the specified
 // element and whether it was found
 func (a Pfd) Get(fieldName string) (value interface{}, found bool) {
@@ -72751,6 +75653,520 @@ func (a PlmnSnssai) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for Point. Returns the specified
+// element and whether it was found
+func (a Point) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for Point
+func (a *Point) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for Point to handle AdditionalProperties
+func (a *Point) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["point"]; found {
+		err = json.Unmarshal(raw, &a.Point)
+		if err != nil {
+			return fmt.Errorf("error reading 'point': %w", err)
+		}
+		delete(object, "point")
+	}
+
+	if raw, found := object["shape"]; found {
+		err = json.Unmarshal(raw, &a.Shape)
+		if err != nil {
+			return fmt.Errorf("error reading 'shape': %w", err)
+		}
+		delete(object, "shape")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for Point to handle AdditionalProperties
+func (a Point) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["point"], err = json.Marshal(a.Point)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'point': %w", err)
+	}
+
+	object["shape"], err = json.Marshal(a.Shape)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'shape': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PointAltitude. Returns the specified
+// element and whether it was found
+func (a PointAltitude) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PointAltitude
+func (a *PointAltitude) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PointAltitude to handle AdditionalProperties
+func (a *PointAltitude) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["altitude"]; found {
+		err = json.Unmarshal(raw, &a.Altitude)
+		if err != nil {
+			return fmt.Errorf("error reading 'altitude': %w", err)
+		}
+		delete(object, "altitude")
+	}
+
+	if raw, found := object["point"]; found {
+		err = json.Unmarshal(raw, &a.Point)
+		if err != nil {
+			return fmt.Errorf("error reading 'point': %w", err)
+		}
+		delete(object, "point")
+	}
+
+	if raw, found := object["shape"]; found {
+		err = json.Unmarshal(raw, &a.Shape)
+		if err != nil {
+			return fmt.Errorf("error reading 'shape': %w", err)
+		}
+		delete(object, "shape")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PointAltitude to handle AdditionalProperties
+func (a PointAltitude) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["altitude"], err = json.Marshal(a.Altitude)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'altitude': %w", err)
+	}
+
+	object["point"], err = json.Marshal(a.Point)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'point': %w", err)
+	}
+
+	object["shape"], err = json.Marshal(a.Shape)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'shape': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PointAltitudeUncertainty. Returns the specified
+// element and whether it was found
+func (a PointAltitudeUncertainty) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PointAltitudeUncertainty
+func (a *PointAltitudeUncertainty) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PointAltitudeUncertainty to handle AdditionalProperties
+func (a *PointAltitudeUncertainty) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["altitude"]; found {
+		err = json.Unmarshal(raw, &a.Altitude)
+		if err != nil {
+			return fmt.Errorf("error reading 'altitude': %w", err)
+		}
+		delete(object, "altitude")
+	}
+
+	if raw, found := object["confidence"]; found {
+		err = json.Unmarshal(raw, &a.Confidence)
+		if err != nil {
+			return fmt.Errorf("error reading 'confidence': %w", err)
+		}
+		delete(object, "confidence")
+	}
+
+	if raw, found := object["point"]; found {
+		err = json.Unmarshal(raw, &a.Point)
+		if err != nil {
+			return fmt.Errorf("error reading 'point': %w", err)
+		}
+		delete(object, "point")
+	}
+
+	if raw, found := object["shape"]; found {
+		err = json.Unmarshal(raw, &a.Shape)
+		if err != nil {
+			return fmt.Errorf("error reading 'shape': %w", err)
+		}
+		delete(object, "shape")
+	}
+
+	if raw, found := object["uncertaintyAltitude"]; found {
+		err = json.Unmarshal(raw, &a.UncertaintyAltitude)
+		if err != nil {
+			return fmt.Errorf("error reading 'uncertaintyAltitude': %w", err)
+		}
+		delete(object, "uncertaintyAltitude")
+	}
+
+	if raw, found := object["uncertaintyEllipse"]; found {
+		err = json.Unmarshal(raw, &a.UncertaintyEllipse)
+		if err != nil {
+			return fmt.Errorf("error reading 'uncertaintyEllipse': %w", err)
+		}
+		delete(object, "uncertaintyEllipse")
+	}
+
+	if raw, found := object["vConfidence"]; found {
+		err = json.Unmarshal(raw, &a.VConfidence)
+		if err != nil {
+			return fmt.Errorf("error reading 'vConfidence': %w", err)
+		}
+		delete(object, "vConfidence")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PointAltitudeUncertainty to handle AdditionalProperties
+func (a PointAltitudeUncertainty) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["altitude"], err = json.Marshal(a.Altitude)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'altitude': %w", err)
+	}
+
+	object["confidence"], err = json.Marshal(a.Confidence)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'confidence': %w", err)
+	}
+
+	object["point"], err = json.Marshal(a.Point)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'point': %w", err)
+	}
+
+	object["shape"], err = json.Marshal(a.Shape)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'shape': %w", err)
+	}
+
+	object["uncertaintyAltitude"], err = json.Marshal(a.UncertaintyAltitude)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'uncertaintyAltitude': %w", err)
+	}
+
+	object["uncertaintyEllipse"], err = json.Marshal(a.UncertaintyEllipse)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'uncertaintyEllipse': %w", err)
+	}
+
+	if a.VConfidence != nil {
+		object["vConfidence"], err = json.Marshal(a.VConfidence)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'vConfidence': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PointUncertaintyCircle. Returns the specified
+// element and whether it was found
+func (a PointUncertaintyCircle) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PointUncertaintyCircle
+func (a *PointUncertaintyCircle) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PointUncertaintyCircle to handle AdditionalProperties
+func (a *PointUncertaintyCircle) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["point"]; found {
+		err = json.Unmarshal(raw, &a.Point)
+		if err != nil {
+			return fmt.Errorf("error reading 'point': %w", err)
+		}
+		delete(object, "point")
+	}
+
+	if raw, found := object["shape"]; found {
+		err = json.Unmarshal(raw, &a.Shape)
+		if err != nil {
+			return fmt.Errorf("error reading 'shape': %w", err)
+		}
+		delete(object, "shape")
+	}
+
+	if raw, found := object["uncertainty"]; found {
+		err = json.Unmarshal(raw, &a.Uncertainty)
+		if err != nil {
+			return fmt.Errorf("error reading 'uncertainty': %w", err)
+		}
+		delete(object, "uncertainty")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PointUncertaintyCircle to handle AdditionalProperties
+func (a PointUncertaintyCircle) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["point"], err = json.Marshal(a.Point)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'point': %w", err)
+	}
+
+	object["shape"], err = json.Marshal(a.Shape)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'shape': %w", err)
+	}
+
+	object["uncertainty"], err = json.Marshal(a.Uncertainty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'uncertainty': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PointUncertaintyEllipse. Returns the specified
+// element and whether it was found
+func (a PointUncertaintyEllipse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PointUncertaintyEllipse
+func (a *PointUncertaintyEllipse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PointUncertaintyEllipse to handle AdditionalProperties
+func (a *PointUncertaintyEllipse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["confidence"]; found {
+		err = json.Unmarshal(raw, &a.Confidence)
+		if err != nil {
+			return fmt.Errorf("error reading 'confidence': %w", err)
+		}
+		delete(object, "confidence")
+	}
+
+	if raw, found := object["point"]; found {
+		err = json.Unmarshal(raw, &a.Point)
+		if err != nil {
+			return fmt.Errorf("error reading 'point': %w", err)
+		}
+		delete(object, "point")
+	}
+
+	if raw, found := object["shape"]; found {
+		err = json.Unmarshal(raw, &a.Shape)
+		if err != nil {
+			return fmt.Errorf("error reading 'shape': %w", err)
+		}
+		delete(object, "shape")
+	}
+
+	if raw, found := object["uncertaintyEllipse"]; found {
+		err = json.Unmarshal(raw, &a.UncertaintyEllipse)
+		if err != nil {
+			return fmt.Errorf("error reading 'uncertaintyEllipse': %w", err)
+		}
+		delete(object, "uncertaintyEllipse")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PointUncertaintyEllipse to handle AdditionalProperties
+func (a PointUncertaintyEllipse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["confidence"], err = json.Marshal(a.Confidence)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'confidence': %w", err)
+	}
+
+	object["point"], err = json.Marshal(a.Point)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'point': %w", err)
+	}
+
+	object["shape"], err = json.Marshal(a.Shape)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'shape': %w", err)
+	}
+
+	object["uncertaintyEllipse"], err = json.Marshal(a.UncertaintyEllipse)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'uncertaintyEllipse': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for PolicyAuthorizationQosMonitoringReport. Returns the specified
 // element and whether it was found
 func (a PolicyAuthorizationQosMonitoringReport) Get(fieldName string) (value interface{}, found bool) {
@@ -73407,6 +76823,85 @@ func (a PolicyDataSubscription) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for Polygon. Returns the specified
+// element and whether it was found
+func (a Polygon) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for Polygon
+func (a *Polygon) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for Polygon to handle AdditionalProperties
+func (a *Polygon) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["pointList"]; found {
+		err = json.Unmarshal(raw, &a.PointList)
+		if err != nil {
+			return fmt.Errorf("error reading 'pointList': %w", err)
+		}
+		delete(object, "pointList")
+	}
+
+	if raw, found := object["shape"]; found {
+		err = json.Unmarshal(raw, &a.Shape)
+		if err != nil {
+			return fmt.Errorf("error reading 'shape': %w", err)
+		}
+		delete(object, "shape")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for Polygon to handle AdditionalProperties
+func (a Polygon) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["pointList"], err = json.Marshal(a.PointList)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'pointList': %w", err)
+	}
+
+	object["shape"], err = json.Marshal(a.Shape)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'shape': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for PortManagementContainer. Returns the specified
 // element and whether it was found
 func (a PortManagementContainer) Get(fieldName string) (value interface{}, found bool) {
@@ -73475,6 +76970,113 @@ func (a PortManagementContainer) MarshalJSON() ([]byte, error) {
 	object["portNum"], err = json.Marshal(a.PortNum)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'portNum': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for PositioningMethodAndUsage. Returns the specified
+// element and whether it was found
+func (a PositioningMethodAndUsage) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for PositioningMethodAndUsage
+func (a *PositioningMethodAndUsage) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for PositioningMethodAndUsage to handle AdditionalProperties
+func (a *PositioningMethodAndUsage) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["method"]; found {
+		err = json.Unmarshal(raw, &a.Method)
+		if err != nil {
+			return fmt.Errorf("error reading 'method': %w", err)
+		}
+		delete(object, "method")
+	}
+
+	if raw, found := object["methodCode"]; found {
+		err = json.Unmarshal(raw, &a.MethodCode)
+		if err != nil {
+			return fmt.Errorf("error reading 'methodCode': %w", err)
+		}
+		delete(object, "methodCode")
+	}
+
+	if raw, found := object["mode"]; found {
+		err = json.Unmarshal(raw, &a.Mode)
+		if err != nil {
+			return fmt.Errorf("error reading 'mode': %w", err)
+		}
+		delete(object, "mode")
+	}
+
+	if raw, found := object["usage"]; found {
+		err = json.Unmarshal(raw, &a.Usage)
+		if err != nil {
+			return fmt.Errorf("error reading 'usage': %w", err)
+		}
+		delete(object, "usage")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for PositioningMethodAndUsage to handle AdditionalProperties
+func (a PositioningMethodAndUsage) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["method"], err = json.Marshal(a.Method)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'method': %w", err)
+	}
+
+	if a.MethodCode != 0 {
+		object["methodCode"], err = json.Marshal(a.MethodCode)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'methodCode': %w", err)
+		}
+	}
+
+	object["mode"], err = json.Marshal(a.Mode)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'mode': %w", err)
+	}
+
+	object["usage"], err = json.Marshal(a.Usage)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'usage': %w", err)
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -75825,7 +79427,7 @@ func (a ProvidePosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.BarometricPressure != nil {
+	if a.BarometricPressure != 0 {
 		object["barometricPressure"], err = json.Marshal(a.BarometricPressure)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'barometricPressure': %w", err)
@@ -79965,6 +83567,117 @@ func (a ReportItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for ReportingArea. Returns the specified
+// element and whether it was found
+func (a ReportingArea) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ReportingArea
+func (a *ReportingArea) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ReportingArea to handle AdditionalProperties
+func (a *ReportingArea) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["areaType"]; found {
+		err = json.Unmarshal(raw, &a.AreaType)
+		if err != nil {
+			return fmt.Errorf("error reading 'areaType': %w", err)
+		}
+		delete(object, "areaType")
+	}
+
+	if raw, found := object["ecgi"]; found {
+		err = json.Unmarshal(raw, &a.Ecgi)
+		if err != nil {
+			return fmt.Errorf("error reading 'ecgi': %w", err)
+		}
+		delete(object, "ecgi")
+	}
+
+	if raw, found := object["ncgi"]; found {
+		err = json.Unmarshal(raw, &a.Ncgi)
+		if err != nil {
+			return fmt.Errorf("error reading 'ncgi': %w", err)
+		}
+		delete(object, "ncgi")
+	}
+
+	if raw, found := object["tai"]; found {
+		err = json.Unmarshal(raw, &a.Tai)
+		if err != nil {
+			return fmt.Errorf("error reading 'tai': %w", err)
+		}
+		delete(object, "tai")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ReportingArea to handle AdditionalProperties
+func (a ReportingArea) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["areaType"], err = json.Marshal(a.AreaType)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'areaType': %w", err)
+	}
+
+	if a.Ecgi != nil {
+		object["ecgi"], err = json.Marshal(a.Ecgi)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ecgi': %w", err)
+		}
+	}
+
+	if a.Ncgi != nil {
+		object["ncgi"], err = json.Marshal(a.Ncgi)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ncgi': %w", err)
+		}
+	}
+
+	if a.Tai != nil {
+		object["tai"], err = json.Marshal(a.Tai)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'tai': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for ReportingInformation. Returns the specified
 // element and whether it was found
 func (a ReportingInformation) Get(fieldName string) (value interface{}, found bool) {
@@ -80710,7 +84423,7 @@ func (a RequestPosInfo) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.LdrReference != nil {
+	if len(a.LdrReference) != 0 {
 		object["ldrReference"], err = json.Marshal(a.LdrReference)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ldrReference': %w", err)
@@ -81820,6 +85533,89 @@ func (a RmInfo) MarshalJSON() ([]byte, error) {
 	object["rmState"], err = json.Marshal(a.RmState)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'rmState': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for RoamingChargingProfile. Returns the specified
+// element and whether it was found
+func (a RoamingChargingProfile) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for RoamingChargingProfile
+func (a *RoamingChargingProfile) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for RoamingChargingProfile to handle AdditionalProperties
+func (a *RoamingChargingProfile) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["partialRecordMethod"]; found {
+		err = json.Unmarshal(raw, &a.PartialRecordMethod)
+		if err != nil {
+			return fmt.Errorf("error reading 'partialRecordMethod': %w", err)
+		}
+		delete(object, "partialRecordMethod")
+	}
+
+	if raw, found := object["triggers"]; found {
+		err = json.Unmarshal(raw, &a.Triggers)
+		if err != nil {
+			return fmt.Errorf("error reading 'triggers': %w", err)
+		}
+		delete(object, "triggers")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for RoamingChargingProfile to handle AdditionalProperties
+func (a RoamingChargingProfile) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.PartialRecordMethod != nil {
+		object["partialRecordMethod"], err = json.Marshal(a.PartialRecordMethod)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'partialRecordMethod': %w", err)
+		}
+	}
+
+	if a.Triggers != nil {
+		object["triggers"], err = json.Marshal(a.Triggers)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'triggers': %w", err)
+		}
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -84948,6 +88744,85 @@ func (a ServiceParameterData) MarshalJSON() ([]byte, error) {
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ueMac': %w", err)
 		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ServiceParameterDataPatch. Returns the specified
+// element and whether it was found
+func (a ServiceParameterDataPatch) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ServiceParameterDataPatch
+func (a *ServiceParameterDataPatch) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ServiceParameterDataPatch to handle AdditionalProperties
+func (a *ServiceParameterDataPatch) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["paramOverPc5"]; found {
+		err = json.Unmarshal(raw, &a.ParamOverPc5)
+		if err != nil {
+			return fmt.Errorf("error reading 'paramOverPc5': %w", err)
+		}
+		delete(object, "paramOverPc5")
+	}
+
+	if raw, found := object["paramOverUu"]; found {
+		err = json.Unmarshal(raw, &a.ParamOverUu)
+		if err != nil {
+			return fmt.Errorf("error reading 'paramOverUu': %w", err)
+		}
+		delete(object, "paramOverUu")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ServiceParameterDataPatch to handle AdditionalProperties
+func (a ServiceParameterDataPatch) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["paramOverPc5"], err = json.Marshal(a.ParamOverPc5)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'paramOverPc5': %w", err)
+	}
+
+	object["paramOverUu"], err = json.Marshal(a.ParamOverUu)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'paramOverUu': %w", err)
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -102289,6 +106164,177 @@ func (a TransferPolicy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for Trigger. Returns the specified
+// element and whether it was found
+func (a Trigger) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for Trigger
+func (a *Trigger) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for Trigger to handle AdditionalProperties
+func (a *Trigger) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["eventLimit"]; found {
+		err = json.Unmarshal(raw, &a.EventLimit)
+		if err != nil {
+			return fmt.Errorf("error reading 'eventLimit': %w", err)
+		}
+		delete(object, "eventLimit")
+	}
+
+	if raw, found := object["maxNumberOfccc"]; found {
+		err = json.Unmarshal(raw, &a.MaxNumberOfccc)
+		if err != nil {
+			return fmt.Errorf("error reading 'maxNumberOfccc': %w", err)
+		}
+		delete(object, "maxNumberOfccc")
+	}
+
+	if raw, found := object["tariffTimeChange"]; found {
+		err = json.Unmarshal(raw, &a.TariffTimeChange)
+		if err != nil {
+			return fmt.Errorf("error reading 'tariffTimeChange': %w", err)
+		}
+		delete(object, "tariffTimeChange")
+	}
+
+	if raw, found := object["timeLimit"]; found {
+		err = json.Unmarshal(raw, &a.TimeLimit)
+		if err != nil {
+			return fmt.Errorf("error reading 'timeLimit': %w", err)
+		}
+		delete(object, "timeLimit")
+	}
+
+	if raw, found := object["triggerCategory"]; found {
+		err = json.Unmarshal(raw, &a.TriggerCategory)
+		if err != nil {
+			return fmt.Errorf("error reading 'triggerCategory': %w", err)
+		}
+		delete(object, "triggerCategory")
+	}
+
+	if raw, found := object["triggerType"]; found {
+		err = json.Unmarshal(raw, &a.TriggerType)
+		if err != nil {
+			return fmt.Errorf("error reading 'triggerType': %w", err)
+		}
+		delete(object, "triggerType")
+	}
+
+	if raw, found := object["volumeLimit"]; found {
+		err = json.Unmarshal(raw, &a.VolumeLimit)
+		if err != nil {
+			return fmt.Errorf("error reading 'volumeLimit': %w", err)
+		}
+		delete(object, "volumeLimit")
+	}
+
+	if raw, found := object["volumeLimit64"]; found {
+		err = json.Unmarshal(raw, &a.VolumeLimit64)
+		if err != nil {
+			return fmt.Errorf("error reading 'volumeLimit64': %w", err)
+		}
+		delete(object, "volumeLimit64")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for Trigger to handle AdditionalProperties
+func (a Trigger) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.EventLimit != nil {
+		object["eventLimit"], err = json.Marshal(a.EventLimit)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'eventLimit': %w", err)
+		}
+	}
+
+	if a.MaxNumberOfccc != nil {
+		object["maxNumberOfccc"], err = json.Marshal(a.MaxNumberOfccc)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'maxNumberOfccc': %w", err)
+		}
+	}
+
+	if a.TariffTimeChange != nil {
+		object["tariffTimeChange"], err = json.Marshal(a.TariffTimeChange)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'tariffTimeChange': %w", err)
+		}
+	}
+
+	if a.TimeLimit != nil {
+		object["timeLimit"], err = json.Marshal(a.TimeLimit)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'timeLimit': %w", err)
+		}
+	}
+
+	object["triggerCategory"], err = json.Marshal(a.TriggerCategory)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'triggerCategory': %w", err)
+	}
+
+	if a.TriggerType != nil {
+		object["triggerType"], err = json.Marshal(a.TriggerType)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'triggerType': %w", err)
+		}
+	}
+
+	if a.VolumeLimit != nil {
+		object["volumeLimit"], err = json.Marshal(a.VolumeLimit)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'volumeLimit': %w", err)
+		}
+	}
+
+	if a.VolumeLimit64 != nil {
+		object["volumeLimit64"], err = json.Marshal(a.VolumeLimit64)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'volumeLimit64': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for TriggerRequest. Returns the specified
 // element and whether it was found
 func (a TriggerRequest) Get(fieldName string) (value interface{}, found bool) {
@@ -108474,6 +112520,89 @@ func (a UePolicyTransferFailureNotification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for UePrivacyRequirements. Returns the specified
+// element and whether it was found
+func (a UePrivacyRequirements) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UePrivacyRequirements
+func (a *UePrivacyRequirements) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UePrivacyRequirements to handle AdditionalProperties
+func (a *UePrivacyRequirements) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["codeWordCheck"]; found {
+		err = json.Unmarshal(raw, &a.CodeWordCheck)
+		if err != nil {
+			return fmt.Errorf("error reading 'codeWordCheck': %w", err)
+		}
+		delete(object, "codeWordCheck")
+	}
+
+	if raw, found := object["lcsServiceAuthInfo"]; found {
+		err = json.Unmarshal(raw, &a.LcsServiceAuthInfo)
+		if err != nil {
+			return fmt.Errorf("error reading 'lcsServiceAuthInfo': %w", err)
+		}
+		delete(object, "lcsServiceAuthInfo")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UePrivacyRequirements to handle AdditionalProperties
+func (a UePrivacyRequirements) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.CodeWordCheck != nil {
+		object["codeWordCheck"], err = json.Marshal(a.CodeWordCheck)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'codeWordCheck': %w", err)
+		}
+	}
+
+	if a.LcsServiceAuthInfo != nil {
+		object["lcsServiceAuthInfo"], err = json.Marshal(a.LcsServiceAuthInfo)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'lcsServiceAuthInfo': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // Getter for additional properties for UeRegStatusUpdateReqData. Returns the specified
 // element and whether it was found
 func (a UeRegStatusUpdateReqData) Get(fieldName string) (value interface{}, found bool) {
@@ -108708,6 +112837,98 @@ func (a UlclBpInformation) MarshalJSON() ([]byte, error) {
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'ulclBpUpfId': %w", err)
 		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UncertaintyEllipse. Returns the specified
+// element and whether it was found
+func (a UncertaintyEllipse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UncertaintyEllipse
+func (a *UncertaintyEllipse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UncertaintyEllipse to handle AdditionalProperties
+func (a *UncertaintyEllipse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["orientationMajor"]; found {
+		err = json.Unmarshal(raw, &a.OrientationMajor)
+		if err != nil {
+			return fmt.Errorf("error reading 'orientationMajor': %w", err)
+		}
+		delete(object, "orientationMajor")
+	}
+
+	if raw, found := object["semiMajor"]; found {
+		err = json.Unmarshal(raw, &a.SemiMajor)
+		if err != nil {
+			return fmt.Errorf("error reading 'semiMajor': %w", err)
+		}
+		delete(object, "semiMajor")
+	}
+
+	if raw, found := object["semiMinor"]; found {
+		err = json.Unmarshal(raw, &a.SemiMinor)
+		if err != nil {
+			return fmt.Errorf("error reading 'semiMinor': %w", err)
+		}
+		delete(object, "semiMinor")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UncertaintyEllipse to handle AdditionalProperties
+func (a UncertaintyEllipse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["orientationMajor"], err = json.Marshal(a.OrientationMajor)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'orientationMajor': %w", err)
+	}
+
+	object["semiMajor"], err = json.Marshal(a.SemiMajor)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'semiMajor': %w", err)
+	}
+
+	object["semiMinor"], err = json.Marshal(a.SemiMinor)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'semiMinor': %w", err)
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -113879,7 +118100,7 @@ func (a AusfUpuData) MarshalJSON() ([]byte, error) {
 		}
 	}
 
-	if a.RoutingId != nil {
+	if len(a.RoutingId) != 0 {
 		object["routingId"], err = json.Marshal(a.RoutingId)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'routingId': %w", err)
@@ -116009,6 +120230,198 @@ func (t *EventsSubscPutData) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsPoint returns the union data inside the GeographicArea as a Point
+func (t GeographicArea) AsPoint() (Point, error) {
+	var body Point
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPoint overwrites any union data inside the GeographicArea as the provided Point
+func (t *GeographicArea) FromPoint(v Point) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePoint performs a merge with any union data inside the GeographicArea, using the provided Point
+func (t *GeographicArea) MergePoint(v Point) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPointUncertaintyCircle returns the union data inside the GeographicArea as a PointUncertaintyCircle
+func (t GeographicArea) AsPointUncertaintyCircle() (PointUncertaintyCircle, error) {
+	var body PointUncertaintyCircle
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPointUncertaintyCircle overwrites any union data inside the GeographicArea as the provided PointUncertaintyCircle
+func (t *GeographicArea) FromPointUncertaintyCircle(v PointUncertaintyCircle) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePointUncertaintyCircle performs a merge with any union data inside the GeographicArea, using the provided PointUncertaintyCircle
+func (t *GeographicArea) MergePointUncertaintyCircle(v PointUncertaintyCircle) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPointUncertaintyEllipse returns the union data inside the GeographicArea as a PointUncertaintyEllipse
+func (t GeographicArea) AsPointUncertaintyEllipse() (PointUncertaintyEllipse, error) {
+	var body PointUncertaintyEllipse
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPointUncertaintyEllipse overwrites any union data inside the GeographicArea as the provided PointUncertaintyEllipse
+func (t *GeographicArea) FromPointUncertaintyEllipse(v PointUncertaintyEllipse) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePointUncertaintyEllipse performs a merge with any union data inside the GeographicArea, using the provided PointUncertaintyEllipse
+func (t *GeographicArea) MergePointUncertaintyEllipse(v PointUncertaintyEllipse) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPolygon returns the union data inside the GeographicArea as a Polygon
+func (t GeographicArea) AsPolygon() (Polygon, error) {
+	var body Polygon
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPolygon overwrites any union data inside the GeographicArea as the provided Polygon
+func (t *GeographicArea) FromPolygon(v Polygon) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePolygon performs a merge with any union data inside the GeographicArea, using the provided Polygon
+func (t *GeographicArea) MergePolygon(v Polygon) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPointAltitude returns the union data inside the GeographicArea as a PointAltitude
+func (t GeographicArea) AsPointAltitude() (PointAltitude, error) {
+	var body PointAltitude
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPointAltitude overwrites any union data inside the GeographicArea as the provided PointAltitude
+func (t *GeographicArea) FromPointAltitude(v PointAltitude) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePointAltitude performs a merge with any union data inside the GeographicArea, using the provided PointAltitude
+func (t *GeographicArea) MergePointAltitude(v PointAltitude) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPointAltitudeUncertainty returns the union data inside the GeographicArea as a PointAltitudeUncertainty
+func (t GeographicArea) AsPointAltitudeUncertainty() (PointAltitudeUncertainty, error) {
+	var body PointAltitudeUncertainty
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPointAltitudeUncertainty overwrites any union data inside the GeographicArea as the provided PointAltitudeUncertainty
+func (t *GeographicArea) FromPointAltitudeUncertainty(v PointAltitudeUncertainty) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePointAltitudeUncertainty performs a merge with any union data inside the GeographicArea, using the provided PointAltitudeUncertainty
+func (t *GeographicArea) MergePointAltitudeUncertainty(v PointAltitudeUncertainty) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEllipsoidArc returns the union data inside the GeographicArea as a EllipsoidArc
+func (t GeographicArea) AsEllipsoidArc() (EllipsoidArc, error) {
+	var body EllipsoidArc
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEllipsoidArc overwrites any union data inside the GeographicArea as the provided EllipsoidArc
+func (t *GeographicArea) FromEllipsoidArc(v EllipsoidArc) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEllipsoidArc performs a merge with any union data inside the GeographicArea, using the provided EllipsoidArc
+func (t *GeographicArea) MergeEllipsoidArc(v EllipsoidArc) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t GeographicArea) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *GeographicArea) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsHssAuthenticationVectors0 returns the union data inside the HssAuthenticationVectors as a HssAuthenticationVectors0
 func (t HssAuthenticationVectors) AsHssAuthenticationVectors0() (HssAuthenticationVectors0, error) {
 	var body HssAuthenticationVectors0
@@ -116787,6 +121200,120 @@ func (t UEAuthenticationCtx_5gAuthData) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UEAuthenticationCtx_5gAuthData) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsHorizontalVelocity returns the union data inside the VelocityEstimate as a HorizontalVelocity
+func (t VelocityEstimate) AsHorizontalVelocity() (HorizontalVelocity, error) {
+	var body HorizontalVelocity
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromHorizontalVelocity overwrites any union data inside the VelocityEstimate as the provided HorizontalVelocity
+func (t *VelocityEstimate) FromHorizontalVelocity(v HorizontalVelocity) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeHorizontalVelocity performs a merge with any union data inside the VelocityEstimate, using the provided HorizontalVelocity
+func (t *VelocityEstimate) MergeHorizontalVelocity(v HorizontalVelocity) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsHorizontalWithVerticalVelocity returns the union data inside the VelocityEstimate as a HorizontalWithVerticalVelocity
+func (t VelocityEstimate) AsHorizontalWithVerticalVelocity() (HorizontalWithVerticalVelocity, error) {
+	var body HorizontalWithVerticalVelocity
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromHorizontalWithVerticalVelocity overwrites any union data inside the VelocityEstimate as the provided HorizontalWithVerticalVelocity
+func (t *VelocityEstimate) FromHorizontalWithVerticalVelocity(v HorizontalWithVerticalVelocity) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeHorizontalWithVerticalVelocity performs a merge with any union data inside the VelocityEstimate, using the provided HorizontalWithVerticalVelocity
+func (t *VelocityEstimate) MergeHorizontalWithVerticalVelocity(v HorizontalWithVerticalVelocity) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsHorizontalVelocityWithUncertainty returns the union data inside the VelocityEstimate as a HorizontalVelocityWithUncertainty
+func (t VelocityEstimate) AsHorizontalVelocityWithUncertainty() (HorizontalVelocityWithUncertainty, error) {
+	var body HorizontalVelocityWithUncertainty
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromHorizontalVelocityWithUncertainty overwrites any union data inside the VelocityEstimate as the provided HorizontalVelocityWithUncertainty
+func (t *VelocityEstimate) FromHorizontalVelocityWithUncertainty(v HorizontalVelocityWithUncertainty) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeHorizontalVelocityWithUncertainty performs a merge with any union data inside the VelocityEstimate, using the provided HorizontalVelocityWithUncertainty
+func (t *VelocityEstimate) MergeHorizontalVelocityWithUncertainty(v HorizontalVelocityWithUncertainty) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsHorizontalWithVerticalVelocityAndUncertainty returns the union data inside the VelocityEstimate as a HorizontalWithVerticalVelocityAndUncertainty
+func (t VelocityEstimate) AsHorizontalWithVerticalVelocityAndUncertainty() (HorizontalWithVerticalVelocityAndUncertainty, error) {
+	var body HorizontalWithVerticalVelocityAndUncertainty
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromHorizontalWithVerticalVelocityAndUncertainty overwrites any union data inside the VelocityEstimate as the provided HorizontalWithVerticalVelocityAndUncertainty
+func (t *VelocityEstimate) FromHorizontalWithVerticalVelocityAndUncertainty(v HorizontalWithVerticalVelocityAndUncertainty) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeHorizontalWithVerticalVelocityAndUncertainty performs a merge with any union data inside the VelocityEstimate, using the provided HorizontalWithVerticalVelocityAndUncertainty
+func (t *VelocityEstimate) MergeHorizontalWithVerticalVelocityAndUncertainty(v HorizontalWithVerticalVelocityAndUncertainty) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t VelocityEstimate) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *VelocityEstimate) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }

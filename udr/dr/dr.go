@@ -89,9 +89,6 @@ type ReadIPTVCongifurationDataParams struct {
 	InterGroupIds *[]externalRef0.GroupId `form:"inter-group-ids,omitempty" json:"inter-group-ids,omitempty"`
 }
 
-// PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONBody defines parameters for PartialReplaceIndividualIPTVConfigurationData.
-type PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONBody = interface{}
-
 // ReadPFDDataParams defines parameters for ReadPFDData.
 type ReadPFDDataParams struct {
 	// AppId Contains the information of the application identifier(s) for the querying PFD Data resource. If none appId is included in the URI, it applies to all application identifier(s) for the querying PFD Data resource.
@@ -127,9 +124,6 @@ type ReadServiceParameterDataParams struct {
 	// SuppFeat Supported Features
 	SuppFeat *externalRef0.SupportedFeatures `form:"supp-feat,omitempty" json:"supp-feat,omitempty"`
 }
-
-// UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONBody defines parameters for UpdateIndividualServiceParameterData.
-type UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONBody = interface{}
 
 // ReadApplicationDataChangeSubscriptionsParams defines parameters for ReadApplicationDataChangeSubscriptions.
 type ReadApplicationDataChangeSubscriptionsParams struct {
@@ -852,7 +846,7 @@ type UpdateIndividualInfluenceDataApplicationMergePatchPlusJSONRequestBody = ext
 type CreateOrReplaceIndividualInfluenceDataJSONRequestBody = externalRef0.TrafficInfluData
 
 // PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONRequestBody defines body for PartialReplaceIndividualIPTVConfigurationData for application/merge-patch+json ContentType.
-type PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONRequestBody = PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONBody
+type PartialReplaceIndividualIPTVConfigurationDataApplicationMergePatchPlusJSONRequestBody = externalRef0.IptvConfigDataPatch
 
 // CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody defines body for CreateOrReplaceIndividualIPTVConfigurationData for application/json ContentType.
 type CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody = externalRef0.IptvConfigData
@@ -861,7 +855,7 @@ type CreateOrReplaceIndividualIPTVConfigurationDataJSONRequestBody = externalRef
 type CreateOrReplaceIndividualPFDDataJSONRequestBody = externalRef0.PfdDataForAppExt
 
 // UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONRequestBody defines body for UpdateIndividualServiceParameterData for application/merge-patch+json ContentType.
-type UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONRequestBody = UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONBody
+type UpdateIndividualServiceParameterDataApplicationMergePatchPlusJSONRequestBody = externalRef0.ServiceParameterDataPatch
 
 // CreateOrReplaceServiceParameterDataJSONRequestBody defines body for CreateOrReplaceServiceParameterData for application/json ContentType.
 type CreateOrReplaceServiceParameterDataJSONRequestBody = externalRef0.ServiceParameterData

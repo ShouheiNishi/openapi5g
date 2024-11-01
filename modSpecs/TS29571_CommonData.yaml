@@ -803,6 +803,15 @@ components:
                 - WLAN
                 - ETHERNET
             type: string
+        AccessRightStatus:
+            description: |-
+                Possible values are - FULLY_ALLOWED: The User is fully allowed to access to the channel. - PREVIEW_ALLOWED: The User is preview allowed to access to the channel. - NO_ALLOWED: The User is not allowed to access to the channel.
+                 (Original definition in TS29522_IPTVConfiguration.yaml#/components/schemas/AccessRightStatus)
+            enum:
+                - FULLY_ALLOWED
+                - PREVIEW_ALLOWED
+                - NO_ALLOWED
+            type: string
         AccessTech:
             description: Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/AccessTech
             enum:
@@ -978,6 +987,17 @@ components:
                 uplinkVolume:
                     $ref: '#/components/schemas/Volume'
             type: object
+        Accuracy:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Accuracy
+            format: float
+            minimum: 0
+            type: number
+        AccuracyFulfilmentIndicator:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
+            enum:
+                - REQUESTED_ACCURACY_FULFILLED
+                - REQUESTED_ACCURACY_NOT_FULFILLED
+            type: string
         AckInd:
             description: Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/AckInd
             type: boolean
@@ -1087,22 +1107,12 @@ components:
             description: Contains an AF application identifier. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId)
             type: string
         AfEvent:
-            description: Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
+            description: Original definition in TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent
             enum:
-                - ACCESS_TYPE_CHANGE
-                - ANI_REPORT
-                - CHARGING_CORRELATION
-                - EPS_FALLBACK
-                - FAILED_RESOURCES_ALLOCATION
-                - OUT_OF_CREDIT
-                - PLMN_CHG
-                - QOS_MONITORING
-                - QOS_NOTIF
-                - RAN_NAS_CAUSE
-                - REALLOCATION_OF_CREDIT
-                - SUCCESSFUL_RESOURCES_ALLOCATION
-                - TSN_BRIDGE_INFO
-                - USAGE_REPORT
+                - SVC_EXPERIENCE
+                - UE_MOBILITY
+                - UE_COMM
+                - EXCEPTIONS
             type: string
         AfEventExposureData:
             additionalProperties: true
@@ -1110,8 +1120,7 @@ components:
             properties:
                 afEvents:
                     items:
-                        description: Original reference TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent
-                        type: string
+                        $ref: '#/components/schemas/AfEvent'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -1135,7 +1144,7 @@ components:
             description: describes the event information delivered in the notification (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEventNotification)
             properties:
                 event:
-                    $ref: '#/components/schemas/AfEvent'
+                    $ref: '#/components/schemas/pcf-AfEvent'
                 flows:
                     items:
                         $ref: '#/components/schemas/Flows'
@@ -1150,7 +1159,7 @@ components:
             description: describes the event information delivered in the subscription (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEventSubscription)
             properties:
                 event:
-                    $ref: '#/components/schemas/AfEvent'
+                    $ref: '#/components/schemas/pcf-AfEvent'
                 notifMethod:
                     $ref: '#/components/schemas/AfNotifMethod'
                 repPeriod:
@@ -1168,8 +1177,7 @@ components:
                     $ref: '#/components/schemas/AfId'
                 allowedGeographicArea:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GeographicArea'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -1280,6 +1288,11 @@ components:
             description: |-
                 Possible values are - NO_INFORMATION: Indicate that no information about the AF signalling protocol is being provided.  - SIP: Indicate that the signalling protocol is Session Initiation Protocol.
                  (Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AfSigProtocol)
+        AgeOfLocationEstimate:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
+            maximum: 32767
+            minimum: 0
+            type: integer
         AllowedMtcProviderInfo:
             additionalProperties: true
             description: Original definition in TS29505_Subscription_Data.yaml#/components/schemas/AllowedMtcProviderInfo
@@ -1342,6 +1355,12 @@ components:
             required:
                 - index
             type: object
+        Altitude:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
+            format: double
+            maximum: 32767
+            minimum: -32767
+            type: number
         AmPolicyData:
             additionalProperties: true
             description: Contains the AM policy data for a given subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/AmPolicyData)
@@ -2085,6 +2104,11 @@ components:
                 psetrSupportInd:
                     type: boolean
             type: object
+        Angle:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Angle
+            maximum: 360
+            minimum: 0
+            type: integer
         ApnRateStatus:
             additionalProperties: true
             properties:
@@ -2365,6 +2389,33 @@ components:
             type: object
         AreaCode:
             type: string
+        AreaEventInfo:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
+            properties:
+                areaDefinition:
+                    items:
+                        $ref: '#/components/schemas/ReportingArea'
+                    maxItems: 250
+                    minItems: 1
+                    type: array
+                    x-go-type-skip-optional-pointer: true
+                maximumInterval:
+                    $ref: '#/components/schemas/MaximumInterval'
+                minimumInterval:
+                    $ref: '#/components/schemas/MinimumInterval'
+                occurrenceInfo:
+                    $ref: '#/components/schemas/OccurrenceInfo'
+                reportingDuration:
+                    $ref: '#/components/schemas/ReportingDuration'
+                reportingLocationReq:
+                    default: true
+                    type: boolean
+                samplingInterval:
+                    $ref: '#/components/schemas/SamplingInterval'
+            required:
+                - areaDefinition
+            type: object
         AreaOfInterestEventState:
             additionalProperties: true
             description: Event State of AoI event in old AMF (Original definition in TS29518_Namf_Communication.yaml#/components/schemas/AreaOfInterestEventState)
@@ -3071,6 +3122,12 @@ components:
             required:
                 - backupAmf
             type: object
+        BarometricPressure:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
+            maximum: 115000
+            minimum: 30000
+            type: integer
+            x-go-type-skip-optional-pointer: true
         BatteryIndication:
             additionalProperties: true
             properties:
@@ -3112,8 +3169,7 @@ components:
                 suppFeat:
                     $ref: '#/components/schemas/SupportedFeatures'
                 trafficDes:
-                    description: Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-                    type: string
+                    $ref: '#/components/schemas/TS29122-TrafficDescriptor'
                 transPolicy:
                     $ref: '#/components/schemas/TransferPolicy'
                 volPerUe:
@@ -3206,8 +3262,7 @@ components:
                 suppFeat:
                     $ref: '#/components/schemas/SupportedFeatures'
                 trafficDes:
-                    description: Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original reference TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
-                    type: string
+                    $ref: '#/components/schemas/TS29122-TrafficDescriptor'
                 volPerUe:
                     $ref: '#/components/schemas/UsageThreshold'
                 warnNotifReq:
@@ -3368,11 +3423,9 @@ components:
                 hgmlcCallBackURI:
                     $ref: '#/components/schemas/Uri'
                 ldrReference:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    type: string
+                    $ref: '#/components/schemas/LdrReference'
                 servingLMFIdentification:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    type: string
+                    $ref: '#/components/schemas/LMFIdentification'
                 supi:
                     $ref: '#/components/schemas/Supi'
                 supportedFeatures:
@@ -3591,6 +3644,79 @@ components:
                 - NEA2
                 - NEA3
             type: string
+        CivicAddress:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+            properties:
+                A1:
+                    type: string
+                A2:
+                    type: string
+                A3:
+                    type: string
+                A4:
+                    type: string
+                A5:
+                    type: string
+                A6:
+                    type: string
+                ADDCODE:
+                    type: string
+                BLD:
+                    type: string
+                FLR:
+                    type: string
+                HNO:
+                    type: string
+                HNS:
+                    type: string
+                LMK:
+                    type: string
+                LOC:
+                    type: string
+                NAM:
+                    type: string
+                PC:
+                    type: string
+                PCN:
+                    type: string
+                PLC:
+                    type: string
+                POBOX:
+                    type: string
+                POD:
+                    type: string
+                POM:
+                    type: string
+                PRD:
+                    type: string
+                PRM:
+                    type: string
+                RD:
+                    type: string
+                RDBR:
+                    type: string
+                RDSEC:
+                    type: string
+                RDSUBBR:
+                    type: string
+                ROOM:
+                    type: string
+                SEAT:
+                    type: string
+                STS:
+                    type: string
+                UNIT:
+                    type: string
+                country:
+                    type: string
+                method:
+                    type: string
+                providedBy:
+                    type: string
+                usageRules:
+                    type: string
+            type: object
         CkPrime:
             description: Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/CkPrime
             pattern: ^[A-Fa-f0-9]{32}$
@@ -3781,6 +3907,11 @@ components:
                 - NF_ADDED
                 - NF_REMOVED
             type: string
+        Confidence:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Confidence
+            maximum: 100
+            minimum: 0
+            type: integer
         ConfidentialityKey:
             description: Original definition in TS29503_Nudm_UEAU.yaml#/components/schemas/ConfidentialityKey
             pattern: ^[A-Fa-f0-9]{32}$
@@ -3896,6 +4027,12 @@ components:
                 - 5GC
                 - EPC
             type: string
+        CorrelationID:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
+            maxLength: 255
+            minLength: 1
+            type: string
+            x-go-type-skip-optional-pointer: true
         CounterSor:
             description: Original definition in TS29509_Nausf_SoRProtection.yaml#/components/schemas/CounterSor
             pattern: ^[A-Fa-f0-9]{4}$
@@ -4167,8 +4304,7 @@ components:
             properties:
                 allowedGeographicArea:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GeographicArea'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -4737,6 +4873,32 @@ components:
                 - callbackReference
                 - monitoringConfigurations
             type: object
+        EllipsoidArc:
+            allOf:
+                - $ref: '#/components/schemas/GADShape'
+                - additionalProperties: true
+                  properties:
+                    confidence:
+                        $ref: '#/components/schemas/Confidence'
+                    includedAngle:
+                        $ref: '#/components/schemas/Angle'
+                    innerRadius:
+                        $ref: '#/components/schemas/InnerRadius'
+                    offsetAngle:
+                        $ref: '#/components/schemas/Angle'
+                    point:
+                        $ref: '#/components/schemas/GeographicalCoordinates'
+                    uncertaintyRadius:
+                        $ref: '#/components/schemas/Uncertainty'
+                  required:
+                    - point
+                    - innerRadius
+                    - uncertaintyRadius
+                    - offsetAngle
+                    - includedAngle
+                    - confidence
+                  type: object
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/EllipsoidArc
         EmergencyInfo:
             additionalProperties: true
             description: Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/EmergencyInfo
@@ -5013,6 +5175,22 @@ components:
             enum:
                 - OUT_OF_COVERAG
                 - A2_EVENT
+            type: string
+        EventId:
+            description: |-
+                Possible values are - LOAD_LEVEL_INFORMATION: Represent the analytics of load level information of corresponding network slice. - NETWORK_PERFORMANCE: Represent the analytics of network performance information. - NF_LOAD: Indicates that the event subscribed is NF Load. - SERVICE_EXPERIENCE: Represent the analytics of service experience information of the specific applications. - UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION: Represent the analytics of UE communication. - QOS_SUSTAINABILITY: Represent the analytics of QoS sustainability information in the certain area.  - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour information. - USER_DATA_CONGESTION: Represent the analytics of the user data congestion in the certain area. - NSI_LOAD_LEVEL: Represent the analytics of Network Slice and the optionally associated Network Slice Instance.
+                 (Original definition in TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId)
+            enum:
+                - LOAD_LEVEL_INFORMATION
+                - NETWORK_PERFORMANCE
+                - NF_LOAD
+                - SERVICE_EXPERIENCE
+                - UE_MOBILITY
+                - UE_COMMUNICATION
+                - QOS_SUSTAINABILITY
+                - ABNORMAL_BEHAVIOUR
+                - USER_DATA_CONGESTION
+                - NSI_LOAD_LEVEL
             type: string
         EventNotification:
             additionalProperties: true
@@ -5532,6 +5710,21 @@ components:
                         $ref: '#/components/schemas/AcceptableServiceInfo'
                   type: object
             description: Extends ProblemDetails to also include the acceptable service info. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ExtendedProblemDetails)
+        ExternalClientIdentification:
+            description: Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
+            type: string
+        ExternalClientType:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
+            enum:
+                - EMERGENCY_SERVICES
+                - VALUE_ADDED_SERVICES
+                - PLMN_OPERATOR_SERVICES
+                - LAWFUL_INTERCEPT_SERVICES
+                - PLMN_OPERATOR_BROADCAST_SERVICES
+                - PLMN_OPERATOR_OM
+                - PLMN_OPERATOR_ANONYMOUS_STATISTICS
+                - PLMN_OPERATOR_TARGET_MS_SERVICE_SUPPORT
+            type: string
         ExternalGroupId:
             pattern: ^extgroupid-[^@]+@[^@]+$
             type: string
@@ -5578,6 +5771,13 @@ components:
                 - APP_ID_DUPLICATED
                 - PARTIAL_FAILURE
                 - OTHER_REASON
+            type: string
+        FinalUnitAction:
+            description: Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
+            enum:
+                - TERMINATE
+                - REDIRECT
+                - RESTRICT_ACCESS
             type: string
         Float:
             format: float
@@ -5705,6 +5905,25 @@ components:
                 ipv6Prefix:
                     $ref: '#/components/schemas/Ipv6Prefix'
             type: object
+        GADShape:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GADShape
+            discriminator:
+                mapping:
+                    ELLIPSOID_ARC: '#/components/schemas/EllipsoidArc'
+                    POINT: '#/components/schemas/Point'
+                    POINT_ALTITUDE: '#/components/schemas/PointAltitude'
+                    POINT_ALTITUDE_UNCERTAINTY: '#/components/schemas/PointAltitudeUncertainty'
+                    POINT_UNCERTAINTY_CIRCLE: '#/components/schemas/PointUncertaintyCircle'
+                    POINT_UNCERTAINTY_ELLIPSE: '#/components/schemas/PointUncertaintyEllipse'
+                    POLYGON: '#/components/schemas/Polygon'
+                propertyName: shape
+            properties:
+                shape:
+                    $ref: '#/components/schemas/SupportedGADShapes'
+            required:
+                - shape
+            type: object
         GNbId:
             additionalProperties: true
             properties:
@@ -5751,6 +5970,34 @@ components:
             type: object
         Gci:
             type: string
+        GeographicArea:
+            anyOf:
+                - $ref: '#/components/schemas/Point'
+                - $ref: '#/components/schemas/PointUncertaintyCircle'
+                - $ref: '#/components/schemas/PointUncertaintyEllipse'
+                - $ref: '#/components/schemas/Polygon'
+                - $ref: '#/components/schemas/PointAltitude'
+                - $ref: '#/components/schemas/PointAltitudeUncertainty'
+                - $ref: '#/components/schemas/EllipsoidArc'
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+        GeographicalCoordinates:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GeographicalCoordinates
+            properties:
+                lat:
+                    format: double
+                    maximum: 90
+                    minimum: -90
+                    type: number
+                lon:
+                    format: double
+                    maximum: 180
+                    minimum: -180
+                    type: number
+            required:
+                - lon
+                - lat
+            type: object
         GeraLocation:
             additionalProperties: true
             properties:
@@ -5821,11 +6068,37 @@ components:
                     x-go-type-skip-optional-pointer: true
                 servingClientTypes:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-                        type: string
+                        $ref: '#/components/schemas/ExternalClientType'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
+            type: object
+        GnssId:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GnssId
+            enum:
+                - GPS
+                - GALILEO
+                - SBAS
+                - MODERNIZED_GPS
+                - QZSS
+                - GLONASS
+                - BDS
+                - NAVIC
+            type: string
+        GnssPositioningMethodAndUsage:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
+            properties:
+                gnss:
+                    $ref: '#/components/schemas/GnssId'
+                mode:
+                    $ref: '#/components/schemas/PositioningMode'
+                usage:
+                    $ref: '#/components/schemas/Usage'
+            required:
+                - mode
+                - gnss
+                - usage
             type: object
         Gpsi:
             pattern: ^(msisdn-[0-9]{5,15}|extid-[^@]+@[^@]+|.+)$
@@ -5898,6 +6171,81 @@ components:
                 - COMPLETED
                 - CANCELLED
             type: string
+        HorizontalSpeed:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalSpeed
+            format: float
+            maximum: 2047
+            minimum: 0
+            type: number
+        HorizontalVelocity:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalVelocity
+            properties:
+                bearing:
+                    $ref: '#/components/schemas/Angle'
+                hSpeed:
+                    $ref: '#/components/schemas/HorizontalSpeed'
+            required:
+                - hSpeed
+                - bearing
+            type: object
+        HorizontalVelocityWithUncertainty:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalVelocityWithUncertainty
+            properties:
+                bearing:
+                    $ref: '#/components/schemas/Angle'
+                hSpeed:
+                    $ref: '#/components/schemas/HorizontalSpeed'
+                hUncertainty:
+                    $ref: '#/components/schemas/SpeedUncertainty'
+            required:
+                - hSpeed
+                - bearing
+                - hUncertainty
+            type: object
+        HorizontalWithVerticalVelocity:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalWithVerticalVelocity
+            properties:
+                bearing:
+                    $ref: '#/components/schemas/Angle'
+                hSpeed:
+                    $ref: '#/components/schemas/HorizontalSpeed'
+                vDirection:
+                    $ref: '#/components/schemas/VerticalDirection'
+                vSpeed:
+                    $ref: '#/components/schemas/VerticalSpeed'
+            required:
+                - hSpeed
+                - bearing
+                - vSpeed
+                - vDirection
+            type: object
+        HorizontalWithVerticalVelocityAndUncertainty:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/HorizontalWithVerticalVelocityAndUncertainty
+            properties:
+                bearing:
+                    $ref: '#/components/schemas/Angle'
+                hSpeed:
+                    $ref: '#/components/schemas/HorizontalSpeed'
+                hUncertainty:
+                    $ref: '#/components/schemas/SpeedUncertainty'
+                vDirection:
+                    $ref: '#/components/schemas/VerticalDirection'
+                vSpeed:
+                    $ref: '#/components/schemas/VerticalSpeed'
+                vUncertainty:
+                    $ref: '#/components/schemas/SpeedUncertainty'
+            required:
+                - hSpeed
+                - bearing
+                - vSpeed
+                - vDirection
+                - hUncertainty
+                - vUncertainty
+            type: object
         HsmfUpdateData:
             additionalProperties: true
             description: Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdateData
@@ -6018,8 +6366,7 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
                 roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/RoamingChargingProfile'
                 secondaryRatUsageInfo:
                     items:
                         $ref: '#/components/schemas/SecondaryRatUsageInfo'
@@ -6128,8 +6475,7 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
                 roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/RoamingChargingProfile'
                 sessionAmbr:
                     $ref: '#/components/schemas/Ambr'
                 supportedFeatures:
@@ -6466,6 +6812,12 @@ components:
             required:
                 - gtpTeid
             type: object
+        InnerRadius:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/InnerRadius
+            format: int32
+            maximum: 327675
+            minimum: 0
+            type: integer
         Int64:
             format: int64
             type: integer
@@ -6633,8 +6985,7 @@ components:
                     description: Identifies a group of users.
                 multiAccCtrls:
                     additionalProperties:
-                        description: Original reference TS29522_IPTVConfiguration.yaml#/components/schemas/MulticastAccessControl
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/MulticastAccessControl'
                     minProperties: 1
                     type: object
                 resUri:
@@ -6648,6 +6999,16 @@ components:
             required:
                 - afAppId
                 - multiAccCtrls
+            type: object
+        IptvConfigDataPatch:
+            additionalProperties: true
+            description: Original definition in TS29522_IPTVConfiguration.yaml#/components/schemas/IptvConfigDataPatch
+            properties:
+                multiAccCtrls:
+                    additionalProperties:
+                        $ref: '#/components/schemas/MulticastAccessControl'
+                    minProperties: 1
+                    type: object
             type: object
         Ipv4Addr:
             example: '198.51.100.1'
@@ -6740,6 +7101,9 @@ components:
             pattern: '[A-Fa-f0-9]{64}'
             type: string
             x-go-type-skip-optional-pointer: true
+        LMFIdentification:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
+            type: string
         LadnInfo:
             additionalProperties: true
             description: Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/LadnInfo
@@ -6778,8 +7142,7 @@ components:
             properties:
                 allowedGeographicArea:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GeographicArea'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -6794,8 +7157,7 @@ components:
             properties:
                 allowedGeographicArea:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GeographicArea'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -6829,6 +7191,12 @@ components:
                 - AUTONOMOUS_SELF_LOCATION
                 - TRANSFER_TO_THIRD_PARTY
             type: string
+        LcsPriority:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
+            enum:
+                - HIGHEST_PRIORITY
+                - NORMAL_PRIORITY
+            type: string
         LcsPrivacy:
             additionalProperties: true
             description: Original definition in TS29503_Nudm_PP.yaml#/components/schemas/LcsPrivacy
@@ -6857,6 +7225,12 @@ components:
                 unrelatedClass:
                     $ref: '#/components/schemas/UnrelatedClass'
             type: object
+        LcsQosClass:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsQosClass
+            enum:
+                - BEST_EFFORT
+                - ASSURED
+            type: string
         LcsServiceAuth:
             description: |
                 Possible values are - "LOCATION_ALLOWED_WITH_NOTIFICATION": Location allowed with notification - "LOCATION_ALLOWED_WITHOUT_NOTIFICATION": Location allowed without notification - "LOCATION_ALLOWED_WITHOUT_RESPONSE": Location with notification and privacy verification; location allowed if no response - "LOCATION_RESTRICTED_WITHOUT_RESPONSE": Location with notification and privacy verification; location restricted if no response - "NOTIFICATION_ONLY": Notification only - "NOTIFICATION_AND_VERIFICATION_ONLY": Notification and privacy verification only
@@ -6867,6 +7241,27 @@ components:
                 - "LOCATION_RESTRICTED_WITHOUT_RESPONSE"
                 - "NOTIFICATION_ONLY"
                 - "NOTIFICATION_AND_VERIFICATION_ONLY"
+            type: string
+        LcsServiceType:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
+            maximum: 127
+            minimum: 0
+            type: integer
+        LdrReference:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
+            maxLength: 510
+            minLength: 2
+            type: string
+            x-go-type-skip-optional-pointer: true
+        LdrType:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
+            enum:
+                - UE_AVAILABLE
+                - PERIODIC
+                - ENTERING_INTO_AREA
+                - LEAVING_FROM_AREA
+                - BEING_INSIDE_AREA
+                - MOTION
             type: string
         LimitIdToMonitoringKey:
             additionalProperties: true
@@ -6891,6 +7286,12 @@ components:
                 - DSL
                 - PON
             type: string
+        LinearDistance:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LinearDistance
+            maximum: 10000
+            minimum: 1
+            type: integer
+            x-go-type-skip-optional-pointer: true
         Link:
             additionalProperties: true
             properties:
@@ -6910,8 +7311,7 @@ components:
             description: Information of an LMF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/LmfInfo)
             properties:
                 lmfId:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    type: string
+                    $ref: '#/components/schemas/LMFIdentification'
                 servingAccessTypes:
                     items:
                         $ref: '#/components/schemas/AccessType'
@@ -6926,8 +7326,7 @@ components:
                     x-go-type-skip-optional-pointer: true
                 servingClientTypes:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-                        type: string
+                        $ref: '#/components/schemas/ExternalClientType'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -6961,8 +7360,7 @@ components:
                 civicAddresses:
                     description: Identifies a list of civic addresses of the user where the UE is located.
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/CivicAddress'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -6976,8 +7374,7 @@ components:
                 geographicAreas:
                     description: Identifies a list of geographic area of the user where the UE is located.
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GeographicArea'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -7003,15 +7400,13 @@ components:
                 civicAddresses:
                     description: Identifies a list of civic addresses of the user where the UE is located.
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/CivicAddress'
                     minItems: 0
                     type: array
                 geographicAreas:
                     description: Identifies a list of geographic area of the user where the UE is located.
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GeographicArea'
                     minItems: 0
                     type: array
                 nwAreaInfo:
@@ -7105,11 +7500,9 @@ components:
                 ecgi:
                     $ref: '#/components/schemas/Ecgi'
                 geoInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/GeographicArea'
                 locationAge:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/AgeOfLocationEstimate'
                 ncgi:
                     $ref: '#/components/schemas/Ncgi'
                 ratType:
@@ -7138,6 +7531,21 @@ components:
                 - LOCATION_NOT_ALLOWED
                 - RESPONSE_TIME_OUT
             type: string
+        LocationQoS:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
+            properties:
+                hAccuracy:
+                    $ref: '#/components/schemas/Accuracy'
+                lcsQosClass:
+                    $ref: '#/components/schemas/LcsQosClass'
+                responseTime:
+                    $ref: '#/components/schemas/ResponseTime'
+                vAccuracy:
+                    $ref: '#/components/schemas/Accuracy'
+                verticalRequested:
+                    type: boolean
+            type: object
         LocationReport:
             additionalProperties: true
             description: Original definition in TS29503_Nudm_EE.yaml#/components/schemas/LocationReport
@@ -7327,6 +7735,12 @@ components:
         MaxNumOfReports:
             description: Original definition in TS29503_Nudm_EE.yaml#/components/schemas/MaxNumOfReports
             type: integer
+        MaximumInterval:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MaximumInterval
+            maximum: 86400
+            minimum: 1
+            type: integer
+            x-go-type-skip-optional-pointer: true
         MbsfnArea:
             additionalProperties: true
             properties:
@@ -7799,6 +8213,12 @@ components:
         MicoAllowed:
             description: Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MicoAllowed
             type: boolean
+        MinimumInterval:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MinimumInterval
+            maximum: 32767
+            minimum: 1
+            type: integer
+            x-go-type-skip-optional-pointer: true
         MmContext:
             additionalProperties: true
             description: Original definition in TS29518_Namf_Communication.yaml#/components/schemas/MmContext
@@ -7971,6 +8391,28 @@ components:
                 - eventType
                 - timeStamp
             type: object
+        MotionEventInfo:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
+            properties:
+                linearDistance:
+                    $ref: '#/components/schemas/LinearDistance'
+                maximumInterval:
+                    $ref: '#/components/schemas/MaximumInterval'
+                minimumInterval:
+                    $ref: '#/components/schemas/MinimumInterval'
+                occurrenceInfo:
+                    $ref: '#/components/schemas/OccurrenceInfo'
+                reportingDuration:
+                    $ref: '#/components/schemas/ReportingDuration'
+                reportingLocationReq:
+                    default: true
+                    type: boolean
+                samplingInterval:
+                    $ref: '#/components/schemas/SamplingInterval'
+            required:
+                - linearDistance
+            type: object
         MpsPriorityIndicator:
             description: Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/MpsPriorityIndicator
             type: boolean
@@ -7986,11 +8428,22 @@ components:
         MtcProviderInformation:
             type: string
         MulticastAccessControl:
-            description: Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl
-            enum:
-                - ALLOWED
-                - NOT_ALLOWED
-            type: string
+            additionalProperties: true
+            description: Original definition in TS29522_IPTVConfiguration.yaml#/components/schemas/MulticastAccessControl
+            properties:
+                accStatus:
+                    $ref: '#/components/schemas/AccessRightStatus'
+                multicastV4Addr:
+                    $ref: '#/components/schemas/Ipv4Addr'
+                multicastV6Addr:
+                    $ref: '#/components/schemas/Ipv6Addr'
+                srcIpv4Addr:
+                    $ref: '#/components/schemas/Ipv4Addr'
+                srcIpv6Addr:
+                    $ref: '#/components/schemas/Ipv6Addr'
+            required:
+                - accStatus
+            type: object
         N1MessageClass:
             description: Original definition in TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass
             enum:
@@ -8029,8 +8482,7 @@ components:
                 guami:
                     $ref: '#/components/schemas/Guami'
                 lcsCorrelationId:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-                    type: string
+                    $ref: '#/components/schemas/CorrelationID'
                 n1MessageContainer:
                     $ref: '#/components/schemas/N1MessageContainer'
                 n1NotifySubscriptionId:
@@ -8038,8 +8490,7 @@ components:
                 ncgi:
                     $ref: '#/components/schemas/Ncgi'
                 newLmfIdentification:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    type: string
+                    $ref: '#/components/schemas/LMFIdentification'
                 registrationCtxtContainer:
                     $ref: '#/components/schemas/RegistrationContextContainer'
             required:
@@ -8084,8 +8535,7 @@ components:
                 lastMsgIndication:
                     type: boolean
                 lcsCorrelationId:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-                    type: string
+                    $ref: '#/components/schemas/CorrelationID'
                 maAcceptedInd:
                     default: false
                     type: boolean
@@ -8220,8 +8670,7 @@ components:
                 initialAmfName:
                     $ref: '#/components/schemas/AmfName'
                 lcsCorrelationId:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID
-                    type: string
+                    $ref: '#/components/schemas/CorrelationID'
                 n2InfoContainer:
                     $ref: '#/components/schemas/N2InfoContainer'
                 n2NotifySubscriptionId:
@@ -9158,8 +9607,7 @@ components:
             properties:
                 afEvents:
                     items:
-                        description: Original reference TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent
-                        type: string
+                        $ref: '#/components/schemas/AfEvent'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -9718,23 +10166,18 @@ components:
             description: Original definition in TS29518_Namf_Location.yaml#/components/schemas/NotifiedPosInfo
             properties:
                 ageOfLocationEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/AgeOfLocationEstimate'
                 altitude:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/Altitude'
                 barometricPressure:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/BarometricPressure'
                 civicAddress:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/CivicAddress'
                 ecgi:
                     $ref: '#/components/schemas/Ecgi'
                 gnssPositioningDataList:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GnssPositioningMethodAndUsage'
                     maxItems: 9
                     minItems: 0
                     type: array
@@ -9743,11 +10186,9 @@ components:
                 hgmlcCallBackURI:
                     $ref: '#/components/schemas/Uri'
                 ldrReference:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    type: string
+                    $ref: '#/components/schemas/LdrReference'
                 locationEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/GeographicArea'
                 locationEvent:
                     $ref: '#/components/schemas/LocationEvent'
                 mscServerId:
@@ -9758,14 +10199,12 @@ components:
                     $ref: '#/components/schemas/Pei'
                 positioningDataList:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/PositioningMethodAndUsage'
                     maxItems: 9
                     minItems: 0
                     type: array
                 servingLMFIdentification:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    type: string
+                    $ref: '#/components/schemas/LMFIdentification'
                 servingNode:
                     $ref: '#/components/schemas/NfInstanceId'
                 supi:
@@ -9775,13 +10214,11 @@ components:
                 targetMmeRealm:
                     $ref: '#/components/schemas/DiameterIdentity'
                 terminationCause:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
-                    type: string
+                    $ref: '#/components/schemas/lmf-TerminationCause'
                 utranSrvccInd:
                     type: boolean
                 velocityEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/VelocityEstimate'
             required:
                 - locationEvent
             type: object
@@ -10365,25 +10802,35 @@ components:
             required:
                 - conditionType
             type: object
+        NwdafEvent:
+            description: |-
+                Possible values are - SLICE_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice - NETWORK_PERFORMANCE: Indicates that the event subscribed is network performance information. - NF_LOAD: Indicates that the event subscribed is load level and status of one or several Network Functions. - SERVICE_EXPERIENCE: Indicates that the event subscribed is service experience. - UE_MOBILITY: Indicates that the event subscribed is UE mobility information. - UE_COMMUNICATION: Indicates that the event subscribed is UE communication information. - QOS_SUSTAINABILITY: Indicates that the event subscribed is QoS sustainability. - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour. - USER_DATA_CONGESTION: Indicates that the event subscribed is user data congestion information. - NSI_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice and the optionally associated Network Slice Instance
+                 (Original definition in TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent)
+            enum:
+                - SLICE_LOAD_LEVEL
+                - NETWORK_PERFORMANCE
+                - NF_LOAD
+                - SERVICE_EXPERIENCE
+                - UE_MOBILITY
+                - UE_COMMUNICATION
+                - QOS_SUSTAINABILITY
+                - ABNORMAL_BEHAVIOUR
+                - USER_DATA_CONGESTION
+                - NSI_LOAD_LEVEL
+            type: string
         NwdafInfo:
             additionalProperties: true
             description: Information of a NWDAF NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NwdafInfo)
             properties:
                 eventIds:
                     items:
-                        description: |-
-                            Possible values are - LOAD_LEVEL_INFORMATION: Represent the analytics of load level information of corresponding network slice. - NETWORK_PERFORMANCE: Represent the analytics of network performance information. - NF_LOAD: Indicates that the event subscribed is NF Load. - SERVICE_EXPERIENCE: Represent the analytics of service experience information of the specific applications. - UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION: Represent the analytics of UE communication. - QOS_SUSTAINABILITY: Represent the analytics of QoS sustainability information in the certain area.  - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour information. - USER_DATA_CONGESTION: Represent the analytics of the user data congestion in the certain area. - NSI_LOAD_LEVEL: Represent the analytics of Network Slice and the optionally associated Network Slice Instance.
-                             (Original reference TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId)
-                        type: string
+                        $ref: '#/components/schemas/EventId'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
                 nwdafEvents:
                     items:
-                        description: |-
-                            Possible values are - SLICE_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice - NETWORK_PERFORMANCE: Indicates that the event subscribed is network performance information. - NF_LOAD: Indicates that the event subscribed is load level and status of one or several Network Functions. - SERVICE_EXPERIENCE: Indicates that the event subscribed is service experience. - UE_MOBILITY: Indicates that the event subscribed is UE mobility information. - UE_COMMUNICATION: Indicates that the event subscribed is UE communication information. - QOS_SUSTAINABILITY: Indicates that the event subscribed is QoS sustainability. - ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour. - USER_DATA_CONGESTION: Indicates that the event subscribed is user data congestion information. - NSI_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice and the optionally associated Network Slice Instance
-                             (Original reference TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent)
-                        type: string
+                        $ref: '#/components/schemas/NwdafEvent'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -10400,6 +10847,12 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
             type: object
+        OccurrenceInfo:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/OccurrenceInfo
+            enum:
+                - ONE_TIME_EVENT
+                - MULTIPLE_TIME_EVENT
+            type: string
         OdbData:
             additionalProperties: true
             properties:
@@ -10458,6 +10911,11 @@ components:
                 supportedFeatures:
                     $ref: '#/components/schemas/SupportedFeatures'
             type: object
+        Orientation:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Orientation
+            maximum: 180
+            minimum: 0
+            type: integer
         OsId:
             description: Original definition in TS29519_Policy_Data.yaml#/components/schemas/OsId
             format: uuid
@@ -10467,8 +10925,7 @@ components:
             description: Indicates the SDFs without available credit and the corresponding termination action. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/OutOfCreditInformation)
             properties:
                 finUnitAct:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
-                    type: string
+                    $ref: '#/components/schemas/FinalUnitAction'
                 flows:
                     items:
                         $ref: '#/components/schemas/Flows'
@@ -10564,6 +11021,26 @@ components:
                 supi:
                     $ref: '#/components/schemas/Supi'
             type: object
+        ParameterOverPc5:
+            description: Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
+            type: string
+        ParameterOverPc5Rm:
+            description: Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5Rm
+            nullable: true
+            type: string
+        ParameterOverUu:
+            description: Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
+            type: string
+        ParameterOverUuRm:
+            description: Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUuRm
+            nullable: true
+            type: string
+        PartialRecordMethod:
+            description: Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/PartialRecordMethod
+            enum:
+                - DEFAULT
+                - INDIVIDUAL
+            type: string
         PartialSuccessReport:
             additionalProperties: true
             description: Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PartialSuccessReport
@@ -11356,8 +11833,7 @@ components:
                 requestType:
                     $ref: '#/components/schemas/RequestType'
                 roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/RoamingChargingProfile'
                 routingIndicator:
                     type: string
                 sNssai:
@@ -11503,8 +11979,7 @@ components:
                 redundantPduSessionInfo:
                     $ref: '#/components/schemas/RedundantPduSessionInformation'
                 roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/RoamingChargingProfile'
                 sNssai:
                     $ref: '#/components/schemas/Snssai'
                 sessionAmbr:
@@ -11694,6 +12169,18 @@ components:
                 - PIORIODICALLY
                 - ON_DEMAND
             type: string
+        PeriodicEventInfo:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
+            properties:
+                reportingAmount:
+                    $ref: '#/components/schemas/ReportingAmount'
+                reportingInterval:
+                    $ref: '#/components/schemas/ReportingInterval'
+            required:
+                - reportingAmount
+                - reportingInterval
+            type: object
         Periodicity:
             description: Original definition in TS29519_Policy_Data.yaml#/components/schemas/Periodicity
             enum:
@@ -12065,6 +12552,95 @@ components:
                 - plmnId
                 - sNssaiList
             type: object
+        Point:
+            allOf:
+                - $ref: '#/components/schemas/GADShape'
+                - additionalProperties: true
+                  properties:
+                    point:
+                        $ref: '#/components/schemas/GeographicalCoordinates'
+                  required:
+                    - point
+                  type: object
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Point
+        PointAltitude:
+            allOf:
+                - $ref: '#/components/schemas/GADShape'
+                - additionalProperties: true
+                  properties:
+                    altitude:
+                        $ref: '#/components/schemas/Altitude'
+                    point:
+                        $ref: '#/components/schemas/GeographicalCoordinates'
+                  required:
+                    - point
+                    - altitude
+                  type: object
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PointAltitude
+        PointAltitudeUncertainty:
+            allOf:
+                - $ref: '#/components/schemas/GADShape'
+                - additionalProperties: true
+                  properties:
+                    altitude:
+                        $ref: '#/components/schemas/Altitude'
+                    confidence:
+                        $ref: '#/components/schemas/Confidence'
+                    point:
+                        $ref: '#/components/schemas/GeographicalCoordinates'
+                    uncertaintyAltitude:
+                        $ref: '#/components/schemas/Uncertainty'
+                    uncertaintyEllipse:
+                        $ref: '#/components/schemas/UncertaintyEllipse'
+                    vConfidence:
+                        $ref: '#/components/schemas/Confidence'
+                  required:
+                    - point
+                    - altitude
+                    - uncertaintyEllipse
+                    - uncertaintyAltitude
+                    - confidence
+                  type: object
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PointAltitudeUncertainty
+        PointList:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PointList
+            items:
+                $ref: '#/components/schemas/GeographicalCoordinates'
+            maxItems: 15
+            minItems: 3
+            type: array
+            x-go-type-skip-optional-pointer: true
+        PointUncertaintyCircle:
+            allOf:
+                - $ref: '#/components/schemas/GADShape'
+                - additionalProperties: true
+                  properties:
+                    point:
+                        $ref: '#/components/schemas/GeographicalCoordinates'
+                    uncertainty:
+                        $ref: '#/components/schemas/Uncertainty'
+                  required:
+                    - point
+                    - uncertainty
+                  type: object
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PointUncertaintyCircle
+        PointUncertaintyEllipse:
+            allOf:
+                - $ref: '#/components/schemas/GADShape'
+                - additionalProperties: true
+                  properties:
+                    confidence:
+                        $ref: '#/components/schemas/Confidence'
+                    point:
+                        $ref: '#/components/schemas/GeographicalCoordinates'
+                    uncertaintyEllipse:
+                        $ref: '#/components/schemas/UncertaintyEllipse'
+                  required:
+                    - point
+                    - uncertaintyEllipse
+                    - confidence
+                  type: object
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PointUncertaintyEllipse
         PolicyAuthorization-AspId:
             description: Contains an identity of an application service provider. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AspId)
             type: string
@@ -12260,6 +12836,17 @@ components:
                 - SMF_SELECT_CHANGE
                 - ACCESS_TYPE_CHANGE
             type: string
+        Polygon:
+            allOf:
+                - $ref: '#/components/schemas/GADShape'
+                - additionalProperties: true
+                  properties:
+                    pointList:
+                        $ref: '#/components/schemas/PointList'
+                  required:
+                    - pointList
+                  type: object
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Polygon
         PortManagementContainer:
             additionalProperties: true
             description: Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/PortManagementContainer
@@ -12272,10 +12859,56 @@ components:
                 - portManCont
                 - portNum
             type: object
+        PositioningMethod:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethod
+            enum:
+                - CELLID
+                - ECID
+                - OTDOA
+                - BAROMETRIC_PRESSURE
+                - WLAN
+                - BLUETOOTH
+                - MBS
+                - MOTION_SENSOR
+                - DL_TDOA
+                - DL_AOD
+                - MULTI-RTT
+                - NR_ECID
+                - UL_TDOA
+                - UL_AOA
+                - NETWORK_SPECIFIC
+            type: string
+        PositioningMethodAndUsage:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
+            properties:
+                method:
+                    $ref: '#/components/schemas/PositioningMethod'
+                methodCode:
+                    maximum: 31
+                    minimum: 16
+                    type: integer
+                    x-go-type-skip-optional-pointer: true
+                mode:
+                    $ref: '#/components/schemas/PositioningMode'
+                usage:
+                    $ref: '#/components/schemas/Usage'
+            required:
+                - method
+                - mode
+                - usage
+            type: object
         PositioningMethodMdt:
             enum:
                 - GNSS
                 - E_CELL_ID
+            type: string
+        PositioningMode:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMode
+            enum:
+                - UE_BASED
+                - UE_ASSISTED
+                - CONVENTIONAL
             type: string
         Pp5gVnGroupProfileData:
             additionalProperties: true
@@ -12658,13 +13291,11 @@ components:
                 currentLoc:
                     type: boolean
                 geoInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/GeographicArea'
                 location:
                     $ref: '#/components/schemas/UserLocation'
                 locationAge:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/AgeOfLocationEstimate'
                 oldGuami:
                     $ref: '#/components/schemas/Guami'
                 ratType:
@@ -12679,46 +13310,37 @@ components:
             description: Original definition in TS29518_Namf_Location.yaml#/components/schemas/ProvidePosInfo
             properties:
                 accuracyFulfilmentIndicator:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AccuracyFulfilmentIndicator
-                    type: string
+                    $ref: '#/components/schemas/AccuracyFulfilmentIndicator'
                 ageOfLocationEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/AgeOfLocationEstimate'
                 altitude:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/Altitude
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/Altitude'
                 barometricPressure:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/BarometricPressure
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/BarometricPressure'
                 civicAddress:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/CivicAddress'
                 ecgi:
                     $ref: '#/components/schemas/Ecgi'
                 gnssPositioningDataList:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GnssPositioningMethodAndUsage
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GnssPositioningMethodAndUsage'
                     maxItems: 9
                     minItems: 0
                     type: array
                 locationEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/GeographicArea'
                 locationPrivacyVerResult:
                     $ref: '#/components/schemas/LocationPrivacyVerResult'
                 ncgi:
                     $ref: '#/components/schemas/Ncgi'
                 positioningDataList:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PositioningMethodAndUsage
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/PositioningMethodAndUsage'
                     maxItems: 9
                     minItems: 0
                     type: array
                 servingLMFIdentification:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification
-                    type: string
+                    $ref: '#/components/schemas/LMFIdentification'
                 supportedFeatures:
                     $ref: '#/components/schemas/SupportedFeatures'
                 targetMmeName:
@@ -12730,8 +13352,7 @@ components:
                 utranSrvccInd:
                     type: boolean
                 velocityEstimate:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/VelocityEstimate'
             type: object
         ProvisionedDataSets:
             additionalProperties: true
@@ -13567,6 +14188,41 @@ components:
                 - PERIODICAL
                 - EVENT_TRIGGED
             type: string
+        ReportingAmount:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingAmount
+            maximum: 8639999
+            minimum: 1
+            type: integer
+            x-go-type-skip-optional-pointer: true
+        ReportingArea:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingArea
+            properties:
+                areaType:
+                    $ref: '#/components/schemas/ReportingAreaType'
+                ecgi:
+                    $ref: '#/components/schemas/Ecgi'
+                ncgi:
+                    $ref: '#/components/schemas/Ncgi'
+                tai:
+                    $ref: '#/components/schemas/Tai'
+            required:
+                - areaType
+            type: object
+        ReportingAreaType:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingAreaType
+            enum:
+                - EPS_TRACKING_AREA_IDENTITY
+                - E-UTRAN_CELL_GLOBAL_IDENTIFICATION
+                - 5GS_TRACKING_AREA_IDENTITY
+                - NR_CELL_GLOBAL_IDENTITY
+            type: string
+        ReportingDuration:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingDuration
+            maximum: 8640000
+            minimum: 1
+            type: integer
+            x-go-type-skip-optional-pointer: true
         ReportingFrequency:
             description: Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ReportingFrequency
             enum:
@@ -13592,6 +14248,12 @@ components:
                 sampRatio:
                     $ref: '#/components/schemas/SamplingRatio'
             type: object
+        ReportingInterval:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ReportingInterval
+            maximum: 8639999
+            minimum: 1
+            type: integer
+            x-go-type-skip-optional-pointer: true
         ReportingLevel:
             anyOf:
                 - enum:
@@ -13670,71 +14332,56 @@ components:
             properties:
                 additionalLcsSuppGADShapes:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-                        type: string
+                        $ref: '#/components/schemas/SupportedGADShapes'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
                 afID:
                     $ref: '#/components/schemas/NfInstanceId'
                 areaEventInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/AreaEventInfo
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/AreaEventInfo'
                 codeWord:
-                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
-                    type: string
+                    $ref: '#/components/schemas/gmlc-CodeWord'
                 externalClientIdentification:
-                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/ExternalClientIdentification
-                    type: string
+                    $ref: '#/components/schemas/ExternalClientIdentification'
                 gpsi:
                     $ref: '#/components/schemas/Gpsi'
                 hgmlcCallBackURI:
                     $ref: '#/components/schemas/Uri'
                 lcsClientType:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType
-                    type: string
+                    $ref: '#/components/schemas/ExternalClientType'
                 lcsLocation:
                     $ref: '#/components/schemas/LocationType'
                 lcsQoS:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LocationQoS
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/LocationQoS'
                 lcsServiceType:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/LcsServiceType'
                 lcsSupportedGADShapes:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
-                    type: string
+                    $ref: '#/components/schemas/SupportedGADShapes'
                 ldrReference:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrReference
-                    type: string
+                    $ref: '#/components/schemas/LdrReference'
                 ldrType:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LdrType
-                    type: string
+                    $ref: '#/components/schemas/LdrType'
                 locationNotificationUri:
                     $ref: '#/components/schemas/Uri'
                 motionEventInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/MotionEventInfo
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/MotionEventInfo'
                 oldGuami:
                     $ref: '#/components/schemas/Guami'
                 pei:
                     $ref: '#/components/schemas/Pei'
                 periodicEventInfo:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/PeriodicEventInfo
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/PeriodicEventInfo'
                 priority:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsPriority
-                    type: string
+                    $ref: '#/components/schemas/LcsPriority'
                 supi:
                     $ref: '#/components/schemas/Supi'
                 supportedFeatures:
                     $ref: '#/components/schemas/SupportedFeatures'
                 uePrivacyRequirements:
-                    description: Original reference TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/UePrivacyRequirements'
                 velocityRequested:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
-                    type: string
+                    $ref: '#/components/schemas/VelocityRequested'
             required:
                 - lcsClientType
                 - lcsLocation
@@ -13891,6 +14538,13 @@ components:
                 mcResourcStatus:
                     $ref: '#/components/schemas/MediaComponentResourcesStatus'
             type: object
+        ResponseTime:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/ResponseTime
+            enum:
+                - LOW_DELAY
+                - DELAY_TOLERANT
+                - NO_DELAY
+            type: string
         RestrictedSnssai:
             additionalProperties: true
             description: Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/RestrictedSnssai
@@ -14007,6 +14661,18 @@ components:
                 - REGISTERED
                 - DEREGISTERED
             type: string
+        RoamingChargingProfile:
+            additionalProperties: true
+            description: Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
+            properties:
+                partialRecordMethod:
+                    $ref: '#/components/schemas/PartialRecordMethod'
+                triggers:
+                    items:
+                        $ref: '#/components/schemas/Trigger'
+                    minItems: 0
+                    type: array
+            type: object
         RoamingIndication:
             description: Original definition in TS29531_Nnssf_NSSelection.yaml#/components/schemas/RoamingIndication
             enum:
@@ -14076,6 +14742,11 @@ components:
                 - lac
                 - rac
             type: object
+        RoutingId:
+            description: Original definition in TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
+            pattern: ^[0-9]{1,4}$
+            type: string
+            x-go-type-skip-optional-pointer: true
         Rsn:
             description: |-
                 Redundancy Sequence Number. Possible values are
@@ -14112,8 +14783,7 @@ components:
                 failureCode:
                     $ref: '#/components/schemas/pcf-FailureCode'
                 finUnitAct:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/FinalUnitAction
-                    type: string
+                    $ref: '#/components/schemas/FinalUnitAction'
                 pccRuleIds:
                     description: Contains the identifier of the affected PCC rule(s).
                     items:
@@ -14200,6 +14870,12 @@ components:
                 - refPccRuleIds
                 - notifType
             type: object
+        SamplingInterval:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SamplingInterval
+            maximum: 3600
+            minimum: 1
+            type: integer
+            x-go-type-skip-optional-pointer: true
         SamplingRatio:
             maximum: 100
             minimum: 1
@@ -14731,11 +15407,9 @@ components:
                     $ref: '#/components/schemas/GroupId'
                     description: Identifies a group of users.
                 paramOverPc5:
-                    description: Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverPc5
-                    type: string
+                    $ref: '#/components/schemas/ParameterOverPc5'
                 paramOverUu:
-                    description: Original reference TS29522_ServiceParameter.yaml#/components/schemas/ParameterOverUu
-                    type: string
+                    $ref: '#/components/schemas/ParameterOverUu'
                 resUri:
                     $ref: '#/components/schemas/Uri'
                 snssai:
@@ -14751,14 +15425,22 @@ components:
                 ueMac:
                     $ref: '#/components/schemas/MacAddr48'
             type: object
+        ServiceParameterDataPatch:
+            additionalProperties: true
+            description: Original definition in TS29522_ServiceParameter.yaml#/components/schemas/ServiceParameterDataPatch
+            properties:
+                paramOverPc5:
+                    $ref: '#/components/schemas/ParameterOverPc5Rm'
+                paramOverUu:
+                    $ref: '#/components/schemas/ParameterOverUuRm'
+            type: object
         ServiceTypeUnrelatedClass:
             additionalProperties: true
             description: Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/ServiceTypeUnrelatedClass
             properties:
                 allowedGeographicArea:
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GeographicArea'
                     minItems: 1
                     type: array
                     x-go-type-skip-optional-pointer: true
@@ -14773,8 +15455,7 @@ components:
                 privacyCheckRelatedAction:
                     $ref: '#/components/schemas/PrivacyCheckRelatedAction'
                 serviceType:
-                    description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/LcsServiceType
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/LcsServiceType'
                 validTimePeriod:
                     $ref: '#/components/schemas/ValidTimePeriod'
             required:
@@ -15146,8 +15827,7 @@ components:
                 redundantPduSessionInfo:
                     $ref: '#/components/schemas/RedundantPduSessionInformation'
                 roamingChargingProfile:
-                    description: Original reference TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/RoamingChargingProfile
-                    x-go-type-skip-optional-pointer: true
+                    $ref: '#/components/schemas/RoamingChargingProfile'
                 routingIndicator:
                     type: string
                 sNssai:
@@ -16928,6 +17608,12 @@ components:
             required:
                 - presenceInfoList
             type: object
+        SpeedUncertainty:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SpeedUncertainty
+            format: float
+            maximum: 255
+            minimum: 0
+            type: number
         SponId:
             description: Contains an identity of a sponsor. (Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponId)
             type: string
@@ -17277,6 +17963,17 @@ components:
         SupportedFeatures:
             pattern: ^[A-Fa-f0-9]*$
             type: string
+        SupportedGADShapes:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes
+            enum:
+                - POINT
+                - POINT_UNCERTAINTY_CIRCLE
+                - POINT_UNCERTAINTY_ELLIPSE
+                - POLYGON
+                - POINT_ALTITUDE
+                - POINT_ALTITUDE_UNCERTAINTY
+                - ELLIPSOID_ARC
+            type: string
         SupportedNssaiAvailabilityData:
             additionalProperties: true
             description: Original definition in TS29531_Nnssf_NSSAIAvailability.yaml#/components/schemas/SupportedNssaiAvailabilityData
@@ -17370,6 +18067,9 @@ components:
                 type:
                     $ref: '#/components/schemas/TS29122-Uri'
             type: object
+        TS29122-TrafficDescriptor:
+            description: Identify a traffic descriptor as defined in Figure 5.2.2 of 3GPP TS 24.526, octets v+5 to w. (Original definition in TS29122_ResourceManagementOfBdt.yaml#/components/schemas/TrafficDescriptor)
+            type: string
         TS29122-Uri:
             description: string providing an URI formatted according to IETF RFC 3986. (Original definition in TS29122_CommonData.yaml#/components/schemas/Uri)
             type: string
@@ -17745,7 +18445,7 @@ components:
                 flowStatus:
                     $ref: '#/components/schemas/FlowStatus'
                 mulAccCtrl:
-                    $ref: '#/components/schemas/MulticastAccessControl'
+                    $ref: '#/components/schemas/pcf-MulticastAccessControl'
                 muteNotif:
                     description: Indicates whether applicat'on's start or stop notification is to be muted.
                     type: boolean
@@ -18141,6 +18841,35 @@ components:
                 - UDP
                 - TCP
             type: string
+        Trigger:
+            additionalProperties: true
+            description: Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/Trigger
+            properties:
+                eventLimit:
+                    $ref: '#/components/schemas/Uint32'
+                maxNumberOfccc:
+                    $ref: '#/components/schemas/Uint32'
+                tariffTimeChange:
+                    $ref: '#/components/schemas/DateTime'
+                timeLimit:
+                    $ref: '#/components/schemas/DurationSec'
+                triggerCategory:
+                    $ref: '#/components/schemas/TriggerCategory'
+                triggerType:
+                    $ref: '#/components/schemas/TriggerType'
+                volumeLimit:
+                    $ref: '#/components/schemas/Uint32'
+                volumeLimit64:
+                    $ref: '#/components/schemas/Uint64'
+            required:
+                - triggerCategory
+            type: object
+        TriggerCategory:
+            description: Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/TriggerCategory
+            enum:
+                - IMMEDIATE_REPORT
+                - DEFERRED_REPORT
+            type: string
         TriggerRequest:
             additionalProperties: true
             description: Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/TriggerRequest
@@ -18150,6 +18879,50 @@ components:
             required:
                 - supi
             type: object
+        TriggerType:
+            description: Original definition in TS32291_Nchf_ConvergedCharging.yaml#/components/schemas/TriggerType
+            enum:
+                - QUOTA_THRESHOLD
+                - QHT
+                - FINAL
+                - QUOTA_EXHAUSTED
+                - VALIDITY_TIME
+                - OTHER_QUOTA_TYPE
+                - FORCED_REAUTHORISATION
+                - UNUSED_QUOTA_TIMER # Included for backwards compatibility, shall not be used
+                - UNIT_COUNT_INACTIVITY_TIMER
+                - ABNORMAL_RELEASE
+                - QOS_CHANGE
+                - VOLUME_LIMIT
+                - TIME_LIMIT
+                - EVENT_LIMIT
+                - PLMN_CHANGE
+                - USER_LOCATION_CHANGE
+                - RAT_CHANGE
+                - SESSION_AMBR_CHANGE
+                - UE_TIMEZONE_CHANGE
+                - TARIFF_TIME_CHANGE
+                - MAX_NUMBER_OF_CHANGES_IN_CHARGING_CONDITIONS
+                - MANAGEMENT_INTERVENTION
+                - CHANGE_OF_UE_PRESENCE_IN_PRESENCE_REPORTING_AREA
+                - CHANGE_OF_3GPP_PS_DATA_OFF_STATUS
+                - SERVING_NODE_CHANGE
+                - REMOVAL_OF_UPF
+                - ADDITION_OF_UPF
+                - INSERTION_OF_ISMF
+                - REMOVAL_OF_ISMF
+                - CHANGE_OF_ISMF
+                - START_OF_SERVICE_DATA_FLOW
+                - ECGI_CHANGE
+                - TAI_CHANGE
+                - HANDOVER_CANCEL
+                - HANDOVER_START
+                - HANDOVER_COMPLETE
+                - GFBR_GUARANTEED_STATUS_CHANGE
+                - ADDITION_OF_ACCESS
+                - REMOVAL_OF_ACCESS
+                - START_OF_SDF_ADDITIONAL_ACCESS
+            type: string
         TscPriorityLevel:
             description: Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TscPriorityLevel
             maximum: 8
@@ -19277,6 +20050,15 @@ components:
                 - cause
                 - ptis
             type: object
+        UePrivacyRequirements:
+            additionalProperties: true
+            description: Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/UePrivacyRequirements
+            properties:
+                codeWordCheck:
+                    type: boolean
+                lcsServiceAuthInfo:
+                    $ref: '#/components/schemas/LcsServiceAuth'
+            type: object
         UeReachability:
             description: Original definition in TS29518_Namf_EventExposure.yaml#/components/schemas/UeReachability
             enum:
@@ -19364,6 +20146,26 @@ components:
                 - 3GA_UNAVAILABLE
                 - N3GA_UNAVAILABLE
             type: string
+        Uncertainty:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Uncertainty
+            format: float
+            minimum: 0
+            type: number
+        UncertaintyEllipse:
+            additionalProperties: true
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/UncertaintyEllipse
+            properties:
+                orientationMajor:
+                    $ref: '#/components/schemas/Orientation'
+                semiMajor:
+                    $ref: '#/components/schemas/Uncertainty'
+                semiMinor:
+                    $ref: '#/components/schemas/Uncertainty'
+            required:
+                - semiMajor
+                - semiMinor
+                - orientationMajor
+            type: object
         UnrelatedClass:
             additionalProperties: true
             description: Original definition in TS29503_Nudm_SDM.yaml#/components/schemas/UnrelatedClass
@@ -19642,6 +20444,15 @@ components:
                 - http
                 - https
             type: string
+        Usage:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/Usage
+            enum:
+                - UNSUCCESS
+                - SUCCESS_RESULTS_NOT_USED
+                - SUCCESS_RESULTS_USED_TO_VERIFY_LOCATION
+                - SUCCESS_RESULTS_USED_TO_GENERATE_LOCATION
+                - SUCCESS_METHOD_NOT_DETERMINED
+            type: string
         UsageMonData:
             additionalProperties: true
             description: Contains remain allowed usage data for a subscriber. (Original definition in TS29519_Policy_Data.yaml#/components/schemas/UsageMonData)
@@ -19902,6 +20713,19 @@ components:
             pattern: ^(imsi-[0-9]{5,15}|nai-.+|msisdn-[0-9]{5,15}|extid-[^@]+@[^@]+|gci-.+|gli-.+|.+)$
             type: string
             x-go-type-skip-optional-pointer: true
+        VelocityEstimate:
+            anyOf:
+                - $ref: '#/components/schemas/HorizontalVelocity'
+                - $ref: '#/components/schemas/HorizontalWithVerticalVelocity'
+                - $ref: '#/components/schemas/HorizontalVelocityWithUncertainty'
+                - $ref: '#/components/schemas/HorizontalWithVerticalVelocityAndUncertainty'
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VelocityEstimate
+        VelocityRequested:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VelocityRequested
+            enum:
+                - VELOCITY_IS_NOT_REQUESTED
+                - VELOCITY_IS_REQUESTED
+            type: string
         VendorId:
             description: Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA) (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/VendorId)
             pattern: ^[0-9]{6}$
@@ -19919,6 +20743,19 @@ components:
                 - featureName
                 - featureVersion
             type: object
+        VerticalDirection:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VerticalDirection
+            enum:
+                - UPWARD
+                - DOWNWARD
+            type: string
+            x-go-type-skip-optional-pointer: true
+        VerticalSpeed:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/VerticalSpeed
+            format: float
+            maximum: 255
+            minimum: 0
+            type: number
         VgmlcAddress:
             additionalProperties: true
             description: Original definition in TS29503_Nudm_UECM.yaml#/components/schemas/VgmlcAddress
@@ -20328,8 +21165,7 @@ components:
                     type: array
                     x-go-type-skip-optional-pointer: true
                 routingId:
-                    description: Original reference TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId
-                    type: string
+                    $ref: '#/components/schemas/RoutingId'
                 secPacket:
                     $ref: '#/components/schemas/ausf-SecuredPacket'
             type: object
@@ -20358,6 +21194,16 @@ components:
                 - $ref: '#/components/schemas/ProblemDetails'
                 - $ref: '#/components/schemas/BindingResp'
             description: Original definition in TS29521_Nbsf_Management.yaml#/components/schemas/ExtProblemDetails
+        gmlc-CodeWord:
+            description: Original definition in TS29515_Ngmlc_Location.yaml#/components/schemas/CodeWord
+            type: string
+        lmf-TerminationCause:
+            description: Original definition in TS29572_Nlmf_Location.yaml#/components/schemas/TerminationCause
+            enum:
+                - TERMINATION_BY_UE
+                - TERMINATION_BY_NETWORK
+                - NORMAL_TERMINATION
+            type: string
         nrf-NFService:
             additionalProperties: true
             description: Information of a given NF Service Instance; it is part of the NFProfile of an NF Instance (Original definition in TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFService)
@@ -20609,6 +21455,24 @@ components:
             enum:
                 - TCP
             type: string
+        pcf-AfEvent:
+            description: Original definition in TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfEvent
+            enum:
+                - ACCESS_TYPE_CHANGE
+                - ANI_REPORT
+                - CHARGING_CORRELATION
+                - EPS_FALLBACK
+                - FAILED_RESOURCES_ALLOCATION
+                - OUT_OF_CREDIT
+                - PLMN_CHG
+                - QOS_MONITORING
+                - QOS_NOTIF
+                - RAN_NAS_CAUSE
+                - REALLOCATION_OF_CREDIT
+                - SUCCESSFUL_RESOURCES_ALLOCATION
+                - TSN_BRIDGE_INFO
+                - USAGE_REPORT
+            type: string
         pcf-AtsssCapability:
             description: Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/AtsssCapability
             enum:
@@ -20697,6 +21561,12 @@ components:
                 - CM_USER_UNK
                 - CM_RAT_FAILED
                 - UE_STA_SUSP
+            type: string
+        pcf-MulticastAccessControl:
+            description: Original definition in TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/MulticastAccessControl
+            enum:
+                - ALLOWED
+                - NOT_ALLOWED
             type: string
         pcf-NetworkAreaInfo:
             additionalProperties: true
@@ -20790,15 +21660,13 @@ components:
                 civicAddresses:
                     description: Identifies a list of civic addresses of the user where the UE is located.
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/CivicAddress'
                     minItems: 0
                     type: array
                 geographicAreas:
                     description: Identifies a list of geographic area of the user where the UE is located.
                     items:
-                        description: Original reference TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
-                        x-go-type-skip-optional-pointer: true
+                        $ref: '#/components/schemas/GeographicArea'
                     minItems: 0
                     type: array
                 nwAreaInfo:

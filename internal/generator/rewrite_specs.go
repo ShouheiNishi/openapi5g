@@ -221,7 +221,7 @@ func (s *GeneratorState) MoveSchemas() error {
 	}
 
 	schemas := make(map[*openapi.Schema]*schemaInfo)
-	for spec := range pkgList {
+	for spec := range s.Specs {
 		if components := s.Specs[spec].Components; components != nil {
 			for name, ref := range components.Schemas {
 				if !ref.HasRef() {
@@ -263,8 +263,7 @@ func (s *GeneratorState) MoveSchemas() error {
 		}
 		info := schemas[schemaRef.Value]
 		if info == nil {
-			// return fmt.Errorf("%s has no info", ref)
-			continue
+			return fmt.Errorf("%s has no info", ref)
 		}
 		if info.refs[name] == nil {
 			info.refs[name] = &refInfo{
@@ -299,6 +298,10 @@ func (s *GeneratorState) MoveSchemas() error {
 				if refInfo.schema.spec == "TS29122_CommonData.yaml" {
 					newName = "TS29122-" + newName
 				}
+			case "TrafficDescriptor":
+				if refInfo.schema.spec == "TS29122_ResourceManagementOfBdt.yaml" {
+					newName = "TS29122-" + newName
+				}
 
 			// traffic influence
 			case "EventNotification", "TrafficInfluSub":
@@ -326,6 +329,18 @@ func (s *GeneratorState) MoveSchemas() error {
 					newName = "bsf-" + newName
 				}
 
+			// GMLC
+			case "CodeWord":
+				if refInfo.schema.spec == "TS29515_Ngmlc_Location.yaml" {
+					newName = "gmlc-" + newName
+				}
+
+			// LMF
+			case "TerminationCause":
+				if refInfo.schema.spec == "TS29572_Nlmf_Location.yaml" {
+					newName = "lmf-" + newName
+				}
+
 			// NRF
 			case "NFProfile":
 				if refInfo.schema.spec == "TS29510_Nnrf_NFDiscovery.yaml" {
@@ -340,8 +355,12 @@ func (s *GeneratorState) MoveSchemas() error {
 				}
 
 			// PCF
-			case "AtsssCapability", "FailureCode":
+			case "AtsssCapability", "FailureCode", "MulticastAccessControl":
 				if refInfo.schema.spec == "TS29512_Npcf_SMPolicyControl.yaml" {
+					newName = "pcf-" + newName
+				}
+			case "AfEvent":
+				if refInfo.schema.spec == "TS29514_Npcf_PolicyAuthorization.yaml" {
 					newName = "pcf-" + newName
 				}
 			case "BdtPolicyData", "BdtPolicyDataPatch", "NetworkAreaInfo":

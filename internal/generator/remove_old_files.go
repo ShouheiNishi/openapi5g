@@ -18,6 +18,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func (s *GeneratorState) RemoveOldFiles() error {
@@ -48,6 +49,10 @@ func (s *GeneratorState) RemoveOldFiles() error {
 
 		if path == filepath.Join(s.RootDir, "internal/generator") {
 			return filepath.SkipDir
+		}
+
+		if strings.HasPrefix(path, filepath.Join(s.RootDir, "internal/test")+"/") && !strings.HasSuffix(path, "_gen.go") {
+			return nil
 		}
 
 		if path == filepath.Join(s.RootDir, "internal/generate.go") {

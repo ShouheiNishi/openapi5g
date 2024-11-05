@@ -51,7 +51,7 @@ func (s *GeneratorState) RemoveOldFiles() error {
 			return filepath.SkipDir
 		}
 
-		if strings.HasPrefix(path, filepath.Join(s.RootDir, "internal/test")+"/") && !strings.HasSuffix(path, "_gen.go") {
+		if strings.HasPrefix(path, filepath.Join(s.RootDir, "internal/test")+"/") && !strings.HasSuffix(path, "_gen_test.go") && !strings.HasSuffix(path, "_gen.go") {
 			return nil
 		}
 

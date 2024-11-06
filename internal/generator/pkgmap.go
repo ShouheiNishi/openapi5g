@@ -28,7 +28,7 @@ func (s *GeneratorState) GeneratePkgMap() error {
 		return fmt.Errorf("CreateFileName: %w", err)
 	}
 	imports := writer.ImportSpecs{
-		{ImportPath: "github.com/getkin/kin-openapi/openapi3"},
+		{ImportPath: "github.com/ShouheiNishi/openapi5g/utils/loader"},
 	}
 	for _, p := range pkgList {
 		imports = append(imports, writer.ImportSpec{
@@ -68,9 +68,9 @@ func (s *GeneratorState) GeneratePkgMap() error {
 	fmt.Fprintln(out, "}")
 
 	fmt.Fprintln(out, "")
-	fmt.Fprintln(out, "var p2l = map[string]func() (*openapi3.T, error){")
+	fmt.Fprintln(out, "var p2l = map[string]loader.SpecLoader{")
 	for _, p := range pkgs {
-		fmt.Fprintf(out, "\"%s\": %s.GetKinOpenApi3Document,\n", p, strings.ReplaceAll(p[len(modBase)+1:], "/", "_"))
+		fmt.Fprintf(out, "\"%s\": %s.GetLoader(),\n", p, strings.ReplaceAll(p[len(modBase)+1:], "/", "_"))
 	}
 	fmt.Fprintln(out, "}")
 

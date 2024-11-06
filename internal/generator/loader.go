@@ -57,11 +57,8 @@ func (s *GeneratorState) GenerateLoader(spec string) (err error) {
 	depsOne := s.DepsForLoader[spec]
 	imports := writer.ImportSpecs{
 		{ImportPath: "fmt"},
-		{ImportPath: "net/url"},
-		{ImportPath: "path"},
-		{ImportPath: "sync"},
 		{},
-		{ImportPath: "github.com/getkin/kin-openapi/openapi3"},
+		{ImportPath: "github.com/ShouheiNishi/openapi5g/utils/loader"},
 	}
 
 	for _, d := range depsOne {
@@ -83,32 +80,22 @@ func (s *GeneratorState) GenerateLoader(spec string) (err error) {
 	fmt.Fprintln(out, "}")
 
 	fmt.Fprintln(out, "")
-	fmt.Fprintln(out, "var kinOpenApi3Doc *openapi3.T")
-	fmt.Fprintln(out, "var kinOpenApi3Err error")
-	fmt.Fprintln(out, "var kinOpenApi3Once sync.Once")
+	fmt.Fprintln(out, "type loaderType struct{}")
 	fmt.Fprintln(out, "")
-	fmt.Fprintln(out, "func GetKinOpenApi3Document() (*openapi3.T, error) {")
-	fmt.Fprintln(out, "kinOpenApi3Once.Do(func() {")
-	fmt.Fprintln(out, "loader := openapi3.NewLoader()")
-	fmt.Fprintln(out, "loader.IsExternalRefsAllowed = true")
-	fmt.Fprintln(out, "loader.ReadFromURIFunc = func(loader *openapi3.Loader, url *url.URL) ([]byte, error) {")
-	fmt.Fprintln(out, "spec := specTable[path.Base(url.Path)]")
+	fmt.Fprintln(out, "func (s loaderType) GetSpec(name string) ([]byte, error) {")
+	fmt.Fprintln(out, "spec := specTable[name]")
 	fmt.Fprintln(out, "if spec == nil {")
-	fmt.Fprintf(out, "return nil, fmt.Errorf(\"%%s is missing\", url.String())\n")
+	fmt.Fprintf(out, "return nil, fmt.Errorf(\"%%s is missing\", name)\n")
 	fmt.Fprintln(out, "}")
 	fmt.Fprintln(out, "return spec, nil")
 	fmt.Fprintln(out, "}")
-	fmt.Fprintf(out, "kinOpenApi3Doc, kinOpenApi3Err = loader.LoadFromFile(\"%s\")\n", spec)
-	fmt.Fprintln(out, "})")
-	fmt.Fprintln(out, "return kinOpenApi3Doc, kinOpenApi3Err")
+	fmt.Fprintln(out, "")
+	fmt.Fprintln(out, "func (s loaderType) RootSpecName() string {")
+	fmt.Fprintf(out, "return \"%s\"\n", spec)
 	fmt.Fprintln(out, "}")
 	fmt.Fprintln(out, "")
-	fmt.Fprintln(out, "func GetKinOpenApi3DocumentMust() *openapi3.T {")
-	fmt.Fprintln(out, "doc, err := GetKinOpenApi3Document()")
-	fmt.Fprintln(out, "if err != nil {")
-	fmt.Fprintln(out, "panic(err)")
-	fmt.Fprintln(out, "}")
-	fmt.Fprintln(out, "return doc")
+	fmt.Fprintln(out, "func GetLoader() loader.SpecLoader {")
+	fmt.Fprintln(out, "return loaderType{}")
 	fmt.Fprintln(out, "}")
 
 	if err := out.Close(); err != nil {
@@ -131,6 +118,7 @@ func (s *GeneratorState) GenerateLoaderTest() error {
 		{},
 		{ImportPath: "github.com/getkin/kin-openapi/openapi3"},
 		{ImportPath: "github.com/stretchr/testify/assert"},
+		{PackageName: "kinopenapi", ImportPath: "github.com/ShouheiNishi/openapi5g/utils/loader/adapter/kin-openapi"},
 	}
 	for _, spec := range l {
 		imp = append(imp, writer.ImportSpec{
@@ -150,7 +138,7 @@ func (s *GeneratorState) GenerateLoaderTest() error {
 	for _, spec := range l {
 		sbase := strings.TrimSuffix(spec, ".yaml")
 		fmt.Fprintf(f, "\n")
-		fmt.Fprintf(f, "doc, err = %s.GetKinOpenApi3Document()\n", sbase)
+		fmt.Fprintf(f, "doc, err = kinopenapi.GetDocument(%s.GetLoader())\n", sbase)
 		fmt.Fprintf(f, "assert.NoError(t, err)\n")
 		fmt.Fprintf(f, "err = doc.Validate(context.Background())\n")
 		fmt.Fprintf(f, "assert.NoError(t, err)\n")

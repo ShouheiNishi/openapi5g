@@ -19,6 +19,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
+	kinopenapi "github.com/ShouheiNishi/openapi5g/utils/loader/adapter/kin-openapi"
 	"github.com/ShouheiNishi/openapi5g/utils/pkgmap"
 )
 
@@ -31,11 +32,15 @@ func TestPkgMap(t *testing.T) {
 	assert.True(t, exist)
 	assert.Equal(t, "TS29571_CommonData.yaml", s)
 
-	doc, err := pkgmap.SpecName2Doc("TS29571_CommonData.yaml")
+	l, exist := pkgmap.SpecName2Loader("TS29571_CommonData.yaml")
+	assert.True(t, exist)
+	doc, err := kinopenapi.GetDocument(l)
 	assert.NoError(t, err)
 	assert.Equal(t, "Common Data Types", doc.Info.Title)
 
-	doc, err = pkgmap.PkgName2Doc("github.com/ShouheiNishi/openapi5g/models")
+	l, exist = pkgmap.PkgName2Loader("github.com/ShouheiNishi/openapi5g/models")
+	assert.True(t, exist)
+	doc, err = kinopenapi.GetDocument(l)
 	assert.NoError(t, err)
 	assert.Equal(t, "Common Data Types", doc.Info.Title)
 
@@ -45,9 +50,9 @@ func TestPkgMap(t *testing.T) {
 	_, exist = pkgmap.PkgName2specName("github.com/ShouheiNishi/openapi5g/notexist")
 	assert.False(t, exist)
 
-	_, err = pkgmap.SpecName2Doc("TSXXXXX_NotExist.yaml")
-	assert.Error(t, err)
+	_, exist = pkgmap.SpecName2Loader("TSXXXXX_NotExist.yaml")
+	assert.False(t, exist)
 
-	_, err = pkgmap.PkgName2Doc("github.com/ShouheiNishi/openapi5g/notexist")
-	assert.Error(t, err)
+	_, exist = pkgmap.PkgName2Loader("github.com/ShouheiNishi/openapi5g/notexist")
+	assert.False(t, exist)
 }

@@ -3,8 +3,6 @@
 package pkgmap
 
 import (
-	"github.com/getkin/kin-openapi/openapi3"
-
 	amf_communication "github.com/ShouheiNishi/openapi5g/amf/communication"
 	amf_event "github.com/ShouheiNishi/openapi5g/amf/event"
 	amf_location "github.com/ShouheiNishi/openapi5g/amf/location"
@@ -45,6 +43,7 @@ import (
 	udr_idmap "github.com/ShouheiNishi/openapi5g/udr/idmap"
 	udr_policy "github.com/ShouheiNishi/openapi5g/udr/policy"
 	udr_subscription "github.com/ShouheiNishi/openapi5g/udr/subscription"
+	"github.com/ShouheiNishi/openapi5g/utils/loader"
 )
 
 var s2p = map[string]string{
@@ -133,45 +132,45 @@ var p2s = map[string]string{
 	"github.com/ShouheiNishi/openapi5g/udr/subscription":      "TS29505_Subscription_Data.yaml",
 }
 
-var p2l = map[string]func() (*openapi3.T, error){
-	"github.com/ShouheiNishi/openapi5g/amf/communication":     amf_communication.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/amf/event":             amf_event.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/amf/location":          amf_location.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/amf/mt":                amf_mt.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/ausf/authentication":   ausf_authentication.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/ausf/sor":              ausf_sor.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/ausf/upu":              ausf_upu.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/bsf/management":        bsf_management.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/influence":             influence.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/models":                models.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/nef/management":        nef_management.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/northbound/commondata": northbound_commondata.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/nrf/bootstrapping":     nrf_bootstrapping.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/nrf/discovery":         nrf_discovery.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/nrf/management":        nrf_management.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/nrf/token":             nrf_token.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/nssf/availability":     nssf_availability.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/nssf/selection":        nssf_selection.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/pcf/AMpolicy":          pcf_AMpolicy.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/pcf/BDTpolicy":         pcf_BDTpolicy.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/pcf/SMpolicy":          pcf_SMpolicy.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/pcf/UEpolicy":          pcf_UEpolicy.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/pcf/authorization":     pcf_authorization.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/pcf/event":             pcf_event.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/pfd/management":        pfd_management.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/smf/event":             smf_event.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/smf/session":           smf_session.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udm/ee":                udm_ee.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udm/mt":                udm_mt.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udm/niddau":            udm_niddau.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udm/pp":                udm_pp.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udm/sdm":               udm_sdm.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udm/ueau":              udm_ueau.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udm/uecm":              udm_uecm.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udr/application":       udr_application.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udr/dr":                udr_dr.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udr/exposure":          udr_exposure.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udr/idmap":             udr_idmap.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udr/policy":            udr_policy.GetKinOpenApi3Document,
-	"github.com/ShouheiNishi/openapi5g/udr/subscription":      udr_subscription.GetKinOpenApi3Document,
+var p2l = map[string]loader.SpecLoader{
+	"github.com/ShouheiNishi/openapi5g/amf/communication":     amf_communication.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/amf/event":             amf_event.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/amf/location":          amf_location.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/amf/mt":                amf_mt.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/ausf/authentication":   ausf_authentication.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/ausf/sor":              ausf_sor.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/ausf/upu":              ausf_upu.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/bsf/management":        bsf_management.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/influence":             influence.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/models":                models.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/nef/management":        nef_management.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/northbound/commondata": northbound_commondata.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/nrf/bootstrapping":     nrf_bootstrapping.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/nrf/discovery":         nrf_discovery.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/nrf/management":        nrf_management.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/nrf/token":             nrf_token.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/nssf/availability":     nssf_availability.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/nssf/selection":        nssf_selection.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/pcf/AMpolicy":          pcf_AMpolicy.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/pcf/BDTpolicy":         pcf_BDTpolicy.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/pcf/SMpolicy":          pcf_SMpolicy.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/pcf/UEpolicy":          pcf_UEpolicy.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/pcf/authorization":     pcf_authorization.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/pcf/event":             pcf_event.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/pfd/management":        pfd_management.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/smf/event":             smf_event.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/smf/session":           smf_session.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udm/ee":                udm_ee.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udm/mt":                udm_mt.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udm/niddau":            udm_niddau.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udm/pp":                udm_pp.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udm/sdm":               udm_sdm.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udm/ueau":              udm_ueau.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udm/uecm":              udm_uecm.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udr/application":       udr_application.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udr/dr":                udr_dr.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udr/exposure":          udr_exposure.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udr/idmap":             udr_idmap.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udr/policy":            udr_policy.GetLoader(),
+	"github.com/ShouheiNishi/openapi5g/udr/subscription":      udr_subscription.GetLoader(),
 }

@@ -26,6 +26,211 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
+// ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated defines model for response-for-components-responses-HsmfUpdateError-multipart-related.
+type ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated struct {
+	BinaryDataN1SmInfoToUe *openapi_types.File `json:"binaryDataN1SmInfoToUe,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdateError
+	JsonData             *externalRef0.HsmfUpdateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
+}
+
+// ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated defines model for response-for-components-responses-PduSessionCreateError-multipart-related.
+type ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated struct {
+	BinaryDataN1SmInfoToUe *openapi_types.File `json:"binaryDataN1SmInfoToUe,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PduSessionCreateError
+	JsonData             *externalRef0.PduSessionCreateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}              `json:"-"`
+}
+
+// ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated defines model for response-for-components-responses-VsmfUpdateError-multipart-related.
+type ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated struct {
+	BinaryDataN1SmInfoFromUe    *openapi_types.File `json:"binaryDataN1SmInfoFromUe,omitempty"`
+	BinaryDataN4Information     *openapi_types.File `json:"binaryDataN4Information,omitempty"`
+	BinaryDataN4InformationExt1 *openapi_types.File `json:"binaryDataN4InformationExt1,omitempty"`
+	BinaryDataN4InformationExt2 *openapi_types.File `json:"binaryDataN4InformationExt2,omitempty"`
+	BinaryDataUnknownN1SmInfo   *openapi_types.File `json:"binaryDataUnknownN1SmInfo,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VsmfUpdateError
+	JsonData             *externalRef0.VsmfUpdateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
+}
+
+// ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated defines model for response-for-components-responses-VsmfUpdateResponse200-multipart-related.
+type ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated struct {
+	BinaryDataN1SmInfoFromUe    *openapi_types.File `json:"binaryDataN1SmInfoFromUe,omitempty"`
+	BinaryDataN4Information     *openapi_types.File `json:"binaryDataN4Information,omitempty"`
+	BinaryDataN4InformationExt1 *openapi_types.File `json:"binaryDataN4InformationExt1,omitempty"`
+	BinaryDataN4InformationExt2 *openapi_types.File `json:"binaryDataN4InformationExt2,omitempty"`
+	BinaryDataUnknownN1SmInfo   *openapi_types.File `json:"binaryDataUnknownN1SmInfo,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/VsmfUpdatedData
+	JsonData             *externalRef0.VsmfUpdatedData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
+}
+
+// ResponseForPathsPduSessionsPostResponses201MultipartRelated defines model for response-for-paths--pdu-sessions-post-responses-201-multipart-related.
+type ResponseForPathsPduSessionsPostResponses201MultipartRelated struct {
+	BinaryDataN1SmInfoToUe *openapi_types.File `json:"binaryDataN1SmInfoToUe,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/PduSessionCreatedData
+	JsonData             *externalRef0.PduSessionCreatedData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}              `json:"-"`
+}
+
+// ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated defines model for response-for-paths--pdu-sessions-{pduSessionRef}-modify-post-responses-200-multipart-related.
+type ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated struct {
+	BinaryDataN1SmInfoToUe      *openapi_types.File `json:"binaryDataN1SmInfoToUe,omitempty"`
+	BinaryDataN4Information     *openapi_types.File `json:"binaryDataN4Information,omitempty"`
+	BinaryDataN4InformationExt1 *openapi_types.File `json:"binaryDataN4InformationExt1,omitempty"`
+	BinaryDataN4InformationExt2 *openapi_types.File `json:"binaryDataN4InformationExt2,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/HsmfUpdatedData
+	JsonData             *externalRef0.HsmfUpdatedData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
+}
+
+// ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated defines model for response-for-paths--pdu-sessions-{pduSessionRef}-release-post-responses-200-multipart-related.
+type ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated struct {
+	BinaryDataN4Information     *openapi_types.File `json:"binaryDataN4Information,omitempty"`
+	BinaryDataN4InformationExt1 *openapi_types.File `json:"binaryDataN4InformationExt1,omitempty"`
+	BinaryDataN4InformationExt2 *openapi_types.File `json:"binaryDataN4InformationExt2,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ReleasedData
+	JsonData             *externalRef0.ReleasedData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}     `json:"-"`
+}
+
+// ResponseForPathsSmContextsPostResponses201MultipartRelated defines model for response-for-paths--sm-contexts-post-responses-201-multipart-related.
+type ResponseForPathsSmContextsPostResponses201MultipartRelated struct {
+	BinaryDataN2SmInformation *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreatedData
+	JsonData             *externalRef0.SmContextCreatedData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsPostResponses400MultipartRelated defines model for response-for-paths--sm-contexts-post-responses-400-multipart-related.
+type ResponseForPathsSmContextsPostResponses400MultipartRelated struct {
+	BinaryDataN1SmMessage *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmMessage *openapi_types.File `json:"binaryDataN2SmMessage,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateError
+	JsonData             *externalRef0.SmContextCreateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsPostResponses403MultipartRelated defines model for response-for-paths--sm-contexts-post-responses-403-multipart-related.
+type ResponseForPathsSmContextsPostResponses403MultipartRelated struct {
+	BinaryDataN1SmMessage *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmMessage *openapi_types.File `json:"binaryDataN2SmMessage,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateError
+	JsonData             *externalRef0.SmContextCreateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsPostResponses404MultipartRelated defines model for response-for-paths--sm-contexts-post-responses-404-multipart-related.
+type ResponseForPathsSmContextsPostResponses404MultipartRelated struct {
+	BinaryDataN1SmMessage *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmMessage *openapi_types.File `json:"binaryDataN2SmMessage,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateError
+	JsonData             *externalRef0.SmContextCreateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsPostResponses500MultipartRelated defines model for response-for-paths--sm-contexts-post-responses-500-multipart-related.
+type ResponseForPathsSmContextsPostResponses500MultipartRelated struct {
+	BinaryDataN1SmMessage *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmMessage *openapi_types.File `json:"binaryDataN2SmMessage,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateError
+	JsonData             *externalRef0.SmContextCreateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsPostResponses503MultipartRelated defines model for response-for-paths--sm-contexts-post-responses-503-multipart-related.
+type ResponseForPathsSmContextsPostResponses503MultipartRelated struct {
+	BinaryDataN1SmMessage *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmMessage *openapi_types.File `json:"binaryDataN2SmMessage,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateError
+	JsonData             *externalRef0.SmContextCreateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsPostResponses504MultipartRelated defines model for response-for-paths--sm-contexts-post-responses-504-multipart-related.
+type ResponseForPathsSmContextsPostResponses504MultipartRelated struct {
+	BinaryDataN1SmMessage *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmMessage *openapi_types.File `json:"binaryDataN2SmMessage,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextCreateError
+	JsonData             *externalRef0.SmContextCreateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated defines model for response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-200-multipart-related.
+type ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated struct {
+	BinaryDataN1SmMessage     *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmInformation *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdatedData
+	JsonData             *externalRef0.SmContextUpdatedData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated defines model for response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-400-multipart-related.
+type ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated struct {
+	BinaryDataN1SmMessage     *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmInformation *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdateError
+	JsonData             *externalRef0.SmContextUpdateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated defines model for response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-403-multipart-related.
+type ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated struct {
+	BinaryDataN1SmMessage     *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmInformation *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdateError
+	JsonData             *externalRef0.SmContextUpdateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated defines model for response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-404-multipart-related.
+type ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated struct {
+	BinaryDataN1SmMessage     *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmInformation *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdateError
+	JsonData             *externalRef0.SmContextUpdateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated defines model for response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-500-multipart-related.
+type ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated struct {
+	BinaryDataN1SmMessage     *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmInformation *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdateError
+	JsonData             *externalRef0.SmContextUpdateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated defines model for response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-503-multipart-related.
+type ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated struct {
+	BinaryDataN1SmMessage     *openapi_types.File `json:"binaryDataN1SmMessage,omitempty"`
+	BinaryDataN2SmInformation *openapi_types.File `json:"binaryDataN2SmInformation,omitempty"`
+
+	// JsonData Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/SmContextUpdateError
+	JsonData             *externalRef0.SmContextUpdateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
 // N400 Original definition in TS29502_Nsmf_PDUSession.yaml#/components/schemas/ExtProblemDetails
 type N400 = externalRef0.ExtProblemDetails
 
@@ -1018,6 +1223,2041 @@ func (a SendMoDataMultipartBody) MarshalJSON() ([]byte, error) {
 		object["binaryMoData"], err = json.Marshal(a.BinaryMoData)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'binaryMoData': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated
+func (a *ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated to handle AdditionalProperties
+func (a *ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmInfoToUe"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmInfoToUe)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmInfoToUe': %w", err)
+		}
+		delete(object, "binaryDataN1SmInfoToUe")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated to handle AdditionalProperties
+func (a ResponseForComponentsResponsesHsmfUpdateErrorMultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmInfoToUe != nil {
+		object["binaryDataN1SmInfoToUe"], err = json.Marshal(a.BinaryDataN1SmInfoToUe)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmInfoToUe': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated
+func (a *ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated to handle AdditionalProperties
+func (a *ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmInfoToUe"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmInfoToUe)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmInfoToUe': %w", err)
+		}
+		delete(object, "binaryDataN1SmInfoToUe")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated to handle AdditionalProperties
+func (a ResponseForComponentsResponsesPduSessionCreateErrorMultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmInfoToUe != nil {
+		object["binaryDataN1SmInfoToUe"], err = json.Marshal(a.BinaryDataN1SmInfoToUe)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmInfoToUe': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated
+func (a *ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated to handle AdditionalProperties
+func (a *ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmInfoFromUe"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmInfoFromUe)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmInfoFromUe': %w", err)
+		}
+		delete(object, "binaryDataN1SmInfoFromUe")
+	}
+
+	if raw, found := object["binaryDataN4Information"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4Information)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4Information': %w", err)
+		}
+		delete(object, "binaryDataN4Information")
+	}
+
+	if raw, found := object["binaryDataN4InformationExt1"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4InformationExt1)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4InformationExt1': %w", err)
+		}
+		delete(object, "binaryDataN4InformationExt1")
+	}
+
+	if raw, found := object["binaryDataN4InformationExt2"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4InformationExt2)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4InformationExt2': %w", err)
+		}
+		delete(object, "binaryDataN4InformationExt2")
+	}
+
+	if raw, found := object["binaryDataUnknownN1SmInfo"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataUnknownN1SmInfo)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataUnknownN1SmInfo': %w", err)
+		}
+		delete(object, "binaryDataUnknownN1SmInfo")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated to handle AdditionalProperties
+func (a ResponseForComponentsResponsesVsmfUpdateErrorMultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmInfoFromUe != nil {
+		object["binaryDataN1SmInfoFromUe"], err = json.Marshal(a.BinaryDataN1SmInfoFromUe)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmInfoFromUe': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4Information != nil {
+		object["binaryDataN4Information"], err = json.Marshal(a.BinaryDataN4Information)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4Information': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4InformationExt1 != nil {
+		object["binaryDataN4InformationExt1"], err = json.Marshal(a.BinaryDataN4InformationExt1)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4InformationExt1': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4InformationExt2 != nil {
+		object["binaryDataN4InformationExt2"], err = json.Marshal(a.BinaryDataN4InformationExt2)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4InformationExt2': %w", err)
+		}
+	}
+
+	if a.BinaryDataUnknownN1SmInfo != nil {
+		object["binaryDataUnknownN1SmInfo"], err = json.Marshal(a.BinaryDataUnknownN1SmInfo)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataUnknownN1SmInfo': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated
+func (a *ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated to handle AdditionalProperties
+func (a *ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmInfoFromUe"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmInfoFromUe)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmInfoFromUe': %w", err)
+		}
+		delete(object, "binaryDataN1SmInfoFromUe")
+	}
+
+	if raw, found := object["binaryDataN4Information"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4Information)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4Information': %w", err)
+		}
+		delete(object, "binaryDataN4Information")
+	}
+
+	if raw, found := object["binaryDataN4InformationExt1"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4InformationExt1)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4InformationExt1': %w", err)
+		}
+		delete(object, "binaryDataN4InformationExt1")
+	}
+
+	if raw, found := object["binaryDataN4InformationExt2"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4InformationExt2)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4InformationExt2': %w", err)
+		}
+		delete(object, "binaryDataN4InformationExt2")
+	}
+
+	if raw, found := object["binaryDataUnknownN1SmInfo"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataUnknownN1SmInfo)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataUnknownN1SmInfo': %w", err)
+		}
+		delete(object, "binaryDataUnknownN1SmInfo")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated to handle AdditionalProperties
+func (a ResponseForComponentsResponsesVsmfUpdateResponse200MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmInfoFromUe != nil {
+		object["binaryDataN1SmInfoFromUe"], err = json.Marshal(a.BinaryDataN1SmInfoFromUe)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmInfoFromUe': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4Information != nil {
+		object["binaryDataN4Information"], err = json.Marshal(a.BinaryDataN4Information)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4Information': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4InformationExt1 != nil {
+		object["binaryDataN4InformationExt1"], err = json.Marshal(a.BinaryDataN4InformationExt1)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4InformationExt1': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4InformationExt2 != nil {
+		object["binaryDataN4InformationExt2"], err = json.Marshal(a.BinaryDataN4InformationExt2)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4InformationExt2': %w", err)
+		}
+	}
+
+	if a.BinaryDataUnknownN1SmInfo != nil {
+		object["binaryDataUnknownN1SmInfo"], err = json.Marshal(a.BinaryDataUnknownN1SmInfo)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataUnknownN1SmInfo': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsPduSessionsPostResponses201MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsPduSessionsPostResponses201MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsPduSessionsPostResponses201MultipartRelated
+func (a *ResponseForPathsPduSessionsPostResponses201MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsPduSessionsPostResponses201MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsPduSessionsPostResponses201MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmInfoToUe"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmInfoToUe)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmInfoToUe': %w", err)
+		}
+		delete(object, "binaryDataN1SmInfoToUe")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsPduSessionsPostResponses201MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsPduSessionsPostResponses201MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmInfoToUe != nil {
+		object["binaryDataN1SmInfoToUe"], err = json.Marshal(a.BinaryDataN1SmInfoToUe)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmInfoToUe': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated
+func (a *ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmInfoToUe"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmInfoToUe)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmInfoToUe': %w", err)
+		}
+		delete(object, "binaryDataN1SmInfoToUe")
+	}
+
+	if raw, found := object["binaryDataN4Information"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4Information)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4Information': %w", err)
+		}
+		delete(object, "binaryDataN4Information")
+	}
+
+	if raw, found := object["binaryDataN4InformationExt1"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4InformationExt1)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4InformationExt1': %w", err)
+		}
+		delete(object, "binaryDataN4InformationExt1")
+	}
+
+	if raw, found := object["binaryDataN4InformationExt2"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4InformationExt2)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4InformationExt2': %w", err)
+		}
+		delete(object, "binaryDataN4InformationExt2")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsPduSessionsPduSessionRefModifyPostResponses200MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmInfoToUe != nil {
+		object["binaryDataN1SmInfoToUe"], err = json.Marshal(a.BinaryDataN1SmInfoToUe)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmInfoToUe': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4Information != nil {
+		object["binaryDataN4Information"], err = json.Marshal(a.BinaryDataN4Information)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4Information': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4InformationExt1 != nil {
+		object["binaryDataN4InformationExt1"], err = json.Marshal(a.BinaryDataN4InformationExt1)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4InformationExt1': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4InformationExt2 != nil {
+		object["binaryDataN4InformationExt2"], err = json.Marshal(a.BinaryDataN4InformationExt2)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4InformationExt2': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated
+func (a *ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN4Information"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4Information)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4Information': %w", err)
+		}
+		delete(object, "binaryDataN4Information")
+	}
+
+	if raw, found := object["binaryDataN4InformationExt1"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4InformationExt1)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4InformationExt1': %w", err)
+		}
+		delete(object, "binaryDataN4InformationExt1")
+	}
+
+	if raw, found := object["binaryDataN4InformationExt2"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN4InformationExt2)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN4InformationExt2': %w", err)
+		}
+		delete(object, "binaryDataN4InformationExt2")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsPduSessionsPduSessionRefReleasePostResponses200MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN4Information != nil {
+		object["binaryDataN4Information"], err = json.Marshal(a.BinaryDataN4Information)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4Information': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4InformationExt1 != nil {
+		object["binaryDataN4InformationExt1"], err = json.Marshal(a.BinaryDataN4InformationExt1)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4InformationExt1': %w", err)
+		}
+	}
+
+	if a.BinaryDataN4InformationExt2 != nil {
+		object["binaryDataN4InformationExt2"], err = json.Marshal(a.BinaryDataN4InformationExt2)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN4InformationExt2': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsPostResponses201MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsPostResponses201MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsPostResponses201MultipartRelated
+func (a *ResponseForPathsSmContextsPostResponses201MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses201MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsPostResponses201MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN2SmInformation"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmInformation': %w", err)
+		}
+		delete(object, "binaryDataN2SmInformation")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses201MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsPostResponses201MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN2SmInformation != nil {
+		object["binaryDataN2SmInformation"], err = json.Marshal(a.BinaryDataN2SmInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmInformation': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsPostResponses400MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsPostResponses400MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsPostResponses400MultipartRelated
+func (a *ResponseForPathsSmContextsPostResponses400MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses400MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsPostResponses400MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN2SmMessage")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses400MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsPostResponses400MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmMessage != nil {
+		object["binaryDataN2SmMessage"], err = json.Marshal(a.BinaryDataN2SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmMessage': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsPostResponses403MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsPostResponses403MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsPostResponses403MultipartRelated
+func (a *ResponseForPathsSmContextsPostResponses403MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses403MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsPostResponses403MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN2SmMessage")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses403MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsPostResponses403MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmMessage != nil {
+		object["binaryDataN2SmMessage"], err = json.Marshal(a.BinaryDataN2SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmMessage': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsPostResponses404MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsPostResponses404MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsPostResponses404MultipartRelated
+func (a *ResponseForPathsSmContextsPostResponses404MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses404MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsPostResponses404MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN2SmMessage")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses404MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsPostResponses404MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmMessage != nil {
+		object["binaryDataN2SmMessage"], err = json.Marshal(a.BinaryDataN2SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmMessage': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsPostResponses500MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsPostResponses500MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsPostResponses500MultipartRelated
+func (a *ResponseForPathsSmContextsPostResponses500MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses500MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsPostResponses500MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN2SmMessage")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses500MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsPostResponses500MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmMessage != nil {
+		object["binaryDataN2SmMessage"], err = json.Marshal(a.BinaryDataN2SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmMessage': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsPostResponses503MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsPostResponses503MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsPostResponses503MultipartRelated
+func (a *ResponseForPathsSmContextsPostResponses503MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses503MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsPostResponses503MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN2SmMessage")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses503MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsPostResponses503MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmMessage != nil {
+		object["binaryDataN2SmMessage"], err = json.Marshal(a.BinaryDataN2SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmMessage': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsPostResponses504MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsPostResponses504MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsPostResponses504MultipartRelated
+func (a *ResponseForPathsSmContextsPostResponses504MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses504MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsPostResponses504MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN2SmMessage")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsPostResponses504MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsPostResponses504MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmMessage != nil {
+		object["binaryDataN2SmMessage"], err = json.Marshal(a.BinaryDataN2SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmMessage': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmInformation"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmInformation': %w", err)
+		}
+		delete(object, "binaryDataN2SmInformation")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses200MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmInformation != nil {
+		object["binaryDataN2SmInformation"], err = json.Marshal(a.BinaryDataN2SmInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmInformation': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmInformation"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmInformation': %w", err)
+		}
+		delete(object, "binaryDataN2SmInformation")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses400MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmInformation != nil {
+		object["binaryDataN2SmInformation"], err = json.Marshal(a.BinaryDataN2SmInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmInformation': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmInformation"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmInformation': %w", err)
+		}
+		delete(object, "binaryDataN2SmInformation")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses403MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmInformation != nil {
+		object["binaryDataN2SmInformation"], err = json.Marshal(a.BinaryDataN2SmInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmInformation': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmInformation"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmInformation': %w", err)
+		}
+		delete(object, "binaryDataN2SmInformation")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses404MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmInformation != nil {
+		object["binaryDataN2SmInformation"], err = json.Marshal(a.BinaryDataN2SmInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmInformation': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmInformation"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmInformation': %w", err)
+		}
+		delete(object, "binaryDataN2SmInformation")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses500MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmInformation != nil {
+		object["binaryDataN2SmInformation"], err = json.Marshal(a.BinaryDataN2SmInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmInformation': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN1SmMessage"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN1SmMessage)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN1SmMessage': %w", err)
+		}
+		delete(object, "binaryDataN1SmMessage")
+	}
+
+	if raw, found := object["binaryDataN2SmInformation"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2SmInformation)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2SmInformation': %w", err)
+		}
+		delete(object, "binaryDataN2SmInformation")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsSmContextsSmContextRefModifyPostResponses503MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN1SmMessage != nil {
+		object["binaryDataN1SmMessage"], err = json.Marshal(a.BinaryDataN1SmMessage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN1SmMessage': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2SmInformation != nil {
+		object["binaryDataN2SmInformation"], err = json.Marshal(a.BinaryDataN2SmInformation)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2SmInformation': %w", err)
 		}
 	}
 

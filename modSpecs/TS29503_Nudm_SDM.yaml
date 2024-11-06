@@ -1,6 +1,15 @@
 # This is generated file.
 
 components:
+    schemas:
+        response-for-paths--{ueId}-sdm-subscriptions-{subscriptionId}-patch-responses-200-application-json:
+            oneOf:
+                - $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
+                - $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
+        response-for-paths--shared-data-subscriptions-{subscriptionId}-patch-responses-200-application-json:
+            oneOf:
+                - $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
+                - $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -1404,9 +1413,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                oneOf:
-                                    - $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
-                                    - $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
+                                $ref: '#/components/schemas/response-for-paths--{ueId}-sdm-subscriptions-{subscriptionId}-patch-responses-200-application-json'
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400
@@ -1694,9 +1701,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                oneOf:
-                                    - $ref: TS29571_CommonData.yaml#/components/schemas/SdmSubscription
-                                    - $ref: TS29571_CommonData.yaml#/components/schemas/PatchResult
+                                $ref: '#/components/schemas/response-for-paths--shared-data-subscriptions-{subscriptionId}-patch-responses-200-application-json'
                     description: Expected response to a valid request
                 "400":
                     $ref: TS29571_CommonData.yaml#/components/responses/400

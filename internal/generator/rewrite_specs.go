@@ -183,7 +183,54 @@ func (s *GeneratorState) RewriteSpecs() error {
 		schemaRef.Value.ExclusiveMaximum = false
 	}
 
+	for spec := range pkgList {
+		doc := s.Specs[spec]
+		for path, pathRef := range doc.Paths {
+			if !pathRef.HasRef() {
+				for opName, op := range pathRef.Value.Operations() {
+					for status, responseRef := range op.Responses {
+						s.moveResponseSchema(doc, responseRef, spec, "/paths/"+path+"/"+strings.ToLower(opName)+"/responses/"+status)
+					}
+				}
+			}
+		}
+		if doc.Components != nil {
+			for name, responseRef := range doc.Components.Responses {
+				s.moveResponseSchema(doc, responseRef, spec, "/components/responses/"+name)
+			}
+		}
+	}
+
 	return nil
+}
+
+func (s *GeneratorState) moveResponseSchema(doc *openapi.Document, responseRef *openapi.Ref[openapi.Response], spec string, pathBase string) {
+	if !responseRef.HasRef() {
+		for media, mediaType := range responseRef.Value.Content {
+			schemaRef := &mediaType.Schema
+			if !(schemaRef.HasRef() ||
+				(schemaRef.Value.Type != nil && *schemaRef.Value.Type == openapi.SchemaTypeArray && schemaRef.Value.Items.HasRef()) ||
+				((schemaRef.Value.Type == nil || *schemaRef.Value.Type == openapi.SchemaTypeObject) &&
+					len(schemaRef.Value.Properties) == 0 &&
+					schemaRef.Value.AdditionalProperties.SchemaRef != nil && schemaRef.Value.AdditionalProperties.SchemaRef.HasRef())) {
+				path := pathBase + "/" + media
+				newName := "response-for" + strings.ReplaceAll(path, "/", "-")
+				if doc.Components == nil {
+					doc.Components = &openapi.Components{}
+				}
+				if doc.Components.Schemas == nil {
+					doc.Components.Schemas = make(map[string]*openapi.Ref[openapi.Schema])
+				}
+				doc.Components.Schemas[newName] = &openapi.Ref[openapi.Schema]{
+					Value: mediaType.Schema.Value,
+				}
+				schemaRef.Ref = openapi.Reference{
+					Path:    spec,
+					Pointer: "/components/schemas/" + newName,
+				}
+			}
+		}
+	}
 }
 
 type schemaInfo struct {

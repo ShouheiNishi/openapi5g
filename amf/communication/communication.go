@@ -26,6 +26,49 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
+// ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated defines model for response-for-paths--ue-contexts-{ueContextId}-put-responses-201-multipart-related.
+type ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated struct {
+	BinaryDataN2Information      *openapi_types.File `json:"binaryDataN2Information,omitempty"`
+	BinaryDataN2InformationExt1  *openapi_types.File `json:"binaryDataN2InformationExt1,omitempty"`
+	BinaryDataN2InformationExt10 *openapi_types.File `json:"binaryDataN2InformationExt10,omitempty"`
+	BinaryDataN2InformationExt11 *openapi_types.File `json:"binaryDataN2InformationExt11,omitempty"`
+	BinaryDataN2InformationExt12 *openapi_types.File `json:"binaryDataN2InformationExt12,omitempty"`
+	BinaryDataN2InformationExt13 *openapi_types.File `json:"binaryDataN2InformationExt13,omitempty"`
+	BinaryDataN2InformationExt14 *openapi_types.File `json:"binaryDataN2InformationExt14,omitempty"`
+	BinaryDataN2InformationExt15 *openapi_types.File `json:"binaryDataN2InformationExt15,omitempty"`
+	BinaryDataN2InformationExt2  *openapi_types.File `json:"binaryDataN2InformationExt2,omitempty"`
+	BinaryDataN2InformationExt3  *openapi_types.File `json:"binaryDataN2InformationExt3,omitempty"`
+	BinaryDataN2InformationExt4  *openapi_types.File `json:"binaryDataN2InformationExt4,omitempty"`
+	BinaryDataN2InformationExt5  *openapi_types.File `json:"binaryDataN2InformationExt5,omitempty"`
+	BinaryDataN2InformationExt6  *openapi_types.File `json:"binaryDataN2InformationExt6,omitempty"`
+	BinaryDataN2InformationExt7  *openapi_types.File `json:"binaryDataN2InformationExt7,omitempty"`
+	BinaryDataN2InformationExt8  *openapi_types.File `json:"binaryDataN2InformationExt8,omitempty"`
+	BinaryDataN2InformationExt9  *openapi_types.File `json:"binaryDataN2InformationExt9,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextCreatedData
+	JsonData             *externalRef0.UeContextCreatedData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated defines model for response-for-paths--ue-contexts-{ueContextId}-put-responses-403-multipart-related.
+type ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated struct {
+	BinaryDataN2Information *openapi_types.File `json:"binaryDataN2Information,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextCreateError
+	JsonData             *externalRef0.UeContextCreateError `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated defines model for response-for-paths--ue-contexts-{ueContextId}-transfer-post-responses-200-multipart-related.
+type ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated struct {
+	BinaryDataN2Information     *openapi_types.File `json:"binaryDataN2Information,omitempty"`
+	BinaryDataN2InformationExt1 *openapi_types.File `json:"binaryDataN2InformationExt1,omitempty"`
+
+	// JsonData Original definition in TS29518_Namf_Communication.yaml#/components/schemas/UeContextTransferRspData
+	JsonData             *externalRef0.UeContextTransferRspData `json:"jsonData,omitempty"`
+	AdditionalProperties map[string]interface{}                 `json:"-"`
+}
+
 // NonUeN2MessageTransferMultipartBody defines parameters for NonUeN2MessageTransfer.
 type NonUeN2MessageTransferMultipartBody struct {
 	BinaryDataN2Information *openapi_types.File `json:"binaryDataN2Information,omitempty"`
@@ -1167,6 +1210,495 @@ func (a UEContextTransferMultipartBody) MarshalJSON() ([]byte, error) {
 		object["binaryDataN1Message"], err = json.Marshal(a.BinaryDataN1Message)
 		if err != nil {
 			return nil, fmt.Errorf("error marshaling 'binaryDataN1Message': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated
+func (a *ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN2Information"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2Information)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2Information': %w", err)
+		}
+		delete(object, "binaryDataN2Information")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt1"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt1)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt1': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt1")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt10"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt10)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt10': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt10")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt11"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt11)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt11': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt11")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt12"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt12)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt12': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt12")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt13"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt13)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt13': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt13")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt14"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt14)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt14': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt14")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt15"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt15)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt15': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt15")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt2"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt2)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt2': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt2")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt3"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt3)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt3': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt3")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt4"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt4)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt4': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt4")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt5"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt5)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt5': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt5")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt6"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt6)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt6': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt6")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt7"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt7)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt7': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt7")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt8"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt8)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt8': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt8")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt9"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt9)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt9': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt9")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsUeContextsUeContextIdPutResponses201MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN2Information != nil {
+		object["binaryDataN2Information"], err = json.Marshal(a.BinaryDataN2Information)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2Information': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt1 != nil {
+		object["binaryDataN2InformationExt1"], err = json.Marshal(a.BinaryDataN2InformationExt1)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt1': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt10 != nil {
+		object["binaryDataN2InformationExt10"], err = json.Marshal(a.BinaryDataN2InformationExt10)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt10': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt11 != nil {
+		object["binaryDataN2InformationExt11"], err = json.Marshal(a.BinaryDataN2InformationExt11)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt11': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt12 != nil {
+		object["binaryDataN2InformationExt12"], err = json.Marshal(a.BinaryDataN2InformationExt12)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt12': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt13 != nil {
+		object["binaryDataN2InformationExt13"], err = json.Marshal(a.BinaryDataN2InformationExt13)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt13': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt14 != nil {
+		object["binaryDataN2InformationExt14"], err = json.Marshal(a.BinaryDataN2InformationExt14)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt14': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt15 != nil {
+		object["binaryDataN2InformationExt15"], err = json.Marshal(a.BinaryDataN2InformationExt15)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt15': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt2 != nil {
+		object["binaryDataN2InformationExt2"], err = json.Marshal(a.BinaryDataN2InformationExt2)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt2': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt3 != nil {
+		object["binaryDataN2InformationExt3"], err = json.Marshal(a.BinaryDataN2InformationExt3)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt3': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt4 != nil {
+		object["binaryDataN2InformationExt4"], err = json.Marshal(a.BinaryDataN2InformationExt4)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt4': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt5 != nil {
+		object["binaryDataN2InformationExt5"], err = json.Marshal(a.BinaryDataN2InformationExt5)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt5': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt6 != nil {
+		object["binaryDataN2InformationExt6"], err = json.Marshal(a.BinaryDataN2InformationExt6)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt6': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt7 != nil {
+		object["binaryDataN2InformationExt7"], err = json.Marshal(a.BinaryDataN2InformationExt7)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt7': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt8 != nil {
+		object["binaryDataN2InformationExt8"], err = json.Marshal(a.BinaryDataN2InformationExt8)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt8': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt9 != nil {
+		object["binaryDataN2InformationExt9"], err = json.Marshal(a.BinaryDataN2InformationExt9)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt9': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated
+func (a *ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN2Information"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2Information)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2Information': %w", err)
+		}
+		delete(object, "binaryDataN2Information")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsUeContextsUeContextIdPutResponses403MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN2Information != nil {
+		object["binaryDataN2Information"], err = json.Marshal(a.BinaryDataN2Information)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2Information': %w", err)
+		}
+	}
+
+	if a.JsonData != nil {
+		object["jsonData"], err = json.Marshal(a.JsonData)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'jsonData': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated
+func (a *ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated to handle AdditionalProperties
+func (a *ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["binaryDataN2Information"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2Information)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2Information': %w", err)
+		}
+		delete(object, "binaryDataN2Information")
+	}
+
+	if raw, found := object["binaryDataN2InformationExt1"]; found {
+		err = json.Unmarshal(raw, &a.BinaryDataN2InformationExt1)
+		if err != nil {
+			return fmt.Errorf("error reading 'binaryDataN2InformationExt1': %w", err)
+		}
+		delete(object, "binaryDataN2InformationExt1")
+	}
+
+	if raw, found := object["jsonData"]; found {
+		err = json.Unmarshal(raw, &a.JsonData)
+		if err != nil {
+			return fmt.Errorf("error reading 'jsonData': %w", err)
+		}
+		delete(object, "jsonData")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated to handle AdditionalProperties
+func (a ResponseForPathsUeContextsUeContextIdTransferPostResponses200MultipartRelated) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.BinaryDataN2Information != nil {
+		object["binaryDataN2Information"], err = json.Marshal(a.BinaryDataN2Information)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2Information': %w", err)
+		}
+	}
+
+	if a.BinaryDataN2InformationExt1 != nil {
+		object["binaryDataN2InformationExt1"], err = json.Marshal(a.BinaryDataN2InformationExt1)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'binaryDataN2InformationExt1': %w", err)
 		}
 	}
 

@@ -136,14 +136,7 @@ components:
                         jsonData:
                             contentType: application/json
                     schema:
-                        additionalProperties: true
-                        properties:
-                            binaryDataN1SmInfoToUe:
-                                format: binary
-                                type: string
-                            jsonData:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdateError
-                        type: object
+                        $ref: '#/components/schemas/response-for-components-responses-HsmfUpdateError-multipart-related'
             description: unsuccessful update of a PDU session
         PduSessionCreateError:
             content:
@@ -164,14 +157,7 @@ components:
                         jsonData:
                             contentType: application/json
                     schema:
-                        additionalProperties: true
-                        properties:
-                            binaryDataN1SmInfoToUe:
-                                format: binary
-                                type: string
-                            jsonData:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreateError
-                        type: object
+                        $ref: '#/components/schemas/response-for-components-responses-PduSessionCreateError-multipart-related'
             description: unsuccessful creation of a PDU session
         VsmfUpdateError:
             content:
@@ -216,26 +202,7 @@ components:
                         jsonData:
                             contentType: application/json
                     schema:
-                        additionalProperties: true
-                        properties:
-                            binaryDataN1SmInfoFromUe:
-                                format: binary
-                                type: string
-                            binaryDataN4Information:
-                                format: binary
-                                type: string
-                            binaryDataN4InformationExt1:
-                                format: binary
-                                type: string
-                            binaryDataN4InformationExt2:
-                                format: binary
-                                type: string
-                            binaryDataUnknownN1SmInfo:
-                                format: binary
-                                type: string
-                            jsonData:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdateError
-                        type: object
+                        $ref: '#/components/schemas/response-for-components-responses-VsmfUpdateError-multipart-related'
             description: unsuccessful update of a PDU session
         VsmfUpdateResponse200:
             content:
@@ -277,27 +244,264 @@ components:
                         jsonData:
                             contentType: application/json
                     schema:
-                        additionalProperties: true
-                        properties:
-                            binaryDataN1SmInfoFromUe:
-                                format: binary
-                                type: string
-                            binaryDataN4Information:
-                                format: binary
-                                type: string
-                            binaryDataN4InformationExt1:
-                                format: binary
-                                type: string
-                            binaryDataN4InformationExt2:
-                                format: binary
-                                type: string
-                            binaryDataUnknownN1SmInfo:
-                                format: binary
-                                type: string
-                            jsonData:
-                                $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdatedData
-                        type: object
+                        $ref: '#/components/schemas/response-for-components-responses-VsmfUpdateResponse200-multipart-related'
             description: successful update of a PDU session with content in the response
+    schemas:
+        response-for-components-responses-HsmfUpdateError-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmInfoToUe:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdateError
+            type: object
+        response-for-components-responses-PduSessionCreateError-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmInfoToUe:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreateError
+            type: object
+        response-for-components-responses-VsmfUpdateError-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmInfoFromUe:
+                    format: binary
+                    type: string
+                binaryDataN4Information:
+                    format: binary
+                    type: string
+                binaryDataN4InformationExt1:
+                    format: binary
+                    type: string
+                binaryDataN4InformationExt2:
+                    format: binary
+                    type: string
+                binaryDataUnknownN1SmInfo:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdateError
+            type: object
+        response-for-components-responses-VsmfUpdateResponse200-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmInfoFromUe:
+                    format: binary
+                    type: string
+                binaryDataN4Information:
+                    format: binary
+                    type: string
+                binaryDataN4InformationExt1:
+                    format: binary
+                    type: string
+                binaryDataN4InformationExt2:
+                    format: binary
+                    type: string
+                binaryDataUnknownN1SmInfo:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/VsmfUpdatedData
+            type: object
+        response-for-paths--pdu-sessions-{pduSessionRef}-modify-post-responses-200-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmInfoToUe:
+                    format: binary
+                    type: string
+                binaryDataN4Information:
+                    format: binary
+                    type: string
+                binaryDataN4InformationExt1:
+                    format: binary
+                    type: string
+                binaryDataN4InformationExt2:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdatedData
+            type: object
+        response-for-paths--pdu-sessions-{pduSessionRef}-release-post-responses-200-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN4Information:
+                    format: binary
+                    type: string
+                binaryDataN4InformationExt1:
+                    format: binary
+                    type: string
+                binaryDataN4InformationExt2:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/ReleasedData
+            type: object
+        response-for-paths--pdu-sessions-post-responses-201-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmInfoToUe:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreatedData
+            type: object
+        response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-200-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmInformation:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdatedData
+            type: object
+        response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-400-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmInformation:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
+            type: object
+        response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-403-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmInformation:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
+            type: object
+        response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-404-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmInformation:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
+            type: object
+        response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-500-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmInformation:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
+            type: object
+        response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-503-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmInformation:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
+            type: object
+        response-for-paths--sm-contexts-post-responses-201-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN2SmInformation:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreatedData
+            type: object
+        response-for-paths--sm-contexts-post-responses-400-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmMessage:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
+            type: object
+        response-for-paths--sm-contexts-post-responses-403-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmMessage:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
+            type: object
+        response-for-paths--sm-contexts-post-responses-404-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmMessage:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
+            type: object
+        response-for-paths--sm-contexts-post-responses-500-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmMessage:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
+            type: object
+        response-for-paths--sm-contexts-post-responses-503-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmMessage:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
+            type: object
+        response-for-paths--sm-contexts-post-responses-504-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN1SmMessage:
+                    format: binary
+                    type: string
+                binaryDataN2SmMessage:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
+            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -660,14 +864,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmInfoToUe:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/PduSessionCreatedData
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--pdu-sessions-post-responses-201-multipart-related'
                     description: successful creation of a PDU session
                     headers:
                         Location:
@@ -809,23 +1006,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmInfoToUe:
-                                        format: binary
-                                        type: string
-                                    binaryDataN4Information:
-                                        format: binary
-                                        type: string
-                                    binaryDataN4InformationExt1:
-                                        format: binary
-                                        type: string
-                                    binaryDataN4InformationExt2:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/HsmfUpdatedData
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--pdu-sessions-{pduSessionRef}-modify-post-responses-200-multipart-related'
                     description: successful update of a PDU session with content in the response
                 "204":
                     description: successful update of a PDU session without content in the response
@@ -939,20 +1120,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN4Information:
-                                        format: binary
-                                        type: string
-                                    binaryDataN4InformationExt1:
-                                        format: binary
-                                        type: string
-                                    binaryDataN4InformationExt2:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/ReleasedData
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--pdu-sessions-{pduSessionRef}-release-post-responses-200-multipart-related'
                     description: successful release of a PDU session with content in the response
                 "204":
                     description: successful release of a PDU session
@@ -1197,14 +1365,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN2SmInformation:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreatedData
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-post-responses-201-multipart-related'
                     description: successful creation of an SM context
                     headers:
                         Location:
@@ -1241,17 +1402,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmMessage:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-post-responses-400-multipart-related'
                     description: unsuccessful creation of an SM context - bad request
                 "403":
                     content:
@@ -1278,17 +1429,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmMessage:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-post-responses-403-multipart-related'
                     description: unsuccessful creation of an SM context - forbidden
                 "404":
                     content:
@@ -1312,17 +1453,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmMessage:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-post-responses-404-multipart-related'
                     description: unsuccessful creation of an SM context - not found
                 "411":
                     $ref: TS29571_CommonData.yaml#/components/responses/411
@@ -1357,17 +1488,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmMessage:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-post-responses-500-multipart-related'
                     description: unsuccessful creation of an SM context - internal server error
                 "503":
                     content:
@@ -1394,17 +1515,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmMessage:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-post-responses-503-multipart-related'
                     description: unsuccessful creation of an SM context - service unavailable
                 "504":
                     content:
@@ -1431,17 +1542,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmMessage:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextCreateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-post-responses-504-multipart-related'
                     description: unsuccessful creation of an SM context - gateway timeout
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default
@@ -1525,17 +1626,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmInformation:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdatedData
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-200-multipart-related'
                     description: successful update of an SM context with content in the response
                 "204":
                     description: successful update of an SM context without content in the response
@@ -1568,17 +1659,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmInformation:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-400-multipart-related'
                     description: unsuccessful update of an SM context - bad request
                 "403":
                     content:
@@ -1605,17 +1686,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmInformation:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-403-multipart-related'
                     description: unsuccessful update of an SM context - forbidden
                 "404":
                     content:
@@ -1639,17 +1710,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmInformation:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-404-multipart-related'
                     description: unsuccessful update of an SM context - not found
                 "411":
                     $ref: TS29571_CommonData.yaml#/components/responses/411
@@ -1684,17 +1745,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmInformation:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-500-multipart-related'
                     description: unsuccessful update of an SM context - Internal server error
                 "503":
                     content:
@@ -1721,17 +1772,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN1SmMessage:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2SmInformation:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/SmContextUpdateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--sm-contexts-{smContextRef}-modify-post-responses-503-multipart-related'
                     description: unsuccessful update of an SM context - Service Unavailable
                 default:
                     $ref: TS29571_CommonData.yaml#/components/responses/default

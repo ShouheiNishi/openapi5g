@@ -15,16 +15,14 @@
 package pkgmap
 
 import (
-	"errors"
-
-	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/ShouheiNishi/openapi5g/utils/loader"
 )
 
-func SpecName2Doc(specName string) (doc *openapi3.T, err error) {
+func SpecName2Loader(specName string) (loader loader.SpecLoader, exist bool) {
 	if p, exist := SpecName2PkgName(specName); !exist {
-		return nil, errors.New("spec is not extist")
+		return nil, false
 	} else {
-		return PkgName2Doc(p)
+		return PkgName2Loader(p)
 	}
 }
 
@@ -33,12 +31,9 @@ func SpecName2PkgName(specName string) (pkgName string, exist bool) {
 	return
 }
 
-func PkgName2Doc(pkgName string) (doc *openapi3.T, err error) {
-	if l, exist := p2l[pkgName]; !exist {
-		return nil, errors.New("packge is not extist")
-	} else {
-		return l()
-	}
+func PkgName2Loader(pkgName string) (loader loader.SpecLoader, exist bool) {
+	loader, exist = p2l[pkgName]
+	return
 }
 
 func PkgName2specName(pkgName string) (specName string, exist bool) {

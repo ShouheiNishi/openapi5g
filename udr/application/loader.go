@@ -4,11 +4,6 @@ package application
 
 import (
 	"fmt"
-	"net/url"
-	"path"
-	"sync"
-
-	"github.com/getkin/kin-openapi/openapi3"
 
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29122_CommonData"
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29122_CpProvisioning"
@@ -48,6 +43,7 @@ import (
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29571_CommonData"
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS29572_Nlmf_Location"
 	"github.com/ShouheiNishi/openapi5g/internal/embed/TS32291_Nchf_ConvergedCharging"
+	"github.com/ShouheiNishi/openapi5g/utils/loader"
 )
 
 var specTable map[string][]byte = map[string][]byte{
@@ -91,30 +87,20 @@ var specTable map[string][]byte = map[string][]byte{
 	"TS32291_Nchf_ConvergedCharging.yaml":    TS32291_Nchf_ConvergedCharging.SpecYaml,
 }
 
-var kinOpenApi3Doc *openapi3.T
-var kinOpenApi3Err error
-var kinOpenApi3Once sync.Once
+type loaderType struct{}
 
-func GetKinOpenApi3Document() (*openapi3.T, error) {
-	kinOpenApi3Once.Do(func() {
-		loader := openapi3.NewLoader()
-		loader.IsExternalRefsAllowed = true
-		loader.ReadFromURIFunc = func(loader *openapi3.Loader, url *url.URL) ([]byte, error) {
-			spec := specTable[path.Base(url.Path)]
-			if spec == nil {
-				return nil, fmt.Errorf("%s is missing", url.String())
-			}
-			return spec, nil
-		}
-		kinOpenApi3Doc, kinOpenApi3Err = loader.LoadFromFile("TS29519_Application_Data.yaml")
-	})
-	return kinOpenApi3Doc, kinOpenApi3Err
+func (s loaderType) GetSpec(name string) ([]byte, error) {
+	spec := specTable[name]
+	if spec == nil {
+		return nil, fmt.Errorf("%s is missing", name)
+	}
+	return spec, nil
 }
 
-func GetKinOpenApi3DocumentMust() *openapi3.T {
-	doc, err := GetKinOpenApi3Document()
-	if err != nil {
-		panic(err)
-	}
-	return doc
+func (s loaderType) RootSpecName() string {
+	return "TS29519_Application_Data.yaml"
+}
+
+func GetLoader() loader.SpecLoader {
+	return loaderType{}
 }

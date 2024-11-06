@@ -28,15 +28,16 @@ import (
 	"github.com/ShouheiNishi/openapi5g/nrf/management"
 )
 
-type testAdditionalPropertiesInResponseType struct{}
+type testAdditionalPropertiesInResponseType struct{ t *testing.T }
 
 // Retrieves a collection of NF Instances
 // (GET /nf-instances)
 func (t *testAdditionalPropertiesInResponseType) GetNFInstances(ctx context.Context, request management.GetNFInstancesRequestObject) (management.GetNFInstancesResponseObject, error) {
 	var l models.LinksValueSchema
-	l.FromLink(models.Link{
+	err := l.FromLink(models.Link{
 		Href: lo.ToPtr("baz"),
 	})
+	require.NoError(t.t, err)
 	res := management.ResponseForPathsNfInstancesGetResponses200Application3gppHalJson{
 		Links: &map[string]models.LinksValueSchema{
 			"foo": l,
@@ -96,7 +97,7 @@ func (t *testAdditionalPropertiesInResponseType) UpdateSubscription(ctx context.
 
 func TestAdditionalPropertiesInResponse(t *testing.T) {
 	router := gin.New()
-	management.RegisterHandlers(router, management.NewStrictHandler(&testAdditionalPropertiesInResponseType{}, nil))
+	management.RegisterHandlers(router, management.NewStrictHandler(&testAdditionalPropertiesInResponseType{t: t}, nil))
 
 	server := httptest.NewServer(router.Handler())
 	defer server.Close()

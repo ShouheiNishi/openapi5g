@@ -126,11 +126,11 @@ func (s *GeneratorState) GenerateLoaderTest() error {
 			ImportPath:  modBase + "/" + pkgList[spec].path,
 		})
 	}
-	name, err := s.CreateFileName("internal/test/loader_gen_test.go")
+	name, err := s.CreateFileName("utils/loader/adapter/kin-openapi/loader_test.go")
 	if err != nil {
 		return fmt.Errorf("CreateFileName: %w", err)
 	}
-	f := writer.NewOutputFile(name, "test_test", generatorName, imp)
+	f := writer.NewOutputFile(name, "kinopenapi_test", generatorName, imp)
 
 	fmt.Fprintf(f, "func TestLoader(t *testing.T) {\n")
 	fmt.Fprintf(f, "var doc *openapi3.T\n")

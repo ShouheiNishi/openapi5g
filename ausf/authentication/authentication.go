@@ -23,6 +23,16 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
+// ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson defines model for response-for-paths--ue-authentications-{authCtxId}-eap-session-post-responses-200-application-3gppHal+json.
+type ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson struct {
+	// Links URI : /{eapSessionUri}
+	Links map[string]externalRef0.LinksValueSchema `json:"_links"`
+
+	// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
+	EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
+	AdditionalProperties map[string]interface{}   `json:"-"`
+}
+
 // PostRgAuthenticationsJSONRequestBody defines body for PostRgAuthentications for application/json ContentType.
 type PostRgAuthenticationsJSONRequestBody = externalRef0.RgAuthenticationInfo
 
@@ -37,6 +47,85 @@ type PutUeAuthenticationsAuthCtxId5gAkaConfirmationJSONRequestBody = externalRef
 
 // EapAuthMethodJSONRequestBody defines body for EapAuthMethod for application/json ContentType.
 type EapAuthMethodJSONRequestBody = externalRef0.EapSession
+
+// Getter for additional properties for ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson
+func (a *ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson to handle AdditionalProperties
+func (a *ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["_links"]; found {
+		err = json.Unmarshal(raw, &a.Links)
+		if err != nil {
+			return fmt.Errorf("error reading '_links': %w", err)
+		}
+		delete(object, "_links")
+	}
+
+	if raw, found := object["eapPayload"]; found {
+		err = json.Unmarshal(raw, &a.EapPayload)
+		if err != nil {
+			return fmt.Errorf("error reading 'eapPayload': %w", err)
+		}
+		delete(object, "eapPayload")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson to handle AdditionalProperties
+func (a ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["_links"], err = json.Marshal(a.Links)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling '_links': %w", err)
+	}
+
+	object["eapPayload"], err = json.Marshal(a.EapPayload)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'eapPayload': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -811,16 +900,9 @@ func (r DeleteEapAuthenticationResultResponse) StatusCode() int {
 }
 
 type EapAuthMethodResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	Application3gppHalJSON200 *struct {
-		// Links URI : /{eapSessionUri}
-		Links map[string]externalRef0.LinksValueSchema `json:"_links"`
-
-		// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
-		EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
-		AdditionalProperties map[string]interface{}   `json:"-"`
-	}
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	Application3gppHalJSON200     *ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson
 	JSON200                       *externalRef0.EapSession
 	JSON307                       *externalRef0.N307
 	JSON308                       *externalRef0.N308
@@ -1366,14 +1448,7 @@ func ParseEapAuthMethodResponse(rsp *http.Response) (*EapAuthMethodResponse, err
 
 	switch {
 	case rsp.Header.Get("Content-Type") == "application/3gppHal+json" && rsp.StatusCode == 200:
-		var dest struct {
-			// Links URI : /{eapSessionUri}
-			Links map[string]externalRef0.LinksValueSchema `json:"_links"`
-
-			// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
-			EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
-			AdditionalProperties map[string]interface{}   `json:"-"`
-		}
+		var dest ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -2187,20 +2262,13 @@ type EapAuthMethodResponseObject interface {
 	VisitEapAuthMethodResponse(w http.ResponseWriter) error
 }
 
-type EapAuthMethod200Application3gppHalPlusJSONResponse struct {
-	// Links URI : /{eapSessionUri}
-	Links map[string]externalRef0.LinksValueSchema `json:"_links"`
-
-	// EapPayload contains an EAP packet (Original definition in TS29509_Nausf_UEAuthentication.yaml#/components/schemas/EapPayload)
-	EapPayload           *externalRef0.EapPayload `json:"eapPayload"`
-	AdditionalProperties map[string]interface{}   `json:"-"`
-}
+type EapAuthMethod200Application3gppHalPlusJSONResponse ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson
 
 func (response EapAuthMethod200Application3gppHalPlusJSONResponse) VisitEapAuthMethodResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/3gppHal+json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(ResponseForPathsUeAuthenticationsAuthCtxIdEapSessionPostResponses200Application3gppHalJson(response))
 }
 
 type EapAuthMethod200JSONResponse externalRef0.EapSession

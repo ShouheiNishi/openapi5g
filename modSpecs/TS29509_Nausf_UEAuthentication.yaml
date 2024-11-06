@@ -1,6 +1,22 @@
 # This is generated file.
 
 components:
+    schemas:
+        response-for-paths--ue-authentications-{authCtxId}-eap-session-post-responses-200-application-3gppHal+json:
+            additionalProperties: true
+            properties:
+                _links:
+                    additionalProperties:
+                        $ref: TS29571_CommonData.yaml#/components/schemas/LinksValueSchema
+                    description: 'URI : /{eapSessionUri}'
+                    minProperties: 1
+                    type: object
+                eapPayload:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/EapPayload
+            required:
+                - eapPayload
+                - _links
+            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -220,20 +236,7 @@ paths:
                     content:
                         application/3gppHal+json:
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    _links:
-                                        additionalProperties:
-                                            $ref: TS29571_CommonData.yaml#/components/schemas/LinksValueSchema
-                                        description: 'URI : /{eapSessionUri}'
-                                        minProperties: 1
-                                        type: object
-                                    eapPayload:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/EapPayload
-                                required:
-                                    - eapPayload
-                                    - _links
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--ue-authentications-{authCtxId}-eap-session-post-responses-200-application-3gppHal+json'
                         application/json:
                             schema:
                                 $ref: TS29571_CommonData.yaml#/components/schemas/EapSession

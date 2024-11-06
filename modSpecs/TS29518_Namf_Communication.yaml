@@ -1,6 +1,82 @@
 # This is generated file.
 
 components:
+    schemas:
+        response-for-paths--ue-contexts-{ueContextId}-put-responses-201-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN2Information:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt1:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt2:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt3:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt4:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt5:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt6:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt7:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt8:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt9:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt10:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt11:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt12:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt13:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt14:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt15:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/UeContextCreatedData
+            type: object
+        response-for-paths--ue-contexts-{ueContextId}-put-responses-403-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN2Information:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/UeContextCreateError
+            type: object
+        response-for-paths--ue-contexts-{ueContextId}-transfer-post-responses-200-multipart-related:
+            additionalProperties: true
+            properties:
+                binaryDataN2Information:
+                    format: binary
+                    type: string
+                binaryDataN2InformationExt1:
+                    format: binary
+                    type: string
+                jsonData:
+                    $ref: TS29571_CommonData.yaml#/components/schemas/UeContextTransferRspData
+            type: object
     securitySchemes:
         oAuth2ClientCredentials:
             type: oauth2
@@ -952,59 +1028,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN2Information:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt1:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt2:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt3:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt4:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt5:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt6:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt7:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt8:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt9:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt10:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt11:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt12:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt13:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt14:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt15:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/UeContextCreatedData
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--ue-contexts-{ueContextId}-put-responses-201-multipart-related'
                     description: UE context successfully created.
                     headers:
                         Location:
@@ -1044,14 +1068,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN2Information:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/UeContextCreateError
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--ue-contexts-{ueContextId}-put-responses-403-multipart-related'
                     description: Forbidden
                 "411":
                     $ref: TS29571_CommonData.yaml#/components/responses/411
@@ -1940,17 +1957,7 @@ paths:
                                 jsonData:
                                     contentType: application/json
                             schema:
-                                additionalProperties: true
-                                properties:
-                                    binaryDataN2Information:
-                                        format: binary
-                                        type: string
-                                    binaryDataN2InformationExt1:
-                                        format: binary
-                                        type: string
-                                    jsonData:
-                                        $ref: TS29571_CommonData.yaml#/components/schemas/UeContextTransferRspData
-                                type: object
+                                $ref: '#/components/schemas/response-for-paths--ue-contexts-{ueContextId}-transfer-post-responses-200-multipart-related'
                     description: UE context transfer successfully initiated.
                 "307":
                     $ref: TS29571_CommonData.yaml#/components/responses/307

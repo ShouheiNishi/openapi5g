@@ -23,6 +23,13 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
+// ResponseForPathsNfInstancesGetResponses200Application3gppHalJson defines model for response-for-paths--nf-instances-get-responses-200-application-3gppHal+json.
+type ResponseForPathsNfInstancesGetResponses200Application3gppHalJson struct {
+	// Links List of the URI of NF instances. It has two members whose names are item and self. The item one contains an array of URIs.
+	Links                *map[string]externalRef0.LinksValueSchema `json:"_links,omitempty"`
+	AdditionalProperties map[string]interface{}                    `json:"-"`
+}
+
 // GetNFInstancesParams defines parameters for GetNFInstances.
 type GetNFInstancesParams struct {
 	// NfType Type of NF
@@ -94,6 +101,74 @@ type CreateSubscriptionJSONRequestBody = externalRef0.NrfSubscriptionData
 
 // UpdateSubscriptionApplicationJSONPatchPlusJSONRequestBody defines body for UpdateSubscription for application/json-patch+json ContentType.
 type UpdateSubscriptionApplicationJSONPatchPlusJSONRequestBody = UpdateSubscriptionApplicationJSONPatchPlusJSONBody
+
+// Getter for additional properties for ResponseForPathsNfInstancesGetResponses200Application3gppHalJson. Returns the specified
+// element and whether it was found
+func (a ResponseForPathsNfInstancesGetResponses200Application3gppHalJson) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for ResponseForPathsNfInstancesGetResponses200Application3gppHalJson
+func (a *ResponseForPathsNfInstancesGetResponses200Application3gppHalJson) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for ResponseForPathsNfInstancesGetResponses200Application3gppHalJson to handle AdditionalProperties
+func (a *ResponseForPathsNfInstancesGetResponses200Application3gppHalJson) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["_links"]; found {
+		err = json.Unmarshal(raw, &a.Links)
+		if err != nil {
+			return fmt.Errorf("error reading '_links': %w", err)
+		}
+		delete(object, "_links")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for ResponseForPathsNfInstancesGetResponses200Application3gppHalJson to handle AdditionalProperties
+func (a ResponseForPathsNfInstancesGetResponses200Application3gppHalJson) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Links != nil {
+		object["_links"], err = json.Marshal(a.Links)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '_links': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -952,13 +1027,9 @@ type ClientWithResponsesInterface interface {
 }
 
 type GetNFInstancesResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	Application3gppHalJSON200 *struct {
-		// Links List of the URI of NF instances. It has two members whose names are item and self. The item one contains an array of URIs.
-		Links                *map[string]externalRef0.LinksValueSchema `json:"_links,omitempty"`
-		AdditionalProperties map[string]interface{}                    `json:"-"`
-	}
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	Application3gppHalJSON200     *ResponseForPathsNfInstancesGetResponses200Application3gppHalJson
 	JSON307                       *externalRef0.RedirectResponse
 	JSON308                       *externalRef0.RedirectResponse
 	ApplicationproblemJSON400     *externalRef0.N400
@@ -1401,11 +1472,7 @@ func ParseGetNFInstancesResponse(rsp *http.Response) (*GetNFInstancesResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest struct {
-			// Links List of the URI of NF instances. It has two members whose names are item and self. The item one contains an array of URIs.
-			Links                *map[string]externalRef0.LinksValueSchema `json:"_links,omitempty"`
-			AdditionalProperties map[string]interface{}                    `json:"-"`
-		}
+		var dest ResponseForPathsNfInstancesGetResponses200Application3gppHalJson
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -3000,17 +3067,13 @@ type GetNFInstancesResponseObject interface {
 	VisitGetNFInstancesResponse(w http.ResponseWriter) error
 }
 
-type GetNFInstances200Application3gppHalPlusJSONResponse struct {
-	// Links List of the URI of NF instances. It has two members whose names are item and self. The item one contains an array of URIs.
-	Links                *map[string]externalRef0.LinksValueSchema `json:"_links,omitempty"`
-	AdditionalProperties map[string]interface{}                    `json:"-"`
-}
+type GetNFInstances200Application3gppHalPlusJSONResponse ResponseForPathsNfInstancesGetResponses200Application3gppHalJson
 
 func (response GetNFInstances200Application3gppHalPlusJSONResponse) VisitGetNFInstancesResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/3gppHal+json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response)
+	return json.NewEncoder(w).Encode(ResponseForPathsNfInstancesGetResponses200Application3gppHalJson(response))
 }
 
 type GetNFInstances307ResponseHeaders struct {

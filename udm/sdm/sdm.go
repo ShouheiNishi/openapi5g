@@ -23,6 +23,16 @@ const (
 	OAuth2ClientCredentialsScopes = "oAuth2ClientCredentials.Scopes"
 )
 
+// ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson defines model for response-for-paths--shared-data-subscriptions-{subscriptionId}-patch-responses-200-application-json.
+type ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson struct {
+	union json.RawMessage
+}
+
+// ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson defines model for response-for-paths--{ueId}-sdm-subscriptions-{subscriptionId}-patch-responses-200-application-json.
+type ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson struct {
+	union json.RawMessage
+}
+
 // GetGroupIdentifiersParams defines parameters for GetGroupIdentifiers.
 type GetGroupIdentifiersParams struct {
 	// ExtGroupId External Group Identifier
@@ -322,6 +332,130 @@ type SubscribeJSONRequestBody = externalRef0.SdmSubscription
 
 // ModifyApplicationMergePatchPlusJSONRequestBody defines body for Modify for application/merge-patch+json ContentType.
 type ModifyApplicationMergePatchPlusJSONRequestBody = externalRef0.SdmSubsModification
+
+// AsExternalRef0SdmSubscription returns the union data inside the ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson as a externalRef0.SdmSubscription
+func (t ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) AsExternalRef0SdmSubscription() (externalRef0.SdmSubscription, error) {
+	var body externalRef0.SdmSubscription
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromExternalRef0SdmSubscription overwrites any union data inside the ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson as the provided externalRef0.SdmSubscription
+func (t *ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) FromExternalRef0SdmSubscription(v externalRef0.SdmSubscription) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeExternalRef0SdmSubscription performs a merge with any union data inside the ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson, using the provided externalRef0.SdmSubscription
+func (t *ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) MergeExternalRef0SdmSubscription(v externalRef0.SdmSubscription) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsExternalRef0PatchResult returns the union data inside the ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson as a externalRef0.PatchResult
+func (t ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) AsExternalRef0PatchResult() (externalRef0.PatchResult, error) {
+	var body externalRef0.PatchResult
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromExternalRef0PatchResult overwrites any union data inside the ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson as the provided externalRef0.PatchResult
+func (t *ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) FromExternalRef0PatchResult(v externalRef0.PatchResult) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeExternalRef0PatchResult performs a merge with any union data inside the ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson, using the provided externalRef0.PatchResult
+func (t *ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) MergeExternalRef0PatchResult(v externalRef0.PatchResult) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsExternalRef0SdmSubscription returns the union data inside the ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson as a externalRef0.SdmSubscription
+func (t ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) AsExternalRef0SdmSubscription() (externalRef0.SdmSubscription, error) {
+	var body externalRef0.SdmSubscription
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromExternalRef0SdmSubscription overwrites any union data inside the ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson as the provided externalRef0.SdmSubscription
+func (t *ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) FromExternalRef0SdmSubscription(v externalRef0.SdmSubscription) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeExternalRef0SdmSubscription performs a merge with any union data inside the ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson, using the provided externalRef0.SdmSubscription
+func (t *ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) MergeExternalRef0SdmSubscription(v externalRef0.SdmSubscription) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsExternalRef0PatchResult returns the union data inside the ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson as a externalRef0.PatchResult
+func (t ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) AsExternalRef0PatchResult() (externalRef0.PatchResult, error) {
+	var body externalRef0.PatchResult
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromExternalRef0PatchResult overwrites any union data inside the ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson as the provided externalRef0.PatchResult
+func (t *ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) FromExternalRef0PatchResult(v externalRef0.PatchResult) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeExternalRef0PatchResult performs a merge with any union data inside the ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson, using the provided externalRef0.PatchResult
+func (t *ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) MergeExternalRef0PatchResult(v externalRef0.PatchResult) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -3531,11 +3665,9 @@ func (r UnsubscribeForSharedDataResponse) StatusCode() int {
 }
 
 type ModifySharedDataSubsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *struct {
-		union json.RawMessage
-	}
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -4228,11 +4360,9 @@ func (r UnsubscribeResponse) StatusCode() int {
 }
 
 type ModifyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *struct {
-		union json.RawMessage
-	}
+	Body                          []byte
+	HTTPResponse                  *http.Response
+	JSON200                       *ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson
 	ApplicationproblemJSON400     *externalRef0.N400
 	ApplicationproblemJSON403     *externalRef0.N403
 	ApplicationproblemJSON404     *externalRef0.N404
@@ -4849,9 +4979,7 @@ func ParseModifySharedDataSubsResponse(rsp *http.Response) (*ModifySharedDataSub
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest struct {
-			union json.RawMessage
-		}
+		var dest ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -6403,9 +6531,7 @@ func ParseModifyResponse(rsp *http.Response) (*ModifyResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest struct {
-			union json.RawMessage
-		}
+		var dest ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8891,15 +9017,13 @@ type ModifySharedDataSubsResponseObject interface {
 	VisitModifySharedDataSubsResponse(w http.ResponseWriter) error
 }
 
-type ModifySharedDataSubs200JSONResponse struct {
-	union json.RawMessage
-}
+type ModifySharedDataSubs200JSONResponse ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson
 
 func (response ModifySharedDataSubs200JSONResponse) VisitModifySharedDataSubsResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response.union)
+	return json.NewEncoder(w).Encode(ResponseForPathsSharedDataSubscriptionsSubscriptionIdPatchResponses200ApplicationJson(response))
 }
 
 type ModifySharedDataSubs400ApplicationProblemPlusJSONResponse struct {
@@ -11070,15 +11194,13 @@ type ModifyResponseObject interface {
 	VisitModifyResponse(w http.ResponseWriter) error
 }
 
-type Modify200JSONResponse struct {
-	union json.RawMessage
-}
+type Modify200JSONResponse ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson
 
 func (response Modify200JSONResponse) VisitModifyResponse(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
-	return json.NewEncoder(w).Encode(response.union)
+	return json.NewEncoder(w).Encode(ResponseForPathsUeIdSdmSubscriptionsSubscriptionIdPatchResponses200ApplicationJson(response))
 }
 
 type Modify400ApplicationProblemPlusJSONResponse struct {

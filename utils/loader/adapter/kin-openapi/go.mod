@@ -5,7 +5,7 @@ go 1.22.0
 require (
 	github.com/ShouheiNishi/openapi5g v0.0.0-00010101000000-000000000000
 	github.com/getkin/kin-openapi v0.122.0
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
 )
 
 require (

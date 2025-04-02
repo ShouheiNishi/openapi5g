@@ -1,3 +1,4 @@
+// Deprecated: This project is archived.
 module github.com/ShouheiNishi/openapi5g
 
 go 1.22.0
